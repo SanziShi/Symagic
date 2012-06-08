@@ -47,6 +47,9 @@ public class SymagicAction extends ActionSupport implements CookiesAware,
 	protected Map<String, String> cookies;
 	
 
+	/**
+	 * 设置通用的用户名的用户昵称
+	 */
 	@Override
 	public void prepare() throws Exception {
 		//获得用户名和用户昵称
