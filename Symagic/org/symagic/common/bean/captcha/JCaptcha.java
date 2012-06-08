@@ -37,10 +37,8 @@ public class JCaptcha implements Captcha{
 		try {
 			jpegEncoder.encode(image);
 		} catch (ImageFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
