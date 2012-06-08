@@ -2,4 +2,15 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 
+	<!-- 设置为开发模式输出DEBUG信息 -->
+	<constant name="struts.devMode" value="true" />
+
+	<package name="symagic-default" extends="json-default">
+
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+
+	</package>
+
 </struts>    
