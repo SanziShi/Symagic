@@ -22,6 +22,8 @@ public class SymagicAction extends ActionSupport implements CookiesAware,
 	 */
 	private static final long serialVersionUID = -6763375712103903592L;
 	
+	
+	
 	/**
 	 * @author hao
 	 * 储存用户名的变量
