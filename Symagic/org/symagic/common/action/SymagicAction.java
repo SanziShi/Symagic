@@ -53,6 +53,21 @@ public class SymagicAction extends ActionSupport implements CookiesAware,
 		userName = (String)session.get("userName");
 		nickName = (String)session.get("nickName");
 	}
+	
+	/**
+	 * 
+	 * @return
+	 * @throws Exception
+	 * 判断用户是否已经登陆
+	 */
+	public String isLogin() throws Exception{
+		
+		if( session.containsKey("userName") && session.containsKey("nickName") )
+			return "true";
+		else
+			return "false";
+		
+	}
 
 	
 	/**
