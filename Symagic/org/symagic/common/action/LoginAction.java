@@ -1,5 +1,13 @@
 package org.symagic.common.action;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.json.JSONException;
+import org.apache.struts2.json.JSONUtil;
+
 
 /**
  * 
@@ -29,19 +37,19 @@ public class LoginAction extends GuestInformationAction {
 	
 	private boolean validate=true;
 	
-	@Override
-	public void validate() {
-		// TODO Auto-generated method stub
-	  if(name==null||name.trim().length()==0||!name.matches("[_0-9a-zA-Z]*")){
-		  validate=false;
-	  }
-	  if(password==null||password.trim().length()==0||!password.matches("[_0-9a-zA-Z]")){
-		  
-		  validate=false;
-	  }
-	  
-		super.validate();
-	}
+//	@Override
+//	public void validate() {
+//		// TODO Auto-generated method stub
+//	  if(name==null||name.trim().length()==0||!name.matches("[_0-9a-zA-Z]*")){
+//		  validate=false;
+//	  }
+//	  if(password==null||password.trim().length()==0||!password.matches("[_0-9a-zA-Z]")){
+//		  
+//		  validate=false;
+//	  }
+//	  
+//		super.validate();
+//	}
 public String getUserName() {
 		return name;
 	}
@@ -65,14 +73,26 @@ public String getUserName() {
 	 * 判断用户名和密码是否正确
 	 */
 
-public void  Login(){
-	if(validate){
+public String  Login(){
+	HttpServletRequest request = ServletActionContext.getRequest();
+	System.out.println(request.getContentType());
+	try {
+		Object obj = JSONUtil.deserialize(request.getReader());
+	} catch (JSONException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+//	if(validate){
 		//业务处理
 		session.put("userName", name);
 	result="欢迎你"+name;
-	}
+//	}
 	
-	
+	return SUCCESS;
 	
 	}
 
