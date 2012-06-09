@@ -11,7 +11,7 @@
 			<result>/index.jsp</result>
 		</action>
 		
-		<action name="login" method="login">
+		<action name="log" method="login" class="LoginAction">
 		 <result type="json">
 		  <param name="includeProperties">result</param> 
 		 </result>
@@ -29,6 +29,14 @@
 		<param name="root">captchaCheckResult</param>
 		</result>
 		</action>
+		
+		<action name="get_session_info" class="symagicSessionInfor" >
+		<result type="json">
+		<param name="includeProperties">userName</param>
+		<param name="includeProperties">nickName</param>
+		</result>
+		</action>
+		
 
 	</package>
 
