@@ -2,7 +2,7 @@
 <div id="sendnote_float_r">
 			<div id="sendnotehead"><strong>新用户注册</strong></div>
 			<div id="sendnotecontent">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
+			<form action="" method="post" enctype="multipart/form-data" name="form1" onsubmit="return regist(this);">
 				<table id="itemsearch_r">
 				   <tr>
 					<th class="itemsearchth" >用&nbsp;户&nbsp;名：</th>
@@ -34,7 +34,7 @@
 				 <tr>
 				 <th class="itemsearchth">密码确认：</th>
             		<td class="itemsearchtd1">
-					<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" value="" maxlength="20" >
+					<input type="password" id="psaaword_confirm" class="inputtext hide" name="password_confirm" onblur="password_onblur(this)" value="" maxlength="20" >
                     <input type="test" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" >
 					</td>
 					<td class="itemsearchtd2">
@@ -85,8 +85,8 @@
           		 </tr>
 				 <tr>
 				 <th></th>
-				 	<td><input type="Button" class="bt2" name="button2" value="提交" onClick="">
-						&nbsp;<input type="Reset" class="bt2" name="button1" value="重填" onClick="">
+				 	<td><input type="submit" class="bt2" name="button2" value="提交" >
+						&nbsp;<input type="Reset" class="bt2" name="button1" value="重填" >
 						&nbsp;<input type="Button" class="bt2" name="button3" value="返回" onClick="">
 					</td>
 				 </tr>

@@ -45,7 +45,7 @@ function login(form)
 {
 	var login_form=$(form).serialize();
 	Ajax({
-		url:'login',
+		url:'log',
 		type:'POST',
 		data:login_form,
 		onSuccess:function(e){
@@ -54,6 +54,13 @@ function login(form)
 	})
 	alert(get_session());
 	return false;
+}
+function regist(form) 
+{
+	var regist_form=$(form).serialize();
+	alert(regist_form);
+	return false;
+	
 }
 function safe_question(e)
 {
