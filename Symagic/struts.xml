@@ -10,6 +10,10 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
+		
+		<action name="captcha_get_captcha" class="symagicCaptchaAction" method="execute">
+		<result></result>
+		</action>
 
 	</package>
 
