@@ -1,5 +1,6 @@
 package org.symagic.common.action;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,17 +78,6 @@ public class LoginAction extends GuestInformationAction {
 	 */
 
 	public String Login() {
-		HttpServletRequest request = ServletActionContext.getRequest();
-		System.out.println(request.getContentType());
-		try {
-			Object obj = JSONUtil.deserialize(request.getReader());
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 		// if(validate){
 		// 业务处理
