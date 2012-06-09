@@ -11,6 +11,12 @@
 			<result>/index.jsp</result>
 		</action>
 		
+		<action name="login" method="login">
+		 <result type="json">
+		  <param name="includeProperties">result</param> 
+		 </result>
+		 </action>
+		
 		<action name="captcha_get_captcha" class="symagicCaptchaAction" method="execute">
 		<result type="stream">
 				<param name="contentType">${symagicCaptche.getCaptchaContentType}</param>
