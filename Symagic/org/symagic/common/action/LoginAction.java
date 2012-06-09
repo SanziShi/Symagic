@@ -1,18 +1,12 @@
 package org.symagic.common.action;
 
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
-
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * 
  * @author zsc
  * Symagic系统用户登录时对于用户名和密码的格式验证与身份验证
  */
-public class LoginAction extends ActionSupport implements SessionAware {
+public class LoginAction extends GuestInformationAction {
     /**
 	 * 
 	 */
@@ -34,8 +28,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	 */
 	
 	private boolean validate=true;
-	
-	private Map<String, Object> session;
 	
 	@Override
 	public void validate() {
@@ -82,10 +74,6 @@ public void  Login(){
 	
 	
 	
-	}
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.session = session;
 	}
 
 }

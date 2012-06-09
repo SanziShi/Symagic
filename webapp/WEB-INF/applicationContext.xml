@@ -18,4 +18,7 @@
 <property name="symagicCaptche" ref="JCaptcha"></property>
 </bean>
 
+<bean id="LoginAction" class="org.symagic.common.action.LoginAction" />
+<bean id="symagicSessionInfor" class="org.symagic.common.action.UserSessionInformation" />
+
 </beans>
