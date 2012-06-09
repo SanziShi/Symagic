@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/jcaptcha-api-1.0.jar"/>
 	<classpathentry kind="lib" path="webapp/WEB-INF/lib/filters-2.0.235.jar"/>
 	<classpathentry kind="lib" path="D:/Mysql5/mysql-connector-java-5.1.20/mysql-connector-java-5.1.20-bin.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="webapp/WEB-INF/classes"/>
 </classpath>
