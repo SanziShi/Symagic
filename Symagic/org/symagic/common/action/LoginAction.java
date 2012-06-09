@@ -49,16 +49,17 @@ public class LoginAction extends GuestInformationAction {
 	//
 	// super.validate();
 	// }
-	public String getUserName() {
-		return name;
-	}
-
-	public void setUserName(String name) {
-		this.name = name;
-	}
 
 	public String getPassword() {
 		return password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setPassword(String password) {
