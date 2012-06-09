@@ -37,17 +37,22 @@ function load_regist()
 			}
 	})
 }
+function get_session()
+{
+	Ajax({url:'get_session_info',async:false,onSuccess:function(e){return e;}})
+}
 function login(form)
 {
 	var login_form=$(form).serialize();
 	Ajax({
-		url:'loginaction',
+		url:'login',
 		type:'POST',
 		data:login_form,
 		onSuccess:function(e){
-			
+			alert(e);
 		}
 	})
+	alert(get_session());
 	return false;
 }
 function safe_question(e)
@@ -147,7 +152,6 @@ Ajax=function (option){
 		//alert('ajax.status:'+ajax.status+"  ajax.readyState:"+ajax.readyState);
 	}
 }
-
 
 //覆盖层
 function showOverlay()
