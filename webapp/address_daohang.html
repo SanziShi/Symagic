@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>BC2商城</title>
+<link href="css/frame.css" rel="stylesheet" type="text/css"/>
+<script language="javascript" src="js/checkform.js"></script>
+<script type="text/javascript" src="js/yf_ADS.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body>
+<div id="container">
+	<div id="logalleft">
+		<div id="logalright"> 
+		<a href="" target="_parent">王小静 已登录| 
+		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
+		<a href="address_daohang.html"" target="_parent">地址簿</a> |
+	 	<a href="home_nologin.html" target="_parent">退出</a>
+		</div>
+	</div>
+	<div id="globallink">
+		<ul>
+			<li><a href="index.html">首页</a></li>
+			<li><a href="credit_query.html">积分查询</a></li>
+			<li><a href="item_search.html">商品搜索</a></li>
+			<li><a href="favorite.html">收藏夹</a></li>
+			<li><a href="cart_list.html">我的购物车</a></li>
+			<li><a href="tradequery.html">交易查询</a></li>
+			<li><a href="send_notes.html">送货说明</a></li>
+			<li><a href="" class="nouseful">&nbsp;</a></li>
+		</ul>
+	</div>
+	<div id="banner"></div>
+	<div id="main">
+		<div id="search2">
+			<div id="searchleft">
+				<img src="image/ico_site.jpg"  id="ico_site"/>
+				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 地址簿</a>
+			</div>
+			<div id="searchright2">
+			  <input type="text" name="product" id="textInput"/>
+			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
+			</div>
+			<div id="searchright1">
+			  <select name="category" id="searchrightcategory">
+				<option value="5">所有类别</option>
+                <option value="1">图书音像</option>
+                <option value="2">时尚生活</option>
+                <option value="3">饰品配件</option>
+                <option value="4">数码产品</option>
+              </select>
+		  </div>
+		</div>
+		</div>
+		<div id="double1">
+			<div id="doublehead1"><strong>地址簿列表</strong></div>
+			<div id="doublecontent1">
+				<table id="doublecontenttable1">
+				<thead>
+					<tr>
+						<th></th>
+						<th>地址簿</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+				  <tr>
+					<td>
+						<input type="radio" name="radiobutton" value="radiobutton" checked="checked">
+					</td>		
+					<td>
+					广东省广州市番禺区大学城华南理工大学南校区软件学院
+					</td>
+					<td>
+					<a href="address_edit.html"><img src="image/bt_change.gif"  class="picture"/></a>&nbsp;
+					<a href="#" onClick="javascript:confirm('确定删除？')"><img src="image/bt_delete2.gif" class="picture"/></a>
+					</td>	
+          		  </tr>
+				  <tr>
+					<td>
+					<input type="radio" name="radiobutton" value="radiobutton">
+					</td>
+					<td>
+					广东省广州市天河区华南理工大学北校区逸夫人文馆</td>
+					<td>
+					<a href="address_edit.html"><img src="image/bt_change.gif"  class="picture"/></a>&nbsp;
+					<a href="#" onClick="javascript:confirm('确定删除？')"><img src="image/bt_delete2.gif" class="picture"/></a>
+					</td>
+				  </tr>
+				 </tbody>
+            </table>
+			</div>
+			</div>
+			<div id="double2">
+			<div id="doublehead2"><strong>添加地址簿</strong></div>
+			<div id="doublecontent2">
+			<form action="" method="post" enctype="multipart/form-data" name="form1">
+				<table id="itemsearch">
+				   <tr>
+					<th class="itemsearchth" >姓&nbsp;&nbsp;&nbsp;&nbsp;名：</th>
+            		<td class="itemsearchtd1">
+					<input type="text" name="name" class="inputtext" onFocus="nextfield='password'" value="" maxlength="25"/>
+					</td>
+					<td class="itemsearchtd2">
+						<span class="red">*&nbsp;必填项<span class="red"></td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth">请选择省份</th>
+            		<td class="itemsearchtd1">
+						<select name="province">
+                    		<option>广东省</option>
+                    		<option>湖北省</option>
+							<option>江西省</option>                 
+                  		</select>
+					</td>
+					<td class="itemsearchtd2">
+					<span class="red">*&nbsp;必选项<span class="red">
+					</td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth">请选择城市</th>
+            		<td class="itemsearchtd1">
+						<select name="province">
+                    		<option>广州市</option>
+                    		<option>深圳市</option>
+							<option>东莞市</option>                 
+                  		</select>
+					</td>
+					<td class="itemsearchtd2">
+					<span class="red">*&nbsp;必选项<span class="red">
+					</td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth"><span class="inputHeader">地&nbsp;&nbsp;&nbsp;&nbsp;区：</span></th>
+            		<td class="itemsearchtd1">
+				<input type="Text" class="inputtext" name="address" onFocus="nextfield='name'" value="" maxlength="25">
+					</td>
+					<td class="itemsearchtd2">
+						<span class="red">*&nbsp;必填项<span class="red"></td>
+					</td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth"><span class="inputHeader">邮政编码：</span></th>
+            		<td class="itemsearchtd1">
+					<input type="Text" class="inputtext" name="postcode" onFocus="nextfield='sex'" value="" maxlength="25">
+					</td>
+					<td class="itemsearchtd2">
+						<span class="red">*&nbsp;必填项<span class="red"></td>
+					</td>
+          		 </tr>
+				  <tr>
+				 <th class="itemsearchth"><span class="inputHeader">固定电话：</span></th>
+            		<td class="itemsearchtd1">
+	              <input type="Text" class="inputtext" name="phone" onFocus="nextfield='sex'" value="" maxlength="25">
+					</td>
+					<td class="itemsearchtd2">
+						<span class="red"><span class="red"></td>
+					</td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth"><span class="inputHeader">手机号码：</span></th>
+            		<td class="itemsearchtd1">
+	              <input type="Text" class="inputtext" name="phone" onFocus="nextfield='sex'" value="" maxlength="25">
+					</td>
+					<td class="itemsearchtd2">
+						<span class="red">*&nbsp;固定电话和手机必须输入其中一项<span class="red"></td>
+					</td>
+          		 </tr>
+				 <tr>
+				 <th></th>
+				 	<td>
+					<input type="Button" class="bt2" name="button2" value="提交" onClick="checkaddressdaohang()">
+						&nbsp;<input type="Reset" class="bt2" name="button1" value="重填" onClick="clear()">
+					</td>
+				 </tr>
+        </table>
+		</form>		
+			</div>
+
+</div>
+	<div id="footer">
+		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
+		<span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
+	</div>
+</body>
+</html>

@@ -18,7 +18,7 @@ public class LoginAction extends ActionSupport {
 	 */
 	private String password;
 	/**
-	 * 记录格式验证与身份验证的结果
+	 * 记录身份验证的结果
 	 */
 	private  String result="true";
 	/**

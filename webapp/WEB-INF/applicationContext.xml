@@ -6,4 +6,16 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 
+<bean class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService"
+		id="imageCaptchaService" />
+
+<bean id="JCaptcha" class="org.symagic.common.bean.captcha.JCaptcha">
+<property name="jcaptchaImageServer" ref="imageCaptchaService"></property>
+</bean>
+
+
+<bean id="symagicCaptchaAction" class="org.symagic.security.action.CaptchaAction" >
+<property name="symagicCaptche" ref="JCaptcha"></property>
+</bean>
+
 </beans>
