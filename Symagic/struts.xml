@@ -30,14 +30,12 @@
 		</result>
 		</action>
 		
-		<actoin name="get_session_info" class="symagicSessionInfor">
+		<action name="get_session_info" class="symagicSessionInfor" >
 		<result type="json">
-		<param name="includeProperties">
-		userName
-		nickName
-		</param>
+		<param name="includeProperties">userName</param>
+		<param name="includeProperties">nickName</param>
 		</result>
-		</actoin>
+		</action>
 		
 
 	</package>
