@@ -12,7 +12,10 @@
 		</action>
 		
 		<action name="captcha_get_captcha" class="symagicCaptchaAction" method="execute">
-		<result></result>
+		<result type="stream">
+				<param name="contentType">${symagicCaptche.getCaptchaContentType}</param>
+				<param name="inputName">imageInputStream</param>
+			</result>
 		</action>
 
 	</package>
