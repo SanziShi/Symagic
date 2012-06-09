@@ -17,6 +17,11 @@
 				<param name="inputName">imageInputStream</param>
 			</result>
 		</action>
+		
+		<action name="captcha_check_captcha" class="symagicCaptchaAction" method="checkCaptcha">
+		<result type="json">
+		</result>
+		</action>
 
 	</package>
 

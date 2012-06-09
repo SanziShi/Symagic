@@ -23,12 +23,17 @@ public class CaptchaAction extends ActionSupport {
 	/**
 	 * 验证码输入域
 	 */
-	private String captcheValue;
+	private String captchaValue;
 	
 	/**
 	 * 图片输出流
 	 */
 	private InputStream imageInputStream;
+	
+	/**
+	 * 验证码验证输出流
+	 */
+	private boolean captchaCheckResult;
 	
 	/**
 	 * @author hao
@@ -43,10 +48,9 @@ public class CaptchaAction extends ActionSupport {
 	}
 	
 	public String checkCaptcha() throws Exception{
-		if( symagicCaptche.validateCaptcha(ServletActionContext.getRequest().getSession().getId(), captcheValue))
-			return "true";
-		else
-			return "false";
+		captchaCheckResult = symagicCaptche.validateCaptcha(ServletActionContext.getRequest().getSession().getId(), captchaValue);
+		
+		return SUCCESS;
 	}
 
 	public Captcha getSymagicCaptche() {
@@ -57,20 +61,28 @@ public class CaptchaAction extends ActionSupport {
 		this.symagicCaptche = symagicCaptche;
 	}
 
-	public String getCaptcheValue() {
-		return captcheValue;
-	}
-
-	public void setCaptcheValue(String captcheValue) {
-		this.captcheValue = captcheValue;
-	}
-
 	public InputStream getImageInputStream() {
 		return imageInputStream;
 	}
 
 	public void setImageInputStream(InputStream imageInputStream) {
 		this.imageInputStream = imageInputStream;
+	}
+
+	public String getCaptchaValue() {
+		return captchaValue;
+	}
+
+	public void setCaptchaValue(String captchaValue) {
+		this.captchaValue = captchaValue;
+	}
+
+	public boolean isCaptchaCheckResult() {
+		return captchaCheckResult;
+	}
+
+	public void setCaptchaCheckResult(boolean captchaCheckResult) {
+		this.captchaCheckResult = captchaCheckResult;
 	}
 
 }
