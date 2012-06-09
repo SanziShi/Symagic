@@ -10,33 +10,37 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-		
+
 		<action name="log" method="Login" class="LoginAction">
-		 <result type="json">
-		  <param name="includeProperties">result</param> 
-		 </result>
-		 </action>
-		
-		<action name="captcha_get_captcha" class="symagicCaptchaAction" method="execute">
-		<result type="stream">
+			<result type="json">
+				<param name="includeProperties">result</param>
+			</result>
+		</action>
+
+		<action name="captcha_get_captcha" class="symagicCaptchaAction"
+			method="execute">
+			<result type="stream">
 				<param name="contentType">${symagicCaptche.getCaptchaContentType}</param>
 				<param name="inputName">imageInputStream</param>
 			</result>
 		</action>
-		
-		<action name="captcha_check_captcha" class="symagicCaptchaAction" method="checkCaptcha">
-		<result type="json">
-		<param name="root">captchaCheckResult</param>
-		</result>
+
+		<action name="captcha_check_captcha" class="symagicCaptchaAction"
+			method="checkCaptcha">
+			<result type="json">
+				<param name="root">captchaCheckResult</param>
+			</result>
 		</action>
-		
-		<action name="get_session_info" class="symagicSessionInfor" >
-		<result type="json">
-		<param name="includeProperties">userName</param>
-		<param name="includeProperties">nickName</param>
-		</result>
+
+		<action name="get_session_info" class="symagicSessionInfor">
+			<result type="json">
+				<param name="includeProperties">
+					userName,
+					nickName
+				</param>
+			</result>
 		</action>
-		
+
 
 	</package>
 

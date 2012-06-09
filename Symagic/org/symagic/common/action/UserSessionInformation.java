@@ -34,6 +34,7 @@ public class UserSessionInformation extends GuestInformationAction {
 	public String execute() throws Exception {
 		
 		userName = (String) session.get("userName");
+		nickName = (String) session.get("nickName");
 		
 		return SUCCESS;
 	}
