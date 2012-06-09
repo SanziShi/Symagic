@@ -11,7 +11,7 @@
 			<result>/index.jsp</result>
 		</action>
 		
-		<action name="log" method="login" class="LoginAction">
+		<action name="log" method="Login" class="LoginAction">
 		 <result type="json">
 		  <param name="includeProperties">result</param> 
 		 </result>
