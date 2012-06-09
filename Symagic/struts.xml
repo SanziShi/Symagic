@@ -20,7 +20,7 @@
 		
 		<action name="captcha_check_captcha" class="symagicCaptchaAction" method="checkCaptcha">
 		<result type="json">
-		<param name="includeprorerties">captchaCheckResult</param>
+		<param name="root">captchaCheckResult</param>
 		</result>
 		</action>
 
