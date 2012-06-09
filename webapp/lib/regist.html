@@ -1,0 +1,96 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<div id="sendnote_float_r">
+			<div id="sendnotehead"><strong>新用户注册</strong></div>
+			<div id="sendnotecontent">
+			<form action="" method="post" enctype="multipart/form-data" name="form1">
+				<table id="itemsearch_r">
+				   <tr>
+					<th class="itemsearchth" >用&nbsp;户&nbsp;名：</th>
+            		<td class="itemsearchtd1">
+						<input type="Text" class="inputtext_gray" name="name" id="name" onFocus="onfocus_check(this,'邮箱地址')" onblur="onblur_check(this,'邮箱地址')" value="邮箱地址" >
+					</td>
+					<td class="itemsearchtd2">
+						<span class="red">*&nbsp;必填项	</span>	<span class="loading"></span>			</td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth">昵&nbsp;&nbsp;称：</th>
+            		<td class="itemsearchtd1">
+						<input type="text" name="nickname"class="inputtext_gray" id="nickname" onFocus="onfocus_check(this,'6至20位字符')" onblur="onblur_check(this,'6至20位字符')" value="6至20位字符" maxlength="20"/>
+					</td>
+					<td class="itemsearchtd2">
+						
+					</td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth">登录密码：</th>
+            		<td class="itemsearchtd1">
+					  	<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" value="" maxlength="20" >
+                    <input type="test" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" >
+					</td>
+					<td class="itemsearchtd2">
+					<span class="red">*&nbsp;必填项	</span>
+					</td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth">密码确认：</th>
+            		<td class="itemsearchtd1">
+					<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" value="" maxlength="20" >
+                    <input type="test" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" >
+					</td>
+					<td class="itemsearchtd2">
+					<span class="red">*&nbsp;必填项	</span>
+					</td>
+          		 </tr>
+                  <tr>
+				 <th class="itemsearchth">安全提问问题：</th>
+            		<td class="itemsearchtd1">
+					  	<select onchange="safe_question(this)">
+                        <option>您父亲的名字是？</option>
+                        <option >您母亲的名字是？</option>
+                        <option>您小学就读的学校是？</option>
+						 <option>您出生与哪个医院？</option>
+                        <option>您高中的班主任是？</option>
+                        <option>自定义问题</option>
+					</td>
+					<td class="itemsearchtd2">
+					<span class="red">*&nbsp;必选项，用于找回密码	</span>
+					</td>
+          		 </tr>
+                 <tr style="display:none"  id="test">
+                 <th class="itemsearchth">自定义问题：</th>
+            		<td class="itemsearchtd1">
+					  <input type="text" class="inputtext">
+					</td>
+					<td class="itemsearchtd2">
+					<span class="red">*&nbsp;必填项</span>
+					</td>
+          		 </tr>
+                 <tr>
+				 <th class="itemsearchth">安全回答：</th>
+            		<td class="itemsearchtd1">
+					<input type="text" name="" class="inputtext"/>
+					</td>
+					<td class="itemsearchtd2">
+					<span class="red">*&nbsp;必填项</span>
+					</td>
+          		 </tr>
+				 <tr>
+				 <th class="itemsearchth">请输入如图验证码：</th>
+            		<td class="itemsearchtd1">
+						<input type="text" name="name" class="inputtext"/>
+					</td>
+					<td>
+					 <img  src="image/check.png" />	
+					</td>
+          		 </tr>
+				 <tr>
+				 <th></th>
+				 	<td><input type="Button" class="bt2" name="button2" value="提交" onClick="">
+						&nbsp;<input type="Reset" class="bt2" name="button1" value="重填" onClick="">
+						&nbsp;<input type="Button" class="bt2" name="button3" value="返回" onClick="">
+					</td>
+				 </tr>
+        </table>
+		</form>		
+			</div>
+		</div>
