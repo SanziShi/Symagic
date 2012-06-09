@@ -10,6 +10,11 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
+		<action name="login" method="login">
+		 <result type="json">
+		  <param name="includeProperties">result</param> 
+		 </result>
+		</action>
 
 	</package>
 
