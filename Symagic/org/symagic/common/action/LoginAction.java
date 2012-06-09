@@ -1,5 +1,9 @@
 package org.symagic.common.action;
 
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -8,8 +12,12 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author zsc
  * Symagic系统用户登录时对于用户名和密码的格式验证与身份验证
  */
-public class LoginAction extends ActionSupport {
+public class LoginAction extends ActionSupport implements SessionAware {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4521010265859831478L;
+	/**
      * 保存用户名的变量
      */
 	private String name;
@@ -26,6 +34,9 @@ public class LoginAction extends ActionSupport {
 	 */
 	
 	private boolean validate=true;
+	
+	private Map<String, Object> session;
+	
 	@Override
 	public void validate() {
 		// TODO Auto-generated method stub
@@ -65,12 +76,16 @@ public String getUserName() {
 public void  Login(){
 	if(validate){
 		//业务处理
-	ActionContext.getContext().getSession().put("userName", name);
+		session.put("userName", name);
 	result="欢迎你"+name;
 	}
 	
 	
 	
+	}
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 
 }
