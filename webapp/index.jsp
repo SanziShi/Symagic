@@ -17,11 +17,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="container">
 	<div id="logalleft">
 		<div id="logalright">
-		<a href="#" onclick="load_regist();" target="_parent">注册</a>&nbsp;|
-        <a href="#" id="load_login" onclick="load_login();" target="_parent">登录</a>&nbsp;| 
+		<a href="#" onclick="load_regist();" >注册</a>&nbsp;|
+        <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;| 
 		<a href="user_edit.html" target="_parent">个人信息维护</a>&nbsp;| 
-		<a href="address_daohang.html" target="_parent">地址簿</a>&nbsp;|
-	 	<a href="home_nologin.html" target="_parent">退出</a>
+		<a href="cart_list.html" target="_parent">购物车</a>&nbsp;|
+	 	<a href="#" target="_parent">退出</a>
 		</div>
 	</div>
 	<div id="globallink">
@@ -30,7 +30,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a href="credit_query.html">积分查询</a></li>
 			<li><a href="item_search.html">商品搜索</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="cart_list.html">我的购物车</a></li>
+			<li><a href="address_daohang.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
 			<li><a href="send_notes.html">送货说明</a></li>
 			<li><a href="" class="nouseful">&nbsp;</a></li>
