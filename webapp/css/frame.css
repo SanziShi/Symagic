@@ -4,21 +4,19 @@ body{
 	text-align: center;
 	background:transparent url(../image/back.jpg) scroll center top;
 }
-
 #banner{
 	display:block;
 	float:left;
-	width:800px;
-	margin:0px,auto;
+	width:799px;
+	margin:-2px 0px -5px 0px;
 	height:52px;
 	border:none;
 	background-image:url(../image/whole8.jpg);
+	background-position:-1px;
 }
-
-
 #logalleft{
 	background-image:url(../image/logal8.png);
-	width:800px;
+	width:799px;
 	height:45px;
 }
 #ico_site{
@@ -104,13 +102,13 @@ body{
 }
 #category{
 	background:url(../image/category.jpg) no-repeat;
-	padding:55px 0px 40px 0px;
+	padding:55px 0px 15px 0px;
 }
 #category h4{
 	margin:0px 18px 0px 18px;
 	padding:3px 0px 1px 5px;
-	background-color:#00CCFF;
-	font-size:12px;
+	background: #4796E4;
+	font-size:14px;
 }
 #category ul{
 	list-style:none;
@@ -124,7 +122,7 @@ body{
 }
 
 strong{
-	color:#FFFFFF;
+	color:#C03;
 }
 
 #category ul li a:link, #category ul li a:visited{
@@ -144,12 +142,11 @@ strong{
 
 #search2
 {
-	width:798px;
+	width:799px;
 	height:30px;
 	background-color:#ffffff;
 	margin:4px 0px 0px 0px;
 	padding:0px;
-	border:#00CCFF solid 1px;
 }
 #search2 #searchleft{
 	float:left;
@@ -221,17 +218,14 @@ strong{
 	color:#2696ca;
 }
 
-
-
 #sendnote, #double1, #double2{
-	width:798px;
+	width:799px;
 	float:left;
-	border:#00CCFF solid 1px;
 	background-color:#EBEBEB;
 }
 #sendnotehead, #doublehead1, #doublehead2{
 	height:25px;
-	background-color:#00CCFF;
+	background-color:#4796E4;
 	font-size:14px;
 	padding-left:5px;
 	padding-top:4px;

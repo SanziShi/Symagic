@@ -3,19 +3,11 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>My JSP 'index.jsp' starting page</title>
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>BC2商城</title>
 <link href="css/home.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -25,10 +17,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="container">
 	<div id="logalleft">
 		<div id="logalright">
-		<a href="#" onclick="load_regist();" target="_parent">[注册&nbsp;</a>] | 
-		<a href="#" id="load_login" onclick="load_login();" target="_parent">登录| 
-		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
-		<a href="address_daohang.html" target="_parent">地址簿</a> |
+		<a href="#" onclick="load_regist();" target="_parent">注册</a>&nbsp;|
+        <a href="#" id="load_login" onclick="load_login();" target="_parent">登录</a>&nbsp;| 
+		<a href="user_edit.html" target="_parent">个人信息维护</a>&nbsp;| 
+		<a href="address_daohang.html" target="_parent">地址簿</a>&nbsp;|
 	 	<a href="home_nologin.html" target="_parent">退出</a>
 		</div>
 	</div>

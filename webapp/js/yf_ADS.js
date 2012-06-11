@@ -37,18 +37,30 @@ function load_regist()
 			}
 	})
 }
+function get_session()
+{
+	Ajax({url:'get_session_info',async:false,onSuccess:function(e){return e;}})
+}
 function login(form)
 {
 	var login_form=$(form).serialize();
 	Ajax({
-		url:'loginaction',
+		url:'log',
 		type:'POST',
 		data:login_form,
 		onSuccess:function(e){
-			
+			alert(e);
 		}
 	})
+	alert(get_session());
 	return false;
+}
+function regist(form) 
+{
+	var regist_form=$(form).serialize();
+	alert(regist_form);
+	return false;
+	
 }
 function safe_question(e)
 {
@@ -57,6 +69,15 @@ function safe_question(e)
 		e.parentNode.parentNode.nextSibling.nextSibling.style.display='table-row';
 	}
 	else e.parentNode.parentNode.nextSibling.nextSibling.style.display='none';
+}
+function close_float(elem)
+{
+	var f=elem.parentNode.parentNode.parentNode;
+	$(f).fadeOut('fast',function(){
+		f.parentNode.removeChild(f);
+		hideOverlay();
+		});
+	
 }
 //ADS库函数
 //阻止默认事件函数
@@ -148,7 +169,6 @@ Ajax=function (option){
 	}
 }
 
-
 //覆盖层
 function showOverlay()
 {
@@ -159,13 +179,10 @@ function showOverlay()
 }	
 
 
-function hideOverlay(elem)
+function hideOverlay()
 {
-	var id='#'+elem;
-	$(id).remove();
-	$('#overlay').hide('fast',function(){$('#overlay').remove()});
+	$('#overlay').fadeOut('fast',function(){$('#overlay').remove()});
 }
-
 
 //表单相关验证函数
 function onblur_check(elem,default_text)
