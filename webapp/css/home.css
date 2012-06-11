@@ -15,6 +15,23 @@ body{
 	width:16px;
 	display: inline-block;
 }
+span.close,span.close:hover
+{
+	height:16px;
+	width:18px;
+	display:inline-block;
+	float:right;
+	right:10px;
+	cursor:pointer;
+}
+span.close:hover
+{
+	background: url(../image/button2.png);
+}
+span.close
+{
+	background:url(../image/button1.png);
+}
 #overlay
 {
 	background:#000;
@@ -49,17 +66,16 @@ body{
 #banner{
 	display:block;
 	float:left;
-	width:800px;
-	margin:0px,auto;
+	width:799px;
+	margin:-2px 0px -5px 0px;
 	height:52px;
 	border:none;
 	background-image:url(../image/whole8.jpg);
+	background-position:-1px;
 }
-
-
 #logalleft{
 	background-image:url(../image/logal8.png);
-	width:800px;
+	width:799px;
 	height:45px;
 }
 #logalright{
@@ -104,7 +120,6 @@ body{
 #globallink{
 	width:800px;
 	height:28px;
-	margin:0px;
 	padding:0px;
 }
 #globallink ul{
@@ -149,23 +164,21 @@ body{
 }
 
 #left{
-	height:728px;
-	width:179px;
+	width:180px;
 	float:left;
 	background:#FFFFFF url(../image/leftbotton.jpg) no-repeat;
-	margin:5px 2px 0px 0px;
-	border:#00CCFF solid 1px;
+	margin:5px 2px 0px 0px;	
 }
 
 #category{
 	background:url(../image/category.jpg) no-repeat;
-	padding:55px 0px 40px 0px;
+	padding:55px 0px 15px 0px;
 }
 #category h4{
 	margin:0px 18px 0px 18px;
 	padding:3px 0px 1px 5px;
-	background-color:#00CCFF;
-	font-size:12px;
+	background: #4796E4;
+	font-size:14px;
 }
 #category ul{
 	list-style:none;
@@ -177,9 +190,8 @@ body{
 	border-bottom:1px dashed #999999;
 	background:url(../image/icon1.gif) no-repeat 5px 7px;
 }
-
 strong{
-	color:#FF0000;
+	color: #C03;
 }
 
 #category ul li a:link, #category ul li a:visited{
@@ -188,7 +200,6 @@ strong{
 }
 #category ul li a:hover{
 	color:#666666;
-	text-decoration:underline;
 }
 
 #main{
@@ -196,14 +207,16 @@ strong{
 	width:616px;
 	margin:1px 0px 0px 1px;
 }
-
+#main li:hover
+{
+	background: #DBDBDB;
+}
 #search1
 {
 	width:616px;
 	height:30px;
 	background-color:#ffffff;
 	margin:4px 0px 0px 0px;
-	border:#00CCFF solid 1px;
 }
 #search2
 {

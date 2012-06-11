@@ -17,10 +17,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="container">
 	<div id="logalleft">
 		<div id="logalright">
-		<a href="#" onclick="load_regist();" target="_parent">[注册&nbsp;</a>] | 
-		<a href="#" id="load_login" onclick="load_login();" target="_parent">登录| 
-		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
-		<a href="address_daohang.html" target="_parent">地址簿</a> |
+		<a href="#" onclick="load_regist();" target="_parent">注册</a>&nbsp;|
+        <a href="#" id="load_login" onclick="load_login();" target="_parent">登录</a>&nbsp;| 
+		<a href="user_edit.html" target="_parent">个人信息维护</a>&nbsp;| 
+		<a href="address_daohang.html" target="_parent">地址簿</a>&nbsp;|
 	 	<a href="home_nologin.html" target="_parent">退出</a>
 		</div>
 	</div>

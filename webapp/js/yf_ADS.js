@@ -70,6 +70,15 @@ function safe_question(e)
 	}
 	else e.parentNode.parentNode.nextSibling.nextSibling.style.display='none';
 }
+function close_float(elem)
+{
+	var f=elem.parentNode.parentNode.parentNode;
+	$(f).fadeOut('fast',function(){
+		f.parentNode.removeChild(f);
+		hideOverlay();
+		});
+	
+}
 //ADS库函数
 //阻止默认事件函数
 function stopDefault(e){ 
@@ -170,13 +179,10 @@ function showOverlay()
 }	
 
 
-function hideOverlay(elem)
+function hideOverlay()
 {
-	var id='#'+elem;
-	$(id).remove();
-	$('#overlay').hide('fast',function(){$('#overlay').remove()});
+	$('#overlay').fadeOut('fast',function(){$('#overlay').remove()});
 }
-
 
 //表单相关验证函数
 function onblur_check(elem,default_text)
