@@ -15,25 +15,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div id="container">
+<div id="cart" ><span class="cart_loading"></span></div>
 	<div id="logalleft">
 		<div id="logalright">
-		<a href="#" onclick="load_regist();" target="_parent">注册</a>&nbsp;|
-        <a href="#" id="load_login" onclick="load_login();" target="_parent">登录</a>&nbsp;| 
-		<a href="user_edit.html" target="_parent">个人信息维护</a>&nbsp;| 
-		<a href="address_daohang.html" target="_parent">地址簿</a>&nbsp;|
-	 	<a href="home_nologin.html" target="_parent">退出</a>
+		<li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
+		<li> <a  href="user_edit.html" target="_parent">个人信息维护</a>&nbsp;</li>|<li id="cart_li"> 
+		<a id="cart_a"  href="cart_list.html" target="_parent">购物车 <strong id="cart_num">0</strong> 件</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
 		</div>
 	</div>
 	<div id="globallink">
 		<ul>
 			<li><a href="index.html">首页</a></li>
-			<li><a href="credit_query.html">积分查询</a></li>
 			<li><a href="item_search.html">商品搜索</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="cart_list.html">我的购物车</a></li>
+			<li><a href="address_daohang.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
 			<li><a href="send_notes.html">送货说明</a></li>
-			<li><a href="" class="nouseful">&nbsp;</a></li>
+            <li><a href="credit_query.html">积分查询</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>

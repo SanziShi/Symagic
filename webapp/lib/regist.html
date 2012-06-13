@@ -5,82 +5,78 @@
 			<form action="" method="post" enctype="multipart/form-data" name="form1" onsubmit="return regist(this);">
 				<table id="itemsearch_r">
 				   <tr>
-					<th class="itemsearchth" >用&nbsp;户&nbsp;名：</th>
+					<th class="itemsearchth" ><span class="red">*</span>用&nbsp;户&nbsp;名：</th>
             		<td class="itemsearchtd1">
-						<input type="Text" class="inputtext_gray" name="name" id="name" onFocus="onfocus_check(this,'邮箱地址')" onblur="onblur_check(this,'邮箱地址')" value="邮箱地址" >
+						<input type="Text" class="inputtext_gray" name="name" id="name" msg_num="" onFocus="onfocus_check(this,'邮箱地址')" onblur="onblur_check(this,'邮箱地址')" value="邮箱地址" >
 					</td>
 					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项	</span>	<span class="loading"></span>			</td>
+						<span class="loading hide"></span>			</td>
           		 </tr>
 				 <tr>
-				 <th class="itemsearchth">昵&nbsp;&nbsp;称：</th>
+				 <th class="itemsearchth"><span class="red">*</span>昵&nbsp;&nbsp;称：</th>
             		<td class="itemsearchtd1">
-						<input type="text" name="nickname"class="inputtext_gray" id="nickname" onFocus="onfocus_check(this,'6至20位字符')" onblur="onblur_check(this,'6至20位字符')" value="6至20位字符" maxlength="20"/>
+						<input type="text" name="nickname"class="inputtext_gray" id="nickname" onFocus="onfocus_check(this,'由中文、英文、数字及“_”组成')" onblur="onblur_check(this,'由中文、英文、数字及“_”组成')" value="由中文、英文、数字及“_”组成" msg_num="" maxlength="20"/>
 					</td>
 					<td class="itemsearchtd2">
 						
 					</td>
           		 </tr>
 				 <tr>
-				 <th class="itemsearchth">登录密码：</th>
+				 <th class="itemsearchth"><span class="red">*</span>登录密码：</th>
             		<td class="itemsearchtd1">
 					  	<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" value="" maxlength="20" >
-                    <input type="test" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" >
+                    <input type="text" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" msg_num="" >
 					</td>
 					<td class="itemsearchtd2">
-					<span class="red">*&nbsp;必填项	</span>
 					</td>
           		 </tr>
 				 <tr>
-				 <th class="itemsearchth">密码确认：</th>
+				 <th class="itemsearchth"><span class="red">*</span>密码确认：</th>
             		<td class="itemsearchtd1">
 					<input type="password" id="psaaword_confirm" class="inputtext hide" name="password_confirm" onblur="password_onblur(this)" value="" maxlength="20" >
-                    <input type="test" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" >
+                    <input type="text" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" msg_num="">
 					</td>
 					<td class="itemsearchtd2">
-					<span class="red">*&nbsp;必填项	</span>
 					</td>
           		 </tr>
                   <tr>
-				 <th class="itemsearchth">安全提问问题：</th>
+				 <th class="itemsearchth"><span class="red">*</span>安全提问问题：</th>
             		<td class="itemsearchtd1">
-					  	<select onchange="safe_question(this)">
-                        <option>您父亲的名字是？</option>
+					  	<select onchange="safe_question(this)" name="security_question">
+                        <option >您父亲的名字是？</option>
                         <option >您母亲的名字是？</option>
-                        <option>您小学就读的学校是？</option>
-						 <option>您出生与哪个医院？</option>
-                        <option>您高中的班主任是？</option>
-                        <option>自定义问题</option>
+                        <option >您小学就读的学校是？</option>
+						 <option >您出生与哪个医院？</option>
+                        <option >您高中的班主任是？</option>
+                        <option >自定义问题</option>
 					</td>
 					<td class="itemsearchtd2">
-					<span class="red">*&nbsp;必选项，用于找回密码	</span>
+					<span class="red">用于找回密码	</span>
 					</td>
           		 </tr>
-                 <tr style="display:none"  id="test">
-                 <th class="itemsearchth">自定义问题：</th>
+                 <tr style="display:none">
+                 <th class="itemsearchth"><span class="red">*</span>自定义问题：</th>
             		<td class="itemsearchtd1">
-					  <input type="text" class="inputtext">
+					  <input type="text" class="inputtext" msg_num="" >
 					</td>
 					<td class="itemsearchtd2">
-					<span class="red">*&nbsp;必填项</span>
 					</td>
           		 </tr>
                  <tr>
-				 <th class="itemsearchth">安全回答：</th>
+				 <th class="itemsearchth"><span class="red">*</span>安全问题答案：</th>
             		<td class="itemsearchtd1">
-					<input type="text" name="" class="inputtext"/>
+					<input type="text" name="security_answer" class="inputtext" msg_num=""/>
 					</td>
 					<td class="itemsearchtd2">
-					<span class="red">*&nbsp;必填项</span>
 					</td>
           		 </tr>
-				 <tr class="hide">
-				 <th class="itemsearchth">请输入如图验证码：</th>
+				 <tr class="">
+				 <th class="itemsearchth"><span class="red">*&nbsp;</span>验证码：</th>
             		<td class="itemsearchtd1">
-						<input type="text" name="name" class="inputtext"/>
+						<input type="text" name="captcha_value" class="inputtext" msg_num=""/>
 					</td>
 					<td>
-					 <img  src="image/check.png" />	
+					 <img  src="captcha_get_captcha" />	
 					</td>
           		 </tr>
 				 <tr>
