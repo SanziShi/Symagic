@@ -1,8 +1,9 @@
-GLOBAL_CONFIG=
+GLOBAL=
 {
 	dir:'Symagic2/',
 	lib:'lib/',
-	
+	cart_buff:''
+
 }
 //业务逻辑函数
 function load_login()
@@ -12,7 +13,7 @@ function load_login()
 	l.id='login_float';
 	showOverlay();
 	Ajax({
-		url:GLOBAL_CONFIG.lib+'login.html',
+		url:GLOBAL.lib+'login.html',
 		type:'GET',
 		onSuccess:function(e){
 			l.innerHTML=e;
@@ -29,7 +30,7 @@ function load_regist()
 	r.id='regist_float';
 	showOverlay();
 	Ajax({
-		url:GLOBAL_CONFIG.lib+'regist.html',
+		url:GLOBAL.lib+'regist.html',
 		type:'GET',
 		onSuccess:function(e){
 			r.innerHTML=e;
@@ -50,29 +51,54 @@ function login(form)
 		type:'POST',
 		data:login_form,
 		onSuccess:function(e){
-			alert(e);
 		}
 	})
-	alert(get_session());
 	return false;
 }
 function regist(form) 
 {
 	var regist_form=$(form).serialize();
-	alert(regist_form);
+	Ajax({
+		url:'regist',
+		type:'POST',
+		data:regist_form,
+		onSuccess:function(e){
+		}
+	})
 	return false;
 	
 }
 function safe_question(e)
 {
+	var p=e.parentNode.parentNode.nextSibling.nextSibling;
+	var q=p.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;
 	if(e.value=='自定义问题')
 	{
-		e.parentNode.parentNode.nextSibling.nextSibling.style.display='table-row';
+		q.name='security_question';
+		e.name='';
+		p.style.display='table-row';
 	}
-	else e.parentNode.parentNode.nextSibling.nextSibling.style.display='none';
+	else 
+	{
+		if(!e.name||q.name){e.name='security_question';q.name='';}
+		p.style.display='none';
+	}
 }
 function close_float(elem)
 {
+	var a=document.body.childNodes;
+	var n=new Array();
+	for(var b=0;a[b];++b)
+	{
+		if(a[b].getAttribute)
+		{
+			if(typeof(a[b].getAttribute('id'))=='string'&&a[b].getAttribute('id').indexOf('JunLu')>-1)
+			{
+				n.push(a[b]);
+			};
+		}
+	};
+	for (x in n)document.body.removeChild(n[x]);
 	var f=elem.parentNode.parentNode.parentNode;
 	$(f).fadeOut('fast',function(){
 		f.parentNode.removeChild(f);
@@ -80,7 +106,38 @@ function close_float(elem)
 		});
 	
 }
-//ADS库函数
+
+
+/*--------------yf_ADS库函数-------------------*/
+//增加时间监听注册器
+function addListener(element,e,fn){
+     if(element.addEventListener){
+          element.addEventListener(e,fn,false);
+     } else {
+          element.attachEvent("on"+e,fn);
+     }
+} 
+//增加contains原型函数
+/* p=parentNode, c=childNode */
+function contains(p,c)
+{  
+    return p.contains ? p != c && p.contains(c) : !!(p.compareDocumentPosition(c) & 16);  
+}
+/* e即为事件，target即为绑定事件的节点 */
+function mouseover_check(e,target)
+{
+	var related,
+	//type=e.type.toLowerCase();//这里获取事件名字
+	related=e.relatedTarget||e.fromElement;
+	return related && related.prefix!='xul' && !contains(target,related) && related!==target;
+}
+function mouseout_check(e,target)
+{
+	var related,
+	type=e.type.toLowerCase();//这里获取事件名
+	related=e.relatedTarget||e.toElement;
+	return related && related.prefix!='xul' && !contains(target,related) && related!==target;
+}
 //阻止默认事件函数
 function stopDefault(e){ 
 	if (e&&e.preventDefault)
@@ -195,9 +252,11 @@ function onblur_check(elem,default_text)
 		elem.style.color='rgb(153, 153, 153)';
 		switch(elem.value)
 		{
-			case '邮箱地址':Stip(elem).show({content:"请输入正确的邮箱地址",kind:'error'});
+			case '邮箱地址':var a=Stip(elem);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
+			elem.setAttribute('msg_num',a.id);
 				break;
-			case '由中文、英文、数字及“_”组成':Stip(elem).show({content:"昵称长为度5-20位字符",kind:'error'});
+			case '由中文、英文、数字及“_”组成':var a=Stip(elem);a.show({content:"昵称长为度5-20位字符",kind:'error'});
+			elem.setAttribute('msg_num',a.id);
 				break;
 		}
 	}
@@ -205,7 +264,8 @@ function onblur_check(elem,default_text)
 }
 function onfocus_check(elem,default_text)
 {
-	Stip(elem).hide();
+	var id;
+	if(id=document.getElementById(elem.getAttribute('msg_num')))id.parentNode.removeChild(id);
 	if(elem.value==default_text)
 	{
 		elem.value='';
@@ -217,6 +277,7 @@ function passwordtext_onfocus(elem)
 {
 	elem.style.display='none';
 	var pre=elem.previousSibling.previousSibling;
+	if(id=document.getElementById(pre.getAttribute('msg_num')))id.parentNode.removeChild(id);
 	pre.style.display='inline-block';
 	pre.focus();
 }
@@ -225,6 +286,9 @@ function password_onblur(elem)
 	elem.value=trim(elem.value);
 	if(elem.value=='')
 	{
+		var a=Stip(elem);
+		a.show({content:"请输入6-20位字符密码",kind:'error'});	
+		elem.setAttribute('msg_num',a.id);
 		elem.style.display='none';
 		elem.nextSibling.nextSibling.style.display='inline-block';
 	}
@@ -706,3 +770,49 @@ if (!JSON) {
         };
     }
 }());
+
+
+$().ready(function() {
+	addListener(document.getElementById('cart_li'),"mouseover",function(e)
+	{
+		e=e||window.event;
+		if(mouseover_check(e,document.getElementById('cart_li')))
+		{
+			if(document.getElementById('cart_li').className.indexOf('hover')==-1)
+			{
+				document.getElementById('cart_li').className+=' hover';
+				document.getElementById('cart_a').className+=' hover';
+			}
+		$('#cart').fadeIn('fast');
+		}
+	});
+	addListener(document.getElementById('cart_li'),"mouseout",function(e){
+		e=e||window.event;
+		if(mouseout_check(e,document.getElementById('cart_li')))
+		{
+			GLOBAL.cart_buff=setTimeout(function(){
+				document.getElementById('cart_li').className='';
+				document.getElementById('cart_a').className='';
+				$('#cart').fadeOut(1);}
+			,10);
+		}
+	});
+	addListener(document.getElementById('cart'),"mouseover",function(e){
+		//alert('test')
+		e=e||window.event;
+		//var c=document.getElementById('cart');
+		if(mouseover_check(e,document.getElementById('cart')))
+		{
+			clearTimeout(GLOBAL.cart_buff);
+		}
+	});
+	addListener(document.getElementById('cart'),"mouseout",function(e){
+		e=e||window.event;
+		if(mouseout_check(e,document.getElementById('cart')))
+		{
+			document.getElementById('cart_li').className='';
+			document.getElementById('cart_a').className='';
+			$('#cart').fadeOut(1);
+		}
+	});
+});

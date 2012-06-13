@@ -5,46 +5,29 @@
 
 <title>BC2商城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
-<script language="javascript">
-function clear(){
-document.form1.webUserEntity.email="";
-document.form1.webUserEntity.name="";
-document.form1.webUserEntity.password="";
-document.form1.webUserEntity.passwordConfirm="";
-}
-function checkcontent(){
-if(document.form1.webUserEntity.desc===""&&document.form1.webUserEntity.desc===""){
-window.alert("请输入商品名称或商品描述！");
-return;
-}
-}
-</script>
-
-<script type="text/javascript" src="js/yf_ADS.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yf_ADS.js"></script>
 </head>
-
 <body>
 <div id="container">
+<div id="cart" ><span class="cart_loading"></span></div>
 	<div id="logalleft">
 		<div id="logalright">
-		<a href="register.html" target="_parent">[注册&nbsp;</a>] | 
-		<a href="" target="_parent">登录| 
-		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
-		<a href="address_daohang.html" target="_parent">地址簿</a> |
-	 	<a href="home_nologin.html" target="_parent">退出</a>
+		<li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
+		<li> <a  href="user_edit.html" target="_parent">个人信息维护</a>&nbsp;</li>|<li id="cart_li"> 
+		<a id="cart_a"  href="cart_list.html" target="_parent">购物车 <strong id="cart_num">0</strong> 件</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
 		</div>
 	</div>
 	<div id="globallink">
 		<ul>
 			<li><a href="index.html">首页</a></li>
-			<li><a href="credit_query.html">积分查询</a></li>
 			<li><a href="item_search.html">商品搜索</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="cart_list.html">我的购物车</a></li>
+			<li><a href="address_daohang.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
 			<li><a href="send_notes.html">送货说明</a></li>
-			<li><a href="" class="nouseful">&nbsp;</a></li>
+            <li><a href="credit_query.html">积分查询</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>
@@ -75,28 +58,20 @@ return;
 				<tr>
 					<th>书名：</th>
             		<td>
-					<input type="text"  id="inputtext"/>
+					<input type="text" />
+					</td>
+                   <th>请输入作者：</th>
+                    <td>
+					<input type="text"/>
 					</td>
           		 </tr>
 				<tr>
-					<th>请输入作者：</th>
-            		<td>
-					<input type="text"  id="inputtext"/>
-					</td>
-          		 </tr>
-				 <tr>
 					<th>出版社：</th>
             		<td>
-					<input type="text"  id="inputtext"/>
+					<input type="text"/>
 					</td>
           		 </tr>
 				 <tr>
-					<th>书籍描述：</th>
-            		<td>
-					<input type="text"  id="inputtext"/>
-					</td>
-          		 </tr>
-				   <tr>
 					<th>请选择书籍类别：</th>
             		<td>
 						<select name="catogory">
@@ -107,11 +82,16 @@ return;
 			  				<option></option>
             			</select>
 					</td>
+                    <th>书籍描述：</th>
+            		<td>
+					<input type="text"/>
+					</td>
           		 </tr>
+				
 				 <tr>
 					<th>请选择出版时间：</th>
             		<td>
-						<select name="catogory">
+						<select name="publish_time">
               				<option>不论时间</option>
              				<option>2012</option>
               				<option>2011</option>
@@ -119,8 +99,6 @@ return;
 			  				<option>2009</option>
             			</select>
 					</td>
-          		 </tr>
-				 <tr>
 					<th>请选择版次：</th>
             		<td>
 						<select name="catogory">
@@ -142,8 +120,6 @@ return;
 			  				<option>600以上</option>
             			</select>
 					</td>
-          		 </tr>
-				 <tr>
 					<th>装帧</th>
             		<td>
 						<select name="catogory">
@@ -163,8 +139,6 @@ return;
 							<option>8</option>
             			</select>
 					</td>
-          		 </tr>
-				 <tr>
 				 <th> 价格</th>
             		<td>
 						<select name="price">
