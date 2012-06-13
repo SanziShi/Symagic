@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.pool.ConnectionPool;
 
 /**
@@ -52,6 +53,11 @@ public class DaoUser {
 		return false;
 	}
 	
+	/**
+	 * 验证给定用户名是否可用
+	 * @param username	要验证的用户名
+	 * @return true: 数据库中不存在此用户名	false: 数据库中存在此用户名
+	 */
 	public boolean validateUserName(String username)
 	{
 		try {
@@ -75,5 +81,58 @@ public class DaoUser {
 		return false;
 	}
 	
+	/**
+	 * 添加用户，涉及两张表user和secret,先要插入user后获得userid,
+	 * 再将password、userid插入secret表
+	 * @param user	BeanUser对象，封装者所有有关用户的信息
+	 * @return	true:	插入成功	
+	 * 			false:	插入失败
+	 */
+	public boolean addUser(BeanUser user) 
+	{
+		if (!this.validateUserName(user.getUsername()))
+			return false;
+		try {
+			conn	= ConnectionPool.getConnection();
+			ps	= conn.prepareStatement("insert into user (" +
+					"username, nickname, integral, question, answer)," +
+					"values (" +
+					"?, ?, ?, ?, ?" +
+					")");
+			ps.setString(1, user.getUsername());
+			ps.setString(2, user.getNickname());
+			ps.setInt(3, user.getIntegral());
+			ps.setString(4, user.getQuestion());
+			ps.setString(5, Util.getMD5(user.getAnswer().getBytes()));
+			// 执行用户插入
+			if (!ps.execute()) {
+				conn.close();
+				return false;			
+			}
+
+			
+			// 如果用户基础信息插入成功，则查询插入记录的id,将用户密码插入secret表
+			ps	= conn.prepareStatement("select userid from user where username=?");	// 获取给定用户ID
+			ps.setString(1, user.getUsername());
+			rs	= ps.executeQuery();
+			if (!rs.next()) {
+				conn.close();
+				return false;
+			}
+			ps	= conn.prepareStatement("insert into secret (" +
+					"userid, password)" +
+					"values (" +
+					"?, ?)");
+			ps.setInt(1, rs.getInt("userid"));
+			ps.setString(2, Util.getMD5(user.getPassword().getBytes()));
+			conn.close();
+			if (!ps.execute())
+				return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
 }

@@ -7,7 +7,7 @@ import org.symagic.common.db.func.DaoUser;
 
 public class DaoUserTest extends TestCase{
 
-	@Test
+	//@Test
 	public void testValidateUser() {
 		DaoUser du	= new DaoUser();
 		assertEquals(true, du.validateUser("shanxiaoxi", "shanxiaoxi"));
