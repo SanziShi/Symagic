@@ -4,7 +4,25 @@ public class BeanUser {
 	private int	userId	= 0;	// 用户id
 	private String username	= "";	// 用户名
 	private int	integral	= 0;	// 用户积分
+	private String	question	= "";	// 问题
+	private String 	answer	= "";	// 答案
 
+
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 
 	/**
 	 * 默认无参构造方法

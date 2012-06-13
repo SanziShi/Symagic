@@ -2,7 +2,7 @@ package org.symagic.common.db.func;
 
 public class Util {
 	/**
-	 * 获取字节数组的MD5加密后的字符串(32bit)
+	 * 获取字节数组的MD5加密后的16进制字符串(32bit)
 	 * @param source	字节数组(byte[])
 	 * @return			String: 32个字符串
 	 */
