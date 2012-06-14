@@ -3,6 +3,7 @@ body{
 	font-size: 12px;
 	background:transparent  url(../image/back.jpg) scroll center top;
 	text-align: center;
+	-moz-user-select: none; -khtml-user-select: none; user-select: none;
 }
 /*---------------气泡提示------------------*/
 .lj-tipsWrap{min-width:10px;min-height:15px;font-family:'Segoe UI',Calibri, 'Myriad Pro', Myriad, 'Trebuchet MS', Helvetica, Arial, sans-serif;}
@@ -70,6 +71,10 @@ span.red
 .left_float
 {
 	float:left;
+}
+.left_text
+{
+	text-align:left;
 }
 span.close,span.close:hover
 {
@@ -152,8 +157,9 @@ span.close
 {
 	background:#FFFFFF;
 	list-style:none;
-	display:inline;
-	border-bottom:2px #FFFFFF solid;
+	display: inline;
+	border-bottom:#FFFFFF solid 4px;
+	border-top:#FFF solid 1px;
 }
 #logalright a:link{
 	font-size: 12px;
@@ -469,7 +475,7 @@ strong{
 	padding-top:14px;
 	padding-bottom:14px;
 }
-#tradequery,#creditquery,#itemsearch,#favorite,#doublecontenttable1,#doublecontenttable3,#commenttable{
+#tradequery,#creditquery,#itemsearch_l,#favorite,#doublecontenttable1,#doublecontenttable3,#commenttable{
 	width:498px;
 	font-size:13px;
 	margin:0px auto;
@@ -481,14 +487,17 @@ strong{
 	width:698px;
 	font-size:13px;
 	margin:0px auto;
-	text-align:center;
 	line-height:28px;
 }
 .itemsearchth{
 	font-family:"宋体";
 	width:180px;
+	text-align:right;
 }
-
+#itemsearch_r select
+{
+	text-align:left;
+}
 .itemsearchtd1{
 	width:221px;
 }
@@ -504,10 +513,21 @@ text-decoration:none;
 	border-width:1px;
 	border-style:solid;
 	border-color:#CCCCCC;
-	width:200px;
+	width:180px;
 	text-align:left;
 }
-.inputtext_gray
+.gray
+{
+	color: rgb(153, 153, 153);
+}
+.midinputtext,.midinputtext_gray{
+	border-width:1px;
+	border-style:solid;
+	border-color:#CCCCCC;
+	width:100px;
+	text-align:left;
+}
+.inputtext_gray,.midinputtext_gray
 {
 	color: rgb(153, 153, 153);
 }

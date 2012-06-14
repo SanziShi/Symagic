@@ -3,32 +3,31 @@
 <head>
 <title>BC2商城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
-<script language="javascript" src="js/checkform.js"></script>
-<script type="text/javascript" src="js/yf_ADS.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yf_ADS.js"></script>
+
 </head>
 
 <body>
 <div id="container">
+	<div id="cart" ><span class="cart_loading"></span></div>
 	<div id="logalleft">
 		<div id="logalright">
-		<a href="register.html" target="_parent">[注册&nbsp;</a>] | 
-		<a href="" target="_parent">王小静 已登录| 
-		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
-		<a href="address_daohang.html" target="_parent">地址簿</a> |
-	 	<a href="home_nologin.html" target="_parent">退出</a>
+		<li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
+		<li> <a  href="user_edit.html" target="_parent">个人信息</a>&nbsp;</li>|<li id="cart_li"> 
+		<a id="cart_a"  href="cart_list.html" target="_parent">购物车 <strong id="cart_num">0</strong> 件</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
 		</div>
 	</div>
 	<div id="globallink">
 		<ul>
-			<li><a href="index.html" id="current">首页</a></li>
-			<li><a href="credit_query.html">积分查询</a></li>
+			<li><a href="index.html">首页</a></li>
 			<li><a href="item_search.html">商品搜索</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="cart_list.html">我的购物车</a></li>
+			<li><a href="address_daohang.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
 			<li><a href="send_notes.html">送货说明</a></li>
-			<li><a href="" class="nouseful">&nbsp;</a></li>
+            <li><a href="credit_query.html">积分查询</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>
@@ -36,10 +35,10 @@
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="address.html"> 地址簿</a>
+				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 地址簿</a>
 			</div>
 			<div id="searchright2">
-			  <input type="text" name="product" id="textInput"/>
+			  <input type="text" name="quick_search" id="quick_search" class="gray" value="书名快速搜索...."onFocus="onfocus_check(this,'书名快速搜索....')" onblur="onblur_check(this,'书名快速搜索....')" />
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
 			</div>
 			<div id="searchright1">
@@ -60,17 +59,17 @@
 				<thead>
 					<tr>
 						<th></th>
-						<th>商品名</th>
+						<th>地址簿</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
 				  <tr>
 					<td>
-						<input type="radio" name="radiobutton" value="radiobutton" checked="checked">
+						<input type="checkbox" checked="checked" >
 					</td>		
 					<td>
-					广州市番禺区大学城华南理工大学南校区软件学院
+					广东省广州市番禺区大学城华南理工大学南校区软件学院
 					</td>
 					<td>
 					<a href="address_edit.html"><img src="image/bt_change.gif"  class="picture"/></a>&nbsp;
@@ -78,21 +77,13 @@
 					</td>	
           		  </tr>
 				  <tr>
+					<td><input type="checkbox" ></td>
 					<td>
-					<input type="radio" name="radiobutton" value="radiobutton">
-					</td>
-					<td>
-					广州市天河区华南理工大学北校区逸夫人文馆</td>
+					广东省广州市天河区华南理工大学北校区逸夫人文馆</td>
 					<td>
 					<a href="address_edit.html"><img src="image/bt_change.gif"  class="picture"/></a>&nbsp;
 					<a href="#" onClick="javascript:confirm('确定删除？')"><img src="image/bt_delete2.gif" class="picture"/></a>
 					</td>
-				  </tr>
-				  <tr>
-				  <td></td><td></td>
-				  <td>
-				  <a href="order_confirm.html"><img src="image/qydzb1.GIF" alt="配送至该地址"  class="picture"></a>
-				  </td>
 				  </tr>
 				 </tbody>
             </table>
@@ -101,42 +92,62 @@
 			<div id="double2">
 			<div id="doublehead2"><strong>添加地址簿</strong></div>
 			<div id="doublecontent2">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
+			<form action="" method="post" enctype="multipart/form-data" name="">
 				<table id="itemsearch">
 				   <tr>
-					<th class="itemsearchth" >姓&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;名：</th>
-            		<td class="itemsearchtd1">
-					<input type="text" name="name" class="inputtext" onFocus="nextfield='password'" value="" maxlength="25"/>
+					<th class="right_text" ><span class="red">*</span>收货人姓名：</th>
+            		<td class="">
+					<input type="text" name="" class="inputtext" onFocus="" value="" />
 					</td>
-					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项<span class="red"></td>
+					<td class="">
+						</td>
           		 </tr>
 				 <tr>
-				 <th class="itemsearchth">本地/外地：</th>
-            		<td class="itemsearchtd1">
-						<select name="province">
-                    		<option>请选择</option>
-                    		<option>本地</option>
-							<option>外地</option>                 
+				 <th class="right_text"><span class="red">*</span>请选择地址：</th>
+            		<td class="" colspan="3"><select name="province" class="midselect">
+                    		<option>广东省</option>
+                    		<option>湖北省</option>
+							<option>江西省</option>
+                  		</select>
+						<select name="province" class="midselect">
+                    		<option>广东省</option>
+                    		<option>湖北省</option>
+							<option>江西省</option>
+                  		</select>
+						<select name="province" class="midselect">
+                    		<option>广东省</option>
+                    		<option>湖北省</option>
+							<option>江西省</option>
                   		</select>
 					</td>
-					<td class="itemsearchtd2">&nbsp;</td>
+					<td class="itemsearchtd2">
+					
+					</td>
           		 </tr>
 				 <tr>
-				 <th class="itemsearchth"><span class="inputHeader">通讯地址：</span></th>
+				 <th class="right_text"><span class="red">*</span>详细地址：</th>
             		<td class="itemsearchtd1">
-				<input type="Text" class="inputtext" name="address" onFocus="nextfield='name'" value="" maxlength="25">
+				<input type="Text" class="inputtext" name="address"  value="" >
+					</td>
+					<th class="right_text"><span class="red">*</span>邮政编码：</th>
+            		<td class="itemsearchtd1">
+					<input type="Text" class="midinputtext" name="postcode"  value="" >
+					</td>
+          		 </tr>
+				 <tr>
+				 
+					<td class="itemsearchtd2">
+						</td>
+					</td>
+          		 </tr>
+				  <tr>
+				 <th class="itemsearchth"><span class="inputHeader">固定电话：</span></th>
+            		<td class="itemsearchtd1">
+	              <input type="Text" class="inputtext" name="phone" onFocus="nextfield='sex'" value="" maxlength="25">
 					</td>
 					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项<span class="red">
+						<span class="red"><span class="red"></td>
 					</td>
-          		 </tr>
-				 <tr>
-				 <th class="itemsearchth"><span class="inputHeader">邮政编码：</span></th>
-            		<td class="itemsearchtd1">
-					<input type="Text" class="inputtext" name="postcode" onFocus="nextfield='sex'" value="" maxlength="25">
-					</td>
-					<td class="itemsearchtd2">&nbsp;</td>
           		 </tr>
 				 <tr>
 				 <th class="itemsearchth"><span class="inputHeader">手机号码：</span></th>
@@ -144,12 +155,13 @@
 	              <input type="Text" class="inputtext" name="phone" onFocus="nextfield='sex'" value="" maxlength="25">
 					</td>
 					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项<span class="red">
+						<span class="red">*&nbsp;固定电话和手机必须输入其中一项<span class="red"></td>
 					</td>
           		 </tr>
 				 <tr>
 				 <th></th>
-				 	<td><input type="Button" class="bt2" name="button2" value="提交" onClick="checkaddressform()">
+				 	<td>
+					<input type="Button" class="bt2" name="button2" value="提交" onClick="checkaddressdaohang()">
 						&nbsp;<input type="Reset" class="bt2" name="button1" value="重填" onClick="clear()">
 					</td>
 				 </tr>
