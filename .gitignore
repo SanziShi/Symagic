@@ -1,2 +1,4 @@
 #ignore setting file
 .settings/*
+#ignore class file
+webapp/WEB-INF/classes/*
