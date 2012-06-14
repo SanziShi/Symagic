@@ -1,5 +1,8 @@
 package org.symagic.common.db.func;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.symagic.common.db.bean.BeanDistrict;
 
 /**
@@ -10,8 +13,12 @@ import org.symagic.common.db.bean.BeanDistrict;
  */
 public class DaoDistrict {
 	
-	public BeanDistrict getDistrict()
+	/**
+	 * 获取指定地区列表
+	 * @return	List<BeanDistrict> 存储者BeanDistrict对象的列表
+	 */
+	public List<BeanDistrict> getDistrict()
 	{
-		return new BeanDistrict();
+		return new ArrayList<BeanDistrict>();
 	}
 }
