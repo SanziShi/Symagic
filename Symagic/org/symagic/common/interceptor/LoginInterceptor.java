@@ -18,7 +18,7 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 	 */
 	private static final long serialVersionUID = -8321742460145638100L;
 
-	private Set<String> guestIllegalUrl;
+	private Set<String> guestIllegalURL;
 
 	@Override
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
@@ -45,7 +45,7 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 				.substring(illegalCheckStartIndex + 1);
 
 		// 设置url
-		if (guestIllegalUrl.contains(illegalCheckPath)) {
+		if (guestIllegalURL.contains(illegalCheckPath)) {
 			invocation.getInvocationContext().getValueStack().getContext()
 					.put("to_url", "index");
 		} else {
@@ -62,5 +62,12 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 		return "enforceLogin";
 	}
 
+	public Set<String> getGuestIllegalURL() {
+		return guestIllegalURL;
+	}
+
+	public void setGuestIllegalURL(Set<String> guestIllegalURL) {
+		this.guestIllegalURL = guestIllegalURL;
+	}
 
 }
