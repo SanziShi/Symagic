@@ -18,6 +18,7 @@ public class DaoUser {
 	private PreparedStatement	ps;
 	private Statement	st;
 	private ResultSet	rs;
+	private int count	= 0;
 	
 	/**
 	 * 验证用户名与密码是否对应
@@ -65,6 +66,7 @@ public class DaoUser {
 			conn = ConnectionPool.getConnection();
 			ps	= conn.prepareStatement("select count(*) from user where username=?");	// 获取给定用户名在User中的个数
 			ps.setString(1, username);
+			String s = ps.toString();
 			rs	= ps.executeQuery();
 			conn.close();	// 连接用完关闭（必要）
 			
@@ -96,7 +98,7 @@ public class DaoUser {
 		try {
 			conn	= ConnectionPool.getConnection();
 			ps	= conn.prepareStatement("insert into user (" +
-					"username, nickname, score, question, answer)," +
+					"username, nickname, score, question, answer)" +
 					"values (" +
 					"?, ?, ?, ?, ?" +
 					")");
@@ -105,11 +107,14 @@ public class DaoUser {
 			ps.setInt(3, user.getScore());
 			ps.setString(4, user.getQuestion());
 			ps.setString(5, Util.getMD5(user.getAnswer().getBytes()));
+			
 			// 执行用户插入
-			if (!ps.execute()) {
-				conn.close();
-				return false;			
-			}
+			ps.execute();
+			count = ps.getUpdateCount();	// 获取插入条数
+			// 如果插入0条，表示插入失败，返回false
+			if (count == 0)
+				return false;
+
 
 			
 			// 如果用户基础信息插入成功，则查询插入记录的id,将用户密码插入secret表
@@ -126,14 +131,55 @@ public class DaoUser {
 					"?, ?)");
 			ps.setInt(1, rs.getInt("userid"));
 			ps.setString(2, Util.getMD5(user.getPassword().getBytes()));
-			conn.close();
-			if (!ps.execute())
+			ps.execute();
+			
+			if (ps.getUpdateCount() == 0) {
+				// 在未使用事务的情况下，这一步需要将上一步插入到User表中的数据删除
+				conn.close();
 				return false;
+			}
+			conn.close();
+			return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
 	}
+	
+	/**
+	 * 更新用户昵称
+	 * @param username	用户名，用于唯一标示用户
+	 * @param nickname	要更改的用户昵称
+	 * @return	true	更新成功		false	更新失败
+	 */
+	public boolean updateNickname(String username, String nickname)
+	{
+		return true;
+	}
+	
+	/**
+	 * 获得用户积分
+	 * @param username	用户名
+	 * @return	int 用户积分
+	 */
+	public int getScore(String username)
+	{
+		return 0;
+	}
+	
+	/**
+	 * 更改用户密码
+	 * @param username	用户名
+	 * @param password	用户新密码
+	 * @param oldPassword	用户旧密码
+	 * @return
+	 */
+	public boolean updatePassword(String username, String password, String oldPassword)
+	{
+		return true;
+	}
+	
+	
 	
 }

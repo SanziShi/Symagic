@@ -47,11 +47,13 @@ public class ConnectionPool {
 	}
 
 	private static Connection createConnection() throws Exception { // 以mysql为例　创建数据库连接
-		String url = "jdbc:mysql://localhost:3306/" + dbName + "?user=" + userName
-				+ "&password=" + userPasswd;
+//		String url = "jdbc:mysql://localhost:3306/" + dbName +  "?user=" + userName
+//				+ "&password=" + userPasswd;
+		String url = "jdbc:mysql://localhost:3306/" +  dbName + "?useUnicode=true&characterEncoding=utf8";
 		
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		Connection connection = DriverManager.getConnection(url);		// 获取Connection实例
+		//Connection connection = DriverManager.getConnection(url);		// 获取Connection实例
+		Connection connection = DriverManager.getConnection(url, userName, userPasswd);
 		ConnectionProxy handler = new ConnectionProxy(connection);		// 创建代理类
 		
 		Connection proxy = (Connection) Proxy.newProxyInstance( // 创建代理
