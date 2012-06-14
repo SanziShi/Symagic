@@ -6,22 +6,51 @@ package org.symagic.common.db.bean;
  *
  */
 public class BeanFavorityFolder {
-	private int	favorityID	= 0;	// 收藏ID
-	private int	userID	= 0;		// 用户ID
-	private int	bookID	= 0;		// 书籍ID
-	private String isbn	= "";		// 书籍isbn号，20bit
-	private String publisher	= "";	// 出版社名
-	private String publisherDate	= "";	// 出版日期
-	private float	marketPrice	= 0.0f;	// 书籍市场价格
+	/**
+	 * 收藏ID
+	 */
+	private int	favorityID	= 0;	
+	
+	/**
+	 * 用户ID
+	 */
+	private int	userID	= 0;		
+	
+	/**
+	 * 书籍ID
+	 */
+	private int	bookID	= 0;		
+	
+	/**
+	 * 书籍isbn号，20bit
+	 */
+	private String isbn	= "";		
+	
+	/**
+	 * 出版社名
+	 */
+	private String publisher	= "";
+	
+	/**
+	 * 出版日期
+	 */
+	private String publisherDate	= "";	
+	
+	/**
+	 * 书籍市场价格
+	 */
+	private float	marketPrice	= 0.0f;	
 	
 	
 	
 	public int getFavorityID() {
 		return favorityID;
 	}
+	
 	public void setFavorityID(int favorityID) {
 		this.favorityID = favorityID;
 	}
+	
 	public int getUserID() {
 		return userID;
 	}

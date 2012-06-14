@@ -6,13 +6,40 @@ package org.symagic.common.db.bean;
  *
  */
 public class BeanUserAddr {
-	private int	addrID	= 0;	// 地址ID
-	private int	userID	= 0;	// 地址所属用户ID
-	private String	receiverName	= "";	// 收件人姓名
-	private String	addrDetail	= "";	// 收件地址详细信息
-	private String	zipcode	= "";		// 收件地址邮编
-	private String 	phoneNum	= "";	// 收件人座机号
-	private String	mobileNum	= "";	// 收件手机号
+	/**
+	 * 地址ID
+	 */
+	private int	addrID	= 0;	
+	
+	/**
+	 * 地址所属用户ID
+	 */
+	private int	userID	= 0;	
+	
+	/**
+	 * 收件人姓名
+	 */
+	private String	receiverName	= "";	
+	
+	/**
+	 * 收件地址详细信息
+	 */
+	private String	addrDetail	= "";	
+	
+	/**
+	 * 收件地址邮编
+	 */
+	private String	zipcode	= "";		
+	
+	/**
+	 * 收件人座机号
+	 */
+	private String 	phoneNum	= "";	
+	
+	/**
+	 * 收件手机号
+	 */
+	private String	mobileNum	= "";	
 	
 	public int getAddrID() {
 		return addrID;

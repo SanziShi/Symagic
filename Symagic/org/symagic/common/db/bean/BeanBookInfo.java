@@ -6,22 +6,87 @@ package org.symagic.common.db.bean;
  *
  */
 public class BeanBookInfo {
-	private int bookId	= 0;	// 书籍id
-	private String picture	= "";	// 书籍封面图片存储路径
-	private String bookName	= "";	// 书籍名称
-	private String author	= "";	// 书籍作者
-	private String publisher = "";	// 书籍出版社
-	private String publisherDate	= "";	// 书籍出版日期
-	private int version	= 1;	// 书籍出版版次
-	private int page	= 1;	// 书籍页数
-	private String binding	= "";	// 书籍的装帧，有两个选择（精装，平装）默认为NULL
-	private String folio	= "";	// 书开本，是2的倍数。
-	private float marketPrice	= 0.0f;	// 书籍市场价格
-	private int	discount	= 100;	// 书籍价格折扣，百分比
-	private int	inventory	= 0;	// 书籍库存量
-	private String	bookDesc	= "";	// 书籍描述
-	private String	isbn	= "";	// 书籍isbn号
-	private String	offline	= "";	// 在架、下架，只可这两个选择
+	/**
+	 * 书籍id
+	 */
+	private int bookId	= 0;	
+	
+	/**
+	 * 书籍封面图片存储路径
+	 */
+	private String picture	= "";	
+	
+	/**
+	 * 书籍名称
+	 */
+	private String bookName	= "";	
+	
+	/**
+	 * 书籍作者
+	 */
+	private String author	= "";	
+	
+	/**
+	 * 书籍出版社
+	 */
+	private String publisher = "";	
+	
+	/**
+	 * 书籍出版日期(只有Date无Time)
+	 */
+	private String publisherDate	= "";	
+	
+	/**
+	 * 书籍出版版次
+	 */
+	private int version	= 1;	
+	
+	/**
+	 * 书籍页数
+	 */
+	private int page	= 1;	
+	
+	/**
+	 * 书籍的装帧，有两个选择（精装，平装）默认为NULL
+	 */
+	private String binding	= "";	
+	
+	/**
+	 * 书开本，是2的倍数。
+	 */
+	private String folio	= "";	
+	
+	/**
+	 * 书籍市场价格
+	 */
+	private float marketPrice	= 0.0f;	
+	
+	/**
+	 * 书籍价格折扣，百分比
+	 */
+	private int	discount	= 100;	
+	
+	/**
+	 * 书籍库存量
+	 */
+	private int	inventory	= 0;	
+	
+	/**
+	 * 书籍描述
+	 */
+	private String	bookDesc	= "";	
+	
+	/**
+	 * 书籍isbn号
+	 */
+	private String	isbn	= "";	
+	
+	/**
+	 * 在架、下架，只可这两个选择
+	 */
+	private String	offline	= "";	
+	
+	
 	public int getBookId() {
 		return bookId;
 	}

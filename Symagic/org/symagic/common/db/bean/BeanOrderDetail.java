@@ -1,13 +1,40 @@
 package org.symagic.common.db.bean;
 
 public class BeanOrderDetail {
-	private int orderId	= 0;	// 订单id
-	private int	bookId 	= 0;	// 书籍id
-	private String isbn	= "";	// 书籍isbn号
-	private String bookName	= "";	// 书籍名称
-	private float marketPrice	= 0.0f;	// 书籍市场价格，原价
-	private int	discount	= 100;	// 书籍折扣（百分率）
-	private int amount	= 1;	// 数量，等于0就直接删除订单
+	/**
+	 * 订单id
+	 */
+	private int orderId	= 0;	 
+	
+	/**
+	 * 书籍id
+	 */
+	private int	bookId 	= 0;	 
+	
+	/**
+	 * 书籍isbn号
+	 */
+	private String isbn	= "";	 
+	
+	/**
+	 * 书籍名称
+	 */
+	private String bookName	= "";	
+	
+	/**
+	 * 书籍市场价格，原价
+	 */
+	private float marketPrice	= 0.0f;	
+	
+	/**
+	 * 书籍折扣（百分率）
+	 */
+	private int	discount	= 100;	
+	
+	/**
+	 * 数量，等于0就直接删除订单
+	 */
+	private int amount	= 1;	
 	
 	
 	public int getOrderId() {

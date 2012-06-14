@@ -6,11 +6,31 @@ package org.symagic.common.db.bean;
  *
  */
 public class BeanBookCatalog {
-	private int	catalogID	= 0;	// 分类ID
-	private String	catalogName	= "";	// 分类名
-	private String	level	= "";		// 层级，1， 2
-	private int	upID	= 0;	// 上一层ID
-	private String catalogDesc	= "";	// 分类描述
+	/**
+	 * 分类ID
+	 */
+	private int	catalogID	= 0;	
+	
+	/**
+	 * 分类名
+	 */
+	private String	catalogName	= "";	
+	
+	/**
+	 * 层级，1， 2
+	 */
+	private String	level	= "";		
+	
+	/**
+	 * 上一层ID
+	 */
+	private int	upID	= 0;
+	
+	/**
+	 * 分类描述
+	 */
+	private String catalogDesc	= "";	
+	
 	public int getCatalogID() {
 		return catalogID;
 	}

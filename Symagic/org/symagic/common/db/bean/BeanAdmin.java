@@ -6,9 +6,21 @@ package org.symagic.common.db.bean;
  *
  */
 public class BeanAdmin {
-	private int	adminID	=	0;	// 管理员id
-	private String	adminName	= "";	// 管理员用户名
-	private String	password	= "";	// 管理员密码，经过Md5加密的
+	/**
+	 * 管理员id
+	 */
+	private int	adminID	=	0;	
+	
+	/**
+	 * 管理员用户名
+	 */
+	private String	adminName	= "";	 
+	
+	/**
+	 * 管理员密码，经过Md5加密的
+	 */
+	private String	password	= ""; 
+	
 	
 	public int getAdminID() {
 		return adminID;
