@@ -11,16 +11,17 @@
 <body>
 <div id="container">
 	<div id="logalleft">
-		<div id="logalright"> 
+		<div id="logalright">
+		<a href="register.html" target="_parent">[注册&nbsp;</a>] | 
 		<a href="" target="_parent">王小静 已登录| 
 		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
-		<a href="address_daohang.html"" target="_parent">地址簿</a> |
+		<a href="address_daohang.html" target="_parent">地址簿</a> |
 	 	<a href="home_nologin.html" target="_parent">退出</a>
 		</div>
 	</div>
 	<div id="globallink">
 		<ul>
-			<li><a href="index.html">首页</a></li>
+			<li><a href="index.html" id="current">首页</a></li>
 			<li><a href="credit_query.html">积分查询</a></li>
 			<li><a href="item_search.html">商品搜索</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
@@ -35,7 +36,7 @@
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 地址簿</a>
+				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="address.html"> 地址簿</a>
 			</div>
 			<div id="searchright2">
 			  <input type="text" name="product" id="textInput"/>
@@ -59,7 +60,7 @@
 				<thead>
 					<tr>
 						<th></th>
-						<th>地址簿</th>
+						<th>商品名</th>
 						<th>操作</th>
 					</tr>
 				</thead>
@@ -69,7 +70,7 @@
 						<input type="radio" name="radiobutton" value="radiobutton" checked="checked">
 					</td>		
 					<td>
-					广东省广州市番禺区大学城华南理工大学南校区软件学院
+					广州市番禺区大学城华南理工大学南校区软件学院
 					</td>
 					<td>
 					<a href="address_edit.html"><img src="image/bt_change.gif"  class="picture"/></a>&nbsp;
@@ -81,11 +82,17 @@
 					<input type="radio" name="radiobutton" value="radiobutton">
 					</td>
 					<td>
-					广东省广州市天河区华南理工大学北校区逸夫人文馆</td>
+					广州市天河区华南理工大学北校区逸夫人文馆</td>
 					<td>
 					<a href="address_edit.html"><img src="image/bt_change.gif"  class="picture"/></a>&nbsp;
 					<a href="#" onClick="javascript:confirm('确定删除？')"><img src="image/bt_delete2.gif" class="picture"/></a>
 					</td>
+				  </tr>
+				  <tr>
+				  <td></td><td></td>
+				  <td>
+				  <a href="order_confirm.html"><img src="image/qydzb1.GIF" alt="配送至该地址"  class="picture"></a>
+				  </td>
 				  </tr>
 				 </tbody>
             </table>
@@ -97,7 +104,7 @@
 			<form action="" method="post" enctype="multipart/form-data" name="form1">
 				<table id="itemsearch">
 				   <tr>
-					<th class="itemsearchth" >姓&nbsp;&nbsp;&nbsp;&nbsp;名：</th>
+					<th class="itemsearchth" >姓&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;名：</th>
             		<td class="itemsearchtd1">
 					<input type="text" name="name" class="inputtext" onFocus="nextfield='password'" value="" maxlength="25"/>
 					</td>
@@ -105,38 +112,23 @@
 						<span class="red">*&nbsp;必填项<span class="red"></td>
           		 </tr>
 				 <tr>
-				 <th class="itemsearchth">请选择省份</th>
+				 <th class="itemsearchth">本地/外地：</th>
             		<td class="itemsearchtd1">
 						<select name="province">
-                    		<option>广东省</option>
-                    		<option>湖北省</option>
-							<option>江西省</option>                 
+                    		<option>请选择</option>
+                    		<option>本地</option>
+							<option>外地</option>                 
                   		</select>
 					</td>
-					<td class="itemsearchtd2">
-					<span class="red">*&nbsp;必选项<span class="red">
-					</td>
+					<td class="itemsearchtd2">&nbsp;</td>
           		 </tr>
 				 <tr>
-				 <th class="itemsearchth">请选择城市</th>
-            		<td class="itemsearchtd1">
-						<select name="province">
-                    		<option>广州市</option>
-                    		<option>深圳市</option>
-							<option>东莞市</option>                 
-                  		</select>
-					</td>
-					<td class="itemsearchtd2">
-					<span class="red">*&nbsp;必选项<span class="red">
-					</td>
-          		 </tr>
-				 <tr>
-				 <th class="itemsearchth"><span class="inputHeader">地&nbsp;&nbsp;&nbsp;&nbsp;区：</span></th>
+				 <th class="itemsearchth"><span class="inputHeader">通讯地址：</span></th>
             		<td class="itemsearchtd1">
 				<input type="Text" class="inputtext" name="address" onFocus="nextfield='name'" value="" maxlength="25">
 					</td>
 					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项<span class="red"></td>
+						<span class="red">*&nbsp;必填项<span class="red">
 					</td>
           		 </tr>
 				 <tr>
@@ -144,18 +136,7 @@
             		<td class="itemsearchtd1">
 					<input type="Text" class="inputtext" name="postcode" onFocus="nextfield='sex'" value="" maxlength="25">
 					</td>
-					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项<span class="red"></td>
-					</td>
-          		 </tr>
-				  <tr>
-				 <th class="itemsearchth"><span class="inputHeader">固定电话：</span></th>
-            		<td class="itemsearchtd1">
-	              <input type="Text" class="inputtext" name="phone" onFocus="nextfield='sex'" value="" maxlength="25">
-					</td>
-					<td class="itemsearchtd2">
-						<span class="red"><span class="red"></td>
-					</td>
+					<td class="itemsearchtd2">&nbsp;</td>
           		 </tr>
 				 <tr>
 				 <th class="itemsearchth"><span class="inputHeader">手机号码：</span></th>
@@ -163,13 +144,12 @@
 	              <input type="Text" class="inputtext" name="phone" onFocus="nextfield='sex'" value="" maxlength="25">
 					</td>
 					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;固定电话和手机必须输入其中一项<span class="red"></td>
+						<span class="red">*&nbsp;必填项<span class="red">
 					</td>
           		 </tr>
 				 <tr>
 				 <th></th>
-				 	<td>
-					<input type="Button" class="bt2" name="button2" value="提交" onClick="checkaddressdaohang()">
+				 	<td><input type="Button" class="bt2" name="button2" value="提交" onClick="checkaddressform()">
 						&nbsp;<input type="Reset" class="bt2" name="button1" value="重填" onClick="clear()">
 					</td>
 				 </tr>
