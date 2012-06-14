@@ -5,7 +5,7 @@ package org.symagic.common.db.bean;
  * @author wanran
  *
  */
-public class BeanBookCatalog {
+public class BeanCatalog {
 	/**
 	 * 分类ID
 	 */
