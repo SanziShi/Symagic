@@ -14,7 +14,7 @@ public class SessionUtil {
 	 * @param session
 	 * @return 当前用户是否已经登陆
 	 */
-	public static boolean is_login( Map<String,Object> session ){
+	public static boolean isLogin( Map<String,Object> session ){
 		
 		return session.containsKey("userName") && session.containsKey("nickname");
 		
@@ -26,7 +26,7 @@ public class SessionUtil {
 	 * @param userName
 	 * @param nickname
 	 */
-	public static void log_login( Map<String,Object> session, String userName, String nickname ){
+	public static void logLogin( Map<String,Object> session, String userName, String nickname ){
 		session.put("userName", userName);
 		session.put("nickname", nickname);
 	}

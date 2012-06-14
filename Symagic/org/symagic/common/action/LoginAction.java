@@ -76,7 +76,7 @@ public class LoginAction extends GuestInformationAction {
 
 		// if(validate){
 		// 业务处理
-		SessionUtil.log_login(session, name, "");
+		SessionUtil.logLogin(session, name, "");
 		result = "欢迎你" + name;
 		// }
 

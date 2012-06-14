@@ -17,8 +17,8 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 	 * 
 	 */
 	private static final long serialVersionUID = -8321742460145638100L;
-	
-	private Set<String> guest_illegal_url;
+
+	private Set<String> guestIllegalUrl;
 
 	@Override
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
@@ -28,7 +28,7 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 				.getSession();
 
 		// 检查是否已经登陆
-		if (SessionUtil.is_login(session)) {
+		if (SessionUtil.isLogin(session)) {
 			return invocation.invoke();
 		}
 
@@ -36,24 +36,31 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 		// 获得请求的url request
 		HttpServletRequest request = (HttpServletRequest) invocation
 				.getInvocationContext().get(StrutsStatics.HTTP_REQUEST);
-		StringBuffer pre_url = request.getRequestURL();
-		
-		//过滤对于未登录用户而言非法的URL请求
-		String context_path = request.getContextPath();
-		int illegal_check_start_index = pre_url.indexOf(context_path);
-		String illegal_check_path = pre_url.substring(illegal_check_start_index + 1);
-		
-		
+		StringBuffer preURL = request.getRequestURL();
+
+		// 过滤对于未登录用户而言非法的URL请求
+		String contextPath = request.getContextPath();
+		int illegalCheckStartIndex = preURL.indexOf(contextPath);
+		String illegalCheckPath = preURL
+				.substring(illegalCheckStartIndex + 1);
 
 		// 设置url
-		invocation
-				.getInvocationContext()
-				.getValueStack()
-				.getContext()
-				.put("to_url",
-						pre_url.substring(pre_url.toString().lastIndexOf('/') + 1));
+		if (guestIllegalUrl.contains(illegalCheckPath)) {
+			invocation.getInvocationContext().getValueStack().getContext()
+					.put("to_url", "index");
+		} else {
 
-		return "enforce_login";
+			invocation
+					.getInvocationContext()
+					.getValueStack()
+					.getContext()
+					.put("to_url",
+							preURL.substring(preURL.toString().lastIndexOf(
+									'/') + 1));
+		}
+
+		return "enforceLogin";
 	}
+
 
 }
