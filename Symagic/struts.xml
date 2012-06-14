@@ -5,7 +5,27 @@
 	<!-- 设置为开发模式输出DEBUG信息 -->
 	<constant name="struts.devMode" value="true" />
 
+	<!-- 配置拦截器 -->
 	<package name="symagic-default" extends="json-default">
+		<!-- 配置登陆用的拦截器 -->
+		<interceptors>
+			<interceptor name="loginInterceptor" class="LoginInterceptor"></interceptor>
+
+			<interceptor-stack name="loginInterceptorStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+			</interceptor-stack>
+
+		</interceptors>
+
+		<!-- 用于错误处理的result -->
+		<global-results>
+		<result name="enforce_login">/login.jsp</result>
+		</global-results>
+
+	</package>
+
+	<package name="root-setting" extends="symagic-default">
 
 		<action name="index">
 			<result>/index.jsp</result>
@@ -40,7 +60,6 @@
 				</param>
 			</result>
 		</action>
-
 
 	</package>
 

@@ -1,13 +1,7 @@
 package org.symagic.common.action;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import org.symagic.common.SessionUtil;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.json.JSONException;
-import org.apache.struts2.json.JSONUtil;
 
 /**
  * 
@@ -34,7 +28,7 @@ public class LoginAction extends GuestInformationAction {
 	 * 对于用户名和密码的格式进行验证
 	 */
 
-	private boolean validate = true;
+	//private boolean validate = true;
 
 	// @Override
 	// public void validate() {
@@ -82,7 +76,7 @@ public class LoginAction extends GuestInformationAction {
 
 		// if(validate){
 		// 业务处理
-		session.put("userName", name);
+		SessionUtil.log_login(session, name, "");
 		result = "欢迎你" + name;
 		// }
 
