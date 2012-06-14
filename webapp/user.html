@@ -13,24 +13,24 @@
 
 <body>
 <div id="container">
+	
+<div id="cart" ><span class="cart_loading"></span></div>
 	<div id="logalleft">
-		<div id="logalright">
-		<a href="" target="_parent">王小静 已登录| 
-		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
-		<a href="address_daohang.html" target="_parent">地址簿</a> |
-	 	<a href="home_nologin.html" target="_parent">退出</a>
+		<div id="logalright"><li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
+		<li> <a  href="user.html" target="_parent">个人信息</a>&nbsp;</li>|<li id="cart_li"> 
+		<a id="cart_a"  href="cart_list.html" target="_parent">购物车 <strong id="cart_num">0</strong> 件</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
 		</div>
 	</div>
 	<div id="globallink">
 		<ul>
 			<li><a href="index.html">首页</a></li>
-			<li><a href="credit_query.html">积分查询</a></li>
 			<li><a href="item_search.html">商品搜索</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="cart_list.html">我的购物车</a></li>
+			<li><a href="address.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
 			<li><a href="send_notes.html">送货说明</a></li>
-			<li><a href="" class="nouseful">&nbsp;</a></li>
+            <li><a href="credit_query.html">积分查询</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>
@@ -59,15 +59,20 @@
         <dl>
         <dt>编辑个人信息</dt>
         <div><dd>浏览信息</dd></div>
-        <dd>修改密码</dd>
-        <dd>修改昵称</dd>
-        <dd>积分查询</dd>
+        <div><dd>修改密码</dd></div>
+        <div><dd>修改昵称</dd></div>
+        <div><dd>积分查询</dd></div>
         <br/>
         <dt></dt>
         </dl>
         </div>
         <div class="user_note">
         <div class="head"><strong>个人信息</strong></div>
+        <div class="user_note_content">
+        	<p><span>用户名：</span>test@test.com</p>
+            <p><span>昵&nbsp;&nbsp;&nbsp;称：</span>测试昵称</p>
+            <p><span>现有积分：</span>300</p>
+        </div>
         </div>
 		<div id="sendnote">
 			<div id="sendnotehead"><strong> 个人信息修改</strong></div>
