@@ -538,7 +538,7 @@ text-decoration:none;
 {
 	float:left;
 	width:647px;
-	background-color:#EBEBEB;
+	background-color: #FFF;
 	margin-right:1px;
 	margin-left:2px;
 }
@@ -549,6 +549,24 @@ text-decoration:none;
 	font-size:14px;
 	padding-top:4px;
 	text-align:center;
+}
+.user_note .user_note_content
+{
+	padding:20px;	
+	float:left;
+}
+.user_note .user_note_content p
+{
+	font-size:13px;
+	width:607px;
+}
+.user_note .user_note_content p span
+{
+	width:150px;
+	margin-right:10px;
+	text-align:right;
+	display:inline-block;
+	font-weight:600;
 }
 .user_left
 {

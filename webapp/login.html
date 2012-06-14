@@ -55,12 +55,12 @@
 			<div id="sendnotehead"><strong> 会员登录</strong></div>
 			<div id="sendnotecontent">
 
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
+			<form action="" method="post" enctype="multipart/form-data" name="form1" onsubmit="return login(this);">
 				<table id="itemsearch">
 				   <tr>
 					<th class="itemsearchth" >用户名：</th>
             		<td class="itemsearchtd1">
-					<input type="Text" class="inputtext" name="name" onFocus="nextfield='name'" value="" maxlength="25">
+					<input type="Text" class="inputtext_gray" name="name" id="name" onFocus="onfocus_check(this,'邮箱地址')" onblur="onblur_check(this,'邮箱地址')" value="邮箱地址" maxlength="30">
 					</td>
 					<td class="itemsearchtd2">
 					</td>
@@ -68,20 +68,27 @@
 				 <tr>
 				 <th class="itemsearchth">密&nbsp;&nbsp;码：</th>
             		<td class="itemsearchtd1">
-					<input type="password" class="inputtext" name="password" onFocus="nextfield='name'" value="" maxlength="25">
+					<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" value="" maxlength="20" >
+                    <input type="test" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" >
 					</td>
-					<td class="itemsearchtd2"><a href="pwd_find.html"><span class="red">忘记密码？</span></a></td>
+					<td class="itemsearchtd2"></td>
+                     </tr>
           		 <tr>
 				 <th class="itemsearchth">验证码：</th>
             		<td class="itemsearchtd1">
-						<input type="text" name="name" class="inputtext"/>
+						<input type="text" name="captcha" class="inputtext"/>
 					</td>
 					<td>
 					 <img  src="image/check.png" />	
 					</td>
           		 </tr>
-				 </tr>
 				
+				<tr>
+                 <td></td>
+                 <td>
+                 <a href="pwd_find.html"><span class="red left_float">忘记密码？</span></a></td>
+                 <td></td>
+                 </tr>
 				 <tr>
 				 <th></th>
 				 	<td><input type="Button" name="button2" value="登陆" onClick="checkloginform()">
