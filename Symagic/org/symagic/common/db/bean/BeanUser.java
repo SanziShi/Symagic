@@ -19,7 +19,7 @@ public class BeanUser {
 	/**
 	 * 用户积分
 	 */
-	private int integral = 0; 
+	private int score = 0; 
 	
 	/**
 	 * 问题
@@ -86,14 +86,6 @@ public class BeanUser {
 		this.username = username;
 	}
 
-	public int getIntegral() {
-		return integral;
-	}
-
-	public void setIntegral(int integral) {
-		this.integral = integral;
-	}
-
 	public String getNickname() {
 		return nickname;
 	}
@@ -108,6 +100,14 @@ public class BeanUser {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	

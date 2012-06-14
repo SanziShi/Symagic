@@ -29,6 +29,7 @@ public class DaoUser {
 	{
 		try {
 			conn	= ConnectionPool.getConnection();
+			
 			ps	= conn.prepareStatement("select userid, username from user where username=?");	// 获取给定用户名在对应的记录信息
 			ps.setString(1, username);
 			rs	= ps.executeQuery();
@@ -95,13 +96,13 @@ public class DaoUser {
 		try {
 			conn	= ConnectionPool.getConnection();
 			ps	= conn.prepareStatement("insert into user (" +
-					"username, nickname, integral, question, answer)," +
+					"username, nickname, score, question, answer)," +
 					"values (" +
 					"?, ?, ?, ?, ?" +
 					")");
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getNickname());
-			ps.setInt(3, user.getIntegral());
+			ps.setInt(3, user.getScore());
 			ps.setString(4, user.getQuestion());
 			ps.setString(5, Util.getMD5(user.getAnswer().getBytes()));
 			// 执行用户插入
