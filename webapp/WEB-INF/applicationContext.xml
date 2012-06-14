@@ -21,4 +21,6 @@
 <bean id="LoginAction" class="org.symagic.common.action.LoginAction" />
 <bean id="symagicSessionInfor" class="org.symagic.common.action.UserSessionInformation" />
 
+<bean id="LoginInterceptor" class="org.symagic.common.interceptor.LoginInterceptor" />
+
 </beans>
