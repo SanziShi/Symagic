@@ -1,7 +1,7 @@
 package org.symagic.common.action;
 
 import org.symagic.common.SessionUtil;
-
+import org.symagic.common.db.func.DaoUser;
 
 /**
  * 
@@ -24,25 +24,6 @@ public class LoginAction extends GuestInformationAction {
 	 * 记录身份验证的结果
 	 */
 	private String result = "true";
-	/**
-	 * 对于用户名和密码的格式进行验证
-	 */
-
-	//private boolean validate = true;
-
-	// @Override
-	// public void validate() {
-	// // TODO Auto-generated method stub
-	// if(name==null||name.trim().length()==0||!name.matches("[_0-9a-zA-Z]*")){
-	// validate=false;
-	// }
-	// if(password==null||password.trim().length()==0||!password.matches("[_0-9a-zA-Z]")){
-	//
-	// validate=false;
-	// }
-	//
-	// super.validate();
-	// }
 
 	public String getPassword() {
 		return password;
@@ -74,11 +55,11 @@ public class LoginAction extends GuestInformationAction {
 
 	public String Login() {
 
-		// if(validate){
-		// 业务处理
-		SessionUtil.logLogin(session, name, "");
-		result = "欢迎你" + name;
-		// }
+		DaoUser daoUser = new DaoUser();
+
+		if (daoUser.validateUser(name, password)){
+			SessionUtil.logLogin(session, name, "");
+		}
 
 		return SUCCESS;
 
