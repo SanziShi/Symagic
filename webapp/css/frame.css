@@ -197,8 +197,8 @@ span.close
 	top:44px;
 	right:37px;
 	display:block;
-	height:100px;
-	width:300px;
+	width:250px;
+	height:80px;
 	background:#FFF;
 	border:#4796E4 solid ;
 	border-width: 0px 1px 1px 1px;
@@ -210,6 +210,8 @@ span.close
 	height:32px;
 	width:32px;
 	display:block;
+	position:absolute;
+	left:50%;
 }
 #container{
 	position:relative;
@@ -495,7 +497,7 @@ text-decoration:none;
 #itemsearch select,#inputtext{
 	width:180px;
 }
-#itemsearch .midselect
+.midselect
 {
 	width:90px;
 }
@@ -552,13 +554,19 @@ text-decoration:none;
 }
 .user_note .user_note_content
 {
-	padding:20px;	
+	padding:15px;	
 	float:left;
+}
+.user_note .user_note_content table
+{
+	width:617px;
+	text-align:center;
+	line-height:28px;
 }
 .user_note .user_note_content p
 {
-	font-size:13px;
-	width:607px;
+	font-size:14px;
+	width:617px;
 }
 .user_note .user_note_content p span
 {

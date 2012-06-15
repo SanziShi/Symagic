@@ -5,7 +5,6 @@
 
 <title>BC2商城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
-<script language="javascript" src="js/checkform.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
 </head>
@@ -73,7 +72,7 @@
 					</td>
 					<td class="itemsearchtd2"></td>
                      </tr>
-          		 <tr>
+          		 <tr class="hide">
 				 <th class="itemsearchth">验证码：</th>
             		<td class="itemsearchtd1">
 						<input type="text" name="captcha" class="inputtext"/>
@@ -93,7 +92,7 @@
 				 <th></th>
 				 	<td><input type="Button" name="button2" value="登陆" onClick="checkloginform()">
 						&nbsp;<input type="Reset" name="button1" value="重填" onClick="clear()">
-						&nbsp;<input type="Button" name="button2" value="注册" onClick="checkloginform()">
+						&nbsp;<input type="Button" name="button2" value="注册" onClick="clear_notice();load_regist()">
 					
 					</td>
 				 </tr>

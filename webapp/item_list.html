@@ -1,43 +1,41 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <title>BC2商城</title>
-<link href="css/frame.css" rel="stylesheet" type="text/css">
-   <script type="text/javascript" src="js/yf_ADS.js"></script>
+<link href="css/frame.css" rel="stylesheet" type="text/css"/>
+<link href="css/item.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yf_ADS.js"></script>
 </head>
-
 <body>
 <div id="container">
+<div id="cart" ><span class="cart_loading"></span></div>
 	<div id="logalleft">
-		<div id="logalright">
-		<a href="register.html" target="_parent">[注册&nbsp;</a>] | 
-		<a href="" target="_parent">王小静 已登录| 
-		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
-		<a href="address_daohang.html" target="_parent">地址簿</a> |
-	 	<a href="home_nologin.html" target="_parent">退出</a>
+		<div id="logalright"><li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
+		<li> <a  href="user.html" target="_parent">个人信息</a>&nbsp;</li>|<li id="cart_li"> 
+		<a id="cart_a"  href="cart_list.html" target="_parent">购物车 <strong id="cart_num">0</strong> 件</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
 		</div>
 	</div>
 	<div id="globallink">
 		<ul>
-			<li><a href="index.html" id="current">首页</a></li>
-			<li><a href="credit_query.html">积分查询</a></li>
-			<li><a href="item_search.html">商品搜索</a></li>
+			<li><a href="index.html">首页</a></li>
+			<li><a href="item_list.html">商品列表</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="cart_list.html">我的购物车</a></li>
+			<li><a href="address.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
 			<li><a href="send_notes.html">送货说明</a></li>
-			<li><a href="" class="nouseful">&nbsp;</a></li>
+            <li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>
 	<div id="main">
 		<div id="search2">
 			<div id="searchleft">
-				<img src="image/ico_site.jpg" id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">图书音像</a>&gt;&gt;<a href="#">教材</a>
+				<img src="image/ico_site.jpg"  id="ico_site"/>
+				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="">商品搜索</a>
 			</div>
 			<div id="searchright2">
 			  <input type="text" name="product" id="textInput"/>
@@ -53,7 +51,127 @@
               </select>
 		  </div>
 		</div>
-		<div id="sendnote">
+		<div id="item_search">
+			<div id="item_search_head"><strong>商品搜索</strong></div>
+			<div id="item_search_content">
+				<table id="item_search_table">
+				<tr>
+					<th>书&nbsp;&nbsp;&nbsp;名：</th>
+            		<td>
+					<input type="text" />
+					</td>
+                   <th>作&nbsp;&nbsp;&nbsp;者：</th>
+                    <td>
+					<input type="text"/>
+					</td>
+          		 </tr>
+				<tr>
+					<th>出版社：</th>
+            		<td>
+					<input type="text"/>
+					</td>
+                    <th>书籍描述：</th>
+            		<td>
+					<input type="text"/>
+					</td>
+          		 </tr>
+				 <tr>
+					<th>书籍类别：</th>
+            		<td>
+						<select name="catogory" class="midselect">
+              				<option>所有类别</option>
+             				<option>文学</option>
+              				<option>艺术</option>
+              				<option>金融与投资</option>
+			  				<option></option>
+            			</select>
+					</td>
+                   <th>出版时间：</th>
+            		<td>
+						<select name="publish_time" class="midselect">
+              				<option>不论时间</option>
+             				<option>2012</option>
+              				<option>2011</option>
+              				<option>2010</option>
+			  				<option>2009</option>
+            			</select>
+					</td> 
+          		 </tr>
+				
+				 <tr>
+					<th>页数范围：</th>
+            		<td>
+						<select name="catogory" class="midselect">
+              				<option>0-200</option>
+             				<option>200-400</option>
+              				<option>400-600</option>
+			  				<option>600以上</option>
+            			</select>
+					</td>
+					<th>版&nbsp;&nbsp;&nbsp;次：</th>
+            		<td>
+						<select name="catogory" class="midselect">
+              				<option>全部版次</option>
+             				<option>1</option>
+              				<option>2</option>
+              				<option>3</option>
+			  				<option>4</option>
+            			</select>
+					</td>
+          		 </tr>
+				 <tr>
+					
+					<th>装&nbsp;&nbsp;&nbsp;帧：</th>
+            		<td>
+						<select name="catogory" class="midselect">
+              				<option>不论</option>
+             				<option>平装</option>
+              				<option>精装</option>
+            			</select>
+					</td>
+                    <th>开&nbsp;&nbsp;&nbsp;本：</th>
+            		<td>
+						<select name="catogory" class="midselect">
+              				<option>不论</option>
+             				<option>32</option>
+              				<option>16</option>
+							<option>8</option>
+            			</select>
+					</td>
+          		 </tr>
+				 <tr>
+					
+				 <th>价&nbsp;&nbsp;&nbsp;格：</th>
+            		<td>
+						<select name="price" class="midselect">
+              				<option>不指定</option>
+             				<option>0-10元</option>
+              				<option>10-30元</option>
+              				<option>30-50元</option>
+			  				<option>50-100元</option>
+              				<option>100元以上</option>
+            			</select>
+					</td>
+                    <th>商品折扣：</th>
+            		<td>
+					  	<select name="discount" class="midselect">
+							<option>所有折扣</option>
+              				<option>3折以下</option>
+              				<option>3-5折</option>
+							<option>5-7折</option>
+							<option>7折及以上</option>
+            			</select> 
+					</td>
+          		 </tr>
+				 <tr>
+				 <th></th>
+				 	<td><input type="Button" class="" name="button2" value="搜索" onClick="javascript:window.location.href='item_search_list.html'">
+				 </tr>
+        </table>	
+				
+			</div>
+		</div>
+ <div id="sendnote">
 			<div id="sendnotehead"><strong>商品列表</strong></div>
 			<div id="sendnotecontent">
 				<table id="favorite">
@@ -115,7 +233,6 @@
             </table>	
 			</div>
 		</div>
-		
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
 		<span id="footerright"> B2C商城  Power by IBM &nbsp;</span>

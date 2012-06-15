@@ -84,6 +84,22 @@ function safe_question(e)
 		p.style.display='none';
 	}
 }
+function clear_notice()
+{
+	var a=document.body.childNodes;
+	var n=new Array();
+	for(var b=0;a[b];++b)
+	{
+		if(a[b].getAttribute)
+		{
+			if(typeof(a[b].getAttribute('id'))=='string'&&a[b].getAttribute('id').indexOf('JunLu')>-1)
+			{
+				n.push(a[b]);
+			};
+		}
+	};
+	for (x in n)document.body.removeChild(n[x]);
+}
 function close_float(elem)
 {
 	var a=document.body.childNodes;
@@ -104,12 +120,23 @@ function close_float(elem)
 		f.parentNode.removeChild(f);
 		hideOverlay();
 		});
-	
+}
+function show_user_con(num)
+{
+	for(var x=1;x!=5;++x)
+	{
+		if(x!=num)
+		{
+			//if(document.getElementById(x).style&&document.getElementById(x).style.display=='block')
+			$('#'+x).slideUp(1);
+		}
+	}
+	//if(!document.getElementById(x).style||document.getElementById(x).style.display!='block')
+	$('#'+num).slideDown(250);
 }
 
-
 /*--------------yf_ADS库函数-------------------*/
-//增加时间监听注册器
+//增加事件监听注册器
 function addListener(element,e,fn){
      if(element.addEventListener){
           element.addEventListener(e,fn,false);

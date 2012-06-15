@@ -3,7 +3,8 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@taglib prefix="s" uri="/struts-tags"%><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,21 +17,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="container">
 <div id="cart" ><span class="cart_loading"></span></div>
 	<div id="logalleft">
-		<div id="logalright">
-		<li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
-		<li> <a  href="user_edit.html" target="_parent">个人信息</a>&nbsp;</li>|<li id="cart_li"> 
+		<div id="logalright"><li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
+		<li> <a  href="user.html" target="_parent">个人信息</a>&nbsp;</li>|<li id="cart_li"> 
 		<a id="cart_a"  href="cart_list.html" target="_parent">购物车 <strong id="cart_num">0</strong> 件</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
 		</div>
 	</div>
 	<div id="globallink">
 		<ul>
 			<li><a href="index.html">首页</a></li>
-			<li><a href="item_search.html">商品列表</a></li>
+			<li><a href="item_search.html">商品搜索</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="address_daohang.html">地址簿</a></li>
+			<li><a href="address.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
 			<li><a href="send_notes.html">送货说明</a></li>
-            <li><a href="credit_query.html">积分查询</a></li>
+            <li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
@@ -97,7 +97,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <option value="3">饰品配件</option>
                 <option value="4">数码产品</option>
               </select>
-			  <input type="text" name="product" id="textInput" />
+			  <input type="text" name="quick_search" id="quick_search" class="gray" value="书名快速搜索...."onFocus="onfocus_check(this,'书名快速搜索....')" onblur="onblur_check(this,'书名快速搜索....')" />
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
 				
 			</div>
@@ -160,3 +160,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </body>
 </html>
+

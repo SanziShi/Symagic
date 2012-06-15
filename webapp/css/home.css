@@ -193,9 +193,9 @@ span.close
 	position:absolute;
 	top:44px;
 	right:37px;
+	height:50px;
 	display:block;
-	height:100px;
-	width:300px;
+	width:250px;
 	background:#FFF;
 	border:#4796E4 solid ;
 	border-width: 0px 1px 1px 1px;
@@ -207,6 +207,8 @@ span.close
 	height:32px;
 	width:32px;
 	display:block;
+	position:absolute;
+	left:50%;
 }
 #container{
 	position:relative;
