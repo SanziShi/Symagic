@@ -41,8 +41,7 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 		// 过滤对于未登录用户而言非法的URL请求
 		String contextPath = request.getContextPath();
 		int illegalCheckStartIndex = preURL.indexOf(contextPath);
-		String illegalCheckPath = preURL
-				.substring(illegalCheckStartIndex + 1);
+		String illegalCheckPath = preURL.substring(illegalCheckStartIndex + 1);
 
 		// 设置url
 		if (guestIllegalURL.contains(illegalCheckPath)) {
@@ -55,8 +54,7 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 					.getValueStack()
 					.getContext()
 					.put("toURL",
-							preURL.substring(preURL.toString().lastIndexOf(
-									'/') + 1));
+							preURL.substring(preURL.toString().lastIndexOf('/') + 1));
 		}
 
 		return "enforceLogin";
