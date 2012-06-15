@@ -67,6 +67,8 @@ public class LoginAction extends GuestInformationAction {
 			return SUCCESS;
 		}
 		
+		result="false";
+		
 		return "loginFail";
 
 	}
