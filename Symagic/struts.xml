@@ -33,6 +33,11 @@
 
 		<action name="login" method="Login" class="LoginAction">
 			<result type="redirect">${toURL}</result>
+			<result name="loginFail" type="json">
+			<param name="includeProperties">
+			result
+			</param>
+			</result>
 		</action>
 
 		<action name="captcha_get_captcha" class="symagicCaptchaAction"
