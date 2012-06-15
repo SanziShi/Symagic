@@ -77,7 +77,7 @@ public class DaoBook {
 	/**
 	 * 获取给定书籍ID的评论条数
 	 * @param bookID
-	 * @return
+	 * @return 返回评论数目
 	 */
 	public int getCommnetNumber(int bookID)
 	{

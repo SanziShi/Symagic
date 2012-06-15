@@ -31,7 +31,7 @@ public class ConnectionPool {
 	/**
 	 * 说明：
 	 * 功能：获取连接池中一个未被分配的连接
-	 * @return
+	 * @return	Connection 数据库连接对象
 	 * @throws Exception
 	 */
 	public synchronized static Connection getConnection() throws Exception {
