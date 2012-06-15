@@ -20,7 +20,7 @@
 
 		<!-- 用于错误处理的result -->
 		<global-results>
-		<result name="enforceLogin">/login.jsp</result>
+			<result name="enforceLogin">/login.jsp</result>
 		</global-results>
 
 	</package>
@@ -32,9 +32,7 @@
 		</action>
 
 		<action name="login" method="Login" class="LoginAction">
-			<result type="json">
-				<param name="includeProperties">result</param>
-			</result>
+			<result type="redirect">${toURL}</result>
 		</action>
 
 		<action name="captcha_get_captcha" class="symagicCaptchaAction"

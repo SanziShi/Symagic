@@ -24,6 +24,11 @@ public class LoginAction extends GuestInformationAction {
 	 * 记录身份验证的结果
 	 */
 	private String result = "true";
+	
+	/**
+	 * 跳转进入的URL
+	 */
+	private String toURL;
 
 	public String getPassword() {
 		return password;
@@ -58,11 +63,20 @@ public class LoginAction extends GuestInformationAction {
 		DaoUser daoUser = new DaoUser();
 
 		if (daoUser.validateUser(name, password)){
-			SessionUtil.logLogin(session, name, "");
+			SessionUtil.logLogin(session, name, name);
+			return SUCCESS;
 		}
+		
+		return "loginFail";
 
-		return SUCCESS;
+	}
 
+	public String getToURL() {
+		return toURL;
+	}
+
+	public void setToURL(String toURL) {
+		this.toURL = toURL;
 	}
 
 }
