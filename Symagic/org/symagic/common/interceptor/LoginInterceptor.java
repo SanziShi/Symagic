@@ -47,14 +47,14 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 		// 设置url
 		if (guestIllegalURL.contains(illegalCheckPath)) {
 			invocation.getInvocationContext().getValueStack().getContext()
-					.put("toUrl", "index");
+					.put("toURL", "index");
 		} else {
 
 			invocation
 					.getInvocationContext()
 					.getValueStack()
 					.getContext()
-					.put("toUrl",
+					.put("toURL",
 							preURL.substring(preURL.toString().lastIndexOf(
 									'/') + 1));
 		}
