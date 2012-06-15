@@ -51,6 +51,7 @@ function login(form)
 		type:'POST',
 		data:login_form,
 		onSuccess:function(e){
+			alert(e);
 		}
 	})
 	return false;
