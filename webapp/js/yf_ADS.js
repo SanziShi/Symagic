@@ -50,9 +50,9 @@ function login(form)
 		url:'login',
 		type:'POST',
 		data:login_form,
-		onSuccess:function(e){
-			alert(e);
-		}
+		onSuccess:function(e){},
+		onError:function(){
+			location.pathname='/index.html'}
 	})
 	return false;
 }
@@ -241,12 +241,13 @@ Ajax=function (option){
 							break;
 						case 403:
 							break;
-						case 404:
+						case 404:option.onError(ajax.responseText);
 							break;
 						case 500:
 							break;
 						case 503:
 							break;
+						default:option.onComplete(ajax.responseText);
 					}
 				}catch(e){}
 			default:break;

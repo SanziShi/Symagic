@@ -29,7 +29,7 @@ body{
 
 
 /*----------- 可配置css  kind ------------*/
-.lj-tipsWrap{ position: fixed; z-index:1;} /* 可修改z-index 让他不会被盖住*/
+.lj-tipsWrap{ position: absolute; z-index:1;} /* 可修改z-index 让他不会被盖住*/
 /* error css */
 .lj-error{background:#F90;color:#f30; border:1px solid #FB8888; background:#FEF2F2;}
 .lj-error .lj-top{border-top-color:#FB8888;}
@@ -106,7 +106,7 @@ span.close
 }
 #login_float
 {
-	position:fixed;
+	position: absolute;
 	background:#FFF;
 	left:50%;
 	margin-left:-250px;
@@ -116,7 +116,7 @@ span.close
 }
 #regist_float
 {
-	position:fixed;
+	position: absolute;
 	background:#FFF;
 	left:50%;
 	margin-left:-350px;
