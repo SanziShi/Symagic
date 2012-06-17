@@ -47,7 +47,7 @@ public class BeanBook {
 	private int page	= 1;	
 	
 	/**
-	 * 书籍的装帧，有两个选择（精装，平装）默认为NULL
+	 * 书籍的装帧，有两个选择（精装，平装）默认为NULL, 必须是这两个字符串之一
 	 */
 	private String binding	= "";	
 	
@@ -82,7 +82,7 @@ public class BeanBook {
 	private String	isbn	= "";	
 	
 	/**
-	 * 在架、下架，只可这两个选择
+	 * (在架、下架)必须是这两个字符串之一
 	 */
 	private String	offline	= "";	
 	

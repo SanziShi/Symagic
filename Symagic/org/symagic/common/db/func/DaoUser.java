@@ -46,8 +46,11 @@ public class DaoUser {
 			rs	= ps.executeQuery();
 			conn.close();	// 连接使用完关闭
 			rs.next();
-			if (password.equals(rs.getString("password")))
+	
+			
+			 if (rs.getString("password").equals(Util.getMD5(password.getBytes())))
 				return true;		// 如果给定的密码和从数据库中得到的密码相同，返回true
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -155,6 +158,25 @@ public class DaoUser {
 	 */
 	public boolean updateNickname(String username, String nickname)
 	{
+		try {
+			conn	= ConnectionPool.getConnection();
+			ps	= conn.prepareStatement("update user set nickname=? " +
+					"where username=?");
+			ps.setString(1, nickname);
+			ps.setString(2, username);
+			
+			// 更新成功，既返回更新记录条数等于1
+			if (ps.executeUpdate() == 1) {
+				
+				conn.close();
+				return true;	// 更新成功，返回true
+			}
+			conn.close();
+			return false;	// 更新失败，返回false
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
@@ -165,6 +187,23 @@ public class DaoUser {
 	 */
 	public int getScore(String username)
 	{
+		try {
+			conn	= ConnectionPool.getConnection();
+			ps	= conn.prepareStatement("select score from user " +
+					" where username=?");
+			ps.setString(1, username);
+			rs	= ps.executeQuery();
+			// 如果有下一条有效记录，及查询成功
+			if (rs.next()) {
+				conn.close();
+				return rs.getInt(1);
+			}
+			conn.close();
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return 0;
 	}
 	
@@ -177,6 +216,34 @@ public class DaoUser {
 	 */
 	public boolean updatePassword(String username, String password, String oldPassword)
 	{
+		try {
+			conn	= ConnectionPool.getConnection();
+			ps	= conn.prepareStatement("select user.username, secret.password, user.userid " +
+					"from user, secret " +
+					"where user.userid=secret.userid and user.username=?");
+			ps.setString(1, username);
+			rs	= ps.executeQuery();
+			// 如果查询成功
+			if (rs.next()) {
+				// 如过oldpassword与指定用户数据库预存密码相等，则可进行更新
+				if (rs.getString("password").equals(Util.getMD5(oldPassword.getBytes()))) {
+					ps	= conn.prepareStatement("update secret set password=? where userid=?");
+					ps.setString(1, Util.getMD5(password.getBytes()));
+					ps.setInt(2, rs.getInt("userid"));
+					if (ps.executeUpdate() == 1) {
+						conn.close();
+						return true;
+					}
+					
+				}
+			}
+			// 查询不成功,或更新失败
+			conn.close();
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
