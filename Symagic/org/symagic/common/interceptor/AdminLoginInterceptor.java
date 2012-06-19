@@ -9,8 +9,8 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
 /**
- * 
- * @author hao 管理员操作的login拦截器
+ * 管理员操作的login拦截器
+ * @author hao 
  */
 public class AdminLoginInterceptor extends MethodFilterInterceptor {
 
@@ -18,7 +18,10 @@ public class AdminLoginInterceptor extends MethodFilterInterceptor {
 	 * 
 	 */
 	private static final long serialVersionUID = 2638872275691843170L;
-
+	
+	/**
+	 * 拦截未登录管理员账户的客户端发来的请求
+	 */
 	@Override
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
 
