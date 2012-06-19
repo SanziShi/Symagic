@@ -6,10 +6,8 @@ package org.symagic.common.db.bean;
  *
  */
 public class BeanComment {
-	/**
-	 * 用户ID
-	 */
-	private int	userID	= 0;	
+
+	private String username = "";
 	
 	/**
 	 * 注释对应的Bookid
@@ -19,7 +17,7 @@ public class BeanComment {
 	/**
 	 * 评论内容
 	 */
-	private String	cotent	= "";	
+	private String	content	= "";	
 	
 	/**
 	 * 书籍被评论等级,共五个等级可选,1、2、3、4、5
@@ -27,17 +25,12 @@ public class BeanComment {
 	private String rating	= "";	
 	
 	/**
-	 * 评论日期
+	 * 评论日期,带时间
+	 * yyyy-MM-dd HH:mm:ss
 	 */
 	private String commentDate	= "";
 
-	public int getUserID() {
-		return userID;
-	}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
 
 	public int getBookID() {
 		return bookID;
@@ -48,11 +41,11 @@ public class BeanComment {
 	}
 
 	public String getCotent() {
-		return cotent;
+		return content;
 	}
 
 	public void setCotent(String cotent) {
-		this.cotent = cotent;
+		this.content = cotent;
 	}
 
 	public String getRating() {
@@ -69,6 +62,14 @@ public class BeanComment {
 
 	public void setCommentDate(String commentDate) {
 		this.commentDate = commentDate;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}	
 	
 	
