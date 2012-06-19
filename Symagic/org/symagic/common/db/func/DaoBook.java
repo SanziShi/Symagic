@@ -267,11 +267,30 @@ public class DaoBook {
 	 * @param comment	评论的详细信息
 	 * @return	true 插入成功	false 插入失败
 	 */
-	public boolean publishComment(int bookID, BeanComment comment)
+	public boolean publishComment(BeanComment comment)
 	{
 		try {
 			conn	= ConnectionPool.getConnection();
-			ps	= conn.prepareStatement("");
+			ps	= conn.prepareStatement("insert into comment " +
+					"(username, bookid, " +
+					" content, rating, commentdate)" +
+					"values " +
+					"(?, ?, ?, ?, ?)");
+			ps.setString(1, comment.getUsername());
+			ps.setInt(2, comment.getBookID());
+			ps.setString(3, comment.getCotent());
+			ps.setString(4, comment.getRating());
+			ps.setString(5, comment.getCommentDate());
+			
+			ps.execute();
+			
+			if (ps.getUpdateCount() == 1) {
+				conn.close();
+				return true;
+			}
+			
+			conn.close();
+			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

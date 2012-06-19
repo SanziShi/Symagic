@@ -3,6 +3,7 @@ package org.symagic.common.db.junit;
 import junit.framework.TestCase;
 
 import org.junit.Test;
+import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.db.func.DaoBook;
 
 public class DaoBookTest extends TestCase{
@@ -42,11 +43,11 @@ public class DaoBookTest extends TestCase{
 //		assertEquals(true, db.setInventory(6, 10));
 //	}
 
-	@Test
-	public void testGetDeatil() {
-		DaoBook	db	= new DaoBook();
-		assertEquals("2343234324", db.getDeatil(2).getIsbn());
-	}
+//	@Test
+//	public void testGetDeatil() {
+//		DaoBook	db	= new DaoBook();
+//		assertEquals("2343234324", db.getDeatil(2).getIsbn());
+//	}
 
 //	@Test
 //	public void testSearch() {
@@ -66,6 +67,18 @@ public class DaoBookTest extends TestCase{
 //	@Test
 //	public void testGetComment() {
 //		fail("Not yet implemented");
+//	}
+	
+//	@Test
+//	public void testPublishDate() {
+//		DaoBook	db	= new DaoBook();
+//		BeanComment comment	= new BeanComment();
+//		comment.setBookID(1);
+//		comment.setUsername("单小熙1");
+//		comment.setCotent("一本好书");
+//		comment.setRating("5");
+//		comment.setCommentDate("2012-06-19 16:57:30");
+//		assertEquals(true, db.publishComment(comment));
 //	}
 
 }

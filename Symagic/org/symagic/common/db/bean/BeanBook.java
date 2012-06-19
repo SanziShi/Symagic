@@ -33,8 +33,9 @@ public class BeanBook {
 	
 	/**
 	 * 书籍出版日期(只有Date无Time)
+	 * 格式yyy-MM-dd
 	 */
-	private String publisherDate	= "";	
+	private String publishDate	= "";	
 	
 	/**
 	 * 书籍出版版次
@@ -118,10 +119,10 @@ public class BeanBook {
 		this.publisher = publisher;
 	}
 	public String getPublisherDate() {
-		return publisherDate;
+		return publishDate;
 	}
 	public void setPublisherDate(String publisherDate) {
-		this.publisherDate = publisherDate;
+		this.publishDate = publisherDate;
 	}
 	public int getVersion() {
 		return version;
