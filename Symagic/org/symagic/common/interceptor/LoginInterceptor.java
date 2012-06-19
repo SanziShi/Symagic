@@ -1,12 +1,11 @@
 package org.symagic.common.interceptor;
 
-import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.StrutsStatics;
-import org.symagic.common.SessionUtil;
+import org.symagic.user.utilty.SessionUtil;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
@@ -14,30 +13,29 @@ import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 /**
  * 
  * @author hao
- *
- */
 
+ * 阻止未登陆用户请求会员专有页面的时候的拦截器。
+ */
 public class LoginInterceptor extends MethodFilterInterceptor {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -8321742460145638100L;
 
 	/**
 	 * 
+	
+	/**
+	 * 被认为是非法请求的URL集合
 	 */
 	private Set<String> guestIllegalURL;
 
+	/**
+	 * struts2 框架处理拦截的入口
+	 */
 	@Override
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
 
-		// 获得session map
-		Map<String, Object> session = invocation.getInvocationContext()
-				.getSession();
-
 		// 检查是否已经登陆
-		if (SessionUtil.isLogin(session)) {
+		if (SessionUtil.isLogin()) {
 			return invocation.invoke();
 		}
 
@@ -69,10 +67,18 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 		return "enforceLogin";
 	}
 
+	/**
+	 * 返回对于未登陆用户而言非法的URL集合。
+	 * @return 非法URL集合
+	 */
 	public Set<String> getGuestIllegalURL() {
 		return guestIllegalURL;
 	}
 
+	/**
+	 * 设置对于未登录用户而言非法的URL集合
+	 * @param guestIllegalURL
+	 */
 	public void setGuestIllegalURL(Set<String> guestIllegalURL) {
 		this.guestIllegalURL = guestIllegalURL;
 	}
