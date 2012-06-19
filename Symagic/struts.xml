@@ -9,11 +9,11 @@
 	<package name="symagic-default" extends="json-default">
 		<!-- 配置登陆用的拦截器 -->
 		<interceptors>
-			<interceptor name="loginInterceptor" class="LoginInterceptor"></interceptor>
+			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
 
 			<interceptor-stack name="loginInterceptorStack">
 				<interceptor-ref name="defaultStack"></interceptor-ref>
-				<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 			</interceptor-stack>
 
 		</interceptors>

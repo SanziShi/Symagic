@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
  * 阻止未登陆用户请求会员专有页面的时候的拦截器。
  */
-public class LoginInterceptor extends MethodFilterInterceptor {
+public class UserLoginInterceptor extends MethodFilterInterceptor {
 
 	private static final long serialVersionUID = -8321742460145638100L;
 

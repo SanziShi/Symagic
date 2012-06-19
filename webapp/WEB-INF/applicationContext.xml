@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<!-- 拦截器配置 -->
-	<bean id="LoginInterceptor" class="org.symagic.common.interceptor.LoginInterceptor">
+	<bean id="UserLoginInterceptor" class="org.symagic.common.interceptor.UserLoginInterceptor">
 		<property name="guestIllegalURL">
 			<set>
 				<!-- 被认为是非法的用户操作 -->
