@@ -9,9 +9,12 @@ public class UserSessionInformation extends GuestInformationAction {
 	private static final long serialVersionUID = -7612238184414790769L;
 	
 	/**
-	 * 客户session信息
+	 * 客户session信息的userName
 	 */
 	private String userName;
+	/**
+	 * 客户session信息的nickName
+	 */
 	private String nickName;
 
 	public String getUserName() {

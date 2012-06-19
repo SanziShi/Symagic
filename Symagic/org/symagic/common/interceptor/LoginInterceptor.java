@@ -11,6 +11,12 @@ import org.symagic.common.SessionUtil;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 
+/**
+ * 
+ * @author hao
+ *
+ */
+
 public class LoginInterceptor extends MethodFilterInterceptor {
 
 	/**
@@ -18,6 +24,9 @@ public class LoginInterceptor extends MethodFilterInterceptor {
 	 */
 	private static final long serialVersionUID = -8321742460145638100L;
 
+	/**
+	 * 
+	 */
 	private Set<String> guestIllegalURL;
 
 	@Override
