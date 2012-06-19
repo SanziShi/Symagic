@@ -271,7 +271,7 @@ public class DaoBook {
 	{
 		try {
 			conn	= ConnectionPool.getConnection();
-			ps	= conn.prepareStatement("insert into comment ");
+			ps	= conn.prepareStatement("");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
