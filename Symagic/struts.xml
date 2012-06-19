@@ -5,13 +5,13 @@
 	<!-- 设置为开发模式输出DEBUG信息 -->
 	<constant name="struts.devMode" value="true" />
 
-	<!-- 配置拦截器 -->
-	<package name="symagic-default" extends="json-default">
+	<!-- 配置用户的拦截器 -->
+	<package name="symagic-user-default" extends="json-default">
 		<!-- 配置登陆用的拦截器 -->
 		<interceptors>
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
 
-			<interceptor-stack name="loginInterceptorStack">
+			<interceptor-stack name="userLoginInterceptorStack">
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 			</interceptor-stack>
@@ -24,25 +24,58 @@
 		</global-results>
 	</package>
 
-	<package name="root-setting" extends="symagic-default">
+	<!-- 配置管理员的拦截器 -->
+	<package name="symagic-admin-default" extends="json-default">
+		<!-- 配置登录拦截器 -->
+		<interceptors>
+			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
+
+			<interceptor-stack name="adminLoginInterceptorStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
+			</interceptor-stack>
+
+		</interceptors>
+
+		<!-- 配置登录拦截器栈最为默认拦截器 -->
+		<default-interceptor-ref name="adminLoginInterceptorStack"></default-interceptor-ref>
+
+		<!-- 用于错误处理的result -->
+		<global-results>
+			<result name="enforceLogin">/login.html</result>
+		</global-results>
+
+	</package>
+
+
+	<!-- 配置用户的action -->
+	<package name="user-default" extends="symagic-user-default">
 
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
 
-		<action name="captcha_get_captcha" class="checkCaptcha">
+		<action name="captcha_get_captcha" class="generateCaptcha">
 			<result type="stream">
 				<param name="contentType">${symagicCaptcha.getCaptchaContentType}</param>
 				<param name="inputName">imageInputStream</param>
 			</result>
 		</action>
 
-		<action name="captcha_check_captcha" class="generateCaptcha">
+		<action name="captcha_check_captcha" class="checkCaptcha">
 			<result type="json">
 				<param name="includeProperties">captchaCheckResult</param>
 			</result>
 		</action>
 
+	</package>
+
+	<!-- 配置管理员的action -->
+	<package name="admin-default" extends="symagic-admin-default"
+		namespace="/admin">
+		<action name="index">
+		<result>/admin/index.html</result>
+		</action>
 	</package>
 
 </struts>    

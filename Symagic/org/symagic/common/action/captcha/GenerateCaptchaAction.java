@@ -3,6 +3,7 @@ package org.symagic.common.action.captcha;
 import java.io.InputStream;
 
 import org.symagic.common.utility.captcha.Captcha;
+import org.symagic.common.utility.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -25,11 +26,11 @@ public class GenerateCaptchaAction extends ActionSupport {
 
 	/**
 	 * 从SessionUtil类中获得sessionID生成Captcha图片,并将其输出到imageInputStream
-	 * (未实现）
 	 */
 	@Override
 	public String execute() throws Exception {
 		
+		imageInputStream = symagicCaptcha.generateImageCaptcha(SessionUtilty.getSessionID());
 		
 		return SUCCESS;
 	}

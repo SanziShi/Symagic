@@ -1,6 +1,7 @@
 package org.symagic.common.action.captcha;
 
 import org.symagic.common.utility.captcha.Captcha;
+import org.symagic.common.utility.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -16,6 +17,12 @@ public class CheckCaptchaAction extends ActionSupport {
 	 */
 	private boolean captchaCheckResult;
 	
+	
+	/**
+	 * 验证码输入变量
+	 */
+	private String captchaValue;
+	
 	/**
 	 * Symagic封装的Captcha接口
 	 */
@@ -24,10 +31,11 @@ public class CheckCaptchaAction extends ActionSupport {
 	/**
 	 * 通过symagicCaptcha验证验证码，并把验证码放置到captchaCheckResult中
 	 * 通过SessionUtil获得需要的ID
-	 * (未实现）
 	 */
 	@Override
 	public String execute() throws Exception {
+		
+		captchaCheckResult = symagicCaptcha.validateCaptcha(SessionUtilty.getSessionID(), captchaValue);
 		
 		return SUCCESS;
 	}
@@ -62,6 +70,22 @@ public class CheckCaptchaAction extends ActionSupport {
 	 */
 	public void setSymagicCaptcha(Captcha symagicCaptcha) {
 		this.symagicCaptcha = symagicCaptcha;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public String getCaptchaValue() {
+		return captchaValue;
+	}
+
+	/**
+	 * 
+	 * @param captchaValue
+	 */
+	public void setCaptchaValue(String captchaValue) {
+		this.captchaValue = captchaValue;
 	}
 	
 	

@@ -5,7 +5,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.StrutsStatics;
-import org.symagic.user.utilty.SessionUtil;
+import org.symagic.user.utilty.UserSessionUtilty;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
@@ -35,7 +35,7 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 	protected String doIntercept(ActionInvocation invocation) throws Exception {
 
 		// 检查是否已经登陆
-		if (SessionUtil.isLogin()) {
+		if (UserSessionUtilty.isLogin()) {
 			return invocation.invoke();
 		}
 
