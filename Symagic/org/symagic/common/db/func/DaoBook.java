@@ -263,7 +263,6 @@ public class DaoBook {
 	
 	/**
 	 * 发表评论，向comment表中插入一条记录
-	 * @param bookID	指定评论书籍ID
 	 * @param comment	评论的详细信息
 	 * @return	true 插入成功	false 插入失败
 	 */

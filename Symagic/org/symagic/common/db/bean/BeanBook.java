@@ -33,7 +33,7 @@ public class BeanBook {
 	
 	/**
 	 * 书籍出版日期(只有Date无Time)
-	 * 格式yyy-MM-dd
+	 * 格式yyyy-MM-dd
 	 */
 	private String publishDate	= "";	
 	
