@@ -2,7 +2,7 @@
 {
 	width:799px;
 	float:left;
-	background-color:#EBEBEB;
+	background-color:#F8F8F8;
 }
 #item_search_content
 {
@@ -28,3 +28,49 @@
 	text-align:right;
 }
 
+#item_left
+{
+	background:#EAF2F7;
+	width:150px;
+	float:left;
+	line-height:27px;
+	font-size: 14px;
+	
+}
+#item_left dl
+{
+	margin:15px 10px 10px 10px;
+}
+#item_left dt
+{
+	font-weight: 700;
+	padding:10px 0 0 10px;
+	cursor: default;
+}
+#item_left dd
+{
+	cursor: pointer;
+}
+#item_left div
+{
+	border-bottom:1px dotted  #999999;
+}
+#item_left div:hover
+{
+	background: #FFF;
+}
+#item_container
+{
+	width:617px;
+	text-align:center;
+	line-height:28px;
+	height:800px;
+	background:#FFF;
+	list-style-type:none;
+}
+.item
+{
+	width:128px;
+	border:#999 solid 1px;
+	float:left;
+}
