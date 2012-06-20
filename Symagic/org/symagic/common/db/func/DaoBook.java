@@ -86,7 +86,7 @@ public class DaoBook {
 			ps.setString(8, book.getBinding());
 			ps.setString(9, book.getFolio());
 			ps.setFloat(10, book.getMarketPrice());
-			ps.setInt(11, book.getDiscount());
+			ps.setFloat(11, book.getDiscount());
 			ps.setInt(12, book.getInventory());
 			ps.setString(13, book.getBookDesc());
 			ps.setString(14, book.getIsbn());
@@ -163,7 +163,7 @@ public class DaoBook {
 				book.setBookDesc(rs.getString("bookdesc"));
 				book.setBookId(rs.getInt("bookid"));
 				book.setBookName(rs.getString("bookname"));
-				book.setDiscount(rs.getInt("discount"));
+				book.setDiscount(rs.getFloat("discount"));
 				book.setFolio(rs.getString("folio"));
 				book.setInventory(rs.getInt("inventory"));
 				book.setIsbn(rs.getString("isbn"));
