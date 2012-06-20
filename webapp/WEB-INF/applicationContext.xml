@@ -3,30 +3,35 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-
-	<bean
-		class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService"
-		id="imageCaptchaService" />
-
-	<bean id="JCaptcha" class="org.symagic.common.bean.captcha.JCaptcha">
-		<property name="jcaptchaImageServer" ref="imageCaptchaService"></property>
-	</bean>
-
-
-	<bean id="symagicCaptchaAction" class="org.symagic.security.action.CaptchaAction">
-		<property name="symagicCaptche" ref="JCaptcha"></property>
-	</bean>
-
-	<bean id="LoginAction" class="org.symagic.common.action.LoginAction" />
-	<bean id="symagicSessionInfor" class="org.symagic.common.action.UserSessionInformation" />
-
-	<!-- 拦截器配置 -->
-	<bean id="LoginInterceptor" class="org.symagic.common.interceptor.LoginInterceptor">
+	<!-- 用户拦截器配置 -->
+	<bean id="UserLoginInterceptor" class="org.symagic.common.interceptor.UserLoginInterceptor">
 		<property name="guestIllegalURL">
 			<set>
 				<!-- 被认为是非法的用户操作 -->
 			</set>
 		</property>
 	</bean>
+	
+	<!-- 管理员拦截器配置 -->
+	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor"></bean>
+
+	<!-- 配置验证码生成及检查 -->
+	<bean
+		class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService"
+		id="imageCaptchaService" />
+
+	<bean id="JCaptcha" class="org.symagic.common.utility.captcha.JCaptcha">
+		<property name="jcaptchaImageServer" ref="imageCaptchaService"></property>
+	</bean>
+
+
+	<bean id="checkCaptcha" class="org.symagic.common.action.captcha.CheckCaptchaAction">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+	</bean>
+
+	<bean id="generateCaptcha" class="org.symagic.common.action.captcha.GenerateCaptchaAction">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+	</bean>
+
 
 </beans>

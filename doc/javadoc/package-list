@@ -1,3 +1,9 @@
+org.symagic.common.action.captcha
 org.symagic.common.db.bean
 org.symagic.common.db.func
+org.symagic.common.db.junit
 org.symagic.common.db.pool
+org.symagic.common.interceptor
+org.symagic.common.servlet
+org.symagic.common.utility.captcha
+org.symagic.user.utilty

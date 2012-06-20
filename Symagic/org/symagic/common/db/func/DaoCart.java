@@ -1,11 +1,25 @@
 package org.symagic.common.db.func;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import org.symagic.common.db.pool.ConnectionPool;
+
 /**
  * 封装购物车操作的类
  * @author wanran
  *
  */
 public class DaoCart {
+	
+	private Connection conn;
+	private PreparedStatement ps;
+	private Statement st;
+	private ResultSet rs;
+	private int count = 0;
+	
 	
 	/**
 	 * 向购物车添加书籍
@@ -16,6 +30,15 @@ public class DaoCart {
 	 */
 	public boolean addBook(String username, int bookID, int bookNumber)
 	{
+		try {
+			conn	= ConnectionPool.getConnection();
+			ps	= conn.prepareStatement("insert into ");
+				
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return true;
 	}
 	

@@ -33,8 +33,9 @@ public class BeanBook {
 	
 	/**
 	 * 书籍出版日期(只有Date无Time)
+	 * 格式yyy-MM-dd
 	 */
-	private String publisherDate	= "";	
+	private String publishDate	= "";	
 	
 	/**
 	 * 书籍出版版次
@@ -47,7 +48,7 @@ public class BeanBook {
 	private int page	= 1;	
 	
 	/**
-	 * 书籍的装帧，有两个选择（精装，平装）默认为NULL
+	 * 书籍的装帧，有两个选择（精装，平装）默认为NULL, 必须是这两个字符串之一
 	 */
 	private String binding	= "";	
 	
@@ -82,7 +83,7 @@ public class BeanBook {
 	private String	isbn	= "";	
 	
 	/**
-	 * 在架、下架，只可这两个选择
+	 * (在架、下架)必须是这两个字符串之一
 	 */
 	private String	offline	= "";	
 	
@@ -118,10 +119,10 @@ public class BeanBook {
 		this.publisher = publisher;
 	}
 	public String getPublisherDate() {
-		return publisherDate;
+		return publishDate;
 	}
 	public void setPublisherDate(String publisherDate) {
-		this.publisherDate = publisherDate;
+		this.publishDate = publisherDate;
 	}
 	public int getVersion() {
 		return version;
