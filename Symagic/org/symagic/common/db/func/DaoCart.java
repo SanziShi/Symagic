@@ -31,7 +31,7 @@ public class DaoCart {
 	public boolean addBook(String username, int bookID, int bookNumber)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into ");
 				
 		} catch (Exception e) {

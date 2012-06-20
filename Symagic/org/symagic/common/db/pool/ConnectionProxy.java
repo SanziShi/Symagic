@@ -24,7 +24,7 @@ public class ConnectionProxy implements InvocationHandler {
 			throws Throwable {
 		try {
 			if ("close".equals(method.getName())) { // 在close函数处设置钩子
-				ConnectionPool.returnConnection((Connection) proxy);
+				ConnectionPool.getInstance().returnConnection((Connection) proxy);
 				// 将数据库连接归还缓冲池，跳过了原来的close()函数
 				// 这里的proxy实际上就是Connection的一个代理实例
 			} else

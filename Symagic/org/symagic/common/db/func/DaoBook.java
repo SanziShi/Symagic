@@ -33,7 +33,7 @@ public class DaoBook {
 	 */
 	public int getInventory(int bookID) {
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select inventory from book where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
@@ -63,7 +63,7 @@ public class DaoBook {
 	public boolean addBook(BeanBook book)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into book (" +
 					"picture, bookname, author, " +
 					"publisher, publishdate, version, " +
@@ -120,7 +120,7 @@ public class DaoBook {
 	 */
 	public boolean setInventory(int bookID, int inventory) {
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("update book set inventory=? where bookid=?");
 			ps.setInt(1, inventory);
 			ps.setInt(2, bookID);
@@ -149,7 +149,7 @@ public class DaoBook {
 	 */
 	public BeanBook getDeatil(int bookID) {
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from book where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
@@ -217,7 +217,7 @@ public class DaoBook {
 	 */
 	public int getCommnetNumber(int bookID) {
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select count(*) from comment where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
@@ -252,7 +252,7 @@ public class DaoBook {
 	public List<BeanComment> getComment(int bookID, int page, int lines) {
 		BeanComment	bc;
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from comment where ");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -269,7 +269,7 @@ public class DaoBook {
 	public boolean publishComment(BeanComment comment)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into comment " +
 					"(username, bookid, " +
 					" content, rating, commentdate)" +

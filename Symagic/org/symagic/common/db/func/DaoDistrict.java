@@ -32,7 +32,7 @@ public class DaoDistrict {
 	public List<BeanDistrict> getDistrict(int upID)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -29,7 +29,7 @@ public class DaoUser {
 	public boolean validateUser(String username, String password)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			
 			ps	= conn.prepareStatement("select userid, username from user where username=?");	// 获取给定用户名在对应的记录信息
 			ps.setString(1, username);
@@ -66,7 +66,7 @@ public class DaoUser {
 	public boolean validateUserName(String username)
 	{
 		try {
-			conn = ConnectionPool.getConnection();
+			conn = ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select count(*) from user where username=?");	// 获取给定用户名在User中的个数
 			ps.setString(1, username);
 			String s = ps.toString();
@@ -99,7 +99,7 @@ public class DaoUser {
 		if (!this.validateUserName(user.getUsername()))
 			return false;
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into user (" +
 					"username, nickname, score, question, answer)" +
 					"values (" +
@@ -159,7 +159,7 @@ public class DaoUser {
 	public boolean updateNickname(String username, String nickname)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("update user set nickname=? " +
 					"where username=?");
 			ps.setString(1, nickname);
@@ -188,7 +188,7 @@ public class DaoUser {
 	public int getScore(String username)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select score from user " +
 					" where username=?");
 			ps.setString(1, username);
@@ -217,7 +217,7 @@ public class DaoUser {
 	public boolean updatePassword(String username, String password, String oldPassword)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select user.username, secret.password, user.userid " +
 					"from user, secret " +
 					"where user.userid=secret.userid and user.username=?");
