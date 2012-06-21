@@ -17,7 +17,7 @@
 
 	<!-- 配置验证码生成及检查 -->
 	<bean
-		class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService"
+		class="org.symagic.common.utility.captcha.SymagicCaptchaService"
 		id="imageCaptchaService" />
 
 	<bean id="JCaptcha" class="org.symagic.common.utility.captcha.JCaptcha">
