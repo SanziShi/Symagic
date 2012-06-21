@@ -32,8 +32,23 @@ public class DaoCart {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("insert into ");
+			ps	= conn.prepareStatement("insert into cart " +
+					"(username, adddate" +
+					",bookid, amount) values" +
+					"(?, date(now()), ?, ?)");
+			ps.setString(1, username);
+			ps.setInt(2, bookID);
+			ps.setInt(3, bookNumber);
+			
+			ps.execute();
+			
+			if (ps.getUpdateCount() == 1) {
+				conn.close();
+				return true;
+			}
 				
+			conn.close();
+			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -50,11 +65,30 @@ public class DaoCart {
 	 */
 	public boolean deleteBook(String username, int bookID)
 	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("delete from cart where username=? and bookid=?");
+			ps.setString(1, username);
+			ps.setInt(2, bookID);
+			
+			ps.execute();
+			
+			if (ps.getUpdateCount() == 1) {
+				conn.close();
+				return true;
+			}
+			conn.close();
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
 	/**
 	 * 修改指定用户购物车中指定书籍的购买信息（只有购买数量）
+	 * 如果bookNumber为0，就直接删除这条记录
 	 * @param username	指定用户名
 	 * @param bookID	指定书籍ID
 	 * @param bookNumber	指定要修改的购买数量
@@ -62,6 +96,31 @@ public class DaoCart {
 	 */
 	public boolean modifyBook(String username, int bookID, int bookNumber)
 	{
+		// 如果设置的书籍订购数目为零，就直接删除这条记录
+		if (bookNumber == 0) {
+			if (this.deleteBook(username, bookID))
+				return true;
+			return false;
+		}
+		// 不为0执行
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("update cart set amount=? where username=? and bookid=?");
+			ps.setInt(1, bookNumber);
+			ps.setString(2, username);
+			ps.setInt(3, bookID);
+			
+			if (ps.executeUpdate() == 1) {
+				conn.close();
+				return true;
+			}
+			conn.close();
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			
+			e.printStackTrace();
+		}
 		return true;
 	}
 	
