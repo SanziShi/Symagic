@@ -27,7 +27,7 @@ td.mywidth{
 	}
 	
 #latestOrder{
-	width:100%
+	width:100%;
 	font-size:13px;
 	margin:0px auto;
 	text-align:left;
@@ -64,7 +64,7 @@ td.mywidth{
 	color:#666666;
 }
 
-.user_left
+#item_left
 {
 	background:#EAF2F7;
 	width:150px;
@@ -73,23 +73,30 @@ td.mywidth{
 	font-size: 14px;
 	
 }
-.user_left dl
+#item_left dl
 {
 	margin:15px 10px 10px 10px;
 }
-.user_left dt
+#item_left dt
 {
-	border-top: 1px solid  #666;
 	font-weight: 700;
 	padding:10px 0 0 10px;
 	cursor: default;
 }
-.user_left dd
+#item_left dd
 {
 	cursor: pointer;
 }
-.user_left div:hover
+#item_left div
+{
+	border-bottom:1px dotted  #999999;
+}
+#item_left div:hover
 {
 	background: #FFF;
+}
+.clear
+{
+	clear: both; margin: 0; padding: 0; height: 0; font-size: 0; line-height: 0; overflow: hidden
 }
 
