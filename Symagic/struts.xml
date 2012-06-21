@@ -47,13 +47,8 @@
 
 	</package>
 
-
-	<!-- 配置用户的action -->
-	<package name="user-default" extends="symagic-user-default">
-
-		<action name="index">
-			<result>/index.jsp</result>
-		</action>
+	<!-- 通用的action -->
+	<package name="commond" extends="json-default">
 
 		<action name="captcha_get_captcha" class="generateCaptcha">
 			<result type="stream">
@@ -70,12 +65,33 @@
 
 	</package>
 
+
+	<!-- 配置用户的action -->
+	<package name="user-default" extends="symagic-user-default">
+
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+
+	</package>
+
 	<!-- 配置管理员的action -->
 	<package name="admin-default" extends="symagic-admin-default"
 		namespace="/admin">
 		<action name="index">
-		<result>/admin/index.html</result>
+			<result>/admin/index.html</result>
 		</action>
+		
+		<action name="login" class="AdminLogin">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">
+				${toURL}
+			</result>
+			<result name="error">
+			/error.html
+			</result>
+		</action>
+
 	</package>
 
 </struts>    

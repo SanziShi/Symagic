@@ -135,6 +135,19 @@ function show_user_con(num)
 	//if(!document.getElementById(x).style||document.getElementById(x).style.display!='block')
 	$('#'+num).slideDown(250);
 }
+function show_item_search(e)
+{
+	if(e.className=='collapse')
+	{
+		e.className='collapsed';
+		$('#item_search1').slideDown(70);
+	}
+	else
+	{
+		e.className='collapse';
+		$('#item_search1').slideUp(70);
+	}
+}
 
 /*--------------yf_ADS库函数-------------------*/
 //增加事件监听注册器
