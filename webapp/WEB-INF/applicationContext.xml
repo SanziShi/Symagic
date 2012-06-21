@@ -11,7 +11,7 @@
 			</set>
 		</property>
 	</bean>
-	
+
 	<!-- 管理员拦截器配置 -->
 	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor"></bean>
 
@@ -33,5 +33,12 @@
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 	</bean>
 
+	<!-- 管理员的action bean -->
+	<bean id="AdminLogin" class="org.symagic.admin.action.login.AdminLoginAction">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+		<property name="daoAdmin" ref="DaoAdmin"></property>
+	</bean>
 
+	<!-- 数据层bean -->
+	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
 </beans>
