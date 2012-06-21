@@ -33,7 +33,7 @@ public class DaoBook {
 	 */
 	public int getInventory(int bookID) {
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select inventory from book where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
@@ -63,7 +63,7 @@ public class DaoBook {
 	public boolean addBook(BeanBook book)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into book (" +
 					"picture, bookname, author, " +
 					"publisher, publishdate, version, " +
@@ -86,7 +86,7 @@ public class DaoBook {
 			ps.setString(8, book.getBinding());
 			ps.setString(9, book.getFolio());
 			ps.setFloat(10, book.getMarketPrice());
-			ps.setInt(11, book.getDiscount());
+			ps.setFloat(11, book.getDiscount());
 			ps.setInt(12, book.getInventory());
 			ps.setString(13, book.getBookDesc());
 			ps.setString(14, book.getIsbn());
@@ -120,7 +120,7 @@ public class DaoBook {
 	 */
 	public boolean setInventory(int bookID, int inventory) {
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("update book set inventory=? where bookid=?");
 			ps.setInt(1, inventory);
 			ps.setInt(2, bookID);
@@ -149,7 +149,7 @@ public class DaoBook {
 	 */
 	public BeanBook getDeatil(int bookID) {
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from book where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
@@ -163,7 +163,7 @@ public class DaoBook {
 				book.setBookDesc(rs.getString("bookdesc"));
 				book.setBookId(rs.getInt("bookid"));
 				book.setBookName(rs.getString("bookname"));
-				book.setDiscount(rs.getInt("discount"));
+				book.setDiscount(rs.getFloat("discount"));
 				book.setFolio(rs.getString("folio"));
 				book.setInventory(rs.getInt("inventory"));
 				book.setIsbn(rs.getString("isbn"));
@@ -217,7 +217,7 @@ public class DaoBook {
 	 */
 	public int getCommnetNumber(int bookID) {
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select count(*) from comment where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
@@ -252,7 +252,7 @@ public class DaoBook {
 	public List<BeanComment> getComment(int bookID, int page, int lines) {
 		BeanComment	bc;
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from comment where ");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -263,14 +263,13 @@ public class DaoBook {
 	
 	/**
 	 * 发表评论，向comment表中插入一条记录
-	 * @param bookID	指定评论书籍ID
 	 * @param comment	评论的详细信息
 	 * @return	true 插入成功	false 插入失败
 	 */
 	public boolean publishComment(BeanComment comment)
 	{
 		try {
-			conn	= ConnectionPool.getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into comment " +
 					"(username, bookid, " +
 					" content, rating, commentdate)" +

@@ -1,5 +1,10 @@
 package org.symagic.common.db.func;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+
 public class Util {
 	/**
 	 * 获取字节数组的MD5加密后的16进制字符串(32bit)
@@ -34,4 +39,32 @@ public class Util {
 		}
 		return s;
 	}
+	
+	public static String readFile(String path)
+	{
+		File file = null;
+		BufferedReader br = null;
+		StringBuffer buffer = null;
+		  try{
+		   file = new File(path);
+		   buffer = new StringBuffer();
+		   InputStreamReader isr = new InputStreamReader(new FileInputStream(file),"utf-8");
+		   br = new BufferedReader(isr); 
+		   int s;
+		   while((s = br.read())!=-1){
+		    buffer.append((char)s);
+		   }
+		   return buffer.toString();
+		  }catch(Exception e){
+		   e.printStackTrace();
+		  }
+		  return null;
+	}
 }
+
+
+
+
+
+
+

@@ -33,7 +33,7 @@ public class BeanBook {
 	
 	/**
 	 * 书籍出版日期(只有Date无Time)
-	 * 格式yyy-MM-dd
+	 * 格式yyyy-MM-dd
 	 */
 	private String publishDate	= "";	
 	
@@ -65,7 +65,7 @@ public class BeanBook {
 	/**
 	 * 书籍价格折扣，百分比
 	 */
-	private int	discount	= 100;	
+	private float	discount	= 1.0f;	
 	
 	/**
 	 * 书籍库存量
@@ -154,10 +154,10 @@ public class BeanBook {
 	public void setMarketPrice(float marketPrice) {
 		this.marketPrice = marketPrice;
 	}
-	public int getDiscount() {
+	public float getDiscount() {
 		return discount;
 	}
-	public void setDiscount(int discount) {
+	public void setDiscount(float discount) {
 		this.discount = discount;
 	}
 	public int getInventory() {

@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+
+p.title{
+	background:#09F;
+	pading:50px;
+	font:Verdana, Geneva, sans-serif;
+	font-size:20px;
+	font-stretch:narrower;
+	}
+	
+#myfont{
+	font-size:16px;
+	text-align:right;
+	}
+	
+td.mywidth{
+	width:50%;}
+	.qWidth{
+		width:25%;}
+		.autoWidth{
+			width:auto;}
+
+	
+#bgWhite{
+	background:#FFF;
+	}
+	
+#latestOrder{
+	width:100%
+	font-size:13px;
+	margin:0px auto;
+	text-align:left;
+	line-height:28px;
+	background:#FFF;
+	}
+	
+#categoryFixed{
+	background:url(../image/categoryFixed.jpg) no-repeat;
+	padding:55px 0px 15px 0px;
+	}
+#categoryFixed h4{
+	margin:0px 18px 0px 18px;
+	padding:3px 0px 1px 5px;
+	background: #4796E4;
+	font-size:14px;
+}
+#categoryFixed ul{
+	list-style:none;
+	margin:0px;
+	padding:5px 22px 15px 22px;
+}
+#categoryFixed ul li{
+	padding:2px 0px 2px 16px;
+	border-bottom:1px dashed #999999;
+	background:url(../image/icon1.gif) no-repeat 5px 7px;
+}
+
+#categoryFixed ul li a:link, #category ul li a:visited{
+	color:#000000;
+	text-decoration:none;
+}
+#categoryFixed ul li a:hover{
+	color:#666666;
+}
+

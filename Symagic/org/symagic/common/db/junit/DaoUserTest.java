@@ -1,10 +1,7 @@
 package org.symagic.common.db.junit;
 
-import javax.ws.rs.DELETE;
-
 import junit.framework.TestCase;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.func.DaoUser;
@@ -12,11 +9,11 @@ import org.symagic.common.db.func.DaoUser;
 public class DaoUserTest extends TestCase{
 
 //	@Ignore
-//	@Test
-//	public void testValidateUser() {
-//		DaoUser du	= new DaoUser();
-//		assertEquals(true, du.validateUser("单小熙1", "12"));
-//	}
+	@Test
+	public void testValidateUser() {
+		DaoUser du	= new DaoUser();
+		assertEquals(true, du.validateUser("单小熙1", "12"));
+	}
 //	
 //	@Ignore
 //	@Test
