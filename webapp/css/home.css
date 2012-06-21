@@ -72,6 +72,10 @@ span.red
 {
 	float:left;
 }
+.clear
+{
+	clear: both; margin: 0; padding: 0; height: 0; font-size: 0; line-height: 0; overflow: hidden
+}
 .left_text
 {
 	text-align:left;
@@ -110,7 +114,7 @@ span.close
 	background:#FFF;
 	left:50%;
 	margin-left:-250px;
-	top:100px;
+	top:150px;
 	width:500px;
 	display:none;
 }
@@ -120,7 +124,7 @@ span.close
 	background:#FFF;
 	left:50%;
 	margin-left:-350px;
-	top:100px;
+	top:150px;
 	width:700px;
 	display:none;
 }
@@ -137,7 +141,7 @@ span.close
 #logalleft{
 	background-image:url(../image/logal8.png);
 	width:799px;
-	height:45px;
+	height:100px;
 	
 }
 #logalright{
@@ -145,8 +149,9 @@ span.close
 	font-size:10px;
 	padding: 2px;
 	float:right;
-	margin-top:25px;
+	margin-top:80px;
 	margin-right:5px;
+	font-size:12px;
 }
 #logalright li
 {
@@ -191,7 +196,7 @@ span.close
 #cart
 {
 	position:absolute;
-	top:44px;
+	top:99px;
 	right:37px;
 	height:50px;
 	display:block;
@@ -215,6 +220,7 @@ span.close
 	margin:0px auto 0px auto;
 	width:800px;
 	text-align:left;
+	display:inline-block;
 }
 
 #globallink{
@@ -267,7 +273,7 @@ span.close
 	width:180px;
 	float:left;
 	background:#FFFFFF url(../image/leftbotton.jpg) no-repeat;
-	margin:5px 2px 0px 0px;	
+	margin:1px 2px 0px 0px;	
 }
 
 #category{
@@ -321,15 +327,15 @@ strong{
 	width:616px;
 	height:30px;
 	background-color:#ffffff;
-	margin:4px 0px 0px 0px;
 }
 #search2
 {
-	width:798px;
+	width:799px;
 	height:30px;
 	background-color:#ffffff;
-	margin:4px 0px 0px 0px;
-	border:#00CCFF solid 1px;
+	border-width:1px 0px 1px 0px;
+	border-style:solid;
+	border-color:#CCCCCC;
 }
 #search1 #searchleft,#search2 #searchleft{
 	float:left;
@@ -431,8 +437,9 @@ strong{
 	color:#FF0000;
 	text-decoration:none;
 }
-
 #footer{
+	position:absolute;
+	bottom:-30px;
 	float:left;
 	margin:2px auto 0px auto;
 	width:800px;

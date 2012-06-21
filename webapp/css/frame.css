@@ -58,6 +58,10 @@ body{
 {
 	display:none;
 }
+.clear
+{
+	clear: both; margin: 0; padding: 0; height: 0; font-size: 0; line-height: 0; overflow: hidden
+}
 .loading
 {
 	background:url(../image/loading.gif);
@@ -75,6 +79,41 @@ span.red
 .right_text
 {
 	text-align:right;
+}
+.fliter
+{
+	width:100%;
+	margin:7px 0px 7px 0px;
+	border-bottom: 2px solid #CCC;
+}
+.fliter font
+{
+	font-family: Verdana,sans-serif,"ËÎÌו";
+	font-size: 14px;
+	color:#666666;
+	margin:0px 0px 5px 15px;
+}
+.fliter .collapse
+{
+	background:url(../image/img-con.png);
+	background-position: 0px -56px;
+	height:23px;
+	width:27px;
+	display:block;
+	float:right;
+	margin-top:-7px;
+	cursor:pointer;
+}
+.fliter .collapsed
+{
+	background:url(../image/img-con.png);
+	background-position: -27px -56px;
+	height:23px;
+	width:27px;
+	display:block;
+	float:right;
+	margin-top:-7px;
+	cursor:pointer;
 }
 span.close,span.close:hover
 {
@@ -110,7 +149,7 @@ span.close
 	background:#FFF;
 	left:50%;
 	margin-left:-250px;
-	top:100px;
+	top:150px;
 	width:500px;
 	display:none;
 }
@@ -120,7 +159,7 @@ span.close
 	background:#FFF;
 	left:50%;
 	margin-left:-350px;
-	top:100px;
+	top:150px;
 	width:700px;
 	display:none;
 }
@@ -137,7 +176,7 @@ span.close
 #logalleft{
 	background-image:url(../image/logal8.png);
 	width:799px;
-	height:45px;
+	height:100px;
 }
 #ico_site{
 	width:15px;
@@ -148,8 +187,9 @@ span.close
 	font-size:10px;
 	padding: 2px;
 	float:right;
-	margin-top:25px;
+	margin-top:80px;
 	margin-right:5px;
+	font-size:12px;
 }
 #logalright li
 {
@@ -194,7 +234,7 @@ span.close
 #cart
 {
 	position:absolute;
-	top:44px;
+	top:99px;
 	right:37px;
 	display:block;
 	width:250px;
@@ -213,11 +253,20 @@ span.close
 	position:absolute;
 	left:50%;
 }
+.add_to_cart1
+{
+	background:url(../image/add_to_cart.jpg);
+	height:25px;
+	width:100px;
+	cursor:pointer;
+	
+}
 #container{
 	position:relative;
 	margin:0px auto 0px auto;
 	width:800px;
 	text-align:left;
+	display:inline-block;
 }
 #globallink{
 	width:800px;
@@ -302,15 +351,15 @@ strong{
 	width:799px;
 	height:30px;
 	background-color:#ffffff;
-	margin:4px 0px 0px 0px;
-	padding:0px;
+	border-width:1px 0px 1px 0px;
+	border-style:solid;
+	border-color:#CCCCCC;
 }
 #search2 #searchleft{
 	float:left;
 	width:360px;
-	height:30px;
-	margin:0px 0px 0px 0px;
-	padding-top:4px;
+	height:22px;
+	padding-top:7px;
 	padding-left:15px;
 	color:#2696ca;
 	font-size:14px;
@@ -543,6 +592,7 @@ text-decoration:none;
 	background-color: #FFF;
 	margin-right:1px;
 	margin-left:2px;
+	overflow:hidden;
 }
 .user_note .head
 {
@@ -605,6 +655,8 @@ text-decoration:none;
 	background: #FFF;
 }
 #footer{
+	position:absolute;
+	bottom:-30px;
 	float:left;
 	margin:2px auto 0px auto;
 	width:800px;
