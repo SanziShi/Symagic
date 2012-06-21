@@ -137,7 +137,7 @@ span.close
 #logalleft{
 	background-image:url(../image/logal8.png);
 	width:799px;
-	height:45px;
+	height:100px;
 }
 #ico_site{
 	width:15px;
@@ -148,7 +148,7 @@ span.close
 	font-size:10px;
 	padding: 2px;
 	float:right;
-	margin-top:25px;
+	margin-top:75px;
 	margin-right:5px;
 }
 #logalright li

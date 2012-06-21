@@ -34,7 +34,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-	<div id="banner"></div>
+<!--	<div id="banner"></div>-->
 	<div id="left">
 		<div id="category">
 			<h4><span>文学</span></h4>
