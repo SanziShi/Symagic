@@ -247,6 +247,13 @@ public class DaoUser {
 		return true;
 	}
 	
-	
+	/**
+	 * 获取注册用户数
+	 * @return	int 注册用户数目
+	 */
+	public int getUserNum()
+	{
+		return 10;
+	}
 	
 }
