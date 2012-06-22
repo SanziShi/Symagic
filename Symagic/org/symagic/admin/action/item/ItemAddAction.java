@@ -134,7 +134,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		MessageDigest md5Encoder = MessageDigest.getInstance("MD5");
 
 		// 生成文件名
-		String fileName = new String(md5Encoder.digest(pictureFileName
+		String fileName = new String(md5Encoder.digest(ISBN
 				.getBytes("UTF-8")))
 				+ pictureFileName.substring(pictureFileName.indexOf('.'));
 
@@ -167,7 +167,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setInventory(inventory);
 		book.setBookDesc(description);
 		book.setCatalogID(bookClassify);
-		book.setPicture(fileFolder + "/" + fileName);
+		book.setPicture(shopImageFileFolder + "/" + fileName);
 
 		daoBook.addBook(book);
 
