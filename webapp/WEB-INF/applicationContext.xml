@@ -64,6 +64,7 @@
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
 	<bean id="DaoBook" class="org.symagic.common.db.func.DaoBook" />
 	<bean id="DaoCart" class="org.symagic.common.db.func.DaoCart"></bean>
+	<bean id="DaoUser" class="org.symagic.common.db.func.DaoUser"></bean>
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>

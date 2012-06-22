@@ -62,12 +62,12 @@ public class SymagicCaptchaService extends AbstractCaptchaService implements
 
 	/**
 	 * Construct a new ImageCaptchaService with a
-	 * {@link FastHashMapCaptchaStore} and a {@link DefaultGimpyEngine}
+	 * {@link FastHashMapCaptchaStore} and a {@link GMailCaptchaEngine}
 	 * minGuarantedStorageDelayInSeconds = 180s maxCaptchaStoreSize = 100000
 	 * captchaStoreLoadBeforeGarbageCollection=75000
 	 */
 	public SymagicCaptchaService() {
-		this(new FastHashMapCaptchaStore(), new DefaultGimpyEngine(), 180,
+		this(new FastHashMapCaptchaStore(), new GMailCaptchaEngine(), 180,
 				100000, 75000);
 	}
 
