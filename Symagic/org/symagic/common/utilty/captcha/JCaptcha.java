@@ -7,20 +7,19 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import com.octo.captcha.service.CaptchaServiceException;
-import com.octo.captcha.service.image.ImageCaptchaService;
 import com.sun.image.codec.jpeg.ImageFormatException;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 public class JCaptcha implements Captcha {
 
-	private ImageCaptchaService jcaptchaImageServer;
+	private SymagicCaptchaService jcaptchaImageServer;
 
-	public ImageCaptchaService getJcaptchaImageServer() {
+	public SymagicCaptchaService getJcaptchaImageServer() {
 		return jcaptchaImageServer;
 	}
 
-	public void setJcaptchaImageServer(ImageCaptchaService jcaptchaImageServer) {
+	public void setJcaptchaImageServer(SymagicCaptchaService jcaptchaImageServer) {
 		this.jcaptchaImageServer = jcaptchaImageServer;
 	}
 
@@ -59,6 +58,16 @@ public class JCaptcha implements Captcha {
 		} catch (CaptchaServiceException ex) {
 			return false;
 		}
+	}
+
+	@Override
+	public boolean ajaxValidateCaptcha(String ID, String captcha) {
+		try {
+			return jcaptchaImageServer.ajaxValidateResponseForID(ID, captcha);
+		} catch (CaptchaServiceException ex) {
+			return false;
+		}
+
 	}
 
 }

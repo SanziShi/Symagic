@@ -29,13 +29,13 @@ public class CheckCaptchaAction extends ActionSupport {
 	private Captcha symagicCaptcha;
 
 	/**
-	 * 通过symagicCaptcha验证验证码，并把验证码放置到captchaCheckResult中
+	 * 通过symagicCaptcha验证验证码，并把验证码放置到captchaCheckResult中(ajax)
 	 * 通过SessionUtil获得需要的ID
 	 */
 	@Override
 	public String execute() throws Exception {
 		
-		captchaCheckResult = symagicCaptcha.validateCaptcha(SessionUtilty.getSessionID(), captchaValue);
+		captchaCheckResult = symagicCaptcha.ajaxValidateCaptcha(SessionUtilty.getSessionID(), captchaValue);
 		
 		return SUCCESS;
 	}
