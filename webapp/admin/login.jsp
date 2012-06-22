@@ -28,7 +28,7 @@
 			<div id="sendnotehead"><strong> 管理员登录</strong></div>
 			<div id="sendnotecontent">
 
-			<s:form action="admin/login" method="post" >
+			<s:form action="login" method="post" >
 				<table id="itemsearch">
 				   <tr>
 					<th class="itemsearchth" >用户名：</th>
@@ -44,12 +44,12 @@
 					<s:password  name="password" size="30" maxlength="20" />
 					</td>
 					<td class="itemsearchtd2">&nbsp;</td>
-                    <td><<s:textfield name="toURL" disable = "false"  value="<s:pro"/></td>
+                    <td><input type="hidden" name="toURL"  value="<s:property value="toURL"/>"/></td>
           		 </tr>
                   <tr>
 				 <th class="itemsearchth">验证码：</th>
             		<td class="itemsearchtd1">
-						<s:textfield name="captcha" />
+						<s:textfield name="captchaValue" />
 					</td>
 					<td>
 					 <img  src="captcha_get_captcha" />	

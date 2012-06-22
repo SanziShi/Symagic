@@ -42,7 +42,7 @@
 
 		<!-- 用于错误处理的result -->
 		<global-results>
-			<result name="enforceLogin">/login.html</result>
+			<result name="enforceLogin">/admin/login.jsp</result>
 		</global-results>
 
 	</package>
@@ -85,7 +85,7 @@
 		<action name="login" class="AdminLogin">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirect">
-				${toURL}
+				/admin/${toURL}
 			</result>
 			<result name="error">
 			/error.html
