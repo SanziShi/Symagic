@@ -72,7 +72,13 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-
+      <action name="regist" class="registerClass">
+          <result type="json">
+          <param name="includeProperties">registerResult</param>
+          <param name="includeProperties">toURL</param>
+          </result>
+      </action>
+       
 	</package>
 
 	<!-- 配置管理员的action -->

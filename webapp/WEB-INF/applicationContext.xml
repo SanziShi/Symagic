@@ -39,6 +39,23 @@
 		<property name="daoAdmin" ref="DaoAdmin"></property>
 	</bean>
 
+  <!-- 用户的action bean -->
+    <bean id="registerClass" class="org.symagic.user.action.register.RegisterAction">
+      <property name="symagicCaptcha" ref="JCaptcha"></property>
+      <property name="userService" ref="UserService"></property>
+  </bean>
+  
+  <!-- service bean -->
+  <bean id="UserService" class="org.symagic.common.service.UserService">
+    <property name="daoUser" ref="DaoUser"></property>
+    <property name="daoCart" ref="DaoCart"></property>
+    <property name="beanUser" ref="BeanUser"></property>
+  </bean>
+  
 	<!-- 数据层bean -->
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
+	<bean id="DaoUser" class="org.symagic.common.db.func.DaoUser"></bean>
+	<bean id="DaoCart" class="org.symagic.common.db.func.DaoCart"></bean>
+	<!-- 数据层实体bean -->
+	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
