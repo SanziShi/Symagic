@@ -9,11 +9,11 @@ import org.symagic.common.db.func.DaoUser;
 public class DaoUserTest extends TestCase{
 
 //	@Ignore
-	@Test
-	public void testValidateUser() {
-		DaoUser du	= new DaoUser();
-		assertEquals(true, du.validateUser("单小熙1", "12"));
-	}
+//	@Test
+//	public void testValidateUser() {
+//		DaoUser du	= new DaoUser();
+//		assertEquals(true, du.validateUser("单小熙1", "12"));
+//	}
 //	
 //	@Ignore
 //	@Test
