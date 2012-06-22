@@ -3,8 +3,12 @@ package org.symagic.common.db.func;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.symagic.common.db.bean.BeanCart;
 import org.symagic.common.db.pool.ConnectionPool;
 
 /**
@@ -47,11 +51,18 @@ public class DaoCart {
 				return true;
 			}
 				
-			conn.close();
+			
 			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return true;
@@ -74,14 +85,20 @@ public class DaoCart {
 			ps.execute();
 			
 			if (ps.getUpdateCount() == 1) {
-				conn.close();
 				return true;
 			}
-			conn.close();
+			
 			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return true;
 	}
@@ -111,17 +128,21 @@ public class DaoCart {
 			ps.setInt(3, bookID);
 			
 			if (ps.executeUpdate() == 1) {
-				conn.close();
 				return true;
 			}
-			conn.close();
 			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			
 			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return true;
+		return false;
 	}
 	
 	/**
@@ -131,6 +152,65 @@ public class DaoCart {
 	 */
 	public boolean clean(String username)
 	{
-		return true;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("delete from cart where username= ?");
+			ps.setString(1, username);
+			if (ps.executeUpdate() >= 0) {
+				conn.close();
+				return true;
+			}
+			conn.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 获取指定用户购物车中所有商品详细信息
+	 * @param username	指定用户名
+	 * @return	List<beanCart>=null 失败或无商品	not null 成功，有商品
+	 */
+	public List<BeanCart> getBooks(String username)
+	{
+		List<BeanCart> list = null;
+		BeanCart bc	= null;
+		
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from cart where username=?");
+			ps.setString(1, username);
+			rs	= ps.executeQuery();
+			while(rs.next()) {
+				list	= new ArrayList<BeanCart>();
+				bc	= new BeanCart();
+				bc.setUsername(rs.getString("username"));
+				bc.setBookID(rs.getInt("bookid"));
+				bc.setAddDate(rs.getString("adddate"));
+				bc.setAmount(rs.getInt("amount"));
+				list.add(bc);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 }
