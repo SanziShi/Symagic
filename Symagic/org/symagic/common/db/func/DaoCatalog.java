@@ -29,14 +29,34 @@ public class DaoCatalog {
 	 */
 	public List<BeanCatalog> getCatalog()
 	{
+		ArrayList<BeanCatalog> list	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("");
+			ps	= conn.prepareStatement("select * from book_catalog order by level");
+			rs	= ps.executeQuery();
+			if (rs.next()) {
+				list	= new ArrayList<BeanCatalog>();
+				BeanCatalog bc	= new BeanCatalog();
+				bc.setCatalogDesc(rs.getString("catalogdesc"));
+				bc.setCatalogID(rs.getInt("catalogid"));
+				bc.setCatalogName(rs.getString("catalogname"));
+				bc.setLevel(rs.getString("level"));
+				bc.setUpID(rs.getInt("upid"));
+				list.add(bc);
+			}
+			return list;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return new ArrayList<BeanCatalog>();
+		return list;
 	}
 	
 	/**
@@ -49,8 +69,17 @@ public class DaoCatalog {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into book_catalog " +
-					"(catalogname, level" +
-					" upid, )");
+					"(catalogname, level, " +
+					" upid, catalogdesc) values" +
+					"(?, ?, ?, ?)");
+			ps.setString(1, catalog.getCatalogName());
+			ps.setString(2, catalog.getLevel());
+			ps.setInt(3, catalog.getUpID());
+			ps.setString(4, catalog.getCatalogDesc());
+			ps.execute();
+			if (ps.getUpdateCount() == 1)
+				return true;
+			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,6 +101,30 @@ public class DaoCatalog {
 	 */
 	public  boolean modifyCatalog(BeanCatalog catalog)
 	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("update book_catalog set catalogname=?, " +
+					"level=?, upid=?, catalogdesc=?");
+			ps.setString(1, catalog.getCatalogName());
+			ps.setString(2, catalog.getLevel());
+			ps.setInt(3, catalog.getUpID());
+			ps.setString(4, catalog.getCatalogDesc());
+			
+			if (ps.executeUpdate() == 1) {
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return false;
 	}
 }
