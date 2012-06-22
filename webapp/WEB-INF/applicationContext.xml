@@ -17,10 +17,10 @@
 
 	<!-- 配置验证码生成及检查 -->
 	<bean
-		class="org.symagic.common.utility.captcha.SymagicCaptchaService"
+		class="org.symagic.common.utilty.captcha.SymagicCaptchaService"
 		id="imageCaptchaService" />
 
-	<bean id="JCaptcha" class="org.symagic.common.utility.captcha.JCaptcha">
+	<bean id="JCaptcha" class="org.symagic.common.utilty.captcha.JCaptcha">
 		<property name="jcaptchaImageServer" ref="imageCaptchaService"></property>
 	</bean>
 

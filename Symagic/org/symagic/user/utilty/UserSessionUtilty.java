@@ -2,7 +2,7 @@ package org.symagic.user.utilty;
 
 import java.util.Map;
 
-import org.symagic.common.utility.session.SessionUtilty;
+import org.symagic.common.utilty.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionContext;
 

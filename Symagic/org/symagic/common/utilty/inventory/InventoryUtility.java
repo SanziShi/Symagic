@@ -1,4 +1,4 @@
-package org.symagic.common.utility.inventory;
+package org.symagic.common.utilty.inventory;
 
 public class InventoryUtility {
 	

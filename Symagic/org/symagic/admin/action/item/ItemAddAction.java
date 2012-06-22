@@ -10,7 +10,7 @@ import javax.servlet.ServletContext;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.util.ServletContextAware;
 import org.symagic.common.db.bean.BeanBook;
-import org.symagic.common.utility.presentation.bean.TimeBean;
+import org.symagic.common.utilty.presentation.bean.TimeBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 

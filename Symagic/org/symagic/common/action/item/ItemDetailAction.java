@@ -8,10 +8,10 @@ import java.util.List;
 
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
-import org.symagic.common.utility.inventory.InventoryUtility;
-import org.symagic.common.utility.presentation.bean.CatalogBean;
-import org.symagic.common.utility.presentation.bean.CommentBean;
-import org.symagic.common.utility.presentation.bean.TimeBean;
+import org.symagic.common.utilty.inventory.InventoryUtility;
+import org.symagic.common.utilty.presentation.bean.CatalogBean;
+import org.symagic.common.utilty.presentation.bean.CommentBean;
+import org.symagic.common.utilty.presentation.bean.TimeBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 

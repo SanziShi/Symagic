@@ -1,4 +1,4 @@
-package org.symagic.common.utility.captcha;
+package org.symagic.common.utilty.captcha;
 
 import java.awt.image.BufferedImage;
 import java.util.Collection;
