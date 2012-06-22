@@ -74,6 +74,7 @@ public class ItemManagerEnterAction extends ActionSupport {
 		
 		//建立书籍搜索的require
 		BookRequire require = new BookRequire();
+
 		
 		
 		
