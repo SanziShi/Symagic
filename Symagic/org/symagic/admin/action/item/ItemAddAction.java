@@ -70,7 +70,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 	/**
 	 * 
 	 */
-	private Integer format;
+	private Integer size;
 
 	/**
 	 * 
@@ -162,7 +162,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setVersion(edition);
 		book.setPage(page);
 		book.setBinding(binding);
-		book.setFolio(format.toString());
+		book.setFolio(size.toString());
 		book.setMarketPrice(marketPrice);
 		book.setDiscount(discount);
 		book.setInventory(inventory);
@@ -180,7 +180,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		// 处理商品类别以外其他都不能为空
 		if (ISBN == null || name == null || author == null || publisher == null
 				|| publishTime == null || edition == null || page == null
-				|| binding == null || format == null || marketPrice == null
+				|| binding == null || size == null || marketPrice == null
 				|| discount == null || inventory == null || description == null
 				|| picture == null) {
 			formValidateResult = false;
@@ -257,14 +257,6 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 
 	public void setBinding(String binding) {
 		this.binding = binding;
-	}
-
-	public Integer getFormat() {
-		return format;
-	}
-
-	public void setFormat(Integer format) {
-		this.format = format;
 	}
 
 	public Float getMarketPrice() {
@@ -353,6 +345,14 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 
 	public void setShopImageFileFolder(String shopImageFileFolder) {
 		this.shopImageFileFolder = shopImageFileFolder;
+	}
+
+	public Integer getSize() {
+		return size;
+	}
+
+	public void setSize(Integer size) {
+		this.size = size;
 	}
 
 }
