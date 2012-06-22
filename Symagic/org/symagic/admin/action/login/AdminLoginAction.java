@@ -66,7 +66,7 @@ public class AdminLoginAction extends ActionSupport {
 						AdminSessionUtilty.getSessionID(), captchaValue)
 				|| !daoAdmin.validateAdmin(userName, password)) {
 			errorHeader = new String("登录失败");
-			errorSpecification = new String("您输入的用户名或密码有误，请返回检查。");
+			errorSpecification = new String("您输入的用户名，密码或验证码有误，请返回检查。");
 			return ERROR;
 		}
 
