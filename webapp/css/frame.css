@@ -588,11 +588,14 @@ text-decoration:none;
 }
 .user_note .head
 {
+	color:#FFF;
+	background:#4796E4;
 	height:25px;
-	background-color:#4796E4;
 	font-size:14px;
 	padding-top:4px;
 	text-align:center;
+	border: 1px solid #E6E6E6;
+	line-height: 25px;
 }
 .user_note .user_note_content
 {

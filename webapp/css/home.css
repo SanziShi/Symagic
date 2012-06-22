@@ -282,9 +282,10 @@ span.close
 }
 #category h4{
 	margin:0px 18px 0px 18px;
-	padding:3px 0px 1px 5px;
-	background: #4796E4;
+	padding:3px 0px 1px 7px;
+	background:url(../image/11.png);
 	font-size:14px;
+	height:20px;
 }
 #category ul{
 	list-style:none;

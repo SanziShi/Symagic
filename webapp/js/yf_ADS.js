@@ -6,6 +6,10 @@ GLOBAL=
 
 }
 //业务逻辑函数
+function change_captcha(e)
+{
+	e.src='captcha_get_captcha';
+}
 function load_login()
 {
 	if(window.event)stopDefault();

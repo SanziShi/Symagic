@@ -77,6 +77,16 @@
 	padding: 10px;
 	text-align: center;
 }
+.item_info .banner
+{
+	height:28px;
+	width:596px;
+	background: url(../image/bg_gallery.jpg) #CCC repeat-x 0 -111px;
+	float: left;
+	font-size:14px;
+	line-height:28px;
+	font-weight: bold;
+}
 #preview 
 {
 	float: left;
@@ -202,4 +212,54 @@
 #buy_num
 {
 	margin-left:10px;
+}
+.item_desc
+{
+	border: dotted #CCC;
+	border-width:0px 0px 1px 0px;
+	display:inline-block;
+	margin-top:30px;
+	margin-bottom:20px;
+}
+.item_desc_con
+{
+	padding:10px;
+	float:left;
+	line-height: 18px;
+}
+#comment
+{
+	float:left;
+	width:596px;
+}
+#comment .comment_item
+{
+	padding: 10px 15px 5px;
+	border: 1px solid #F3E6C6;
+	background: #FFFCF5;
+	float:left;
+	margin:10px;
+	width:544px;
+}
+#comment .buyer
+{
+	padding: 0 0 2px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #F9F0DB;
+	overflow: hidden;
+	zoom: 1;
+}
+#comment .buyer_name
+{
+	margin:0px 10px 0px 10px;
+	font-weight:bold;
+}
+.date-comment
+{
+	float: right;
+	color: #999;
+}
+.comment-content
+{
+	min-height: 48px;
 }
