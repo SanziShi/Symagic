@@ -65,7 +65,7 @@ public class BeanBook {
 	/**
 	 * 书籍价格折扣，百分比
 	 */
-	private float	discount	= 1.0f;	
+	private Float	discount	= null;	
 	
 	/**
 	 * 书籍库存量
@@ -87,6 +87,7 @@ public class BeanBook {
 	 */
 	private String	offline	= "";	
 	
+	private Integer catalogID	= null;
 	
 	public int getBookId() {
 		return bookId;
@@ -183,6 +184,21 @@ public class BeanBook {
 	}
 	public void setOffline(String offline) {
 		this.offline = offline;
+	}
+	public String getPublishDate() {
+		return publishDate;
+	}
+	public void setPublishDate(String publishDate) {
+		this.publishDate = publishDate;
+	}
+	public Integer getCatalogID() {
+		return catalogID;
+	}
+	public void setCatalogID(Integer catalogID) {
+		this.catalogID = catalogID;
+	}
+	public void setDiscount(Float discount) {
+		this.discount = discount;
 	}
 	
 	

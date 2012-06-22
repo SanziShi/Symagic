@@ -16,8 +16,7 @@
 	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor"></bean>
 
 	<!-- 配置验证码生成及检查 -->
-	<bean
-		class="org.symagic.common.utilty.captcha.SymagicCaptchaService"
+	<bean class="org.symagic.common.utilty.captcha.SymagicCaptchaService"
 		id="imageCaptchaService" />
 
 	<bean id="JCaptcha" class="org.symagic.common.utilty.captcha.JCaptcha">
@@ -39,22 +38,31 @@
 		<property name="daoAdmin" ref="DaoAdmin"></property>
 	</bean>
 
-  <!-- 用户的action bean -->
+	<bean id="AdminAddItem" class="org.symagic.admin.action.item.ItemAddAction">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="shopImageFileFolder" value="book-image"></property>
+	</bean>
+
+	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction">
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+	
+	 <!-- 用户的action bean -->
     <bean id="registerClass" class="org.symagic.user.action.register.RegisterAction">
       <property name="symagicCaptcha" ref="JCaptcha"></property>
       <property name="userService" ref="UserService"></property>
   </bean>
-  
-  <!-- service bean -->
+	
+	 <!-- service bean -->
   <bean id="UserService" class="org.symagic.common.service.UserService">
     <property name="daoUser" ref="DaoUser"></property>
     <property name="daoCart" ref="DaoCart"></property>
     <property name="beanUser" ref="BeanUser"></property>
   </bean>
-  
+
 	<!-- 数据层bean -->
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
-	<bean id="DaoUser" class="org.symagic.common.db.func.DaoUser"></bean>
+	<bean id="DaoBook" class="org.symagic.common.db.func.DaoBook" />
 	<bean id="DaoCart" class="org.symagic.common.db.func.DaoCart"></bean>
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>

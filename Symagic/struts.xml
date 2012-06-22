@@ -42,7 +42,7 @@
 
 		<!-- 用于错误处理的result -->
 		<global-results>
-			<result name="enforceLogin">/login.html</result>
+			<result name="enforceLogin">/admin/login.jsp</result>
 		</global-results>
 
 	</package>
@@ -72,13 +72,14 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-      <action name="regist" class="registerClass">
+		
+		<action name="regist" class="registerClass">
           <result type="json">
           <param name="includeProperties">registerResult</param>
           <param name="includeProperties">toURL</param>
           </result>
       </action>
-       
+
 	</package>
 
 	<!-- 配置管理员的action -->
@@ -91,7 +92,7 @@
 		<action name="login" class="AdminLogin">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirect">
-				${toURL}
+				/admin/${toURL}
 			</result>
 			<result name="error">
 			/error.html
@@ -101,3 +102,4 @@
 	</package>
 
 </struts>    
+

@@ -297,4 +297,13 @@ public class DaoBook {
 		return false;
 	}
 
+	/**
+	 * 修改商品信息
+	 * @param book	封装着书籍信息的BeanBook对象
+	 * @return	true 更新成功	false 更新失败
+	 */
+	public boolean modifyBook(BeanBook book) 
+	{
+		return false;
+	}
 }

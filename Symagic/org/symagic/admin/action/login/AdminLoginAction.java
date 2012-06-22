@@ -46,10 +46,10 @@ public class AdminLoginAction extends ActionSupport {
 	@Override
 	public void validate() {
 		
-		if( userName == null || password == null || captchaValue == null )
+		validateResult = true;
+		
+		if( userName == null || password == null || captchaValue == null || password.length() > 20 )
 			validateResult = false;
-		else
-			validateResult = true;
 		
 	}
 
