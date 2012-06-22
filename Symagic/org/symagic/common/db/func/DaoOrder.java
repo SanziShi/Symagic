@@ -131,8 +131,6 @@ public class DaoOrder {
 		List<BeanOrder> list = null;
 		return list;
 	}
-	
-	
 }
 
 
