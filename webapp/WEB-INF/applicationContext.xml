@@ -40,6 +40,11 @@
 
 	<bean id="AdminAddItem" class="org.symagic.admin.action.item.ItemAddAction">
 		<property name="daoBook" ref="DaoBook"></property>
+		<property name="shopImageFileFolder" value="book-image"></property>
+	</bean>
+
+	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction">
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<!-- 数据层bean -->

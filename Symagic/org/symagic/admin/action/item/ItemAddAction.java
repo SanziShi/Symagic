@@ -116,8 +116,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 	 * 
 	 */
 	private ServletContext context;
-	
-	
+
 	private DaoBook daoBook;
 
 	/**
@@ -167,8 +166,9 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setDiscount(discount);
 		book.setInventory(inventory);
 		book.setBookDesc(description);
-	
-		//书籍分类呢
+		book.setCatalogID(bookClassify);
+		book.setPicture(fileFolder + "/" + fileName);
+
 		daoBook.addBook(book);
 
 		return SUCCESS;
