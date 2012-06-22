@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.image.ImageFilter;
 
 import com.octo.captcha.component.image.backgroundgenerator.BackgroundGenerator;
-import com.octo.captcha.component.image.backgroundgenerator.UniColorBackgroundGenerator;
+import com.octo.captcha.component.image.backgroundgenerator.FunkyBackgroundGenerator;
 import com.octo.captcha.component.image.color.RandomListColorGenerator;
 import com.octo.captcha.component.image.deformation.ImageDeformation;
 import com.octo.captcha.component.image.deformation.ImageDeformationByFilters;
@@ -28,9 +28,9 @@ public class GMailCaptchaEngine extends ListImageCaptchaEngine {
 	protected void buildInitialFactories() {
 		int minWordLength = 4;
 		int maxWordLength = 5;
-		int fontSize = 50;
-		int imageWidth = 250;
-		int imageHeight = 100;
+		int fontSize = 25;
+		int imageWidth = 125;
+		int imageHeight = 50;
 
 		// word generator
 		WordGenerator dictionnaryWords = new ComposeDictionaryWordGenerator(
@@ -39,14 +39,14 @@ public class GMailCaptchaEngine extends ListImageCaptchaEngine {
 		// word2image components
 		TextPaster randomPaster = new DecoratedRandomTextPaster(minWordLength,
 				maxWordLength, new RandomListColorGenerator(new Color[] {
-						new Color(23, 170, 27), new Color(220, 34, 11),
+						new Color(23, 10, 27), new Color(220, 5, 11),
 						new Color(23, 67, 172) }), new TextDecorator[] {});
-		BackgroundGenerator background = new UniColorBackgroundGenerator(
-				imageWidth, imageHeight, Color.white);
+		BackgroundGenerator background = new FunkyBackgroundGenerator(
+				imageWidth, imageHeight);
 		FontGenerator font = new RandomFontGenerator(fontSize, fontSize,
-				new Font[] { new Font("nyala", Font.BOLD, fontSize),
+				new Font[] { new Font("nyala", Font.PLAIN, fontSize),
 						new Font("Bell MT", Font.PLAIN, fontSize),
-						new Font("Credit valley", Font.BOLD, fontSize) });
+						new Font("Credit valley", Font.ITALIC, fontSize) });
 
 		ImageDeformation postDef = new ImageDeformationByFilters(
 				new ImageFilter[] {});
