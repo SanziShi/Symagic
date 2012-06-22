@@ -416,13 +416,9 @@ public class SymagicCaptchaService extends AbstractCaptchaService implements
 		} else {
 			valid = store.getCaptcha(ID).validateResponse(response);
 		}
-		// remove from local after because validate may throw an exception if id
-		// is not found
-		this.times.remove(ID);
 		// update stats
 		if (valid.booleanValue()) {
 			numberOfCorrectResponse++;
-			this.store.removeCaptcha(ID);
 		} else {
 			numberOfUncorrectResponse++;
 		}
