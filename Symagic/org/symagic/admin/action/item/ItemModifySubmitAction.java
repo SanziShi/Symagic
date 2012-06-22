@@ -1,31 +1,27 @@
 package org.symagic.admin.action.item;
 
 import java.io.File;
-import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
-import javax.servlet.ServletContext;
-
 import org.apache.commons.io.FileUtils;
-import org.apache.struts2.util.ServletContextAware;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-/**
- * 
- * @author hao
- * 
- */
-public class ItemAddAction extends ActionSupport implements ServletContextAware {
+public class ItemModifySubmitAction extends ActionSupport {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6680323098777982598L;
+	private static final long serialVersionUID = -6403625327693017658L;
+	
+	/**
+	 * 
+	 */
+	private Integer itemID;
 
 	/**
 	 * 
@@ -105,42 +101,38 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 	/**
 	 * 
 	 */
-	private String pictureFileName;
-
-	/**
-	 * 
-	 */
 	private boolean formValidateResult;
 
-	/**
-	 * 
-	 */
-	private ServletContext context;
 
 	private DaoBook daoBook;
 
-	/**
-	 * 用于存放上传的图片
-	 */
-	private String shopImageFileFolder;
 
+	@Override
+	public void validate() {
+
+		// 处理商品类别以外其他都不能为空
+		if (itemID == null || ISBN == null || name == null || author == null || publisher == null
+				|| publishTime == null || edition == null || page == null
+				|| binding == null || size == null || marketPrice == null
+				|| discount == null || inventory == null || description == null
+				|| picture == null) {
+			formValidateResult = false;
+		} else {
+			formValidateResult = true;
+		}
+
+	}
+	
 	@Override
 	public String execute() throws Exception {
 
 		if (!formValidateResult)
 			return ERROR;
+		
+		BeanBook book = daoBook.getDeatil(itemID);
 
 		// 文件处理
-		MessageDigest md5Encoder = MessageDigest.getInstance("MD5");
-
-		// 生成文件名
-		String fileName = new String(md5Encoder.digest(pictureFileName
-				.getBytes("UTF-8")))
-				+ pictureFileName.substring(pictureFileName.indexOf('.'));
-
-		String fileFolder = context.getRealPath("/" + shopImageFileFolder);
-
-		File destFile = new File(fileFolder, fileName);
+		File destFile = new File(book.getPicture());
 
 		FileUtils.moveFile(picture, destFile);
 
@@ -149,9 +141,6 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		GregorianCalendar calender = new GregorianCalendar(
 				publishTime.getYear(), publishTime.getMonth(),
 				publishTime.getDay());
-
-		// 生成数据库所需信息
-		BeanBook book = new BeanBook();
 
 		book.setIsbn(ISBN);
 		book.setBookName(name);
@@ -167,32 +156,18 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setInventory(inventory);
 		book.setBookDesc(description);
 		book.setCatalogID(bookClassify);
-		book.setPicture(fileFolder + "/" + fileName);
 
-		daoBook.addBook(book);
+		//daoBook.modify
 
 		return SUCCESS;
 	}
 
-	@Override
-	public void validate() {
-
-		// 处理商品类别以外其他都不能为空
-		if (ISBN == null || name == null || author == null || publisher == null
-				|| publishTime == null || edition == null || page == null
-				|| binding == null || size == null || marketPrice == null
-				|| discount == null || inventory == null || description == null
-				|| picture == null) {
-			formValidateResult = false;
-		} else {
-			formValidateResult = true;
-		}
-
+	public Integer getItemID() {
+		return itemID;
 	}
 
-	@Override
-	public void setServletContext(ServletContext arg0) {
-		context = arg0;
+	public void setItemID(Integer itemID) {
+		this.itemID = itemID;
 	}
 
 	public String getISBN() {
@@ -259,6 +234,14 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		this.binding = binding;
 	}
 
+	public Integer getSize() {
+		return size;
+	}
+
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+
 	public Float getMarketPrice() {
 		return marketPrice;
 	}
@@ -307,14 +290,6 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		this.picture = picture;
 	}
 
-	public String getPictureFileName() {
-		return pictureFileName;
-	}
-
-	public void setPictureFileName(String pictureFileName) {
-		this.pictureFileName = pictureFileName;
-	}
-
 	public boolean isFormValidateResult() {
 		return formValidateResult;
 	}
@@ -323,36 +298,12 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		this.formValidateResult = formValidateResult;
 	}
 
-	public ServletContext getContext() {
-		return context;
-	}
-
-	public void setContext(ServletContext context) {
-		this.context = context;
-	}
-
 	public DaoBook getDaoBook() {
 		return daoBook;
 	}
 
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
-	}
-
-	public String getShopImageFileFolder() {
-		return shopImageFileFolder;
-	}
-
-	public void setShopImageFileFolder(String shopImageFileFolder) {
-		this.shopImageFileFolder = shopImageFileFolder;
-	}
-
-	public Integer getSize() {
-		return size;
-	}
-
-	public void setSize(Integer size) {
-		this.size = size;
 	}
 
 }

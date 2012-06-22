@@ -1,4 +1,4 @@
-package org.symagic.common.utility.session;
+package org.symagic.common.utilty.session;
 
 import org.apache.struts2.ServletActionContext;
 

@@ -2,7 +2,7 @@ package org.symagic.admin.action.login;
 
 import org.symagic.admin.utilty.AdminSessionUtilty;
 import org.symagic.common.db.func.DaoAdmin;
-import org.symagic.common.utility.captcha.Captcha;
+import org.symagic.common.utilty.captcha.Captcha;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -46,10 +46,10 @@ public class AdminLoginAction extends ActionSupport {
 	@Override
 	public void validate() {
 		
-		if( userName == null || password == null || captchaValue == null )
+		validateResult = true;
+		
+		if( userName == null || password == null || captchaValue == null || password.length() > 20 )
 			validateResult = false;
-		else
-			validateResult = true;
 		
 	}
 

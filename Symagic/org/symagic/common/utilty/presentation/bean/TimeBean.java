@@ -1,4 +1,4 @@
-package org.symagic.common.utility.presentation.bean;
+package org.symagic.common.utilty.presentation.bean;
 
 /**
  * 
