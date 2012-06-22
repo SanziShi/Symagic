@@ -10,8 +10,13 @@ public class OrderRequire {
 	// 内部结构待定
 	
 //	startTime:开始索引时间(year:年，month:月;day:日）;
+	private String startTime	= null;
 //	endTime:结束索引时间（year：年，month:月，day:日），
+	private String endTime	= null;
 //	orderState:订单状态(0：未指定，1：已下单，2：已审核，3：交易成功，4：交易失败）,
+	private String orderState	= null;
 //	page:分页
+	private Integer	page	= null;
 //	每页显示条数
+	private Integer	lines	= null;
 }
