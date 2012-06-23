@@ -2,8 +2,8 @@ package org.symagic.common.action.captcha;
 
 import java.io.InputStream;
 
-import org.symagic.common.utility.captcha.Captcha;
-import org.symagic.common.utility.session.SessionUtilty;
+import org.symagic.common.utilty.captcha.Captcha;
+import org.symagic.common.utilty.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionSupport;
 

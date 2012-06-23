@@ -1,7 +1,7 @@
 package org.symagic.common.action.captcha;
 
-import org.symagic.common.utility.captcha.Captcha;
-import org.symagic.common.utility.session.SessionUtilty;
+import org.symagic.common.utilty.captcha.Captcha;
+import org.symagic.common.utilty.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -29,13 +29,13 @@ public class CheckCaptchaAction extends ActionSupport {
 	private Captcha symagicCaptcha;
 
 	/**
-	 * 通过symagicCaptcha验证验证码，并把验证码放置到captchaCheckResult中
+	 * 通过symagicCaptcha验证验证码，并把验证码放置到captchaCheckResult中(ajax)
 	 * 通过SessionUtil获得需要的ID
 	 */
 	@Override
 	public String execute() throws Exception {
 		
-		captchaCheckResult = symagicCaptcha.validateCaptcha(SessionUtilty.getSessionID(), captchaValue);
+		captchaCheckResult = symagicCaptcha.ajaxValidateCaptcha(SessionUtilty.getSessionID(), captchaValue);
 		
 		return SUCCESS;
 	}

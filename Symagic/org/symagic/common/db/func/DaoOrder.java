@@ -77,7 +77,60 @@ public class DaoOrder {
 		return true;
 	}
 	
-
+	/**
+	 * 获取销售总量(所有)
+	 * @return int 销售量
+	 */
+	public int getTotalSaleAmount()
+	{
+		return 10;
+	}
+	
+	/**
+	 * 获取销售总额
+	 * @return float 销售总额
+	 */
+	public float getTotalSalesRevenue()
+	{
+		return 10.0f;
+	}
+	
+	/**
+	 * 获取订单总量
+	 * @return	int 订单总量
+	 */
+	public int getTotalOrderAmount()
+	{
+		return 10;
+	}
+	
+	/**
+	 * 获取待审核订单数
+	 * @return int 待审核订单数
+	 */
+	public int getUnauditedOrderAmount()
+	{
+		return 5;
+	}
+	
+	/**
+	 * 获取完成的订单数
+	 * @return 完成订单数
+	 */
+	public int getFinishOrderAmount()
+	{
+		return 10;
+	}
+	
+	/**
+	 * 获取最近的10次订单详情
+	 * @return	List<BeanOrder> 最近10次订单详细信息列表
+	 */
+	public List<BeanOrder> getLatestOrders()
+	{
+		List<BeanOrder> list = null;
+		return list;
+	}
 }
 
 

@@ -23,9 +23,18 @@ public class DaoAdmin {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select count(*) from admin where adminname=?, password=?");
+			ps	= conn.prepareStatement("select count(*) from admin where adminname=? and password=?");
 			ps.setString(1, adminName);
-			//ps.setString(parameterIndex, x)
+			ps.setString(2, Util.getMD5(pwd.getBytes()));
+			rs	= ps.executeQuery();
+			if (rs.next()) {
+				if (rs.getInt(1) == 1)  {
+					conn.close();
+					return true;
+				}
+			}
+			conn.close();
+			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

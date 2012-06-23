@@ -1,4 +1,4 @@
-package org.symagic.common.utility.captcha;
+package org.symagic.common.utilty.captcha;
 
 import java.io.InputStream;
 
@@ -28,6 +28,9 @@ public interface Captcha {
 	 * @return 用户是否是机器。
 	 */
 	public boolean validateCaptcha( String ID, String captcha );
+	
+	
+	public boolean ajaxValidateCaptcha( String ID, String captcha );
 	
 	
 }

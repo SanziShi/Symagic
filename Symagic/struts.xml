@@ -42,18 +42,13 @@
 
 		<!-- 用于错误处理的result -->
 		<global-results>
-			<result name="enforceLogin">/login.html</result>
+			<result name="enforceLogin">/admin/login.jsp</result>
 		</global-results>
 
 	</package>
 
-
-	<!-- 配置用户的action -->
-	<package name="user-default" extends="symagic-user-default">
-
-		<action name="index">
-			<result>/index.jsp</result>
-		</action>
+	<!-- 通用的action -->
+	<package name="commond" extends="json-default">
 
 		<action name="captcha_get_captcha" class="generateCaptcha">
 			<result type="stream">
@@ -70,12 +65,43 @@
 
 	</package>
 
+
+	<!-- 配置用户的action -->
+	<package name="user-default" extends="symagic-user-default">
+
+		<action name="index">
+			<result>/index.jsp</result>
+		</action>
+		
+		<action name="regist" class="registerClass">
+          <result type="json">
+          <param name="includeProperties">registerResult</param>
+          <param name="includeProperties">toURL</param>
+          </result>
+      </action>
+
+	</package>
+
 	<!-- 配置管理员的action -->
 	<package name="admin-default" extends="symagic-admin-default"
 		namespace="/admin">
 		<action name="index">
-		<result>/admin/index.html</result>
+			<result>/admin/index.html</result>
 		</action>
+		
+		<action name="login" class="AdminLogin">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">
+				/admin/${toURL}
+			</result>
+			<result name="error">
+			/admin/admin_error.jsp
+			</result>
+		</action>
+		
+		<action name = "test" class="org.symagic.admin.action.item.ItemAddAction"/>
+
 	</package>
 
 </struts>    
+

@@ -11,16 +11,15 @@
 			</set>
 		</property>
 	</bean>
-	
+
 	<!-- 管理员拦截器配置 -->
 	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor"></bean>
 
 	<!-- 配置验证码生成及检查 -->
-	<bean
-		class="com.octo.captcha.service.image.DefaultManageableImageCaptchaService"
+	<bean class="org.symagic.common.utilty.captcha.SymagicCaptchaService"
 		id="imageCaptchaService" />
 
-	<bean id="JCaptcha" class="org.symagic.common.utility.captcha.JCaptcha">
+	<bean id="JCaptcha" class="org.symagic.common.utilty.captcha.JCaptcha">
 		<property name="jcaptchaImageServer" ref="imageCaptchaService"></property>
 	</bean>
 
@@ -33,5 +32,58 @@
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 	</bean>
 
+	<!-- 管理员的action bean -->
+	<bean id="AdminLogin" class="org.symagic.admin.action.login.AdminLoginAction">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+		<property name="daoAdmin" ref="DaoAdmin"></property>
+	</bean>
 
+	<bean id="AdminAddItem" class="org.symagic.admin.action.item.ItemAddAction">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="shopImageFileFolder" value="book-image"></property>
+	</bean>
+
+	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="shopImageFileFolder" value="book-image"></property>
+	</bean>
+
+	<bean id="AdminEnterCatalogManager"
+		class="org.symagic.admin.action.catalog.CatalogManagerEnterAction">
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<bean id="AdminAddCatalog" class="org.symagic.admin.action.catalog.CatalogAddAction">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<bean id="AdminSubmitCatalogModify"
+		class="org.symagic.admin.action.catalog.CatalogEditSubmitAction">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<!-- 用户的action bean -->
+	<bean id="registerClass" class="org.symagic.user.action.register.RegisterAction">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+		<property name="userService" ref="UserService"></property>
+	</bean>
+
+	<!-- service bean -->
+	<bean id="UserService" class="org.symagic.common.service.UserService">
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="daoCart" ref="DaoCart"></property>
+		<property name="beanUser" ref="BeanUser"></property>
+	</bean>
+	<bean id="CatalogService" class="org.symagic.common.service.CatalogService">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<!-- 数据层bean -->
+	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
+	<bean id="DaoBook" class="org.symagic.common.db.func.DaoBook" />
+	<bean id="DaoCart" class="org.symagic.common.db.func.DaoCart"></bean>
+	<bean id="DaoUser" class="org.symagic.common.db.func.DaoUser"></bean>
+	<bean id="DaoCatalog" class="org.symagic.common.db.func.DaoCatalog" />
+	<!-- 数据层实体bean -->
+	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>

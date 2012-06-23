@@ -1,5 +1,7 @@
 package org.symagic.admin.action.item;
 
+import org.symagic.common.db.func.DaoBook;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -15,10 +17,12 @@ public class ItemManagerEnterAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 7734758591630202798L;
 	
+
+	
 	/**
 	 * 搜索用的书名
 	 */
-	private String itemName;
+	private String name;
 	
 	/**
 	 * 出版社名字
@@ -28,7 +32,7 @@ public class ItemManagerEnterAction extends ActionSupport {
 	/**
 	 * 类别的ID
 	 */
-	private Integer catalogID;
+	private Integer bookClassify;
 	
 	/**
 	 * 书籍出版的年份
@@ -39,12 +43,12 @@ public class ItemManagerEnterAction extends ActionSupport {
 	/**
 	 * 书籍的版次
 	 */
-	private Integer version;
+	private Integer edition;
 	
 	/**
 	 * 搜索的页数范围
 	 */
-	private String searchPage;
+	private Integer searchPage;//(0:0~200,1:200~400;2:400~600,3:>600)
 	
 	/**
 	 * 搜索书籍的装帧
@@ -54,20 +58,34 @@ public class ItemManagerEnterAction extends ActionSupport {
 	/**
 	 * 搜索数据的开本
 	 */
-	private String booksize;
+	private String format;
+	
+	private Integer price;//（0:0`10,1:10`30,2:30`50,3:50`100,4:>100）;
+	private Integer discount;//(0：所有；1:3折以下;2:3-5折；3：5-7折；4：7折以上）
+	private Integer page;//（第几页)
+	private Integer totalPage;
+	private Integer currentPage;
+	
+	private DaoBook daoBook;
 	
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		return super.execute();
+		
+		//建立书籍搜索的require
+		//BookRequire require = new BookRequire();
+
+		
+		
+		
+		return SUCCESS;
 	}
 
-	public String getItemName() {
-		return itemName;
+	public String getName() {
+		return name;
 	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPublisher() {
@@ -78,12 +96,12 @@ public class ItemManagerEnterAction extends ActionSupport {
 		this.publisher = publisher;
 	}
 
-	public Integer getCatalogID() {
-		return catalogID;
+	public Integer getBookClassify() {
+		return bookClassify;
 	}
 
-	public void setCatalogID(Integer catalogID) {
-		this.catalogID = catalogID;
+	public void setBookClassify(Integer bookClassify) {
+		this.bookClassify = bookClassify;
 	}
 
 	public Integer getPublishYear() {
@@ -94,19 +112,19 @@ public class ItemManagerEnterAction extends ActionSupport {
 		this.publishYear = publishYear;
 	}
 
-	public Integer getVersion() {
-		return version;
+	public Integer getEdition() {
+		return edition;
 	}
 
-	public void setVersion(Integer version) {
-		this.version = version;
+	public void setEdition(Integer edition) {
+		this.edition = edition;
 	}
 
-	public String getSearchPage() {
+	public Integer getSearchPage() {
 		return searchPage;
 	}
 
-	public void setSearchPage(String searchPage) {
+	public void setSearchPage(Integer searchPage) {
 		this.searchPage = searchPage;
 	}
 
@@ -118,12 +136,60 @@ public class ItemManagerEnterAction extends ActionSupport {
 		this.binding = binding;
 	}
 
-	public String getBooksize() {
-		return booksize;
+	public String getFormat() {
+		return format;
 	}
 
-	public void setBooksize(String booksize) {
-		this.booksize = booksize;
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public DaoBook getDaoBook() {
+		return daoBook;
+	}
+
+	public void setDaoBook(DaoBook daoBook) {
+		this.daoBook = daoBook;
 	}
 
 }
