@@ -88,23 +88,52 @@ span.red
 	width:799px;
 	height:27px;
 	padding-bottom: 1px;
-	line-height: 27px;
 	position:absolute;
 	z-index:10;
 	color: #E8E8E8;
-	text-align:right;
+}
+.top .top_right
+{
+	float:right;
+	height:27px;
+	margin-right:10px;
 }
 .top li
 {
-	margin:5px;
 	list-style:none;
+	float:left;
+	padding:0px 5px 0px 5px;
+	margin-top:5px;
+}
+.top a,.top a:visited
+{
+	color: #E8E8E8;
+	text-decoration:none;
+}
+.top #cart_top
+{
+	width:90px;
+	cursor:pointer;
+}
+.top #cart_top.hover
+{
+	background:#FFFFFF;
+	padding-bottom:6px;
+	border-top:#FFF solid 1px;
+}
+.top #cart_a.hover
+{
+	color:#4796E4;
+	text-decoration:none;
 }
 .top .cart_icon
 {
-	height:17px;
+	height:15px;
 	width:17px;
 	background:url(../image/cart_icon.png) no-repeat ;
 	display:inline-block;
+	margin-bottom:-3px;
+	margin-right:4px;
 }
 #top-overlay
 {
@@ -186,7 +215,7 @@ span.close
 	background-image:url(../image/logal8.png);
 	width:799px;
 	height:100px;
-	
+	overflow:hidden;
 }
 #logalright{
 	color:white;
@@ -202,46 +231,12 @@ span.close
 	list-style:none;
 	display:inline;
 }
-#logalright li#cart_li.hover
-{
-	background:#FFFFFF;
-	list-style:none;
-	display: inline;
-	border-bottom:#FFFFFF solid 4px;
-	border-top:#FFF solid 1px;
-}
-#logalright a:link{
-	font-size: 12px;
-	color:#FFF;
-	text-decoration: none;
 
-}
-#logalright a:visited{
-	font-size: 12px;
-	color: #FFF;
-	text-decoration: none;
-
-}
-#logalright a:hover{
-	font-size: 12px;
-	color: #FFFFFF;
-	text-decoration: underline;
-
-}
-#logalright a:active{
-	font-size: 12px;
-	color: #FFFFFF;
-}
-#logalright #cart_a.hover
-{
-	color:#4796E4;
-	text-decoration:none;
-}
 #cart
 {
 	position:absolute;
-	top:99px;
-	right:37px;
+	top:27px;
+	right:10px;
 	height:50px;
 	display:block;
 	width:250px;
@@ -249,6 +244,7 @@ span.close
 	border:#4796E4 solid ;
 	border-width: 0px 1px 1px 1px;
 	display:none;
+	z-index:13px;
 }
 .cart_loading
 {
@@ -265,6 +261,7 @@ span.close
 	width:800px;
 	text-align:left;
 	display:inline-block;
+
 }
 
 #globallink{
@@ -317,7 +314,7 @@ span.close
 	width:180px;
 	float:left;
 	background:#FFFFFF url(../image/leftbotton.jpg) no-repeat;
-	margin:1px 2px 0px 0px;	
+	margin:1px 1px 0px 0px;	
 }
 
 #category{
@@ -355,8 +352,8 @@ strong{
 
 #main{
 	float:left;
-	width:616px;
-	margin:1px 0px 0px 1px;
+	width:618px;
+	margin:1px 0px 0px 0px;
 }
 #main li
 {
@@ -369,7 +366,7 @@ strong{
 }
 #search1
 {
-	width:616px;
+	width:618px;
 	height:30px;
 	background-color:#ffffff;
 }
@@ -434,19 +431,19 @@ strong{
 
 #recommend{
 	background:url(../image/recommend2.jpg) no-repeat;
-	margin:3px 0px 0px 0px;
+	margin:1px 0px 0px 0px;
 	padding:30px 0px 0px 0px;
 	background-color:#FFFFFF;
 }
 #new{
 	background:url(../image/book2.jpg) no-repeat;
-	margin:3px 0px 0px 0px;
+	margin:1px 0px 0px 0px;
 	padding:30px 0px 0px 0px;
 	background-color:#FFFFFF;
 }
 #life{
 	background:url(../image/life2.jpg) no-repeat;
-	margin:3px 0px 0px 0px;
+	margin:1px 0px 0px 0px;
 	padding:30px 0px 0px 0px;
 	background-color:#FFFFFF;
 }
