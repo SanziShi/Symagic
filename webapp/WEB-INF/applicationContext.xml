@@ -57,6 +57,11 @@
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
+	<bean id="AdminSubmitCatalogModify"
+		class="org.symagic.admin.action.catalog.CatalogEditSubmitAction">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
 	<!-- 用户的action bean -->
 	<bean id="registerClass" class="org.symagic.user.action.register.RegisterAction">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
