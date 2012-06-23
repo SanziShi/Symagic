@@ -7,7 +7,8 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class CartAddItemAction extends ActionSupport {
     
-    private DaoCart daoCart;//对于会员来说，更新到数据库中
+   
+	private DaoCart daoCart;//对于会员来说，更新到数据库中
 	public DaoCart getDaoCart() {
 		return daoCart;
 	}
@@ -25,9 +26,15 @@ public class CartAddItemAction extends ActionSupport {
 			addResult=false;
 			return SUCCESS;
 		}
+		//如果购物车中已有该商品，则数量+1
+	    if(!UserSessionUtilty.getCart().containsKey(itemId)){
 		//添加商品到session中的cart
 		addResult=UserSessionUtilty.addToCart(itemId, itemNumber);
-		//对于会员,添加商品到数据库中的cart,对于已存在的商品，数量加1
+		}
+	    else{
+	    	
+	    }
+		
 		if(UserSessionUtilty.isLogin()){
 		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemId, itemNumber);
 		}

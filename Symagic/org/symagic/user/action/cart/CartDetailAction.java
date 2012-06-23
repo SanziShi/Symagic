@@ -5,7 +5,7 @@ import org.symagic.common.utilty.presentation.bean.ItemBean;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CartDetailAction extends ActionSupport {
- private DaoBook daoCart
+ 
 private ItemBean[] items;//购物车中每项商品
  private float totalPrice;//购物车中商品的总价
  

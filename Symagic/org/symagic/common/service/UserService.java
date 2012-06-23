@@ -70,7 +70,7 @@ public boolean login(String username,String password){
 	//登录成功,更新购物车的信息,保存用户信息到session
 	if(loginResult){
 		
-		UserSessionUtilty.logLogin(username,daoUser.getNickName());//
+		//UserSessionUtilty.logLogin(username,daoUser.getNickName());//
 		accordCart();
 	}
 	//登录失败，增加失败次数

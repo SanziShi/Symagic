@@ -99,6 +99,10 @@
     <property name="daoCart" ref="DaoCart"></property>
     <property name="beanUser" ref="BeanUser"></property>
   </bean>
+  
+  <bean id="CatalogService" class="org.symagic.common.service.CatalogService">
+  <property name="daoCatalog" ref="DaoCatalog"></property>
+  </bean>
  
 
 	<!-- 数据层bean -->
@@ -107,6 +111,7 @@
 	<bean id="DaoCart" class="org.symagic.common.db.func.DaoCart"></bean>
 	<bean id="DaoUser" class="org.symagic.common.db.func.DaoUser"></bean>
 	<bean id="DaoFavorityFolder" class="org.symagic.common.db.func.DaoFavorityFolder"></bean>
+	<bean id="DaoCatalog" class="org.symagic.common.db.func.DaoCatalog"/>
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
