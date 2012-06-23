@@ -68,18 +68,63 @@
 
 	<!-- 配置用户的action -->
 	<package name="user-default" extends="symagic-user-default">
-
-		<action name="index">
+	  <action name="index">
 			<result>/index.jsp</result>
 		</action>
-		
+		<action name="login" class="loginClass">
+		  <result type="json">
+		    <param name="includeProperties">loginResult</param>
+		    <param name="includeProperties">toURL</param>
+		  </result>
+		</action>
+		<action name="get_session_info" class="getSessionInfo">
+		<result type="json">
+		  <param name="includeProperties">username</param>
+		  <param name="includeProperties">nickname</param>
+		  <param name="includeProperties">loginErrorTimes</param>
+		</result>
+		</action>
 		<action name="regist" class="registerClass">
           <result type="json">
           <param name="includeProperties">registerResult</param>
           <param name="includeProperties">toURL</param>
           </result>
       </action>
-
+     </package>
+     <package name="regist-user-default" extends="symagic-user-default" namespace="regist">
+       <action name="check_name" class="usernameUnique">
+         <result type="json">
+           <param name="includeProperties">checkResult</param>
+         </result>
+       </action>
+     </package>
+     
+	<!-- 用户中与购物车有关的action -->
+	<package name="cart-user-default" extends="symagic-user-default" namespace="/cart">
+	  <action name="add_to_cart" class="addToCart">
+	   <result type="json">
+	    <param name="includeProperties">addResult</param>
+	    </result>
+	  </action>
+	  <action name="delete" class="deleteFromCart">
+	   <result type="json">
+	     <param name="includeProperties">deleteResult</param>
+	   </result>
+	  </action>
+	</package>
+	
+	<!-- 用户收藏夹有关的action -->
+	<package name="favority-user-default" extends="symagic-user-default" namespace="/favorite">
+	  <action name="add_favorite" class="addToFavorite">
+	    <result type="json">
+	      <param name="includeProperties">addResult</param>
+	    </result>
+	  </action>
+	  <action name="delete_favorite" class="deleteFromFavority">
+	    <result type="json">
+	      <param name="includeProperties">deleteResult</param>
+	    </result>
+	  </action>
 	</package>
 
 	<!-- 配置管理员的action -->
