@@ -61,4 +61,12 @@ public class CatalogService {
 
 		return catalog;
 	}
+
+	public DaoCatalog getDaoCatalog() {
+		return daoCatalog;
+	}
+
+	public void setDaoCatalog(DaoCatalog daoCatalog) {
+		this.daoCatalog = daoCatalog;
+	}
 }
