@@ -20,14 +20,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div id="top-overlay"></div>
     <!----吊顶栏------>
 	<div class="top">
-    <li>
-    <span class="cart_icon"></span>
+    <div class="top_right">
+    <li><a>test</a>
     </li>
+    <li id="cart_top">
+    <span class="cart_icon"></span><a id="cart_a" href="cart_list.html">购物车 <strong id="cart_num">0</strong> 件</a>
+    </li>
+    </div>
     </div>
   <!------吊顶结束----->
 		<div id="logalright">欢迎你<s:property value="#session.username"/><s:property value="#session.nickname"/><li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
 		<li> <a  href="user.html" target="_parent">个人信息</a>&nbsp;</li>|<li id="cart_li"> 
-		<a id="cart_a"  href="cart_list.html" target="_parent">购物车 <strong id="cart_num">0</strong> 件</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
+		<a id="cart_a"  href="" target="_parent">testestestes</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
 		</div>
 	</div>
 	<div id="globallink">
