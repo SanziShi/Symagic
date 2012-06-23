@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,9 +19,9 @@
 
 		<div id="logalright">
 
-		<a href="" target="_parent">管理员 已登录|</a>
+		<a href="" target="_parent">管理员<s:property value="#session.userName"/> 已登录|</a>
 
-	 	<a href="index.html" target="_parent">退出</a>
+	 	<a href="login.jsp" target="_parent">退出</a>
 
 		</div>
 
@@ -29,7 +31,7 @@
 
 		<ul>
 
-			<li><a href="index.html">首页</a></li>
+			<li><a href="index.jsp">首页</a></li>
 
                         <li><a href="category_list.html">目录管理</a></li>
 
@@ -74,7 +76,7 @@
 		<div id="categoryFixed">
 			<h4><span>后台首页</span></h4>
 			<ul>
-				<li><a href="index.html">后台首页</a></li>
+				<li><a href="index.jsp">后台首页</a></li>
 			
 			</ul>
 			<h4><span>销售管理</span></h4>
@@ -109,7 +111,7 @@
 		<div id="search1">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg" id="ico_site"/>
-				网站路径：<a href="index.html">后台</a>			</div>
+				网站路径：<a href="index.jsp">后台</a>			</div>
 			<div id="searchright">
 			  <select name="category" id="searchrightcategory">
 				<option value="5">所有类别</option>
@@ -133,19 +135,19 @@
                 </tr> 
                 <tr> 
                      <td id="myfont" width = "60%">总销售量:&nbsp;&nbsp;</td> 
-                     <td id="myfont" class="mywidth" align="right"><span class="redStrong">580</span>本</td>
+                     <td id="myfont" class="mywidth" align="right"><span class="redStrong"><s:property value="totalSalesAmount"/></span>本</td>
                 </tr> 
                 <tr> 
                    <td id="myfont" class=	"mywidth">销售总额:&nbsp;&nbsp;</td> 
-                     <td id="myfont" class="mywidth" align="right" ><span class="redStrong">9271</span>元</td>
+                     <td id="myfont" class="mywidth" align="right" ><span class="redStrong"><s:property value="totalSalesRevenue"/></span>元</td>
                 </tr> 
                   <tr> 
                      <td id="myfont" width = "60%">注册用户:&nbsp;&nbsp;</td> 
-                     <td id="myfont" class="mywidth"  align="right" >276个</td>
+                     <td id="myfont" class="mywidth"  align="right" ><s:property value = "userNum"/>个</td>
                 </tr> 
                  <tr> 
                      <td id="myfont" width = "60%" >产品:&nbsp;&nbsp;</td> 
-                     <td id="myfont" class="mywidth">1056个</td>
+                     <td id="myfont" class="mywidth"><s:property value = "productNum"/>个</td>
                 </tr> 
             </table> 
         </td> 
@@ -156,19 +158,19 @@
                 </tr> 
                 <tr> 
                     <td id="myfont" width = "60%">总订单:&nbsp;&nbsp;</td> 
-                    <td id="myfont" ><span class="redStrong">237</span>个</td>
+                    <td id="myfont" ><span class="redStrong"><s:property value = "totalOrderAmout"/></span>个</td>
                 </tr> 
                 <tr> 
                    <td id="myfont" width = "60%">今日订单:&nbsp;&nbsp;</td> 
-                    <td id="myfont" ><span class="redStrong">16</span>个</td>
+                    <td id="myfont" ><span class="redStrong"><s:property value = ""/></span>个</td>
                 </tr> 
                  <tr> 
                    <td id="myfont" width = "70%">待审核订单:&nbsp;&nbsp;</td> 
-                    <td id="myfont" ><span class="redStrong">13</span>个</td>
+                    <td id="myfont" ><span class="redStrong"><s:property value = "unauditedOrderAmount"/></span>个</td>
                 </tr> 
                  <tr> 
                    <td id="myfont" width = "60%">完成订单:&nbsp;&nbsp;</td> 
-                    <td id="myfont" ><span class="redStrong">172</span>个</td>
+                    <td id="myfont" ><span class="redStrong"><s:property value = "finishOrderAmount"/></span>个</td>
                 </tr> 
             </table> 
         </td> 
@@ -228,153 +230,38 @@
 				</thead>
 
 				<tbody>
-
-				  <tr>
-
-				  	<td><input type="checkbox" name="ordersn" value="1483728" ></td>
-
-					<td  class="antoWidth">1483728</td>
-
-            		<td class="qWidth">zhangtong123@163.com</td>
-
-					<td class="qWidth">2007-10-01&nbsp;10:25:04</td>
-
-					<td class="autoWidth">交易成功</td>
- <td><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html">详情</a>&nbsp;</td>
-
-
-          		  </tr>
-
-				  <tr>
-
-				  	<td><input type="checkbox" name="ordersn" value="1483729" ></td>
-
-					<td>1483729</td>
-
-            		<td>zhangtong123@163.com</td>
-
-					<td>2007-10-12&nbsp;16:02:24</td>
-
-					<td>交易失败</td>
-
-					
-
-					<td><a href="#" style="display:none"><img src="../image/xq.gif" alt="详情"  class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="">详情</a>&nbsp;<a href="">删除</a>&nbsp;</td>
-
-          		  </tr>
-
-				  <tr>
-
-				  	<td><input type="checkbox" name="ordersn" value="1491025"></td>
-
-					<td>1491025</td>
-
-            		<td>wangxj123@163.com</td>
-
-					<td>2007-11-15&nbsp;14:25:36</td>
-
-					<td>已审核</td>
-
-					
-
-					<td><a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="">详情</a>&nbsp;</a><a href="order_edit.html">修改</a>&nbsp;<a href="">删除</a>&nbsp;</td>
-
-          		  </tr>
-
-				  <tr>
-
-				  	<td>&nbsp;</td>
-
-                    <td>&nbsp;</td>
-
-                    <td>&nbsp;</td>
-
-                  
-
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>	 	
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-                  <tr>
-                  </tr>
-
+                
 				
+                 <s:iterator value = "LatestOrders" var = "orders">
+             
+                 <tr>
 
+				  	<td><input type="checkbox" name="orders" value="<s:property value = '#orders.orderID'/>"/> ></td>
+
+					<td  class="antoWidth"><s:property value = "#orders.orderID"/></td>
+
+            		<td class="qWidth"><s:property value = "#orders.userName"/></td>
+
+					<td class="qWidth"><s:property value = "#orders.orderTime"/></td>
+
+					<td class="autoWidth"><s:property value = "#orders.orderStatus"/></td>
+ <td><s:if test="#order.orderStatus=='已下单'">
+ <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="">审核</a>&nbsp;<a href="order/delete_order?itemID=<s:property value = '#orders.orderID'>">删除</a>&nbsp
+ </s:if>
+ <s:elseif test="#order.orderStatus=='已审核'">
+ <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;<a href="">删除</a>&nbsp
+ </s:elseif>
+ <s:elseif test="#order.orderStatus=='交易成功'">
+  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a>
+  </s:elseif>
+  <s:else>
+  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a>&nbsp;<a href="">删除</a>&nbsp
+  </s:else>
+ </td>
+
+
+          		  </tr>
+                  </s:iterator>
 				 </tbody>
 
             </table>
@@ -385,7 +272,7 @@
         
 
 	<div id="footer">
-		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
+		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
 		<span id="footerright"> Symagic网上书城  Power by Symagic &nbsp;</span>
 	</div>
 </div>
