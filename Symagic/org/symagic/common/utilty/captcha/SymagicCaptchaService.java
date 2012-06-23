@@ -1,6 +1,8 @@
 package org.symagic.common.utilty.captcha;
 
+
 import com.octo.captcha.service.CaptchaServiceException;
+import com.octo.captcha.service.captchastore.FastHashMapCaptchaStore;
 import com.octo.captcha.service.image.DefaultManageableImageCaptchaService;
 
 public class SymagicCaptchaService extends DefaultManageableImageCaptchaService{
@@ -19,5 +21,11 @@ public class SymagicCaptchaService extends DefaultManageableImageCaptchaService{
 		
 		return valid;
 	}
+	
+	public SymagicCaptchaService(){
+		super(new FastHashMapCaptchaStore(), new GMailCaptchaEngine(), 180,
+                100000, 75000);
+	}
+	
 
 }

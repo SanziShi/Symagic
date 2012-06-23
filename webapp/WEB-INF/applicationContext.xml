@@ -61,29 +61,65 @@
 		class="org.symagic.admin.action.catalog.CatalogEditSubmitAction">
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
+	
+	<bean id="AdminIndex" class="org.symagic.admin.action.index.AdminIndexAction" >
+	<property name="daoUser" ref="DaoUser"></property>
+	<property name="daoOrder" ref="DaoOrder"></property>
+	<property name="daoBook" ref="DaoBook"></property>
+	</bean>
 
 	<!-- 用户的action bean -->
-	<bean id="registerClass" class="org.symagic.user.action.register.RegisterAction">
-		<property name="symagicCaptcha" ref="JCaptcha"></property>
-		<property name="userService" ref="UserService"></property>
+	 
+	 <bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
+	 <bean id="loginClass" class="org.symagic.user.action.login.LoginAction">
+	   <property name="symagicCaptcha" ref="JCaptcha"></property>
+	   <property name="userService" ref="UserService"></property>
+	 </bean>
+    <bean id="registerClass" class="org.symagic.user.action.register.RegisterAction">
+      <property name="symagicCaptcha" ref="JCaptcha"></property>
+      <property name="userService" ref="UserService"></property>
+  </bean>
+  <bean id="usernameUnique" class="org.symagic.user.action.register.CheckUsernameAction">
+    <property name="userService" ref="UserService"></property>
+  </bean>
+  <!-- 关于购物的bean -->
+   <bean id="addToCart" class="org.symagic.user.action.cart.CartAddItemAction">
+    <property name="daoCart" ref="DaoCart"></property>
+   </bean>
+   
+   <bean id="deleteFromCart" class="org.symagic.user.action.cart.CartDeleteItemAction">
+    <property name="daoCart" ref="DaoCart"></property>
+   </bean>
+   
+   <!-- 关于收藏夹的bean -->
+   <bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction">
+    <property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
+   </bean>
+	<bean id="deleteFromFavority" class="org.symagic.user.action.favority.FavorityDeleteAction">
+	  <property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
 	</bean>
-
-	<!-- service bean -->
-	<bean id="UserService" class="org.symagic.common.service.UserService">
-		<property name="daoUser" ref="DaoUser"></property>
-		<property name="daoCart" ref="DaoCart"></property>
-		<property name="beanUser" ref="BeanUser"></property>
-	</bean>
-	<bean id="CatalogService" class="org.symagic.common.service.CatalogService">
-		<property name="daoCatalog" ref="DaoCatalog"></property>
-	</bean>
+	
+	 <!-- service bean -->
+  <bean id="UserService" class="org.symagic.common.service.UserService">
+    <property name="daoUser" ref="DaoUser"></property>
+    <property name="daoCart" ref="DaoCart"></property>
+    <property name="beanUser" ref="BeanUser"></property>
+  </bean>
+  
+  <bean id="CatalogService" class="org.symagic.common.service.CatalogService">
+  <property name="daoCatalog" ref="DaoCatalog"></property>
+  </bean>
+ 
 
 	<!-- 数据层bean -->
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
 	<bean id="DaoBook" class="org.symagic.common.db.func.DaoBook" />
 	<bean id="DaoCart" class="org.symagic.common.db.func.DaoCart"></bean>
 	<bean id="DaoUser" class="org.symagic.common.db.func.DaoUser"></bean>
-	<bean id="DaoCatalog" class="org.symagic.common.db.func.DaoCatalog" />
+	<bean id="DaoFavorityFolder" class="org.symagic.common.db.func.DaoFavorityFolder"></bean>
+	<bean id="DaoCatalog" class="org.symagic.common.db.func.DaoCatalog"/>
+	<bean id="DaoOrder" class="org.symagic.common.db.func.DaoOrder"></bean>
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
+

@@ -16,6 +16,48 @@ public class ItemBean {
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private String itemId;
+	public String getItemId() {
+		return itemId;
+	}
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
+	}
+	public Float getSavePrice() {
+		return savePrice;
+	}
+	public void setSavePrice(Float savePrice) {
+		this.savePrice = savePrice;
+	}
+	public float getItemTotalPrice() {
+		return itemTotalPrice;
+	}
+	public void setItemTotalPrice(float itemTotalPrice) {
+		this.itemTotalPrice = itemTotalPrice;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	public String getPicturePath() {
+		return picturePath;
+	}
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
+	}
+	public int getItemNumber() {
+		return itemNumber;
+	}
+	public void setItemNumber(int itemNumber) {
+		this.itemNumber = itemNumber;
+	}
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->

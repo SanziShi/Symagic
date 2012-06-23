@@ -17,7 +17,7 @@ public class ConnectionPool {
 	public int initialPoolSize = 5;			// 初始化连接池中连接实例的数量
 	public String dbName = "bookshop";			// 连接的数据库名
 	public String userName = "root";			// 连接的用户名
-	public String userPasswd = "root1";			// 连接的密码
+	public String userPasswd = "111111";			// 连接的密码
 	public String server = "localhost";
 	public String port = "3306";
 
