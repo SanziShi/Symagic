@@ -45,6 +45,7 @@
 
 	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction">
 		<property name="daoBook" ref="DaoBook"></property>
+		<property name="shopImageFileFolder" value="book-image"></property>
 	</bean>
 	
 	 <!-- 用户的action bean -->

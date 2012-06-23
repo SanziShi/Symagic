@@ -17,8 +17,10 @@ public class CatalogService {
 		
 		List<BeanCatalog> daoCatalogList = daoCatalog.getCatalog();
 		
-		for( int i = 0; i < daoCatalogList.size(); i++ ){
+		for( BeanCatalog beanCatalog : daoCatalogList){
 			CatalogBean bean = new CatalogBean();
+			bean.setId(beanCatalog.getCatalogID());
+			bean.setDescription(beanCatalog.getCatalogDesc());
 		}
 		
 		return catalog;

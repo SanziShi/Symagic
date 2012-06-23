@@ -4,20 +4,24 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import javax.servlet.ServletContext;
+
 import org.apache.commons.io.FileUtils;
+import org.apache.struts2.util.ServletContextAware;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ItemModifySubmitAction extends ActionSupport {
+public class ItemModifySubmitAction extends ActionSupport implements
+		ServletContextAware {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -6403625327693017658L;
-	
+
 	/**
 	 * 
 	 */
@@ -103,36 +107,46 @@ public class ItemModifySubmitAction extends ActionSupport {
 	 */
 	private boolean formValidateResult;
 
-
 	private DaoBook daoBook;
 
+	/**
+	 * 
+	 */
+	private ServletContext context;
+
+	/**
+	 * 用于存放上传的图片
+	 */
+	private String shopImageFileFolder;
 
 	@Override
 	public void validate() {
 
 		// 处理商品类别以外其他都不能为空
-		if (itemID == null || ISBN == null || name == null || author == null || publisher == null
-				|| publishTime == null || edition == null || page == null
-				|| binding == null || size == null || marketPrice == null
-				|| discount == null || inventory == null || description == null
-				|| picture == null) {
+		if (itemID == null || ISBN == null || name == null || author == null
+				|| publisher == null || publishTime == null || edition == null
+				|| page == null || binding == null || size == null
+				|| marketPrice == null || discount == null || inventory == null
+				|| description == null || picture == null) {
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;
 		}
 
 	}
-	
+
 	@Override
 	public String execute() throws Exception {
 
 		if (!formValidateResult)
 			return ERROR;
-		
+
 		BeanBook book = daoBook.getDeatil(itemID);
 
 		// 文件处理
-		File destFile = new File(book.getPicture());
+		String fileFolder = context.getRealPath("/" + shopImageFileFolder);
+		File destFile = new File(fileFolder, book.getPicture().substring(
+				book.getPicture().lastIndexOf('/') + 1));
 
 		FileUtils.moveFile(picture, destFile);
 
@@ -157,9 +171,23 @@ public class ItemModifySubmitAction extends ActionSupport {
 		book.setBookDesc(description);
 		book.setCatalogID(bookClassify);
 
-		//daoBook.modify
+		daoBook.modifyBook(book);
 
 		return SUCCESS;
+	}
+	
+	@Override
+	public void setServletContext(ServletContext arg0) {
+		context = arg0;
+
+	}
+
+	public String getShopImageFileFolder() {
+		return shopImageFileFolder;
+	}
+
+	public void setShopImageFileFolder(String shopImageFileFolder) {
+		this.shopImageFileFolder = shopImageFileFolder;
 	}
 
 	public Integer getItemID() {
@@ -305,5 +333,7 @@ public class ItemModifySubmitAction extends ActionSupport {
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
 	}
+
+
 
 }
