@@ -3,11 +3,12 @@
 			<div id="sendnotehead">新用户注册<span class="close" onclick="close_float(this);"></span></div>
 			<div id="sendnotecontent">
 			<form action="" method="post" enctype="multipart/form-data" name="form1" onsubmit="return regist(this);">
+            <input name="toURL" id="toURL" value="" />
 				<table id="itemsearch_r">
 				   <tr>
 					<th class="itemsearchth" ><span class="red">*</span>用&nbsp;户&nbsp;名：</th>
             		<td class="itemsearchtd1">
-						<input type="Text" class="inputtext_gray" name="name" id="name" msg_num="" onFocus="onfocus_check(this,'邮箱地址')" onblur="onblur_check(this,'邮箱地址')" value="邮箱地址" >
+						<input type="Text" class="inputtext_gray" name="userName" id="userName" msg_num="" onFocus="onfocus_check(this,'邮箱地址')" onblur="onblur_check(this,'邮箱地址')" value="邮箱地址" >
 					</td>
 					<td class="itemsearchtd2">
 						<span class="loading hide"></span>			</td>
@@ -33,7 +34,7 @@
 				 <tr>
 				 <th class="itemsearchth"><span class="red">*</span>密码确认：</th>
             		<td class="itemsearchtd1">
-					<input type="password" id="psaaword_confirm" class="inputtext hide" name="password_confirm" onblur="password_onblur(this)" value="" maxlength="20" >
+					<input type="password" id="passwordConfirm" class="inputtext hide" name="passwordConfirm" onblur="password_onblur(this)" value="" maxlength="20" >
                     <input type="text" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" msg_num="">
 					</td>
 					<td class="itemsearchtd2">
@@ -42,7 +43,7 @@
                   <tr>
 				 <th class="itemsearchth"><span class="red">*</span>安全提问问题：</th>
             		<td class="itemsearchtd1">
-					  	<select onchange="safe_question(this)" name="security_question">
+					  	<select onchange="safe_question(this)" name="securityQuestion">
                         <option >您父亲的名字是？</option>
                         <option >您母亲的名字是？</option>
                         <option >您小学就读的学校是？</option>
@@ -65,7 +66,7 @@
                  <tr>
 				 <th class="itemsearchth"><span class="red">*</span>安全问题答案：</th>
             		<td class="itemsearchtd1">
-					<input type="text" name="security_answer" class="inputtext" msg_num=""/>
+					<input type="text" name="securityAnswer" class="inputtext" msg_num=""/>
 					</td>
 					<td class="itemsearchtd2">
 					</td>
@@ -73,7 +74,7 @@
 				 <tr class="">
 				 <th class="itemsearchth"><span class="red">*&nbsp;</span>验证码：</th>
             		<td class="itemsearchtd1">
-						<input type="text" name="captcha_value" class="inputtext" msg_num=""/>
+						<input type="text" name="captchaValue" class="inputtext" msg_num=""/>
 					</td>
 					<td>
 					 <img  src="captcha_get_captcha" />	

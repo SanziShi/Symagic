@@ -4,6 +4,7 @@ body{
 	background:transparent  url(../image/back.jpg) scroll center top;
 	text-align: center;
 	-moz-user-select: none; -khtml-user-select: none; user-select: none;
+	margin:0px;
 }
 /*---------------气泡提示------------------*/
 .lj-tipsWrap{min-width:10px;min-height:15px;font-family:'Segoe UI',Calibri, 'Myriad Pro', Myriad, 'Trebuchet MS', Helvetica, Arial, sans-serif;}
@@ -26,10 +27,8 @@ body{
 /*css 3 渐进增强*/
 .lj-tipsWrap{-webkit-border-radius:3px;-moz-border-radius:3px;-webkit-box-shadow:2px 2px 3px #eee;-moz-box-shadow:2px 2px 3px #eee;}
 
-
-
 /*----------- 可配置css  kind ------------*/
-.lj-tipsWrap{ position: absolute; z-index:1;} /* 可修改z-index 让他不会被盖住*/
+.lj-tipsWrap{ position: absolute; z-index:12;} /* 可修改z-index 让他不会被盖住*/
 /* error css */
 .lj-error{background:#F90;color:#f30; border:1px solid #FB8888; background:#FEF2F2;}
 .lj-error .lj-top{border-top-color:#FB8888;}
@@ -54,6 +53,10 @@ body{
 .lj-correct .lj-left .lj-span{border-left-color:#F4FBFF;}
 .lj-correct .lj-bottom .lj-span{border-bottom-color:#F4FBFF;}
 /*---------------气泡提示------------------*/
+#toURL
+{
+	display:none;
+}
 .hide
 {
 	display:none;
@@ -80,6 +83,41 @@ span.red
 {
 	text-align:left;
 }
+.top
+{
+	width:799px;
+	height:27px;
+	padding-bottom: 1px;
+	line-height: 27px;
+	position:absolute;
+	z-index:10;
+	color: #E8E8E8;
+	text-align:right;
+}
+.top li
+{
+	margin:5px;
+	list-style:none;
+}
+.top .cart_icon
+{
+	height:17px;
+	width:17px;
+	background:url(../image/cart_icon.png) no-repeat ;
+	display:inline-block;
+}
+#top-overlay
+{
+	width:799px;
+	height:27px;
+	position:absolute;
+	background-color:#000000;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	-moz-opacity:0.3;
+	-khtml-opacity: 0.3;
+	z-index:5;
+}
 span.close,span.close:hover
 {
 	height:16px;
@@ -100,6 +138,9 @@ span.close
 #overlay
 {
 	background:#000;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
 	opacity:0.5;
 	display:none;
 	position:fixed;
@@ -107,6 +148,7 @@ span.close
 	left:0px;
 	height:100%;
 	width:100%;
+	z-index:11;
 }
 #login_float
 {
@@ -117,6 +159,7 @@ span.close
 	top:150px;
 	width:500px;
 	display:none;
+	z-index:12;
 }
 #regist_float
 {
@@ -127,6 +170,7 @@ span.close
 	top:150px;
 	width:700px;
 	display:none;
+	z-index:12;
 }
 #banner{
 	display:block;
