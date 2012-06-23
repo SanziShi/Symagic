@@ -3,7 +3,7 @@
  */
 package org.symagic.common.utilty.presentation.bean;
 
-import java.util.Arrays;
+import java.util.List;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -35,8 +35,14 @@ public class CatalogBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Arrays childCatalog;
+	private List<CatalogBean> childCatalog;
 	
+	public List<CatalogBean> getChildCatalog() {
+		return childCatalog;
+	}
+	public void setChildCatalog(List<CatalogBean> childCatalog) {
+		this.childCatalog = childCatalog;
+	}
 	public String getName() {
 		return name;
 	}
@@ -54,12 +60,6 @@ public class CatalogBean {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public Arrays getChildCatalog() {
-		return childCatalog;
-	}
-	public void setChildCatalog(Arrays childCatalog) {
-		this.childCatalog = childCatalog;
 	}
 
 }

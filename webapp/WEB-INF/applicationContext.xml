@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
@@ -44,12 +45,24 @@
 
 	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction">
 		<property name="daoBook" ref="DaoBook"></property>
+		<property name="shopImageFileFolder" value="book-image"></property>
 	</bean>
-	
-	
-	
-	
-	 <!-- 用户的action bean -->
+
+	<bean id="AdminEnterCatalogManager"
+		class="org.symagic.admin.action.catalog.CatalogManagerEnterAction">
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<bean id="AdminAddCatalog" class="org.symagic.admin.action.catalog.CatalogAddAction">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<bean id="AdminSubmitCatalogModify"
+		class="org.symagic.admin.action.catalog.CatalogEditSubmitAction">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<!-- 用户的action bean -->
 	 
 	 <bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
 	 <bean id="loginClass" class="org.symagic.user.action.login.LoginAction">
@@ -97,3 +110,4 @@
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
+

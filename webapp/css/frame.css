@@ -4,6 +4,11 @@ body{
 	text-align: center;
 	background:transparent url(../image/back.jpg) scroll center top;
 	-moz-user-select: none; -khtml-user-select: none; user-select: none;
+	margin:0px;
+}
+a
+{
+	text-decoration:none;
 }
 /*---------------气泡提示------------------*/
 .lj-tipsWrap{min-width:10px;min-height:15px;font-family:'Segoe UI',Calibri, 'Myriad Pro', Myriad, 'Trebuchet MS', Helvetica, Arial, sans-serif;}
@@ -29,7 +34,7 @@ body{
 
 
 /*----------- 可配置css  kind ------------*/
-.lj-tipsWrap{ position: absolute; z-index:1;} /* 可修改z-index 让他不会被盖住*/
+.lj-tipsWrap{ position: absolute; z-index:12;} /* 可修改z-index 让他不会被盖住*/
 /* error css */
 .lj-error{background:#F90;color:#f30; border:1px solid #FB8888; background:#FEF2F2;}
 .lj-error .lj-top{border-top-color:#FB8888;}
@@ -54,6 +59,10 @@ body{
 .lj-correct .lj-left .lj-span{border-left-color:#F4FBFF;}
 .lj-correct .lj-bottom .lj-span{border-bottom-color:#F4FBFF;}
 /*---------------气泡提示------------------*/
+#toURL
+{
+	display:none;
+}
 .hide
 {
 	display:none;
@@ -135,6 +144,9 @@ span.close
 #overlay
 {
 	background:#000;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
 	opacity:0.5;
 	display:none;
 	position:fixed;
@@ -142,6 +154,7 @@ span.close
 	left:0px;
 	height:100%;
 	width:100%;
+	z-index:11;
 }
 #login_float
 {
@@ -152,6 +165,7 @@ span.close
 	top:150px;
 	width:500px;
 	display:none;
+	z-index:12;
 }
 #regist_float
 {
@@ -162,16 +176,7 @@ span.close
 	top:150px;
 	width:700px;
 	display:none;
-}
-#banner{
-	display:block;
-	float:left;
-	width:799px;
-	margin:-2px 0px -5px 0px;
-	height:52px;
-	border:none;
-	background-image:url(../image/whole8.jpg);
-	background-position:-1px;
+	z-index:12;
 }
 #logalleft{
 	background-image:url(../image/logal8.png);
@@ -207,7 +212,6 @@ span.close
 	font-size: 12px;
 	color: #FFFFFF;
 	text-decoration: none;
-
 }
 #logalright a:visited{
 	font-size: 12px;
@@ -368,9 +372,7 @@ strong{
 	display:inline;
 	margin-left:2px;
 	color:#2696ca;
-	text-decoration:none;
-	}
-	
+}
 #search2 #searchright2{
 	float:right;
 	height:30px;
@@ -445,6 +447,7 @@ strong{
 #sendnotehead, #doublehead1, #doublehead2{
 	height:25px;
 	background-color:#4796E4;
+	color:#FFFFFF;
 	font-size:14px;
 	padding-left:5px;
 	padding-top:4px;
@@ -596,11 +599,14 @@ text-decoration:none;
 }
 .user_note .head
 {
+	color:#FFF;
+	background:#4796E4;
 	height:25px;
-	background-color:#4796E4;
 	font-size:14px;
 	padding-top:4px;
 	text-align:center;
+	border: 1px solid #E6E6E6;
+	line-height: 25px;
 }
 .user_note .user_note_content
 {
@@ -685,4 +691,50 @@ text-decoration:none;
 	width:350px;
 	height:80px;
 
+}
+span.star,span.sa1,span.sa2,span.sa3,span.sa35,span.sa4,span.sa45,span.sa5
+{
+	background: url(../image/grade_bg.gif) no-repeat;
+	height:15px;
+	display: inline-block;
+}
+span.star
+{
+	background-position:0px -16px;
+	width:70px;
+}
+span.sa1
+{
+	background-position:0px 2px;
+	width:14px;
+}
+span.sa2
+{
+	background-position:0px 2px;
+	width:28px;
+}
+span.sa3
+{
+	background-position:0px 2px;
+	width:42px;
+}
+span.sa35
+{
+	background-position:0px 2px;
+	width:49px;
+}
+span.sa4
+{
+	background-position:0px 2px;
+	width:56px;
+}
+span.sa45
+{
+	background-position:0px 2px;
+	width:63px;
+}
+span.sa5
+{
+	background-position:0px 2px;
+	width:70px;
 }

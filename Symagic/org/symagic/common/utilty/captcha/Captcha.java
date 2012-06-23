@@ -30,4 +30,7 @@ public interface Captcha {
 	public boolean validateCaptcha( String ID, String captcha );
 	
 	
+	public boolean ajaxValidateCaptcha( String ID, String captcha );
+	
+	
 }

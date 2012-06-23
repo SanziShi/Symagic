@@ -7,6 +7,7 @@
 <title>BC2商城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
 <script language="javascript" src="js/checkform.js"></script>
+<script language="javascript" src="js/gz.js"></script>
 </head>
 
 <body>
@@ -28,12 +29,12 @@
 			<div id="sendnotehead"><strong> 管理员登录</strong></div>
 			<div id="sendnotecontent">
 
-			<s:form action="login" method="post" >
+			<form action="login" method="post" >
 				<table id="itemsearch">
 				   <tr>
 					<th class="itemsearchth" >用户名：</th>
             		<td class="itemsearchtd1">
-					<s:textfield name="userName" />
+					<input name="userName" />
 					</td>
 					<td class="itemsearchtd2">
 					</td>
@@ -41,7 +42,7 @@
 				 <tr>
 				 <th class="itemsearchth">密&nbsp;&nbsp;&nbsp;码：</th>
             		<td class="itemsearchtd1">
-					<s:password  name="password" size="30" maxlength="20" />
+					<input type="password" name="password"  maxlength="20" />
 					</td>
 					<td class="itemsearchtd2">&nbsp;</td>
                     <td><input type="hidden" name="toURL"  value="<s:property value="toURL"/>"/></td>
@@ -49,21 +50,21 @@
                   <tr>
 				 <th class="itemsearchth">验证码：</th>
             		<td class="itemsearchtd1">
-						<s:textfield name="captchaValue" />
+						<input name="captchaValue" />
 					</td>
 					<td>
-					 <img  src="captcha_get_captcha" />	
+					 <img  src="captcha_get_captcha" onclick="change_captcha(this)"/>	
 					</td>
           		 </tr>
 				
 				 <tr>
 				 <th></th>
-				 	<td> <s:submit value="登录" />
+				 	<td> <input type="submit" value="登录" />
 						&nbsp;
 					</td>
 				 </tr>
         </table>
-		</s:form>	
+		</form>>	
 			</div>
 		</div>
 	

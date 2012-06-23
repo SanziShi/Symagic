@@ -1,6 +1,5 @@
 package org.symagic.admin.action.item;
 
-import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -73,12 +72,124 @@ public class ItemManagerEnterAction extends ActionSupport {
 	public String execute() throws Exception {
 		
 		//建立书籍搜索的require
-		BookRequire require = new BookRequire();
+		//BookRequire require = new BookRequire();
 
 		
 		
 		
 		return SUCCESS;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public Integer getBookClassify() {
+		return bookClassify;
+	}
+
+	public void setBookClassify(Integer bookClassify) {
+		this.bookClassify = bookClassify;
+	}
+
+	public Integer getPublishYear() {
+		return publishYear;
+	}
+
+	public void setPublishYear(Integer publishYear) {
+		this.publishYear = publishYear;
+	}
+
+	public Integer getEdition() {
+		return edition;
+	}
+
+	public void setEdition(Integer edition) {
+		this.edition = edition;
+	}
+
+	public Integer getSearchPage() {
+		return searchPage;
+	}
+
+	public void setSearchPage(Integer searchPage) {
+		this.searchPage = searchPage;
+	}
+
+	public String getBinding() {
+		return binding;
+	}
+
+	public void setBinding(String binding) {
+		this.binding = binding;
+	}
+
+	public String getFormat() {
+		return format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public Integer getPrice() {
+		return price;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public DaoBook getDaoBook() {
+		return daoBook;
+	}
+
+	public void setDaoBook(DaoBook daoBook) {
+		this.daoBook = daoBook;
 	}
 
 }

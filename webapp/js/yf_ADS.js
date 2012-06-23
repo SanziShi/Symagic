@@ -6,6 +6,10 @@ GLOBAL=
 
 }
 //业务逻辑函数
+function change_captcha(e)
+{
+	e.src='captcha_get_captcha';
+}
 function load_login()
 {
 	if(window.event)stopDefault();
@@ -75,13 +79,13 @@ function safe_question(e)
 	var q=p.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;
 	if(e.value=='自定义问题')
 	{
-		q.name='security_question';
+		q.name='securityQuestion';
 		e.name='';
 		p.style.display='table-row';
 	}
 	else 
 	{
-		if(!e.name||q.name){e.name='security_question';q.name='';}
+		if(!e.name||q.name){e.name='securityQuestion';q.name='';}
 		p.style.display='none';
 	}
 }

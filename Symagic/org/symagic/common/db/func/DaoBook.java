@@ -306,4 +306,13 @@ public class DaoBook {
 	{
 		return false;
 	}
+	
+	/**
+	 * 获取商品总量
+	 * @return	int 商品总量
+	 */
+	public int getProductNum()
+	{
+		return 10;
+	}
 }

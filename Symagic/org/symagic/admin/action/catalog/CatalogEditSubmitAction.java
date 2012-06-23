@@ -5,12 +5,18 @@ import org.symagic.common.db.func.DaoCatalog;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CatalogAddAction extends ActionSupport {
+public class CatalogEditSubmitAction extends ActionSupport {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4166666737908734729L;
+	private static final long serialVersionUID = -2915979976243924367L;
+	
+	/**
+	 * 
+	 */
+	private Integer catalogID;// :目录ID
+
 	/**
 	 * 
 	 */
@@ -30,30 +36,44 @@ public class CatalogAddAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
-
-		if (!validateResult)
+		
+		if( !validateResult ){
 			return ERROR;
-
+		}
+		
 		BeanCatalog catalog = new BeanCatalog();
+		catalog.setCatalogID(catalogID);
 		catalog.setCatalogName(catalogName);
 		catalog.setCatalogDesc(catalogDesc);
-		if (upID == -1)
+		catalog.setUpID(upID);
+		if( upID == -1 ){
 			catalog.setLevel("1");
-		else {
+		}
+		else{
 			catalog.setLevel("2");
 		}
-		catalog.setUpID(upID);
-		daoCatalog.addCatalog(catalog);
-
-		return SUCCESS;
+		daoCatalog.modifyCatalog(catalog);
+		
+		return super.execute();
 	}
 
 	@Override
 	public void validate() {
-		if (catalogName == null || catalogDesc == null || upID == null)
+		if( catalogID == null || catalogName == null || catalogDesc == null || upID == null ){
 			validateResult = false;
-		else
+		}
+		else{
 			validateResult = true;
+		}
+		super.validate();
+	}
+
+	public Integer getCatalogID() {
+		return catalogID;
+	}
+
+	public void setCatalogID(Integer catalogID) {
+		this.catalogID = catalogID;
 	}
 
 	public String getCatalogName() {

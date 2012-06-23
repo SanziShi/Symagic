@@ -1,15 +1,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <div id="sendnote_float">
-			<div id="sendnotehead"><strong>会员登录</strong><span class="close" onclick="close_float(this);"></span></div>
+			<div id="sendnotehead">会员登录<span class="close" onclick="close_float(this);"></span></div>
 			<div id="sendnotecontent">
 
 			<form action="" method="post" enctype="multipart/form-data" name="form1" onsubmit="return login(this);">
-            <input name="toURL" value="index" style="display:none">
+            <input name="toURL" id="toURL" value="" >
 				<table id="itemsearch_l">
 				   <tr>
 					<th class="itemsearchth" >用户名：</th>
             		<td class="itemsearchtd1">
-					<input type="Text" class="inputtext_gray" name="name" id="name" onFocus="onfocus_check(this,'邮箱地址')" onblur="onblur_check(this,'邮箱地址')" value="邮箱地址" maxlength="30">
+					<input type="Text" class="inputtext_gray" name="userName" id="userName" onFocus="onfocus_check(this,'邮箱地址')" onblur="onblur_check(this,'邮箱地址')" value="邮箱地址" maxlength="30">
                     </td>
 					<td class="itemsearchtd2">
 					</td>
@@ -22,13 +22,13 @@
 					</td>
 					<td class="itemsearchtd2"></td>
                    </tr>
-          		 <tr class="hide">
+          		 <tr class="">
 				 <th class="itemsearchth">验证码：</th>
             		<td class="itemsearchtd1">
-						<input type="text" name="captcha" class="inputtext"/>
+						<input type="text" name="captchaValue" id="captchaValue" class="inputtext"/>
 					</td>
 					<td>
-					 <img  src="captcha_get_captcha" />	
+					 <img  src="captcha_get_captcha" onclick="change_captcha(this)"/>	
 					</td>
           		 </tr>
 				 <tr >
