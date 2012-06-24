@@ -29,15 +29,34 @@ public class DaoDistrict {
 	 * @param upID	上积极地址ID
 	 * @return	List<BeanDistrict> 存储者BeanDistrict对象的列表
 	 */
-	public List<BeanDistrict> getDistrict(int upID)
+	public List<BeanDistrict> getDistrict(Integer upID)
 	{
+		List<BeanDistrict> list	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			
+			if (upID == null)
+				ps = conn.prepareStatement("select * from district where level=1");
+			else {
+				ps	= conn.prepareStatement("select * from district where upid=?");
+				ps.setInt(1, upID);
+			}
+				
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanDistrict>();
+			while (rs.next()) {
+				
+				BeanDistrict	bd	= new BeanDistrict();
+				bd.setId(rs.getInt("id"));
+				bd.setUpid(rs.getInt("upid"));
+				bd.setName(rs.getString("name"));
+				bd.setLevel(rs.getInt("level"));
+				list.add(bd);
+			}
+			return list;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return new ArrayList<BeanDistrict>();
+		return list;
 	}
 }
