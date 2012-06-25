@@ -12,14 +12,10 @@
 </head>
 
 <body>
-<div id="container">
+
 	
 	
 	<div id="container">
-	<div id="logalleft">
-		<div id="logalright">
-		</div>
-	</div>
 <!--	<div id="banner"></div>-->
      <div id="error">
 <TABLE cellSpacing=0 width=600 align=center border=0 cepadding="0">
@@ -45,12 +41,13 @@
       &nbsp;&nbsp;&nbsp;<BR>
       </P><!------------End this!---------------></TD></TR></TBODY></TABLE>
 </div>
+
 <div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
 		<span id="footerright"> Symagic网上书城  Power by Symagic &nbsp;</span>
-	</div>
+	
     </div>
-    
+    </div>
    
 </body>
 </html>
