@@ -30,11 +30,12 @@ public class DaoLevel {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("insert into score_level (name, lowlimit, uplimit) values" +
-					"(?, ?, ?)");
+			ps	= conn.prepareStatement("insert into score_level (name, lowlimit, uplimit, rate) values" +
+					"(?, ?, ?, ?)");
 			ps.setString(1, level.getName());
 			ps.setInt(2, level.getLowLimit());
 			ps.setInt(3, level.getUpLimit());
+			ps.setInt(4, level.getRate());
 			ps.execute();
 			if (ps.getUpdateCount() == 1) 
 				return true;
@@ -63,10 +64,11 @@ public class DaoLevel {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("update score_level set " +
-					"name=?, lowlimit=?, uplimit=?");
+					"name=?, lowlimit=?, uplimit=?, rate=?");
 			ps.setString(1, level.getName());
 			ps.setInt(2, level.getLowLimit());
 			ps.setInt(3, level.getUpLimit());
+			ps.setInt(4, level.getRate());
 			if (ps.executeUpdate() == 1) 
 				return true;
 			return false;
