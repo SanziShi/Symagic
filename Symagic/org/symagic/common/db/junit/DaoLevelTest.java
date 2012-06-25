@@ -15,6 +15,7 @@ public class DaoLevelTest extends TestCase{
 //		bl.setName("普通会员");
 //		bl.setLowLimit(0);
 //		bl.setUpLimit(100);
+//		bl.setRate(1.0f);
 //		assertEquals(true, dl.add(bl));
 //	}
 
@@ -27,5 +28,12 @@ public class DaoLevelTest extends TestCase{
 //		bl.setUpLimit(200);
 //		assertEquals(true, dl.update(bl));
 //	}
+	
+	@Test
+	public void testJudgeLevel()
+	{
+		DaoLevel dl	= new DaoLevel();
+		assertEquals(1.0f, dl.judgeLevel(50).getRate());
+	}
 
 }
