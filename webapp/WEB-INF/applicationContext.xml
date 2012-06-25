@@ -84,7 +84,12 @@
    <bean id="deleteFromCart" class="org.symagic.user.action.cart.CartDeleteItemAction">
     <property name="daoCart" ref="DaoCart"></property>
    </bean>
-   
+   <bean id="detailOfCart" class="org.symagic.user.action.cart.CartDetailAction">
+     <property name="daoBook" ref="DaoBook"></property>
+   </bean>
+   <bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction">
+     <property name="daoCart" ref="DaoCart"></property>
+   </bean>
    <!-- 关于收藏夹的bean -->
    <bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction">
     <property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>

@@ -1,5 +1,7 @@
 package org.symagic.user.action.register;
 
+import java.io.UnsupportedEncodingException;
+
 import org.symagic.common.service.UserService;
 import org.symagic.common.utilty.captcha.JCaptcha;
 import org.symagic.common.utilty.session.SessionUtilty;
@@ -17,6 +19,12 @@ public class RegisterAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = -7443659242913503854L;
     private JCaptcha symagicCaptcha;
+    private UserService userService;
+    
+	private String userName; // 注册用户名
+    private String password; // 注册密码
+	private String passwordConfirm;// 注册时密码确认
+	private String nickname; // 注册昵称
     public JCaptcha getSymagicCaptcha() {
 		return symagicCaptcha;
 	}
@@ -35,26 +43,36 @@ public class RegisterAction extends ActionSupport {
 
 
 
-	private UserService userService;
-    
-	private String name; // 注册用户名
+	
 	
 
 
 
-	public String getName() {
-		return name;
+	
+
+
+
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 
 
-	private String password; // 注册密码
-	private String passwordConfirm;// 注册时密码确认
-	private String nickname; // 注册昵称
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+
+
 	private String securityQuestion;// 安全问题
 	private String securityAnswer; // 安全问题的甜答案
 	private String captchaValue; // 注册验证码
@@ -69,7 +87,7 @@ public class RegisterAction extends ActionSupport {
 		}
 		
 		//进行注册
-	    registerResult= userService.register(name, nickname, password, securityQuestion, securityAnswer);
+	    registerResult= userService.register(userName, nickname, password, securityQuestion, securityAnswer);
 	   
 	    return SUCCESS;
 	}
@@ -78,9 +96,10 @@ public class RegisterAction extends ActionSupport {
 	public void validate() {
 		// TODO Auto-generated method stub
 		//验证各项内容 是否为空
-		 if(isEmpty(name)||isEmpty(password)||isEmpty(password)||isEmpty(passwordConfirm)||
-				 isEmpty(nickname)||isEmpty(securityQuestion)||isEmpty(securityAnswer)||isEmpty(captchaValue)||isEmpty(toURL)){
+		 if(isEmpty(userName)||isEmpty(password)||isEmpty(passwordConfirm)||
+				 isEmpty(nickname)||isEmpty(securityQuestion)||isEmpty(securityAnswer)||isEmpty(captchaValue)){
 			    validateResult=false;
+			   
 			     return;
 		 }
 		 //验证密码前后是否一致
@@ -89,12 +108,12 @@ public class RegisterAction extends ActionSupport {
 			 return;
 		 }
 		 //验证邮箱 格式 与唯一性
-		 if(name.indexOf("@")==-1||(!userService.isUsernameUnique(name))){
+		 if(userName.indexOf("@")==-1||(!userService.isUsernameUnique(userName))){
 			 validateResult=false;
 			 return;
 		 }
-		 //昵称长度合法性
-		 if(nickname.length()>10){
+		 //昵称合法性
+		 if(!nickname.matches("^[a-zA-Z0-9_\u4e00-\u9fa5]+$")||byteCount(nickname)>20||byteCount(nickname)<5){
 			 validateResult=false;
 			 return;
 		 }
@@ -111,7 +130,16 @@ public class RegisterAction extends ActionSupport {
 		 }
 	}
 
-	
+	private int byteCount(String s) {
+		int length=0;
+		try {
+			length=s.getBytes("gbk").length;
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return length;
+	}
 	// 验证内容是否为空
 	private boolean isEmpty(String content) {
 		return content == null || content.trim().equals("");
@@ -122,6 +150,10 @@ public class RegisterAction extends ActionSupport {
 	private boolean validateResult=true;// 验证输入是否合法
 	private boolean registerResult; // 注册是否成功
 
+	
+
+	
+
 	public boolean isRegisterResult() {
 		return registerResult;
 	}
@@ -129,8 +161,6 @@ public class RegisterAction extends ActionSupport {
 	public void setRegisterResult(boolean registerResult) {
 		this.registerResult = registerResult;
 	}
-
-	
 
 	public String getPassword() {
 		return password;
@@ -148,13 +178,7 @@ public class RegisterAction extends ActionSupport {
 		this.passwordConfirm = passwordConfirm;
 	}
 
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
+	
 
 	public String getSecurityQuestion() {
 		return securityQuestion;

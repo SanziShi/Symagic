@@ -72,6 +72,7 @@ public class UserSessionUtilty extends SessionUtilty {
 		if(cart==null){
 			cart=new HashMap<Integer,Integer>();
 		}
+		
 		//添加物品和数量
 		cart.put(id, number);
 		return true;

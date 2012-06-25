@@ -73,21 +73,19 @@
 		</action>
 		<action name="login" class="loginClass">
 		  <result type="json">
-		    <param name="includeProperties">loginResult</param>
-		    <param name="includeProperties">toURL</param>
+		    <param name="includeProperties">loginResult,toURL</param>
+		  
 		  </result>
 		</action>
 		<action name="get_session_info" class="getSessionInfo">
 		<result type="json">
-		  <param name="includeProperties">username</param>
-		  <param name="includeProperties">nickname</param>
-		  <param name="includeProperties">loginErrorTimes</param>
+		  <param name="includeProperties">username,nickname,loginErrorTimes</param>
+		
 		</result>
 		</action>
 		<action name="regist" class="registerClass">
           <result type="json">
-          <param name="includeProperties">registerResult</param>
-          <param name="includeProperties">toURL</param>
+          <param name="includeProperties">toURL,registerResult</param>
           </result>
       </action>
      </package>
@@ -110,6 +108,16 @@
 	   <result type="json">
 	     <param name="includeProperties">deleteResult</param>
 	   </result>
+	  </action>
+	  <action name="detail" class="detailOfCart">
+	    <result type="json">
+	      <param name="includeProperties">items,totalPrice</param>
+	    </result>
+	  </action>
+	  <action name="update" class="updateCart">
+	  <result type="json">
+	    <param name="includeProperties">updateResult</param>
+	  </result>
 	  </action>
 	</package>
 	
