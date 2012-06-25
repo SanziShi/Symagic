@@ -591,10 +591,10 @@ text-decoration:none;
 .user_note
 {
 	float:left;
-	width:647px;
+	width:648px;
 	background-color: #FFF;
 	margin-right:1px;
-	margin-left:2px;
+	margin-left:1px;
 	overflow:hidden;
 }
 .user_note .head

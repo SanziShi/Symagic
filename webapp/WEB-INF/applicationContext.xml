@@ -61,6 +61,14 @@
 		class="org.symagic.admin.action.catalog.CatalogEditSubmitAction">
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
+	
+	<bean id="AdminIndex" class="org.symagic.admin.action.index.AdminIndexAction" >
+	<property name="daoUser" ref="DaoUser"></property>
+	<property name="daoOrder" ref="DaoOrder"></property>
+	<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+
 
 	<!-- 用户的action bean -->
 	 
@@ -120,4 +128,5 @@
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
+
 
