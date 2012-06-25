@@ -64,11 +64,12 @@ public class DaoLevel {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("update score_level set " +
-					"name=?, lowlimit=?, uplimit=?, rate=?");
+					"name=?, lowlimit=?, uplimit=?, rate=? where id=?");
 			ps.setString(1, level.getName());
 			ps.setInt(2, level.getLowLimit());
 			ps.setInt(3, level.getUpLimit());
 			ps.setInt(4, level.getRate());
+			ps.setInt(5, level.getId());
 			if (ps.executeUpdate() == 1) 
 				return true;
 			return false;
@@ -86,7 +87,27 @@ public class DaoLevel {
 		return false;
 	}
 	
-	
+	public BeanLevel judgeLevel(int score)
+	{
+		BeanLevel level	= null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from score_level where " +
+					"uplimit => ? and lowlimit <= ?");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return level;
+	}
 }
 
 
