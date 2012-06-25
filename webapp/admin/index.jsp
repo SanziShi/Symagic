@@ -57,7 +57,7 @@
          <div id="categoryFixed">
         <dl>
         <dt>文学作品</dt>
-        <div ><dd>诗词歌曲</dd></div>
+        <div ><dd>诗词歌曲</dd></div>s 	
         <div ><dd>中国文学</dd></div>
         <div ><dd>儿童文学</dd></div>
         <div ><dd>民间文学</dd></div>
@@ -115,11 +115,15 @@
 				网站路径：<a href="index.jsp">后台</a>			</div>
 			<div id="searchright">
 			  <select name="category" id="searchrightcategory">
-				<option value="5">所有类别</option>
-                <option value="1">图书音像</option>
-                <option value="2">时尚生活</option>
-                <option value="3">饰品配件</option>
-                <option value="4">数码产品</option>
+				<option value="0">所有类别</option>
+                <option value="1">文艺</option>
+                <option value="2">少儿</option>
+                <option value="3">人文社会</option>
+                <option value="4">经济与管理</option>
+                <option value="5">生活与励志</option>
+                <option value="6">科技</option>
+                <option value="7">教育</option>
+                <option value="8">其他</option>
               </select>
 			  <input type="text" name="quick_search" id="quick_search" class="gray" value="书名快速搜索...."onFocus="onfocus_check(this,'书名快速搜索....')" onblur="onblur_check(this,'书名快速搜索....')" />
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
