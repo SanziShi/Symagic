@@ -11,6 +11,7 @@
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
+<script type="text/javascript" src="js/gz.js" ></script>
 </head>
 <body>
 <div id="container">
@@ -234,7 +235,7 @@
 				
                  <s:iterator value = "LatestOrders" var = "orders">
              
-                 <tr>
+                 <tr id="<s:property value = '#orders.orderID'/>">
 
 				  	<td><input type="checkbox" name="orders" value="<s:property value = '#orders.orderID'/>"/> ></td>
 
@@ -246,16 +247,19 @@
 
 					<td class="autoWidth"><s:property value = "#orders.orderStatus"/></td>
  <td><s:if test="#order.orderStatus=='已下单'">
- <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="">审核</a>&nbsp;<a href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp
+ <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="">审核</a>&nbsp;
+ <a  onclick="delete_tag('<s:property value = #orders.orderID/>')"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:if>
  <s:elseif test="#order.orderStatus=='已审核'">
- <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;<a href="">删除</a>&nbsp
+ <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
+<a  onclick="delete_tag('<s:property value = #orders.orderID/>')"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:elseif>
  <s:elseif test="#order.orderStatus=='交易成功'">
-  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a>
+  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
   </s:elseif>
   <s:else>
-  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a>&nbsp;<a href="">删除</a>&nbsp
+  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a>&nbsp;
+<a  onclick="delete_tag('<s:property value = #orders.orderID/>')"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
   </s:else>
  </td>
 
