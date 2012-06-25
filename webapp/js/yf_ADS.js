@@ -824,11 +824,12 @@ $().ready(function() {
 		e=e||window.event;
 		if(mouseover_check(e,document.getElementById('cart_top')))
 		{
-			if(document.getElementById('cart_top').className.indexOf('hover')==-1)
-			{
-				document.getElementById('cart_top').className+=' hover';
-				document.getElementById('cart_a').className+=' hover';
-			}
+			//if(document.getElementById('cart_top').className.indexOf('hover')==-1)
+			//{
+				document.getElementById('cart_top').className+='hover';
+				document.getElementById('cart_a').className+='hover';
+				document.getElementById('cart_icon').className+='hover';
+			//}
 		$('#cart').fadeIn('fast');
 		}
 	});
@@ -839,6 +840,7 @@ $().ready(function() {
 			GLOBAL.cart_buff=setTimeout(function(){
 				document.getElementById('cart_top').className='';
 				document.getElementById('cart_a').className='';
+				document.getElementById('cart_icon').className='';
 				document.getElementById('cart').style.display='none';}
 				//$('#cart').fadeOut(1);}
 			,10);
@@ -857,6 +859,7 @@ $().ready(function() {
 		{
 			document.getElementById('cart_top').className='';
 			document.getElementById('cart_a').className='';
+			document.getElementById('cart_icon').className='';
 			document.getElementById('cart').style.display='none';
 			//$('#cart').fadeOut(1);
 		}

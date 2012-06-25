@@ -16,10 +16,21 @@
 	
 <div id="cart" ><span class="cart_loading"></span></div>
 	<div id="logalleft">
-		<div id="logalright"><li><a href="#" onclick="load_regist();" >注册</a>&nbsp;</li>|<li> <a href="#" id="load_login" onclick="load_login();" >登录</a>&nbsp;</li>|
-		<li> <a  href="user.html" target="_parent">个人信息</a>&nbsp;</li>|<li id="cart_li"> 
-		<a id="cart_a"  href="cart_list.html" target="_parent">购物车 <strong id="cart_num">0</strong> 件</a>&nbsp;</li>|<li> <a href="#" target="_parent">退出</a></li>
-		</div>
+		<div id="top-overlay"></div>
+    <!----吊顶栏------>
+	<div class="top">
+    <div class="top_right">
+    <li>欢迎来到Symagic！</li>
+    <s:property value="#session.username"/><s:property value="#session.nickname"/>
+    <li id="login_top" onclick="load_login();"><a>登录</a></li>
+    <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
+    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li id="cart_top"><a id="cart_a" href="cart_list.html">
+    <span id="cart_icon"></span>购物车 <strong id="cart_num">0</strong> 件</a>
+    </li>
+    </div>
+    </div>
+  <!------吊顶结束----->
 	</div>
 	<div id="globallink">
 		<ul>
