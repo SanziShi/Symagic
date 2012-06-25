@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanOrder;
+import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 
@@ -14,54 +15,54 @@ public class OrderDetailAction extends CatalogBase {
 	 * 
 	 */
 	private static final long serialVersionUID = 3862168970037657551L;
-	
-	private Integer orderID;//:订单号;
+
+	private Integer orderID;// :订单号;
 	private String zipcode;
-	private String userName;//用户名(username);
-	private String orderTime;//下单时间(orderTime字符串);
+	private String userName;// 用户名(username);
+	private String orderTime;// 下单时间(orderTime字符串);
 	private String price;//
-	private String payment;//支付方式(payment字符串）；
-	private String deliverWay;//送货方式(deliverWay送货方式）；
-	private String receiver;//收货人(receiver);
-	private String receiverAddress;//收货人地址(receiverAddress),
-	private String orderStatus;//),收货人手机(
-	private String receiverMobile;//),收货人电话(
-	private String receiverPhone;//),items:一维数组（一个包含商品ID（itemId),商品名字（itemName),商品单价(price),商品小计(itemTotalPrice),商品数量（itemNumber));catalog:一维数组（一个含有名字(name)和简介(desc)id,目录的ID，二级目录的一维数组（含有名字(name)和简介(desc)id,目录的ID，一个空的一维数组））；
+	private String payment;// 支付方式(payment字符串）；
+	private String deliverWay;// 送货方式(deliverWay送货方式）；
+	private String receiver;// 收货人(receiver);
+	private String receiverAddress;// 收货人地址(receiverAddress),
+	private String orderStatus;// ),收货人手机(
+	private String receiverMobile;// ),收货人电话(
+	private String receiverPhone;// ),items:一维数组（一个包含商品ID（itemId),商品名字（itemName),商品单价(price),商品小计(itemTotalPrice),商品数量（itemNumber));catalog:一维数组（一个含有名字(name)和简介(desc)id,目录的ID，二级目录的一维数组（含有名字(name)和简介(desc)id,目录的ID，一个空的一维数组））；
 	private List<ItemBean> items;
-	
+
 	private OrderService orderService;
-	
+
 	/**
 	 * 提供其子类访问数据库获取的原始数据
 	 */
 	protected BeanOrder order = null;
-	
+
 	protected OrderService.Address address = null;
-	
+
 	@Override
 	public String execute() throws Exception {
-		
+
 		order = orderService.orderDetail(orderID);
-		//userName = order.getUserId()//??
+		// userName = order.getUserId()//??
 		orderTime = order.getOrderDate();
-		//price = order.get
+		// price = order.get
 		payment = order.getPayment();
 		deliverWay = order.getDeliveryWay();
 		receiver = order.getReceiverName();
-		
+
 		address = OrderService.deserializerAddress(order.getAddrDetail());
 		receiverAddress = new String();
-		if( address.level1District != null ){
+		if (address.level1District != null) {
 			receiverAddress += address.level1District.getName();
 		}
-		if( address.level2District != null ){
+		if (address.level2District != null) {
 			receiverAddress += address.level2District.getName();
 		}
-		if( address.level3District != null ){
+		if (address.level3District != null) {
 			receiverAddress += address.level3District.getName();
 		}
 		receiverAddress += address.districtDetail;
-		
+
 		switch (Integer.parseInt(order.getOrderState())) {
 		case 0:
 			orderStatus = "已下单";
@@ -76,15 +77,27 @@ public class OrderDetailAction extends CatalogBase {
 			orderStatus = "交易失败";
 			break;
 		}
-		
+
 		receiverMobile = order.getMobilenum();
 		receiverPhone = order.getPhonenum();
 		zipcode = order.getZipcode();
-		
+
 		items = new ArrayList<ItemBean>();
-		
-		//items?!
-		
+
+		List<BeanOrderDetail> itemsList = order.getList();
+		for (BeanOrderDetail detail : itemsList) {
+			ItemBean itemBean = new ItemBean();
+			itemBean.setItemId(detail.getBookId());
+			itemBean.setItemNumber(detail.getAmount());
+			itemBean.setItemTotalPrice(detail.getMarketPrice()
+					* detail.getAmount() * detail.getDiscount());
+			itemBean.setName(detail.getBookName());
+			itemBean.setPicturePath(null);
+			itemBean.setPrice(detail.getMarketPrice() * detail.getDiscount());
+			itemBean.setSavePrice((1 - detail.getDiscount())
+					* detail.getMarketPrice() * detail.getAmount());
+		}
+
 		return super.execute();
 	}
 
@@ -199,6 +212,5 @@ public class OrderDetailAction extends CatalogBase {
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
 	}
-	
 
 }
