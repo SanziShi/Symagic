@@ -42,7 +42,7 @@
 				 <tr>
 				 <th class="itemsearchth">密&nbsp;&nbsp;&nbsp;码：</th>
             		<td class="itemsearchtd1">
-					<input type="password" name="password"  maxlength="20" />
+					<input type="password" name="password" />
 					</td>
 					<td class="itemsearchtd2">&nbsp;</td>
                     <td><input type="hidden" name="toURL"  value="<s:property value="toURL"/>"/></td>
