@@ -87,10 +87,16 @@ span.red
 {
 	width:799px;
 	height:27px;
-	padding-bottom: 1px;
 	position:absolute;
 	z-index:10;
 	color: #E8E8E8;
+}
+.top .division
+{
+	margin:7px -1px 0px -1px;
+	cursor:default;
+	padding:0px;
+	float:left;
 }
 .top .top_right
 {
@@ -102,8 +108,9 @@ span.red
 {
 	list-style:none;
 	float:left;
-	padding:0px 5px 0px 5px;
-	margin-top:5px;
+	padding:1px 7px 0px 7px;
+	margin-top:6px;
+	cursor:pointer;
 }
 .top a,.top a:visited
 {
@@ -112,13 +119,12 @@ span.red
 }
 .top #cart_top
 {
-	width:90px;
-	cursor:pointer;
+	width:85px;
 }
 .top #cart_top.hover
 {
 	background:#FFFFFF;
-	padding-bottom:6px;
+	padding-bottom:4px;
 	border-top:#FFF solid 1px;
 }
 .top #cart_a.hover
@@ -126,14 +132,56 @@ span.red
 	color:#4796E4;
 	text-decoration:none;
 }
-.top .cart_icon
+.top #cart_icon
 {
 	height:15px;
 	width:17px;
-	background:url(../image/cart_icon.png) no-repeat ;
+	background:url(../image/cart_icon.png) no-repeat 0px -1px;
 	display:inline-block;
 	margin-bottom:-3px;
 	margin-right:4px;
+}
+.top #cart_icon.hover
+{
+	height:15px;
+	width:17px;
+	background:url(../image/cart_icon.png) no-repeat 0px -18px;
+	display:inline-block;
+	margin-bottom:-3px;
+	margin-right:4px;
+}
+.top #mymall:hover
+{
+	text-decoration:none;
+	background:#FFFFFF;
+	padding-bottom:4px;
+}
+.top #mymall:hover a
+{
+	color:#4796E4;
+}
+
+.top #mymall_icon
+{
+	height:15px;
+	width:17px;
+	background:url(../image/cart_icon.png) no-repeat -17px -1px;
+	display:inline-block;
+	margin-bottom:-3px;
+	margin-right:4px;
+}
+.top #mymall:hover #mymall_icon
+{
+	height:15px;
+	width:17px;
+	background:url(../image/cart_icon.png) no-repeat -17px -18px;
+	display:inline-block;
+	margin-bottom:-3px;
+	margin-right:4px;
+}
+#login_top a:hover,#regist_top a:hover
+{
+	color:#0099FF;
 }
 #top-overlay
 {
