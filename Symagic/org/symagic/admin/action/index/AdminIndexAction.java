@@ -9,7 +9,6 @@ import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.service.OrderService;
-import org.symagic.common.utilty.presentation.bean.CatalogBean;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
 
 public class AdminIndexAction extends CatalogBase {

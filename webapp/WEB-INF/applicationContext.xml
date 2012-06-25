@@ -74,6 +74,11 @@
 		<property name="orderService" ref="OrderService"></property>
 	</bean>
 
+	<bean id="AdminEnterOrderEdit"
+		class="org.symagic.admin.action.order.AdminOrderEditEnterAction">
+		<property name="orderService" ref="OrderService"></property>
+	</bean>
+
 
 	<!-- 用户的action bean -->
 

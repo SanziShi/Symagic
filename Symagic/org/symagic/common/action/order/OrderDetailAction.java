@@ -31,10 +31,12 @@ public class OrderDetailAction extends CatalogBase {
 	
 	private OrderService orderService;
 	
+	protected BeanOrder order = null;
+	
 	@Override
 	public String execute() throws Exception {
 		
-		BeanOrder order = orderService.orderDetail(orderID);
+		order = orderService.orderDetail(orderID);
 		//userName = order.getUserId()//??
 		orderTime = order.getOrderDate();
 		//price = order.get
