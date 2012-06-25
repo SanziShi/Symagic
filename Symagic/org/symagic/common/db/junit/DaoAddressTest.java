@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 import org.symagic.common.db.bean.BeanAddress;
-import org.symagic.common.db.func.DaoAddress;
+import org.symagic.common.db.func.DaoUserAddress;
 
 
 public class DaoAddressTest extends TestCase{
