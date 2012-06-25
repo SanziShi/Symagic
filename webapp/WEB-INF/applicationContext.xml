@@ -32,6 +32,11 @@
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 	</bean>
 
+	<!-- 通用的ActionBean -->
+	<bean id="OrderDetailAction" class="org.symagic.common.action.order.OrderDetailAction">
+		<property name="orderService" ref="OrderService"></property>
+	</bean>
+
 	<!-- 管理员的action bean -->
 	<bean id="AdminLogin" class="org.symagic.admin.action.login.AdminLoginAction">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
@@ -68,7 +73,6 @@
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="orderService" ref="OrderService"></property>
 	</bean>
-
 
 
 	<!-- 用户的action bean -->

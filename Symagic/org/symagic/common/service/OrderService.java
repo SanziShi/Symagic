@@ -12,11 +12,11 @@ import org.symagic.common.utilty.presentation.bean.TimeBean;
 
 public class OrderService {
 
-	public class Address {
-		public DistrictBean level1District;
-		public DistrictBean level2District;
-		public DistrictBean level3District;
-		public String districtDetail;
+	public static class Address {
+		public DistrictBean level1District = null;
+		public DistrictBean level2District = null;
+		public DistrictBean level3District = null;
+		public String districtDetail = null;
 	}
 
 	private DaoOrder daoOrder;
@@ -69,7 +69,7 @@ public class OrderService {
 		return result;
 	}
 	
-	public Address deserializerAddress( String receiverAddress ){
+	public static Address deserializerAddress( String receiverAddress ){
 			
 		JSON json = JSONSerializer.toJSON(receiverAddress);
 		if( !(json instanceof JSONObject ) )
@@ -110,7 +110,7 @@ public class OrderService {
 		return result;
 	}
 	
-	public String serializerAddress( Address address ){
+	public static String serializerAddress( Address address ){
 		
 		JSONObject jsonObject = new JSONObject();
 		
