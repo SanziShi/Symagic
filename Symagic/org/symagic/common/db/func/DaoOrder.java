@@ -221,7 +221,7 @@ public class DaoOrder {
 				e.printStackTrace();
 			}
 		}
-		return 10;
+		return 0;
 	}
 	
 	/**

@@ -19,7 +19,7 @@ public class DaoUserAddress {
 	 */
 	public boolean addAddress(BeanUserAddr userAddress)
 	{
-		return true;
+		return false;
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class DaoUserAddress {
 	 */
 	public boolean deleteAddress(int addrID)
 	{
-		return true;
+		return false;
 	}
 	
 	/**

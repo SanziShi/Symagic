@@ -3,6 +3,7 @@ package org.symagic.common.db.func;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,13 @@ public class DaoBook {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		return -1;
@@ -105,6 +113,13 @@ public class DaoBook {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return true;
 	}
@@ -136,8 +151,15 @@ public class DaoBook {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return true;
+		return false;
 	}
 
 	/**
@@ -148,12 +170,13 @@ public class DaoBook {
 	 * @return BeanBook实例，封装着书籍的详细信息
 	 */
 	public BeanBook getDeatil(int bookID) {
+		BeanBook book = null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from book where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
-			BeanBook book;
+			
 			
 			// 如果查询成功
 			if (rs.next()) {
@@ -183,8 +206,15 @@ public class DaoBook {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return new BeanBook();
+		return book;
 	}
 
 	/**
@@ -234,6 +264,13 @@ public class DaoBook {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return 0;
 	}
@@ -250,15 +287,23 @@ public class DaoBook {
 	 * @return List<BeanComment>存储平路详细信息的BeanComment实例列表
 	 */
 	public List<BeanComment> getComment(int bookID, int page, int lines) {
-		BeanComment	bc;
+		List<BeanComment> list	= null;
+		BeanComment	bc	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from comment where ");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return new ArrayList<BeanComment>();
+		return list;
 	}
 	
 	/**
@@ -293,6 +338,13 @@ public class DaoBook {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}

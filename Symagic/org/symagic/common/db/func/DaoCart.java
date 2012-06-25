@@ -65,7 +65,7 @@ public class DaoCart {
 			}
 		}
 		
-		return true;
+		return false;
 	}
 	
 	/**
@@ -100,7 +100,7 @@ public class DaoCart {
 				e.printStackTrace();
 			}
 		}
-		return true;
+		return false;
 	}
 	
 	/**

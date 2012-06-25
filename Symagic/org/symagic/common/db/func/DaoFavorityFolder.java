@@ -17,7 +17,7 @@ public class DaoFavorityFolder {
 	 */
 	public boolean add(String userid, int bookID)
 	{
-		return true;
+		return false;
 	}
 	
 	/**
@@ -28,6 +28,6 @@ public class DaoFavorityFolder {
 	 */
 	public boolean delete(String username, List<Integer>bookIDList)
 	{
-		return true;
+		return false;
 	}
 }
