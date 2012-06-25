@@ -2,8 +2,8 @@ GLOBAL=
 {
 	dir:'Symagic2/',
 	lib:'lib/',
-	cart_buff:''
-
+	cart_buff:'',
+	cart_on_buff:''
 }
 //业务逻辑函数
 function change_captcha(e)
@@ -206,10 +206,13 @@ Ajax=function (option){
 		onComplete:option.onComplete||function(){},
 		onError:option.onError||function(){},
 		onSuccess:option.onSuccess||function(){},
+		onSend:option.onSend||function(){},
+		onTimeout:option.onTimeout||function(){},
 		acceptdatatype:option.acceptdatatype||'json',
 		data:option.data||''
 	};
 	var ajax;
+	var timer;
 	if(typeof XMLHttpRequest=='undefined')
 	{
 		ajax=new ActiveXObject("Microsofr.XMLHttp");
@@ -222,7 +225,7 @@ Ajax=function (option){
 	if(option.type=='GET')
 	{
 		ajax.setRequestHeader("If-Modified-Since","0"); 
-		ajax.send()
+		ajax.send();
 	}
 	else 
 	{
@@ -237,6 +240,17 @@ Ajax=function (option){
 		ajax.setRequestHeader("If-Modified-Since","0"); 
 		ajax.send(option.data);
 	}
+	timer=setTimeout(function()
+		{
+			if(typeof option.onTimeout=="function") option.onTimeout();
+			if(ajax)
+			{
+				ajax.abort();
+				ajax=null;
+			}
+			return ture;
+		}
+		,option.timeout);
 	ajax.onreadystatechange=function()
 	{
 		switch (ajax.readyState)
@@ -245,7 +259,7 @@ Ajax=function (option){
 				break;
 			case 1:
 				break;
-			case 2:
+			case 2:option.onSend();
 				break;
 			case 3:
 				break;
@@ -254,23 +268,24 @@ Ajax=function (option){
 				{
 					switch(ajax.status)
 					{
-						case 200:option.onSuccess(ajax.responseText);
+						case 200:if(timer)clearTimeout(timer);
+							option.onSuccess(ajax.responseText);
+							ajax=null;
 							break;
-						case 403:
+						case 404:if(timer)clearTimeout(timer);
+							option.onError(ajax.responseText);
+							ajax=null;
 							break;
-						case 404:option.onError(ajax.responseText);
-							break;
-						case 500:
-							break;
-						case 503:
-							break;
-						default:option.onComplete(ajax.responseText);
+						default:if(timer)clearTimeout(timer);
+							option.onComplete(ajax.responseText);
+							ajax=null;
 					}
 				}catch(e){}
 			default:break;
 		}
 		//alert('ajax.status:'+ajax.status+"  ajax.readyState:"+ajax.readyState);
 	}
+
 }
 
 //覆盖层
@@ -826,17 +841,19 @@ $().ready(function() {
 		{
 			//if(document.getElementById('cart_top').className.indexOf('hover')==-1)
 			//{
+			
 				document.getElementById('cart_top').className+='hover';
 				document.getElementById('cart_a').className+='hover';
 				document.getElementById('cart_icon').className+='hover';
 			//}
-		$('#cart').fadeIn('fast');
+		GLOBAL.cart_on_buff=setTimeout(function(){$('#cart').fadeIn(1)},300);
 		}
 	});
 	addListener(document.getElementById('cart_top'),"mouseout",function(e){
 		e=e||window.event;
 		if(mouseout_check(e,document.getElementById('cart_top')))
 		{
+			clearTimeout(GLOBAL.cart_on_buff);
 			GLOBAL.cart_buff=setTimeout(function(){
 				document.getElementById('cart_top').className='';
 				document.getElementById('cart_a').className='';

@@ -14,20 +14,41 @@
 <body>
 <div id="container">
 	
-<div id="cart" ><span class="cart_loading"></span></div>
+<div id="cart">
+	<span class="cart_loading"></span>
+	<div id="cart_none">您的购物车中还没有商品，请选购！</div>
+	<div id="cart_container">
+    	<div id="cart_head"><h4>最近加入的商品</h4></div>
+        <div id="cart_content">
+            <ul>	
+            <!--购物车内容迭代-->
+                <li>
+                	<div class="cart_img"><a href=""><img src="upload/linux.jpg"/></a></div>
+                    <div class="cart_name"><a href="">大学物理学.第四册：波动与光学(第2版)</a></div>
+                    <div class="cart_price"><strong>￥15.00</strong><span>x1</span><br><a href="" class="delete">删除</a></div>
+                    </li>
+            <!--购物车内容迭代结束-->
+            </ul>
+        </div>
+        <div id="cart_button">共&nbsp;<strong>3</strong>&nbsp;件商品&nbsp;&nbsp;&nbsp;共计&nbsp;<strong>￥40.00</strong><br>
+        <a href="cart.html">去购物车结算</a><div class="clear"></div></div>
+    </div>	
+</div>
 	<div id="logalleft">
 		<div id="top-overlay"></div>
     <!----吊顶栏------>
 	<div class="top">
     <div class="top_right">
+    <ul>
     <li>欢迎来到Symagic！</li>
     <s:property value="#session.username"/><s:property value="#session.nickname"/>
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
     <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart_list.html">
+    <li id="cart_top"><a id="cart_a" href="cart.html">
     <span id="cart_icon"></span>购物车 <strong id="cart_num">0</strong> 件</a>
     </li>
+    </ul>
     </div>
     </div>
   <!------吊顶结束----->
