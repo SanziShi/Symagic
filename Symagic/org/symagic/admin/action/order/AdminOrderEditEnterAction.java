@@ -18,6 +18,9 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 	private List<DistrictBean> level1District;
 	private List<DistrictBean> level2District;
 	private List<DistrictBean> level3District;
+	private Integer selectedLevel1DistrictID;
+	private Integer selectedLevel2DistrictID;
+	private Integer selectedLevel3DistrictID;
 
 	@Override
 	public String execute() throws Exception {
@@ -27,7 +30,7 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 		if( order == null || order.getOrderState().equals("2") || order.getOrderState().equals("3") )
 			return ERROR;
 		
-		 
+		  daoDistrict.getDistrict(null);
 		
 		return result;
 		

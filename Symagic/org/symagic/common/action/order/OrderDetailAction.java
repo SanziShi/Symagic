@@ -43,9 +43,9 @@ public class OrderDetailAction extends CatalogBase {
 	public String execute() throws Exception {
 
 		order = orderService.orderDetail(orderID);
-		// userName = order.getUserId()//??
+		userName = order.getUsername();
 		orderTime = order.getOrderDate();
-		// price = order.get
+		price = Float.toString(order.getTotalprice());
 		payment = order.getPayment();
 		deliverWay = order.getDeliveryWay();
 		receiver = order.getReceiverName();
