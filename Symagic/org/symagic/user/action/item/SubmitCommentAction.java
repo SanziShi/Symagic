@@ -8,6 +8,7 @@ public class SubmitCommentAction extends ActionSupport {
 	 private String content;//评论内容
 	 private int rating;//评分
 	 private boolean submitResult;//评论是否成功
+	
 	@Override
 	public void validate() {
 		// TODO Auto-generated method stub
@@ -38,6 +39,12 @@ public int getRating() {
 }
 public void setRating(int rating) {
 	this.rating = rating;
+}
+public boolean isSubmitResult() {
+	return submitResult;
+}
+public void setSubmitResult(boolean submitResult) {
+	this.submitResult = submitResult;
 }
 
  
