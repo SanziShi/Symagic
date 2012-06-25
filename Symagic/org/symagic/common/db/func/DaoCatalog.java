@@ -104,11 +104,12 @@ public class DaoCatalog {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("update book_catalog set catalogname=?, " +
-					"level=?, upid=?, catalogdesc=?");
+					"level=?, upid=?, catalogdesc=? where catalogid=?");
 			ps.setString(1, catalog.getCatalogName());
 			ps.setString(2, catalog.getLevel());
 			ps.setInt(3, catalog.getUpID());
 			ps.setString(4, catalog.getCatalogDesc());
+			ps.setInt(5, catalog.getCatalogID());
 			
 			if (ps.executeUpdate() == 1) {
 				return true;
