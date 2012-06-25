@@ -40,6 +40,8 @@ public boolean isUsernameUnique(String username){
 	return daoUser.validateUserName(username);
 }
 public boolean register(String name,String nickname,String password,String question,String answer){
+	
+	beanUser.setUsername(name);
 	beanUser.setAnswer(answer);
 	beanUser.setNickname(nickname);
 	beanUser.setPassword(password);
@@ -65,12 +67,14 @@ public boolean register(String name,String nickname,String password,String quest
 	return result;
 }
 
+
+
 public boolean login(String username,String password){
 	boolean loginResult=daoUser.validateUser(username,password);
 	//登录成功,更新购物车的信息,保存用户信息到session
 	if(loginResult){
 		
-		//UserSessionUtilty.logLogin(username,daoUser.getNickName());//
+	//UserSessionUtilty.logLogin(username,daoUser.getNickName());//
 		accordCart();
 	}
 	//登录失败，增加失败次数

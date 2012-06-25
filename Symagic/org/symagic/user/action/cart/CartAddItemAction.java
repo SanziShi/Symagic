@@ -26,25 +26,32 @@ public class CartAddItemAction extends ActionSupport {
 			addResult=false;
 			return SUCCESS;
 		}
-		//如果购物车中已有该商品，则数量+1
-	    if(!UserSessionUtilty.getCart().containsKey(itemId)){
+		
+		Integer  number=UserSessionUtilty.getCart().get(itemId);
+	    if(number==null){
 		//添加商品到session中的cart
 		addResult=UserSessionUtilty.addToCart(itemId, itemNumber);
 		}
 	    else{
-	    	
+	    	//如果购物车中已有该商品，则数量增加
+	    	addResult=UserSessionUtilty.addToCart(itemId, number+itemNumber);
 	    }
-		
-		if(UserSessionUtilty.isLogin()){
-		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemId, itemNumber);
-		}
+	    //对于会员而言，后台数据库做同样的更新
+	    if(UserSessionUtilty.isLogin()){
+	    	if(number==null)
+	    		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemId, itemNumber);
+	    	else
+	    		daoCart.modifyBook(UserSessionUtilty.getUsername(), itemId, itemNumber+number);
+	    
+	    }
+	  
 		return SUCCESS;
 		
 	}
 	@Override
 	public void validate() {
 		// TODO Auto-generated method stub
-		if(itemId==null|itemNumber==null||itemNumber<0){
+		if(itemId==null||itemNumber==null||itemNumber<0){
 			validateResult=false;
 		}
 		
