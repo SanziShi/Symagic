@@ -139,7 +139,7 @@
 	<package name="admin-default" extends="symagic-admin-default"
 		namespace="/admin">
 		<action name="index">
-			<result>/admin/index.html</result>
+			<result>/admin/index.jsp</result>
 		</action>
 		
 		<action name="login" class="AdminLogin">
