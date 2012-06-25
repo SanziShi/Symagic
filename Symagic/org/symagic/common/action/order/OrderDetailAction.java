@@ -31,7 +31,12 @@ public class OrderDetailAction extends CatalogBase {
 	
 	private OrderService orderService;
 	
+	/**
+	 * 提供其子类访问数据库获取的原始数据
+	 */
 	protected BeanOrder order = null;
+	
+	protected OrderService.Address address = null;
 	
 	@Override
 	public String execute() throws Exception {
@@ -44,7 +49,7 @@ public class OrderDetailAction extends CatalogBase {
 		deliverWay = order.getDeliveryWay();
 		receiver = order.getReceiverName();
 		
-		OrderService.Address address = OrderService.deserializerAddress(order.getAddrDetail());
+		address = OrderService.deserializerAddress(order.getAddrDetail());
 		receiverAddress = new String();
 		if( address.level1District != null ){
 			receiverAddress += address.level1District.getName();

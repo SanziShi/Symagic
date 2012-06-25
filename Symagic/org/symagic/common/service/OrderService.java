@@ -64,8 +64,8 @@ public class OrderService {
 		}
 		result.setOrderTime(bean.getOrderDate());
 		result.setReceiverName(bean.getReceiverName());
-		// result.setScore();
-		// result.setTotalPrice(bean.get)
+		//result.setScore();
+		result.setTotalPrice(bean.getTotalprice());
 		return result;
 	}
 	
