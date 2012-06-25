@@ -34,7 +34,7 @@ public class DaoUserTest extends TestCase{
 //		user.setAnswer("单小熙");
 //		assertEquals(true, du.addUser(user));
 //	}
-	
+//	
 //	@Test
 //	public void testUpdateNickname()
 //	{

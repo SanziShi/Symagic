@@ -29,7 +29,7 @@ public class BeanOrderDetail {
 	/**
 	 * 书籍折扣（百分率）
 	 */
-	private int	discount	= 100;	
+	private float	discount	= 1.0f;	
 	
 	/**
 	 * 数量，等于0就直接删除订单
@@ -67,10 +67,10 @@ public class BeanOrderDetail {
 	public void setMarketPrice(float marketPrice) {
 		this.marketPrice = marketPrice;
 	}
-	public int getDiscount() {
+	public float getDiscount() {
 		return discount;
 	}
-	public void setDiscount(int discount) {
+	public void setDiscount(float discount) {
 		this.discount = discount;
 	}
 	public int getAmount() {
