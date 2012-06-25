@@ -19,11 +19,6 @@ public class AdminIndexAction extends CatalogBase {
 	 */
 	private static final long serialVersionUID = 5870638099267465657L;
 
-	/**
-	 * 
-	 */
-	private List<CatalogBean> catalog;
-
 	private Integer totalSalesAmount;// :总销售量
 	private Float totalSalesRevenue;// ：销售总额；
 	private Integer userNum;// ：注册用户数；
@@ -38,14 +33,6 @@ public class AdminIndexAction extends CatalogBase {
 	private DaoBook daoBook;
 	
 	private OrderService orderService;
-
-	public List<CatalogBean> getCatalog() {
-		return catalog;
-	}
-
-	public void setCatalog(List<CatalogBean> catalog) {
-		this.catalog = catalog;
-	}
 
 	public Integer getTotalSalesAmount() {
 		return totalSalesAmount;
@@ -150,7 +137,7 @@ public class AdminIndexAction extends CatalogBase {
 		LatestOrders = new ArrayList<OrderBean>();
 
 		for (BeanOrder beanOrder : orderList) {
-			LatestOrders.add(orderService.convertBeanOrder(beanOrder));
+			LatestOrders.add(orderService.convertBeanOrderToOrderBean(beanOrder));
 		}
 
 		return super.execute();
