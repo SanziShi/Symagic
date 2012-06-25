@@ -40,12 +40,12 @@ public class BeanComment {
 		this.bookID = bookID;
 	}
 
-	public String getCotent() {
+	public String getContent() {
 		return content;
 	}
 
-	public void setCotent(String cotent) {
-		this.content = cotent;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getRating() {
