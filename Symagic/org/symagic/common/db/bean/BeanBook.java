@@ -119,12 +119,7 @@ public class BeanBook {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-	public String getPublisherDate() {
-		return publishDate;
-	}
-	public void setPublisherDate(String publisherDate) {
-		this.publishDate = publisherDate;
-	}
+	
 	public int getVersion() {
 		return version;
 	}
@@ -155,12 +150,7 @@ public class BeanBook {
 	public void setMarketPrice(float marketPrice) {
 		this.marketPrice = marketPrice;
 	}
-	public float getDiscount() {
-		return discount;
-	}
-	public void setDiscount(float discount) {
-		this.discount = discount;
-	}
+
 	public int getInventory() {
 		return inventory;
 	}
@@ -200,6 +190,10 @@ public class BeanBook {
 	public void setDiscount(Float discount) {
 		this.discount = discount;
 	}
+	public Float getDiscount() {
+		return discount;
+	}
+	
 	
 	
 }

@@ -133,7 +133,7 @@ public class DaoOrder {
 	}
 	
 	/**
-	 * 更新给定用户的制定订单
+	 * 更新给定用户的制定订单(有问题)
 	 * @param order	保存更新订单中所有信息的BeanOrder对象
 	 * @return	true 更新成功	false 更新失败
 	 */
@@ -179,6 +179,11 @@ public class DaoOrder {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("delete from order_detail where orderid=?");
+			ps.setInt(1, orderID);
+			ps.execute();
+			if (ps.getUpdateCount() == 0)
+				return false;
 			ps	= conn.prepareStatement("delete from book_order where username=? and orderid=?");
 			ps.setString(1, username);
 			ps.setInt(2, orderID);
@@ -257,7 +262,25 @@ public class DaoOrder {
 	 */
 	public int getFinishOrderAmount()
 	{
-		return 10;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from book_order where orderstate='2'");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return 0;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return 0;
 	}
 	
 	/**

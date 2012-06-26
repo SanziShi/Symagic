@@ -23,17 +23,17 @@ public class DaoUserTest extends TestCase{
 //	}
 	
 //	@Ignore
-//	@Test
-//	public void testAddUser() {
-//		BeanUser user	= new BeanUser();
-//		DaoUser du	= new DaoUser();
-//		user.setUsername("单小熙1");
-//		user.setNickname("小单车");
-//		user.setPassword("12");
-//		user.setQuestion("我的姓氏");
-//		user.setAnswer("单小熙");
-//		assertEquals(true, du.addUser(user));
-//	}
+	@Test
+	public void testAddUser() {
+		BeanUser user	= new BeanUser();
+		DaoUser du	= new DaoUser();
+		user.setUsername("单小熙1");
+		user.setNickname("小单车");
+		user.setPassword("12");
+		user.setQuestion("我的姓氏");
+		user.setAnswer("单小熙");
+		assertEquals(true, du.addUser(user));
+	}
 //	
 //	@Test
 //	public void testUpdateNickname()
