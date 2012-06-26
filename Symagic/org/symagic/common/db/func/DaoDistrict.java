@@ -68,25 +68,29 @@ public class DaoDistrict {
 		return list;
 	}
 	
-	public List<BeanDistrict> getDistrictById(int districtID)
+	/**
+	 * 获取指定地址ID的详细信息
+	 * @param districtID	指定地址ID
+	 * @return	BeanDistrict 封装者District详细信息的Bean实例
+	 */
+	public BeanDistrict getDistrictById(int districtID)
 	{
-		List<BeanDistrict>	list	= null;
+		BeanDistrict district	= null;
 		try {
 			
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from district where id=?");
 			ps.setInt(1, districtID);
 			rs	= ps.executeQuery();
-			list	= new ArrayList<BeanDistrict>();
-			while (rs.next()) {
-				BeanDistrict district	= new BeanDistrict();
+			if (rs.next()) {
+				district	= new BeanDistrict();
 				district.setId(rs.getInt("id"));
 				district.setLevel(rs.getInt("level"));
 				district.setName(rs.getString("name"));
 				district.setUpid(rs.getInt("upid"));
-				list.add(district);
+				return district;
 			}
-			return list;
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,6 +102,6 @@ public class DaoDistrict {
 				e.printStackTrace();
 			}
 		}
-		return list;
+		return district;
 	}
 }
