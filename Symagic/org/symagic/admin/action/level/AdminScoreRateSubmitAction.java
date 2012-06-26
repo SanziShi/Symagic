@@ -16,11 +16,15 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 	
 	private Integer low;
 	
-	private Integer scoreRate;
+	private Integer hight;
+	
+	private Float scoreRate;
 	
 	private boolean validateResult;
 	
 	private DaoLevel daoLevel;
+	
+	private String levelName;
 
 	@Override
 	public String execute() throws Exception {
@@ -30,7 +34,9 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 		BeanLevel level = new BeanLevel();
 		level.setId(levelID);
 		level.setLowLimit(low);
-		//积分比率？？！！！
+		level.setRate(scoreRate);
+		level.setUpLimit(hight);
+		level.setName(levelName);
 		daoLevel.update(level);
 		
 		return super.execute();
