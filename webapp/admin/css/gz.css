@@ -22,6 +22,10 @@ td.mywidth{
 		width:25%;}
 		.autoWidth{
 			width:auto;}
+			.checkBoxWidth{
+				width:8%;
+				vertical-align:middle;
+				}
 
 	
 #bgWhite{
@@ -194,5 +198,9 @@ td.mywidth{
 	left:350px;
 	
 }
-
-
+#item_font20{
+	font-size:20px;
+	}
+#item_font17{
+	font-size:17px;
+	}
