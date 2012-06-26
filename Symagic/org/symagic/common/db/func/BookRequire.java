@@ -12,8 +12,10 @@ public class BookRequire {
 	private String itemName = null;
 	private String publisher = null;
 	private String catalogID = null;
-//	year(年);1:当前年 2:-1 3:-2 4:-3 5:-4以上
+//	year
 	private String year	= null;
+	//表示year域搜索是之前的订单还是当前的。(true表示搜索之前的)
+	private Boolean before = false;
 //	version;
 	private Integer version = null;
 //	up_searchPage(页数);
