@@ -243,16 +243,51 @@ public class DaoOrder {
 	 */
 	public int getTotalOrderAmount()
 	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from book_order");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return 10;
 	}
 	
 	/**
 	 * 获取待审核订单数
-	 * @return int 待审核订单数
+	 * @return -1 查询失败	>=0 查询成功,返回待审核订单数
 	 */
 	public int getUnauditedOrderAmount()
 	{
-		return 5;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from book_order where orderstate='0'");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1;
 	}
 	
 	/**

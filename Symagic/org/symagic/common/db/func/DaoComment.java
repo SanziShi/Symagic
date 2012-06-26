@@ -167,10 +167,23 @@ public class DaoComment {
 			ps	= conn.prepareStatement("select rating from comment where bookid=? ");
 			rs	= ps.executeQuery();
 			int sum	= 0;
+			while(rs.next()) {
+				sum += rs.getInt(1);
+				count++;
+			}
+			if (count != 0)
+				return sum / count;
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return -1;
 	}
