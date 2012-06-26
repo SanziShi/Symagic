@@ -76,13 +76,35 @@ public class DaoComment {
 	 * @return List<BeanComment>存储平路详细信息的BeanComment实例列表
 	 */
 	public List<BeanComment> getComment(int bookID, int page, int lines) {
-		BeanComment	bc;
+		List<BeanComment> list	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select * from comment where ");
+			ps	= conn.prepareStatement("select * from comment where bookid=? " +
+					"order by bookid limit ?, ?");
+			ps.setInt(1, (page-1)*lines);
+			ps.setInt(2, lines);
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanComment>();
+			while (rs.next()) {
+				BeanComment comment	= new BeanComment();
+				comment.setBookID(rs.getInt("bookid"));
+				comment.setCommentDate(rs.getString("commentdate"));
+				comment.setContent(rs.getString("content"));
+				comment.setRating(rs.getString("rating"));
+				comment.setUsername(rs.getString("username"));
+				list.add(comment);
+			}
+			return list;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return new ArrayList<BeanComment>();
 	}
@@ -153,6 +175,47 @@ public class DaoComment {
 		return 0;
 	}
 	
+	/**
+	 * 删除订单
+	 * @param bookID	书籍ID
+	 * @param username	用户名
+	 * @return	true 删除成功	false 删除失败
+	 */
+	public boolean deleteComment(int bookID, String username)
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("delete from comment where bookid=?, username=?");
+			ps.execute();
+			if (ps.getUpdateCount() == 1)
+				return true;
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
 	
+	
+	/**
+	 * 获取所有订单数量
+	 * @return	-1 查询失败	>=0 查询正常
+	 */
+	public int getAllCommmentRowNum()
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from comment");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	
 }

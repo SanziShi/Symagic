@@ -289,6 +289,7 @@ public class DaoOrder {
 	public List<BeanOrder> getLatestOrders()
 	{
 		List<BeanOrder> list = null;
+		list	= new ArrayList<BeanOrder>();
 		return list;
 	}
 	
