@@ -123,4 +123,36 @@ public class DaoComment {
 		return false;
 	}
 	
+	
+	/**
+	 * 获取给定书籍ID的评论条数
+	 * 
+	 * @param bookID
+	 * @return >=0 成功成功，评论条数	-1 查询失败 
+	 */
+	public int getCommnetNumber(int bookID) {
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from comment where bookid=?");
+			ps.setInt(1, bookID);
+			rs	= ps.executeQuery();
+			
+			// 如果查询成功，则返回评论数目
+			if (rs.next()) {
+				conn.close();
+				return rs.getInt(1);
+			}
+			
+			// 若查询失败,则返回-1
+			conn.close();
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	
+	
 }
