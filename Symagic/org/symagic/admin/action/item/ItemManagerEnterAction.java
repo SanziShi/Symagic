@@ -1,5 +1,8 @@
 package org.symagic.admin.action.item;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
 
@@ -7,87 +10,106 @@ import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * 控制进入商品管理页面的Action
+ * 
  * @author hao
- *
+ * 
  */
 public class ItemManagerEnterAction extends ActionSupport {
 
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 7734758591630202798L;
-	
 
-	
 	/**
 	 * 搜索用的书名
 	 */
 	private String name;
-	
+
 	/**
 	 * 出版社名字
 	 */
 	private String publisher;
-	
+
 	/**
 	 * 类别的ID
 	 */
 	private Integer catalogID;
-	
+
 	/**
 	 * 书籍出版的年份
 	 */
 	private Integer publishTime;
 
-	
 	/**
 	 * 书籍的版次
 	 */
 	private Integer edition;
-	
+
 	/**
 	 * 搜索的页数范围
 	 */
-	private Integer searchPage;//(0:0~200,1:200~400;2:400~600,3:>600)
-	
+	private Integer searchPage;// (0:0~200,1:200~400;2:400~600,3:>600)
+
 	/**
 	 * 搜索书籍的装帧
 	 */
 	private String binding;
-	
+
 	/**
 	 * 搜索数据的开本
 	 */
 	private String booksize;
-	
-	private Integer price;//（0:0`10,1:10`30,2:30`50,3:50`100,4:>100）;
-	private Integer discount;//(0：所有；1:3折以下;2:3-5折；3：5-7折；4：7折以上）
-	
+
+	private Integer price;// （0:0`10,1:10`30,2:30`50,3:50`100,4:>100）;
+	private Integer discount;// (0：所有；1:3折以下;2:3-5折；3：5-7折；4：7折以上）
+
 	private String author;
-	
+
 	private String description;
-	
-	private Integer page;//（第几页)
+
+	private Integer page;// （第几页)
 	private Integer totalPage;
 	private Integer currentPage;
-	
+
 	private DaoBook daoBook;
-	
+
 	@Override
 	public String execute() throws Exception {
-		
-		//建立书籍搜索的require
+
+		// 建立书籍搜索的require
 		BookRequire require = new BookRequire();
 		require.setItemName(name);
 		require.setPublisher(publisher);
-		require.setCatalogID(catalogID.toString());
-		//require.setYear();
+		if (catalogID != 0)
+			require.setCatalogID(catalogID.toString());
+		else
+			require.setCatalogID(null);
 		
+		GregorianCalendar calendar = new GregorianCalendar();
+		
+		switch( publishTime ){
+		case 0:
+			require.setYear(null);
+			break;
+		case 1:
+			require.setYear(Integer.toString(calendar.get(Calendar.YEAR)));
+			break;
+		case 2:
+			require.setYear(Integer.toString(calendar.get(Calendar.YEAR) - 1));
+			break;
+		case 3:
+			require.setYear(Integer.toString(calendar.get(Calendar.YEAR) - 2));
+			break;
+		case 4:
+			require.setYear(Integer.toString(calendar.get(Calendar.YEAR) - 3));
+			break;
+		case 5:
+			require.setYear(Integer.toString(calendar.get(Calendar.YEAR)-3));
+			require.setBefore(true);
+			break;
+		}
 
-		
-		
-		
 		return SUCCESS;
 	}
 
@@ -106,7 +128,6 @@ public class ItemManagerEnterAction extends ActionSupport {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-
 
 	public Integer getEdition() {
 		return edition;
@@ -131,7 +152,6 @@ public class ItemManagerEnterAction extends ActionSupport {
 	public void setBinding(String binding) {
 		this.binding = binding;
 	}
-
 
 	public Integer getPrice() {
 		return price;

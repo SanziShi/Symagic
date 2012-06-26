@@ -154,4 +154,12 @@ public class BookRequire {
 	public void setCatalogID(String catalogID) {
 		this.catalogID = catalogID;
 	}
+
+	public Boolean getBefore() {
+		return before;
+	}
+
+	public void setBefore(Boolean before) {
+		this.before = before;
+	}
 }
