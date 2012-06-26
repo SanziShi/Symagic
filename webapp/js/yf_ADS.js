@@ -104,6 +104,7 @@ function clear_notice()
 		}
 	};
 	for (x in n)document.body.removeChild(n[x]);
+	a=null;n=null;
 }
 function close_float(elem)
 {
@@ -125,6 +126,7 @@ function close_float(elem)
 		f.parentNode.removeChild(f);
 		hideOverlay();
 		});
+	a=null;n=null;
 }
 function show_user_con(num)
 {
@@ -154,6 +156,7 @@ function show_item_search(e)
 }
 
 /*--------------yf_ADS库函数-------------------*/
+
 //增加事件监听注册器
 function addListener(element,e,fn){
      if(element.addEventListener){
@@ -834,50 +837,74 @@ if (!JSON) {
 
 
 $().ready(function() {
-	addListener(document.getElementById('cart_top'),"mouseover",function(e)
+	var cart={
+		top:document.getElementById('cart_top'),
+		a:document.getElementById('cart_a'),
+		icon:document.getElementById('cart_icon'),
+		container:document.getElementById('cart_container'),
+		loading:document.getElementById('cart_loading'),
+		cart:document.getElementById('cart')
+		}
+	addListener(cart.top,"mouseover",function(e)
 	{
 		e=e||window.event;
-		if(mouseover_check(e,document.getElementById('cart_top')))
+		if(mouseover_check(e,cart.top))
 		{
 			//if(document.getElementById('cart_top').className.indexOf('hover')==-1)
 			//{
-			
-				document.getElementById('cart_top').className+='hover';
-				document.getElementById('cart_a').className+='hover';
-				document.getElementById('cart_icon').className+='hover';
+				cart.top.className+='hover';
+				cart.a.className+='hover';
+				cart.icon.className+='hover';
 			//}
-		GLOBAL.cart_on_buff=setTimeout(function(){$('#cart').fadeIn(1)},300);
+		GLOBAL.cart_on_buff=setTimeout(function()
+			{
+				Ajax({
+					url:'lib/cart_inner.html',
+					onSend:function(){document.getElementById('cart_loading').style.display='block';},
+					onSuccess:function(e)
+						{
+							/*var t=document.createElement('div');
+							t.id='cart_container';
+							t.innerHTML=e;
+							document.getElementById('cart').appendChild(t);
+							t=null;*/
+							cart.loading.style.display='none';
+							cart.container.innerHTML=e;
+						}
+					});
+				$('#cart').fadeIn(1);
+			},300);
 		}
 	});
-	addListener(document.getElementById('cart_top'),"mouseout",function(e){
+	addListener(cart.top,"mouseout",function(e){
 		e=e||window.event;
-		if(mouseout_check(e,document.getElementById('cart_top')))
+		if(mouseout_check(e,cart.top))
 		{
 			clearTimeout(GLOBAL.cart_on_buff);
 			GLOBAL.cart_buff=setTimeout(function(){
-				document.getElementById('cart_top').className='';
-				document.getElementById('cart_a').className='';
-				document.getElementById('cart_icon').className='';
-				document.getElementById('cart').style.display='none';}
+				cart.top.className='';
+				cart.a.className='';
+				cart.icon.className='';
+				cart.cart.style.display='none';}
 				//$('#cart').fadeOut(1);}
 			,10);
 		}
 	});
-	addListener(document.getElementById('cart'),"mouseover",function(e){
+	addListener(cart.cart,"mouseover",function(e){
 		e=e||window.event;
-		if(mouseover_check(e,document.getElementById('cart')))
+		if(mouseover_check(e,cart.cart))
 		{
 			clearTimeout(GLOBAL.cart_buff);
 		}
 	});
-	addListener(document.getElementById('cart'),"mouseout",function(e){
+	addListener(cart.cart,"mouseout",function(e){
 		e=e||window.event;
-		if(mouseout_check(e,document.getElementById('cart')))
+		if(mouseout_check(e,cart.cart))
 		{
-			document.getElementById('cart_top').className='';
-			document.getElementById('cart_a').className='';
-			document.getElementById('cart_icon').className='';
-			document.getElementById('cart').style.display='none';
+			cart.top.className='';
+			cart.a.className='';
+			cart.icon.className='';
+			cart.cart.style.display='none';
 			//$('#cart').fadeOut(1);
 		}
 	});

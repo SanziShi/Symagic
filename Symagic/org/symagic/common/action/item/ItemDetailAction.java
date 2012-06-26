@@ -127,7 +127,7 @@ public class ItemDetailAction extends ActionSupport {
 
 		itemPublisher = book.getPublisher();
 
-		itemPublishingTime = book.getPublisherDate();
+		itemPublishingTime = book.getPublishDate();
 
 		itemEdition = book.getVersion();
 

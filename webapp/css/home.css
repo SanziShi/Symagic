@@ -292,7 +292,6 @@ span.close
 	top:26px;
 	right:10px;
 	min-height:50px;
-	display:block;
 	width:300px;
 	background:#FFF;
 	border:#4796E4 solid ;
@@ -303,7 +302,7 @@ span.close
 	-moz-border-radius: 5px 0 5px 5px;
 	-webkit-border-radius: 5px 0 5px 5px;
 }
-.cart_loading
+#cart_loading
 {
 	background:url(../image/cart_loading.gif);
 	height:32px;

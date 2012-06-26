@@ -2,38 +2,49 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <title>BC2商城</title>
+<link href="css/cart.css" rel="stylesheet" type="text/css">
 <link href="css/frame.css" rel="stylesheet" type="text/css">
-   <script type="text/javascript" src="js/yf_ADS.js"></script>
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script><script type="text/javascript" src="js/yf_ADS.js"></script>
 </head>
-<script language="javascript" src="js/checkform.js">
-</script>
 <body>
 <div id="container">
+	<div id="cart">
+	<span id="cart_loading"></span>
+	<div id="cart_none">您的购物车中还没有商品，请选购！</div>
+    <div id="cart_container"></div>
+</div>
 	<div id="logalleft">
-		<div id="logalright">
-		<a href="register.html" target="_parent">[注册&nbsp;</a>] | 
-		<a href="" target="_parent">王小静 已登录| 
-		<a href="user_edit.html" target="_parent">个人信息维护</a> | 
-		<a href="address_daohang.html" target="_parent">地址簿</a> |
-	 	<a href="home_nologin.html" target="_parent">退出</a>
-		</div>
+    <div id="top-overlay"></div>
+    <!----吊顶栏------>
+	<div class="top">
+    <div class="top_right">
+    <ul>
+    <li>欢迎来到Symagic！</li>
+    <!--<s:property value="#session.username"/><s:property value="#session.nickname"/>-->
+    <li id="login_top" onclick="load_login();"><a>登录</a></li>
+    <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
+    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li id="cart_top"><a id="cart_a" href="cart.html">
+    <span id="cart_icon"></span>购物车 <strong id="cart_num">0</strong> 件</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+  <!------吊顶结束----->
 	</div>
 	<div id="globallink">
 		<ul>
 			<li><a href="index.html">首页</a></li>
-			<li><a href="credit_query.html">积分查询</a></li>
-			<li><a href="item_search.html">商品搜索</a></li>
-			<li><a href="favorite.html" >收藏夹</a></li>
-			<li><a href="cart.html">我的购物车</a></li>
+			<li><a href="item_list.html">商品列表</a></li>
+			<li><a href="favorite.html">收藏夹</a></li>
+			<li><a href="address.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
 			<li><a href="send_notes.html">送货说明</a></li>
-			<li><a href="" class="nouseful">&nbsp;</a></li>
+            <li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-	<div id="banner"></div>
 	<div id="main">
 		<div id="search2">
 			<div id="searchleft">
@@ -53,6 +64,22 @@
               </select>
 		  </div>
 		</div>
+        <div class="clear"></div>
+        <div id="cart-a">
+        	<h2>我的购物车</h2>
+        	<div id="cart_table">
+        		<div id="cart_table_head">
+            	</div>
+            	<div id="cart_table_content">
+                	<ul>
+                    	<li></li>
+                    </ul>
+            	</div>
+            	<div id="cart_table_button">
+            	</div>
+        	</div>
+        </div>
+        <div id="recommend"></div>
 		<div id="sendnote">
 			<div id="sendnotehead"><strong>购物车内的商品</strong></div>
 			<div id="sendnotecontent">
@@ -83,7 +110,7 @@
 					<td>
 						<input type="text" name="itemNo1" class="smallinputext" value="4"></td>
 					<td>
-						<a href="favorite.html"><img src="image/collection.gif"  class="picture"/></a>&nbsp;<a href="#" onClick="window.confirm('确定删除？')"><img src="image/delete_item.gif" class="picture"/></a></td>
+						<a href="favorite.html"></a>&nbsp;<a href="#" onClick="window.confirm('确定删除？')"><img src="image/delete_item.gif" class="picture"/></a></td>
           		  </tr>
 				  <tr>
             		<td>
@@ -97,9 +124,8 @@
 					<td>
 						￥2.40					</td>
 					<td><input type="text" name="itemNo2" class="smallinputext" value="5">			</td>
-					<td>
-						<a href="favorite.html"><img src="image/collection.gif"  class="picture"/></a>&nbsp;<a href="#" onClick="window.confirm('确定删除？')"><img src="image/delete_item.gif" class="picture"/></a></td>
-					</tr>
+					<td>&nbsp;<a href="#" onClick="window.confirm('确定删除？')"><img src="image/delete_item.gif" class="picture"/></a></td>
+				  </tr>
 					<tr>
             		<td>
 					</td>

@@ -67,4 +67,37 @@ public class DaoDistrict {
 		}
 		return list;
 	}
+	
+	public List<BeanDistrict> getDistrictById(int districtID)
+	{
+		List<BeanDistrict>	list	= null;
+		try {
+			
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from district where id=?");
+			ps.setInt(1, districtID);
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanDistrict>();
+			while (rs.next()) {
+				BeanDistrict district	= new BeanDistrict();
+				district.setId(rs.getInt("id"));
+				district.setLevel(rs.getInt("level"));
+				district.setName(rs.getString("name"));
+				district.setUpid(rs.getInt("upid"));
+				list.add(district);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 }
