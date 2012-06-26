@@ -76,6 +76,7 @@
 		<property name="daoOrder" ref="DaoOrder"></property>
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService" ></property>
 	</bean>
 
 	<bean id="AdminEnterOrderEdit"

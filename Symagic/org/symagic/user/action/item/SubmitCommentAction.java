@@ -7,7 +7,12 @@ import org.symagic.user.utilty.UserSessionUtilty;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class SubmitCommentAction extends ActionSupport {
-     private ItemService itemService;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 374171812883600054L;
+
+	private ItemService itemService;
 	
 	private int itemId;//评论的商品
 	 private String content;//评论内容
@@ -20,7 +25,7 @@ public class SubmitCommentAction extends ActionSupport {
 		// TODO Auto-generated method stub
 		BeanComment comment=new BeanComment();
 		comment.setBookID(itemId);
-		comment.setCotent(content);
+		comment.setContent(content);
 		comment.setRating(rating+"");//?string
 		comment.setUsername(UserSessionUtilty.getUsername());
 		submitResult=itemService.addItemComment(comment);
