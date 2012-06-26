@@ -8,6 +8,7 @@ import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.DaoUser;
+import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.CatalogBean;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
 
@@ -35,6 +36,8 @@ public class AdminIndexAction extends CatalogBase {
 	private DaoOrder daoOrder;
 	private DaoUser daoUser;
 	private DaoBook daoBook;
+	
+	private OrderService orderService;
 
 	public List<CatalogBean> getCatalog() {
 		return catalog;
@@ -142,35 +145,20 @@ public class AdminIndexAction extends CatalogBase {
 		totalOrderAmout = daoOrder.getTotalOrderAmount();
 		unauditedOrderAmount = daoOrder.getUnauditedOrderAmount();
 		finishOrderAmount = daoOrder.getFinishOrderAmount();
-
-		List<BeanOrder> orderList = daoOrder.getLatestOrders();
+        List<BeanOrder> orderList = daoOrder.getLatestOrders();
 		LatestOrders = new ArrayList<OrderBean>();
-
-		for (BeanOrder beanOrder : orderList) {
-			OrderBean bean = new OrderBean();
-			bean.setOrderId(Integer.toString(beanOrder.getOrderId()));
-			switch (Integer.parseInt(beanOrder.getOrderState())) {
-			case 0:
-				bean.setOrderStatus("已下单");
-				break;
-			case 1:
-				bean.setOrderStatus("已审核");
-				break;
-			case 2:
-				bean.setOrderStatus("交易成功");
-				break;
-			case 3:
-				bean.setOrderStatus("交易失败");
-				break;
-			}
-			bean.setOrderTime(beanOrder.getOrderDate());
-			bean.setReceiverName(beanOrder.getReceiverName());
-			// bean.setScore(beanOrder.get)
-			// bean.setTotalPrice(beanOrder.get)
-			LatestOrders.add(bean);
+        for (BeanOrder beanOrder : orderList) {
+			LatestOrders.add(orderService.convertBeanOrder(beanOrder));
 		}
+          return super.execute();
+	}
 
-		return super.execute();
+	public OrderService getOrderService() {
+		return orderService;
+	}
+
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
 	}
 
 }
