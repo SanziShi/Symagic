@@ -10,16 +10,16 @@ import org.symagic.common.db.func.DaoOrder;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AdminSuccessOrderAction extends ActionSupport {
-
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3198437970465011919L;
 	private String orderIDList;
 	private Boolean changeResult;
-
+	
 	private DaoOrder daoOrder;
-
+	
 	@Override
 	public String execute() throws Exception {
 
@@ -41,11 +41,9 @@ public class AdminSuccessOrderAction extends ActionSupport {
 
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				if (order != null) {
-					order.setOrderState("2");
-					daoOrder.updateOrder(order);
-					// orderScore
-				}
+				order.setOrderState("2");
+				daoOrder.updateOrder(order);
+				//orderScore
 			}
 
 			changeResult = true;

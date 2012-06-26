@@ -3,7 +3,6 @@ package org.symagic.common.db.func;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.symagic.common.db.pool.ConnectionPool;
@@ -30,21 +29,16 @@ public class DaoAdmin {
 			rs	= ps.executeQuery();
 			if (rs.next()) {
 				if (rs.getInt(1) == 1)  {
+					conn.close();
 					return true;
 				}
 			}
+			conn.close();
 			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
-		return false;
+		return true;
 	}
 }

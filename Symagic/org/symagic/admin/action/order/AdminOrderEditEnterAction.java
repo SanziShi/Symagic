@@ -34,29 +34,26 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 
 		// level1 district
 		List<BeanDistrict> list = daoDistrict.getDistrict(null);
-		if (list != null) {
-			level1District = convertBeanDistrictList(list);
+		level1District = convertBeanDistrictList(list);
 
-			list = daoDistrict.getDistrict(this.address.level1District.getId());
+		list = daoDistrict.getDistrict(this.address.level1District.getId());
+		if (list != null)
+			level2District = convertBeanDistrictList(list);
+		else
+			level2District = null;
+		selectedLevel1DistrictID = address.level1District.getId();
+
+		if (this.address.level2District != null) {
+			list = daoDistrict.getDistrict(this.address.level2District.getId());
 			if (list != null)
-				level2District = convertBeanDistrictList(list);
+				level3District = convertBeanDistrictList(list);
 			else
-				level2District = null;
-			selectedLevel1DistrictID = address.level1District.getId();
-
-			if (this.address.level2District != null) {
-				list = daoDistrict.getDistrict(this.address.level2District
-						.getId());
-				if (list != null)
-					level3District = convertBeanDistrictList(list);
-				else
-					level3District = null;
-				selectedLevel2DistrictID = address.level2District.getId();
-			}
-
-			if (this.address.level3District != null)
-				selectedLevel3DistrictID = address.level3District.getId();
+				level3District = null;
+			selectedLevel2DistrictID = address.level2District.getId();
 		}
+
+		if (this.address.level3District != null)
+			selectedLevel3DistrictID = address.level3District.getId();
 
 		return result;
 
