@@ -119,7 +119,7 @@ public class ItemDetailAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 
-		BeanBook book = daoBook.getDeatil(itemID);
+		BeanBook book = daoBook.getDetail(itemID);
 
 		ISBN = book.getIsbn();
 		itemName = book.getBookName();

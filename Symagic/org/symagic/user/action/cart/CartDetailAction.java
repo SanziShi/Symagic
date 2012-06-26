@@ -49,7 +49,10 @@ private float totalPrice;//购物车中商品的总价
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 	 items=new ArrayList<ItemBean>();
+
 	 totalPrice=itemService.fillItemWithNumber(items);
+    
+	
 	 return super.execute();
 	}
  

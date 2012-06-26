@@ -175,7 +175,7 @@ public class DaoOrder {
 	 * @param orderID	指定要删除的订单
 	 * @return	true 删除成功	false 删除失败
 	 */
-	public boolean deleteOrder(String username, int orderID)
+	public boolean deleteOrder(int orderID)
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
@@ -184,9 +184,8 @@ public class DaoOrder {
 			ps.execute();
 			if (ps.getUpdateCount() == 0)
 				return false;
-			ps	= conn.prepareStatement("delete from book_order where username=? and orderid=?");
-			ps.setString(1, username);
-			ps.setInt(2, orderID);
+			ps	= conn.prepareStatement("delete from book_order where orderid=?");
+			ps.setInt(1, orderID);
 			ps.execute();
 			if (ps.getUpdateCount() == 1)
 				return true;
