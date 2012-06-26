@@ -193,9 +193,11 @@ public class DaoBook {
 	 * 
 	 * @param req
 	 *            封装书籍搜索条件的对象
+	 * @param sign
+	 *        	  标志， 0:普通查询	 1:高级查询
 	 * @return List<BeanBook> 存储着BeanBook对象的列表
 	 */
-	public List<BeanBook> search(BookRequire req) {
+	public List<BeanBook> search(int sign, BookRequire req) {
 		return new ArrayList<BeanBook>();
 	}
 

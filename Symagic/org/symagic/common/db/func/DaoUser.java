@@ -3,6 +3,7 @@ package org.symagic.common.db.func;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.symagic.common.db.bean.BeanUser;
@@ -254,6 +255,43 @@ public class DaoUser {
 	public int getUserNum()
 	{
 		return 10;
+	}
+	
+	/**
+	 * 获取指定用户的所有信息
+	 * @param username	指定用户名
+	 * @return	BeanUser封装者用户信息的Bean实例
+	 */
+	public BeanUser getUser(String username)
+	{
+		BeanUser user	= null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from user where username=?");
+			ps.setString(1, username);
+			rs	= ps.executeQuery();
+			if (rs.next()) {
+				user	= new BeanUser();
+				user.setAnswer(rs.getString("answer"));
+				user.setNickname(rs.getString("nickname"));
+				user.setQuestion(rs.getString("question"));
+				user.setScore(rs.getInt("score"));
+				user.setUserId(rs.getInt("userid"));
+				user.setUsername(rs.getString("username"));
+			}
+			return user;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 	
 }

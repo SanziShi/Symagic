@@ -23,17 +23,17 @@ public class DaoUserTest extends TestCase{
 //	}
 	
 //	@Ignore
-	@Test
-	public void testAddUser() {
-		BeanUser user	= new BeanUser();
-		DaoUser du	= new DaoUser();
-		user.setUsername("单小熙1");
-		user.setNickname("小单车");
-		user.setPassword("12");
-		user.setQuestion("我的姓氏");
-		user.setAnswer("单小熙");
-		assertEquals(true, du.addUser(user));
-	}
+//	@Test
+//	public void testAddUser() {
+//		BeanUser user	= new BeanUser();
+//		DaoUser du	= new DaoUser();
+//		user.setUsername("单小熙1");
+//		user.setNickname("小单车");
+//		user.setPassword("12");
+//		user.setQuestion("我的姓氏");
+//		user.setAnswer("单小熙");
+//		assertEquals(true, du.addUser(user));
+//	}
 //	
 //	@Test
 //	public void testUpdateNickname()
@@ -55,5 +55,12 @@ public class DaoUserTest extends TestCase{
 //		DaoUser du = new DaoUser();
 //		assertEquals(true, du.updatePassword("单小熙1", "21", "12"));
 //	}
+	
+	@Test
+	public void testGetUser()
+	{
+		DaoUser du	= new DaoUser();
+		assertEquals(0, du.getUser("单小熙1").getScore());
+	}
 
 }
