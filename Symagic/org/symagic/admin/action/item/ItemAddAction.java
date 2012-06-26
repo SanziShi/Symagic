@@ -157,7 +157,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setBookName(name);
 		book.setAuthor(author);
 		book.setPublisher(publisher);
-		book.setPublisherDate(dateFormat.format(calender.getTime()));
+		book.setPublishDate(dateFormat.format(calender.getTime()));
 		book.setVersion(edition);
 		book.setPage(page);
 		book.setBinding(binding);
