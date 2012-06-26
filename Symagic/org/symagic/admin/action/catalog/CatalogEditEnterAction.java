@@ -1,6 +1,7 @@
 package org.symagic.admin.action.catalog;
 
 import org.symagic.common.action.catalog.CatalogBase;
+import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.func.DaoCatalog;
 
 public class CatalogEditEnterAction extends CatalogBase {
@@ -34,6 +35,12 @@ public class CatalogEditEnterAction extends CatalogBase {
 
 	@Override
 	public String execute() throws Exception {
+		
+		BeanCatalog catalog = daoCatalog.getCatalogByID(catalogID);
+		
+		catalogName = catalog.getCatalogName();
+		catalogDesc = catalog.getCatalogDesc();
+		upID = catalog.getUpID();
 		
 		
 		return super.execute();

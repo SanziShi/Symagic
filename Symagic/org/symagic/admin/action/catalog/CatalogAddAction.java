@@ -37,7 +37,7 @@ public class CatalogAddAction extends ActionSupport {
 		BeanCatalog catalog = new BeanCatalog();
 		catalog.setCatalogName(catalogName);
 		catalog.setCatalogDesc(catalogDesc);
-		if (upID == -1)
+		if (upID == 0)
 			catalog.setLevel("1");
 		else {
 			catalog.setLevel("2");
