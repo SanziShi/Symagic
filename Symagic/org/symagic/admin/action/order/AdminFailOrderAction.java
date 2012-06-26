@@ -22,10 +22,10 @@ public class AdminFailOrderAction extends ActionSupport {
 	private static final long serialVersionUID = 3790488288537580693L;
 	private String orderIDList;
 	private Boolean changeResult;
-	
+
 	private DaoOrder daoOrder;
 	private DaoBook daoBook;
-	
+
 	@Override
 	public String execute() throws Exception {
 
@@ -47,14 +47,20 @@ public class AdminFailOrderAction extends ActionSupport {
 
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				order.setOrderState("3");
-				daoOrder.updateOrder(order);
-				List<BeanOrderDetail> items = order.getList();
-				for( BeanOrderDetail detail : items ){
-					BeanBook bookDetail = daoBook.getDeatil(detail.getBookId());
-					if( bookDetail == null ) return super.execute();
-					bookDetail.setInventory(bookDetail.getInventory() + detail.getAmount() );
-					if( !daoBook.modifyBook(bookDetail) ) return super.execute();
+				if (order != null) {
+					order.setOrderState("3");
+					daoOrder.updateOrder(order);
+					List<BeanOrderDetail> items = order.getList();
+					for (BeanOrderDetail detail : items) {
+						BeanBook bookDetail = daoBook.getDetail(detail
+								.getBookId());
+						if (bookDetail == null)
+							return super.execute();
+						bookDetail.setInventory(bookDetail.getInventory()
+								+ detail.getAmount());
+						if (!daoBook.modifyBook(bookDetail))
+							return super.execute();
+					}
 				}
 			}
 

@@ -142,6 +142,8 @@ public class ItemModifySubmitAction extends ActionSupport implements
 			return ERROR;
 
 		BeanBook book = daoBook.getDetail(itemID);
+		
+		if( book == null ) return ERROR;
 
 		// 文件处理
 		String fileFolder = context.getRealPath("/" + shopImageFileFolder);

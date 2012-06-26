@@ -11,9 +11,11 @@ public class BookRequire {
 // 
 	private String itemName = null;
 	private String publisher = null;
-	private String atalogID = null;
-//	year(年);1:当前年 2:-1 3:-2 4:-3 5:-4以上
+	private String catalogID = null;
+//	year
 	private String year	= null;
+	//表示year域搜索是之前的订单还是当前的。(true表示搜索之前的)
+	private Boolean before = false;
 //	version;
 	private Integer version = null;
 //	up_searchPage(页数);
@@ -38,4 +40,126 @@ public class BookRequire {
 	private Integer page	= null;
 	
 	private Integer lines	= null;
+
+	public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public Integer getUpPage() {
+		return upPage;
+	}
+
+	public void setUpPage(Integer upPage) {
+		this.upPage = upPage;
+	}
+
+	public Integer getLowPage() {
+		return lowPage;
+	}
+
+	public void setLowPage(Integer lowPage) {
+		this.lowPage = lowPage;
+	}
+
+	public String getBinding() {
+		return binding;
+	}
+
+	public void setBinding(String binding) {
+		this.binding = binding;
+	}
+
+	public String getFolio() {
+		return folio;
+	}
+
+	public void setFolio(String folio) {
+		this.folio = folio;
+	}
+
+	public Float getUpPrice() {
+		return upPrice;
+	}
+
+	public void setUpPrice(Float upPrice) {
+		this.upPrice = upPrice;
+	}
+
+	public Float getLowPrice() {
+		return lowPrice;
+	}
+
+	public void setLowPrice(Float lowPrice) {
+		this.lowPrice = lowPrice;
+	}
+
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getLines() {
+		return lines;
+	}
+
+	public void setLines(Integer lines) {
+		this.lines = lines;
+	}
+
+	public String getCatalogID() {
+		return catalogID;
+	}
+
+	public void setCatalogID(String catalogID) {
+		this.catalogID = catalogID;
+	}
+
+	public Boolean getBefore() {
+		return before;
+	}
+
+	public void setBefore(Boolean before) {
+		this.before = before;
+	}
 }
