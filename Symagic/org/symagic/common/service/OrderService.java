@@ -97,19 +97,19 @@ public class OrderService {
 		
 		if( level1 != null ){
 			result.level1District = new DistrictBean();
-			result.level1District.setId(level1.getInt("id"));
+			result.level1District.setID(level1.getInt("id"));
 			result.level1District.setName(level1.getString("name"));
 		}
 		
 		if( level2 != null ){
 			result.level1District = new DistrictBean();
-			result.level1District.setId(level2.getInt("id"));
+			result.level1District.setID(level2.getInt("id"));
 			result.level1District.setName(level2.getString("name"));
 		}
 		
 		if( level3 != null ){
 			result.level1District = new DistrictBean();
-			result.level1District.setId(level3.getInt("id"));
+			result.level1District.setID(level3.getInt("id"));
 			result.level1District.setName(level3.getString("name"));
 		}
 			
@@ -124,19 +124,19 @@ public class OrderService {
 		
 		if( address.level1District != null ){
 			JSONObject district = new JSONObject();
-			district.put("id", address.level1District.getId() );
+			district.put("id", address.level1District.getID() );
 			district.put("name", address.level1District.getName());
 		}
 		
 		if( address.level2District != null ){
 			JSONObject district = new JSONObject();
-			district.put("id", address.level2District.getId() );
+			district.put("id", address.level2District.getID() );
 			district.put("name", address.level2District.getName());
 		}
 		
 		if( address.level3District != null ){
 			JSONObject district = new JSONObject();
-			district.put("id", address.level3District.getId() );
+			district.put("id", address.level3District.getID() );
 			district.put("name", address.level3District.getName());
 		}
 		

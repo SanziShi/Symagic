@@ -1,5 +1,7 @@
 package org.symagic.admin.action.comment;
 
+import org.symagic.common.db.func.DaoComment;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AdminDeleteCommentAction extends ActionSupport {
@@ -12,18 +14,17 @@ public class AdminDeleteCommentAction extends ActionSupport {
 	private Integer commentID;
 	private Boolean deleteResult;
 	
+	private DaoComment daoComment;
+	
 
 	@Override
 	public String execute() throws Exception {
 		
+		deleteResult = false;
 		
 		if( commentID != null ){
-			
+			//daoComment.delete??!!!
 		}
-		else{
-			deleteResult = false;
-		}
-		
 		
 		return super.execute();
 	}

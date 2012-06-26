@@ -38,6 +38,14 @@
 	</bean>
 
 	<!-- 管理员的action bean -->
+	<bean id="AdminIndex" class="org.symagic.admin.action.index.AdminIndexAction">
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
 	<bean id="AdminLogin" class="org.symagic.admin.action.login.AdminLoginAction">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 		<property name="daoAdmin" ref="DaoAdmin"></property>
@@ -71,18 +79,26 @@
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
-	<bean id="AdminIndex" class="org.symagic.admin.action.index.AdminIndexAction">
-		<property name="daoUser" ref="DaoUser"></property>
-		<property name="daoOrder" ref="DaoOrder"></property>
-		<property name="daoBook" ref="DaoBook"></property>
-		<property name="orderService" ref="OrderService"></property>
-		<property name="catalogService" ref="CatalogService" ></property>
+	<bean id="AdminEnterEditCatalog" class="org.symagic.admin.action.catalog.CatalogEditEnterAction">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
+
+	<bean id="AdminDeleteCatalog" class="org.symagic.admin.action.catalog.CatalogDeleteAction">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
 
 	<bean id="AdminEnterOrderEdit"
 		class="org.symagic.admin.action.order.AdminOrderEditEnterAction">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
+	</bean>
+
+	<bean id="AdminSubmitOrderEdit"
+		class="org.symagic.admin.action.order.AdminOrderEditSubmitAction">
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="AdminPassOrder" class="org.symagic.admin.action.order.AdminPassOrderAction">
@@ -92,6 +108,15 @@
 	<bean id="AdminFailOrder" class="org.symagic.admin.action.order.AdminFailOrderAction">
 		<property name="daoOrder" ref="DaoOrder"></property>
 		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="AdminDeleteOrder" class="org.symagic.admin.action.order.AdminDeleteOrderAction">
+		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
+
+	<bean id="AdminSubmitScoreRate"
+		class="org.symagic.admin.action.level.AdminScoreRateSubmitAction">
+		<property name="daoLevel" ref="DaoLevel"></property>
 	</bean>
 
 
@@ -116,9 +141,6 @@
 
 	<bean id="deleteFromCart" class="org.symagic.user.action.cart.CartDeleteItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
-	</bean>
-	<bean id="detailOfCart" class="org.symagic.user.action.cart.CartDetailAction">
-		<property name="itemService" ref="ItemService"></property>
 	</bean>
 	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
@@ -145,12 +167,7 @@
 	<bean id="OrderService" class="org.symagic.common.service.OrderService">
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
-	
-	<bean id="ItemService" class="org.symagic.common.service.ItemService">
-	  <property name="daoBook" ref="DaoBook"></property>
-	  <property name="daoComment" ref="DaoComment"></property>
-	</bean>
-  
+
 
 	<!-- 数据层bean -->
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
@@ -162,6 +179,7 @@
 	<bean id="DaoOrder" class="org.symagic.common.db.func.DaoOrder" />
 	<bean id="DaoDistrict" class="org.symagic.common.db.func.DaoDistrict" />
 	<bean id="DaoComment" class="org.symagic.common.db.func.DaoComment" />
+	<bean id="DaoLevel" class="org.symagic.common.db.func.DaoLevel" />
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>

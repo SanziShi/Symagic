@@ -24,6 +24,8 @@ public class CatalogDeleteAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		
+		deleteResult = false;
+		
 		if( catalogIDList != null ){
 			
 			JSON json = JSONSerializer.toJSON(catalogIDList);
@@ -35,17 +37,38 @@ public class CatalogDeleteAction extends ActionSupport {
 			JSONArray array = (JSONArray) json;
 			
 			for( int i = 0; i < array.size(); i++ ){
-				int id = Integer.parseInt(array.get(i).toString());
-				//daoCatalog.
+				if( !daoCatalog.deleteCatalog(array.getInt(i)) )
+					return super.execute();
 			}
 			
 			deleteResult = true;
 		}
-		else{
-			deleteResult = false;
-		}
 		
 		return super.execute();
+	}
+
+	public String getCatalogIDList() {
+		return catalogIDList;
+	}
+
+	public void setCatalogIDList(String catalogIDList) {
+		this.catalogIDList = catalogIDList;
+	}
+
+	public Boolean getDeleteResult() {
+		return deleteResult;
+	}
+
+	public void setDeleteResult(Boolean deleteResult) {
+		this.deleteResult = deleteResult;
+	}
+
+	public DaoCatalog getDaoCatalog() {
+		return daoCatalog;
+	}
+
+	public void setDaoCatalog(DaoCatalog daoCatalog) {
+		this.daoCatalog = daoCatalog;
 	}
 	
 	

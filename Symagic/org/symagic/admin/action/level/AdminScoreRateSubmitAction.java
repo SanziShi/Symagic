@@ -16,11 +16,15 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 	
 	private Integer low;
 	
-	private Integer scoreRate;
+	private Integer hight;
+	
+	private Float scoreRate;
 	
 	private boolean validateResult;
 	
 	private DaoLevel daoLevel;
+	
+	private String levelName;
 
 	@Override
 	public String execute() throws Exception {
@@ -30,7 +34,9 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 		BeanLevel level = new BeanLevel();
 		level.setId(levelID);
 		level.setLowLimit(low);
-		//积分比率？？！！！
+		level.setRate(scoreRate);
+		level.setUpLimit(hight);
+		level.setName(levelName);
 		daoLevel.update(level);
 		
 		return super.execute();
@@ -45,6 +51,62 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 			validateResult = true;
 		
 		super.validate();
+	}
+
+	public Integer getLevelID() {
+		return levelID;
+	}
+
+	public void setLevelID(Integer levelID) {
+		this.levelID = levelID;
+	}
+
+	public Integer getLow() {
+		return low;
+	}
+
+	public void setLow(Integer low) {
+		this.low = low;
+	}
+
+	public Integer getHight() {
+		return hight;
+	}
+
+	public void setHight(Integer hight) {
+		this.hight = hight;
+	}
+
+	public Float getScoreRate() {
+		return scoreRate;
+	}
+
+	public void setScoreRate(Float scoreRate) {
+		this.scoreRate = scoreRate;
+	}
+
+	public boolean isValidateResult() {
+		return validateResult;
+	}
+
+	public void setValidateResult(boolean validateResult) {
+		this.validateResult = validateResult;
+	}
+
+	public DaoLevel getDaoLevel() {
+		return daoLevel;
+	}
+
+	public void setDaoLevel(DaoLevel daoLevel) {
+		this.daoLevel = daoLevel;
+	}
+
+	public String getLevelName() {
+		return levelName;
+	}
+
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
 	}
 	
 	
