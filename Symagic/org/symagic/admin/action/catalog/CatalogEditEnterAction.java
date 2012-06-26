@@ -35,7 +35,6 @@ public class CatalogEditEnterAction extends CatalogBase {
 	@Override
 	public String execute() throws Exception {
 		
-		//CatalogBean bean = daoCatalog.
 		
 		return super.execute();
 	}

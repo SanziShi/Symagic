@@ -75,6 +75,7 @@ public boolean login(String username,String password){
 	if(loginResult){
 		
 	//UserSessionUtilty.logLogin(username,daoUser.getNickName());//
+		
 		accordCart();
 	}
 	//登录失败，增加失败次数

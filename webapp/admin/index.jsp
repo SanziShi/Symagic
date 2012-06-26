@@ -5,51 +5,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Symagic网上书城</title>
-<link href="css/home.css" rel="stylesheet" type="text/css">
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
-
-
+<link href="css/frame.css" rel="stylesheet" type="text/css" />
+<link href="css/home.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
 <script type="text/javascript" src="js/gz.js" ></script>
 </head>
 <body>
 <div id="container">
-
 	<div id="logalleft">
-
 		<div id="logalright">
-
-		<a href="" target="_parent">管理员<s:property value="#session.userName"/> 已登录|</a>
-
-	 	<a href="login.jsp" target="_parent">退出</a>
-
+		<a href="" target="_parent">管理员 已登录|</a>
+	 	<a href="index.html" target="_parent">退出</a>
 		</div>
-
 	</div>
-
+    <a name="0"></a>
 	<div id="globallink">
-
 		<ul>
-
-			<li><a href="index.jsp">首页</a></li>
-
+			<li><a href="index.html">首页</a></li>
                         <li><a href="category_list.html">目录管理</a></li>
-
 			<li><a href="item_list.html">商品管理</a></li>
-
 			<li><a href="order_admin.html">订单管理</a></li>
-
 			<li><a href="salesdata_admin.html">销售量统计</a></li>
-
 			<li><a href="user_admin.html">会员管理</a></li>
-
 			<li><a href="comment_list.html">评论管理</a></li>
-
 			<li><a href="" class="nouseful">&nbsp;</a></li>
-
 		</ul>
-
 	</div>
    <!-- <div class="clear"></div>
    
@@ -134,7 +116,7 @@
 	<table   width= "100% "  id="bgWhite"> 
     <tr>   
         <td  class="mywidth">   
-            <table   width= "95% "    style= "display:inline "> 
+            <table   width= "95%"    style= "display:inline "> 
                 <tr> 
                    <div id="saleAmount"></div> 
                 </tr> 
@@ -156,8 +138,9 @@
                 </tr> 
             </table> 
         </td> 
+        
         <td  class="mywidth">   
-            <table   width= "100% "     style= "display:inline "> 
+            <table   width= "100% "    style= "display:inline "> 
                 <tr> 
                    <div id="orderAmount"></div>
                 </tr> 
@@ -170,7 +153,7 @@
                     <td id="myfont" ><span class="redStrong"><s:property value = ""/></span>个</td>
                 </tr> 
                  <tr> 
-                   <td id="myfont" width = "70%">待审核订单:&nbsp;&nbsp;</td> 
+                   <td id="myfont" width = "60%">待审核订单:&nbsp;&nbsp;</td> 
                     <td id="myfont" ><span class="redStrong"><s:property value = "unauditedOrderAmount"/></span>个</td>
                 </tr> 
                  <tr> 
@@ -218,9 +201,9 @@
 
 						<th></th>
 
-						<th>订单号</th>
+						<th class="qWidth">订单号</th>
 
-						<th>客户号</th>
+						<th class="autoWidth">客户号</th>
 
 						<th>下单时间</th>
 
@@ -252,18 +235,18 @@
 					<td class="autoWidth"><s:property value = "#orders.orderStatus"/></td>
  <td><s:if test="#order.orderStatus=='已下单'">
  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="">审核</a>&nbsp;
- <a  onclick="delete_tag('<s:property value = #orders.orderID/>')"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+ <a  onclick="delete_tag("<s:property value = "#orders.orderID"/>");"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:if>
  <s:elseif test="#order.orderStatus=='已审核'">
  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
-<a  onclick="delete_tag('<s:property value = #orders.orderID/>')"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+<a  onclick="delete_tag("<s:property value = "#orders.orderID"/>")"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:elseif>
  <s:elseif test="#order.orderStatus=='交易成功'">
   <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
   </s:elseif>
   <s:else>
   <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="item_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a>&nbsp;
-<a  onclick="delete_tag('<s:property value = #orders.orderID/>')"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+<a  onclick="delete_tag("<s:property value = "#orders.orderID"/>")"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
   </s:else>
  </td>
 

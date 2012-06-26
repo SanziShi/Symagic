@@ -1,5 +1,6 @@
 package org.symagic.admin.action.item;
 
+import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -18,7 +19,14 @@ public class ItemOffAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		if (itemID != null) {
-
+			BeanBook book = daoBook.getDetail(itemID);
+			if( book.getOffline().equals("下架") ){
+				offResult = false;
+				return SUCCESS;
+			}
+			book.setOffline("下架");
+			daoBook.modifyBook(book);
+			offResult = true;
 		} else {
 			offResult = false;
 		}

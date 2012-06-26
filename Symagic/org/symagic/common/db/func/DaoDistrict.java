@@ -67,4 +67,41 @@ public class DaoDistrict {
 		}
 		return list;
 	}
+	
+	/**
+	 * 获取指定地址ID的详细信息
+	 * @param districtID	指定地址ID
+	 * @return	BeanDistrict 封装者District详细信息的Bean实例
+	 */
+	public BeanDistrict getDistrictById(int districtID)
+	{
+		BeanDistrict district	= null;
+		try {
+			
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from district where id=?");
+			ps.setInt(1, districtID);
+			rs	= ps.executeQuery();
+			if (rs.next()) {
+				district	= new BeanDistrict();
+				district.setId(rs.getInt("id"));
+				district.setLevel(rs.getInt("level"));
+				district.setName(rs.getString("name"));
+				district.setUpid(rs.getInt("upid"));
+				return district;
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return district;
+	}
 }

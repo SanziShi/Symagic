@@ -20,6 +20,7 @@ public class ItemDeleteAction extends ActionSupport {
 	public String execute() throws Exception {
 		
 		if( itemID != null ){
+			
 		}
 		else{
 			deleteResult = false;

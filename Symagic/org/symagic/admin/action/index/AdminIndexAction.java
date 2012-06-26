@@ -30,7 +30,7 @@ public class AdminIndexAction extends CatalogBase {
 	private DaoOrder daoOrder;
 	private DaoUser daoUser;
 	private DaoBook daoBook;
-	
+
 	private OrderService orderService;
 
 	public Integer getTotalSalesAmount() {
@@ -131,14 +131,16 @@ public class AdminIndexAction extends CatalogBase {
 		totalOrderAmout = daoOrder.getTotalOrderAmount();
 		unauditedOrderAmount = daoOrder.getUnauditedOrderAmount();
 		finishOrderAmount = daoOrder.getFinishOrderAmount();
-
 		List<BeanOrder> orderList = daoOrder.getLatestOrders();
 		LatestOrders = new ArrayList<OrderBean>();
 
-		for (BeanOrder beanOrder : orderList) {
-			LatestOrders.add(orderService.convertBeanOrderToOrderBean(beanOrder));
-		}
+		if (orderList != null) {
+			for (BeanOrder beanOrder : orderList) {
+				LatestOrders.add(orderService
+						.convertBeanOrderToOrderBean(beanOrder));
 
+			}
+		}
 		return super.execute();
 	}
 

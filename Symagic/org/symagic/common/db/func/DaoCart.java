@@ -65,7 +65,7 @@ public class DaoCart {
 			}
 		}
 		
-		return true;
+		return false;
 	}
 	
 	/**
@@ -156,7 +156,7 @@ public class DaoCart {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("delete from cart where username= ?");
 			ps.setString(1, username);
-			if (ps.executeUpdate() >= 0) {
+			if (ps.executeUpdate() > 0) {
 				conn.close();
 				return true;
 			}
@@ -190,8 +190,8 @@ public class DaoCart {
 			ps	= conn.prepareStatement("select * from cart where username=?");
 			ps.setString(1, username);
 			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanCart>();
 			while(rs.next()) {
-				list	= new ArrayList<BeanCart>();
 				bc	= new BeanCart();
 				bc.setUsername(rs.getString("username"));
 				bc.setBookID(rs.getInt("bookid"));
