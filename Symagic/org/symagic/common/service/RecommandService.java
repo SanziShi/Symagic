@@ -56,7 +56,7 @@ public class RecommandService {
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		if (object.containsKey("error"))
+		if (object == null || object.containsKey("error"))
 			return false;
 
 		return true;
@@ -86,7 +86,7 @@ public class RecommandService {
 
 		String reponse = this.sendGetRequest(url, parameters);
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		if (object.containsKey("error"))
+		if (object == null || object.containsKey("error"))
 			return false;
 
 		return true;
@@ -118,7 +118,7 @@ public class RecommandService {
 
 		String reponse = this.sendGetRequest(url, parameters);
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		if (object.containsKey("error"))
+		if (object == null || object.containsKey("error"))
 			return false;
 
 		return true;
@@ -148,6 +148,8 @@ public class RecommandService {
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+		
+		if( object == null ) return null;
 
 		JSONObject recommended = object.getJSONObject("recommendeditems");
 		JSONArray items = recommended.getJSONArray("item");
@@ -183,6 +185,8 @@ public class RecommandService {
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+		
+		if( object == null ) return null;
 
 		JSONObject recommended = object.getJSONObject("recommendeditems");
 		JSONArray items = recommended.getJSONArray("item");
@@ -216,6 +220,8 @@ public class RecommandService {
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+		
+		if( object == null ) return null;
 
 		JSONObject recommended = object.getJSONObject("recommendeditems");
 		JSONArray items = recommended.getJSONArray("item");
@@ -227,8 +233,36 @@ public class RecommandService {
 		return result;
 	}
 	
+	/**
+	 * 获取热销商品
+	 * @param requireNumber
+	 * @param timeRange
+	 * @return
+	 */
 	public List<Integer> mostBoughtItems(Integer requireNumber, String timeRange){
 		List<Integer> result = new ArrayList<Integer>();
+		
+		String url = "http://" + host
+				+ "/easyrec-web/api/1.0/json/mostboughtitems";
+		
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("apikey", apikey);
+		parameters.put("tenantid", tenantid);
+		parameters.put("numberOfResults", requireNumber.toString());
+		
+		String reponse = this.sendGetRequest(url, parameters);
+
+		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+		
+		if( object == null ) return null;
+
+		JSONObject recommended = object.getJSONObject("recommendeditems");
+		JSONArray items = recommended.getJSONArray("item");
+		for (int i = 0; i < items.size(); i++) {
+			JSONObject temp = (JSONObject) items.get(i);
+			result.add(temp.getInt("id"));
+		}
+
 		return result;
 	}
 
@@ -272,11 +306,9 @@ public class RecommandService {
 				reader.close();
 				result = stringBuffer.toString();
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				return null;
 			}
