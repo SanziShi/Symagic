@@ -43,7 +43,8 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		OrderService.Address address = new Address();
 		address.districtDetail = addressDetail;
 		address.level1District.setId(level1ID);
-		//address.level1District.setName();
+		//daoDistrict.get
+		//address.level1District.
 		//order.setAddrDetail(OrderService.serializerAddress(address))
 
 		return super.execute();

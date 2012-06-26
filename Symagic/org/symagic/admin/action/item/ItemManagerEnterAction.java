@@ -1,5 +1,6 @@
 package org.symagic.admin.action.item;
 
+import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -32,12 +33,12 @@ public class ItemManagerEnterAction extends ActionSupport {
 	/**
 	 * 类别的ID
 	 */
-	private Integer bookClassify;
+	private Integer catalogID;
 	
 	/**
 	 * 书籍出版的年份
 	 */
-	private Integer publishYear;
+	private Integer publishTime;
 
 	
 	/**
@@ -58,10 +59,15 @@ public class ItemManagerEnterAction extends ActionSupport {
 	/**
 	 * 搜索数据的开本
 	 */
-	private String format;
+	private String booksize;
 	
 	private Integer price;//（0:0`10,1:10`30,2:30`50,3:50`100,4:>100）;
 	private Integer discount;//(0：所有；1:3折以下;2:3-5折；3：5-7折；4：7折以上）
+	
+	private String author;
+	
+	private String description;
+	
 	private Integer page;//（第几页)
 	private Integer totalPage;
 	private Integer currentPage;
@@ -72,7 +78,12 @@ public class ItemManagerEnterAction extends ActionSupport {
 	public String execute() throws Exception {
 		
 		//建立书籍搜索的require
-		//BookRequire require = new BookRequire();
+		BookRequire require = new BookRequire();
+		require.setItemName(name);
+		require.setPublisher(publisher);
+		require.setCatalogID(catalogID.toString());
+		//require.setYear();
+		
 
 		
 		
@@ -96,21 +107,6 @@ public class ItemManagerEnterAction extends ActionSupport {
 		this.publisher = publisher;
 	}
 
-	public Integer getBookClassify() {
-		return bookClassify;
-	}
-
-	public void setBookClassify(Integer bookClassify) {
-		this.bookClassify = bookClassify;
-	}
-
-	public Integer getPublishYear() {
-		return publishYear;
-	}
-
-	public void setPublishYear(Integer publishYear) {
-		this.publishYear = publishYear;
-	}
 
 	public Integer getEdition() {
 		return edition;
@@ -136,13 +132,6 @@ public class ItemManagerEnterAction extends ActionSupport {
 		this.binding = binding;
 	}
 
-	public String getFormat() {
-		return format;
-	}
-
-	public void setFormat(String format) {
-		this.format = format;
-	}
 
 	public Integer getPrice() {
 		return price;
