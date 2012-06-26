@@ -51,7 +51,7 @@ public class AdminFailOrderAction extends ActionSupport {
 				daoOrder.updateOrder(order);
 				List<BeanOrderDetail> items = order.getList();
 				for( BeanOrderDetail detail : items ){
-					BeanBook bookDetail = daoBook.getDeatil(detail.getBookId());
+					BeanBook bookDetail = daoBook.getDetail(detail.getBookId());
 					if( bookDetail == null ) return super.execute();
 					bookDetail.setInventory(bookDetail.getInventory() + detail.getAmount() );
 					if( !daoBook.modifyBook(bookDetail) ) return super.execute();
