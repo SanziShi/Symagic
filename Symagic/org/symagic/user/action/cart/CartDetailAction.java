@@ -37,7 +37,7 @@ private float totalPrice=0;//购物车中商品的总价
 	 for(Iterator<Integer> ids=keySet.iterator();ids.hasNext();){
 		 int bookId=ids.next();
 		 int number=cart.get(bookId);
-		  book=daoBook.getDeatil(bookId);
+		  book=daoBook.getDetail(bookId);
 		  item=new ItemBean();
 		  item.setItemId(bookId);
 		  item.setItemNumber(number);

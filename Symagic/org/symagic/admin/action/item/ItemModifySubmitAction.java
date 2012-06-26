@@ -141,7 +141,7 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		if (!formValidateResult)
 			return ERROR;
 
-		BeanBook book = daoBook.getDeatil(itemID);
+		BeanBook book = daoBook.getDetail(itemID);
 
 		// 文件处理
 		String fileFolder = context.getRealPath("/" + shopImageFileFolder);
