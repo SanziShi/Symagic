@@ -22,6 +22,7 @@ public class ItemService {
 
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
+		
 	}
 
 

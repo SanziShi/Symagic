@@ -1,13 +1,22 @@
 package org.symagic.common.db.bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BeanOrder {
+	/**
+	 * 存储订单中每一本书的信息
+	 */
+	private List<BeanOrderDetail>	list	= new ArrayList<BeanOrderDetail>();
+	
 	/**
 	 * 订单id
 	 */
 	private int orderId	= 0;	
 	
 	/**
-	 * 下单日期
+	 * 下单日期 包含事件
+	 * yyyy-MM-dd hh:mm:ss
 	 */
 	private String orderDate = "";	
 	
@@ -27,9 +36,9 @@ public class BeanOrder {
 	private String deliveryWay = "";	
 	
 	/**
-	 * 用户id
+	 * 用户名
 	 */
-	private int	userId = 0;	
+	private String	username = null;	
 	
 	/**
 	 * 收件人姓名
@@ -56,6 +65,10 @@ public class BeanOrder {
 	 */
 	private String mobilenum	= "";	
 	
+	/**
+	 * 商品总价
+	 */
+	private float totalprice	= 0.0f;
 	
 	public int getOrderId() {
 		return orderId;
@@ -89,11 +102,11 @@ public class BeanOrder {
 	public void setDeliveryWay(String deliveryWay) {
 		this.deliveryWay = deliveryWay;
 	}
-	public int getUserId() {
-		return userId;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getReceiverName() {
 		return receiverName;
@@ -125,5 +138,22 @@ public class BeanOrder {
 	public void setMobilenum(String mobilenum) {
 		this.mobilenum = mobilenum;
 	}
+
+	public List<BeanOrderDetail> getList() {
+		return list;
+	}
+
+	public void setList(List<BeanOrderDetail> list) {
+		this.list = list;
+	}
+
+	public float getTotalprice() {
+		return totalprice;
+	}
+
+	public void setTotalprice(float totalprice) {
+		this.totalprice = totalprice;
+	}
+	
 	
 }

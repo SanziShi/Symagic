@@ -12,7 +12,7 @@ public class BookRequire {
 	private String itemName = null;
 	private String publisher = null;
 	private String atalogID = null;
-//	year(年);
+//	year(年);1:当前年 2:-1 3:-2 4:-3 5:-4以上
 	private String year	= null;
 //	version;
 	private Integer version = null;

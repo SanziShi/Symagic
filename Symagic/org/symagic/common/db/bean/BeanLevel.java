@@ -25,6 +25,11 @@ public class BeanLevel {
 	 * 等级下界
 	 */
 	Integer lowLimit	= null;
+	
+	/**
+	 * 倍率
+	 */
+	Float rate	= null;
 
 	public Integer getId() {
 		return id;
@@ -56,6 +61,14 @@ public class BeanLevel {
 
 	public void setLowLimit(Integer lowLimit) {
 		this.lowLimit = lowLimit;
+	}
+
+	public Float getRate() {
+		return rate;
+	}
+
+	public void setRate(Float rate) {
+		this.rate = rate;
 	}
 	
 	

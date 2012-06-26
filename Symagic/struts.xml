@@ -97,6 +97,11 @@
       <action name="cart" class="cartEnterClass">
         <result name="success">/cart.jsp</result>
       </action>
+      
+      <action name="cartDetail" class="detailOfCart">
+	    <result name="success">/lib/cart_inner.jsp</result>
+	  </action>
+      
      </package>
      
     <!-- 注册时命名检测 -->
@@ -112,20 +117,16 @@
 	<!-- 用户中与购物车有关的action -->
 	<package name="cart-user-default" extends="symagic-user-default" namespace="/cart">
 	  <action name="add_to_cart" class="addToCart">
-	   <result type="json">
-	    <param name="includeProperties">addResult</param>
-	    </result>
+	     <result type="json">
+	       <param name="includeProperties">addResult</param>
+	     </result>
 	  </action>
 	  <action name="delete" class="deleteFromCart">
 	   <result type="json">
 	     <param name="includeProperties">deleteResult</param>
 	   </result>
 	  </action>
-	  <action name="detail" class="detailOfCart">
-	    <result type="json">
-	      <param name="includeProperties">items,totalPrice</param>
-	    </result>
-	  </action>
+	  
 	  <action name="update" class="updateCart">
 	  <result type="json">
 	    <param name="includeProperties">updateResult</param>

@@ -9,7 +9,6 @@ import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.service.OrderService;
-import org.symagic.common.utilty.presentation.bean.CatalogBean;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
 
 public class AdminIndexAction extends CatalogBase {
@@ -18,11 +17,6 @@ public class AdminIndexAction extends CatalogBase {
 	 * 
 	 */
 	private static final long serialVersionUID = 5870638099267465657L;
-
-	/**
-	 * 
-	 */
-	private List<CatalogBean> catalog;
 
 	private Integer totalSalesAmount;// :总销售量
 	private Float totalSalesRevenue;// ：销售总额；
@@ -38,14 +32,6 @@ public class AdminIndexAction extends CatalogBase {
 	private DaoBook daoBook;
 	
 	private OrderService orderService;
-
-	public List<CatalogBean> getCatalog() {
-		return catalog;
-	}
-
-	public void setCatalog(List<CatalogBean> catalog) {
-		this.catalog = catalog;
-	}
 
 	public Integer getTotalSalesAmount() {
 		return totalSalesAmount;
@@ -147,8 +133,11 @@ public class AdminIndexAction extends CatalogBase {
 		finishOrderAmount = daoOrder.getFinishOrderAmount();
         List<BeanOrder> orderList = daoOrder.getLatestOrders();
 		LatestOrders = new ArrayList<OrderBean>();
-        for (BeanOrder beanOrder : orderList) {
-			LatestOrders.add(orderService.convertBeanOrder(beanOrder));
+
+
+		for (BeanOrder beanOrder : orderList) {
+			LatestOrders.add(orderService.convertBeanOrderToOrderBean(beanOrder));
+
 		}
           return super.execute();
 	}
