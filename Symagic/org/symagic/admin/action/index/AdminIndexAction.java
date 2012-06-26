@@ -131,15 +131,15 @@ public class AdminIndexAction extends CatalogBase {
 		totalOrderAmout = daoOrder.getTotalOrderAmount();
 		unauditedOrderAmount = daoOrder.getUnauditedOrderAmount();
 		finishOrderAmount = daoOrder.getFinishOrderAmount();
-
-		List<BeanOrder> orderList = daoOrder.getLatestOrders();
+        List<BeanOrder> orderList = daoOrder.getLatestOrders();
 		LatestOrders = new ArrayList<OrderBean>();
+
 
 		for (BeanOrder beanOrder : orderList) {
 			LatestOrders.add(orderService.convertBeanOrderToOrderBean(beanOrder));
-		}
 
-		return super.execute();
+		}
+          return super.execute();
 	}
 
 	public OrderService getOrderService() {

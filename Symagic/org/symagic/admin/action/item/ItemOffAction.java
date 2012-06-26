@@ -19,7 +19,7 @@ public class ItemOffAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		if (itemID != null) {
-			BeanBook book = daoBook.getDeatil(itemID);
+			BeanBook book = daoBook.getDetail(itemID);
 			if( book.getOffline().equals("下架") ){
 				offResult = false;
 				return SUCCESS;

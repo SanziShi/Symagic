@@ -34,8 +34,8 @@ public class DaoCatalog {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from book_catalog order by level");
 			rs	= ps.executeQuery();
-			if (rs.next()) {
-				list	= new ArrayList<BeanCatalog>();
+			list	= new ArrayList<BeanCatalog>();
+			while (rs.next()) {
 				BeanCatalog bc	= new BeanCatalog();
 				bc.setCatalogDesc(rs.getString("catalogdesc"));
 				bc.setCatalogID(rs.getInt("catalogid"));

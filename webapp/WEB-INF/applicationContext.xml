@@ -117,7 +117,7 @@
 		<property name="daoCart" ref="DaoCart"></property>
 	</bean>
 	<bean id="detailOfCart" class="org.symagic.user.action.cart.CartDetailAction">
-		<property name="daoBook" ref="DaoBook"></property>
+		<property name="itemService" ref="ItemService"></property>
 	</bean>
 	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
@@ -144,7 +144,11 @@
 	<bean id="OrderService" class="org.symagic.common.service.OrderService">
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
-
+	
+	<bean id="ItemService" class="org.symagic.common.service.ItemService">
+	  <property name="daoBook" ref="DaoBook"></property>
+	</bean>
+  
 
 	<!-- 数据层bean -->
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
@@ -158,5 +162,6 @@
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
+
 
 

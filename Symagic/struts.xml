@@ -66,54 +66,67 @@
 	</package>
 
 
-	<!-- 配置用户的action -->
+<!-- 配置用户的action -->  
+  
+  <!-- 默认命名空间 -->
+ 
 	<package name="user-default" extends="symagic-user-default">
 	  <action name="index">
 			<result>/index.jsp</result>
 		</action>
+		
 		<action name="login" class="loginClass">
 		  <result type="json">
 		    <param name="includeProperties">loginResult,toURL</param>
-		  
 		  </result>
-		</action>
+		  </action>
+		  
 		<action name="get_session_info" class="getSessionInfo">
 		<result type="json">
 		  <param name="includeProperties">username,nickname,loginErrorTimes</param>
 		
 		</result>
 		</action>
+		
 		<action name="regist" class="registerClass">
           <result type="json">
           <param name="includeProperties">toURL,registerResult</param>
           </result>
       </action>
+      
+      <action name="cart" class="cartEnterClass">
+        <result name="success">/cart.jsp</result>
+      </action>
+      
+      <action name="cartDetail" class="detailOfCart">
+	    <result name="success">/lib/cart_inner.jsp</result>
+	  </action>
+      
      </package>
+     
+    <!-- 注册时命名检测 -->
      <package name="regist-user-default" extends="symagic-user-default" namespace="regist">
        <action name="check_name" class="usernameUnique">
          <result type="json">
            <param name="includeProperties">checkResult</param>
          </result>
        </action>
+       
      </package>
      
 	<!-- 用户中与购物车有关的action -->
 	<package name="cart-user-default" extends="symagic-user-default" namespace="/cart">
 	  <action name="add_to_cart" class="addToCart">
-	   <result type="json">
-	    <param name="includeProperties">addResult</param>
-	    </result>
+	     <result type="json">
+	       <param name="includeProperties">addResult</param>
+	     </result>
 	  </action>
 	  <action name="delete" class="deleteFromCart">
 	   <result type="json">
 	     <param name="includeProperties">deleteResult</param>
 	   </result>
 	  </action>
-	  <action name="detail" class="detailOfCart">
-	    <result type="json">
-	      <param name="includeProperties">items,totalPrice</param>
-	    </result>
-	  </action>
+	  
 	  <action name="update" class="updateCart">
 	  <result type="json">
 	    <param name="includeProperties">updateResult</param>
@@ -131,6 +144,15 @@
 	  <action name="delete_favorite" class="deleteFromFavority">
 	    <result type="json">
 	      <param name="includeProperties">deleteResult</param>
+	    </result>
+	  </action>
+	</package>
+	
+	<!-- 用户中与商品项有关的action -->
+	<package name="item-user-default" extends="symagic-user-default" namespace="/item">
+	  <action name="comment" class="submitComment">
+	    <result type="json">
+	      <param name="includeProperties">submitResult</param>
 	    </result>
 	  </action>
 	</package>
@@ -157,4 +179,5 @@
 	</package>
 
 </struts>    
+
 
