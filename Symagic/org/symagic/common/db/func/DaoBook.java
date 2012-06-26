@@ -204,20 +204,19 @@ public class DaoBook {
 	/**
 	 * 获取符合书籍搜索条件的书籍条数
 	 * 
+	 * @param sign
+	 * 			  标志，0：普通查询	1：高级查询
+	 * 
 	 * @param req
 	 *            条件
+
 	 * @return int 符合的条数
 	 */
-	public int getSearchRowNumber(BookRequire req) {
+	public int getSearchRowNumber(int sign, BookRequire req) {
 		return 0;
 	}
 
 	
-
-
-	
-	
-
 	/**
 	 * 修改商品信息
 	 * @param book	封装着书籍信息的BeanBook对象
