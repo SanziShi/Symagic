@@ -114,6 +114,11 @@
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
+	<bean id="AdminSubmitScoreRate"
+		class="org.symagic.admin.action.level.AdminScoreRateSubmitAction">
+		<property name="daoLevel" ref="DaoLevel"></property>
+	</bean>
+
 
 	<!-- 用户的action bean -->
 
@@ -174,6 +179,7 @@
 	<bean id="DaoOrder" class="org.symagic.common.db.func.DaoOrder" />
 	<bean id="DaoDistrict" class="org.symagic.common.db.func.DaoDistrict" />
 	<bean id="DaoComment" class="org.symagic.common.db.func.DaoComment" />
+	<bean id="DaoLevel" class="org.symagic.common.db.func.DaoLevel" />
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
