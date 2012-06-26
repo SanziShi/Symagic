@@ -4,8 +4,11 @@ import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
+import org.symagic.common.db.bean.BeanLevel;
 import org.symagic.common.db.bean.BeanOrder;
+import org.symagic.common.db.func.DaoLevel;
 import org.symagic.common.db.func.DaoOrder;
+import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
@@ -20,6 +23,8 @@ public class OrderService {
 	}
 
 	private DaoOrder daoOrder;
+	private DaoLevel daoLevel;
+	private DaoUser daoUser;
 
 	/**
 	 * 列出指定用户的order列表，当userName为空则列出所有。
@@ -64,8 +69,9 @@ public class OrderService {
 		}
 		result.setOrderTime(bean.getOrderDate());
 		result.setReceiverName(bean.getReceiverName());
-		//result.setScore();
+		BeanLevel level = daoLevel.judgeLevel(daoUser.getScore(bean.getUsername()));
 		result.setTotalPrice(bean.getTotalprice());
+		result.setScore(Float.toString(result.getTotalPrice() * level.getRate()));
 		return result;
 	}
 	

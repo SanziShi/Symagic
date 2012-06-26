@@ -53,6 +53,10 @@
 		<property name="shopImageFileFolder" value="book-image"></property>
 	</bean>
 
+	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction">
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
 	<bean id="AdminEnterCatalogManager"
 		class="org.symagic.admin.action.catalog.CatalogManagerEnterAction">
 		<property name="catalogService" ref="CatalogService"></property>
@@ -78,6 +82,10 @@
 		class="org.symagic.admin.action.order.AdminOrderEditEnterAction">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
+	</bean>
+
+	<bean id="AdminPassOrder" class="org.symagic.admin.action.order.AdminPassOrderAction">
+		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
 
