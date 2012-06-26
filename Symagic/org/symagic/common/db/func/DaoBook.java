@@ -3,6 +3,7 @@ package org.symagic.common.db.func;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +81,7 @@ public class DaoBook {
 			ps.setString(2, book.getBookName());
 			ps.setString(3, book.getAuthor());
 			ps.setString(4, book.getPublisher());
-			ps.setString(5, book.getPublisherDate());
+			ps.setString(5, book.getPublishDate());
 			ps.setInt(6, book.getVersion());
 			ps.setInt(7, book.getPage());
 			ps.setString(8, book.getBinding());
@@ -172,7 +173,7 @@ public class DaoBook {
 				book.setPage(rs.getInt("page"));
 				book.setPicture(rs.getString("picture"));
 				book.setPublisher(rs.getString("publisher"));
-				book.setPublisherDate(rs.getString("publishdate"));
+				book.setPublishDate(rs.getString("publishdate"));
 				book.setVersion(rs.getInt("version"));
 				
 				conn.close();
@@ -304,6 +305,48 @@ public class DaoBook {
 	 */
 	public boolean modifyBook(BeanBook book) 
 	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("update book set picture=?, bookname=?," +
+					"author=?, publisher=?," +
+					"publishdate=?, version=?," +
+					"page=?, binding=?," +
+					"folio=?, marketprice=?," +
+					"discount=?, inventory=?," +
+					"bookdesc=?, isbn=?," +
+					"offline=? where bookid=?");
+			ps.setString(1, book.getPicture());
+			ps.setString(2, book.getBookName());
+			ps.setString(3, book.getAuthor());
+			ps.setString(4, book.getPublisher());
+			ps.setString(5, book.getPublishDate());
+			ps.setInt(6, book.getVersion());
+			ps.setInt(7, book.getPage());
+			ps.setString(8, book.getBinding());
+			ps.setString(9, book.getFolio());
+			ps.setFloat(10, book.getMarketPrice());
+			ps.setFloat(11, book.getDiscount());
+			ps.setInt(12, book.getInventory());
+			ps.setString(13, book.getBookDesc());
+			ps.setString(14, book.getIsbn());
+			ps.setString(15, book.getOffline());
+			ps.setInt(16, book.getBookId());
+			
+			if (ps.executeUpdate() == 1)
+				return true;
+			return false;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return false;
 	}
 	
@@ -313,6 +356,73 @@ public class DaoBook {
 	 */
 	public int getProductNum()
 	{
-		return 10;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from book");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return 0;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
+	
+	/**
+	 * 获取最新添加的书籍10本
+	 * @return	List<BeanBook>为null 获取失败	List<BeanBook>size为10	获取成功
+	 */
+	public List<BeanBook> getLatestBook()
+	{
+		List<BeanBook>	list	= null;
+		try {
+			
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from book order by bookid desc limit 10");
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanBook>();
+			while (rs.next()) {
+				BeanBook book	= new BeanBook();
+				book.setAuthor(rs.getString("author"));
+				book.setBinding(rs.getString("binding"));
+				book.setBookDesc(rs.getString("bookdesc"));
+				book.setBookId(rs.getInt("bookid"));
+				book.setBookName(rs.getString("bookname"));
+				book.setDiscount(rs.getFloat("discount"));
+				book.setFolio(rs.getString("folio"));
+				book.setInventory(rs.getInt("inventory"));
+				book.setIsbn(rs.getString("isbn"));
+				book.setMarketPrice(rs.getFloat("marketPrice"));
+				book.setOffline(rs.getString("offline"));
+				book.setPage(rs.getInt("page"));
+				book.setPicture(rs.getString("picture"));
+				book.setPublishDate(rs.getString("publishdate"));
+				book.setPublisher(rs.getString("publisher"));
+				book.setVersion(rs.getInt("version"));
+				
+				list.add(book);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 }

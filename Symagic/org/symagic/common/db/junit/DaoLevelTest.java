@@ -29,11 +29,11 @@ public class DaoLevelTest extends TestCase{
 //		assertEquals(true, dl.update(bl));
 //	}
 	
-	@Test
-	public void testJudgeLevel()
-	{
-		DaoLevel dl	= new DaoLevel();
-		assertEquals(1.0f, dl.judgeLevel(50).getRate());
-	}
+//	@Test
+//	public void testJudgeLevel()
+//	{
+//		DaoLevel dl	= new DaoLevel();
+//		assertEquals(1.0f, dl.judgeLevel(50).getRate());
+//	}
 
 }
