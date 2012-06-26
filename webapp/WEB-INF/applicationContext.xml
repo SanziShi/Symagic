@@ -89,6 +89,13 @@
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 	</bean>
 
+	<bean id="AdminSubmitOrderEdit"
+		class="org.symagic.admin.action.order.AdminOrderEditSubmitAction">
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
 	<bean id="AdminPassOrder" class="org.symagic.admin.action.order.AdminPassOrderAction">
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
