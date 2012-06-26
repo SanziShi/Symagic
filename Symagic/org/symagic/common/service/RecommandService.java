@@ -18,11 +18,26 @@ import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 public class RecommandService {
-
+	
 	private String host = "localhost:8080";
+	/**
+	 * easyrec的API KEY
+	 */
 	private String apikey;
+	/**
+	 * easyrec的注册的tenantID
+	 */
 	private String tenantid;
 
+	/**
+	 * 提交view操作
+	 * @param sessionID
+	 * @param itemID
+	 * @param itemDescription
+	 * @param itemURL
+	 * @param userName
+	 * @return
+	 */
 	public boolean view(String sessionID, String itemID,
 			String itemDescription, String itemURL, String userName) {
 
@@ -47,6 +62,15 @@ public class RecommandService {
 		return true;
 	}
 
+	/**
+	 * 提交buy操作
+	 * @param sessionID
+	 * @param itemID
+	 * @param itemDescription
+	 * @param itemURL
+	 * @param userName
+	 * @return
+	 */
 	public boolean buy(String sessionID, String itemID, String itemDescription,
 			String itemURL, String userName) {
 		String url = "http://" + host + "/easyrec-web/api/1.0/json/buy";
@@ -68,6 +92,16 @@ public class RecommandService {
 		return true;
 	}
 
+	/**
+	 * 提交rate操作
+	 * @param sessionID
+	 * @param rateValue
+	 * @param itemID
+	 * @param itemDescription
+	 * @param itemURL
+	 * @param userName
+	 * @return
+	 */
 	public boolean rate(String sessionID, String rateValue, String itemID,
 			String itemDescription, String itemURL, String userName) {
 		String url = "http://" + host + "/easyrec-web/api/1.0/json/rate";
@@ -90,6 +124,13 @@ public class RecommandService {
 		return true;
 	}
 
+	/**
+	 * 根据当前用户浏览的商品获得推荐的商品项
+	 * @param itemID
+	 * @param userName
+	 * @param requireNumber
+	 * @return
+	 */
 	public List<Integer> otherUsersAlsoBiewed(String itemID, String userName,
 			Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
@@ -118,6 +159,13 @@ public class RecommandService {
 		return result;
 	}
 
+	/**
+	 * 根据当前用户购买的商品获得推荐的商品项
+	 * @param itemID
+	 * @param userName
+	 * @param requireNumber
+	 * @return
+	 */
 	public List<Integer> otherUsersAlsoBought(String itemID, String userName,
 			Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
@@ -146,6 +194,12 @@ public class RecommandService {
 		return result;
 	}
 	
+	/**
+	 * 对指定用户进行推荐
+	 * @param userName
+	 * @param requireNumber
+	 * @return
+	 */
 	public List<Integer> recommendationsForUser(String userName,
 			Integer requireNumber){
 		List<Integer> result = new ArrayList<Integer>();
@@ -170,6 +224,11 @@ public class RecommandService {
 			result.add(temp.getInt("id"));
 		}
 
+		return result;
+	}
+	
+	public List<Integer> mostBoughtItems(Integer requireNumber, String timeRange){
+		List<Integer> result = new ArrayList<Integer>();
 		return result;
 	}
 
