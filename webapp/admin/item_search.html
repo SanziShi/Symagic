@@ -51,7 +51,8 @@ return;
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="">商品搜索</a>
 			</div>
 			<div id="searchright2">
-			  <input type="text" name="product" id="textInput"/>
+            <form action="" method="post">
+			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
 			</div>
 			<div id="searchright1">
@@ -67,21 +68,23 @@ return;
                 <option value="8">其他</option>
               </select>
 		  </div>
+          </form>
 		</div>
 		<div id="sendnote">
 			<div id="sendnotehead"><strong>商品搜索</strong></div>
 			<div id="sendnotecontent">
+            <form action="item_manager" method="post">
 				<table id="itemsearch">
 				<tr>
-					<th>书名：</th>
+					<th align="right">书名：</th>
             		<td>
-					<input type="text"  id="inputtext"/>
+					<input type="itemName"  id="inputtext"/>
 					</td>
           		 </tr>
 				<tr>
 					<th>请输入作者：</th>
             		<td>
-					<input type="text"  id="inputtext"/>
+					<input type="author"  id="inputtext"/>
 					</td>
           		 </tr>
 				 <tr>
@@ -194,7 +197,7 @@ return;
 				 	<td><input type="submit" class="" name="button2" value="搜索" onClick="javascript:window.location.href='item_search_list.html'">
 				 </tr>
         </table>	
-				
+				</form>
 			</div>
 		</div>
 		
