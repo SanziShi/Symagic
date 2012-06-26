@@ -9,12 +9,14 @@ import java.util.Set;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoComment;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 public class ItemService {
 
 	private DaoBook daoBook;//访问数据库中的书籍信息
+	private DaoComment daoComment;
 	public DaoBook getDaoBook() {
 		return daoBook;
 	}
@@ -28,7 +30,7 @@ public class ItemService {
 
 	//增加用户对商品的评论
 	public boolean addItemComment(BeanComment comment){
-	 return daoBook.publishComment(comment);
+	 return daoComment.publishComment(comment);
 }
 	
 	
@@ -40,7 +42,7 @@ public class ItemService {
 				int id=index.next();
 				item=new ItemBean();
 				item.setItemId(id);
-				book=daoBook.getDeatil(id);
+				book=daoBook.getDetail(id);
 				item.setName(book.getBookName());
 				item.setPicturePath(book.getPicture());
 				float marketPrice=book.getMarketPrice();
@@ -66,7 +68,7 @@ public class ItemService {
 		 for(Iterator<Integer> ids=keySet.iterator();ids.hasNext();){
 			  int bookId=ids.next();
 			  int number=cart.get(bookId);
-			  book=daoBook.getDeatil(bookId);
+			  book=daoBook.getDetail(bookId);
 			  item=new ItemBean();
 			  item.setItemId(bookId);
 			  item.setItemNumber(number);
@@ -82,6 +84,16 @@ public class ItemService {
 			  totalPrice+=itemTotalPrice;
 		 }
 		 return totalPrice;
+	}
+
+
+	public DaoComment getDaoComment() {
+		return daoComment;
+	}
+
+
+	public void setDaoComment(DaoComment daoComment) {
+		this.daoComment = daoComment;
 	}
 
 

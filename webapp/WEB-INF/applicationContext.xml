@@ -148,6 +148,7 @@
 	
 	<bean id="ItemService" class="org.symagic.common.service.ItemService">
 	  <property name="daoBook" ref="DaoBook"></property>
+	  <property name="daoComment" ref="DaoComment"></property>
 	</bean>
   
 
@@ -160,6 +161,7 @@
 	<bean id="DaoCatalog" class="org.symagic.common.db.func.DaoCatalog" />
 	<bean id="DaoOrder" class="org.symagic.common.db.func.DaoOrder" />
 	<bean id="DaoDistrict" class="org.symagic.common.db.func.DaoDistrict" />
+	<bean id="DaoComment" class="org.symagic.common.db.func.DaoComment" />
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>

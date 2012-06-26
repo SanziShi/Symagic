@@ -18,8 +18,10 @@ public class ItemOffAction extends ActionSupport {
 
 	@Override
 	public String execute() throws Exception {
+		offResult = false;
 		if (itemID != null) {
 			BeanBook book = daoBook.getDetail(itemID);
+			if( book == null ) return super.execute();
 			if( book.getOffline().equals("下架") ){
 				offResult = false;
 				return SUCCESS;
@@ -27,10 +29,8 @@ public class ItemOffAction extends ActionSupport {
 			book.setOffline("下架");
 			daoBook.modifyBook(book);
 			offResult = true;
-		} else {
-			offResult = false;
 		}
-		return SUCCESS;
+		return super.execute();
 	}
 
 	public Integer getItemID() {

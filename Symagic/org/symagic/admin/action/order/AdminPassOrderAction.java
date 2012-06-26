@@ -41,8 +41,10 @@ public class AdminPassOrderAction extends ActionSupport {
 
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				order.setOrderState("1");
-				daoOrder.updateOrder(order);
+				if (order != null) {
+					order.setOrderState("1");
+					daoOrder.updateOrder(order);
+				}
 			}
 
 			checkResult = true;

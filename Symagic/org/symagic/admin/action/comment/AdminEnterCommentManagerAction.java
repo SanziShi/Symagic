@@ -31,17 +31,19 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 	public String execute() throws Exception {
 		if (page == null)
 			page = 1;
-		//totalPage = daoBook.get
+		// totalPage = daoBook.get
 		List<BeanComment> list = daoComment.getAllComment(page, lines);
 		commentList = new ArrayList<CommentBean>();
 
-		for (BeanComment comment : list) {
-			CommentBean bean = new CommentBean();
-			bean.setUsername(comment.getUsername());
-			bean.setContent(comment.getContent());
-			bean.setDate(comment.getCommentDate());
-			bean.setRating(Integer.parseInt(comment.getRating()));
-			commentList.add(bean);
+		if (list != null) {
+			for (BeanComment comment : list) {
+				CommentBean bean = new CommentBean();
+				bean.setUsername(comment.getUsername());
+				bean.setContent(comment.getContent());
+				bean.setDate(comment.getCommentDate());
+				bean.setRating(Integer.parseInt(comment.getRating()));
+				commentList.add(bean);
+			}
 		}
 
 		return super.execute();
