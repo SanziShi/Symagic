@@ -6,6 +6,7 @@
 <link href="css/cart.css" rel="stylesheet" type="text/css">
 <link href="css/frame.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script><script type="text/javascript" src="js/yf_ADS.js"></script>
+<script type="text/javascript" src="js/cart.js"></script>
 </head>
 <body>
 <div id="container">
@@ -69,97 +70,48 @@
         	<h2>我的购物车</h2>
         	<div id="cart_table">
         		<div id="cart_table_head">
+                	<div class="column checkbox">
+                		<input class="" type="checkbox"/>
+                	</div>
+                    <div class="column p-name">商品信息</div>
+                    <div class="column p-price">商城价</div>
+                    <div class="column save">为您节省</div>
+                    <div class="column quantity">数量</div>
+                    <div class="column total">小计</div>
+                    <div class="column action">操作</div>
             	</div>
             	<div id="cart_table_content">
-                	<ul>
-                    	<li></li>
-                    </ul>
+                	<!--购物车迭代-->
+                    <div class="each">
+                    <div class="cell checkbox">
+                		<input class="" type="checkbox"/>
+                	</div>
+                    <div class="cell p-name">
+                    	<div class="p-img">
+                        	<a><img src="upload/9787030133083.png"></a>
+                        </div>
+                      <div class="p-name-de">大学物理学.第四册：波动与光学（第2版）大学物理学.第四册：波动与光学大学物理学.第四册：波动与光学（第2版（第2版
+                        </div>
+                    </div>
+                    <div class="cell p-price">￥<span>40.00</span></div>
+                    <div class="cell save"><strong>￥<span>11.00</span></strong></div>
+                    <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
+        <input type="text" value="1"  onkeyup="amount_modify(this)">
+        <a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
+        </span></div>
+         			<div class="cell total">￥<span>40.00</span></div>
+                    <div class="cell action"><a href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)">删除</a></div>
+                    </div>
+                    <!--购物车迭代--end-->
             	</div>
-            	<div id="cart_table_button">
+            	<div id="cart_table_bottom">
+                <a href="javascript:void(0);">删除选中的商品</a>
+                <div id="total-price">总计:<span id="final-price">￥200.50</span></div>
             	</div>
         	</div>
         </div>
+        <div class="cart-button"><a href="javascript:void(0);" class="checkout"></a></div>
         <div id="recommend"></div>
-		<div id="sendnote">
-			<div id="sendnotehead"><strong>购物车内的商品</strong></div>
-			<div id="sendnotecontent">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
-				<table id="favorite">
-				<thead>
-					<tr>
-						<th>No.</th>
-						<th>商品名</th>
-						<th>市场价</th>
-						<th>会员价</th>
-						<th>为您节省</th>
-						<th>数量</th>
-						<th>操作</th>
-					</tr>
-				</thead>
-				<tbody>
-				  <tr>
-            		<td>
-						1					</td>
-					<td>
-						<a href="item_info.html">大学物理学.第四册：波动与光学（第2版）</a>					</td>
-					<td>￥10.00</td>
-					<td>
-						￥8.50					</td>
-					<td>
-						￥1.50					</td>
-					<td>
-						<input type="text" name="itemNo1" class="smallinputext" value="4"></td>
-					<td>
-						<a href="favorite.html"></a>&nbsp;<a href="#" onClick="window.confirm('确定删除？')"><img src="image/delete_item.gif" class="picture"/></a></td>
-          		  </tr>
-				  <tr>
-            		<td>
-						2					</td>
-					<td>
-					<a href="item_info.html">大学物理学.第一册：力学（第2版）</a></td>
-					<td> 
-						￥16.00					</td>
-					<td>
-						￥13.60					</td>
-					<td>
-						￥2.40					</td>
-					<td><input type="text" name="itemNo2" class="smallinputext" value="5">			</td>
-					<td>&nbsp;<a href="#" onClick="window.confirm('确定删除？')"><img src="image/delete_item.gif" class="picture"/></a></td>
-				  </tr>
-					<tr>
-            		<td>
-					</td>
-					<td>
-					</td>
-					<td> 
-					</td>
-					<td>
-                    <span class="red">总价</span>
-					</td>
-					<td>
-                    <span class="red">￥102</span>
-					</td>
-					<td></td>
-					<td>
-						<input type="button" name="continue" value="继续购物" onClick="javascript:window.location.href='home.html'">&nbsp;
-		     <input type="button" name="edit2" value="更新" onClick="checkitemno()">					  					</td>
-					</tr>
-					<tr>
-            			<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					<td>
-					<a href="order_confirm.html"><img src="image/check_account.gif" class="picture"/></a>				  					</td>
-					</tr>
-				 </tbody>
-            </table>
-			</form> 
-			</div>
-		</div>
-		
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
 		<span id="footerright"> B2C商城  Power by IBM &nbsp;</span>

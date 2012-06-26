@@ -8,31 +8,63 @@ import org.symagic.common.db.func.DaoCatalog;
 
 public class DaoCatalogTest extends TestCase{
 
-//	 @Test
-//	 public void testGetCatalog() {
-//		 DaoCatalog dc	= new DaoCatalog();
-//		 assertEquals(2, dc.getCatalog().get(0).getCatalogID());
-//	 }
+    //初始化
+	DaoCatalog dc = new DaoCatalog();
+	
+	@Test
+	public void testGetCatalog1(){
+		assertEquals(0,dc.getCatalog().size());
+	}
+	
+	@Test
+	public void testAddCatalog1(){
+		BeanCatalog bc = new BeanCatalog();
+		bc.setCatalogName("传记");
+		bc.setCatalogDesc("传记");
+		bc.setLevel("1");
+		bc.setUpID(0);
+		
+		assertEquals(true,dc.addCatalog(bc));
+	}
+	@Test
+	public void testAddCatalog2(){
+		BeanCatalog bc = new BeanCatalog();
+		bc.setCatalogName(null);
 
-//	@Test
-//	public void testAddCatalog() {
-//		DaoCatalog dc = new DaoCatalog();
-//		BeanCatalog bc = new BeanCatalog();
-//		bc.setCatalogName("中文书");
-//		bc.setCatalogDesc("好书");
-//		bc.setLevel("1");
-//		assertEquals(true, dc.addCatalog(bc));
-//	}
+		assertEquals(false,dc.addCatalog(bc));
+	}
+	@Test
+	public void testAddCatalog3(){
+		BeanCatalog bc = new BeanCatalog();
+		bc.setCatalogName("文学");
+		bc.setCatalogDesc("文学");
+		bc.setLevel("2");
+		bc.setUpID(5);
+		
+		assertEquals(true,dc.addCatalog(bc));
+	}
 
-//	@Test
-//	public void testModifyCatalog() {
-//		DaoCatalog dc = new DaoCatalog();
-//		BeanCatalog bc = new BeanCatalog();
-//		bc.setCatalogName("abc");
-//		bc.setCatalogDesc("abc");
-//		bc.setLevel("2");
-//		bc.setUpID(1);
-//		assertEquals(true, dc.modifyCatalog(bc));
-//	}
+	@Test
+	public void testGetCatalog2(){
+		assertEquals(2,dc.getCatalog().size());
+	}
+	
+	@Test
+	public void testModifyCatalog1(){
+		BeanCatalog bc = new BeanCatalog();
+		bc.setCatalogName("文学");
+		bc.setCatalogDesc("wuyi");
+		bc.setLevel("1");
+		bc.setUpID(0);
+		bc.setCatalogID(6);
+		
+		assertEquals(true,dc.modifyCatalog(bc));
+	}
+	@Test
+	public void testModifyCatalog2(){
+		BeanCatalog bc = new BeanCatalog();
+		bc.setCatalogName(null);
 
+		assertEquals(false,dc.modifyCatalog(bc));
+	}
 }

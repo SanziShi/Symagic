@@ -2,10 +2,177 @@
 {
 	width:799px;
 	background:#FFFFFF;
+	display:inline-block;
+}
+#cart-a div
+{
+	display:inline-block;
+	overflow:hidden;
 }
 #cart-a h2
 {
 	margin:0;
-	padding:0 0 10px 10px;
+	padding:10px 10px 0 10px;
 	font:tab;
+}
+#cart_table
+{
+	border: 1px solid #DDD;
+}
+#cart_table_head
+{
+	background-color: #F3F3F3;
+}
+#cart_table_head .checkbox input
+{
+	margin-top:12px;
+}
+.column
+{
+	height: 35px;
+	border-right: 1px solid white;
+	float: left;
+	color: #666;
+	line-height: 35px;
+	text-align: center;
+}
+.cell
+{
+	height: 52px;
+	float:left;
+	line-height:52px;
+	text-align: center;
+	border-right:#FFFDEE 1px solid;
+}
+.checkbox
+{
+	width:35px;
+}
+.p-name
+{
+	width: 330px;
+}
+.p-price
+{
+	width:80px;
+}
+.quantity
+{
+	width:100px;
+}
+.total
+{
+	width:80px;
+}
+.save
+{
+	width:75px;
+}
+.action
+{
+	width:91px;
+	border-right:0px;
+}
+
+#cart_table_content
+{
+	background-color: #FFFDEE;
+}
+.each
+{
+	border:0;
+	border-top: 1px solid #DDD;
+	padding: 10px 0;
+}
+#cart_table_content .checkbox input
+{
+	margin-top:21px;
+}
+.reduce
+{
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	border: 1px solid #DBDBDB;
+	line-height: 13px;
+	text-align: center;
+	overflow: hidden;
+	text-decoration: none;
+	font-family: arial;
+}
+.reduce:hover
+{
+	color:#FF0000;
+	border: 1px solid  #666;
+}
+.quantity input
+{
+width: 30px;
+height: 18px;
+line-height: 18px;
+padding: 0;
+border: 1px solid #989898;
+text-align: center;
+}
+.p-img
+{
+	width: 50px;
+	height: 50px;
+	margin:0px 7px 0px 5px;
+	border: 1px solid #DDD;
+	padding: 0;
+	float: left;
+	background-color: white;
+}
+.p-img img
+{
+	width:48px;
+	height:64px;
+	margin:-6px;
+}
+.p-name-de
+{
+	width:256px;
+	padding-right:8px;
+	line-height: 17px;
+	color: #005EA7;
+	float:left;
+}
+#cart_table_bottom
+{
+	padding: 10px 10px;
+	background-color: #F3F3F3;
+	width:777px;
+}
+#total-price
+{
+	width: 150px;
+	margin-left: 10px;
+	line-height: 30px;
+	font-weight: 700;
+	float:right;
+}
+#final-price
+{
+	float: right;
+	color: #C00;
+	font-size: 20px;
+	font-weight: 400;
+	font-family: Verdana,Arial;
+}
+.cart-button
+{
+	padding: 10px 0 0;
+	background:#FFFFFF;
+	float:left;
+	width:799px;
+}
+.checkout
+{
+	background:url(../image/checkout.gif);
+	display:block;
+	float:right;
+	height:40px;
+	width:159px;
+	margin:0 10px 10px; 
 }
