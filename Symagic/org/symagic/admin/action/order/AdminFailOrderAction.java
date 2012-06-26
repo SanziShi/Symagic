@@ -5,25 +5,27 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONSerializer;
 
 import org.symagic.common.db.bean.BeanOrder;
+import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoOrder;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AdminPassOrderAction extends ActionSupport {
+public class AdminFailOrderAction extends ActionSupport {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2766337819712072649L;
+	private static final long serialVersionUID = 3790488288537580693L;
 	private String orderIDList;
-	private Boolean checkResult;
-
+	private Boolean changeResult;
+	
 	private DaoOrder daoOrder;
-
+	private DaoBook daoBook;
+	
 	@Override
 	public String execute() throws Exception {
 
-		checkResult = false;
+		changeResult = false;
 
 		JSON json = JSONSerializer.toJSON(orderIDList);
 
@@ -33,47 +35,23 @@ public class AdminPassOrderAction extends ActionSupport {
 			JSONArray ids = (JSONArray) json;
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				if (!order.getOrderState().equals("0")) {
-					checkResult = false;
+				if (!order.getOrderState().equals("1")) {
+					changeResult = false;
 					return super.execute();
 				}
 			}
 
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				order.setOrderState("1");
+				order.setOrderState("3");
 				daoOrder.updateOrder(order);
 			}
 
-			checkResult = true;
+			changeResult = true;
 
 		}
 
 		return super.execute();
-	}
-
-	public String getOrderIDList() {
-		return orderIDList;
-	}
-
-	public void setOrderIDList(String orderIDList) {
-		this.orderIDList = orderIDList;
-	}
-
-	public Boolean getCheckResult() {
-		return checkResult;
-	}
-
-	public void setCheckResult(Boolean checkResult) {
-		this.checkResult = checkResult;
-	}
-
-	public DaoOrder getDaoOrder() {
-		return daoOrder;
-	}
-
-	public void setDaoOrder(DaoOrder daoOrder) {
-		this.daoOrder = daoOrder;
 	}
 
 }

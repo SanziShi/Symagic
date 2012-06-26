@@ -9,21 +9,21 @@ import org.symagic.common.db.func.DaoOrder;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AdminPassOrderAction extends ActionSupport {
-
+public class AdminSuccessOrderAction extends ActionSupport {
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2766337819712072649L;
+	private static final long serialVersionUID = -3198437970465011919L;
 	private String orderIDList;
-	private Boolean checkResult;
-
+	private Boolean changeResult;
+	
 	private DaoOrder daoOrder;
-
+	
 	@Override
 	public String execute() throws Exception {
 
-		checkResult = false;
+		changeResult = false;
 
 		JSON json = JSONSerializer.toJSON(orderIDList);
 
@@ -33,47 +33,23 @@ public class AdminPassOrderAction extends ActionSupport {
 			JSONArray ids = (JSONArray) json;
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				if (!order.getOrderState().equals("0")) {
-					checkResult = false;
+				if (!order.getOrderState().equals("1")) {
+					changeResult = false;
 					return super.execute();
 				}
 			}
 
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				order.setOrderState("1");
+				order.setOrderState("2");
 				daoOrder.updateOrder(order);
+				//orderScore
 			}
 
-			checkResult = true;
+			changeResult = true;
 
 		}
 
 		return super.execute();
 	}
-
-	public String getOrderIDList() {
-		return orderIDList;
-	}
-
-	public void setOrderIDList(String orderIDList) {
-		this.orderIDList = orderIDList;
-	}
-
-	public Boolean getCheckResult() {
-		return checkResult;
-	}
-
-	public void setCheckResult(Boolean checkResult) {
-		this.checkResult = checkResult;
-	}
-
-	public DaoOrder getDaoOrder() {
-		return daoOrder;
-	}
-
-	public void setDaoOrder(DaoOrder daoOrder) {
-		this.daoOrder = daoOrder;
-	}
-
 }

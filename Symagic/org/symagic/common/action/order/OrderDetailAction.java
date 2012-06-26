@@ -46,8 +46,16 @@ public class OrderDetailAction extends CatalogBase {
 		userName = order.getUsername();
 		orderTime = order.getOrderDate();
 		price = Float.toString(order.getTotalprice());
-		payment = order.getPayment();
-		deliverWay = order.getDeliveryWay();
+		switch( Integer.parseInt(order.getPayment() ) ){
+		case 0:
+			payment = "货到付款";
+			break;
+		}
+		switch (Integer.parseInt(order.getDeliveryWay())) {
+		case 0:
+			deliverWay = "快递";
+			break;
+		}
 		receiver = order.getReceiverName();
 
 		address = OrderService.deserializerAddress(order.getAddrDetail());
