@@ -185,8 +185,6 @@
 			/admin/admin_error.jsp
 			</result>
 		</action>
-		
-		<action name = "test" class="org.symagic.admin.action.item.ItemAddAction"/>
 
 	</package>
 

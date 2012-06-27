@@ -131,7 +131,7 @@ public String getItemName() {
 	/**
 	 * 分类ID
 	 */
-	private String catalogID = null;
+	private Integer catalogID = null;
 	
 	/**
 	 * 出版年
@@ -195,12 +195,14 @@ public String getItemName() {
 	 * 每页显示
 	 */
 	private Integer lines	= null;
+	
+	
 
-	public String getCatalogID() {
+	public Integer getCatalogID() {
 		return catalogID;
 	}
 
-	public void setCatalogID(String catalogID) {
+	public void setCatalogID(Integer catalogID) {
 		this.catalogID = catalogID;
 	}
 

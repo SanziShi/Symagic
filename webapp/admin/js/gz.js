@@ -171,7 +171,7 @@ function expanse(e)
 
 function set_value(e){
 	if(e.value=="下架")
-	e.value = "恢复";
+	e.value = "上架";
 	else 
 	e.value = "下架";
 	}
