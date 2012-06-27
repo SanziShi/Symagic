@@ -33,6 +33,39 @@ public class AdminIndexAction extends CatalogBase {
 
 	private OrderService orderService;
 
+	
+
+	@Override
+	public String execute() throws Exception {
+
+		totalSalesAmount = daoOrder.getTotalSaleAmount();
+		totalSalesRevenue = daoOrder.getTotalSalesRevenue();
+		userNum = daoUser.getUserNum();
+		productNum = daoBook.getProductNum();
+		totalOrderAmout = daoOrder.getTotalOrderAmount();
+		unauditedOrderAmount = daoOrder.getUnauditedOrderAmount();
+		finishOrderAmount = daoOrder.getFinishOrderAmount();
+		List<BeanOrder> orderList = daoOrder.getLatestOrders();
+		LatestOrders = new ArrayList<OrderBean>();
+
+		if (orderList != null) {
+			for (BeanOrder beanOrder : orderList) {
+				LatestOrders.add(orderService
+						.convertBeanOrderToOrderBean(beanOrder));
+
+			}
+		}
+		return super.execute();
+	}
+
+	public OrderService getOrderService() {
+		return orderService;
+	}
+
+	public void setOrderService(OrderService orderService) {
+		this.orderService = orderService;
+	}
+	
 	public Integer getTotalSalesAmount() {
 		return totalSalesAmount;
 	}
@@ -119,37 +152,6 @@ public class AdminIndexAction extends CatalogBase {
 
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
-	}
-
-	@Override
-	public String execute() throws Exception {
-
-		totalSalesAmount = daoOrder.getTotalSaleAmount();
-		totalSalesRevenue = daoOrder.getTotalSalesRevenue();
-		userNum = daoUser.getUserNum();
-		productNum = daoBook.getProductNum();
-		totalOrderAmout = daoOrder.getTotalOrderAmount();
-		unauditedOrderAmount = daoOrder.getUnauditedOrderAmount();
-		finishOrderAmount = daoOrder.getFinishOrderAmount();
-		List<BeanOrder> orderList = daoOrder.getLatestOrders();
-		LatestOrders = new ArrayList<OrderBean>();
-
-		if (orderList != null) {
-			for (BeanOrder beanOrder : orderList) {
-				LatestOrders.add(orderService
-						.convertBeanOrderToOrderBean(beanOrder));
-
-			}
-		}
-		return super.execute();
-	}
-
-	public OrderService getOrderService() {
-		return orderService;
-	}
-
-	public void setOrderService(OrderService orderService) {
-		this.orderService = orderService;
 	}
 
 }

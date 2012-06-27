@@ -10,6 +10,10 @@ import org.symagic.common.utilty.presentation.bean.CommentBean;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 
 public class ItemDetailAction extends CatalogBase {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 9054557857853861076L;
 @Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub

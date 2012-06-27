@@ -18,28 +18,31 @@ public class IndexAction extends CatalogBase{
 
 
 
+
+
+
 /**
 	 * 
 	 */
 private static final long serialVersionUID = 5685501467658534869L;
 
-private RecommandService recommandService;
-private ItemService itemService;
+private RecommandService recommandService; //访问推荐系统
+private ItemService itemService;//访问商品项
 
 
+//传出参数
+private String nickname;//昵称
+private int totalNumber;//购物车数量
 
-private String nickname;
-private int cartItemNumber;
-private List<ItemBean> recommendItem;
-
-private List<ItemBean> newBook;
-private List<ItemBean> hotBook;
+private List<ItemBean> recommendItem;//浏览量的商品
+private List<ItemBean> newBook;//新书
+private List<ItemBean> hotBook;//热销书
 
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		nickname=UserSessionUtilty.getNickname();
-		cartItemNumber=UserSessionUtilty.getCart().size();
+		totalNumber=UserSessionUtilty.getCartNumber();
 		
 		//推荐商品的id
 	     List<Integer> recommendIds=recommandService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
@@ -47,6 +50,7 @@ private List<ItemBean> hotBook;
 	     
 	     //新书和热销书
 	    newBook=new ArrayList<ItemBean>();
+	   
 	   
 	    
 		hotBook=new ArrayList<ItemBean>();
@@ -64,13 +68,63 @@ private List<ItemBean> hotBook;
 	}
 
 
-	public int getCartItemNumber() {
-		return cartItemNumber;
+	public RecommandService getRecommandService() {
+		return recommandService;
 	}
 
 
-	public void setCartItemNumber(int cartItemNumber) {
-		this.cartItemNumber = cartItemNumber;
+	public void setRecommandService(RecommandService recommandService) {
+		this.recommandService = recommandService;
+	}
+
+
+	public ItemService getItemService() {
+		return itemService;
+	}
+
+
+	public void setItemService(ItemService itemService) {
+		this.itemService = itemService;
+	}
+
+
+	public int getTotalNumber() {
+		return totalNumber;
+	}
+
+
+	public void setTotalNumber(int totalNumber) {
+		this.totalNumber = totalNumber;
+	}
+
+
+	public List<ItemBean> getRecommendItem() {
+		return recommendItem;
+	}
+
+
+	public void setRecommendItem(List<ItemBean> recommendItem) {
+		this.recommendItem = recommendItem;
+	}
+
+
+	public List<ItemBean> getNewBook() {
+		return newBook;
+	}
+
+
+	public void setNewBook(List<ItemBean> newBook) {
+		this.newBook = newBook;
+	}
+
+
+	public List<ItemBean> getHotBook() {
+		return hotBook;
+	}
+
+
+	public void setHotBook(List<ItemBean> hotBook) {
+		this.hotBook = hotBook;
 	}
 	
   

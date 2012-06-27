@@ -9,7 +9,9 @@ public class CartModifyItemAction extends ActionSupport {
 
 private DaoCart daoCart;//访问数据库中会员购物车信息
 
-private Integer itemId;//商品id
+private Integer itemID;//商品id
+
+
 private Integer itemNumber;//更改后的数量
 private boolean validateResult=true;
 private boolean updateResult;//修改是否成功
@@ -17,7 +19,7 @@ private boolean updateResult;//修改是否成功
 @Override
 public void validate() {
 	// TODO Auto-generated method stub
-	if(itemId==null||itemNumber==null||itemNumber<0){
+	if(itemID==null||itemNumber==null||itemNumber<0){
 		validateResult=false;
 	}
 	
@@ -30,10 +32,10 @@ public String execute() throws Exception {
 		 return "SUCCESS";
 	 }
 	 
-	 updateResult=UserSessionUtilty.addToCart(itemId, itemNumber);
+	 updateResult=UserSessionUtilty.addToCart(itemID, itemNumber);
 		//会员登录更新到数据库中
 		if(UserSessionUtilty.isLogin()){
-			updateResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemId, itemNumber);
+			updateResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
 		}
 	 
 	return super.execute();
@@ -44,12 +46,7 @@ public boolean isUpdateResult() {
 public void setUpdateResult(boolean updateResult) {
 	this.updateResult = updateResult;
 }
-public Integer getItemId() {
-	return itemId;
-}
-public void setItemId(Integer itemId) {
-	this.itemId = itemId;
-}
+
 public Integer getItemNumber() {
 	return itemNumber;
 }
@@ -61,5 +58,11 @@ public DaoCart getDaoCart() {
 }
 public void setDaoCart(DaoCart daoCart) {
 	this.daoCart = daoCart;
+}
+public Integer getItemID() {
+	return itemID;
+}
+public void setItemID(Integer itemID) {
+	this.itemID = itemID;
 }
 }
