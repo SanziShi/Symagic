@@ -37,7 +37,7 @@ private float totalPrice;//购物车中商品的总价
 	 items=new ArrayList<ItemBean>();
 
 	 totalPrice=itemService.fillItemWithNumber(items);
-     totalNumber=UserSessionUtilty.getCartNumber();
+     totalNumber=UserSessionUtilty.getTotalNumber();
 	
 	 return super.execute();
 	}

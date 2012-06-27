@@ -24,6 +24,16 @@ public class UserSessionUtilty extends SessionUtilty {
 			ActionContext.getContext().getSession().put("errorTimes", errorTimes);
 		}
 	}
+	//维持session中的数量
+	public static void addTotalNumber(int number){
+		Integer totalNumber=(Integer)ActionContext.getContext().getSession().get("totalNumber");
+		if(totalNumber==null){
+			ActionContext.getContext().getSession().put("totalNumber", number);
+		}
+		else{
+			ActionContext.getContext().getSession().put("totalNumber", number+totalNumber);
+		}
+	}
   /**
    * 取得用户登录失败次数
    */
@@ -43,6 +53,7 @@ public class UserSessionUtilty extends SessionUtilty {
 		session.put("username", userName);
 		session.put("nickname", nickname);
 	}
+
 
 	/**
 	 * 判断当前用户是否已经登陆
@@ -92,9 +103,12 @@ public class UserSessionUtilty extends SessionUtilty {
 				 Map<String ,Object> session=ActionContext.getContext().getSession();
 				//得到购物车
 				HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
+				int number=cart.get(id);
 				cart.remove(id);
+				UserSessionUtilty.addTotalNumber(0-number);
 				return true;
 	}
+	
 	
 	/**
 	 * 得到session中的购物车
@@ -114,15 +128,10 @@ public class UserSessionUtilty extends SessionUtilty {
 		return cart;
 	}
 	
-	public static int getCartNumber(){
-		HashMap<Integer,Integer> cart=getCart();
-		Collection<Integer> numbers=cart.values();
-		int totalNumber=0;
-		for(Iterator<Integer> number=numbers.iterator();number.hasNext();){
-			totalNumber+=number.next();
-		}
-		return totalNumber;
+	public static Integer getTotalNumber(){
+		return (Integer)ActionContext.getContext().getSession().get("totalNumber");
 	}
+	
 	
 	
 	public static String getNickname(){
