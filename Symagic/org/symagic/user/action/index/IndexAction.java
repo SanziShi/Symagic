@@ -18,12 +18,6 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 
 public class IndexAction extends CatalogBase{
-
-
-
-
-
-
 /**
 	 * 
 	 */
