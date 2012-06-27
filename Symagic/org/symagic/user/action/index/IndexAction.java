@@ -26,7 +26,7 @@ public class IndexAction extends CatalogBase{
 	 */
 private static final long serialVersionUID = 5685501467658534869L;
 
-private RecommandService recommandService; //访问推荐系统
+private RecommandService recommendService; //访问推荐系统
 private ItemService itemService;//访问商品项
 
 
@@ -44,8 +44,8 @@ private List<ItemBean> hotBook;//热销书
 		totalNumber=UserSessionUtilty.getCartNumber();
 		
 		//推荐商品的id
-	     List<Integer> recommendIds=recommandService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
-	     itemService.fillItem(recommendIds,recommendItem);
+	    List<Integer> recommendIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
+	    itemService.fillItem(recommendIds,recommendItem);
 	     
 	     //新书和热销书
 	    newBook=new ArrayList<ItemBean>();
@@ -67,13 +67,20 @@ private List<ItemBean> hotBook;//热销书
 	}
 
 
-	public RecommandService getRecommandService() {
-		return recommandService;
+	
+
+	public RecommandService getRecommendService() {
+		return recommendService;
 	}
 
 
-	public void setRecommandService(RecommandService recommandService) {
-		this.recommandService = recommandService;
+	public void setRecommendService(RecommandService recommendService) {
+		this.recommendService = recommendService;
+	}
+
+
+	public void setTotalNumber(Integer totalNumber) {
+		this.totalNumber = totalNumber;
 	}
 
 
