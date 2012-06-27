@@ -83,7 +83,7 @@
 
 		<action name="get_session_info" class="getSessionInfo">
 			<result type="json">
-				<param name="includeProperties">username,nickname,loginErrorTimes,totalNumber</param>
+				<param name="includeProperties">userName,nickname,loginErrorTimes,totalNumber</param>
 
 			</result>
 		</action>
