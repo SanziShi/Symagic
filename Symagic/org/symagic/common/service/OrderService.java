@@ -1,17 +1,22 @@
 package org.symagic.common.service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
-import org.symagic.common.db.bean.BeanLevel;
 import org.symagic.common.db.bean.BeanOrder;
-import org.symagic.common.db.func.DaoLevel;
+import org.symagic.common.db.bean.BeanOrderDetail;
+import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoOrder;
-import org.symagic.common.db.func.DaoUser;
+import org.symagic.common.db.func.OrderRequire;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
+import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
-import org.symagic.common.utilty.presentation.bean.TimeBean;
 
 public class OrderService {
 
@@ -23,23 +28,15 @@ public class OrderService {
 	}
 
 	private DaoOrder daoOrder;
-	private DaoLevel daoLevel;
-	private DaoUser daoUser;
+	
+	private DaoBook daoBook;
 
-	/**
-	 * 列出指定用户的order列表，当userName为空则列出所有。
-	 * 
-	 * @param startTime
-	 * @param endTime
-	 * @param orderState
-	 * @param page
-	 * @param userName
-	 */
-	public void orderList(TimeBean startTime, TimeBean endTime,
-			Integer orderState, Integer page, String userName) {
+	public DaoBook getDaoBook() {
+		return daoBook;
+	}
 
-		// OrderRequire require = new OrderRequire();
-
+	public void setDaoBook(DaoBook daoBook) {
+		this.daoBook = daoBook;
 	}
 
 	public BeanOrder orderDetail(Integer orderID) {
@@ -69,10 +66,37 @@ public class OrderService {
 		}
 		result.setOrderTime(bean.getOrderDate());
 		result.setReceiverName(bean.getReceiverName());
-		BeanLevel level = daoLevel.judgeLevel(daoUser.getScore(bean.getUsername()));
+		//result.setScore();
 		result.setTotalPrice(bean.getTotalprice());
-		result.setScore(Float.toString(result.getTotalPrice() * level.getRate()));
 		return result;
+	}
+	/**
+	 * 列出指定用户订单列表，当username为空时为列出所有订单，
+	 * @param username 用户名
+	 * @param itemPerPage 每页几项
+	 * @param page 想要第几页的数据
+	 * @param start 起始时间
+	 * @param end 终止时间
+	 * @param OrderStatus 订单状态
+	 * @return 用户订单列表
+	 */
+	
+	public List<OrderBean> orderList(String username, int itemPerPage, int page,
+			Date start, Date end, String orderState){
+		List<OrderBean> orderList = new ArrayList<OrderBean>();
+		OrderRequire require = new OrderRequire();
+		SimpleDateFormat format = new SimpleDateFormat("yyyy:mm:dd");
+		require.setStartTime(format.format(start));
+		require.setEndTime(format.format(end));
+		require.setOrderState(orderState);
+		require.setPage(page);
+		require.setLines(itemPerPage);
+		List<BeanOrder> orders = daoOrder.search(require, username);
+		for(int i = 0; i < orders.size(); i ++){
+			OrderBean orderBean = this.convertBeanOrderToOrderBean(orders.get(i));
+			orderList.add(orderBean);
+		}
+		return orderList;
 	}
 	
 	public static Address deserializerAddress( String receiverAddress ){
@@ -142,6 +166,18 @@ public class OrderService {
 		
 		return jsonObject.toString();
 		
+	}
+	
+	public List<BeanOrderDetail> getOrderDetail(List<ItemBean> items){
+		List<BeanOrderDetail> orderDetails = new ArrayList<BeanOrderDetail>();
+		for(int i = 0; i < items.size(); i ++){
+			BeanOrderDetail detail = new BeanOrderDetail();
+			ItemBean item = items.get(i);
+			detail.setAmount(item.getItemNumber());
+			detail.setBookId(item.getItemId());
+			//detail.set
+		}
+		return orderDetails;
 	}
 
 	public DaoOrder getDaoOrder() {

@@ -290,7 +290,7 @@ span.close
 {
 	position:absolute;
 	top:26px;
-	right:10px;
+	right:9px;
 	min-height:50px;
 	width:300px;
 	background:#FFF;
@@ -432,10 +432,10 @@ span.close
 #container{
 	position:relative;
 	margin:0px auto 0px auto;
-	width:800px;
+	width:799px;
 	text-align:left;
 	display:inline-block;
-
+	background: #EAEAEA;
 }
 
 #globallink{
