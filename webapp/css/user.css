@@ -1,0 +1,55 @@
+#loading
+{
+	background:url(../image/loading_big.gif);
+	height:100px;
+	width:100px;
+	display:block;
+	margin:20px 0px 20px 274px;
+}
+#favorite-container div
+{
+	float:left;
+}
+#favorite-content
+{
+	border:1px solid #DDD;
+	border-width:1px 0 1px 0;
+}
+#favorite-content-head
+{
+		background-color: #F3F3F3;
+		border-bottom:1px solid #DDD;
+}
+#favorite-content-head .checkbox input
+{
+	margin-top:12px;
+}
+.column
+{
+	height: 35px;
+	border-right: 1px solid white;
+	float: left;
+	color: #666;
+	line-height: 35px;
+	text-align: center;
+}
+.cell
+{
+	height: 52px;
+	float:left;
+	line-height:52px;
+	text-align: center;
+	border-right:#FFFDEE 1px solid;
+}
+.p-name
+{
+	width:300px;
+}
+.p-price
+{
+	width:100px;
+}
+.action
+{
+	width:110px;
+}
