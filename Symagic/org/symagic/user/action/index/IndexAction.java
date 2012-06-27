@@ -44,8 +44,8 @@ private List<ItemBean> hotBook;//热销书
 		totalNumber=UserSessionUtilty.getCartNumber();
 		
 		//推荐商品的id
-	    List<Integer> recommendIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
-	    itemService.fillItem(recommendIds,recommendItem);
+	   // List<Integer> recommendIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
+	    //itemService.fillItem(recommendIds,recommendItem);
 	     
 	     //新书和热销书
 	    newBook=new ArrayList<ItemBean>();
