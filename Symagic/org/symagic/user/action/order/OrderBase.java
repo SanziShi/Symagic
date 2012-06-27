@@ -7,7 +7,9 @@ public class OrderBase extends CatalogBase{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2182846197228596670L;
+
+	private static final long serialVersionUID = 1L;
+
 
 	private String receiverName;
 	

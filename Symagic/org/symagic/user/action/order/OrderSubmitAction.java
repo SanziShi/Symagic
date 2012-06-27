@@ -44,8 +44,12 @@ public class OrderSubmitAction extends OrderBase{
 	
 	private DaoDistrict daoDistrict;
 	
-	private Map<String,String> parameters;
 
+	private Map<String, String> parameters;
+
+
+
+	
 
 
 	public String getAddressId() {

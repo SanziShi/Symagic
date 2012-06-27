@@ -10,7 +10,9 @@ public class AddressBase extends CatalogBase{
 	 */
 	private static final long serialVersionUID = -654569210971834110L;
 
-	private String name;
+
+	private String recieverName;
+
 	
 	private String addressDetail;
 	
@@ -26,12 +28,13 @@ public class AddressBase extends CatalogBase{
 	
 	private String mobileNum;
 
-	public String getName() {
-		return name;
+
+	public String getRecieverName() {
+		return recieverName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRecieverName(String recieverName) {
+		this.recieverName = recieverName;
 	}
 
 	public String getAddressDetail() {
