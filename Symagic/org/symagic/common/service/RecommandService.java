@@ -281,6 +281,41 @@ public class RecommandService {
 
 		return result;
 	}
+	
+	/**
+	 * 获取浏览最多的商品
+	 * 
+	 * @param requireNumber
+	 * @param timeRange
+	 * @return
+	 */
+	public List<Integer> mostViewedItems(Integer requireNumber, String timeRange) {
+		List<Integer> result = new ArrayList<Integer>();
+
+		String url = "http://" + host
+				+ "/easyrec-web/api/1.0/json/mostvieweditems";
+
+		Map<String, String> parameters = new HashMap<String, String>();
+		parameters.put("apikey", apikey);
+		parameters.put("tenantid", tenantid);
+		parameters.put("numberOfResults", requireNumber.toString());
+
+		String reponse = this.sendGetRequest(url, parameters);
+
+		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+
+		if (object == null)
+			return null;
+
+		JSONObject recommended = object.getJSONObject("recommendeditems");
+		JSONArray items = recommended.getJSONArray("item");
+		for (int i = 0; i < items.size(); i++) {
+			JSONObject temp = (JSONObject) items.get(i);
+			result.add(temp.getInt("id"));
+		}
+
+		return result;
+	}
 
 	/**
 	 * 发送http请求

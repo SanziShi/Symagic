@@ -2,6 +2,7 @@ package org.symagic.admin.action.user;
 
 import java.util.GregorianCalendar;
 
+import org.symagic.common.db.func.UserRequire;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,7 +27,7 @@ public class UserSearchSubmitAction extends ActionSupport {
 		if( !validateResult )
 			return ERROR;
 		
-//		UserRequire userRequire = new UserRequire();
+		UserRequire userRequire = new UserRequire();
 
 		
 		return super.execute();
