@@ -1,11 +1,14 @@
-﻿	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <title>BC2商城</title>
-<link href="css/frame.css" rel="stylesheet" type="text/css"/>
-<link href="css/item.css" rel="stylesheet" type="text/css"/>
+<link href="css/home.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
 </head>
@@ -15,21 +18,25 @@
 	<span id="cart_loading"></span>
 	<div id="cart_none">您的购物车中还没有商品，请选购！</div>
 	<div id="cart_container"></div>
-	
 </div>
 	<div id="logalleft">
-		<div id="top-overlay"></div>
+    <div id="top-overlay"></div>
     <!----吊顶栏------>
 	<div class="top">
     <div class="top_right">
     <ul>
+    <s:if test="#session.nickname!=null">
+    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
+    </s:if>
+    <s:else>
     <li>欢迎来到Symagic！</li>
-    <s:property value="#session.username"/><s:property value="#session.nickname"/>
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
+    </s:else>
     <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart.html">
-    <span id="cart_icon"></span>购物车 <strong id="cart_num">0</strong> 件</a>
+    <li id="cart_top"><a id="cart_a" href="cart">
+    <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
     </ul>
     </div>
@@ -201,7 +208,7 @@
           		 </tr>
 				 <tr>
 				 <th></th>
-				 	<td><input type="button"  value="搜索" onClick="">
+				 	<td><input type="button" value="搜索" onClick="">
 				 </tr>
         </table>	
 				

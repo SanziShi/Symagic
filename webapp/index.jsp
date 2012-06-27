@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="top">
     <div class="top_right">
     <ul>
-    <s:if test="nickname!=null">
-    <li><s:property value="nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <s:if test="#session.nickname!=null">
+    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
     <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
     </s:if>
     <s:else>
@@ -36,8 +36,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
     </s:else>
     <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart.html">
-    <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='totalNumber'/></strong> 件</a>
+    <li id="cart_top"><a id="cart_a" href="cart">
+    <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
     </ul>
     </div>
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				网站路径：<a href="index">首页</a>			</div>
 			<div id="searchright">
             <form action="quick_search" >
-			  <select name="catalog" >
+			  <select name="catalogID" >
 				<option value="0">所有类别</option>
               </select>
 			  <input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />
