@@ -2,6 +2,7 @@ package org.symagic.user.action.login;
 
 import org.symagic.user.utilty.UserSessionUtilty;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class GetSessionInfoAction extends ActionSupport {
@@ -28,7 +29,7 @@ public String execute() throws Exception {
 	this.setUserName(UserSessionUtilty.getUsername());
 	this.setNickname(UserSessionUtilty.getNickname());
 	this.setLoginErrorTimes(UserSessionUtilty.getLoginErrorTime());
-	this.setTotalNumber(UserSessionUtilty.getCartNumber());
+	this.setTotalNumber((Integer)ActionContext.getContext().getSession().get("totalNumber"));
 	return super.execute();
 }
 

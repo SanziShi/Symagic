@@ -20,6 +20,8 @@ public class CatalogService {
 		List<CatalogBean> catalog = new ArrayList<CatalogBean>();
 
 		List<BeanCatalog> daoCatalogList = daoCatalog.getCatalog();
+		
+		if( daoCatalogList == null ) return null;
 
 		Map<Integer, CatalogBean> topLevelCatalogMap = new HashMap<Integer, CatalogBean>();
 
