@@ -7,6 +7,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class ItemUpAction extends ActionSupport {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2216563181086628014L;
 	private Integer itemID;// 商品ID
 	private Boolean upResult;
 	private DaoBook daoBook;
@@ -26,6 +30,30 @@ public class ItemUpAction extends ActionSupport {
 			upResult = false;
 		}
 		return SUCCESS;
+	}
+
+	public Integer getItemID() {
+		return itemID;
+	}
+
+	public void setItemID(Integer itemID) {
+		this.itemID = itemID;
+	}
+
+	public Boolean getUpResult() {
+		return upResult;
+	}
+
+	public void setUpResult(Boolean upResult) {
+		this.upResult = upResult;
+	}
+
+	public DaoBook getDaoBook() {
+		return daoBook;
+	}
+
+	public void setDaoBook(DaoBook daoBook) {
+		this.daoBook = daoBook;
 	}
 	
 }
