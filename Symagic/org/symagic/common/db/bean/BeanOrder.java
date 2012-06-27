@@ -70,6 +70,11 @@ public class BeanOrder {
 	 */
 	private float totalprice	= 0.0f;
 	
+	/**
+	 * 该订单可获取的积分
+	 */
+	private int score	= 0;
+	
 	public int getOrderId() {
 		return orderId;
 	}
@@ -153,6 +158,14 @@ public class BeanOrder {
 
 	public void setTotalprice(float totalprice) {
 		this.totalprice = totalprice;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 	
 	
