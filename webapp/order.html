@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BC2商城</title>
+<link href="css/home.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/yf_ADS.js"></script>
+</head>
+<body>
+<div id="container">
+<div id="cart">
+	<span id="cart_loading"></span>
+	<div id="cart_none">您的购物车中还没有商品，请选购！</div>
+	<div id="cart_container"></div>
+</div>
+	<div id="logalleft">
+    <div id="top-overlay"></div>
+    <!----吊顶栏------>
+	<div class="top">
+    <div class="top_right">
+    <ul>
+    <li>欢迎来到Symagic！</li>
+    <!--<s:property value="#session.username"/><s:property value="#session.nickname"/>-->
+    <li id="login_top" onclick="load_login();"><a>登录</a></li>
+    <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
+    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li id="cart_top"><a id="cart_a" href="cart.html">
+    <span id="cart_icon"></span>购物车 <strong id="cart_num">0</strong> 件</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+  <!------吊顶结束----->
+	</div>
+	<div id="globallink">
+		<ul>
+			<li><a href="index.html">首页</a></li>
+			<li><a href="item_list.html">商品列表</a></li>
+			<li><a href="favorite.html">收藏夹</a></li>
+			<li><a href="address.html">地址簿</a></li>
+			<li><a href="tradequery.html">交易查询</a></li>
+			<li><a href="send_notes.html">送货说明</a></li>
+            <li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+		</ul>
+	</div>
+    <div class="clear"></div>
+    <div id="order_container">
+    </div>
+	<div id="footer">
+		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
+		<span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
+	</div>
+</div>
+
+</body>
+</html>

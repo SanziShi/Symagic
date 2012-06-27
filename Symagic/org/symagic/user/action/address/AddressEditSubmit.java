@@ -3,20 +3,25 @@ package org.symagic.user.action.address;
 import org.symagic.common.db.bean.BeanAddress;
 import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.db.func.DaoUserAddress;
+import org.symagic.common.service.AddressService;
 import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
-public class AddressSubmitAction extends AddressBase{
-	
+public class AddressEditSubmit extends AddressBase{
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2504916134181840602L;
-
-	private DaoUserAddress daoAddress;
+	private static final long serialVersionUID = 8014737160381625059L;
 	
 	private DaoDistrict daoDistrict;
+	
+	private DaoUserAddress daoUserAddress;
+	
+	private AddressService addressService;
+	
+	private Integer addressID;
 
 	public DaoDistrict getDaoDistrict() {
 		return daoDistrict;
@@ -26,16 +31,32 @@ public class AddressSubmitAction extends AddressBase{
 		this.daoDistrict = daoDistrict;
 	}
 
-	public DaoUserAddress getDaoAddress() {
-		return daoAddress;
+	public DaoUserAddress getDaoUserAddress() {
+		return daoUserAddress;
 	}
 
-	public void setDaoAddress(DaoUserAddress daoAddress) {
-		this.daoAddress = daoAddress;
+	public void setDaoUserAddress(DaoUserAddress daoUserAddress) {
+		this.daoUserAddress = daoUserAddress;
+	}
+
+	public AddressService getAddressService() {
+		return addressService;
+	}
+
+	public void setAddressService(AddressService addressService) {
+		this.addressService = addressService;
+	}
+	
+	public Integer getAddressID() {
+		return addressID;
+	}
+
+	public void setAddressID(Integer addressID) {
+		this.addressID = addressID;
 	}
 
 	public String execute() throws Exception{
-		BeanAddress address = new BeanAddress();
+BeanAddress address = new BeanAddress();
 		
 		OrderService.Address addressDetail = new OrderService.Address();
 		addressDetail.districtDetail = getAddressDetail();
@@ -54,8 +75,8 @@ public class AddressSubmitAction extends AddressBase{
 		address.setReceivername(getRecieverName());
 		address.setUsername(UserSessionUtilty.getUsername());
 		address.setZipcode(getZipcode());
-		
-		daoAddress.addAddress(address);
+		address.setAddrid(addressID);
+		daoUserAddress.modifyAddress(address);
 		return SUCCESS;
 	}
 }
