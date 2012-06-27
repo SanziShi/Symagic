@@ -878,6 +878,7 @@ $().ready(function() {
 			{
 				Ajax({
 					url:'get_session_info',
+					onSend:function(){cart.loading.style.display='block';},
 					onSuccess:function(e)
 						{
 							var result=JSON.toJSON(e);
