@@ -251,10 +251,9 @@ public class RecommandService {
 	 * 获取热销商品
 	 * 
 	 * @param requireNumber
-	 * @param timeRange
 	 * @return
 	 */
-	public List<Integer> mostBoughtItems(Integer requireNumber, String timeRange) {
+	public List<Integer> mostBoughtItems(Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -286,10 +285,9 @@ public class RecommandService {
 	 * 获取浏览最多的商品
 	 * 
 	 * @param requireNumber
-	 * @param timeRange
 	 * @return
 	 */
-	public List<Integer> mostViewedItems(Integer requireNumber, String timeRange) {
+	public List<Integer> mostViewedItems(Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
