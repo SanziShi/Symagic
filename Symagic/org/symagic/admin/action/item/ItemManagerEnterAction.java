@@ -19,5 +19,7 @@ public class ItemManagerEnterAction extends CatalogBase {
 	 * 
 	 */
 	private static final long serialVersionUID = 7734758591630202798L;
+	
+	
 
 }
