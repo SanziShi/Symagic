@@ -120,7 +120,7 @@ public class DaoFavorityFolder {
 		List<BeanFavorityFolder> list	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select * from favroty_folder where username=? " +
+			ps	= conn.prepareStatement("select * from favority_folder where username=? " +
 					"order by favorityid asc limit ?, ?");
 			ps.setString(1, username);
 			ps.setInt(2, (page-1)*lines);
@@ -135,7 +135,7 @@ public class DaoFavorityFolder {
 				favority.setIsbn(rs.getString("isbn"));
 				favority.setMarketPrice(rs.getFloat("marketPrice"));
 				favority.setPublisher(rs.getString("publisher"));
-				favority.setPublishDate(rs.getString("publishedate"));
+				favority.setPublishDate(rs.getString("publishdate"));
 				favority.setUsername(rs.getString("username"));
 				list.add(favority);
 			}

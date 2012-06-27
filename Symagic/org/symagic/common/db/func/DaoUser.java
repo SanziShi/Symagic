@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.pool.ConnectionPool;
@@ -292,6 +293,17 @@ public class DaoUser {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * 按照指定条件搜索用户
+	 * @param req	UserRequire实例，封装着用户搜索条件
+	 * @return	List<BeanUser>null 搜索出错	not null 搜索成功
+	 */
+	public List<BeanUser> search(UserRequire req)
+	{
+		List<BeanUser> list	= null;
+		return list;
 	}
 	
 	

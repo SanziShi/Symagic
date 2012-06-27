@@ -175,6 +175,19 @@ public class DaoCatalog {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			// 删除book_catalog_detail中有关bookid的
+			ps	= conn.prepareStatement("delete from book_catalog_detail where catalogid=?");
+			ps.setInt(1, catalogID);
+			ps.execute();
+			
+			ps	= conn.prepareStatement("delete from book_catalog where catalogid=?");
+			ps.setInt(1, catalogID);
+			ps.execute();
+			
+			if (ps.getUpdateCount() == 1) 
+				return true;
+			return false;
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
