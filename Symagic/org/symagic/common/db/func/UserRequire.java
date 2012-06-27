@@ -6,7 +6,7 @@ public class UserRequire {
 	/**
 	 * 用户名
 	 */
-	private String username	= null;
+	private String username	= "%";
 	
 	/**
 	 * 用户等级

@@ -35,10 +35,43 @@ public class DaoOrder {
 	public List<BeanOrder> search(OrderRequire req, String username)
 	{
 		List<BeanOrder> list	= null;
+		String sql	= "select * from book_order where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select * from book_order where ");
+			sql += "orderdate > " + " '" + req.getStartTime() + "' ";
+			if (username != null)
+				sql += " and username like " + " '" + username + "' ";
+			if (req.getEndTime() != null)
+				sql += " and orderdate < " + " '" + req.getEndTime() + "' ";
+			if (req.getOrderState() != null)
+				sql += " and orderstate=" + " '" + req.getOrderState() + "' ";
 			
+			sql += " order by orderdate asc limit " 
+				+ ((req.getPage() - 1) * req.getLines())
+				+ ", " + req.getLines();
+	
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			
+			list	= new ArrayList<BeanOrder>();
+			while (rs.next()) {
+				BeanOrder order	= new BeanOrder();
+				order.setAddrDetail(rs.getString("addrdetail"));
+				order.setDeliveryWay(rs.getString("deliveryway"));
+				order.setMobilenum(rs.getString("mobilenum"));
+				order.setOrderDate(rs.getString("orderdate"));
+				order.setOrderId(rs.getInt("orderid"));
+				order.setOrderState(rs.getString("orderstate"));
+				order.setPayment(rs.getString("payment"));
+				order.setPhonenum(rs.getString("phonenum"));
+				order.setReceiverName(rs.getString("receivername"));
+				order.setScore(rs.getInt("score"));
+				order.setTotalprice(rs.getFloat("totalprice"));
+				order.setUsername(rs.getString("username"));
+				order.setZipcode(rs.getString("zipcode"));
+				list.add(order);
+			}
+			return list;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +134,34 @@ public class DaoOrder {
 	 */
 	public int getRowNumber(OrderRequire req, String username)
 	{
-		return 0;
+		
+		String sql	= "select count(*) from book_order where ";
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			sql += "orderdate > " + " '" + req.getStartTime() + "' ";
+			if (username != null)
+				sql += " and username like " + " '" + username + "' ";
+			if (req.getEndTime() != null)
+				sql += " and orderdate < " + " '" + req.getEndTime() + "' ";
+			if (req.getOrderState() != null)
+				sql += " and orderstate=" + " '" + req.getOrderState() + "' ";
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1;
 	}
 	
 	/**
@@ -431,6 +491,60 @@ public class DaoOrder {
 		return list;
 	}
 	
+	
+	/**
+	 * 获取指定书籍的所有订单，要分页
+	 * @param bookID	指定书籍ID
+	 * @param page	指定第几页
+	 * @param lines	指定每页显示多少行
+	 * @return	List<BeanOrder>	封装着订单信息的BeanOrder链表
+	 */
+	public List<BeanOrder> getItemOrders(int bookID, int page, int lines)
+	{
+		List<BeanOrder> list	 = null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from book_order " +
+					"where orderid in " +
+					"(select distinct orderid from order_detail where bookid=? ) " +
+					"order by orderdate asc limit ?,?");
+			ps.setInt(1, bookID);
+			ps.setInt(2, (page - 1) * lines);
+			ps.setInt(3, lines);
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanOrder>();
+			
+			while (rs.next()) {
+				BeanOrder order	= new BeanOrder();
+				order.setAddrDetail(rs.getString("addrdetail"));
+				order.setDeliveryWay(rs.getString("deliveryway"));
+				order.setMobilenum(rs.getString("mobilenum"));
+				order.setOrderDate(rs.getString("orderdate"));
+				order.setOrderId(rs.getInt("orderid"));
+				order.setOrderState(rs.getString("orderstate"));
+				order.setPayment(rs.getString("payment"));
+				order.setPhonenum(rs.getString("phonenum"));
+				order.setReceiverName(rs.getString("receivername"));
+				order.setScore(rs.getInt("score"));
+				order.setTotalprice(rs.getFloat("totalprice"));
+				order.setUsername(rs.getString("username"));
+				order.setZipcode(rs.getString("zipcode"));
+				list.add(order);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 	
 }
 

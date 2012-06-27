@@ -307,14 +307,14 @@ public class DaoUser {
 		String sql	= "select * from user where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			sql += " username like " + "'%" + req.getUsername() + "%'";
 			if (req.getStartTime() != null)
-				sql += " registedate > " + "'" + req.getStartTime() + "'";
+				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
 			if (req.getEndTime() != null)
 				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
 			if (req.getUserLevel() != null)
 				sql += " and " + " registedate > " + "'" + req.getUserLevel() + "'";
-			if (req.getUsername() != null)
-				sql += " and " + " username like " + "'%" + req.getUsername() + "%'";
+			
 			
 			sql += " order by userid asc limit " 
 				+ (req.getPage()-1)*req.getLines()

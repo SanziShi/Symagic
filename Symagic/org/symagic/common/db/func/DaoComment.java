@@ -211,4 +211,31 @@ public class DaoComment {
 		return -1;
 	}
 	
+	/**
+	 * 获取所有订单数量
+	 * @return	-1 查询出错	>=0 查询成功
+	 */
+	public int getAllCommmentRowNum()
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from comment");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+	
 }
