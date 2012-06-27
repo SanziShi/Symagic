@@ -25,10 +25,12 @@ private ItemService itemService;//访问书本的业务层
 private RecommandService recommendService;//推荐系统
 
  private String keyword; //关键字
- private int catalogId;    //目录
+ private int catalogID;    //目录
 
 	
- private Integer page;//分页显示
+ 
+
+private Integer page;//分页显示
  private  Integer lines=10;
  private Integer totalPage;
  
@@ -45,7 +47,7 @@ private RecommandService recommendService;//推荐系统
 		 items=new ArrayList<ItemDetailBean>();
 			//设置搜索的条件
 			BookRequire require=new BookRequire();
-		   require.setCatalogID(String.valueOf(catalogId));
+		   require.setCatalogID(catalogID);
 		   require.setAuthor(keyword);
 		   require.setItemName(keyword);
 		   require.setPublisher(keyword);
@@ -94,13 +96,7 @@ private RecommandService recommendService;//推荐系统
 			this.keyword = keyword;
 		}
 
-		public int getCatalogId() {
-			return catalogId;
-		}
-
-		public void setCatalogId(int catalogId) {
-			this.catalogId = catalogId;
-		}
+		
 
 		public Integer getPage() {
 			return page;
@@ -132,6 +128,13 @@ private RecommandService recommendService;//推荐系统
 
 		public void setItems(List<ItemDetailBean> items) {
 			this.items = items;
+		}
+		public int getCatalogID() {
+			return catalogID;
+		}
+
+		public void setCatalogID(int catalogID) {
+			this.catalogID = catalogID;
 		}
 	
 }

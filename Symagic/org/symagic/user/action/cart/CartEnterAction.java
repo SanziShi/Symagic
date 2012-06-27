@@ -7,10 +7,16 @@ import org.symagic.common.service.ItemService;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 
 public class CartEnterAction extends CatalogBase {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2966695836419045173L;
 	private float totalPrice;
 	private ItemService itemService;
 	private ArrayList<ItemBean>items;
 	private ArrayList<ItemBean>recommendItems;
+	private Integer totalNumber;
+
 	
 
 	@Override
@@ -46,5 +52,12 @@ public ArrayList<ItemBean> getRecommendItems() {
 
 public void setRecommendItems(ArrayList<ItemBean> recommendItems) {
 	this.recommendItems = recommendItems;
+}
+public Integer getTotalNumber() {
+	return totalNumber;
+}
+
+public void setTotalNumber(Integer totalNumber) {
+	this.totalNumber = totalNumber;
 }
 }
