@@ -397,7 +397,7 @@ strong{
 	height:25px;
 	background-color:#4796E4;
 	font-size:14px;
-	padding-left:5px;
+	padding-left:10px;
 	padding-top:4px;
 }
 #sendnotecontent, #doublecontent1,#doublecontent2{
@@ -412,7 +412,7 @@ strong{
 	padding-bottom:14px;
 }
 #tradequery,#creditquery,#itemsearch,#favorite,#doublecontenttable1,#doublecontenttable3,#commenttable{
-	width:798px;
+	width:785px;
 	font-size:13px;
 	margin:0px auto;
 	text-align:left;
@@ -509,7 +509,9 @@ text-decoration:none;
 	text-align:left;
 }
 #creditquery td{
-	text-align:center;
+	text-align: left;
+	position:relative;
+	left:10px;
 }
 #creditquery .tdleftalign{
 	text-align:left;
@@ -529,7 +531,7 @@ text-decoration:none;
 }
 .commentr2color{
 	border-bottom-width:2px;
-	border-bottom-color:#DEDEDE;
+	border-bottom-color:#CCCCCC;
 	border-bottom-style: solid;
 }
 
