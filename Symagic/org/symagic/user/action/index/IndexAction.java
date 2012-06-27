@@ -14,6 +14,9 @@ import org.symagic.common.service.RecommandService;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
+
 public class IndexAction extends CatalogBase{
 
 
@@ -26,13 +29,13 @@ public class IndexAction extends CatalogBase{
 	 */
 private static final long serialVersionUID = 5685501467658534869L;
 
-private RecommandService recommandService; //访问推荐系统
+private RecommandService recommendService; //访问推荐系统
 private ItemService itemService;//访问商品项
 
 
 //传出参数
 private String nickname;//昵称
-private Integer totalNumber;//购物车数量
+
 private List<ItemBean> recommendItem;//浏览量的商品
 private List<ItemBean> newBook;//新书
 private List<ItemBean> hotBook;//热销书
@@ -40,12 +43,14 @@ private List<ItemBean> hotBook;//热销书
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+		//增加购物车的数量
+		UserSessionUtilty.addTotalNumber(0);
 		nickname=UserSessionUtilty.getNickname();
-		totalNumber=UserSessionUtilty.getCartNumber();
+		
 		
 		//推荐商品的id
-	     List<Integer> recommendIds=recommandService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
-	     itemService.fillItem(recommendIds,recommendItem);
+	   // List<Integer> recommendIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
+	    //itemService.fillItem(recommendIds,recommendItem);
 	     
 	     //新书和热销书
 	    newBook=new ArrayList<ItemBean>();
@@ -67,14 +72,19 @@ private List<ItemBean> hotBook;//热销书
 	}
 
 
-	public RecommandService getRecommandService() {
-		return recommandService;
+	
+
+	public RecommandService getRecommendService() {
+		return recommendService;
 	}
 
 
-	public void setRecommandService(RecommandService recommandService) {
-		this.recommandService = recommandService;
+	public void setRecommendService(RecommandService recommendService) {
+		this.recommendService = recommendService;
 	}
+
+
+	
 
 
 	public ItemService getItemService() {
@@ -87,14 +97,9 @@ private List<ItemBean> hotBook;//热销书
 	}
 
 
-	public int getTotalNumber() {
-		return totalNumber;
-	}
+	
 
-
-	public void setTotalNumber(int totalNumber) {
-		this.totalNumber = totalNumber;
-	}
+	
 
 
 	public List<ItemBean> getRecommendItem() {

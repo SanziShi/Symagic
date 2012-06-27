@@ -39,6 +39,9 @@ public class CartAddItemAction extends ActionSupport {
 	    		daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber+number);
 	    
 	    }
+	    //增加session中的数量
+	    UserSessionUtilty.addTotalNumber(number);
+	    
 	  
 		return SUCCESS;
 		
