@@ -280,49 +280,58 @@
 				   <tr>
 					<th width="181">图书名称：</th>
             		<td width="390">
-					 <input type="text" class="inputttextlarge" name="name" onFocus="nextfield='name'" value="" maxlength="25"></td>
+					 <input type="text" class="inputttextlarge" name="name" onFocus="nextfield='name'"  maxlength="25"></td>
 					 
 					 <td width="211"><span class="red">*必填项</span></td>
           		 </tr>
 				 <tr>
 				 <th>商品描述：</th>
-				 <td><textarea name="desc" class="textAreaStyle"></textarea></td>
+				 <td><textarea name="description" class="textAreaStyle"></textarea></td>
 				 <td></td>
           		 </tr>
 				 <tr>
 				 <th><span class="inputHeader">商品图片：</span></th>
 					<td>
-         	 	    <input type="file" name="pic">&nbsp;<input type="submit" name="Submit" value="上传"></td>
+         	 	    <input type="file" name="picture"></td>
 					<td></td>
           		 </tr>
                  <tr>
 				 <th>作者：</th>
-					<td><input type="text" name="price" class="smallinputext" value=""></td>
+					<td><input type="text" name="author"  value=""></td>
 					<td><span class="red">*必填项</span></td>
           		 </tr>
-                   <tr>
-				 <th>版次：</th>
-					<td><input type="text" name="price"size="1" value=""></td>
-					<td><span class="red">*必填项</span></td>
-          		 </tr>
+                  
                  <tr>
 				 <th>出版社：</th>
-					<td><input type="text" name="price"  value=""></td>
+					<td><input type="text" name="publisher"  value=""></td>
 					<td><span class="red">*必填项</span></td>
           		 </tr>
                   <tr>
+				 
+                  <tr>
 				 <th>出版时间：</th>
-					<td><input type="text" name="price"  value=""></td>
-					<td><span class="red">*必填项</span></td>
+					<td><input type="text" name="publishTime"  value=""></td>
+					<td>#选填项</td>
           		 </tr>
                  <tr>
 				 <th>ISBN：</th>
-					<td><input type="text" name="price"value=""></td>
+					<td><input type="text" name="ISBN"value=""></td>
 					<td><span class="red">*必填项</span></td>
+          		 </tr>
+                 <th>版次：</th>
+					<td><input type="text" name="edition" class="smallinputext" value=""></td>
+					<td>#选填项</td>
+                    
+          		 </tr>
+                  </tr>
+                 <th>开本：</th>
+					<td><input type="text" name="format" class="smallinputext" value=""></td>
+					<td>#选填项</td>
+                    
           		 </tr>
                   <tr>
 				 <th>装帧：</th>
-					<td><select>
+					<td><select name="binding">
                     <option>精装</option>
                      <option>平装</option>
                     </select></td>
@@ -330,8 +339,8 @@
           		 </tr>
                   <tr>
 				 <th>分类标签：</th>
-					<td><input type="text" name="price"size="12" value=""></td>
-					<td><span class="red">*必填项，可多个</span></td>
+					<td><input type="text" name="bookClassify"size="12" value=""></td>
+					<td>#选填项，可多个</td>
           		 </tr>
 				 <th>市场价：</th>
 					<td><input type="text" name="price" class="smallinputext" value=""></td>
@@ -346,7 +355,7 @@
 				 <tr>
 				 <th>库存量：</th>
 				 <td>
-				 <input type="text" name="storage" class="smallinputext" value="">				 </td>
+				 <input type="text" name="inventory" class="smallinputext" value="">				 </td>
 				 <td><span class="red">*必填项</span></td>
 				
 				 <tr>

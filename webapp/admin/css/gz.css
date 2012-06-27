@@ -226,3 +226,11 @@ background-color: white;
 	height:100px;
 	border:0;
 	}
+	
+.inputttextlarge{
+	width:70px;
+	}
+	
+#tr_align{
+	text-align:right;
+	}
