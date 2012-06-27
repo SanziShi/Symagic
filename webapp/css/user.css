@@ -41,15 +41,24 @@
 	text-align: center;
 	border-right:#FFFDEE 1px solid;
 }
+.checkbox
+{
+	width:30px;
+}
 .p-name
 {
-	width:300px;
+	width:305px;
 }
 .p-price
 {
-	width:100px;
+	width:130px;
 }
 .action
 {
 	width:110px;
+	border-right:0;
+}
+.inventory
+{
+	width:70px
 }
