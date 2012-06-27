@@ -78,6 +78,7 @@ public class AdvanceSearchAction extends CatalogBase{
 	    require.setPage(page);
 	      //搜索符合条件的商品
 	    List<BeanBook> books=itemService.search(1, require);
+	    totalPage=(itemService.getSearchNum(1, require)+lines-1)/lines;
 	     //装饰成前台所需的信息
 		itemService.decorate(books, items);
 		
@@ -94,6 +95,7 @@ public class AdvanceSearchAction extends CatalogBase{
 	  return super.execute();
 	}
   
+
 private void setBookSize(BookRequire require,Integer index){
 	if(index==null)return;
 	switch(index){

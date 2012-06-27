@@ -27,6 +27,9 @@ public class ItemService {
 	public List<BeanBook> search(int sign,BookRequire require){
 		return daoBook.search(sign,require);
 	}
+	public int getSearchNum(int sign,BookRequire require){
+		return daoBook.getSearchRowNumber(sign, require);
+	}
 	
 	
 	

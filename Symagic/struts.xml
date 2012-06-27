@@ -159,6 +159,10 @@
 				<param name="includeProperties">submitResult</param>
 			</result>
 		</action>
+		
+		<action name="item_list" class="advanceSearch">
+		  <result>/item_list.jsp</result>
+		</action>
 	</package>
 
 	<!-- 配置管理员的action -->
