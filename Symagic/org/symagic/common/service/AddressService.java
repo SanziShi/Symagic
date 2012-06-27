@@ -8,7 +8,7 @@ import org.symagic.common.utilty.presentation.bean.DistrictBean;
 public class AddressService {
 	public DistrictBean convertBeanDistrictToDistrictBean(BeanDistrict beanDistrict){
 		DistrictBean districtBean = new DistrictBean();
-		districtBean.setId(beanDistrict.getId());
+		districtBean.setID(beanDistrict.getId());
 		districtBean.setName(beanDistrict.getName());
 		return districtBean;
 	}
@@ -18,7 +18,7 @@ public class AddressService {
 		OrderService.Address address = OrderService.deserializerAddress(beanAddress.getAddrdetail());
 		addressBean.setAddress(address.level1District.getName() + address.level2District.getName() +
 				address.level3District.getName() + address.districtDetail);
-		addressBean.setId(beanAddress.getAddrid());
+		addressBean.setID(beanAddress.getAddrid());
 		return addressBean;
 	}
 }

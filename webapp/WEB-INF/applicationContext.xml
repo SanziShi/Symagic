@@ -37,7 +37,7 @@
 		<property name="orderService" ref="OrderService"></property>
 	</bean>
 
-	<!-- 管理员的action bean -->
+<!-- 管理员的action bean -->
 	<bean id="AdminIndex" class="org.symagic.admin.action.index.AdminIndexAction">
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="daoOrder" ref="DaoOrder"></property>
@@ -121,7 +121,7 @@
 
 
 	<!-- 用户的action bean -->
-
+    <bean id="indexClass" class="org.symagic.user.action.index.IndexAction"></bean>
 	<bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
 	<bean id="loginClass" class="org.symagic.user.action.login.LoginAction">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
@@ -141,6 +141,9 @@
 
 	<bean id="deleteFromCart" class="org.symagic.user.action.cart.CartDeleteItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
+	</bean>
+	<bean id="detailOfCart" class="org.symagic.user.action.cart.CartDetailAction">
+		<property name="itemService" ref="ItemService"></property>
 	</bean>
 	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
@@ -167,7 +170,11 @@
 	<bean id="OrderService" class="org.symagic.common.service.OrderService">
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
-
+	
+	<bean id="ItemService" class="org.symagic.common.service.ItemService">
+	  <property name="daoBook" ref="DaoBook"></property>
+	</bean>
+  
 
 	<!-- 数据层bean -->
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
@@ -178,11 +185,7 @@
 	<bean id="DaoCatalog" class="org.symagic.common.db.func.DaoCatalog" />
 	<bean id="DaoOrder" class="org.symagic.common.db.func.DaoOrder" />
 	<bean id="DaoDistrict" class="org.symagic.common.db.func.DaoDistrict" />
-	<bean id="DaoComment" class="org.symagic.common.db.func.DaoComment" />
 	<bean id="DaoLevel" class="org.symagic.common.db.func.DaoLevel" />
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
-
-
-

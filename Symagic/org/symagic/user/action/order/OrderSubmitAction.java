@@ -44,15 +44,13 @@ public class OrderSubmitAction extends OrderBase{
 	
 	private DaoDistrict daoDistrict;
 	
+
 	private Map<String, String> parameters;
 
-	public Map<String, String> getParameters() {
-		return parameters;
-	}
 
-	public void setParameters(Map<String, String> parameters) {
-		this.parameters = parameters;
-	}
+
+	
+
 
 	public String getAddressId() {
 		return addressId;
@@ -140,6 +138,14 @@ public class OrderSubmitAction extends OrderBase{
 
 	public void setDaoDistrict(DaoDistrict daoDistrict) {
 		this.daoDistrict = daoDistrict;
+	}
+
+	public Map<String, String> getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(Map<String, String> parameters) {
+		this.parameters = parameters;
 	}
 	
 }

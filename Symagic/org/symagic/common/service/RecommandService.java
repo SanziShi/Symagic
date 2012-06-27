@@ -129,6 +129,7 @@ public class RecommandService {
 
 		return true;
 	}
+	
 
 	/**
 	 * 根据当前用户浏览的商品获得推荐的商品项,,对于未登陆用户userName为null
@@ -251,10 +252,9 @@ public class RecommandService {
 	 * 获取热销商品
 	 * 
 	 * @param requireNumber
-	 * @param timeRange
 	 * @return
 	 */
-	public List<Integer> mostBoughtItems(Integer requireNumber, String timeRange) {
+	public List<Integer> mostBoughtItems(Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -286,10 +286,9 @@ public class RecommandService {
 	 * 获取浏览最多的商品
 	 * 
 	 * @param requireNumber
-	 * @param timeRange
 	 * @return
 	 */
-	public List<Integer> mostViewedItems(Integer requireNumber, String timeRange) {
+	public List<Integer> mostViewedItems(Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host

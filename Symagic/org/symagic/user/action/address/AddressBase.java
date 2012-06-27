@@ -10,7 +10,9 @@ public class AddressBase extends CatalogBase{
 	 */
 	private static final long serialVersionUID = -654569210971834110L;
 
+
 	private String recieverName;
+
 	
 	private String addressDetail;
 	

@@ -7,6 +7,10 @@ import com.opensymphony.xwork2.ActionSupport;
 public class CheckUsernameAction extends ActionSupport {
     
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6043851920989461929L;
 	private UserService userService; //访问用户信息
 	private String name; //用户名
 	private boolean checkResult;//是否唯一
