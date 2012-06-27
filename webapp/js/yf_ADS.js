@@ -154,7 +154,14 @@ function show_item_search(e)
 		$('#item_search1').slideUp(70);
 	}
 }
-
+function delete_from_cart(e)
+{
+	Ajax({
+		url:'cart/delete',
+		data:'itemId='+e,
+		onSuccess:function(e){alert(e)}
+		});
+}
 /*--------------yf_ADS库函数-------------------*/
 
 //增加事件监听注册器
@@ -859,7 +866,7 @@ $().ready(function() {
 		GLOBAL.cart_on_buff=setTimeout(function()
 			{
 				Ajax({
-					url:'lib/cart_inner.html',
+					url:'cartDetail',
 					onSend:function(){document.getElementById('cart_loading').style.display='block';},
 					onSuccess:function(e)
 						{
