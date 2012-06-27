@@ -1,150 +1,197 @@
 ﻿<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>BC2商城</title>
-<link href="css/frame.css" rel="stylesheet" type="text/css"/>
-<link href="css/gz.css" rel="stylesheet" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BC2商城</title>
+<link href="css/frame.css" rel="stylesheet" type="text/css" />
+<link href="css/gz.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="js/checkform.js">
-
+	
 </script>
 
 </head>
 
 <body>
-<div id="container">
-	<div id="logalleft">
-		<div id="logalright">
-		<a href="" target="_parent">管理员 已登录|</a>
-	 	<a href="index.html" target="_parent">退出</a>
-		</div>
-	</div>
-	<div id="globallink">
-		<ul>
-			<li><a href="index.html">首页</a></li>
-                        <li><a href="category_list.html">目录管理</a></li>
-			<li><a href="item_list.html">商品管理</a></li>
-			<li><a href="order_admin.html">订单管理</a></li>
-			<li><a href="salesdata_admin.html">销售量统计</a></li>
-			<li><a href="user_admin.html">会员管理</a></li>
-			<li><a href="comment_list.html">评论管理</a></li>
-			<li><a href="" class="nouseful">&nbsp;</a></li>
-		</ul>
-	</div>
-<!--	<div id="banner"></div>-->
-	<div id="main">
-		<div id="search2">
-			<div id="searchleft">
-				<img src="../image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="category_list.html">商品管理</a>&gt;&gt;<a href="item_list.html">商品列表</a>&gt;&gt;<a href="">商品编辑</a>
+	<div id="container">
+		<div id="logalleft">
+			<div id="logalright">
+				<a href="" target="_parent">管理员 已登录|</a> <a href="index.html"
+					target="_parent">退出</a>
 			</div>
 		</div>
-		<div id="sendnote">
-			<div id="sendnotehead"><strong>编辑商品</strong></div>
-			<div id="sendnotecontent">
-            <form action="item_modify_submit" method="post">
-				<table id="itemsearch">
-				   <tr>
-					<th width="181" id="tr_align">图书名称：</th>
-            
-            		<td width="390">
-					 <input type="text" class="inputttextlarge" name="name"  value="<s:property value='name'/>" onFocus="nextfield='name'">
-                     </td>
-					 
-					 <td width="211"><span class="red">*必填项</span></td>
-          		 </tr>
-				 <tr>
-				 <th id="tr_align">商品描述：</th>
-				 <td><textarea name="description" class="textAreaStyle" ><s:property value="description"/></textarea></td>
-				 <td></td>
-          		 </tr>
-				 <tr>
-				 <th id="tr_align"><span class="inputHeader">商品图片：</span></th>
-					<td>
-                    <img id="img_format" src="<s:property value='picturePath'/>" />
-         	 	    <input type="file" name="picture"></td>
-					<td></td>
-          		 </tr>
-                 <tr>
-				 <th id="tr_align">作者：</th>
-					<td><input type="text" name="author"  value="<s:property value='author'/>"></td>
-					<td><span class="red">*必填项</span></td>
-          		 </tr>
-                  
-                 <tr>
-				 <th id="tr_align">出版社：</th>
-					<td><input type="text" name="publisher"  value="<s:property value='publisher'/>"</td>
-					<td><span class="red">*必填项</span></td>
-          		 </tr>
-                  <tr>
-				 
-                  <tr>
-				 <th id="tr_align">出版时间：</th>
-					<td><input type="text" name="publishTime"  value="<s:property value='publishTime'/>"></td>
-					<td>#选填项</td>
-          		 </tr>
-                 <tr>
-				 <th id="tr_align">ISBN：</th>
-					<td><input type="text" name="ISBN"value="<s:property value='ISBN'/>"></td>
-					<td><span class="red">*必填项</span></td>
-          		 </tr>
-                 <th id="tr_align">版次：</th>
-					<td><input type="text" name="edition" class="smallinputext" value="<s:property value='edition'/>"></td>
-					<td>#选填项</td>
-                    
-          		 </tr>
-                  </tr>
-                 <th id="tr_align">开本：</th>
-					<td><input type="text" name="size" class="smallinputext" value="<s:property value='size'/>"></td>
-					<td>#选填项</td>
-                    
-          		 </tr>
-                  <tr>
-				 <th id="tr_align">装帧：</th>
-					<td><select name="binding">
-                    <option><s:property value="binding"/></option>
-                    <s:if test="<s:property value='binding'/>" == "精装">
-                    <option>平装</option>
-                    </s:if>
-                    <s:else>
-                     <option>精装</option>
-                     </s:else>
-                    </select></td>
-					<td><span class="red">*必填项</span></td>
-          		 </tr>
-                  <tr>
-				 <th id="tr_align">分类标签：</th>
-					<td><input type="text" name="bookClassify"size="12" value="<s:property value='bookClassify'/>"></td>
-					<td>#选填项，可多个</td>
-          		 </tr>
-				 <th id="tr_align">市场价：</th>
-					<td><input type="text" name="marketPrice" class="smallinputext" value="<s:property value='marketPrice'/>"></td>
-					<td><span class="red">*必填项</span></td>
-          		 </tr>
-                  <tr>
-				 <th id="tr_align">折扣：</th>
-				 <td>
-				 <input type="text" name="discount" class="smallinputext" value="<s:property value='discount'/>">				 </td>
-				  <td><span class="red">*必填项</span></td>
-				 </tr>
-				 <tr>
-				 <th id="tr_align">库存量：</th>
-				 <td>
-				 <input type="text" name="inventory" class="smallinputext" value="<s:property value='inventory'/>">				 </td>
-				 <td><span class="red">*必填项</span></td>
-				
-				 <tr>
-				 <th></th>
-			 	  <td>
-				 <input type="submit" name="button2" value="提交修改" onClick="checkitemform()">
-                  <input type="Button" name="button22" value="返回" onClick="javascript:window.location.href='item_list.jsp'">
-				  </td> 
-				  <td></td>
-				  </tr>
-        </table>
-		</form>
-			<!--<form action="" method="post" enctype="multipart/form-data" name="form1">
+		<div id="globallink">
+			<ul>
+				<li><a href="index.html">首页</a>
+				</li>
+				<li><a href="category_list.html">目录管理</a>
+				</li>
+				<li><a href="item_list.html">商品管理</a>
+				</li>
+				<li><a href="order_admin.html">订单管理</a>
+				</li>
+				<li><a href="salesdata_admin.html">销售量统计</a>
+				</li>
+				<li><a href="user_admin.html">会员管理</a>
+				</li>
+				<li><a href="comment_list.html">评论管理</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
+			</ul>
+		</div>
+		<!--	<div id="banner"></div>-->
+		<div id="main">
+			<div id="search2">
+				<div id="searchleft">
+					<img src="../image/ico_site.jpg" id="ico_site" /> 网站路径：<a
+						href="category_list.html">商品管理</a>&gt;&gt;<a href="item_list.html">商品列表</a>&gt;&gt;<a
+						href="">商品编辑</a>
+				</div>
+			</div>
+			<div id="sendnote">
+				<div id="sendnotehead">
+					<strong>编辑商品</strong>
+				</div>
+				<div id="sendnotecontent">
+					<form action="item_modify_submit" method="post">
+						<table id="itemsearch">
+							<tr>
+								<th width="181" id="tr_align">图书名称：</th>
+
+								<td width="390"><input type="text" class="inputttextlarge"
+									name="name" value="<s:property value='name'/>"
+									onfocus="nextfield='name'" />
+								</td>
+
+								<td width="211"><span class="red">*必填项</span>
+								</td>
+							</tr>
+							<tr>
+								<th id="tr_align">商品描述：</th>
+								<td><textarea name="description" class="textAreaStyle">
+										<s:property value="description" />
+									</textarea>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th id="tr_align"><span class="inputHeader">商品图片：</span>
+								</th>
+								<td><img id="img_format"
+									src="<s:property value='picturePath'/>" /> <input type="file"
+									name="picture" />
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<th id="tr_align">作者：</th>
+								<td><input type="text" name="author"
+									value="<s:property value='author'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
+							</tr>
+
+							<tr>
+								<th id="tr_align">出版社：</th>
+								<td><input type="text" name="publisher"
+									value="<s:property value="publisher"/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
+							</tr>
+
+
+							<tr>
+								<th id="tr_align">出版时间：</th>
+								<td><input type="text" name="publishTime"
+									value="<s:property value='publishTime'/>" />
+								</td>
+								<td>#选填项</td>
+							</tr>
+							<tr>
+								<th id="tr_align">ISBN：</th>
+								<td><input type="text" name="ISBN"
+									value="<s:property value='ISBN'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
+							</tr>
+							<tr>
+								<th id="tr_align">版次：</th>
+								<td><input type="text" name="edition" class="smallinputext"
+									value="<s:property value='edition'/>" />
+								</td>
+								<td>#选填项</td>
+
+							</tr>
+							<tr>
+								<th id="tr_align">开本：</th>
+								<td><input type="text" name="size" class="smallinputext"
+									value="<s:property value='size'/>" /></td>
+								<td>#选填项</td>
+							</tr>
+							<tr>
+								<th id="tr_align">装帧：</th>
+								<td><select name="binding">
+										<option>
+											<s:property value="binding" />
+										</option>
+										<s:if test="<s:property value='binding'/>=='精装'">
+											<option>平装</option>
+										</s:if>
+										<s:else>
+											<option>精装</option>
+										</s:else>
+								</select>
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
+							</tr>
+							<tr>
+								<th id="tr_align">分类标签：</th>
+								<td><input type="text" name="bookClassify" size="12"
+									value="<s:property value='bookClassify'/>" /></td>
+								<td>#选填项，可多个</td>
+							</tr>
+							<tr>
+								<th id="tr_align">市场价：</th>
+								<td><input type="text" name="marketPrice"
+									class="smallinputext" value="<s:property value='marketPrice'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
+							</tr>
+							<tr>
+								<th id="tr_align">折扣：</th>
+								<td><input type="text" name="discount"
+									class="smallinputext" value="<s:property value='discount'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
+							</tr>
+							<tr>
+								<th id="tr_align">库存量：</th>
+								<td><input type="text" name="inventory"
+									class="smallinputext" value="<s:property value='inventory'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
+							</tr>
+
+							<tr>
+								<th></th>
+								<td><input type="submit" name="button2" value="提交修改"
+									onclick="checkitemform()" /> <input type="button"
+									name="button22" value="返回"
+									onclick="javascript:window.location.href='item_list.jsp'" /></td>
+								<td></td>
+							</tr>
+						</table>
+					</form>
+					<!--<form action="" method="post" enctype="multipart/form-data" name="form1">
 				<table id="itemsearch">
 				   <tr>
 					<th width="180">商品名称：</th>
@@ -228,15 +275,18 @@
 				  </tr>
         </table>
 		</form>-->
-				
+
+				</div>
 			</div>
 		</div>
-		
-	<div id="footer">
-		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
-		<span id="footerright"> Symagic网上书城  Power by Symagic	 &nbsp;</span>
 	</div>
-</div>
+
+	<div id="footer">
+		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
+			电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
+			Power by Symagic &nbsp;</span>
+	</div>
+
 
 </body>
 </html>
