@@ -22,18 +22,18 @@ public class AddressBean {
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 
-	private Integer Id;
+	private Integer ID;
 	public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Integer getId() {
-		return Id;
+	public Integer getID() {
+		return ID;
 	}
-	public void setId(Integer id) {
-		Id = id;
-
+	public void setID(Integer iD) {
+		ID = iD;
 	}
+	
 }
