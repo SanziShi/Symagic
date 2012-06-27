@@ -13,7 +13,13 @@
 	</bean>
 
 	<!-- 管理员拦截器配置 -->
-	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor"></bean>
+	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor">
+	<property name="guestIllegalURL">
+			<set>
+				<!-- 被认为是非法的管理员操作 -->
+			</set>
+		</property>
+	</bean>
 
 	<!-- 配置验证码生成及检查 -->
 	<bean class="org.symagic.common.utilty.captcha.SymagicCaptchaService"
