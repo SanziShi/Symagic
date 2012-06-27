@@ -264,13 +264,15 @@ public class DaoBook {
 	}
 
 	/**
-	 * 获取符合书籍搜索条件的书籍条数
+	 * 按照给定条件搜索书籍
 	 * 
 	 * @param req
-	 *            条件
-	 * @return int 符合的条数
+	 *            封装书籍搜索条件的对象
+	 * @param sign
+	 *        	  标志， 0:普通查询	 1:高级查询
+	 * @return int	返回符合条件的条数
 	 */
-	public int getSearchRowNumber(BookRequire req) {
+	public int getSearchRowNumber(int sign, BookRequire req) {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("");
