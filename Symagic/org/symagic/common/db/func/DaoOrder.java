@@ -34,7 +34,23 @@ public class DaoOrder {
 	 */
 	public List<BeanOrder> search(OrderRequire req, String username)
 	{
-		return new ArrayList<BeanOrder>();
+		List<BeanOrder> list	= null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from book_order where ");
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 	
 	/**
