@@ -44,13 +44,13 @@ public class ItemService {
 			book=index.next();
 			bean.setItemId(String.valueOf(book.getBookId()));
 			bean.setName(book.getBookName());
-			bean.setMarketPrice(book.getMarketPrice());
-			bean.setDiscount(book.getDiscount());
-			bean.setAuthor(book.getAuthor());
-			bean.setPublisher(book.getPublisher());
-			bean.setPublishTime(book.getPublishDate());
-			bean.setPicturePath(book.getPicture());
 			bean.setPrice(book.getMarketPrice()*book.getDiscount());
+			bean.setDiscount(book.getDiscount());
+			bean.setPicturePath(book.getPicture());
+			bean.setPublishTime(book.getPublishDate());
+			bean.setPublisher(book.getPublisher());
+			bean.setAuthor(book.getAuthor());
+			bean.setMarketPrice(book.getMarketPrice());
 			String status=book.getOffline();
 			if(status.trim().equals("下架")){
 				bean.setOffline(0);
@@ -60,6 +60,8 @@ public class ItemService {
 				bean.setOffline(1);
 			}
 			bean.setRating(getAverage(book.getBookId()));
+			bean.setInventory(book.getInventory());
+			
 			items.add(bean);
 		}
 	}
