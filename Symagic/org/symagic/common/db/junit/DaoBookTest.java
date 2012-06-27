@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import org.junit.Test;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanComment;
+import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
 
 public class DaoBookTest extends TestCase{
@@ -12,113 +13,53 @@ public class DaoBookTest extends TestCase{
 	//初始化
 	DaoBook db  = new DaoBook();
 
-//	@Test
-//	public void testAddBook() {
-//		BeanBook book = new BeanBook();
-//		DaoBook db	= new DaoBook();
-//		
-//		book.setAuthor("单小熙");
-//		book.setBinding("精装");
-//		book.setBookDesc("第三本好书");
-//		book.setBookName("计算机组成");
-//		book.setDiscount(0.5f);
-//		book.setFolio("16");
-//		book.setInventory(30);
-//		book.setIsbn("12kjkjdf2312");
-//		book.setMarketPrice(49.21f);
-//		book.setOffline("在架");
-//		book.setPage(400);
-//		book.setPicture("picture3.jpg");
-//		book.setPublisher("电子工业出版社");
-//		book.setPublishDate("2009-03-27");
-//		book.setVersion(5);
-//		
-//		assertEquals(true, db.addBook(book));
-//	}
 
-//	@Test
-//	public void testSetInventory() {
-//		DaoBook	db	= new DaoBook();
-//		assertEquals(true, db.setInventory(6, 10));
-//	}
 
-//	@Test
-//	public void testGetDeatil() {
-//		DaoBook	db	= new DaoBook();
-//		assertEquals("2343234324", db.getDeatil(2).getIsbn());
-//	}
+	
 
-//	@Test
-//	public void testSearch() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testGetSearchRowNumber() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testGetCommnetNumber() {
-//		fail("Not yet implemented");
-//	}
-//
-//	@Test
-//	public void testGetComment() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testAddBook1(){
+		BeanBook book1 = new BeanBook();
+		//设置book1的参数
+		book1.setAuthor("yusen");
+		book1.setBinding("精装");
+		book1.setBookDesc("good");
+		book1.setBookName("what is that");
+		book1.setDiscount(0.5f);
+		book1.setFolio("16");
+		book1.setInventory(20);
+		book1.setIsbn("12kjkjdf24");
+		book1.setMarketPrice(49.21f);
+		book1.setOffline("在架");
+		book1.setPage(400);
+		book1.setPicture("picture3.jpg");
+		book1.setPublisher("public department");
+		book1.setPublishDate("2009-03-27");
+		book1.setVersion(5);
+		
+		//断言判断
+		assertEquals(true,db.addBook(book1));
+		}
+	
+	@Test
+	public void testAddBook2(){
+		BeanBook book2 = new BeanBook();  //book2采用默认值
+		book2.setOffline("在架吗");
+		//判断
+		assertEquals(false,db.addBook(book2));	
+	}
+	
+	@Test
+	public void test1SetInventory1(){
+		assertEquals(true,db.setInventory(9, 30));
+	}
+	
+	@Test
+	public void test1SetInventory2(){
+		assertEquals(false,db.setInventory(15275, 30));
+	}
+	
 
-//	
-//	@Test
-//	public void testAddBook1(){
-//		BeanBook book1 = new BeanBook();
-//		//设置book1的参数
-//		book1.setAuthor("yusen");
-//		book1.setBinding("精装");
-//		book1.setBookDesc("good");
-//		book1.setBookName("what is that");
-//		book1.setDiscount(0.5f);
-//		book1.setFolio("16");
-//		book1.setInventory(20);
-//		book1.setIsbn("12kjkjdf24");
-//		book1.setMarketPrice(49.21f);
-//		book1.setOffline("在架");
-//		book1.setPage(400);
-//		book1.setPicture("picture3.jpg");
-//		book1.setPublisher("public department");
-//		book1.setPublishDate("2009-03-27");
-//		book1.setVersion(5);
-//		
-//		//断言判断
-//		assertEquals(true,db.addBook(book1));
-//		}
-//	
-//	@Test
-//	public void testAddBook2(){
-//		BeanBook book2 = new BeanBook();  //book2采用默认值
-//		book2.setOffline("在架吗");
-//		//判断
-//		assertEquals(false,db.addBook(book2));	
-//	}
-//	
-//	@Test
-//	public void test1SetInventory1(){
-//		assertEquals(true,db.setInventory(9, 30));
-//	}
-//	
-//	@Test
-//	public void test1SetInventory2(){
-//		assertEquals(false,db.setInventory(15275, 30));
-//	}
-//	
-//	@Test
-//	public void testGetDeatil(){
-//		assertEquals("what is that",db.getDeatil(9).getBookName());
-//	}
-//	
-//	@Test
-//	public void testGetDeati2(){
-//		assertEquals("",db.getDeatil(1234).getBookName());
 //	}
 //	
 //	@Test
@@ -199,5 +140,13 @@ public class DaoBookTest extends TestCase{
 //	{
 //		DaoBook	db	= new DaoBook();
 //		assertEquals("计算机组成", db.getLatestBook().get(0).getBookName());
+//	}
+	
+//	public void testSearch()
+//	{
+//		DaoBook	db	= new DaoBook();
+//		BookRequire req	= new BookRequire();
+//		req.setYear("2012");
+//		assertEquals(4, db.search(0, req).get(0).getBookId());
 //	}
 }

@@ -4,6 +4,7 @@
 package org.symagic.common.utilty.presentation.bean;
 
 
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
@@ -16,7 +17,7 @@ public class DistrictBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private int Id;
+	private int ID;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -24,17 +25,17 @@ public class DistrictBean {
 	 */
 	private String name;
 	
-	public int getId() {
-		return Id;
-	}
-	public void setId(int id) {
-		Id = id;
-	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
 	}
 	
 	

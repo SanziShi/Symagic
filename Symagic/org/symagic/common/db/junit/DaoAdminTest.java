@@ -2,17 +2,22 @@ package org.symagic.common.db.junit;
 
 import junit.framework.TestCase;
 
+import org.junit.Test;
 import org.symagic.common.db.func.DaoAdmin;
 
-/**
- * 对Admin表操作接口的单元测试
- * @author wanran
- *
- */
+
 public class DaoAdminTest extends TestCase{
-	public void testValidateAdmin()
-	{
-		DaoAdmin da	= new DaoAdmin();
-		assertEquals(true, da.validateAdmin("管理员", "12"));
+
+	//初始化
+	DaoAdmin da	= new DaoAdmin();
+	
+	@Test
+	public void testValidateAdmin(){
+		assertEquals(true,da.validateAdmin("sanzi", "123456"));
 	}
+	@Test
+	public void testValidateAdmin2(){
+		assertEquals(false,da.validateAdmin("shi", "234556"));
+	}
+
 }

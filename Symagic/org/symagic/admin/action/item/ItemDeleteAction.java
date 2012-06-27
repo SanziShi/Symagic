@@ -19,11 +19,10 @@ public class ItemDeleteAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		
+		deleteResult = false;
+		
 		if( itemID != null ){
-			
-		}
-		else{
-			deleteResult = false;
+			//daoBook.delete???
 		}
 		
 		return SUCCESS;

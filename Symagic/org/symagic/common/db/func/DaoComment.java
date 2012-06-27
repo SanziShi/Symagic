@@ -155,4 +155,37 @@ public class DaoComment {
 	
 	
 	
+	/**
+	 * 获取所有用户对指定书籍的平均评分
+	 * @param bookID	指定用户ID
+	 * @return	-1 查询失败	>=0 查询成功
+	 */
+	public int getAverageRating(int bookID)
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select rating from comment where bookid=? ");
+			rs	= ps.executeQuery();
+			int sum	= 0;
+			while(rs.next()) {
+				sum += rs.getInt(1);
+				count++;
+			}
+			if (count != 0)
+				return sum / count;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+	
 }

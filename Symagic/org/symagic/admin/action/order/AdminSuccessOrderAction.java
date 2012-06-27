@@ -29,7 +29,7 @@ public class AdminSuccessOrderAction extends ActionSupport {
 
 		if (json.isArray()) {
 
-			// 检查状态是否符合
+			// 检查状态是否符合(是否全部是已审核状态）
 			JSONArray ids = (JSONArray) json;
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
@@ -39,6 +39,7 @@ public class AdminSuccessOrderAction extends ActionSupport {
 				}
 			}
 
+			//设置为交易成功状态，并给相应用户添加积分
 			for (int i = 0; i < ids.size(); i++) {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
 				order.setOrderState("2");

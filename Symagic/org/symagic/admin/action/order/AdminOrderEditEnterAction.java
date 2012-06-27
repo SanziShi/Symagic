@@ -36,24 +36,24 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 		List<BeanDistrict> list = daoDistrict.getDistrict(null);
 		level1District = convertBeanDistrictList(list);
 
-		list = daoDistrict.getDistrict(this.address.level1District.getId());
+		list = daoDistrict.getDistrict(this.address.level1District.getID());
 		if (list != null)
 			level2District = convertBeanDistrictList(list);
 		else
 			level2District = null;
-		selectedLevel1DistrictID = address.level1District.getId();
+		selectedLevel1DistrictID = address.level1District.getID();
 
 		if (this.address.level2District != null) {
-			list = daoDistrict.getDistrict(this.address.level2District.getId());
+			list = daoDistrict.getDistrict(this.address.level2District.getID());
 			if (list != null)
 				level3District = convertBeanDistrictList(list);
 			else
 				level3District = null;
-			selectedLevel2DistrictID = address.level2District.getId();
+			selectedLevel2DistrictID = address.level2District.getID();
 		}
 
 		if (this.address.level3District != null)
-			selectedLevel3DistrictID = address.level3District.getId();
+			selectedLevel3DistrictID = address.level3District.getID();
 
 		return result;
 
@@ -63,7 +63,7 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 		List<DistrictBean> districts = new ArrayList<DistrictBean>();
 		for (BeanDistrict beanDistrict : list) {
 			DistrictBean bean = new DistrictBean();
-			bean.setId(beanDistrict.getId());
+			bean.setID(beanDistrict.getId());
 			bean.setName(beanDistrict.getName());
 			districts.add(bean);
 		}

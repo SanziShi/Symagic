@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.symagic.common.db.bean.BeanBook;
-import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.db.pool.ConnectionPool;
 
 /**
@@ -198,7 +197,70 @@ public class DaoBook {
 	 * @return List<BeanBook> 存储着BeanBook对象的列表
 	 */
 	public List<BeanBook> search(int sign, BookRequire req) {
-		return new ArrayList<BeanBook>();
+		List<BeanBook> list	= null;
+		String r	= "";
+		String sql	= "select * from book where ";
+		// 普通查询
+		if (sign == 0) {
+			r	= " or ";
+			// 年前
+			if (req.getBefore() == true) {
+				// 条件 年
+				if (req.getYear() != null)
+					sql += " year(publishdate) < " + req.getYear() + " ";
+			}
+			// 当前年
+			else {
+				// 条件 年
+				if (req.getYear() != null)
+					sql += " year(publishdate) = " + req.getYear() + " ";
+			}
+		}
+		// 高阶查询
+		else {
+			r	= " and ";
+		}
+		
+		try {
+			
+			conn	= ConnectionPool.getInstance().getConnection();
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			list	= new ArrayList<BeanBook>();
+			while (rs.next()) {
+				BeanBook book	= new BeanBook();
+				book.setAuthor(rs.getString("author"));
+				book.setBinding(rs.getString("binding"));
+				book.setBookDesc(rs.getString("bookdesc"));
+				book.setBookId(rs.getInt("bookid"));
+				book.setBookName(rs.getString("bookname"));
+				//book.setCatalogID(rs.getInt("catalog"));
+				book.setDiscount(rs.getFloat("discount"));
+				book.setFolio(rs.getString("folio"));
+				book.setInventory(rs.getInt("inventory"));
+				book.setIsbn(rs.getString("isbn"));
+				book.setMarketPrice(rs.getFloat("marketprice"));
+				book.setOffline(rs.getString("offline"));
+				book.setPage(rs.getInt("page"));
+				book.setPicture(rs.getString("picture"));
+				book.setPublishDate(rs.getString("publishdate"));
+				book.setPublisher(rs.getString("publisher"));
+				book.setVersion(rs.getInt("version"));
+				list.add(book);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 
 	/**
@@ -209,6 +271,20 @@ public class DaoBook {
 	 * @return int 符合的条数
 	 */
 	public int getSearchRowNumber(BookRequire req) {
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return 0;
 	}
 
