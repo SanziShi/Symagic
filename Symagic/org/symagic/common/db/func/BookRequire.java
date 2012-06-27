@@ -195,12 +195,14 @@ public String getItemName() {
 	 * 每页显示
 	 */
 	private Integer lines	= null;
+	
+	
 
-	public int getCatalogID() {
+	public Integer getCatalogID() {
 		return catalogID;
 	}
 
-	public void setCatalogID(int catalogID) {
+	public void setCatalogID(Integer catalogID) {
 		this.catalogID = catalogID;
 	}
 
