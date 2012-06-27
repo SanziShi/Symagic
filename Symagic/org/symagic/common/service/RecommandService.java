@@ -129,6 +129,7 @@ public class RecommandService {
 
 		return true;
 	}
+	
 
 	/**
 	 * 根据当前用户浏览的商品获得推荐的商品项,,对于未登陆用户userName为null

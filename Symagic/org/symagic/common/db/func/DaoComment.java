@@ -34,7 +34,7 @@ public class DaoComment {
 		List<BeanComment> list	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select * from comment order by id asc limit ?, ?");
+			ps	= conn.prepareStatement("select * from comment order by commentdate asc limit ?, ?");
 			ps.setInt(1, (page-1)*lines);
 			ps.setInt(2, lines);
 			rs	= ps.executeQuery();

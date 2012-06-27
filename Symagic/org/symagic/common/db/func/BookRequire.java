@@ -8,84 +8,15 @@ package org.symagic.common.db.func;
 public class BookRequire {
 	
 	/**
+	 * 作者
+	 */
+	private String author	= null;
+	
+	
+	/**
 	 * 书籍名
 	 */
-	private String itemName = null;
-	
-	/**
-	 * 出版社
-	 */
-	private String publisher = null;
-	
-	/**
-	 * 分类ID
-	 */
-	private String catalogID = null;
-	
-	/**
-	 * 出版年
-	 */
-	private String year	= null;
-	
-	/**
-	 * 表示year域搜索是之前的订单还是当前的。(true表示搜索之前的)
-	 */
-	private Boolean before = false;
-	
-	/**
-	 * 版本
-	 */
-	private Integer version = null;
-	
-	/**
-	 * 页数上线
-	 */
-	private Integer upPage	= null;
-	
-	/**
-	 * 页数下线
-	 */
-	private Integer lowPage	= null;
-
-	/**
-	 * 书籍装帧 
-	 * 选择（"精装"或"平装"）
-	 */
-	private String binding	= null;
-	
-	/**
-	 * 书籍开本
-	 */
-	private String folio	= null;
-	
-	
-//	up_price;
-	/**
-	 * 价格上线
-	 */
-	private Float upPrice	= null;
-	
-	/**
-	 * 价格下线
-	 */
-	private Float lowPrice	= null;
-	
-	/**
-	 * 折扣(discount(0:0`10,1:10`30,2:30`50,3:50`100,4:>100））
-	 */
-	private Integer discount	= null;
-	
-	/**
-	 * 第几页
-	 */
-	private Integer page	= null;
-	
-	/**
-	 * 每页显示
-	 */
-	private Integer lines	= null;
-
-	public String getItemName() {
+public String getItemName() {
 		return itemName;
 	}
 
@@ -100,8 +31,6 @@ public class BookRequire {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-
-	
 
 	public String getYear() {
 		return year;
@@ -191,6 +120,82 @@ public class BookRequire {
 		this.lines = lines;
 	}
 
+	// 
+	private String itemName = null;
+	
+	/**
+	 * 出版社
+	 */
+	private String publisher = null;
+	
+	/**
+	 * 分类ID
+	 */
+	private String catalogID = null;
+	
+	/**
+	 * 出版年
+	 */
+	private String year	= null;
+	
+	/**
+	 * 表示year域搜索是之前的订单还是当前的。(true表示搜索之前的)
+	 */
+	private Boolean before = false;
+	
+	/**
+	 * 版本
+	 */
+	private Integer version = null;
+	
+	/**
+	 * 页数上线
+	 */
+	private Integer upPage	= null;
+	
+	/**
+	 * 页数下线
+	 */
+	private Integer lowPage	= null;
+
+	/**
+	 * 书籍装帧 
+	 * 选择（"精装"或"平装"）
+	 */
+	private String binding	= null;
+	
+	/**
+	 * 书籍开本
+	 */
+	private String folio	= null;
+	
+	
+//	up_price;
+	/**
+	 * 价格上线
+	 */
+	private Float upPrice	= null;
+	
+	/**
+	 * 价格下线
+	 */
+	private Float lowPrice	= null;
+	
+	/**
+	 * 折扣(discount(0:0`10,1:10`30,2:30`50,3:50`100,4:>100））
+	 */
+	private Integer discount	= null;
+	
+	/**
+	 * 第几页
+	 */
+	private Integer page	= null;
+	
+	/**
+	 * 每页显示
+	 */
+	private Integer lines	= null;
+
 	public String getCatalogID() {
 		return catalogID;
 	}
@@ -206,4 +211,14 @@ public class BookRequire {
 	public void setBefore(Boolean before) {
 		this.before = before;
 	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	
 }

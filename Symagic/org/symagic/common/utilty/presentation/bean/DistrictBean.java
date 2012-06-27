@@ -4,6 +4,7 @@
 package org.symagic.common.utilty.presentation.bean;
 
 
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->

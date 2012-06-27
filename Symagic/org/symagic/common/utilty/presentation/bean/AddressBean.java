@@ -21,6 +21,7 @@ public class AddressBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+
 	private Integer ID;
 	public String getAddress() {
 		return address;
@@ -34,4 +35,5 @@ public class AddressBean {
 	public void setID(Integer iD) {
 		ID = iD;
 	}
+	
 }

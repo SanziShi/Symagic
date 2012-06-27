@@ -2,10 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <title>BC2商城</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
+<link href="css/user.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
 
@@ -77,12 +76,46 @@
         <dl>
         <dt>我的商城</dt>
         <div onclick="show_user_con('1')"><dd>浏览信息</dd></div>
+        <div onclick=""><dd>我的收藏</dd></div>
         <div onclick="show_user_con('2')"><dd>修改密码</dd></div>
         <div onclick="show_user_con('3')"><dd>修改昵称</dd></div>
         <div onclick="show_user_con('4')"><dd>积分查询</dd></div>
         <br/>
         <dt></dt>
         </dl>
+        </div>
+        <div id="favorite" class="user_note">
+        <div class="head">我的收藏商品</div>
+        <div id="loading"></div>
+        <div id="favorite-container">
+        	<div id="favorite-content">
+        		<div id="favorite-content-head">
+                	<div class="column checkbox">
+                		<input class="" type="checkbox"/>
+                	</div>
+                    <div class="column p-name">商品信息</div>
+                    <div class="column p-price">商城价</div>
+                    <div class="column inventory">库存</div>
+                    <div class="column action">操作</div>
+            	</div>
+                <div id="favorite-content-body">
+                	<div class="cell checkbox">
+                		<input class="" type="checkbox"/>
+                	</div>
+                    <div class="cell p-name"><div class="p-name-img"><a href=""><img src="upload/9787214078476.png"/></a></div><div class="p-name-n"><a href="">测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</a>
+                    <br>综合评分：<span class="sa45"></span></div></div>
+                   <div class="cell p-price">商城价</div>
+                    <div class="cell inventory">库存</div>
+                    <div class="cell action"><span class="fav-add"></span>
+                    <a href="" class="fav_cancel">取消收藏</a></div>
+            	</div>
+                <div id="favorite-content-bottom">
+                	<input type="checkbox" />全选&nbsp;&nbsp;
+                	<span class="fav-add-b"></span>
+                    <a href="">取消收藏</a>
+                </div>
+        	</div>
+        </div>
         </div>
         <div id="1" class="user_note">
         <div class="head">浏览信息</div>
@@ -156,66 +189,6 @@
             </table>
         </div>
         </div>
-		<!--<div id="sendnote">
-			<div id="sendnotehead"><strong> 个人信息修改</strong></div>
-			<div id="sendnotecontent">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
-				<table id="itemsearch">
-				   <tr>
-					<th class="itemsearchth" >E-mail地址：</th>
-            		<td class="itemsearchtd1">
-					<input type="text" name="email" class="inputtext" onFocus="nextfield='password'" value="wangxj123@163.com" maxlength="25" disabled="disabled"/>
-					</td>
-					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;不可更改</span>					</td>
-          		 </tr>
-				 <tr>
-				 <th class="itemsearchth">昵&nbsp;&nbsp;&nbsp;&nbsp;称：</th>
-            		<td class="itemsearchtd1">
-						<input type="text" name="name" class="inputtext"onFocus="nextfield='passwordConfirm'" value="wangxj" maxlength="25"/>
-					</td>
-					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;(可选项)</span>
-					</td>
-          		 </tr>
-				 <tr>
-				 <th class="itemsearchth">原&nbsp;密&nbsp;码：</th>
-            		<td class="itemsearchtd1">
-					  	<input type="Password" class="inputtext" name="passwordold" onFocus="nextfield='name'" value="" maxlength="25">
-					</td>
-					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项</span>
-					</td>
-          		 </tr>
-				 <tr>
-				 <th class="itemsearchth">新&nbsp;密&nbsp;码：</th>
-            		<td class="itemsearchtd1">
-					<input type="Password" class="inputtext" name="passwordnew" onFocus="nextfield='name'" value="" maxlength="25">   
-					</td>
-					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项</span>
-					</td>
-          		 </tr>
-				 <tr>
-				 <th class="itemsearchth">密码确认：</th>
-            		<td class="itemsearchtd1">
-	              <input type="Password" class="inputtext" name="passwordConfirm" onFocus="nextfield='sex'" value="" maxlength="25"> 
-					</td>
-					<td class="itemsearchtd2">
-						<span class="red">*&nbsp;必填项</span>
-					</td>
-          		 </tr>
-				 <tr>
-				 <th></th>
-				 	<td><input type="Button" name="button2" value="提交" onClick="checkinfoeditform()">
-						&nbsp;<input type="Reset" name="button1" value="重填" onClick="clear()">
-						&nbsp;<input type="Button" name="button3" value="返回" onClick="javascript:window.location.href='home.html'">
-					</td>
-				 </tr>
-        </table>
-		</form>		
-			</div>
-</div>-->
 		
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>

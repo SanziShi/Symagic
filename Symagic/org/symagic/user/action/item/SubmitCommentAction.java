@@ -16,7 +16,16 @@ public class SubmitCommentAction extends ActionSupport {
 @Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+
 		
+
+//		BeanComment comment=new BeanComment();
+//		comment.setBookID(itemId);
+//		comment.setContent(content);
+//		comment.setRating(rating+"");//?string
+//		comment.setUsername(UserSessionUtilty.getUsername());
+//		submitResult=itemService.addItemComment(comment);
+
 	 return super.execute();
 	}
  

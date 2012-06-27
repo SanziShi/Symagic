@@ -10,6 +10,10 @@ a
 {
 	text-decoration:none;
 }
+a:visited
+{
+	color:#005EA7;
+}
 ul
 {
 	margin:0px;
@@ -358,7 +362,7 @@ span.close
 {
 	position:absolute;
 	top:26px;
-	right:10px;
+	right:9px;
 	min-height:50px;
 	width:300px;
 	background:#FFF;
@@ -507,9 +511,10 @@ span.close
 #container{
 	position:relative;
 	margin:0px auto 0px auto;
-	width:800px;
+	width:799px;
 	text-align:left;
 	display:inline-block;
+	background: #EAEAEA;
 }
 #globallink{
 	width:800px;
@@ -695,7 +700,7 @@ strong{
 	padding-top:14px;
 	padding-bottom:14px;
 }
-#tradequery,#creditquery,#itemsearch,#favorite,#doublecontenttable1,#doublecontenttable3,#commenttable{
+#tradequery,#creditquery,#itemsearch,#doublecontenttable1,#doublecontenttable3,#commenttable{
 	width:798px;
 	font-size:13px;
 	margin:0px auto;
@@ -748,16 +753,7 @@ text-decoration:none;
 	border-color:#CCCCCC;
 	text-align:center;
 }
-#favorite th{
-	background-color:#EFEFEF;
-	text-align:center;
-}
-#favorite td{
-	text-align:center;
-	border-bottom-color:#D4D4D4;
-	border-bottom-style:dashed;
-	border-bottom-width:1px;
-}
+
 .picture{
 	border-width:0px;
 }
@@ -823,11 +819,10 @@ text-decoration:none;
 .user_note
 {
 	float:left;
-	width:648px;
+	width:647px;
 	background-color: #FFF;
-	margin-right:1px;
-	margin-left:1px;
 	overflow:hidden;
+	border:1px solid #DDD;
 }
 .user_note .head
 {
@@ -837,7 +832,7 @@ text-decoration:none;
 	font-size:14px;
 	padding-top:4px;
 	text-align:center;
-	border: 1px solid #E6E6E6;
+	/*border: 1px solid #E6E6E6;*/
 	line-height: 25px;
 }
 .user_note .user_note_content
