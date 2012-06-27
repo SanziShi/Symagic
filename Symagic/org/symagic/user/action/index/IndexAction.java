@@ -32,8 +32,7 @@ private ItemService itemService;//访问商品项
 
 //传出参数
 private String nickname;//昵称
-private int totalNumber;//购物车数量
-
+private Integer totalNumber;//购物车数量
 private List<ItemBean> recommendItem;//浏览量的商品
 private List<ItemBean> newBook;//新书
 private List<ItemBean> hotBook;//热销书
