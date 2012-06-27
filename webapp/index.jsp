@@ -59,10 +59,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="clear"></div>
 	<div id="left">
 		<div id="category">
-		<s:iterator value="catalog" id='outer'>
+		<s:iterator value="catalog" var='outer'>
 			<a href="item_list&catalogID=<s:property value='#outer.ID'/>"><h4 ><span><s:property value='#outer.name'/></span></h4></a>
 			<ul>
-			<s:iterator value="#outer.childCatalog" id="inner">
+			<s:iterator value="#outer.childCatalog" var="inner">
 				<li><a href="item_list&catalogID=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
 			</s:iterator>
 			</ul>
@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="recommend" >
 			<ul>
             <!--迭代开始-->
-            <s:iterator value='newBook' id='iter'>
+            <s:iterator value='newBook' var='iter'>
 				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="new">
 			<ul>
 		 		<!--迭代开始-->
-            <s:iterator value='hotBook' id='iter'>
+            <s:iterator value='hotBook' var='iter'>
 				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="life">
 			<ul>
 			<!--迭代开始-->
-            <s:iterator value='recommendItem' id='iter'>
+            <s:iterator value='recommendItem' var='iter'>
 				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>

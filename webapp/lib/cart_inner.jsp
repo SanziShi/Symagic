@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div id="cart_head"><h4>最近加入的商品</h4></div>
         <div id="cart_content">
             <ul>	
-            <s:iterator value="items" id="item">
+            <s:iterator value="items" var="item">
             <!--购物车内容迭代-->
                 <li id="<s:property value='#item.itemId'/>">
                 	<div class="cart_img"><a href="item_detail?itemID=<s:property value='#item.itemID'/>"><img src="<s:property value='#item.picturePath'/>"/></a></div>
