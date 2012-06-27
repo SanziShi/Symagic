@@ -18,7 +18,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 public class RecommandService {
-	
+
 	private String host = "localhost:8080";
 	/**
 	 * easyrec的API KEY
@@ -30,7 +30,8 @@ public class RecommandService {
 	private String tenantid;
 
 	/**
-	 * 提交view操作
+	 * 提交view操作,对于未登陆用户userName为null
+	 * 
 	 * @param sessionID
 	 * @param itemID
 	 * @param itemDescription
@@ -51,7 +52,8 @@ public class RecommandService {
 		parameters.put("itemid", itemID);
 		parameters.put("itemdescription", itemDescription);
 		parameters.put("itemurl", itemURL);
-		parameters.put("userid", userName);
+		if (userName != null)
+			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
 
@@ -63,7 +65,8 @@ public class RecommandService {
 	}
 
 	/**
-	 * 提交buy操作
+	 * 提交buy操作,对于未登陆用户userName为null
+	 * 
 	 * @param sessionID
 	 * @param itemID
 	 * @param itemDescription
@@ -82,7 +85,8 @@ public class RecommandService {
 		parameters.put("itemid", itemID);
 		parameters.put("itemdescription", itemDescription);
 		parameters.put("itemurl", itemURL);
-		parameters.put("userid", userName);
+		if (userName != null)
+			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
@@ -93,7 +97,8 @@ public class RecommandService {
 	}
 
 	/**
-	 * 提交rate操作
+	 * 提交rate操作,对于未登陆用户userName为null
+	 * 
 	 * @param sessionID
 	 * @param rateValue
 	 * @param itemID
@@ -114,7 +119,8 @@ public class RecommandService {
 		parameters.put("ratingvalue", rateValue);
 		parameters.put("itemdescription", itemDescription);
 		parameters.put("itemurl", itemURL);
-		parameters.put("userid", userName);
+		if (userName != null)
+			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
@@ -125,7 +131,8 @@ public class RecommandService {
 	}
 
 	/**
-	 * 根据当前用户浏览的商品获得推荐的商品项
+	 * 根据当前用户浏览的商品获得推荐的商品项,,对于未登陆用户userName为null
+	 * 
 	 * @param itemID
 	 * @param userName
 	 * @param requireNumber
@@ -142,14 +149,16 @@ public class RecommandService {
 		parameters.put("apikey", apikey);
 		parameters.put("tenantid", tenantid);
 		parameters.put("itemid", itemID);
-		parameters.put("userid", userName);
+		if (userName != null)
+			parameters.put("userid", userName);
 		parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		
-		if( object == null ) return null;
+
+		if (object == null)
+			return null;
 
 		JSONObject recommended = object.getJSONObject("recommendeditems");
 		JSONArray items = recommended.getJSONArray("item");
@@ -162,7 +171,8 @@ public class RecommandService {
 	}
 
 	/**
-	 * 根据当前用户购买的商品获得推荐的商品项
+	 * 根据当前用户购买的商品获得推荐的商品项,,对于未登陆用户userName为null
+	 * 
 	 * @param itemID
 	 * @param userName
 	 * @param requireNumber
@@ -179,14 +189,16 @@ public class RecommandService {
 		parameters.put("apikey", apikey);
 		parameters.put("tenantid", tenantid);
 		parameters.put("itemid", itemID);
-		parameters.put("userid", userName);
+		if (userName != null)
+			parameters.put("userid", userName);
 		parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		
-		if( object == null ) return null;
+
+		if (object == null)
+			return null;
 
 		JSONObject recommended = object.getJSONObject("recommendeditems");
 		JSONArray items = recommended.getJSONArray("item");
@@ -197,15 +209,16 @@ public class RecommandService {
 
 		return result;
 	}
-	
+
 	/**
 	 * 对指定用户进行推荐
+	 * 
 	 * @param userName
 	 * @param requireNumber
 	 * @return
 	 */
 	public List<Integer> recommendationsForUser(String userName,
-			Integer requireNumber){
+			Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -220,8 +233,9 @@ public class RecommandService {
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		
-		if( object == null ) return null;
+
+		if (object == null)
+			return null;
 
 		JSONObject recommended = object.getJSONObject("recommendeditems");
 		JSONArray items = recommended.getJSONArray("item");
@@ -232,29 +246,31 @@ public class RecommandService {
 
 		return result;
 	}
-	
+
 	/**
 	 * 获取热销商品
+	 * 
 	 * @param requireNumber
 	 * @param timeRange
 	 * @return
 	 */
-	public List<Integer> mostBoughtItems(Integer requireNumber, String timeRange){
+	public List<Integer> mostBoughtItems(Integer requireNumber, String timeRange) {
 		List<Integer> result = new ArrayList<Integer>();
-		
+
 		String url = "http://" + host
 				+ "/easyrec-web/api/1.0/json/mostboughtitems";
-		
+
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("apikey", apikey);
 		parameters.put("tenantid", tenantid);
 		parameters.put("numberOfResults", requireNumber.toString());
-		
+
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		
-		if( object == null ) return null;
+
+		if (object == null)
+			return null;
 
 		JSONObject recommended = object.getJSONObject("recommendeditems");
 		JSONArray items = recommended.getJSONArray("item");
