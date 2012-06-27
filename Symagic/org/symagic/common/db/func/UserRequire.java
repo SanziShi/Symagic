@@ -7,4 +7,10 @@ public class UserRequire {
 //	endTime:结束索引时间（year：年，month:月，day:日); 
 //	页数
 //	一页显示条数
+	
+	private String username	= null;
+	private int	userLevel	= 0;
+	
+	
+	
 }

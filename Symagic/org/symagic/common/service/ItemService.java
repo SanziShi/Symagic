@@ -27,6 +27,12 @@ public class ItemService {
 	public List<BeanBook> search(int sign,BookRequire require){
 		return daoBook.search(sign,require);
 	}
+	public int getSearchNum(int sign,BookRequire require){
+		return daoBook.getSearchRowNumber(sign, require);
+	}
+	
+	
+	
 	
 	//将查询 得到的书本信息装饰成前台所需的信息
 	public void decorate(List<BeanBook>books,List<ItemDetailBean>items){
@@ -58,6 +64,7 @@ public class ItemService {
 		}
 	}
 	
+	
     //得到商品详情
 	public BeanBook getDetail(int itemId){
 		return daoBook.getDetail(itemId);
@@ -66,6 +73,7 @@ public class ItemService {
 	public int getCommentNumber(int itemId){
 		return daoComment.getCommnetNumber(itemId);
 	}
+	
 	//得到商品评论
 	public List<BeanComment> getCommentWithPage(int itemId,int page,int lines){
 		return daoComment.getComment(itemId,page,lines);
@@ -78,7 +86,7 @@ public class ItemService {
 	 */
 	public int getAverage(int bookId){
 		//daoComment.getAverageRating();
-		return 0;
+		return daoComment.getAverageRating(bookId);
 	}
 
 	//增加用户对商品的评论
@@ -88,26 +96,23 @@ public class ItemService {
 	
 	
 	//根据id的集合填充相应的信息到items中
-	public void fillItem(List<ItemBean>items,List<Integer>ids){
+	public void fillItem(List<Integer>ids,List<ItemBean>items){
 			 ItemBean item;
 		     BeanBook book;
 			for(Iterator<Integer> index=ids.iterator();index.hasNext();){
 				int id=index.next();
 				item=new ItemBean();
 				item.setItemId(id);
-				
 				book=daoBook.getDetail(id);
 				item.setName(book.getBookName());
 				item.setPicturePath(book.getPicture());
 				float marketPrice=book.getMarketPrice();
 				float discount=book.getDiscount();
 				item.setPrice(marketPrice*discount);
-				item.setSavePrice(marketPrice*(1-discount));
-				
 				items.add(item);
 			}
 		}
-	
+	//将购物车的信息进行填充
 	public float fillItemWithNumber(ArrayList<ItemBean>items){
 		//获得购物车
 		 HashMap<Integer,Integer> cart=UserSessionUtilty.getCart();

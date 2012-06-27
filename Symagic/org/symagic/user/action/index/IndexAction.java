@@ -18,6 +18,11 @@ public class IndexAction extends CatalogBase{
 
 
 
+/**
+	 * 
+	 */
+private static final long serialVersionUID = 5685501467658534869L;
+
 private RecommandService recommandService;
 private ItemService itemService;
 
@@ -35,13 +40,15 @@ private List<ItemBean> hotBook;
 		// TODO Auto-generated method stub
 		nickname=UserSessionUtilty.getNickname();
 		cartItemNumber=UserSessionUtilty.getCart().size();
+		
 		//推荐商品的id
 	     List<Integer> recommendIds=recommandService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
-	     itemService.fillItem(recommendItem,recommendIds);
+	     itemService.fillItem(recommendIds,recommendItem);
 	     
 	     //新书和热销书
-	    
 	    newBook=new ArrayList<ItemBean>();
+	   
+	    
 		hotBook=new ArrayList<ItemBean>();
 		return super.execute();
 	}

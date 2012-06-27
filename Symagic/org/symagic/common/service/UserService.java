@@ -78,8 +78,8 @@ public boolean login(String username,String password){
 	boolean loginResult=daoUser.validateUser(username,password);
 	//登录成功,更新购物车的信息,保存用户信息到session
 	if(loginResult){
-		
-	//UserSessionUtilty.logLogin(username,daoUser.getNickname());
+	BeanUser user=daoUser.getUser(username);
+	UserSessionUtilty.logLogin(username,user.getNickname());
 		
 		accordCart();
 	}
