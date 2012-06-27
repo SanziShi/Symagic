@@ -198,6 +198,10 @@ td.mywidth{
 	left:350px;
 	
 }
+.font_right{
+	position:relative;
+	left:80px;
+	}
 #item_font20{
 	font-size:20px;
 	}
@@ -217,3 +221,8 @@ margin: 1px 0px 0px 0px;
 padding: 30px 0px 0px 0px;
 background-color: white;
 }
+#img_format{
+	width:75px;
+	height:100px;
+	border:0;
+	}
