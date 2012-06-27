@@ -42,15 +42,15 @@ public class DaoOrder {
 	 * @param orderID	订单ID
 	 * @return	BeanOrder对象，封装着订单的详细信息
 	 */
-	public List<BeanOrderDetail> getOrderDetail(int orderID)
+	public BeanOrder getOrderDetail(int orderID)
 	{
-		List<BeanOrderDetail> list	= null;
+		BeanOrder order	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from order_detail where orderid=?");
 			ps.setInt(1, orderID);
 			rs	= ps.executeQuery();
-			list	= new ArrayList<BeanOrderDetail>();
+			order	= new BeanOrder();
 			while (rs.next()) {
 				BeanOrderDetail	orderDetail	= new BeanOrderDetail();
 				orderDetail.setAmount(rs.getInt("amount"));
@@ -60,9 +60,9 @@ public class DaoOrder {
 				orderDetail.setIsbn(rs.getString("isbn"));
 				orderDetail.setMarketPrice(rs.getFloat("marketprice"));
 				orderDetail.setOrderId(rs.getInt("orderid"));
-				list.add(orderDetail);
+				order.getList().add(orderDetail);
 			}
-			return list;
+			return order;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -74,7 +74,7 @@ public class DaoOrder {
 				e.printStackTrace();
 			}
 		}
-		return list;
+		return order;
 	}
 	
 	/**
