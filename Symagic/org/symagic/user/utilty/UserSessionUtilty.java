@@ -27,7 +27,7 @@ public class UserSessionUtilty extends SessionUtilty {
   /**
    * 取得用户登录失败次数
    */
-	public static int getLoginErrorTime(){
+	public static Integer getLoginErrorTime(){
 	 return (Integer)ActionContext.getContext().getSession().get("errorTimes");	
 	}
 	/**
@@ -75,9 +75,13 @@ public class UserSessionUtilty extends SessionUtilty {
 		}
 		
 		//添加物品和数量
-		
+		Integer value=cart.get(id);
+		if(value==null)
 		cart.put(id, number);
-		
+		else
+		{
+			cart.put(id, value+number);
+		}
 		return true;
 	}
 	/**
@@ -123,13 +127,13 @@ public class UserSessionUtilty extends SessionUtilty {
 	
 	public static String getNickname(){
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		return session.get("nickname").toString();
+		return (String)session.get("nickname");
 	}
 	public static void setNickname(String nickname){
 		ActionContext.getContext().getSession().put("nickname", nickname);
 	}
 	public static String getUsername(){
-		return ActionContext.getContext().getSession().get("username").toString();
+		return (String)ActionContext.getContext().getSession().get("username");
 	}
 
 }
