@@ -1,22 +1,22 @@
 package org.symagic.user.action.order;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import org.symagic.common.action.catalog.CatalogBase;
-import org.symagic.common.db.bean.BeanOrder;
-import org.symagic.common.db.func.DaoOrder;
-import org.symagic.common.db.func.OrderRequire;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-
 import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
-import com.opensymphony.xwork2.validator.annotations.DateRangeFieldValidator;
-
 public class OrderListAction extends CatalogBase{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 399162968035693232L;
+
 	private static final int ITEM_PER_PAGE = 10;
 	
 	private List<OrderBean> orderList;
@@ -30,8 +30,6 @@ public class OrderListAction extends CatalogBase{
 	private Integer page;
 	
 	private Integer currentPage;
-	
-	private boolean isValidate;
 	
 	private OrderService orderService;
 
@@ -90,10 +88,7 @@ public class OrderListAction extends CatalogBase{
 	public void setOrderService(OrderService orderService){
 		this.orderService = orderService;
 	}
-	
-	/**
-	 * 注意：天知道这个的dao调用时怎么样的。。。
-	 */
+
 	public String execute() throws Exception{
 		//获得catalog
 		super.execute();
@@ -120,28 +115,8 @@ public class OrderListAction extends CatalogBase{
 		calender.add(Calendar.MONTH, amount);
 		Date start = calender.getTime();
 		String orderState = orderStatus.toString();
-		orderService.orderList(username, ITEM_PER_PAGE, page, start, end, orderState);
+		orderList = orderService.orderList(username, ITEM_PER_PAGE, page, start, end, orderState);
 		currentPage = page;
 		return SUCCESS;
-	}
-	
-	public void validate(){
-		if(!UserSessionUtilty.isLogin()){
-			isValidate = false;
-			return;
-		}
-		if(time < 0 || time > 4){
-			isValidate = false;
-			return;
-		}
-		if(page > totalPage){
-			isValidate = false;
-			return;
-		}
-		if(orderStatus < 0 || orderStatus > 4){
-			isValidate = false;
-			return;
-		}
-		isValidate = true;
 	}
 }
