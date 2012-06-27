@@ -50,7 +50,7 @@ public class AdvanceSearchAction extends CatalogBase{
 	  private Integer discount;//折扣
 	  private String author;//作者
 	  
-	  
+	  private int sign=1;//搜索标志，1为高级搜索
 	  
 	  
 	 
@@ -77,7 +77,8 @@ public class AdvanceSearchAction extends CatalogBase{
 	    require.setLines(lines);
 	    require.setPage(page);
 	      //搜索符合条件的商品
-	    List<BeanBook> books=itemService.search(1, require);
+	    List<BeanBook> books=itemService.search(sign, require);
+	    totalPage=(itemService.getSearchNum(sign, require)+lines-1)/lines;
 	     //装饰成前台所需的信息
 		itemService.decorate(books, items);
 		
@@ -94,6 +95,7 @@ public class AdvanceSearchAction extends CatalogBase{
 	  return super.execute();
 	}
   
+
 private void setBookSize(BookRequire require,Integer index){
 	if(index==null)return;
 	switch(index){

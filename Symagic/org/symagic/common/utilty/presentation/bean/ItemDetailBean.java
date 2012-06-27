@@ -78,6 +78,13 @@ public class ItemDetailBean {
 	public void setOffline(int offline) {
 		this.offline = offline;
 	}
+	private int inventory;
+	public int getInventory() {
+		return inventory;
+	}
+	public void setInventory(int inventory) {
+		this.inventory = inventory;
+	}
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->

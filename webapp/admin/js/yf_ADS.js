@@ -2,10 +2,14 @@ GLOBAL=
 {
 	dir:'Symagic2/',
 	lib:'lib/',
-	cart_buff:''
-
+	cart_buff:'',
+	cart_on_buff:''
 }
 //业务逻辑函数
+function change_captcha(e)
+{
+	e.src='captcha_get_captcha';
+}
 function load_login()
 {
 	if(window.event)stopDefault();
@@ -75,13 +79,13 @@ function safe_question(e)
 	var q=p.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;
 	if(e.value=='自定义问题')
 	{
-		q.name='security_question';
+		q.name='securityQuestion';
 		e.name='';
 		p.style.display='table-row';
 	}
 	else 
 	{
-		if(!e.name||q.name){e.name='security_question';q.name='';}
+		if(!e.name||q.name){e.name='securityQuestion';q.name='';}
 		p.style.display='none';
 	}
 }
@@ -100,6 +104,7 @@ function clear_notice()
 		}
 	};
 	for (x in n)document.body.removeChild(n[x]);
+	a=null;n=null;
 }
 function close_float(elem)
 {
@@ -121,6 +126,7 @@ function close_float(elem)
 		f.parentNode.removeChild(f);
 		hideOverlay();
 		});
+	a=null;n=null;
 }
 function show_user_con(num)
 {
@@ -135,8 +141,22 @@ function show_user_con(num)
 	//if(!document.getElementById(x).style||document.getElementById(x).style.display!='block')
 	$('#'+num).slideDown(250);
 }
+function show_item_search(e)
+{
+	if(e.className=='collapse')
+	{
+		e.className='collapsed';
+		$('#item_search1').slideDown(70);
+	}
+	else
+	{
+		e.className='collapse';
+		$('#item_search1').slideUp(70);
+	}
+}
 
 /*--------------yf_ADS库函数-------------------*/
+
 //增加事件监听注册器
 function addListener(element,e,fn){
      if(element.addEventListener){
@@ -189,10 +209,13 @@ Ajax=function (option){
 		onComplete:option.onComplete||function(){},
 		onError:option.onError||function(){},
 		onSuccess:option.onSuccess||function(){},
+		onSend:option.onSend||function(){},
+		onTimeout:option.onTimeout||function(){},
 		acceptdatatype:option.acceptdatatype||'json',
 		data:option.data||''
 	};
 	var ajax;
+	var timer;
 	if(typeof XMLHttpRequest=='undefined')
 	{
 		ajax=new ActiveXObject("Microsofr.XMLHttp");
@@ -205,7 +228,7 @@ Ajax=function (option){
 	if(option.type=='GET')
 	{
 		ajax.setRequestHeader("If-Modified-Since","0"); 
-		ajax.send()
+		ajax.send();
 	}
 	else 
 	{
@@ -220,6 +243,17 @@ Ajax=function (option){
 		ajax.setRequestHeader("If-Modified-Since","0"); 
 		ajax.send(option.data);
 	}
+	timer=setTimeout(function()
+		{
+			if(typeof option.onTimeout=="function") option.onTimeout();
+			if(ajax)
+			{
+				ajax.abort();
+				ajax=null;
+			}
+			return ture;
+		}
+		,option.timeout);
 	ajax.onreadystatechange=function()
 	{
 		switch (ajax.readyState)
@@ -228,7 +262,7 @@ Ajax=function (option){
 				break;
 			case 1:
 				break;
-			case 2:
+			case 2:option.onSend();
 				break;
 			case 3:
 				break;
@@ -237,23 +271,24 @@ Ajax=function (option){
 				{
 					switch(ajax.status)
 					{
-						case 200:option.onSuccess(ajax.responseText);
+						case 200:if(timer)clearTimeout(timer);
+							option.onSuccess(ajax.responseText);
+							ajax=null;
 							break;
-						case 403:
+						case 404:if(timer)clearTimeout(timer);
+							option.onError(ajax.responseText);
+							ajax=null;
 							break;
-						case 404:option.onError(ajax.responseText);
-							break;
-						case 500:
-							break;
-						case 503:
-							break;
-						default:option.onComplete(ajax.responseText);
+						default:if(timer)clearTimeout(timer);
+							option.onComplete(ajax.responseText);
+							ajax=null;
 					}
 				}catch(e){}
 			default:break;
 		}
 		//alert('ajax.status:'+ajax.status+"  ajax.readyState:"+ajax.readyState);
 	}
+
 }
 
 //覆盖层
@@ -802,46 +837,75 @@ if (!JSON) {
 
 
 $().ready(function() {
-	addListener(document.getElementById('cart_li'),"mouseover",function(e)
+	var cart={
+		top:document.getElementById('cart_top'),
+		a:document.getElementById('cart_a'),
+		icon:document.getElementById('cart_icon'),
+		container:document.getElementById('cart_container'),
+		loading:document.getElementById('cart_loading'),
+		cart:document.getElementById('cart')
+		}
+	addListener(cart.top,"mouseover",function(e)
 	{
 		e=e||window.event;
-		if(mouseover_check(e,document.getElementById('cart_li')))
+		if(mouseover_check(e,cart.top))
 		{
-			if(document.getElementById('cart_li').className.indexOf('hover')==-1)
+			//if(document.getElementById('cart_top').className.indexOf('hover')==-1)
+			//{
+				cart.top.className+='hover';
+				cart.a.className+='hover';
+				cart.icon.className+='hover';
+			//}
+		GLOBAL.cart_on_buff=setTimeout(function()
 			{
-				document.getElementById('cart_li').className+=' hover';
-				document.getElementById('cart_a').className+=' hover';
-			}
-		$('#cart').fadeIn('fast');
+				Ajax({
+					url:'lib/cart_inner.html',
+					onSend:function(){document.getElementById('cart_loading').style.display='block';},
+					onSuccess:function(e)
+						{
+							/*var t=document.createElement('div');
+							t.id='cart_container';
+							t.innerHTML=e;
+							document.getElementById('cart').appendChild(t);
+							t=null;*/
+							cart.loading.style.display='none';
+							cart.container.innerHTML=e;
+						}
+					});
+				$('#cart').fadeIn(1);
+			},300);
 		}
 	});
-	addListener(document.getElementById('cart_li'),"mouseout",function(e){
+	addListener(cart.top,"mouseout",function(e){
 		e=e||window.event;
-		if(mouseout_check(e,document.getElementById('cart_li')))
+		if(mouseout_check(e,cart.top))
 		{
+			clearTimeout(GLOBAL.cart_on_buff);
 			GLOBAL.cart_buff=setTimeout(function(){
-				document.getElementById('cart_li').className='';
-				document.getElementById('cart_a').className='';
-				$('#cart').fadeOut(1);}
+				cart.top.className='';
+				cart.a.className='';
+				cart.icon.className='';
+				cart.cart.style.display='none';}
+				//$('#cart').fadeOut(1);}
 			,10);
 		}
 	});
-	addListener(document.getElementById('cart'),"mouseover",function(e){
-		//alert('test')
+	addListener(cart.cart,"mouseover",function(e){
 		e=e||window.event;
-		//var c=document.getElementById('cart');
-		if(mouseover_check(e,document.getElementById('cart')))
+		if(mouseover_check(e,cart.cart))
 		{
 			clearTimeout(GLOBAL.cart_buff);
 		}
 	});
-	addListener(document.getElementById('cart'),"mouseout",function(e){
+	addListener(cart.cart,"mouseout",function(e){
 		e=e||window.event;
-		if(mouseout_check(e,document.getElementById('cart')))
+		if(mouseout_check(e,cart.cart))
 		{
-			document.getElementById('cart_li').className='';
-			document.getElementById('cart_a').className='';
-			$('#cart').fadeOut(1);
+			cart.top.className='';
+			cart.a.className='';
+			cart.icon.className='';
+			cart.cart.style.display='none';
+			//$('#cart').fadeOut(1);
 		}
 	});
 });
