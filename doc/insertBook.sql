@@ -1,7 +1,7 @@
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787538296846.png","曾国藩和他的湘军","张云,韩洪泉",
+                  values ("/upload/9787538296846.png","曾国藩和他的湘军","张云,韩洪泉",
                           "辽宁教育出版社","2012-04-01",1,340	,"平装"	,"16开",32.8,0.69,130,
                           "梁启超对世人说：“曾文正者，岂唯近代，盖有史以来不一二睹之大人也已；
                           岂唯我国，抑全世界不一二睹之大人也已。”
@@ -16,7 +16,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787539949789.png","银河帝国2：基地与帝国","阿西莫夫 著，叶李华　译",
+                  values ("/upload/9787539949789.png","银河帝国2：基地与帝国","阿西莫夫 著，叶李华　译",
                           "江苏文艺出版社","2012-06-01",1,230	,"平装"	,"16开",29.9,0.69,50,
                           "人类蜗居在银河系的一个小角落——太阳系，在围绕太阳旋转的第三颗行星上，生活了十多万年之久。
 　　人类在这个小小的行星（他们称之为“地球”）上，建立了两百多个不同的行政区域（他们称之为“国家”），直到地球上诞生了第一个会思考的机器人。
@@ -30,7 +30,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
  insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787222073715.png","西风多少恨.吹不散眉弯","白落梅 著",
+                  values ("/upload/9787222073715.png","西风多少恨.吹不散眉弯","白落梅 著",
                           "云南人民出版社","2011-04-01",1,272	,"平装"	,"32开",28,0.56,125,
                           "纳兰容若的前世，是一朵在佛前修炼过的金莲，贪恋了人间烟火的颜色和气味，注定今生这场红尘游历。
                           所以他有冰洁的情怀，有如水的禅心，有悲悯的爱恋。纳兰容若的一生，
@@ -40,7 +40,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
    insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787539936680.png","那些回不去的年少时光：终场","桐华 著",
+                  values ("/upload/9787539936680.png","那些回不去的年少时光：终场","桐华 著",
                           "江苏文艺出版社","2010-04-01",1,284	,"平装"	,"16开",23.8,0.63,157,
                           "故事虽落幕，青春不终场！经过孤独的小学时光，混乱的初中生涯，罗琦琦来到了高中。和所有走过那段岁月的人一样，面对高考的折磨，罗琦琦虽然不情愿，却也无法做到不在乎，学习并不好的她，性格倔强不服输的她，究竟如何才能完成完美转身？
 　　爱情，也是挑战她的另一大命题。她和他又走到了一起，他对她似乎已经倾心，只是她们身后还有一个他。她该如何面对，又该如何选择？
@@ -50,7 +50,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
    insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787532272334.png","素描的诀窍（经典版）","［美］伯特•多德森 著 蔡强 译",
+                  values ("/upload/9787532272334.png","素描的诀窍（经典版）","［美］伯特•多德森 著 蔡强 译",
                           "上海人民美术出版社","2011-04-01",1,222	,"平装"	,"16开",28,0.65,345,
                           "《素描的诀窍（经典版）》中的每一章都包含一些设计，这些设计是让读者对所讨论的诀窍进行运用。每章的最后都有一个回顾及设计自我评估部分。这些设计都有的放矢，要求在一定时间内解决一定数量的问题。其中有一些设计要求明确，从特殊角度对物体进行观察，或是夸大现实。这样做并不是为了要画出好看的图，而是要让你了解新的观察方法并作出反应。
 　　这本书中包含了大量作画的类型——快速作画、草图作画、写生簿作画以及完整的构图作画。有些地方使用了照片作为辅助，以免产生不真实的印象。除非有另行注明，书中绘画都为作者本人所作。
@@ -60,7 +60,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
    insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787535838858.png","游园惊梦","夏达",
+                  values ("/upload/9787535838858.png","游园惊梦","夏达",
                           "湖南少儿出版社","2008-07-01",1,85,"平装"	,"大16开",24,0.50,456,
                           "细细翻过夏达的《游园惊梦》，再次有一个奢侈的机会，尝试着在这个并不算太寒冷的冬天掩卷，喝一杯热茶，想一些事情，想到一首《燕燕于飞》的诗。
 　　夏达是个画画很随性的姑娘，曾经为我们的一本杂志绘制一张封面，画一个少女躺在盛夏的浅水莲叶中，极美丽，美术总监思谋良久，说实在太柔，不合杂志的意趣。夏达便也不生气，说没什么，那是她喜欢画的，用不用，并没什么关系。
@@ -71,7 +71,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787101052978.png","三国志","（晋）陈寿，裴松之 著",
+                  values ("/upload/9787101052978.png","三国志","（晋）陈寿，裴松之 著",
                           "中华书局","2006-09-01",1,867,"精装"	,"32开",36,0.72,500,
                           "三国是我国封建社会历史发展过程中具有特色的历史时期，即魏、蜀、吴三国鼎立。三国的历史大致经过了九十年，也就是说从公元190年军阀混战始至公元280年晋灭吴统一南方止。但也有不少史学家以曹丕称帝的公元220年算起。如果仔细考察三国的历史，还是以公元190年算起更为科学，因为在魏、蜀、吴三国形成之前，确有一段形成过程。
 　　三国是东汉王朝的继续。东汉末年，豪强地主土地所有制迅速发展，土地兼并异常激烈，宦官、外戚两个集团的交相干政和互相倾轧，更加造成了政治的极端黑暗和朝廷腐败，再加上对羌族的连年用兵和自然灾害的不断袭击，阶级矛盾日趋尖锐，终于激起了公元184年的黄巾军起义。起义军在张角、张宝、张梁等人领导下，迅速发展起来，其规模声势严重威胁着东汉王朝的统治。汉灵帝为之恐慌，先后派兵围剿黄巾军，首先以何皇后的哥哥何进为大将军，率军屯驻洛阳近郊，派卢植赴河北讨伐张角，派皇甫嵩、朱携赴颍川（今河南禹县）讨伐以波才为领袖的另一支黄巾军。
@@ -80,7 +80,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787532544400.png","孙子兵法","（春秋）孙武　撰，（三国）曹操　注，郭化若 今译",
+                  values ("/upload/9787532544400.png","孙子兵法","（春秋）孙武　撰，（三国）曹操　注，郭化若 今译",
                           "上海古籍出版社","2006-07-01",1,175,"平装","16开",20,0.65,1024,
                           "《孙子兵法》是我国最古老、最杰出的一部兵书，历来备受推崇，研习者辈出。我们现在所能见到的最早为《孙子兵法》作注的乃一代枭雄曹操，其注字里行间不乏真知灼见。当代著名军事家郭化若更是长期研究《孙子兵法》，撰有《孙子译注》一书，不但为《孙子兵法》全文作了校勘、注释、今译，还撰写了题解及考订、评论文字，既有较高的学术水平，
                           又浅显易懂。本书即在郭化若《孙子译注》的基础上用红字加上了从宋本《十一家注孙子》中辑出的曹操的注，将孙武、曹操、郭化若的军事思想融为一书，以裨读者把握我国两千年来兵学之精华。书后附有《史记。孙子列传》，同时还附上郭化若《孙子译注》本的《前言》、《再版的话》。",
@@ -88,7 +88,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787214078476.png","做最好的共产党员","汪维宏　等著",
+                  values ("/upload/9787214078476.png","做最好的共产党员","汪维宏　等著",
                           "江苏人民出版社","2011-10-01",1,179,"平装","16开",22,0.62,235,
                           "最好的党员是凡人
 　　最好的党员是好人
@@ -103,7 +103,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787505721456.png","东方哲学简史（珍藏插图版）","（锡兰）L•A•贝克 著 赵增越 译",
+                  values ("/upload/9787505721456.png","东方哲学简史（珍藏插图版）","（锡兰）L•A•贝克 著 赵增越 译",
                           "中国友谊出版公司","2006-01-01",1,289,"平装","16开",35,0.36,50,
                           "《东方哲学简史》(珍藏插图版)作者以一个理解东方精神的西方人的眼光，阐释着超凡脱俗的印度古典哲学、瑜珈与佛教和神秘而充满生命激情的波斯苏菲教，以及讲求个人道德完美主义的孔孟之道 、追求精神绝对自由的老子哲学。在欧洲，哲学和信仰毋宁说是某种装饰、而不像东方那样是生活本身。东方生命智慧将是拯救现代西方文明走出困境的精神食粮。这些思想把哲学之魂推展为包罗万象的博大体系，
                           它们还将推展到更广泛、更为精深的领域和范围。西方仍然在期待着来自东方的征服。",
@@ -111,7 +111,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio, marketprice,discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787549500444.png","古犹太教","（德）马克思•韦伯（Max Weber） 著 康乐，简惠美 译",
+                  values ("/upload/9787549500444.png","古犹太教","（德）马克思•韦伯（Max Weber） 著 康乐，简惠美 译",
                           "广西师范大学出版社","2010-09-01",1,569,"精装","32开",50,0.66,74,
                           " 本文原为《古犹太教》第一篇第一章的注。在《宗教社会学论文集》一书里，韦伯习惯在各书的首章里说明他在处理此一问题时，
                           所采用的方法、重要参考文献以及更重要的研究史的回顾。",
@@ -119,7 +119,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787101074888.png","老子道德经注","楼宇烈 校 （魏）王弼 注",
+                  values ("/upload/9787101074888.png","老子道德经注","楼宇烈 校 （魏）王弼 注",
                           "中华书局","2011-01-01",1,216,"精装","32开",19,0.70,1567,
                           " 王弼《老子道德经注》是以比较古老的《老子》文本为底本，注文同时保存了某些老子古意，并代表三国魏晋玄学思想，因此是《老子》一书最重要的注释之一，也是研究王弼思想的重要著作。楼宇烈先生以浙江书局刻明华亭张之象本为底本，参校数十种重要版本及相关徵引著述，
                           是目前唯一，也是最精审的有关王弼《老子道德经注》校勘注释本。",
@@ -128,7 +128,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787510407550.png","乌合之众——大众心理研究","古斯塔夫•勒庞（Gustave Le Boin） 著 戴光年 译",
+                  values ("/upload/9787510407550.png","乌合之众——大众心理研究","古斯塔夫•勒庞（Gustave Le Boin） 著 戴光年 译",
                           "新世界出版社","2010-01-01",1,182,"平装","16开",24.8,0.33,124,
                           " 《乌合之众——大众心理研究》是解析群体心理的经典名著，虽然是一部学术性著作，但语言生动流畅，分析鞭辟入里、入木三分。因此，这部作品—经问世，便广受欢迎，已被译成十几种语言。
      本书颠覆了人们通常对群体的认识，将群体的特点剖析得淋漓尽致，让人先是惊异，后是佩服。
@@ -139,7 +139,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787509327296.png","中华人民共和国民法通则","中国法制出版社 编",
+                  values ("/upload/9787509327296.png","中华人民共和国民法通则","中国法制出版社 编",
                           "中国法制出版社","2011-03-01",1,103,"平装","大32开",12,0.5,1023,
                           " (1)专业人员编写。本丛书皆由相关法律专家编写，内容明确，并力求语言通俗，使普通大众读者能更轻松地理解法律精神，掌握法律政策；
 (2)法律适用提要。每本书都由相关法律专家撰写该法的适用提要，帮助读者对每一个法的背景、概况有更全面、深入的理解；
@@ -149,7 +149,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787200073102.png","爱弥儿","卢梭，方卿 著",
+                  values ("/upload/9787200073102.png","爱弥儿","卢梭，方卿 著",
                           "北京出版社","2008-09-01",1,163,"平装","16开",23.8,0.66,234,
                           " 《爱弥儿，或论教育》，系法国资产阶级民主主义者、杰出的启蒙思想家卢梭(1712—1778)的重要著作。此书写于1757年，1762年第一次在荷兰的阿姆斯特丹出版。此书出版时，轰动了整个法国和西欧一些资产阶级国家，影响巨大。这部书不仅是卢梭论述资产阶级教育的专著，
                           而且是他阐发资产阶级社会政治思想的名著。",
@@ -158,7 +158,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787802006348.png","英语快乐阅读（小学生5年级）","方洲 编",
+                  values ("/upload/9787802006348.png","英语快乐阅读（小学生5年级）","方洲 编",
                           "华语教学出版社","2009-08-01",1,152,"平装","16开",14.8,0.57,345,
                           " 阅读是学习英语的重要途径。它不仅是学好英语，积累词汇的基础，也是英语学习中其他技能的基础。阅读能帮助我们拓展视野，开阔思路，提高对英语学习的兴趣，为取得更高的语言成就铺平道路。
 新课程标准规定小学阶段英语阅读量达到累计10—12万字。要达到这样的目标，没有足够的语言输入量是不行的。当学生有了一定的听、说基础之后，就需要不失时机地加强阅读学习。因为英语学习需要不断地复现，需要大量的输入来强化听、
@@ -168,7 +168,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787560534541.png","研数学线性代数辅导讲义","李永乐　主编",
+                  values ("/upload/9787560534541.png","研数学线性代数辅导讲义","李永乐　主编",
                           "西安交通大学出版社","2012-03-01",3,158,"平装","16开",25,0.70,323,
                           " 本书此次修订篇幅有所调整，除了补充、更换、编写了一些新题之外，针对同学们不太好理解或不大注意的地方，我们在评注中增加了较多的说明，同时也对全书的结构做了调整。
 　　本书是为准备考研的学生复习线性代数而编写的一本辅导讲义，由编者近年来的辅导班笔记改写而成。全书共分六章及一个附录，每章均由知识结构网络图、基本内容与重要结论、典型例题分析选讲以及练习题精选四部分组成。本书在章节的顺序安排和内容取舍上与教材略有不同，
@@ -177,7 +177,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787800808821.png","新东方•四级词汇：词根+联想记忆法","俞敏洪 著",
+                  values ("/upload/9787800808821.png","新东方•四级词汇：词根+联想记忆法","俞敏洪 著",
                           "群言出版社","2008-09-01",1,433,"平装","32开",32,0.72,645,
                           " 词汇向来是学习英语的基石，更是应对所有考试的关键。词汇量的匮乏严重影响着一个人听、说、读、写等方面的能力。同样，不掌握一定数量的词汇，任何应试技巧都如隔靴搔痒，难有成效！
 学习单词有多种方法，比如一日数词的日常积累，或者博览群书的大量阅读、亦或是买来词汇书记背的短期突破，当然对于应试来说，第三种方法无疑最直接、最有效。俗话说“好马配好鞍”，想背单词也需找好书。何谓“一本好的单词书”?简单说来就是具有行之有效的单词记忆方法、合理的单词安排以及实用有趣的内容。
@@ -186,7 +186,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787504572493.png","会展策划师：基础知识","吴杨 著 中国就业培训技术指导中心组织 编",
+                  values ("/upload/9787504572493.png","会展策划师：基础知识","吴杨 著 中国就业培训技术指导中心组织 编",
                           "中国劳动社会保障出版社","2008-07-01",1,125,"平装","16开",15,0.77,124,
                           " 本书由中国就业培训技术指导中心按照标准、教材、题库相衔接的原则组织编写。是国家职业技能鉴定推荐辅导用书。书中内容根据《国家职业标准·会展策划师》
                           （试行）要求编写，是会展策划师职业技能鉴定国家题库命题的直接依据。
@@ -196,7 +196,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787510036613.png","翻译的技巧","钱歌川 著",
+                  values ("/upload/9787510036613.png","翻译的技巧","钱歌川 著",
                           "世界图书出版公司","2011-08-01",1,456,"平装","16开",56,0.72,345,
                           " 本书为钱歌川先生最经典的百科全书式的英语翻译技巧指南。全书编写严谨、结构合理、条理清晰，注重基础知识点的辨析与讲解，理论与实践相结合。一册在手，读者可以在牢固掌握英语语法和句型特点的基础上，游刃有余地学习翻译的技巧。
      全书共分为三编。第一编重点为中译英，系统梳理英语的各种句型，引领读者迅速进入英语语境；第二编重点为英译中，包含11项134条语法知识点，基本覆盖英语常见的惯用句和特殊表现法，令读者迅速摆脱洋径浜式英语；第三编主要为长篇的中译英和英译中材料，中文材料有浅近的白话和艰深的文言片段，英语材料全取近代人作品，主题多样，可使读者接触到英文表现的各种面貌。附录部分选取了16篇英美名家代表作的节译，可为读者打造直接阅读文学名著的基础。
@@ -205,7 +205,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787030133083.png","晶体管电路设计（上）","（日本）铃木雅臣 著 周南生 译",
+                  values ("/upload/9787030133083.png","晶体管电路设计（上）","（日本）铃木雅臣 著 周南生 译",
                           "科学出版社","2004-09-01",1,296,"平装","16开",29,0.66,123,
                           " 《晶体管电路设计（上）》作为上册主要内容有晶体管工作原理，放大电路的性能、设计与应用，射极跟随器的性能与应用电路，小型功率放大电路的设计与应用，功率放大器的设计与制作，共基极电路的性能、设计与应用，视频选择器的设计与制作，共射-共基电路的设计，负反馈放大电路的设计，直流稳定电源的设计与制作，差动放大电路的设计，运算放大电路的设计与制作，下册则共分15章，主要介绍FET、功率MOS、开关电源电路等。《晶体管电路设计（上）》面向实际需要，理论联系实际，
                           通过大量具体的实验，通俗易懂地介绍晶体管电路设计的基础知识。",
@@ -213,7 +213,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787506753753.png","制药企业设施设备GMP验证方法与实务","李歆　主编",
+                  values ("/upload/9787506753753.png","制药企业设施设备GMP验证方法与实务","李歆　主编",
                           "中国医药科技出版社","2012-02-01",1,415,"平装","16开",55,0.80,34,
                           " 本书共十四章，结合大量示例，详细介绍了制药企业生产验证的基本知识，新修订的GMP对制药企业厂房与设施的要求，以及厂房和各类设施设备的验证或确认方法，其中包括厂房的设计确认，计量仪器仪表的校验确认，净化空调系统、纯化水注射用水系统、洁净室(区)空气臭氧消毒效果、过滤器和过滤系统．净化压缩空气系统的验证，以及制药机械(设备)、无菌制剂生产设备，口服固体和液体制剂生产设备、
                           中药丸剂生产设备、中药材前处理提取设备等的确认。",
@@ -221,7 +221,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787111187776.png","算法导论（原书第2版）","（美）科曼（Cormen,T.H.） 等著，潘金贵 等译",
+                  values ("/upload/9787111187776.png","算法导论（原书第2版）","（美）科曼（Cormen,T.H.） 等著，潘金贵 等译",
                           "机械工业出版社","2006-09-01",1,754,"平装","16开",85,0.69,1342,
                           "本书深入浅出，全面地介绍了计算机算法。对每一个算法的分析既易于理解又十分有趣，并保持了数学严谨性。本书的设计目标全面，适用于多种用途。涵盖的内容有：算法在计算中的作用，概率分析和随机算法的介绍。本书专门讨论了线性规划，介绍了动态规划的两个应用，随机化和线性规划技术的近似算法等，还有有关递归求解、快速排序中用到的划分方法与期望线性时间顺序统计算法，以及对贪心算法元素的讨论。本书还介绍了对强连通子图算法正确性的证明，对哈密顿回路和子集求和问题的NP完全性的证明等内容。
                           全书提供了900多个练习题和思考题以及叙述较为详细的实例研究。",
@@ -229,7 +229,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787112059720.png","建筑施工手册（缩印本）","建筑施工手册（第四版）组 编",
+                  values ("/upload/9787112059720.png","建筑施工手册（缩印本）","建筑施工手册（第四版）组 编",
                           "中国建筑工业出版社","2003-09-01",4,2429,"精装","16开",238,0.80,1342,
                           "《建筑施工手册》第四版缩印本是由《建筑施工手册》第四版1～5册缩印而成。全书共计36章内容。该书特点是：对近年来发展较快的施工技术内容作了大量补充；反映了建设部重点推广的新材料、新技术、新工艺；紧密结合近年来建筑材料、建筑结构设计、建筑安装施工质量验收等标准、规范、规程进行编写；根据国家施工质量验收规范要求，增加了建筑安装技术内容；该书由全国各地有丰富施工经验的专家、教授、高级工程师共同编写。本次修订突出了内容简洁、资料齐全、实用、查找方便、新技术信息含量高的特点。本书反映了21世纪最新的施工技术水平，书中囊括了许多最新的科研成果、内容系统、丰富、实用性强。是建筑工程技术人员的得力助手。
 　　本书可供建筑施工工程技术人员、管理人员使用，也可供大专院校相关专业师生参考。",
@@ -237,7 +237,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787507528039.png","世界地理全知道（超值白金版）","任啸科 主编",
+                  values ("/upload/9787507528039.png","世界地理全知道（超值白金版）","任啸科 主编",
                           "华文出版社","2009-10-01",1,429,"平装","20开",29.8,0.50,356,
                           "本书为读者打开一扇快速认识和了解世界的窗口，是一部帮助读者快速学习和掌握世界地理知识的工具书。全书分为宇宙与地球、非洲、亚洲、大洋洲、美洲（南美洲和北美洲）、欧洲6个部分，全面系统地介绍了世界上200多个国家和属地的地理特征、自然资源、经济、习俗、交通、教育、旅游等诸多方面的知识，多角度解读世界自然和人文地理。并设置“国家概况”、“历史年表”等相关栏目，对世界地理知识加以延伸拓展，力图使繁杂的地理知识形成一个系统、科学的有机整体，方便读者学习掌握。同时，本书配入与文字内容相契合的精美图片，通过与版式的有机结合，让地理知识变得亲切，
                           陪伴读者开始一次愉快的读书之旅，轻松获取世界地理知识。",
@@ -245,7 +245,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787503836671.png","土壤学","孙向阳 主编",
+                  values ("/upload/9787503836671.png","土壤学","孙向阳 主编",
                           "中国林业出版社","2005-01-01",1,360,"平装","16开",31,0.77,12,
                           "本书为普通高等教育“十五”国家级规划教材，主要适用于高等农林院校林学、水土保持、园林、园艺、环境、草业、资源环境与城乡规划管理、森林资源保护与游憩等本科专业的土壤学课程，同时也可作为生态、地理信息系统、生物等专业的教材与参考书。并可供从事农林、
                           生物、生态环境等相关领域的教学、科研和生产单位人员参考。",
@@ -253,7 +253,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787546400839.png","陈式太极拳简易24式","郭传光 著",
+                  values ("/upload/9787546400839.png","陈式太极拳简易24式","郭传光 著",
                           "成都时代出版社","2010-01-01",1,89,"平装","32开",22.8,0.48,456,
                           "《陈式太极拳简易24式》图文并茂，名师演示，通俗易懂，系统而详细地介绍了洪式太极拳的诞生及发展历史，拳法的精神和拳法的功效，以及它的基本手型、
                           主要手法、基本步型、主要步法、基本功，和最核心的洪式太极拳的简易24式拳谱。",
@@ -261,7 +261,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787117098519.png","人体解剖彩色图谱（第2版）","郭光文 等主编",
+                  values ("/upload/9787117098519.png","人体解剖彩色图谱（第2版）","郭光文 等主编",
                           "人民卫生出版社","2008-04-01",2,264,"精装","16开",75,0.72,234,
                           "《人体解剖彩色图谱》第一版是我国自编的第一部供全国高等及中等医学院校、各医药卫生学习班和各医疗单位使用的彩色图谱。本图谱自1986年出版以来，迄今已逾20年，承蒙广大读者的支持，现已重印多次。在此期间，本图谱于1988年荣获国家新闻出版总署颁发的“第四届全国优秀科技图书一等奖”，1998年荣获人民卫生出版社颁发的“首届最佳双效益图书一等奖”。这些成就的取得，除中国医科大学、浙江医科大学、华西医科大学及大连医科大学的编绘者共同努力和团结协作外，亦受益于上海医科大学、上海第二医科大学、
                           北京医科大学、首都医科大学、同济医科大学、白求恩医科大学和哈尔滨医科",
@@ -269,7 +269,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787040072679.png","面向21世纪课程教材：海洋科学导论","冯士筰 等 著",
+                  values ("/upload/9787040072679.png","面向21世纪课程教材：海洋科学导论","冯士筰 等 著",
                           "高等教育出版社","2010-11-01",1,503,"平装","16开",39.8,0.80,76,
                           "《面向21世纪课程教材：海洋科学导论》被列入九五国家级重点教材。《面向21世纪课程教材：海洋科学导论》共分十二章，即绪论、地球系统与海底科学，海水的物理特性和世界大洋的层化结构，海水的化学组成和特性，海洋环流，海洋中的波动现象，潮汐，海洋与大气，海洋生物，海洋中的声、光传播及其应用，卫星海洋遥感、中国近海的区域海洋学。与以往的同类教材相比，新增了三章，即海洋与大气、卫星海洋遥感和中国海的区域海洋学；其他各传统分支学科的内容也有较多的更新。关于环境保护、污染治理与可持续发展等内容，虽未单独成章，但在有关章节中均有意强调了这方面的内容。
 　　《面向21世纪课程教材：海洋科学导论》可作为海洋科学类本科学生及相近专业学生的基础课教材，亦可作为相近专业的教学参考用书，
@@ -278,7 +278,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("Symagic/webapp/upload/9787101059328.png","金刚经 心经 坛经","陈秋平，尚荣　译注",
+                  values ("/upload/9787101059328.png","金刚经 心经 坛经","陈秋平，尚荣　译注",
                           "中华书局","2007-12-01",1,302,"平装","32开",16,0.63,145,
                           "《金刚经》、《心经》、《坛经》在佛教中的地位，不仅在中国佛教中体现着原典精神和独有的思想价值，从中国文化史的视野来看，它们的影响并且关涉到僧俗各界，渗透到社会文化的方方面面。因而如欲深入佛教研究或是欲对中国文化有进一步的了解，
                           此三部经是一个基础，是必须一读的经典。。",

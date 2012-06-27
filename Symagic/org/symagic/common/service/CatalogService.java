@@ -27,12 +27,12 @@ public class CatalogService {
 
 		for (BeanCatalog beanCatalog : daoCatalogList) {
 			CatalogBean bean = new CatalogBean();
-			bean.setId(beanCatalog.getCatalogID());
+			bean.setID(beanCatalog.getCatalogID());
 			bean.setDescription(beanCatalog.getCatalogDesc());
 			bean.setName(beanCatalog.getCatalogName());
 
 			if (beanCatalog.getLevel().equals("1")) {
-				topLevelCatalogMap.put(bean.getId(), bean);
+				topLevelCatalogMap.put(bean.getID(), bean);
 			} else {
 				CatalogBean upBean = topLevelCatalogMap.get(beanCatalog
 						.getUpID());

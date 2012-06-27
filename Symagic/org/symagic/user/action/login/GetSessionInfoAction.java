@@ -6,14 +6,17 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class GetSessionInfoAction extends ActionSupport {
 
+
+
+
 /**
 	 * 
 	 */
-	private static final long serialVersionUID = -43495528308593602L;
+private static final long serialVersionUID = -43495528308593602L;
 private String username;//用户名
 private String nickname;//昵称
 private  Integer   loginErrorTimes;//记录登录失败次数
-private   Integer totalNumber;//购物车中总数量
+private  Integer totalNumber=0;//购物车中总数量
 
 
 
@@ -31,12 +34,10 @@ public String execute() throws Exception {
 
 
 
-public int getLoginErrorTimes() {
+public Integer getLoginErrorTimes() {
 	return loginErrorTimes;
 }
-public void setLoginErrorTimes(int loginErrorTimes) {
-	this.loginErrorTimes = loginErrorTimes;
-}
+
 public String getUsername() {
 	return username;
 }
