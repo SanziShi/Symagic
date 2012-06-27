@@ -37,7 +37,7 @@
 		<property name="orderService" ref="OrderService"></property>
 	</bean>
 
-<!-- 管理员的action bean -->
+	<!-- 管理员的action bean -->
 	<bean id="AdminIndex" class="org.symagic.admin.action.index.AdminIndexAction">
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="daoOrder" ref="DaoOrder"></property>
@@ -62,6 +62,10 @@
 	</bean>
 
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction">
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="AdminUplineItem" class="org.symagic.admin.action.item.ItemUpAction">
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
@@ -121,7 +125,7 @@
 
 
 	<!-- 用户的action bean -->
-    <bean id="indexClass" class="org.symagic.user.action.index.IndexAction"></bean>
+	<bean id="indexClass" class="org.symagic.user.action.index.IndexAction"></bean>
 	<bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
 	<bean id="loginClass" class="org.symagic.user.action.login.LoginAction">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
@@ -170,11 +174,11 @@
 	<bean id="OrderService" class="org.symagic.common.service.OrderService">
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
-	
+
 	<bean id="ItemService" class="org.symagic.common.service.ItemService">
-	  <property name="daoBook" ref="DaoBook"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
-  
+
 
 	<!-- 数据层bean -->
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
