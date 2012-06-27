@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="top">
     <div class="top_right">
     <ul>
-    <s:if test="#session.nickname!=null">
-    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <s:if test="nickname!=null">
+    <li><s:property value="nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
     <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
     </s:if>
     <s:else>
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div id="globallink">
 		<ul>
-			<li><a href="index.html">首页</a></li>
+			<li><a href="index">首页</a></li>
 			<li><a href="item_list.html">商品列表</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
 			<li><a href="address.html">地址簿</a></li>
@@ -59,23 +59,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="clear"></div>
 	<div id="left">
 		<div id="category">
-			<h4><span>文学</span></h4>
+		<s:iterator value="catalog" >
+			<a href="item_list&catalogID=<s:property value='ID'/>"><h4 ><span><s:property value='name'/></span></h4></a>
 			<ul>
-				<li><a href="item_list.html">散文/随笔/书信</a></li>
+			<s:iterator value="top" id="inner">
+				<li><a href="item_list&catalogID=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
+			</s:iterator>
 			</ul>
-			<h4><span>艺术</span></h4>
-			<ul>
-				<li><a href="#">摄影</a></li>
-				
-			</ul>
-			<h4><span>金融与投资</span></h4>
-			<ul>
-				<li><a href="#">个人理财</a></li>     
-			</ul>
-			<h4><span>励志与成功</span></h4>
-			<ul>
-				<li><a href="#">人在职场</a></li>
-			</ul>
+		</s:iterator>
       </div>
 	</div>
 	<div id="main">
@@ -84,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<img src="image/ico_site.jpg" id="ico_site"/>
 				网站路径：<a href="index">首页</a>			</div>
 			<div id="searchright">
-            <form action="item_list" >
+            <form action="quick_search" >
 			  <select name="catalog" >
 				<option value="0">所有类别</option>
               </select>
@@ -93,14 +84,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</form>
             </div>
 		</div>
-		<div id="recommend">
+		<div id="recommend" >
 			<ul>
             <!--迭代开始-->
-            <s:iterator>
-				<li><a href="<s:property value='#item.itemId'/>"><img src="image/dxwl4.jpg">
+            <s:iterator value='newBook' id='iter'>
+				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
-                <div class="inputHeader">大学物理学第四册：波动与光学(第2版)</div>
-	     		<div class="price">商城价：<strong>￥8.50</strong></div>
+                <div class="inputHeader"><s:property value='#iter.name'/></div>
+	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
          		</a>
          		</li>
          	</s:iterator>
@@ -111,24 +102,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="new">
 			<ul>
 		 		<!--迭代开始-->
-				<li><a href="item_info.html"><img src="image/dxwl4.jpg">
+            <s:iterator value='hotBook' id='iter'>
+				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
-                <div class="inputHeader">大学物理学第四册：波动与光学(第2版)</div>
-	     		<div class="price">商城价：<strong>￥8.50</strong></div>
+                <div class="inputHeader"><s:property value='#iter.name'/></div>
+	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
          		</a>
          		</li>
+         	</s:iterator>
             <!--迭代结束-->
 			<br>&nbsp;
 		</div>
 		<div id="life">
 			<ul>
-				<!--迭代开始-->
-				<li><a href="item_info.html"><img src="image/dxwl4.jpg">
+			<!--迭代开始-->
+            <s:iterator value='recommendItem' id='iter'>
+				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
-                <div class="inputHeader">大学物理学第四册：波动与光学(第2版)</div>
-	     		<div class="price">商城价：<strong>￥8.50</strong></div>
+                <div class="inputHeader"><s:property value='#iter.name'/></div>
+	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
          		</a>
          		</li>
+         	</s:iterator>
             <!--迭代结束-->
 			</ul>
 			<br>&nbsp;
