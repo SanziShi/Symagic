@@ -5,6 +5,11 @@ import org.symagic.common.action.catalog.CatalogBase;
 public class AddressBase extends CatalogBase{
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -654569210971834110L;
+
 	private String name;
 	
 	private String addressDetail;

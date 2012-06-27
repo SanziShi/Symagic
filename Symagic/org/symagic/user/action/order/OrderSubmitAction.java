@@ -13,6 +13,11 @@ import org.symagic.common.utilty.presentation.bean.ItemBean;
 public class OrderSubmitAction extends OrderBase{
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4501362220836715613L;
+
+	/**
 	 * 地址编号
 	 */
 	private String addressId;
@@ -39,15 +44,9 @@ public class OrderSubmitAction extends OrderBase{
 	
 	private DaoDistrict daoDistrict;
 	
-	private Map parameters;
+	private Map<String,String> parameters;
 
-	public Map getParameters() {
-		return parameters;
-	}
 
-	public void setParameters(Map parameters) {
-		this.parameters = parameters;
-	}
 
 	public String getAddressId() {
 		return addressId;
@@ -119,7 +118,7 @@ public class OrderSubmitAction extends OrderBase{
 		OrderService.Address address = new OrderService.Address();
 		address.districtDetail = this.addressDetail;
 		address.level1District = new DistrictBean();
-		address.level1District.setId(this.level1Id);
+		address.level1District.setID(this.level1Id);
 		//name??
 		order.setAddrDetail(OrderService.serializerAddress(address));
 		order.setDeliveryWay("");
@@ -135,6 +134,14 @@ public class OrderSubmitAction extends OrderBase{
 
 	public void setDaoDistrict(DaoDistrict daoDistrict) {
 		this.daoDistrict = daoDistrict;
+	}
+
+	public Map<String, String> getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(Map<String, String> parameters) {
+		this.parameters = parameters;
 	}
 	
 }

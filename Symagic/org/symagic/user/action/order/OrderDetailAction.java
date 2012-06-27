@@ -1,10 +1,14 @@
 package org.symagic.user.action.order;
 
-import org.symagic.common.utilty.session.SessionUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 public class OrderDetailAction extends OrderBase{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4789666860979026366L;
+
 	private String deliverWay;
 	
 	public String getPayment() {
