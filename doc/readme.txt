@@ -1,4 +1,7 @@
-SQL �Ĳ��벽�裺
+如果你还什么数据都没有插入数据库
+直接使用 insertData.sql 就行了，其他的不用看
+
+SQL 插入顺序：
 1.insertBook
 2.insertUserAndSecret
 3.insertUserAddress
