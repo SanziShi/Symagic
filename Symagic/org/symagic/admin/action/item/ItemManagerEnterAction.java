@@ -82,7 +82,7 @@ public class ItemManagerEnterAction extends ActionSupport {
 		require.setItemName(name);
 		require.setPublisher(publisher);
 		if (catalogID != 0)
-			require.setCatalogID(catalogID.toString());
+			require.setCatalogID(catalogID);
 		else
 			require.setCatalogID(null);
 		
