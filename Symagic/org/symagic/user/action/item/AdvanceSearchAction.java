@@ -20,6 +20,8 @@ import org.symagic.user.utilty.UserSessionUtilty;
 
 public class AdvanceSearchAction extends CatalogBase{
 	 
+	
+
 	/**
 	 * 
 	 */
@@ -40,7 +42,7 @@ public class AdvanceSearchAction extends CatalogBase{
 	
 	  private String name;//书本名字
 	  private String publisher;//出版社
-	  private Integer catalogId;//目录id
+	  private Integer catalogID;//目录id
 	  private Integer publishTime;//出版时间
 	  private Integer edition;//版次
 	  private Integer searchPage;//书的页数范围
@@ -64,7 +66,7 @@ public class AdvanceSearchAction extends CatalogBase{
 		BookRequire require=new BookRequire();
 	    require.setItemName(name);
 	    require.setPublisher(publisher);
-	    require.setCatalogID(String.valueOf(catalogId));
+	    require.setCatalogID(catalogID);
 	    setYear(require,publishTime);
 	    require.setVersion(edition);
 	    setPageNumber(require,searchPage);
@@ -187,13 +189,7 @@ private void setPageNumber(BookRequire require,Integer index){
 		this.publisher = publisher;
 	}
 
-	public int getCatalogId() {
-		return catalogId;
-	}
-
-	public void setCatalogId(int catalogId) {
-		this.catalogId = catalogId;
-	}
+	
 
 	public int getPublishTime() {
 		return publishTime;
@@ -310,6 +306,75 @@ private void setPageNumber(BookRequire require,Integer index){
 
 			public void setTotalPage(Integer totalPage) {
 				this.totalPage = totalPage;
+			}
+			
+			public Integer getLines() {
+				return lines;
+			}
+
+
+			public void setLines(Integer lines) {
+				this.lines = lines;
+			}
+
+
+			public Integer getRecommendNumber() {
+				return recommendNumber;
+			}
+
+
+			public void setRecommendNumber(Integer recommendNumber) {
+				this.recommendNumber = recommendNumber;
+			}
+
+
+			public Integer getCatalogID() {
+				return catalogID;
+			}
+
+
+			public void setCatalogID(Integer catalogID) {
+				this.catalogID = catalogID;
+			}
+
+
+			public void setPage(Integer page) {
+				this.page = page;
+			}
+
+
+			public void setPublishTime(Integer publishTime) {
+				this.publishTime = publishTime;
+			}
+
+
+			public void setEdition(Integer edition) {
+				this.edition = edition;
+			}
+
+
+			public void setSearchPage(Integer searchPage) {
+				this.searchPage = searchPage;
+			}
+
+
+			public void setBinding(Integer binding) {
+				this.binding = binding;
+			}
+
+
+			public void setBooksize(Integer booksize) {
+				this.booksize = booksize;
+			}
+
+
+			public void setPrice(Integer price) {
+				this.price = price;
+			}
+
+
+			public void setDiscount(Integer discount) {
+				this.discount = discount;
 			}
 
   
