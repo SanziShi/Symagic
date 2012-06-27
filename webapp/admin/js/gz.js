@@ -101,8 +101,11 @@ function delete_tag(id){
 	var tag = document.getElementById(id);
 	tag.parentNode.removeChild(tag);
 	}
-	
+
+//商品管理中删除一个商品
 function ajax_delete_tag(id){
+	var result = confirm("该操作将会将商品移除，确定继续吗？");
+	if(result==true){
 	Ajax({
 					url:'item_manager/delete?itemId='+id,
 				    type:'GET',
@@ -117,10 +120,12 @@ function ajax_delete_tag(id){
 							 var tag = document.getElementById(id);
                              tag.parentNode.removeChild(tag);
 						}
-						})
+						});
+	}
          
 	}
-	
+
+//商品下架
 function ajax_item_off(e,id){
 	Ajax({
 	                url:'item_manager/off?itemId='+id,
