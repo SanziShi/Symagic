@@ -59,10 +59,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="clear"></div>
 	<div id="left">
 		<div id="category">
-		<s:iterator value="catalog" >
-			<a href="item_list&catalogID=<s:property value='ID'/>"><h4 ><span><s:property value='name'/></span></h4></a>
+		<s:iterator value="catalog" id='outer'>
+			<a href="item_list&catalogID=<s:property value='#outer.ID'/>"><h4 ><span><s:property value='#outer.name'/></span></h4></a>
 			<ul>
-			<s:iterator value="top" id="inner">
+			<s:iterator value="#outer.childCatalog" id="inner">
 				<li><a href="item_list&catalogID=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
 			</s:iterator>
 			</ul>
