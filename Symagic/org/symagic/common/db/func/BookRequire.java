@@ -8,7 +8,119 @@ package org.symagic.common.db.func;
 public class BookRequire {
 	// 内容待定
 	
-// 
+public String getItemName() {
+		return itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+
+	public String getAtalogID() {
+		return atalogID;
+	}
+
+	public void setAtalogID(String atalogID) {
+		this.atalogID = atalogID;
+	}
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
+
+	public Integer getUpPage() {
+		return upPage;
+	}
+
+	public void setUpPage(Integer upPage) {
+		this.upPage = upPage;
+	}
+
+	public Integer getLowPage() {
+		return lowPage;
+	}
+
+	public void setLowPage(Integer lowPage) {
+		this.lowPage = lowPage;
+	}
+
+	public String getBinding() {
+		return binding;
+	}
+
+	public void setBinding(String binding) {
+		this.binding = binding;
+	}
+
+	public String getFolio() {
+		return folio;
+	}
+
+	public void setFolio(String folio) {
+		this.folio = folio;
+	}
+
+	public Float getUpPrice() {
+		return upPrice;
+	}
+
+	public void setUpPrice(Float upPrice) {
+		this.upPrice = upPrice;
+	}
+
+	public Float getLowPrice() {
+		return lowPrice;
+	}
+
+	public void setLowPrice(Float lowPrice) {
+		this.lowPrice = lowPrice;
+	}
+
+	public Integer getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getLines() {
+		return lines;
+	}
+
+	public void setLines(Integer lines) {
+		this.lines = lines;
+	}
+
+	// 
 	private String itemName = null;
 	private String publisher = null;
 	private String atalogID = null;

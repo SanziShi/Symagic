@@ -89,6 +89,7 @@ public class RecommandService {
 
 		return true;
 	}
+	
 
 	public List<Integer> otherUsersAlsoBiewed(String itemID, String userName,
 			Integer requireNumber) {
@@ -118,6 +119,7 @@ public class RecommandService {
 		return result;
 	}
 
+	
 	public List<Integer> otherUsersAlsoBought(String itemID, String userName,
 			Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
@@ -145,6 +147,8 @@ public class RecommandService {
 
 		return result;
 	}
+	
+	
 	
 	public List<Integer> recommendationsForUser(String userName,
 			Integer requireNumber){

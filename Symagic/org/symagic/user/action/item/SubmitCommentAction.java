@@ -20,7 +20,7 @@ public class SubmitCommentAction extends ActionSupport {
 		// TODO Auto-generated method stub
 		BeanComment comment=new BeanComment();
 		comment.setBookID(itemId);
-		comment.setCotent(content);
+		comment.setContent(content);
 		comment.setRating(rating+"");//?string
 		comment.setUsername(UserSessionUtilty.getUsername());
 		submitResult=itemService.addItemComment(comment);
