@@ -154,14 +154,24 @@ function show_item_search(e)
 		$('#item_search1').slideUp(70);
 	}
 }
-function delete_from_cart(e)
+function delete_from_cart(c)
 {
 	Ajax({
 		url:'cart/delete',
-		data:'itemId='+e,
-		onSuccess:function(e){alert(e)}
+		data:'itemID='+e,
+		onSuccess:function(e){
+			var result=JSON.toJSON(e);
+			if(result.deleteResult=='ture')
+			var r=document.getElementById(c);
+			r.parentNode.removeChild(r);
+			if(document.getElementById('cart_total_num').innerHTML=='0')
+				{
+					document.getElementById('cart_none').style.display='block';
+				}
+			}
 		});
 }
+
 /*--------------yf_ADS库函数-------------------*/
 
 //增加事件监听注册器
@@ -850,6 +860,7 @@ $().ready(function() {
 		icon:document.getElementById('cart_icon'),
 		container:document.getElementById('cart_container'),
 		loading:document.getElementById('cart_loading'),
+		none:document.getElementById('cart_none'),
 		cart:document.getElementById('cart')
 		}
 	addListener(cart.top,"mouseover",function(e)
@@ -866,17 +877,25 @@ $().ready(function() {
 		GLOBAL.cart_on_buff=setTimeout(function()
 			{
 				Ajax({
-					url:'cartDetail',
-					onSend:function(){document.getElementById('cart_loading').style.display='block';},
+					url:'get_session_info',
 					onSuccess:function(e)
 						{
-							/*var t=document.createElement('div');
-							t.id='cart_container';
-							t.innerHTML=e;
-							document.getElementById('cart').appendChild(t);
-							t=null;*/
-							cart.loading.style.display='none';
-							cart.container.innerHTML=e;
+							var result=JSON.toJSON(e);
+							if(result.totalNumber=='0')cart.none.style.display='block';
+							else Ajax({
+								url:'cartDetail',
+								onSend:function(){document.getElementById('cart_loading').style.display='block';},
+								onSuccess:function(e)
+								{
+									/*var t=document.createElement('div');
+									t.id='cart_container';
+									t.innerHTML=e;
+									document.getElementById('cart').appendChild(t);
+									t=null;*/
+									cart.loading.style.display='none';
+									cart.container.innerHTML=e;
+								}
+							});
 						}
 					});
 				$('#cart').fadeIn(1);
