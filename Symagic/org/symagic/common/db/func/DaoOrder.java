@@ -71,8 +71,8 @@ public class DaoOrder {
 					"deliveryway, username," +
 					"receivername, addrdetail," +
 					"zipcode, phonenum," +
-					"mobilenum, orderstate, totalprice) values (" +
-					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+					"mobilenum, orderstate, totalprice, score) values (" +
+					"?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 			ps.setString(1, order.getOrderDate());
 			ps.setString(2, "0");
 			ps.setString(3, "0");
@@ -84,6 +84,7 @@ public class DaoOrder {
 			ps.setString(9, order.getMobilenum());
 			ps.setString(10, "0");
 			ps.setFloat(11, order.getTotalprice());
+			ps.setInt(12, order.getScore());
 			ps.execute();
 			
 			

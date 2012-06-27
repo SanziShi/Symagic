@@ -24,7 +24,7 @@ public class DaoComment {
 	private int count = 0;
 	
 	/**
-	 * 返回所有订单，要分页
+	 * 返回所有评论，要分页
 	 * @param page	标示显示在第几页(>=1)
 	 * @param lines	标示一页显示多少行(>=1)
 	 * @return	List<BeanComment> 封装评论信息的类
@@ -76,15 +76,37 @@ public class DaoComment {
 	 * @return List<BeanComment>存储平路详细信息的BeanComment实例列表
 	 */
 	public List<BeanComment> getComment(int bookID, int page, int lines) {
-		BeanComment	bc;
+		List<BeanComment> list	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select * from comment where ");
+			ps	= conn.prepareStatement("select * from comment where bookid=? order by commentdate asc limit ?,?");
+			ps.setInt(1, bookID);
+			ps.setInt(2, (page - 1)*lines);
+			ps.setInt(3, lines);
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanComment>();
+			while (rs.next()) {
+				BeanComment	comment	= new BeanComment();
+				comment.setBookID(rs.getInt("bookid"));
+				comment.setCommentDate(rs.getString("commentdate"));
+				comment.setContent(rs.getString("comment"));
+				comment.setRating(rs.getString("rating"));
+				comment.setUsername(rs.getString("username"));
+				list.add(comment);
+			}
+			return list;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return new ArrayList<BeanComment>();
+		return list;
 	}
 	
 	/**
@@ -165,6 +187,7 @@ public class DaoComment {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select rating from comment where bookid=? ");
+			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
 			int sum	= 0;
 			while(rs.next()) {
