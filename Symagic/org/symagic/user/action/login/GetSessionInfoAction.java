@@ -6,9 +6,16 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class GetSessionInfoAction extends ActionSupport {
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -43495528308593602L;
 private String username;//用户名
 private String nickname;//昵称
-private  int   loginErrorTimes;//记录登录失败次数
+private  Integer   loginErrorTimes;//记录登录失败次数
+private   Integer totalNumber;//购物车中总数量
+
+
 
 
 
@@ -17,7 +24,8 @@ public String execute() throws Exception {
 	// TODO Auto-generated method stub
 	this.setUsername(UserSessionUtilty.getUsername());
 	this.setNickname(UserSessionUtilty.getNickname());
-	
+	this.setLoginErrorTimes(UserSessionUtilty.getLoginErrorTime());
+	this.setTotalNumber(UserSessionUtilty.getCartNumber());
 	return super.execute();
 }
 
@@ -40,6 +48,21 @@ public String getNickname() {
 }
 public void setNickname(String nickname) {
 	this.nickname = nickname;
+}
+public Integer getTotalNumber() {
+	return totalNumber;
+}
+
+
+
+public void setTotalNumber(Integer totalNumber) {
+	this.totalNumber = totalNumber;
+}
+
+
+
+public void setLoginErrorTimes(Integer loginErrorTimes) {
+	this.loginErrorTimes = loginErrorTimes;
 }
 
 

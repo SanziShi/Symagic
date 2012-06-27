@@ -117,7 +117,12 @@ public class ItemService {
 	//将购物车的信息进行填充
 	public float fillItemWithNumber(ArrayList<ItemBean>items){
 		//获得购物车
-		 HashMap<Integer,Integer> cart=UserSessionUtilty.getCart();
+		//test
+		 UserSessionUtilty.addToCart(1, 3);
+		 UserSessionUtilty.addToCart(4, 4);
+		HashMap<Integer,Integer> cart=UserSessionUtilty.getCart();
+		
+		 if(cart==null){return 0;}
 		 //遍历购物车中的商品信息
 		 Set<Integer>keySet=cart.keySet();
 		
@@ -135,10 +140,11 @@ public class ItemService {
 			  item.setItemNumber(number);
 			  float marketPrice=book.getMarketPrice();//书本市场价
 			  float discount=book.getDiscount();//书本折扣价
-			  float itemTotalPrice=marketPrice*number*discount;
+			  float bookprice=(float)(Math.round(marketPrice*discount*100))/100;
+			  float itemTotalPrice=bookprice*number;
 			  item.setItemTotalPrice(itemTotalPrice);
 			  item.setName(book.getBookName());
-			  item.setPrice(marketPrice*discount);//商城价
+			  item.setPrice(bookprice);//商城价
 			  item.setSavePrice(number*marketPrice*(1-discount));
 			  item.setPicturePath(book.getPicture());
 			  items.add(item);
