@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.symagic.common.db.bean.BeanBook;
+import org.symagic.common.db.bean.BeanFavorityFolder;
 import org.symagic.common.db.pool.ConnectionPool;
 
 /**
@@ -105,4 +107,52 @@ public class DaoFavorityFolder {
 		}
 		return false;
 	}
+	
+	/**
+	 * 获取指定用户指定页和行数的收藏项
+	 * @param username	指定用户名
+	 * @param page	指定显示第几页,从1开始
+	 * @param lines	指定每页显示多少行
+	 * @return	List<BeanFavorityFolder> null 所搜出错失败	not null 搜索成功 
+	 */
+	public List<BeanFavorityFolder> get(String username, int page, int lines)
+	{
+		List<BeanFavorityFolder> list	= null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from favroty_folder where username=? " +
+					"order by favorityid asc limit ?, ?");
+			ps.setString(1, username);
+			ps.setInt(2, (page-1)*lines);
+			ps.setInt(3, lines);
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanFavorityFolder>();
+			
+			while (rs.next()) {
+				BeanFavorityFolder	favority	= new BeanFavorityFolder();
+				favority.setBookID(rs.getInt("bookid"));
+				favority.setFavorityID(rs.getInt("favorityid"));
+				favority.setIsbn(rs.getString("isbn"));
+				favority.setMarketPrice(rs.getFloat("marketPrice"));
+				favority.setPublisher(rs.getString("publisher"));
+				favority.setPublishDate(rs.getString("publishedate"));
+				favority.setUsername(rs.getString("username"));
+				list.add(favority);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	
 }

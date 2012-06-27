@@ -8,6 +8,12 @@ package org.symagic.common.db.func;
 public class BookRequire {
 	
 	/**
+	 * 作者
+	 */
+	private String author	= null;
+	
+	
+	/**
 	 * 书籍名
 	 */
 public String getItemName() {
@@ -205,4 +211,14 @@ public String getItemName() {
 	public void setBefore(Boolean before) {
 		this.before = before;
 	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	
 }

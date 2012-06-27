@@ -14,7 +14,7 @@ public class BeanFavorityFolder {
 	/**
 	 * 用户ID
 	 */
-	private int	userID	= 0;		
+	private String	username	= null;		
 	
 	/**
 	 * 书籍ID
@@ -34,7 +34,7 @@ public class BeanFavorityFolder {
 	/**
 	 * 出版日期
 	 */
-	private String publisherDate	= "";	
+	private String publishDate	= "";	
 	
 	/**
 	 * 书籍市场价格
@@ -51,11 +51,11 @@ public class BeanFavorityFolder {
 		this.favorityID = favorityID;
 	}
 	
-	public int getUserID() {
-		return userID;
+	public String getUsername() {
+		return username;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public int getBookID() {
 		return bookID;
@@ -75,11 +75,11 @@ public class BeanFavorityFolder {
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
-	public String getPublisherDate() {
-		return publisherDate;
+	public String getPublishDate() {
+		return publishDate;
 	}
-	public void setPublisherDate(String publisherDate) {
-		this.publisherDate = publisherDate;
+	public void setPublishDate(String publisherDate) {
+		this.publishDate = publisherDate;
 	}
 	public float getMarketPrice() {
 		return marketPrice;
