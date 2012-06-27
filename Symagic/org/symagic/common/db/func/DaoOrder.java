@@ -11,6 +11,7 @@ import java.util.List;
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.pool.ConnectionPool;
+import org.w3c.dom.ls.LSException;
 
 /**
  * 封装与用户订单相关操作
@@ -41,9 +42,39 @@ public class DaoOrder {
 	 * @param orderID	订单ID
 	 * @return	BeanOrder对象，封装着订单的详细信息
 	 */
-	public BeanOrder getOrderDetail(int orderID)
+	public List<BeanOrderDetail> getOrderDetail(int orderID)
 	{
-		return new BeanOrder();
+		List<BeanOrderDetail> list	= null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from order_detail where orderid=?");
+			ps.setInt(1, orderID);
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanOrderDetail>();
+			while (rs.next()) {
+				BeanOrderDetail	orderDetail	= new BeanOrderDetail();
+				orderDetail.setAmount(rs.getInt("amount"));
+				orderDetail.setBookId(rs.getInt("bookid"));
+				orderDetail.setBookName(rs.getString("bookname"));
+				orderDetail.setDiscount(rs.getFloat("discount"));
+				orderDetail.setIsbn(rs.getString("isbn"));
+				orderDetail.setMarketPrice(rs.getFloat("marketprice"));
+				orderDetail.setOrderId(rs.getInt("orderid"));
+				list.add(orderDetail);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
 	}
 	
 	/**
@@ -208,13 +239,17 @@ public class DaoOrder {
 	
 	/**
 	 * 获取销售总量(所有)
-	 * @return int 销售量
+	 * @return int -1 执行失败	>=0 执行成功
 	 */
 	public int getTotalSaleAmount()
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select sum()");
+			ps	= conn.prepareStatement("select sum(amount) from order_detail");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -226,16 +261,34 @@ public class DaoOrder {
 				e.printStackTrace();
 			}
 		}
-		return 10;
+		return -1;
 	}
 	
 	/**
 	 * 获取销售总额
-	 * @return float 销售总额
+	 * @return float 销售总额 -1.0 查询出错	>=0.0f	查询成功
 	 */
 	public float getTotalSalesRevenue()
 	{
-		return 10.0f;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select sum(totalprice) from book_order");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getFloat(1);
+			return -1.0f;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1.0f;
 	}
 	
 	/**
@@ -325,6 +378,40 @@ public class DaoOrder {
 	public List<BeanOrder> getLatestOrders()
 	{
 		List<BeanOrder> list = null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from book_order order by orderdate desc limit 10");
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanOrder>();
+			while (rs.next()) {
+				BeanOrder order	= new BeanOrder();
+				order.setAddrDetail(rs.getString("addrdetail"));
+				order.setDeliveryWay(rs.getString("deliveryway"));
+				order.setMobilenum(rs.getString("mobilenum"));
+				order.setOrderDate(rs.getString("orderdate"));
+				order.setOrderId(rs.getInt("orderid"));
+				order.setOrderState(rs.getString("orderstate"));
+				order.setPayment(rs.getString("payment"));
+				order.setPhonenum(rs.getString("phonenum"));
+				order.setReceiverName(rs.getString("receivername"));
+				order.setScore(rs.getInt("score"));
+				order.setTotalprice(rs.getFloat("totalprice"));
+				order.setUsername(rs.getString("username"));
+				order.setZipcode(rs.getString("zipcode"));
+				list.add(order);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return list;
 	}
 	
