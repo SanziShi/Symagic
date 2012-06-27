@@ -62,6 +62,12 @@ public class CatalogService {
 			}
 			upBean.getChildCatalog().add(entry.getValue());
 		}
+		
+		iterator = topLevelCatalogMap.entrySet().iterator();
+		while(iterator.hasNext()){
+			Entry<Integer, CatalogBean> entry = iterator.next();
+			catalog.add(entry.getValue());
+		}
 
 		return catalog;
 	}
