@@ -48,6 +48,7 @@ public class AdminSuccessOrderAction extends ActionSupport {
 				if (order != null) {
 					order.setOrderState("2");
 					daoOrder.updateOrder(order);
+					daoUser.getUser(username);
 					// daoUser.order.getScore();(用户改积分）
 					MailService.sendSuccessOrder(order);
 				}
