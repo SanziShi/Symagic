@@ -67,6 +67,7 @@ public class ForgetPasswordAction extends CatalogBase{
 		
 		user.setPassword(newPass.toString());
 		MailService.sendNewPassword(user);
+		super.execute();
 		return SUCCESS;
 	}
 }
