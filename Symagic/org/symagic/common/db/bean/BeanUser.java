@@ -1,10 +1,6 @@
 package org.symagic.common.db.bean;
 
 public class BeanUser {
-	/**
-	 * 用户id
-	 */
-	private int userId = 0; 
 	
 	/**
 	 * 用户名
@@ -68,14 +64,6 @@ public class BeanUser {
 
 	public void setAnswer(String answer) {
 		this.answer = answer;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
 	}
 
 	public String getUsername() {

@@ -16,7 +16,7 @@ public class BookRequire {
 	/**
 	 * 书籍名
 	 */
-public String getItemName() {
+	public String getItemName() {
 		return itemName;
 	}
 

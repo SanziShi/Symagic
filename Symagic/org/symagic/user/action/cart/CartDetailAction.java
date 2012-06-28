@@ -18,7 +18,31 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class CartDetailAction extends ActionSupport {
  
-	public ItemService getItemService() {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9126493268779714120L;
+
+	
+private  ItemService itemService;//访问商品信息
+
+private ArrayList<ItemBean>items;//购物车中每项商品
+private Integer totalNumber;//购物车中的商品数量
+private float totalPrice;//购物车中商品的总价
+ 
+ @Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+	 items=new ArrayList<ItemBean>();
+
+	 totalPrice=itemService.fillItemWithNumber(items);
+     totalNumber=UserSessionUtilty.getTotalNumber();
+	
+	 return super.execute();
+	}
+ 
+ public ItemService getItemService() {
 		return itemService;
 	}
 
@@ -39,23 +63,6 @@ public class CartDetailAction extends ActionSupport {
 	public void setItems(ArrayList<ItemBean> items) {
 		this.items = items;
 	}
-private  ItemService itemService;//访问商品信息
-
-private ArrayList<ItemBean>items;//购物车中每项商品
-
-private float totalPrice;//购物车中商品的总价
- 
- @Override
-	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-	 items=new ArrayList<ItemBean>();
-
-	 totalPrice=itemService.fillItemWithNumber(items);
-    
-	
-	 return super.execute();
-	}
- 
 
 
 public float getTotalPrice() {
@@ -64,6 +71,14 @@ public float getTotalPrice() {
 public void setTotalPrice(float totalPrice) {
 	this.totalPrice = totalPrice;
 }
+public Integer getTotalNumber() {
+	return totalNumber;
+}
 
+
+
+public void setTotalNumber(Integer totalNumber) {
+	this.totalNumber = totalNumber;
+}
  
 }

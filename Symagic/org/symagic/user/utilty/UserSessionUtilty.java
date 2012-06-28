@@ -24,10 +24,20 @@ public class UserSessionUtilty extends SessionUtilty {
 			ActionContext.getContext().getSession().put("errorTimes", errorTimes);
 		}
 	}
+	//维持session中的数量
+	public static void addTotalNumber(int number){
+		Integer totalNumber=(Integer)ActionContext.getContext().getSession().get("totalNumber");
+		if(totalNumber==null){
+			ActionContext.getContext().getSession().put("totalNumber", number);
+		}
+		else{
+			ActionContext.getContext().getSession().put("totalNumber", number+totalNumber);
+		}
+	}
   /**
    * 取得用户登录失败次数
    */
-	public static int getLoginErrorTime(){
+	public static Integer getLoginErrorTime(){
 	 return (Integer)ActionContext.getContext().getSession().get("errorTimes");	
 	}
 	/**
@@ -43,6 +53,7 @@ public class UserSessionUtilty extends SessionUtilty {
 		session.put("username", userName);
 		session.put("nickname", nickname);
 	}
+
 
 	/**
 	 * 判断当前用户是否已经登陆
@@ -71,10 +82,17 @@ public class UserSessionUtilty extends SessionUtilty {
 		HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
 		if(cart==null){
 			cart=new HashMap<Integer,Integer>();
+			session.put("cart", cart);
 		}
 		
 		//添加物品和数量
+		Integer value=cart.get(id);
+		if(value==null)
 		cart.put(id, number);
+		else
+		{
+			cart.put(id, value+number);
+		}
 		return true;
 	}
 	/**
@@ -82,30 +100,49 @@ public class UserSessionUtilty extends SessionUtilty {
 	 */
 	public static boolean deleteFromCart(int id){
 		            //得到session
-				  Map<String ,Object> session=ActionContext.getContext().getSession();
+				 Map<String ,Object> session=ActionContext.getContext().getSession();
 				//得到购物车
 				HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
+				int number=cart.get(id);
 				cart.remove(id);
+				UserSessionUtilty.addTotalNumber(0-number);
 				return true;
 	}
+	
+	
 	/**
 	 * 得到session中的购物车
-	 * @return session中的购物车，购物车无商品时返回null
+	 * @return session中的购物车，
 	 */
 	public static HashMap<Integer,Integer> getCart(){
 		//购物车中没有东西时，返回null
-		return (HashMap<Integer,Integer>)ActionContext.getContext().getSession().get("cart");
+		//得到session
+				Map<String ,Object> session=ActionContext.getContext().getSession();
+				//得到购物车
+				HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
+				if(cart==null){
+					cart=new HashMap<Integer,Integer>();
+					session.put("cart", cart);
+				}
+				
+		return cart;
 	}
+	
+	public static Integer getTotalNumber(){
+		return (Integer)ActionContext.getContext().getSession().get("totalNumber");
+	}
+	
+	
 	
 	public static String getNickname(){
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		return session.get("nickname").toString();
+		return (String)session.get("nickname");
 	}
 	public static void setNickname(String nickname){
 		ActionContext.getContext().getSession().put("nickname", nickname);
 	}
 	public static String getUsername(){
-		return ActionContext.getContext().getSession().get("username").toString();
+		return (String)ActionContext.getContext().getSession().get("username");
 	}
 
 }

@@ -7,18 +7,23 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class FavorityAddAction extends ActionSupport {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8679639043977363919L;
 	private DaoFavorityFolder daoFavorityFolder;//对收藏夹的管理
-	private Integer itemId; //添加商品的id
-	 private boolean addResult;//添加是否成功
+	private Integer itemID; //添加商品的id
+	
+	private boolean addResult;//添加是否成功
 	 
 	 @Override
 		public String execute() throws Exception {
 			// TODO Auto-generated method stub
-			if(itemId==null||!UserSessionUtilty.isLogin()){
+			if(itemID==null||!UserSessionUtilty.isLogin()){
 				addResult=false;
 				return SUCCESS;
 			}
-			addResult=daoFavorityFolder.add(UserSessionUtilty.getUsername(), itemId);
+			addResult=daoFavorityFolder.add(UserSessionUtilty.getUsername(), itemID);
 			return super.execute();
 		}
 	public DaoFavorityFolder getDaoFavorityFolder() {
@@ -27,18 +32,18 @@ public class FavorityAddAction extends ActionSupport {
 	public void setDaoFavorityFolder(DaoFavorityFolder daoFavorityFolder) {
 		this.daoFavorityFolder = daoFavorityFolder;
 	}
-	public Integer getItemId() {
-		return itemId;
-	}
-	public void setItemId(Integer itemId) {
-		this.itemId = itemId;
-	}
+	
 	public boolean isAddResult() {
 		return addResult;
 	}
 	public void setAddResult(boolean addResult) {
 		this.addResult = addResult;
 	}
-
+	 public Integer getItemID() {
+			return itemID;
+		}
+		public void setItemID(Integer itemID) {
+			this.itemID = itemID;
+		}
  
 }

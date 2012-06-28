@@ -617,8 +617,18 @@ strong{
 	padding:30px 0px 0px 0px;
 	background-color:#FFFFFF;
 }
-
-
+.inputHeader
+{
+	height:36px;
+	line-height:18px;
+	overflow:hidden;
+}
+.price
+{
+	height:18px;
+	line-height:18px;
+	overflow:hidden;
+}
 #recommend br,#new br, #life br{
 	display:block;
 	clear:both;
@@ -636,7 +646,7 @@ strong{
 	border:none;
 	margin:5px 2px 3px 2px;
 	padding:0px;
-    	width:90px;
+    width:90px;
 	height:120px;
 }
 #recommend ul li a:link,#recommend ul li a:visited, #new ul li a:link,#new ul li a:visited,#life ul li a:link,#life ul li a:visited{
