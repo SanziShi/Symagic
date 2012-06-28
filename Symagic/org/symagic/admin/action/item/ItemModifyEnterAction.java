@@ -16,6 +16,9 @@ public class ItemModifyEnterAction extends CatalogBase {
 	private ItemDetailBean book;// 书籍详细信息
 	private ItemService itemService;// 访问服务层
 	
+	private String errorHeader;
+	private String errorSpecification;
+	
 	public Integer getItemID() {
 		return itemID;
 	}
@@ -67,10 +70,27 @@ public class ItemModifyEnterAction extends CatalogBase {
 		if( !validateResult ) return ERROR;
 		
 		book = new ItemDetailBean();
-		itemService.fillDetailBean(itemID, book);
+		if( !itemService.fillDetailBean(itemID, book) )
+			return ERROR;
 		
 		return super.execute();
 		
+	}
+
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
 	}
 
 	

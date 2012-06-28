@@ -88,6 +88,8 @@
 	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="errorHeader" value="访问错误"></property>
+		<property name="errorSpecification" value="指定商品不存在"></property>
 		<property name="lines" value="15"></property>
 	</bean>
 

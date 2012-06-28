@@ -12,8 +12,8 @@
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
 
 			<interceptor-stack name="userLoginInterceptorStack">
-				<interceptor-ref name="defaultStack"></interceptor-ref>
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 
 		</interceptors>
@@ -31,8 +31,8 @@
 			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
 
 			<interceptor-stack name="adminLoginInterceptorStack">
-				<interceptor-ref name="defaultStack"></interceptor-ref>
 				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 
 		</interceptors>
@@ -203,6 +203,9 @@
 			<result name="error">
 				/admin/admin_error.jsp
 			</result>
+			<result name="input">
+				/admin/admin_error.jsp
+			</result>
 		</action>
 
 		<!-- 管理员商品Detail -->
@@ -211,6 +214,9 @@
 				/admin/item_info.jsp
 			</result>
 			<result name="error">
+				/admin/admin_error.jsp
+			</result>
+			<result name="input">
 				/admin/admin_error.jsp
 			</result>
 		</action>

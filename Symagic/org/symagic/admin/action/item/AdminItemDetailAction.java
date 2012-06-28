@@ -22,8 +22,8 @@ public class AdminItemDetailAction extends CatalogBase {
 	private ItemService itemService;// 访问服务层
 	private List<BeanComment> commentList;// 评论列表
 	
-	private String errorHeader="没有相应的商品";
-	private String errorSpecification="商品不存在";
+	private String errorHeader;
+	private String errorSpecification;
 	
 	private boolean validateResult;
 
@@ -42,7 +42,7 @@ public class AdminItemDetailAction extends CatalogBase {
 	public String execute() throws Exception {
 		
 		if( !validateResult ){
-			return ERROR;
+			return INPUT;
 		}
 		
 		book = new ItemDetailBean();
