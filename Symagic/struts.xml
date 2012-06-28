@@ -115,13 +115,8 @@ name="includeProperties">loginResult,toURL</param>
 
 		<action name="get_session_info" class="getSessionInfo">
 			<result type="json">
-				<param 
-
-name="includeProperties">userName,nickname,loginErrorTimes,totalNumber</pa
-
-ram>
-
-			</result>
+				<param name="includeProperties">userName,nickname,loginErrorTimes,totalNumber</param>
+                 </result>
 		</action>
   
 		<action name="regist" class="registerClass">
@@ -254,9 +249,7 @@ name="includeProperties">submitResult</param>
 		</action>
 
 		<action name="login" class="AdminLogin">
-			<interceptor-ref 
-
-name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirect">
 				/admin/${toURL}
 			</result>
