@@ -89,8 +89,9 @@ public class ItemService {
 	
 	
     //得到商品详情
-	public void fillDetailBean(int itemId,ItemDetailBean detail){
+	public boolean fillDetailBean(int itemId,ItemDetailBean detail){
 		BeanBook book=daoBook.getDetail(itemId);
+		if( book == null ) return false;
 		detail.setAuthor(book.getAuthor());
 		detail.setAverageRating(daoComment.getAverageRating(itemId));
 		detail.setBinding(book.getBinding());
@@ -111,6 +112,7 @@ public class ItemService {
 		detail.setPublisher(book.getPublisher());
 		detail.setVersion(book.getVersion());
 		detail.setPicturePath(book.getPicture());
+		return true;
 		
 	}
 	//得到目录的描述

@@ -1,6 +1,9 @@
 package org.symagic.common.interceptor;
 
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,8 +16,8 @@ import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
 /**
  * 
  * @author hao
-
- * 阻止未登陆用户请求会员专有页面的时候的拦截器。
+ * 
+ *         阻止未登陆用户请求会员专有页面的时候的拦截器。
  */
 public class UserLoginInterceptor extends MethodFilterInterceptor {
 
@@ -22,9 +25,7 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 
 	/**
 	 * 
-	
-	/**
-	 * 被认为是非法请求的URL集合
+	 /** 被认为是非法请求的URL集合
 	 */
 	private Set<String> guestIllegalURL;
 
@@ -56,12 +57,28 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 					.put("toURL", "index");
 		} else {
 
-			invocation
-					.getInvocationContext()
-					.getValueStack()
-					.getContext()
-					.put("toURL",
-							preURL.substring(preURL.toString().lastIndexOf('/') + 1));
+			String url = preURL
+					.substring(preURL.toString().lastIndexOf('/') + 1);
+
+			if (request.getMethod().equals("GET")) {
+				Map<String, String[]> parameter = request.getParameterMap();
+				if (parameter.size() != 0) {
+					url += '?';
+				}
+				Iterator<Entry<String, String[]>> itr = parameter.entrySet()
+						.iterator();
+				while (itr.hasNext()) {
+					Entry<String, String[]> entry = itr.next();
+					for (String value : entry.getValue()) {
+						url += entry.getKey() + "=" + value;
+					}
+					if (itr.hasNext())
+						url += '&';
+				}
+			}
+
+			invocation.getInvocationContext().getValueStack().getContext()
+					.put("toURL", url);
 		}
 
 		return "enforceLogin";
@@ -69,6 +86,7 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 
 	/**
 	 * 返回对于未登陆用户而言非法的URL集合。
+	 * 
 	 * @return 非法URL集合
 	 */
 	public Set<String> getGuestIllegalURL() {
@@ -77,6 +95,7 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 
 	/**
 	 * 设置对于未登录用户而言非法的URL集合
+	 * 
 	 * @param guestIllegalURL
 	 */
 	public void setGuestIllegalURL(Set<String> guestIllegalURL) {

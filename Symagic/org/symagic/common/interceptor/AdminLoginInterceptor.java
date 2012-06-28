@@ -1,5 +1,8 @@
 package org.symagic.common.interceptor;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,12 +57,28 @@ public class AdminLoginInterceptor extends MethodFilterInterceptor {
 					.put("toURL", "index");
 		} else {
 
-			invocation
-					.getInvocationContext()
-					.getValueStack()
-					.getContext()
-					.put("toURL",
-							preURL.substring(preURL.toString().lastIndexOf('/') + 1));
+			String url = preURL
+					.substring(preURL.toString().lastIndexOf('/') + 1);
+
+			if (request.getMethod().equals("GET")) {
+				Map<String, String[]> parameter = request.getParameterMap();
+				if (parameter.size() != 0) {
+					url += '?';
+				}
+				Iterator<Entry<String, String[]>> itr = parameter.entrySet()
+						.iterator();
+				while (itr.hasNext()) {
+					Entry<String, String[]> entry = itr.next();
+					for (String value : entry.getValue()) {
+						url += entry.getKey() + "=" + value;
+					}
+					if( itr.hasNext() )
+						url += '&';
+				}
+			}
+
+			invocation.getInvocationContext().getValueStack().getContext()
+					.put("toURL", url);
 		}
 
 		return "enforceLogin";
