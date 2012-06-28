@@ -5,6 +5,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONSerializer;
 
 import org.symagic.common.db.bean.BeanOrder;
+import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.service.MailService;
@@ -48,7 +49,9 @@ public class AdminSuccessOrderAction extends ActionSupport {
 				if (order != null) {
 					order.setOrderState("2");
 					daoOrder.updateOrder(order);
-					// daoUser.order.getScore();(用户改积分）
+					BeanUser user = daoUser.getUser(order.getUsername());
+					user.setScore( user.getScore() + order.getScore() );
+					//daoUser.(提交修改）
 					MailService.sendSuccessOrder(order);
 				}
 			}
