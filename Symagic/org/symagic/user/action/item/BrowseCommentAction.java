@@ -13,7 +13,22 @@ public class BrowseCommentAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = -7684113880187640570L;
 	private Integer page;
+    private Integer itemID;
+    
+	private List<BeanComment> commentList;
+	private ItemService itemService;
+	private int lines ;
 
+	
+
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		if(page==null||itemID==null)return "success";
+		commentList = itemService.getCommentWithPage(itemID, page, lines);
+		return super.execute();
+	}
+	
 	public Integer getPage() {
 		return page;
 	}
@@ -45,24 +60,11 @@ public class BrowseCommentAction extends ActionSupport {
 	public void setItemService(ItemService itemService) {
 		this.itemService = itemService;
 	}
-
-	private Integer itemID;
-	private List<BeanComment> commentList;
-	private ItemService itemService;
-	private int lines ;
-
 	public int getLines() {
 		return lines;
 	}
 
 	public void setLines(int lines) {
 		this.lines = lines;
-	}
-
-	@Override
-	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		commentList = itemService.getCommentWithPage(itemID, page, lines);
-		return super.execute();
 	}
 }

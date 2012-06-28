@@ -11,17 +11,19 @@ import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 
 public class ItemDetailAction extends CatalogBase {
 
+	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 9054557857853861076L;
 
-	private int lines ;
+	private Integer lines ;
 	
 
-	private int totalPage;// 评论有多少页
+	private Integer totalPage;// 评论有多少页
 
-	private int itemID;// 商品id
+	private Integer itemID;// 商品id
 	private ItemDetailBean book;// 书籍详细信息
 	private ItemService itemService;// 访问服务层
 	private List<BeanComment> commentList;// 评论列表
@@ -31,6 +33,7 @@ public class ItemDetailAction extends CatalogBase {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+		if(lines==null||itemID==null)return "success";
 		book = new ItemDetailBean();
 		itemService.fillDetailBean(itemID, book);
 		int commentNumber = itemService.getCommentNumber(itemID);
@@ -46,21 +49,7 @@ public class ItemDetailAction extends CatalogBase {
 		return super.execute();
 	}
 
-	public int getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
-	}
-
-	public int getItemID() {
-		return itemID;
-	}
-
-	public void setItemID(int itemID) {
-		this.itemID = itemID;
-	}
+	
 
 	public ItemDetailBean getBook() {
 		return book;
@@ -101,12 +90,37 @@ public class ItemDetailAction extends CatalogBase {
 	public void setRecommendBought(ArrayList<ItemTinyBean> recommendBought) {
 		this.recommendBought = recommendBought;
 	}
-	public int getLines() {
+	
+	public Integer getLines() {
 		return lines;
 	}
 
-	public void setLines(int lines) {
+
+
+	public void setLines(Integer lines) {
 		this.lines = lines;
 	}
 
+
+
+	public Integer getTotalPage() {
+		return totalPage;
+	}
+
+
+
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
+
+    public Integer getItemID() {
+		return itemID;
+	}
+
+
+
+	public void setItemID(Integer itemID) {
+		this.itemID = itemID;
+	}
+	
 }
