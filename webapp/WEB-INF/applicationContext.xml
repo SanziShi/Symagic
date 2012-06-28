@@ -63,18 +63,9 @@
 		<property name="shopImageFileFolder" value="book-image"></property>
 	</bean>
 
-	<bean id="AdminEnterModifyItem" class="org.symagic.admin.action.item.ItemModifyEnterAction">
-		<property name="itemService" ref="ItemService"></property>
-		<property name="catalogService" ref="CatalogService"></property>
-	</bean>
-
 	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="book-image"></property>
-	</bean>
-
-	<bean id="AdminDeleteItem" class="org.symagic.admin.action.item.ItemDeleteAction">
-		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction">
@@ -113,7 +104,7 @@
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
-	<!-- 管理员订单管理Action -->
+
 	<bean id="AdminEnterOrderEdit"
 		class="org.symagic.admin.action.order.AdminOrderEditEnterAction">
 		<property name="orderService" ref="OrderService"></property>
@@ -140,22 +131,13 @@
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
-	<bean id="AdminSuccessOrder" class="org.symagic.admin.action.order.AdminSuccessOrderAction">
-		<property name="daoOrder" ref="DaoOrder"></property>
-		<property name="daoUser" ref="DaoUser"></property>
-	</bean>
-
 	<bean id="AdminSubmitScoreRate"
 		class="org.symagic.admin.action.level.AdminScoreRateSubmitAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
 	</bean>
-	<!-- 管理员处理comment -->
+
 	<bean id="AdminEnterCommentManager"
 		class="org.symagic.admin.action.comment.AdminEnterCommentManagerAction">
-		<property name="daoComment" ref="DaoComment"></property>
-	</bean>
-	<bean id="AdminDeleteComment"
-		class="org.symagic.admin.action.comment.AdminDeleteCommentAction">
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
 

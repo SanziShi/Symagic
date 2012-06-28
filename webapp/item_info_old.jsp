@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -17,21 +22,25 @@
 	<span id="cart_loading"></span>
 	<div id="cart_none">您的购物车中还没有商品，请选购！</div>
 	<div id="cart_container"></div>
-	
 </div>
 	<div id="logalleft">
-		<div id="top-overlay"></div>
+    <div id="top-overlay"></div>
     <!----吊顶栏------>
 	<div class="top">
     <div class="top_right">
     <ul>
+    <s:if test="#session.nickname!=null">
+    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
+    </s:if>
+    <s:else>
     <li>欢迎来到Symagic！</li>
-    <s:property value="#session.username"/><s:property value="#session.nickname"/>
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
+    </s:else>
     <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart.html">
-    <span id="cart_icon"></span>购物车 <strong id="cart_num">0</strong> 件</a>
+    <li id="cart_top"><a id="cart_a" href="cart">
+    <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
     </ul>
     </div>
@@ -50,7 +59,6 @@
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-<!--	<div id="banner"></div>-->
 	<div id="main">
 		<div id="search2">
 			<div id="searchleft">
@@ -58,17 +66,19 @@
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">商品详细信息</a>
 			</div>
 			<div id="searchright2">
-			  <input type="text" name="product" id="textInput"/>
-			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
-			</div>
-			<div id="searchright1">
-			  <select name="category" id="searchrightcategory">
-				<option value="5">所有类别</option>
-                <option value="1">图书音像</option>
-                <option value="2">时尚生活</option>
-                <option value="3">饰品配件</option>
-                <option value="4">数码产品</option>
+			  <form action="quick_search" >
+			  <select name="catalogID" >
+			  <option value="0">所有类别</option>
+			  <s:iterator value="catalog" var='outer'>
+				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
+				<s:iterator value="#outer.childCatalog" var="inner">
+				<option value="<s:property value='#inner.ID'/>"><s:property value='#inner.name'/></option>
+				</s:iterator>
+				</s:iterator>
               </select>
+			  <input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />
+			  <input type="button" name="Submit" value="搜索" onClick="">
+			</form>
 		  </div>
 		</div>
         <div class="clear"></div>
@@ -79,34 +89,34 @@
        <li><div class="p-img"><a href="" title="数学之美" target="_blank"><img width="50" height="50" src="upload/linux.jpg"></a></div>						 		<div class="p-name"><a href="" >高性能Linux服务器构建实战</a></div>
        <div class="p-price"><strong>￥30.00</strong></div></li>
        <!----推荐迭代li结束---->
-       
         </div>
         <!--购买推荐左边栏结束-->
         <!--商品详细信息-->
         <div class="item_info">
         <div class="fliter"></div>
-        <div class="name"><h2>大学物理学.第四册：波动与光学（第2版）</h2></div>
+        <div class="name"><h2><s:property value='#book.bookName'/></h2></div>
         <div id="preview">
-        <div id="spec-n1"><img src="upload/linux.jpg"/></div>
+        <div id="spec-n1"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#book.picturePath'/>"/></div>
         <ul>
         <li><span>总评分：</span><span class="star"><span class="sa45"></span></span></li>
         </ul>
         </div>
         <ul id="summary">
-        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>null<s:property value='#book.author'/></li>
-        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>null<s:property value='#book.publisher'/></li>
-        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>null<s:property value='#book.isbn'/></li>
-        <li><span>出版日期：</span>null<s:property value='#book.publishDate'/></li>
-        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>null<s:property value='#book.version'/></li>
-        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>null<s:property value='#book.folio'/></li>
-        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>null<s:property value='#book.binding'/></li>
-        <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span>null<s:property value='#book.page'/></li>
+        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span><s:property value='#book.author'/></li>
+        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span><s:property value='#book.publisher'/></li>
+        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span><s:property value='#book.isbn'/></li>
+        <li><span>出版日期：</span><s:property value='#book.publishDate'/></li>
+        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span><s:property value='#book.version'/></li>
+        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span><s:property value='#book.folio'/></li>
+        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span><s:property value='#book.binding'/></li>
+        <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span><s:property value='#book.page'/></li>
+        <li><span>语&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;种：</span>中文</li>
         </ul>
         <ul id="book_price">
-        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>null<s:property value='#book.marketPrice'/></del></li>
-        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>null<s:property value='#book.price'/></strong></li>
-        <li><span>为您节省：</span><strong>null</strong></li>
-        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>null<s:property value='#book.inventory'/></li>
+        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del><s:property value='#book.marketPrice'/></del></li>
+        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong><s:property value='#book.price'/></strong></li>
+        <li><span>为您节省：</span><strong>￥1.42</strong></li>
+        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span><s:property value='#book.inventory'/></li>
         </ul>
         <div id="add_to_cart">
         <div id="item_amount">
@@ -122,7 +132,7 @@
         <div class="clear"></div>
         <div class="item_desc">
         <div class="banner"><li>内容简介</li></div>
-        <div class="item_desc_con">&nbsp;&nbsp;&nbsp;&nbsp;本书是清华大学教材《大学物理学》的第四册，讲述振动与波的一般基本规律和波动光学的基本原理，包括光的干涉、衍射和偏振。除了基本内容外，还专题介绍了全息照相、光学信息处理、液晶等今日物理趣闻和着名物理学家托马斯·杨和菲涅耳的传略。<br/>&nbsp;&nbsp;&nbsp;&nbsp;基本内容扼要，附加内容通俗易懂。本书可作为高等院校的大学物理教材，也可以作为中学物理教师教学或其他读者自学的参考书。</div>
+        <div class="item_desc_con">&nbsp;&nbsp;&nbsp;&nbsp;<s:property value='#book.bookDesc'/></div>
         </div>
         <div id="comment">
         <div class="banner"><li>用户评价</li></div>

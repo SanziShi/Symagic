@@ -27,7 +27,7 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 		
 		float rowNumber = daoComment.getAllCommmentRowNum();
 		
-		totalPage = (int)Math.floor(rowNumber / lines);
+		totalPage = (int)Math.ceil(rowNumber / lines);
 		
 		if( page == null )
 			page = 1;
@@ -37,7 +37,7 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 		
 		for( BeanComment comment : comments ){
 			CommentBean bean = new CommentBean();
-			bean.setUsername(comment.getUsername());
+			bean.setUserName(comment.getUsername());
 			bean.setContent(comment.getContent());
 			bean.setDate(comment.getCommentDate());
 			bean.setRating(comment.getRating());

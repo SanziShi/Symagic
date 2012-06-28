@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,13 +31,18 @@
 	<div class="top">
     <div class="top_right">
     <ul>
+    <s:if test="#session.nickname!=null">
+    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
+    </s:if>
+    <s:else>
     <li>欢迎来到Symagic！</li>
-    <s:property value="#session.username"/><s:property value="#session.nickname"/>
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
+    </s:else>
     <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart.html">
-    <span id="cart_icon"></span>购物车 <strong id="cart_num">0</strong> 件</a>
+    <li id="cart_top"><a id="cart_a" href="cart">
+    <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
     </ul>
     </div>
@@ -40,7 +51,7 @@
 	</div>
 	<div id="globallink">
 		<ul>
-			<li><a href="index.html">首页</a></li>
+			<li><a href="index">首页</a></li>
 			<li><a href="item_list.html">商品列表</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
 			<li><a href="address.html">地址簿</a></li>
@@ -57,19 +68,23 @@
 				<img src="image/ico_site.jpg"  id="ico_site"/>
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">商品详细信息</a>
 			</div>
+            <form action="quick_search" >
 			<div id="searchright2">
 			  <input type="text" name="product" id="textInput"/>
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
 			</div>
 			<div id="searchright1">
-			  <select name="category" id="searchrightcategory">
-				<option value="5">所有类别</option>
-                <option value="1">图书音像</option>
-                <option value="2">时尚生活</option>
-                <option value="3">饰品配件</option>
-                <option value="4">数码产品</option>
+			 <select name="catalogID" >
+			  <option value="0">所有类别</option>
+			  <s:iterator value="catalog" var='outer'>
+				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
+				<s:iterator value="#outer.childCatalog" var="inner">
+				<option value="<s:property value='#inner.ID'/>"><s:property value='#inner.name'/></option>
+				</s:iterator>
+				</s:iterator>
               </select>
 		  </div>
+          </form>
 		</div>
         <div class="clear"></div>
         <!--购买推荐左边栏-->
@@ -85,28 +100,29 @@
         <!--商品详细信息-->
         <div class="item_info">
         <div class="fliter"></div>
-        <div class="name"><h2>大学物理学.第四册：波动与光学（第2版）</h2></div>
+        <div class="name"><h2><s:property value='#book.bookName'/></h2></div>
         <div id="preview">
-        <div id="spec-n1"><img src="upload/linux.jpg"/></div>
+        <div id="spec-n1"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#book.picturePath'/>"/></div>
         <ul>
         <li><span>总评分：</span><span class="star"><span class="sa45"></span></span></li>
         </ul>
         </div>
         <ul id="summary">
-        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>null<s:property value='#book.author'/></li>
-        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>null<s:property value='#book.publisher'/></li>
-        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>null<s:property value='#book.isbn'/></li>
-        <li><span>出版日期：</span>null<s:property value='#book.publishDate'/></li>
-        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>null<s:property value='#book.version'/></li>
-        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>null<s:property value='#book.folio'/></li>
-        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>null<s:property value='#book.binding'/></li>
-        <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span>null<s:property value='#book.page'/></li>
+        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>测试<s:property value='#book.author'/></li>
+        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>清华大学出版社</li>
+        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>34516661722838</li>
+        <li><span>出版日期：</span>2011-11-11</li>
+        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>2</li>
+        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>16开</li>
+        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>平装</li>
+        <li><span>纸&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;张：</span>胶印纸</li>
+        <li><span>语&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;种：</span>中文</li>
         </ul>
         <ul id="book_price">
-        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>null<s:property value='#book.marketPrice'/></del></li>
-        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>null<s:property value='#book.price'/></strong></li>
-        <li><span>为您节省：</span><strong>null</strong></li>
-        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>null<s:property value='#book.inventory'/></li>
+        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>￥9.50</del></li>
+        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>￥8.08</strong></li>
+        <li><span>为您节省：</span><strong>￥1.42</strong></li>
+        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>10</li>
         </ul>
         <div id="add_to_cart">
         <div id="item_amount">

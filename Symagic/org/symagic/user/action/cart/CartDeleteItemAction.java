@@ -6,6 +6,10 @@ import org.symagic.user.utilty.UserSessionUtilty;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CartDeleteItemAction extends ActionSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 531344796388813069L;
 	private DaoCart daoCart;
 	public DaoCart getDaoCart() {
 		return daoCart;

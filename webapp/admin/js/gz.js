@@ -612,3 +612,18 @@ function set_value(e){
 	else 
 	e.value = "下架";
 	}
+	
+//商品数量增加、减少
+function add(id)
+{
+	document.getElementById(id).value=parseInt(document.getElementById(id).value)+1;
+}
+function reduce(id)
+{
+	if(document.getElementById(id).value>1)document.getElementById(id).value=parseInt(document.getElementById(id).value)-1;
+}
+//数量修改
+function amount_modify(e)
+{
+	e.value=e.value.replace(/\D+/g,'');
+}

@@ -234,19 +234,19 @@
 
 					<td class="autoWidth"><s:property value = "#orders.orderStatus"/></td>
  <td><s:if test="#order.orderStatus=='已下单'">
- <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?itemID=<s:property value = '#orders.orderID'/>" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="">审核</a>&nbsp;
- <a  onclick="delete_tag("<s:property value = "#orders.orderID"/>");"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+ <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="">审核</a>&nbsp;
+ <a  onclick="delete_tag("<s:property value = "#orders.orderID"/>");"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:if>
  <s:elseif test="#order.orderStatus=='已审核'">
- <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a></a><a href="order_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="order_detail?itemID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
-<a  onclick="delete_tag("<s:property value = "#orders.orderID"/>")"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+ <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
+<a  onclick="delete_tag("<s:property value = "#orders.orderID"/>")"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:elseif>
  <s:elseif test="#order.orderStatus=='交易成功'">
-  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
+  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
   </s:elseif>
   <s:else>
-  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?itemID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a>&nbsp;
-<a  onclick="delete_tag("<s:property value = "#orders.orderID"/>")"  href="order/delete_order?itemID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+  <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_info.html" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a>&nbsp;
+<a  onclick="delete_tag("<s:property value = "#orders.orderID"/>")"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
   </s:else>
  </td>
 

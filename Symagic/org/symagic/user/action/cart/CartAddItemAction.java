@@ -8,6 +8,10 @@ import com.opensymphony.xwork2.ActionSupport;
 public class CartAddItemAction extends ActionSupport {
     
    
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8688962449531199326L;
 	private DaoCart daoCart;//对于会员来说，更新到数据库中
 	private Integer itemID;//商品id号
 	

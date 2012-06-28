@@ -89,8 +89,9 @@ public class ItemService {
 	
 	
     //得到商品详情
-	public void fillDetailBean(int itemId,ItemDetailBean detail){
+	public boolean fillDetailBean(int itemId,ItemDetailBean detail){
 		BeanBook book=daoBook.getDetail(itemId);
+		if( book == null ) return false;
 		detail.setAuthor(book.getAuthor());
 		detail.setAverageRating(daoComment.getAverageRating(itemId));
 		detail.setBinding(book.getBinding());
@@ -111,6 +112,7 @@ public class ItemService {
 		detail.setPublisher(book.getPublisher());
 		detail.setVersion(book.getVersion());
 		detail.setPicturePath(book.getPicture());
+		return true;
 		
 	}
 	//得到目录的描述
@@ -170,8 +172,13 @@ public class ItemService {
 				items.add(item);
 			}
 		}
-	//将购物车的信息进行填充
+	/**
+	 * 将购物车的信息进行填充
+	 * @param items不能为null
+	 * @return 商品总数量
+	 */
 	public float fillItemWithNumber(ArrayList<ItemTinyBean>items){
+		if(items==null)return -1;
 		//获得购物车
 		//test
 		 UserSessionUtilty.addToCart(1, 3);
