@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.symagic.common.db.bean.BeanBook;
+import org.symagic.common.db.bean.BeanBookStatistics;
 import org.symagic.common.db.pool.ConnectionPool;
 
 /**
@@ -148,12 +149,12 @@ public class DaoBook {
 	 * @return BeanBook实例，封装着书籍的详细信息
 	 */
 	public BeanBook getDetail(int bookID) {
+		BeanBook book	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from book where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
-			BeanBook book;
 			
 			// 如果查询成功
 			if (rs.next()) {
@@ -175,16 +176,23 @@ public class DaoBook {
 				book.setPublishDate(rs.getString("publishdate"));
 				book.setVersion(rs.getInt("version"));
 				
-				conn.close();
 				return book;
 			}
 			
-			conn.close();
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return new BeanBook();
+		return book;
 	}
 
 	/**
@@ -608,5 +616,54 @@ public class DaoBook {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * 获取指定书籍的销售总量、销售总价
+	 * @param bookID	指定用户ID
+	 * @return	BeanBookStatistics 封装各种统计数据的Bean实例
+	 */
+	public BeanBookStatistics getBookStatistics(int bookID)
+	{
+		BeanBookStatistics	bbs	= null;
+		String sql	= "";
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return bbs;
+	}
+	
+	/**
+	 * 获取指定书籍销售总量
+	 * @param bookID	指定书籍ID
+	 * @return	-1 查询失败	>=0 查询成功
+	 */
+	public int getTotalAmount(int bookID)
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select sum(amount) from book_order where bookid=?");
+			ps.setInt(1, bookID);
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }

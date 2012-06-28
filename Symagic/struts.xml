@@ -87,20 +87,39 @@
 
 			</result>
 		</action>
-
+  
 		<action name="regist" class="registerClass">
 			<result type="json">
 				<param name="includeProperties">toURL,registerResult</param>
 			</result>
 		</action>
 
-		<action name="cart" class="cartEnterClass">
-			<result name="success">/cart.jsp</result>
-		</action>
+		
 
 		<action name="cartDetail" class="detailOfCart">
 			<result name="success">/lib/cart_inner.jsp</result>
 		</action>
+		<action name="cart" class="cartEnter">
+		  <result>/cart.jsp</result>
+		</action>
+
+	<!-- 商品项 -->	
+		<action name="item_list" class="advanceSearch">
+		  <result>/item_list.jsp</result>
+		</action>
+		
+		<action name="quick_search" class="quickSearch">
+		  <result>/item_list.jsp</result>
+		</action>
+		
+		<action name="item_detail" class="itemDetail">
+		  <result>/item_info.jsp</result>
+		</action>
+		<action name="comment" class="browseComment">
+		 <result>/lib/comment_inner.jsp</result>
+		</action>
+		
+
 
 	</package>
 
