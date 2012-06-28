@@ -57,6 +57,7 @@
 		<property name="daoAdmin" ref="DaoAdmin"></property>
 	</bean>
 
+	<!-- 管理员Item -->
 	<bean id="AdminAddItem" class="org.symagic.admin.action.item.ItemAddAction">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="book-image"></property>
@@ -73,6 +74,12 @@
 
 	<bean id="AdminUplineItem" class="org.symagic.admin.action.item.ItemUpAction">
 		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="lines" value="15"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"
