@@ -230,9 +230,9 @@
 									<td align="left" class="inputHeader"><a
 										href="item_modify?itemID=<s:property value = '#bookItems.itemID'/>"><input
 											type="button" value="修改" /> </a>&nbsp;&nbsp; <a> <input
-											type="button" onclick="ajax_item_off(this,"
-											<s:property value = "#bookItems.itemID"/>");" value="下架" />
-									</a>&nbsp;&nbsp; <a onclick="ajax_delete_tag("<s:property value = "#bookItems.itemID"/>");" ><input
+											type="button" onclick="ajax_item_off(this,
+											<s:property value = "#bookItems.itemID"/>);" value="下架" />
+									</a>&nbsp;&nbsp; <a onclick="ajax_delete_tag(<s:property value = '#bookItems.itemID'/>);" ><input
 											type="button" value="删除" /> </a>&nbsp;&nbsp;</td>
 								</tr>
 							</s:iterator>
