@@ -167,7 +167,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setInventory(inventory);
 		book.setBookDesc(description);
 		book.setCatalogID(bookClassify);
-		book.setPicture("/" + shopImageFileFolder + "/" + fileName);
+		book.setPicture(shopImageFileFolder + "/" + fileName);
 		book.setOffline("在架");
 
 		daoBook.addBook(book);
