@@ -202,23 +202,82 @@ public class DaoBook {
 		String sql	= "select * from book where ";
 		// 普通查询
 		if (sign == 0) {
-			r	= " or ";
+			sql += " author like " + " '%" + req.getAuthor() + "%' "
+				+  " and " + " bookname like " + " '%" + req.getItemName() + "%' "
+				+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
+			
+			
+			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
+				+  " , " + req.getLines();
+	
+		}
+		// 高阶查询
+		else {
+			sql += " author like " + " '%" + req.getAuthor() + "%' "
+			+  " and " + " bookname like " + " '%" + req.getItemName() + "%' "
+			+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
+		
 			// 年前
 			if (req.getBefore() == true) {
 				// 条件 年
 				if (req.getYear() != null)
-					sql += " year(publishdate) < " + req.getYear() + " ";
+					sql += " and " + " year(publishdate) < " + req.getYear() + " ";
 			}
 			// 当前年
 			else {
 				// 条件 年
 				if (req.getYear() != null)
-					sql += " year(publishdate) = " + req.getYear() + " ";
+					sql += " and " + " year(publishdate) = " + req.getYear() + " ";
 			}
-		}
-		// 高阶查询
-		else {
-			r	= " and ";
+			
+			if (req.getVersion() != null) 
+				sql += " and " + " version = " + req.getVersion() + " ";
+			
+			if (req.getBinding() != null)
+				sql += " and " + " binding like " + " '%" +  req.getBinding() + "%' ";
+			
+			if (req.getFolio() != null)
+				sql += " and " + " folio like " + " '%" + req.getFolio() + "%' ";
+		
+			if (req.getLowPrice() != null)
+				sql += " and " + " marketprice > " + req.getLowPrice() + " ";
+			
+			if (req.getUpPrice() != null)
+				sql += " and " + " marketprice < " + req.getUpPrice() + " ";
+			
+			if (req.getLowPage() != null)
+				sql += " and " + " page > " + req.getLowPage() + " ";
+			
+			if (req.getUpPage() != null)
+				sql += " and " + " page < " + req.getUpPage() + " ";
+			
+			if (req.getDiscount() != null) {
+				float low = 0.0f;
+				float up = 0.0f;
+				switch (req.getDiscount()) {
+				case 0:
+					low = 0.0f;
+					up	= 0.1f;
+					break;
+				case 1:
+					low	= 0.1f;
+					up	= 0.3f;
+					break;
+				case 2:
+					low	= 0.3f;
+					up	= 0.5f;
+				case 3:
+					low	= 0.5f;
+					up	= 1.0f;
+				}
+				sql += " and " + " discount > " + low + " "
+					+  " and " + " discount < " + up + " ";
+			}
+			
+			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
+			+  " , " + req.getLines();
+			
+		
 		}
 		
 		try {
@@ -273,9 +332,94 @@ public class DaoBook {
 	 * @return int	返回符合条件的条数
 	 */
 	public int getSearchRowNumber(int sign, BookRequire req) {
+		String sql	= "select * from book where ";
+		// 普通查询
+		if (sign == 0) {
+			sql += " author like " + " '%" + req.getAuthor() + "%' "
+				+  " and " + " bookname like " + " '%" + req.getItemName() + "%' "
+				+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
+			
+			
+			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
+				+  " , " + req.getLines();
+	
+		}
+		// 高阶查询
+		else {
+			sql += " author like " + " '%" + req.getAuthor() + "%' "
+			+  " and " + " bookname like " + " '%" + req.getItemName() + "%' "
+			+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
+		
+			// 年前
+			if (req.getBefore() == true) {
+				// 条件 年
+				if (req.getYear() != null)
+					sql += " and " + " year(publishdate) < " + req.getYear() + " ";
+			}
+			// 当前年
+			else {
+				// 条件 年
+				if (req.getYear() != null)
+					sql += " and " + " year(publishdate) = " + req.getYear() + " ";
+			}
+			
+			if (req.getVersion() != null) 
+				sql += " and " + " version = " + req.getVersion() + " ";
+			
+			if (req.getBinding() != null)
+				sql += " and " + " binding like " + " '%" +  req.getBinding() + "%' ";
+			
+			if (req.getFolio() != null)
+				sql += " and " + " folio like " + " '%" + req.getFolio() + "%' ";
+		
+			if (req.getLowPrice() != null)
+				sql += " and " + " marketprice > " + req.getLowPrice() + " ";
+			
+			if (req.getUpPrice() != null)
+				sql += " and " + " marketprice < " + req.getUpPrice() + " ";
+			
+			if (req.getLowPage() != null)
+				sql += " and " + " page > " + req.getLowPage() + " ";
+			
+			if (req.getUpPage() != null)
+				sql += " and " + " page < " + req.getUpPage() + " ";
+			
+			if (req.getDiscount() != null) {
+				float low = 0.0f;
+				float up = 0.0f;
+				switch (req.getDiscount()) {
+				case 0:
+					low = 0.0f;
+					up	= 0.1f;
+					break;
+				case 1:
+					low	= 0.1f;
+					up	= 0.3f;
+					break;
+				case 2:
+					low	= 0.3f;
+					up	= 0.5f;
+				case 3:
+					low	= 0.5f;
+					up	= 1.0f;
+				}
+				sql += " and " + " discount > " + low + " "
+					+  " and " + " discount < " + up + " ";
+			}
+			
+			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
+			+  " , " + req.getLines();
+			
+		
+		}
 		try {
+			count = -1;
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("");
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			while (rs.next())
+				count ++;
+			return count;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -287,7 +431,7 @@ public class DaoBook {
 				e.printStackTrace();
 			}
 		}
-		return 0;
+		return -1;
 	}
 
 	

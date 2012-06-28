@@ -86,7 +86,7 @@ public class OrderService {
 			Date start, Date end, String orderState){
 		List<OrderBean> orderList = new ArrayList<OrderBean>();
 		OrderRequire require = new OrderRequire();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy:mm:dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 		require.setStartTime(format.format(start));
 		require.setEndTime(format.format(end));
 		require.setOrderState(orderState);
