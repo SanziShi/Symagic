@@ -15,6 +15,7 @@ import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.db.func.DaoOrder;
+import org.symagic.common.service.MailService;
 import org.symagic.common.service.OrderService;
 import org.symagic.common.service.OrderService.Address;
 
@@ -106,6 +107,8 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		}
 		
 		daoOrder.updateOrder(order);
+		
+		MailService.sendOrder(order);
 
 		return super.execute();
 	}

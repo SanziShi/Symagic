@@ -6,6 +6,7 @@ import net.sf.json.JSONSerializer;
 
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.func.DaoOrder;
+import org.symagic.common.service.MailService;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -44,6 +45,7 @@ public class AdminPassOrderAction extends ActionSupport {
 				if (order != null) {
 					order.setOrderState("1");
 					daoOrder.updateOrder(order);
+					MailService.sendPassOrder(order);
 				}
 			}
 
