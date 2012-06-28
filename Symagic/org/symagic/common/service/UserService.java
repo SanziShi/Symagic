@@ -14,6 +14,8 @@ import org.symagic.common.db.func.DaoCart;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.user.utilty.UserSessionUtilty;
 
+import com.opensymphony.xwork2.ActionContext;
+
 public class UserService {
 	private DaoUser daoUser; //用于访问用户数据
 	public DaoUser getDaoUser() {
@@ -96,10 +98,12 @@ private void accordCart(){
 	      //会员未登录前加商品到购物车中
 	   HashMap<Integer,Integer> lastingItems=UserSessionUtilty.getCart();
 	   BeanCart item;
-	   //更新session中购物车的信息,将历史记录中当前session的购物车没有的项加入到session购物车中
+	   //更新session中购物车的信息,将历史记录在当前session的购物车没有的项加入到session购物车中
 	   for(Iterator<BeanCart> index=historyItems.iterator();index.hasNext();){
 		   item=index.next();
 		   if(!lastingItems.containsKey(item.getBookID())){
+			   //session中总数量增加
+			   UserSessionUtilty.addTotalNumber(item.getAmount());
 			   lastingItems.put(item.getBookID(), item.getAmount());
 		   }
 	   }
@@ -112,7 +116,7 @@ private void accordCart(){
 		  historyId.add(historyItem.getBookID());
 	   }
 	   Set<Integer> itemIdSet=lastingItems.keySet();
-		 for(Iterator key =itemIdSet.iterator();key.hasNext();){
+		 for(Iterator<Integer> key =itemIdSet.iterator();key.hasNext();){
 			 int id=(Integer)key.next();
 			 int number=lastingItems.get(id);
 			 if(historyId.contains(id)){

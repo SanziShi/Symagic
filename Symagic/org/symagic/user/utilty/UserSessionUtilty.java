@@ -69,6 +69,8 @@ public class UserSessionUtilty extends SessionUtilty {
 
 	}
 	
+	
+	
 	/**
 	 * 当一个用户（包括游客和会员）有添加商品到购物车时，保存一个session状态下的购物车
 	 * @param id
@@ -109,6 +111,19 @@ public class UserSessionUtilty extends SessionUtilty {
 				return true;
 	}
 	
+	/**
+	 * 
+	 */
+	public static boolean modifyFromCart(int id,int number){
+		       //得到session
+				Map<String ,Object> session=ActionContext.getContext().getSession();
+				//得到购物车
+				HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
+		        int oldNumber=cart.get(id);
+		        UserSessionUtilty.addTotalNumber(number-oldNumber);
+		        cart.put(id,number);
+		return true;
+	}
 	
 	/**
 	 * 得到session中的购物车
