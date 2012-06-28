@@ -37,7 +37,7 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 		
 		for( BeanComment comment : comments ){
 			CommentBean bean = new CommentBean();
-			bean.setUsername(comment.getUsername());
+			bean.setUserName(comment.getUsername());
 			bean.setContent(comment.getContent());
 			bean.setDate(comment.getCommentDate());
 			bean.setRating(comment.getRating());

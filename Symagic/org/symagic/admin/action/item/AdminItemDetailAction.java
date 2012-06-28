@@ -22,6 +22,9 @@ public class AdminItemDetailAction extends CatalogBase {
 	private ItemService itemService;// 访问服务层
 	private List<BeanComment> commentList;// 评论列表
 	
+	private String errorHeader="没有相应的商品";
+	private String errorSpecification="商品不存在";
+	
 	private boolean validateResult;
 
 	@Override
@@ -38,10 +41,14 @@ public class AdminItemDetailAction extends CatalogBase {
 	@Override
 	public String execute() throws Exception {
 		
-		if( !validateResult ) return ERROR;
+		if( !validateResult ){
+			return ERROR;
+		}
 		
 		book = new ItemDetailBean();
-		itemService.fillDetailBean(itemID, book);
+		if( !itemService.fillDetailBean(itemID, book) ){
+			return ERROR;
+		}
 		int commentNumber = itemService.getCommentNumber(itemID);
 		totalPage = (commentNumber + lines - 1) / lines;
 		commentList = itemService.getCommentWithPage(itemID, 1, lines);
@@ -96,6 +103,22 @@ public class AdminItemDetailAction extends CatalogBase {
 
 	public void setCommentList(List<BeanComment> commentList) {
 		this.commentList = commentList;
+	}
+
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
 	}
 
 	
