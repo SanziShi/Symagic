@@ -197,6 +197,7 @@
 
 	<bean id="OrderService" class="org.symagic.common.service.OrderService">
 		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="ItemService" class="org.symagic.common.service.ItemService">

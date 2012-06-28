@@ -9,6 +9,7 @@ import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
+import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoBook;
@@ -173,9 +174,14 @@ public class OrderService {
 		for(int i = 0; i < items.size(); i ++){
 			BeanOrderDetail detail = new BeanOrderDetail();
 			ItemBean item = items.get(i);
+			BeanBook book = daoBook.getDetail(item.getItemId());
 			detail.setAmount(item.getItemNumber());
 			detail.setBookId(item.getItemId());
-			//detail.set
+			detail.setBookName(item.getName());
+			detail.setIsbn(book.getIsbn());
+			detail.setDiscount(book.getDiscount());
+			detail.setMarketPrice(book.getMarketPrice());
+			orderDetails.add(detail);
 		}
 		return orderDetails;
 	}
