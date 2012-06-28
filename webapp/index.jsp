@@ -77,7 +77,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="searchright">
             <form action="quick_search" >
 			  <select name="catalogID" >
-				<option value="0">所有类别</option>
+			  <option value="0">所有类别</option>
+			  <s:iterator value="catalog" var='outer'>
+				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
+				<s:iterator value="#outer.childCatalog" var="inner">
+				<option value="<s:property value='#inner.ID'/>"><s:property value='#inner.name'/></option>
+				</s:iterator>
+				</s:iterator>
               </select>
 			  <input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />
 			  <input type="button" name="Submit" value="搜索" onClick="">
