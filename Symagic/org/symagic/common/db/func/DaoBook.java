@@ -658,32 +658,34 @@ public class DaoBook {
 		if (haveCatalogID == false) 
 			sql = "select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price " +
 			"from book_order, order_detail " +
-			"where book_order.orderid=order_detail.orderid and orderdate >  " + req.getStartTime() + " and orderdate < " + req.getEndTime() + " " +
+			"where book_order.orderid=order_detail.orderid and orderdate >  " + " '" + req.getStartTime() + "' " + " and orderdate < " + " '" + req.getEndTime() + "' " +
 			"group by bookid " +
 			"having sum(amount) > ? " +
-			"order by bookid asc asc  limit ?, ?";
+			"order by bookid asc  limit ?, ?";
 		else 
 			sql	= "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid " +
 				"from (" +
-					"select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price " +
-					"from book_order, order_detail " +
-					"where book_order.orderid=order_detail.orderid and orderdate >  "  + req.getStartTime() + " and orderdate < " + req.getEndTime() + " " +
-					"group by bookid asc  limit ?, ?" +
-					"having sum(amount) > ? " +
-					"order by bookid asc ) " +
-					"as t1, book_catalog_detail as t2 " +
-				"where t1.bookid=t2.bookid and t2.catalogid=?" +
-				"order by bookid asc";
+					" select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price " +
+					" from book_order, order_detail " +
+					" where book_order.orderid=order_detail.orderid and orderdate >  "  + " '" + req.getStartTime() + "' " + " and orderdate < " + " '" + req.getEndTime() + "' " +
+					" group by bookid " +
+					" having sum(amount) > ? " +
+					"order by bookid asc limit ?, ?) " +
+					" as t1, book_catalog_detail as t2 " +
+				" where t1.bookid=t2.bookid and t2.catalogid=? " +
+				" order by bookid asc ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement(sql);
-			ps.setInt(1, (req.getPage() - 1)*req.getLines());
-			ps.setInt(2, req.getLines());
-			ps.setInt(3, req.getLowlimit());
+			ps.setInt(1, req.getLowlimit());
+			ps.setInt(2, (req.getPage() - 1)*req.getLines());
+			ps.setInt(3, req.getLines());
+			
 			if (haveCatalogID)
 				ps.setInt(4, req.getCatalogid());
 			
 			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanBookStatistics>();
 			while (rs.next()) {
 				BeanBookStatistics	bbs	= new BeanBookStatistics();
 				bbs.setBookid(rs.getInt("bookid"));

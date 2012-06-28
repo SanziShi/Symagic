@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.db.func.BookRequire;
+import org.symagic.common.db.func.BookStatisticsRequire;
 import org.symagic.common.db.func.DaoBook;
 
 public class DaoBookTest extends TestCase{
@@ -153,9 +154,20 @@ public class DaoBookTest extends TestCase{
 //		assertEquals("素描的诀窍（经典版）", db.search(1, req).get(0).getBookName());
 //	}
 	
-	public void testGetDetail()
+//	public void testGetDetail()
+//	{
+//		DaoBook db	= new DaoBook();
+//		assertEquals(31, db.getDetail(31).getBookId());
+//	}
+	
+	public void testGetBookStatistics()
 	{
-		DaoBook db	= new DaoBook();
-		assertEquals(31, db.getDetail(31).getBookId());
+		DaoBook	db	= new DaoBook();
+		BookStatisticsRequire req	= new BookStatisticsRequire();
+		req.setLowlimit(5);
+		req.setPage(1);
+		req.setLines(10);
+		req.setCatalogid(12);
+		assertEquals(1, db.getBookStatistics(req).get(0).getBookid());
 	}
 }

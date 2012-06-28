@@ -117,6 +117,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="item_detail" class="itemDetail">
 			<result>/item_info.jsp</result>
+			<result name="error">/error.jsp</result>
+			<result name="input">/error.jsp</result>
 		</action>
 		<action name="comment" class="browseComment">
 			<result>/lib/comment_inner.jsp</result>
@@ -160,9 +162,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 	<!-- 用户收藏夹有关的action -->
-	<package name="favority-user-default" extends="symagic-user-
-
-default"
+	<package name="favority-user-default" extends="symagic-user-default"
 		namespace="/favorite">
 		<action name="add_favorite" class="addToFavorite">
 			<result type="json">
@@ -194,7 +194,6 @@ default"
 			<result>/item_list.jsp</result>
 		</action>
 	</package>
-
 
 	<!-- 配置管理员的action -->
 	<package name="admin-default" extends="symagic-admin-default"
@@ -258,7 +257,6 @@ default"
 		</action>
 
 	</package>
-
 
 </struts>    
 
