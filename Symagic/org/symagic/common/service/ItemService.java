@@ -7,12 +7,15 @@ import java.util.List;
 import java.util.Set;
 
 import org.symagic.common.db.bean.BeanBook;
+import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.db.func.DaoComment;
-import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
+import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.user.utilty.MathUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
@@ -36,17 +39,17 @@ public class ItemService {
 	/**
 	 * @param books为外部引用，不能为null
 	 */
- public void getNewBook(List<ItemBean> books){
+ public void getNewBook(List<ItemTinyBean> books){
 	List<BeanBook> newBooks=daoBook.getLatestBook();
 	if(newBooks==null)return ;
-	ItemBean book;
+	ItemTinyBean book;
 	for(Iterator<BeanBook>index=newBooks.iterator();index.hasNext();){
-		book=new ItemBean();
+		book=new ItemTinyBean();
 		BeanBook newBook=index.next();
 		book.setItemID(newBook.getBookId());
 		book.setName(newBook.getBookName());
 		book.setPicturePath(newBook.getPicture());
-		book.setPrice(MathUtilty.roundWithdigits(newBook.getMarketPrice()*newBook.getDiscount(), 1));
+		book.setPrice(MathUtilty.roundWithdigits(newBook.getMarketPrice()*newBook.getDiscount()));
 		books.add(book);
 	 }
  }
@@ -54,13 +57,13 @@ public class ItemService {
 	
 	
 	//将查询 得到的书本信息装饰成前台所需的信息
-	public void decorate(List<BeanBook>books,List<ItemDetailBean>items){
+	public void decorateForItem(List<BeanBook>books,List<ItemBean>items){
 		BeanBook book;
-		ItemDetailBean bean;
+		ItemBean bean;
 		for(Iterator<BeanBook>index=books.iterator();index.hasNext();){
-			bean=new ItemDetailBean();
+			bean=new ItemBean();
 			book=index.next();
-			bean.setItemId(String.valueOf(book.getBookId()));
+			bean.setItemID(String.valueOf(book.getBookId()));
 			bean.setName(book.getBookName());
 			bean.setPrice(book.getMarketPrice()*book.getDiscount());
 			bean.setDiscount(book.getDiscount());
@@ -86,8 +89,43 @@ public class ItemService {
 	
 	
     //得到商品详情
-	public BeanBook getDetail(int itemId){
-		return daoBook.getDetail(itemId);
+	public void fillDetailBean(int itemId,ItemDetailBean detail){
+		BeanBook book=daoBook.getDetail(itemId);
+		detail.setAuthor(book.getAuthor());
+		detail.setAverageRating(daoComment.getAverageRating(itemId));
+		detail.setBinding(book.getBinding());
+		detail.setBookDesc(book.getBookDesc());
+		detail.setBookName(book.getBookName());
+		detail.setCatalogClassify(getCatalogName(book.getCatalogID()));
+		float discount=MathUtilty.roundWithdigits(book.getDiscount());
+		detail.setDiscout(book.getDiscount());
+		detail.setFolio(book.getFolio()+"开");
+		detail.setInventory(book.getInventory());
+		detail.setIsbn(book.getIsbn());
+		float marketPrice=MathUtilty.roundWithdigits(book.getMarketPrice());
+		detail.setMarketPrice(marketPrice);
+		detail.setOffline(book.getOffline());
+		detail.setPage(book.getPage());
+		detail.setPrice(MathUtilty.roundWithdigits(discount*marketPrice));
+		detail.setPublishDate(book.getPublishDate());
+		detail.setPublisher(book.getPublisher());
+		detail.setVersion(book.getVersion());
+		detail.setPicturePath(book.getPicture());
+		
+	}
+	//得到目录的描述
+	private String getCatalogName(Integer catalogid){
+		if(catalogid==null)return"";
+		StringBuilder content=new StringBuilder();
+		DaoCatalog daocatalog=new DaoCatalog();
+		BeanCatalog catalog=daocatalog.getCatalogByID(catalogid);
+		BeanCatalog upLevel=daocatalog.getCatalogByID(catalog.getUpID());
+		content.append(upLevel.getCatalogName());
+		content.append("->");
+		content.append(catalog.getCatalogName());
+		
+		
+		return content.toString();
 	}
     //商品评论总数
 	public int getCommentNumber(int itemId){
@@ -96,7 +134,7 @@ public class ItemService {
 	
 	//得到商品评论
 	public List<BeanComment> getCommentWithPage(int itemId,int page,int lines){
-		return daoComment.getComment(itemId,page,lines);
+		 return daoComment.getComment(itemId,page,lines);
 	}
 	//得到商品平均得分
 	/**
@@ -116,24 +154,24 @@ public class ItemService {
 	
 	
 	//根据id的集合填充相应的信息到items中
-	public void fillItem(List<Integer>ids,List<ItemBean>items){
-			 ItemBean item;
+	public void fillItem(List<Integer>ids,List<ItemTinyBean>items){
+			 ItemTinyBean item;
 		     BeanBook book;
 			for(Iterator<Integer> index=ids.iterator();index.hasNext();){
 				int id=index.next();
-				item=new ItemBean();
+				item=new ItemTinyBean();
 				item.setItemID(id);
 				book=daoBook.getDetail(id);
 				item.setName(book.getBookName());
 				item.setPicturePath(book.getPicture());
 				float marketPrice=book.getMarketPrice();
 				float discount=book.getDiscount();
-				item.setPrice(marketPrice*discount);
+				item.setPrice(MathUtilty.roundWithdigits(marketPrice*discount));
 				items.add(item);
 			}
 		}
 	//将购物车的信息进行填充
-	public float fillItemWithNumber(ArrayList<ItemBean>items){
+	public float fillItemWithNumber(ArrayList<ItemTinyBean>items){
 		//获得购物车
 		//test
 		 UserSessionUtilty.addToCart(1, 3);
@@ -145,7 +183,7 @@ public class ItemService {
 		 Set<Integer>keySet=cart.keySet();
 		
 		 BeanBook book;
-		 ItemBean item;
+		 ItemTinyBean item;
 		float totalPrice=0;
 		 
 		 //记录购物车每项商品的信息
@@ -153,17 +191,17 @@ public class ItemService {
 			  int bookId=ids.next();
 			  int number=cart.get(bookId);
 			  book=daoBook.getDetail(bookId);
-			  item=new ItemBean();
+			  item=new ItemTinyBean();
 			  item.setItemID(bookId);
 			  item.setItemNumber(number);
-			  float marketPrice=book.getMarketPrice();
-			  float discount=book.getDiscount();
-			  float bookprice=MathUtilty.roundWithdigits(marketPrice*discount, 1);
-			  float itemTotalPrice=bookprice*number;
+			  float marketPrice=MathUtilty.roundWithdigits(book.getMarketPrice());
+			  float discount=MathUtilty.roundWithdigits(book.getDiscount());
+			  float bookprice=MathUtilty.roundWithdigits(marketPrice*discount);
+			  float itemTotalPrice=MathUtilty.roundWithdigits(bookprice*number);
 			  item.setItemTotalPrice(itemTotalPrice);
 			  item.setName(book.getBookName());
 			  item.setPrice(bookprice);//商城价
-			  item.setSavePrice(number*marketPrice*(1-discount));
+			  item.setSavePrice(MathUtilty.roundWithdigits(number*marketPrice*(1-discount)));
 			  item.setPicturePath(book.getPicture());
 			  items.add(item);
 			  totalPrice+=itemTotalPrice;

@@ -12,8 +12,8 @@ import org.symagic.common.db.func.BookRequire;
 
 import org.symagic.common.service.ItemService;
 import org.symagic.common.service.RecommandService;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
-import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 
@@ -36,8 +36,8 @@ public class AdvanceSearchAction extends CatalogBase{
     
    
 
-	private List<ItemBean>recommend;//推荐商品
-	private List<ItemDetailBean>items;//用于显示的商品列表
+	private List<ItemTinyBean>recommend;//推荐商品
+	private List<ItemBean>items;//用于显示的商品列表
 	private  Integer recommendNumber=15;
 	
 	  private String name;//书本名字
@@ -61,7 +61,7 @@ public class AdvanceSearchAction extends CatalogBase{
 @Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		items=new ArrayList<ItemDetailBean>();
+		items=new ArrayList<ItemBean>();
 		//设置搜索的条件
 		BookRequire require=new BookRequire();
 	    require.setItemName(name);
@@ -82,7 +82,7 @@ public class AdvanceSearchAction extends CatalogBase{
 	    List<BeanBook> books=itemService.search(sign, require);
 	    totalPage=(itemService.getSearchNum(sign, require)+lines-1)/lines;
 	     //装饰成前台所需的信息
-		itemService.decorate(books, items);
+		itemService.decorateForItem(books, items);
 		
 		List<Integer> bookIds;
 		//推荐商品
@@ -284,19 +284,19 @@ private void setPageNumber(BookRequire require,Integer index){
 			this.recommendService = recommendService;
 		}
 
-		public List<ItemDetailBean> getItems() {
+		public List<ItemBean> getItems() {
 			return items;
 		}
 
-		public void setItems(List<ItemDetailBean> items) {
+		public void setItems(List<ItemBean> items) {
 			this.items = items;
 		}
 
-		public List<ItemBean> getRecommend() {
+		public List<ItemTinyBean> getRecommend() {
 			return recommend;
 		}
 
-		public void setRecommend(List<ItemBean> recommend) {
+		public void setRecommend(List<ItemTinyBean> recommend) {
 			this.recommend = recommend;
 		}
 		

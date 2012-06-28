@@ -15,7 +15,7 @@ import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.OrderRequire;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
-import org.symagic.common.utilty.presentation.bean.ItemBean;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
 
 public class OrderService {
@@ -168,11 +168,11 @@ public class OrderService {
 		
 	}
 	
-	public List<BeanOrderDetail> getOrderDetail(List<ItemBean> items){
+	public List<BeanOrderDetail> getOrderDetail(List<ItemTinyBean> items){
 		List<BeanOrderDetail> orderDetails = new ArrayList<BeanOrderDetail>();
 		for(int i = 0; i < items.size(); i ++){
 			BeanOrderDetail detail = new BeanOrderDetail();
-			ItemBean item = items.get(i);
+			ItemTinyBean item = items.get(i);
 			detail.setAmount(item.getItemNumber());
 			detail.setBookId(item.getItemID());
 			//detail.set

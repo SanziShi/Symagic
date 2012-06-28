@@ -129,8 +129,9 @@
 		<property name="daoLevel" ref="DaoLevel"></property>
 	</bean>
 
+<!-- 用户的action bean -->
 
-	<!-- 用户的action bean -->
+
 	<bean id="indexClass" class="org.symagic.user.action.index.IndexAction">
 		<property name="recommendService" ref="RecommendService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
@@ -163,6 +164,11 @@
 	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
 	</bean>
+	
+   <bean id="cartEnter" class="org.symagic.user.action.cart.CartEnterAction">
+     <property name="itemService" ref="ItemService"></property>
+     <property name="catalogService" ref="CatalogService"></property>
+   </bean>
 
 	<!-- 关于收藏夹的bean -->
 	<bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction">
@@ -182,8 +188,16 @@
 		<property name="itemService" ref="ItemService"></property>
 		<property name="recommendService" ref="RecommendService"></property>
 	</bean>
-
-
+ 
+   <bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction">
+      <property name="itemService" ref="ItemService"></property>
+      <property name="catalogService" ref="CatalogService"></property>
+   </bean>
+    
+    <bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction">
+      <property name="itemService" ref="ItemService"></property>
+    </bean>
+ 
 
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
@@ -202,6 +216,7 @@
 
 	<bean id="ItemService" class="org.symagic.common.service.ItemService">
 		<property name="daoBook" ref="DaoBook"></property>
+		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
 
 	<bean id="RecommendService" class="org.symagic.common.service.RecommandService">
@@ -218,6 +233,7 @@
 	<bean id="DaoOrder" class="org.symagic.common.db.func.DaoOrder" />
 	<bean id="DaoDistrict" class="org.symagic.common.db.func.DaoDistrict" />
 	<bean id="DaoLevel" class="org.symagic.common.db.func.DaoLevel" />
+	<bean id="DaoComment" class="org.symagic.common.db.func.DaoComment"></bean>
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
