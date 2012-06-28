@@ -174,7 +174,7 @@ public class OrderService {
 			BeanOrderDetail detail = new BeanOrderDetail();
 			ItemBean item = items.get(i);
 			detail.setAmount(item.getItemNumber());
-			detail.setBookId(item.getItemId());
+			detail.setBookId(item.getItemID());
 			//detail.set
 		}
 		return orderDetails;

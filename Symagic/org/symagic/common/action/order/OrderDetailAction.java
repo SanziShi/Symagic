@@ -95,7 +95,7 @@ public class OrderDetailAction extends CatalogBase {
 		List<BeanOrderDetail> itemsList = order.getList();
 		for (BeanOrderDetail detail : itemsList) {
 			ItemBean itemBean = new ItemBean();
-			itemBean.setItemId(detail.getBookId());
+			itemBean.setItemID(detail.getBookId());
 			itemBean.setItemNumber(detail.getAmount());
 			itemBean.setItemTotalPrice(detail.getMarketPrice()
 					* detail.getAmount() * detail.getDiscount());
