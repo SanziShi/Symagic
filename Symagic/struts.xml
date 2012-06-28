@@ -101,6 +101,14 @@
 		<action name="cartDetail" class="detailOfCart">
 			<result name="success">/lib/cart_inner.jsp</result>
 		</action>
+	<!-- 商品项 -->	
+		<action name="item_list" class="advanceSearch">
+		  <result>/item_list.jsp</result>
+		</action>
+		
+		<action name="quick_search" class="quickSearch">
+		  <result>/item_list.jsp</result>
+		</action>
 
 	</package>
 
@@ -160,13 +168,7 @@
 			</result>
 		</action>
 		
-		<action name="item_list" class="advanceSearch">
-		  <result>/item_list.jsp</result>
-		</action>
 		
-		<action name="quick_search" class="quickSearch">
-		  <result>/item_list.jsp</result>
-		</action>
 	</package>
 
 	<!-- 配置管理员的action -->
