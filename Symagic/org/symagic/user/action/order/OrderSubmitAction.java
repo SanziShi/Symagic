@@ -131,7 +131,9 @@ public class OrderSubmitAction extends OrderBase{
 		address.level3District.setID(this.level3Id);
 		address.level3District.setName(daoDistrict.getDistrictById(level3Id).getName());
 		order.setAddrDetail(OrderService.serializerAddress(address));
-		order.setDeliveryWay("");
+		order.setDeliveryWay("0");
+		order.setPayment("0");
+		
 		for(int i = 0; i < items.size(); i ++){
 			
 		}
