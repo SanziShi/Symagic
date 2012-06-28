@@ -119,6 +119,9 @@ public class ItemModifySubmitAction extends ActionSupport implements
 	 */
 	private String shopImageFileFolder;
 
+	private String errorHeader;
+	private String errorSpecification;
+
 	@Override
 	public void validate() {
 
@@ -127,7 +130,7 @@ public class ItemModifySubmitAction extends ActionSupport implements
 				|| publisher == null || publishTime == null || edition == null
 				|| page == null || binding == null || size == null
 				|| marketPrice == null || discount == null || inventory == null
-				|| description == null || picture == null) {
+				|| description == null) {
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;
@@ -144,11 +147,13 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		BeanBook book = daoBook.getDetail(itemID);
 
 		// 文件处理
-		String fileFolder = context.getRealPath("/" + shopImageFileFolder);
-		File destFile = new File(fileFolder, book.getPicture().substring(
-				book.getPicture().lastIndexOf('/') + 1));
+		if (picture != null) {
+			String fileFolder = context.getRealPath("/" + shopImageFileFolder);
+			File destFile = new File(fileFolder, book.getPicture().substring(
+					book.getPicture().lastIndexOf('/') + 1));
 
-		FileUtils.moveFile(picture, destFile);
+			FileUtils.moveFile(picture, destFile);
+		}
 
 		// 生成时间
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -175,7 +180,7 @@ public class ItemModifySubmitAction extends ActionSupport implements
 
 		return SUCCESS;
 	}
-	
+
 	@Override
 	public void setServletContext(ServletContext arg0) {
 		context = arg0;
@@ -334,6 +339,20 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		this.daoBook = daoBook;
 	}
 
+	public String getErrorHeader() {
+		return errorHeader;
+	}
 
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
+	}
 
 }

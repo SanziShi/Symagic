@@ -63,9 +63,18 @@
 		<property name="shopImageFileFolder" value="book-image"></property>
 	</bean>
 
+	<bean id="AdminEnterModifyItem" class="org.symagic.admin.action.item.ItemModifyEnterAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="errorHeader" value="错了"></property>
+		<property name="errorSpecification" value="反正是错了"></property>
+	</bean>
+
 	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction">
 		<property name="daoBook" ref="DaoBook"></property>
-		<property name="shopImageFileFolder" value="book-image"></property>
+		<property name="shopImageFileFolder" value="upload"></property>
+		<property name="errorHeader" value="错了"></property>
+		<property name="errorSpecification" value="反正是错了"></property>
 	</bean>
 
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction">
