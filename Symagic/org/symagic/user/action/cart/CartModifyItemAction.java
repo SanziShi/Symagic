@@ -32,7 +32,7 @@ public String execute() throws Exception {
 		 updateResult=false;
 		 return "SUCCESS";
 	 }
-	updateResult=UserSessionUtilty.addToCart(itemID, itemNumber);
+	updateResult=UserSessionUtilty.modifyFromCart(itemID, itemNumber);
 		//会员登录更新到数据库中
 		if(UserSessionUtilty.isLogin()){
 			

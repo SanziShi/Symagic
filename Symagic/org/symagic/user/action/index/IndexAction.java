@@ -6,6 +6,7 @@ import java.util.List;
 
 
 
+import org.apache.struts2.ServletActionContext;
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
@@ -47,9 +48,9 @@ private List<ItemBean> hotBook;//热销书
 	    //itemService.fillItem(recommendIds,recommendItem);
 	     
 	     //新书和热销书
-	    newBook=new ArrayList<ItemBean>();
-	   
-	   
+	   newBook=new ArrayList<ItemBean>();
+	   itemService.getNewBook(newBook);
+	 
 	    
 		hotBook=new ArrayList<ItemBean>();
 		return super.execute();
