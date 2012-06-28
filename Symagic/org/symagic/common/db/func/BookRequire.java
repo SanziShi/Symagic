@@ -10,7 +10,89 @@ public class BookRequire {
 	/**
 	 * 作者
 	 */
-	private String author	= null;
+	private String author	= "%";
+	
+	// 
+	private String itemName = "%";
+	
+	/**
+	 * 出版社
+	 */
+	private String publisher = "%";
+	
+	/**
+	 * 分类ID
+	 */
+	private Integer catalogID = null;
+	
+	/**
+	 * 出版年
+	 */
+	private String year	= null;
+	
+	/**
+	 * 表示year域搜索是之前的订单还是当前的。(true表示搜索之前的)
+	 */
+	private Boolean before = false;
+	
+	/**
+	 * 版本
+	 */
+	private Integer version = null;
+	
+	/**
+	 * 页数上线
+	 */
+	private Integer upPage	= null;
+	
+	/**
+	 * 页数下线
+	 */
+	private Integer lowPage	= null;
+
+	/**
+	 * 书籍装帧 
+	 * 选择（"精装"或"平装"）
+	 */
+	private String binding	= "%";
+	
+	/**
+	 * 书籍开本
+	 */
+	private String folio	= "%";
+	
+	
+//	up_price;
+	/**
+	 * 价格上线
+	 */
+	private Float upPrice	= null;
+	
+	/**
+	 * 价格下线
+	 */
+	private Float lowPrice	= null;
+	
+	/**
+	 * 折扣(discount(0:0`0.1,1:0.1`0.3,2:0.3`0.5,3:0.5`1,4:>100））
+	 */
+	private Integer discount	= null;
+	
+	/**
+	 * 第几页
+	 */
+	private Integer page	= null;
+	
+	/**
+	 * 每页显示
+	 */
+	private Integer lines	= null;
+	
+	
+
+	public Integer getCatalogID() {
+		return catalogID;
+	}
 	
 	
 	/**
@@ -120,87 +202,7 @@ public class BookRequire {
 		this.lines = lines;
 	}
 
-	// 
-	private String itemName = null;
-	
-	/**
-	 * 出版社
-	 */
-	private String publisher = null;
-	
-	/**
-	 * 分类ID
-	 */
-	private Integer catalogID = null;
-	
-	/**
-	 * 出版年
-	 */
-	private String year	= null;
-	
-	/**
-	 * 表示year域搜索是之前的订单还是当前的。(true表示搜索之前的)
-	 */
-	private Boolean before = false;
-	
-	/**
-	 * 版本
-	 */
-	private Integer version = null;
-	
-	/**
-	 * 页数上线
-	 */
-	private Integer upPage	= null;
-	
-	/**
-	 * 页数下线
-	 */
-	private Integer lowPage	= null;
 
-	/**
-	 * 书籍装帧 
-	 * 选择（"精装"或"平装"）
-	 */
-	private String binding	= null;
-	
-	/**
-	 * 书籍开本
-	 */
-	private String folio	= null;
-	
-	
-//	up_price;
-	/**
-	 * 价格上线
-	 */
-	private Float upPrice	= null;
-	
-	/**
-	 * 价格下线
-	 */
-	private Float lowPrice	= null;
-	
-	/**
-	 * 折扣(discount(0:0`10,1:10`30,2:30`50,3:50`100,4:>100））
-	 */
-	private Integer discount	= null;
-	
-	/**
-	 * 第几页
-	 */
-	private Integer page	= null;
-	
-	/**
-	 * 每页显示
-	 */
-	private Integer lines	= null;
-	
-	
-
-	public Integer getCatalogID() {
-		return catalogID;
-	}
 
 	public void setCatalogID(Integer catalogID) {
 		this.catalogID = catalogID;
