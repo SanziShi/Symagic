@@ -12,7 +12,7 @@ import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.service.ItemService;
 import org.symagic.common.service.RecommandService;
-import org.symagic.common.utilty.presentation.bean.ItemBean;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 import com.opensymphony.xwork2.Action;
@@ -31,9 +31,9 @@ private ItemService itemService;//访问商品项
 //传出参数
 private String nickname;//昵称
 
-private List<ItemBean> recommendItem;//浏览量的商品
-private List<ItemBean> newBook;//新书
-private List<ItemBean> hotBook;//热销书
+private List<ItemTinyBean> recommendItem;//浏览量的商品
+private List<ItemTinyBean> newBook;//新书
+private List<ItemTinyBean> hotBook;//热销书
 
 	@Override
 	public String execute() throws Exception {
@@ -48,11 +48,11 @@ private List<ItemBean> hotBook;//热销书
 	    //itemService.fillItem(recommendIds,recommendItem);
 	     
 	     //新书和热销书
-	   newBook=new ArrayList<ItemBean>();
+	   newBook=new ArrayList<ItemTinyBean>();
 	   itemService.getNewBook(newBook);
 	 
 	    
-		hotBook=new ArrayList<ItemBean>();
+		hotBook=new ArrayList<ItemTinyBean>();
 		return super.execute();
 	}
 	
@@ -97,32 +97,32 @@ private List<ItemBean> hotBook;//热销书
 	
 
 
-	public List<ItemBean> getRecommendItem() {
+	public List<ItemTinyBean> getRecommendItem() {
 		return recommendItem;
 	}
 
 
-	public void setRecommendItem(List<ItemBean> recommendItem) {
+	public void setRecommendItem(List<ItemTinyBean> recommendItem) {
 		this.recommendItem = recommendItem;
 	}
 
 
-	public List<ItemBean> getNewBook() {
+	public List<ItemTinyBean> getNewBook() {
 		return newBook;
 	}
 
 
-	public void setNewBook(List<ItemBean> newBook) {
+	public void setNewBook(List<ItemTinyBean> newBook) {
 		this.newBook = newBook;
 	}
 
 
-	public List<ItemBean> getHotBook() {
+	public List<ItemTinyBean> getHotBook() {
 		return hotBook;
 	}
 
 
-	public void setHotBook(List<ItemBean> hotBook) {
+	public void setHotBook(List<ItemTinyBean> hotBook) {
 		this.hotBook = hotBook;
 	}
 	

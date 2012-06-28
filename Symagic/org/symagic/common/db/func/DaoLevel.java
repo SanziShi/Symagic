@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import org.symagic.common.db.bean.BeanLevel;
 import org.symagic.common.db.pool.ConnectionPool;
@@ -119,6 +120,16 @@ public class DaoLevel {
 		}
 		
 		return level;
+	}
+	
+	/**
+	 * 获取所有等级信息
+	 * @return	List<BeanLevel> 封装着等级信息的BeanLevel实例列表
+	 */
+	public List<BeanLevel> getAll()
+	{
+		List<BeanLevel> list	= null;
+		return list;
 	}
 }
 

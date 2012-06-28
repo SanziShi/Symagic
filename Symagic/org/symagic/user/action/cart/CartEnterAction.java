@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.service.ItemService;
-import org.symagic.common.utilty.presentation.bean.ItemBean;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
+import org.symagic.user.utilty.UserSessionUtilty;
 
 public class CartEnterAction extends CatalogBase {
 	/**
@@ -13,18 +14,24 @@ public class CartEnterAction extends CatalogBase {
 	private static final long serialVersionUID = 2966695836419045173L;
 	private float totalPrice;
 	private ItemService itemService;
-	private ArrayList<ItemBean>items;
-	private ArrayList<ItemBean>recommendItems;
-	private Integer totalNumber;
+	private ArrayList<ItemTinyBean>items;
+	private ArrayList<ItemTinyBean>recommendItems;
+	private Integer totalNumber;//购物车商品数量
 
 	
 
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-	 items=new ArrayList<ItemBean>();
+	 items=new ArrayList<ItemTinyBean>();
 	 totalPrice=itemService.fillItemWithNumber(items);
+	 totalNumber=UserSessionUtilty.getTotalNumber();
 	 //推荐商品
+	 /*
+	  *test 
+	  */
+	  recommendItems=new ArrayList<ItemTinyBean>();
+	  itemService.getNewBook(recommendItems);
 	 return super.execute();
 	}
 
@@ -40,17 +47,17 @@ public ItemService getItemService() {
 public void setItemService(ItemService itemService) {
 	this.itemService = itemService;
 }
-public ArrayList<ItemBean> getItems() {
+public ArrayList<ItemTinyBean> getItems() {
 	return items;
 }
-public void setItems(ArrayList<ItemBean> items) {
+public void setItems(ArrayList<ItemTinyBean> items) {
 	this.items = items;
 }
-public ArrayList<ItemBean> getRecommendItems() {
+public ArrayList<ItemTinyBean> getRecommendItems() {
 	return recommendItems;
 }
 
-public void setRecommendItems(ArrayList<ItemBean> recommendItems) {
+public void setRecommendItems(ArrayList<ItemTinyBean> recommendItems) {
 	this.recommendItems = recommendItems;
 }
 public Integer getTotalNumber() {

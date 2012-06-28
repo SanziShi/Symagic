@@ -34,10 +34,10 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 		
 		for( BeanComment comment : comments ){
 			CommentBean bean = new CommentBean();
-			bean.setUserName(comment.getUsername());
+			bean.setUsername(comment.getUsername());
 			bean.setContent(comment.getContent());
 			bean.setDate(comment.getCommentDate());
-			bean.setRating(Integer.parseInt(comment.getRating()));
+			bean.setRating(comment.getRating());
 			commentList.add(bean);
 		}
 		
