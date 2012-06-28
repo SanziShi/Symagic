@@ -62,10 +62,6 @@
 		<property name="shopImageFileFolder" value="book-image"></property>
 	</bean>
 
-	<bean id="AdminDeleteItem" class="org.symagic.admin.action.item.ItemDeleteAction">
-		<property name="daoBook" ref="DaoBook"></property>
-	</bean>
-
 	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="book-image"></property>
@@ -224,3 +220,4 @@
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
+
