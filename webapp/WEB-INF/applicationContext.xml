@@ -80,6 +80,8 @@
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
+		<property name="errorHeader" value="错了"></property>
+		<property name="errorSpecification" value="反正是错了"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"
