@@ -307,14 +307,14 @@ public class DaoUser {
 		String sql	= "select * from user where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			sql += " username like " + "'%" + req.getUsername() + "%'";
 			if (req.getStartTime() != null)
-				sql += " registedate > " + req.getStartTime();
+				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
 			if (req.getEndTime() != null)
-				sql += " and " + " registedate < " + req.getEndTime();
+				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
 			if (req.getUserLevel() != null)
-				sql += " and " + " registedate > " + req.getUserLevel();
-			if (req.getUsername() != null)
-				sql += " and " + " username like " + req.getUsername();
+				sql += " and " + " registedate > " + "'" + req.getUserLevel() + "'";
+			
 			
 			sql += " order by userid asc limit " 
 				+ (req.getPage()-1)*req.getLines()
@@ -329,7 +329,6 @@ public class DaoUser {
 				BeanUser user	= new BeanUser();
 				user.setAnswer(rs.getString("answer"));
 				user.setNickname(rs.getString("nickname"));
-				user.setPassword(rs.getString("password"));
 				user.setQuestion(rs.getString("question"));
 				user.setScore(rs.getInt("score"));
 				user.setUsername(rs.getString("username"));

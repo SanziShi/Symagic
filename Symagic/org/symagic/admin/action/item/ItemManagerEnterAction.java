@@ -3,10 +3,9 @@ package org.symagic.admin.action.item;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
-
-import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * 控制进入商品管理页面的Action
@@ -14,7 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
  * @author hao
  * 
  */
-public class ItemManagerEnterAction extends ActionSupport {
+public class ItemManagerEnterAction extends CatalogBase {
 
 	/**
 	 * 
@@ -110,7 +109,7 @@ public class ItemManagerEnterAction extends ActionSupport {
 			break;
 		}
 
-		return SUCCESS;
+		return super.execute();
 	}
 
 	public String getName() {

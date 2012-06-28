@@ -2,10 +2,9 @@ package org.symagic.common.db.junit;
 
 import junit.framework.TestCase;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.func.DaoUser;
+import org.symagic.common.db.func.UserRequire;
 
 public class DaoUserTest extends TestCase{
 
@@ -144,4 +143,26 @@ public class DaoUserTest extends TestCase{
 //	public void testUpdatePassword3(){
 //		assertEquals(true,du.updatePassword("641567179@qq.com", "1234567", "123456"));
 //	}
+	
+/*	@Test
+	public void testGetUser1(){
+		assertEquals("sanzi",du.getUser("641567179@qq.com").getNickname());
+	}
+	@Test
+	public void testGetUser2(){
+		assertEquals(null,du.getUser("12345@qq.com"));
+	}*/
+	
+	@Test
+	public void testSearch()
+	{
+		DaoUser	du	= new DaoUser();
+		UserRequire	req	= new UserRequire();
+		req.setStartTime("2009-01-01");
+		req.setPage(1);
+		req.setLines(10);
+		req.setEndTime("2012-12-01");
+		req.setUsername("641567");
+		assertEquals("641567179@qq.com", du.search(req).get(0).getUsername());
+	}
 }
