@@ -237,8 +237,7 @@
 	<bean id="RecommendService" class="org.symagic.common.service.RecommandService">
 	</bean>
 
-
-	<!-- 数据层bean -->
+<!-- 数据层bean -->
 	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
 	<bean id="DaoBook" class="org.symagic.common.db.func.DaoBook" />
 	<bean id="DaoCart" class="org.symagic.common.db.func.DaoCart"></bean>
