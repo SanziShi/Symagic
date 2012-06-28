@@ -60,10 +60,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="left">
 		<div id="category">
 		<s:iterator value="catalog" var='outer'>
-			<a href="item_list&catalogID=<s:property value='#outer.ID'/>"><h4 ><span><s:property value='#outer.name'/></span></h4></a>
+			<a href="item_list?catalogID=<s:property value='#outer.ID'/>"><h4 ><span><s:property value='#outer.name'/></span></h4></a>
 			<ul>
 			<s:iterator value="#outer.childCatalog" var="inner">
-				<li><a href="item_list&catalogID=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
+				<li><a href="item_list?catalogID=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
 			</s:iterator>
 			</ul>
 		</s:iterator>
@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul>
             <!--迭代开始-->
             <s:iterator value='newBook' var='iter'>
-				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
+				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
 	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul>
 		 		<!--迭代开始-->
             <s:iterator value='hotBook' var='iter'>
-				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
+				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
 	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul>
 			<!--迭代开始-->
             <s:iterator value='recommendItem' var='iter'>
-				<li><a href="<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
+				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
 	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
