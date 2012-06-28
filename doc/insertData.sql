@@ -501,6 +501,9 @@ insert into book_catalog(catalogname,level,upID,catalogdesc)
       values("期刊","2",8,"期刊");
 insert into book_catalog(catalogname,level,upID,catalogdesc)
       values("套装书","2",8,"套装书");
+
+insert into book_catalog(catalogname,level,upID,catalogdesc)
+      values("工业","2",6,"工程");
       
 --向book_catalog_detail表添加数据
 insert into book_catalog_detail(bookID,catalogID)
