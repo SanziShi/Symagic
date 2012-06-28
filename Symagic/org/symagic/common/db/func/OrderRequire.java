@@ -12,7 +12,7 @@ public class OrderRequire {
 	/**
 	 * startTime:开始索引时间(year:年，month:月;day:日）;
 	 */
-	private String startTime	= null;
+	private String startTime	= "1990-01-01";
 	
 	/**
 	 * endTime:结束索引时间（year：年，month:月，day:日），
@@ -34,11 +34,6 @@ public class OrderRequire {
 	 */
 	private Integer	lines	= null;
 	
-	 /**
-	  * 销售量下线
-	  */
-	private Integer lowSales	= null;
-
 	public String getStartTime() {
 		return startTime;
 	}
@@ -79,13 +74,6 @@ public class OrderRequire {
 		this.lines = lines;
 	}
 
-	public Integer getLowSales() {
-		return lowSales;
-	}
 
-	public void setLowSales(Integer lowSales) {
-		this.lowSales = lowSales;
-	}
-	
 	
 }

@@ -160,7 +160,7 @@ function delete_from_cart(c)
 		url:'cart/delete',
 		data:'itemID='+e,
 		onSuccess:function(e){
-			var result=JSON.toJSON(e);
+			var result=JSON.prase(e);
 			if(result.deleteResult=='ture')
 			var r=document.getElementById(c);
 			r.parentNode.removeChild(r);
@@ -880,9 +880,13 @@ $().ready(function() {
 					url:'get_session_info',
 					onSend:function(){cart.loading.style.display='block';},
 					onSuccess:function(e)
-						{
-							var result=JSON.toJSON(e);
-							if(result.totalNumber=='0')cart.none.style.display='block';
+						{						
+							var result=JSON.parse(e);	
+							if(result.totalNumber=='0')
+							{
+								cart.loading.style.display='none';
+								cart.none.style.display='block';
+							}
 							else Ajax({
 								url:'cartDetail',
 								onSend:function(){document.getElementById('cart_loading').style.display='block';},

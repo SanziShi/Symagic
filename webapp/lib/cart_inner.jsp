@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <s:iterator value="items" var="item">
             <!--购物车内容迭代-->
                 <li id="<s:property value='#item.itemId'/>">
-                	<div class="cart_img"><a href="item_detail?itemID=<s:property value='#item.itemID'/>"><img src="<s:property value='#item.picturePath'/>"/></a></div>
+                	<div class="cart_img"><a href="item_detail?itemID=<s:property value='#item.itemID'/>"><img src="<s:property value='#request.get(\'javax.servlet.forward.context_path\')'/><s:property value='#item.picturePath'/>"/></a></div>
                     <div class="cart_name"><a href="item_detail?itemID=<s:property value='#item.itemID'/>"><s:property value='#item.name'/></a></div>
                     <div class="cart_price"><strong>￥<s:property value='#item.price'/></strong><span>x<s:property value='#item.itemNumber'/></span><br><a href="javascript:void(0)" onClick="delete_from_cart(<s:property value='#item.itemID'/>)" class="delete">删除</a></div>
                 </li>

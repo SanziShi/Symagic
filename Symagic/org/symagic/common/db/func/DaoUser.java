@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.pool.ConnectionPool;
 
@@ -277,7 +279,6 @@ public class DaoUser {
 				user.setNickname(rs.getString("nickname"));
 				user.setQuestion(rs.getString("question"));
 				user.setScore(rs.getInt("score"));
-				user.setUserId(rs.getInt("userid"));
 				user.setUsername(rs.getString("username"));
 			}
 			return user;
@@ -303,6 +304,48 @@ public class DaoUser {
 	public List<BeanUser> search(UserRequire req)
 	{
 		List<BeanUser> list	= null;
+		String sql	= "select * from user where ";
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			sql += " username like " + "'%" + req.getUsername() + "%'";
+			if (req.getStartTime() != null)
+				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
+			if (req.getEndTime() != null)
+				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
+			if (req.getUserLevel() != null)
+				sql += " and " + " registedate > " + "'" + req.getUserLevel() + "'";
+			
+			
+			sql += " order by userid asc limit " 
+				+ (req.getPage()-1)*req.getLines()
+				+ ", " + req.getLines();
+			
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			
+			list	= new ArrayList<BeanUser>();
+			
+			while (rs.next()) {
+				BeanUser user	= new BeanUser();
+				user.setAnswer(rs.getString("answer"));
+				user.setNickname(rs.getString("nickname"));
+				user.setQuestion(rs.getString("question"));
+				user.setScore(rs.getInt("score"));
+				user.setUsername(rs.getString("username"));
+				list.add(user);
+			}
+		} catch (Exception e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return list;
 	}
 	
