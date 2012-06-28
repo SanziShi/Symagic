@@ -129,7 +129,12 @@
 		<property name="daoLevel" ref="DaoLevel"></property>
 	</bean>
 
-<!-- 用户的action bean -->
+	<bean id="AdminEnterCommentManager"
+		class="org.symagic.admin.action.comment.AdminEnterCommentManagerAction">
+		<property name="daoComment" ref="DaoComment"></property>
+	</bean>
+
+	<!-- 用户的action bean -->
 
 
 	<bean id="indexClass" class="org.symagic.user.action.index.IndexAction">
@@ -164,11 +169,11 @@
 	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
 	</bean>
-	
-   <bean id="cartEnter" class="org.symagic.user.action.cart.CartEnterAction">
-     <property name="itemService" ref="ItemService"></property>
-     <property name="catalogService" ref="CatalogService"></property>
-   </bean>
+
+	<bean id="cartEnter" class="org.symagic.user.action.cart.CartEnterAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
 
 	<!-- 关于收藏夹的bean -->
 	<bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction">
@@ -188,16 +193,16 @@
 		<property name="itemService" ref="ItemService"></property>
 		<property name="recommendService" ref="RecommendService"></property>
 	</bean>
- 
-   <bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction">
-      <property name="itemService" ref="ItemService"></property>
-      <property name="catalogService" ref="CatalogService"></property>
-   </bean>
-    
-    <bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction">
-      <property name="itemService" ref="ItemService"></property>
-    </bean>
- 
+
+	<bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction">
+		<property name="itemService" ref="ItemService"></property>
+	</bean>
+
 
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
