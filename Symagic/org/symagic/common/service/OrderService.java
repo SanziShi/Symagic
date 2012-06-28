@@ -68,6 +68,7 @@ public class OrderService {
 		result.setReceiverName(bean.getReceiverName());
 		//result.setScore();
 		result.setTotalPrice(bean.getTotalprice());
+		result.setUserName(bean.getUsername());
 		return result;
 	}
 	/**
@@ -174,7 +175,7 @@ public class OrderService {
 			BeanOrderDetail detail = new BeanOrderDetail();
 			ItemBean item = items.get(i);
 			detail.setAmount(item.getItemNumber());
-			detail.setBookId(item.getItemId());
+			detail.setBookId(item.getItemID());
 			//detail.set
 		}
 		return orderDetails;

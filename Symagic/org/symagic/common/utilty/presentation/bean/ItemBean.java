@@ -15,13 +15,14 @@ public class ItemBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private int itemId;
+	private int itemID;
 	
-	public int getItemId() {
-		return itemId;
+	
+	public int getItemID() {
+		return itemID;
 	}
-	public void setItemId(int itemId) {
-		this.itemId = itemId;
+	public void setItemID(int itemID) {
+		this.itemID = itemID;
 	}
 	public Float getSavePrice() {
 		return savePrice;

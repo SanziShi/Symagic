@@ -1,4 +1,8 @@
 #order_container
 {
-	
+	background: #EFF5F8;
+}
+{
+	border-top: #B7D2DF solid 2px;
+	border-bottom: #B7D2DF solid 1px;
 }

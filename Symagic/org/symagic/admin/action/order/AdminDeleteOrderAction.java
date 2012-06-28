@@ -2,6 +2,7 @@ package org.symagic.admin.action.order;
 
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.func.DaoOrder;
+import org.symagic.common.service.MailService;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -29,6 +30,8 @@ public class AdminDeleteOrderAction extends ActionSupport {
 		if( !daoOrder.deleteOrder(orderID) ) return super.execute();
 		
 		deleteResult = true;
+		
+		MailService.sendDeleteOrder(order);
 		
 		return super.execute();
 	}

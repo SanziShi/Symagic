@@ -54,6 +54,8 @@ public class OrderBean {
 	 */
 	private String orderTime;
 	
+	private String userName;
+	
 	public String getOrderId() {
 		return orderId;
 	}
@@ -89,5 +91,11 @@ public class OrderBean {
 	}
 	public void setOrderTime(String orderTime) {
 		this.orderTime = orderTime;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }

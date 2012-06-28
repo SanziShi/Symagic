@@ -11,6 +11,7 @@ import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoOrder;
+import org.symagic.common.service.MailService;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -61,6 +62,8 @@ public class AdminFailOrderAction extends ActionSupport {
 						if (!daoBook.modifyBook(bookDetail))
 							return super.execute();
 					}
+					
+					MailService.sendFailOrder(order);
 				}
 			}
 

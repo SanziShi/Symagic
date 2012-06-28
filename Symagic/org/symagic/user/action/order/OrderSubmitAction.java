@@ -123,9 +123,17 @@ public class OrderSubmitAction extends OrderBase{
 		address.districtDetail = this.addressDetail;
 		address.level1District = new DistrictBean();
 		address.level1District.setID(this.level1Id);
-		//name??
+		address.level1District.setName(daoDistrict.getDistrictById(level1Id).getName());
+		address.level2District = new DistrictBean();
+		address.level2District.setID(this.level2Id);
+		address.level2District.setName(daoDistrict.getDistrictById(level2Id).getName());
+		address.level3District = new DistrictBean();
+		address.level3District.setID(this.level3Id);
+		address.level3District.setName(daoDistrict.getDistrictById(level3Id).getName());
 		order.setAddrDetail(OrderService.serializerAddress(address));
-		order.setDeliveryWay("");
+		order.setDeliveryWay("0");
+		order.setPayment("0");
+		
 		for(int i = 0; i < items.size(); i ++){
 			
 		}
