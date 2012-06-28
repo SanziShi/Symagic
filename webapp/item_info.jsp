@@ -108,21 +108,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </ul>
         </div>
         <ul id="summary">
-        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>测试<s:property value='#book.author'/></li>
-        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>清华大学出版社</li>
-        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>34516661722838</li>
-        <li><span>出版日期：</span>2011-11-11</li>
-        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>2</li>
-        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>16开</li>
-        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>平装</li>
-        <li><span>纸&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;张：</span>胶印纸</li>
-        <li><span>语&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;种：</span>中文</li>
+        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>null<s:property value='#book.author'/></li>
+        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>null<s:property value='#book.publisher'/></li>
+        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>null<s:property value='#book.isbn'/></li>
+        <li><span>出版日期：</span>null<s:property value='#book.publishDate'/></li>
+        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>null<s:property value='#book.version'/></li>
+        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>null<s:property value='#book.folio'/></li>
+        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>null<s:property value='#book.binding'/></li>
+        <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span>null<s:property value='#book.page'/></li>
         </ul>
         <ul id="book_price">
-        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>￥9.50</del></li>
-        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>￥8.08</strong></li>
-        <li><span>为您节省：</span><strong>￥1.42</strong></li>
-        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>10</li>
+        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>null<s:property value='#book.marketPrice'/></del></li>
+        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>null<s:property value='#book.price'/></strong></li>
+        <li><span>为您节省：</span><strong>null</strong></li>
+        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>null<s:property value='#book.inventory'/></li>
         </ul>
         <div id="add_to_cart">
         <div id="item_amount">
