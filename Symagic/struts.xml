@@ -123,9 +123,9 @@
 
 	</package>
 
-	<!-- 注册时命名检测 -->
+	<!-- 注册时用户名检测 -->
 	<package name="regist-user-default" extends="symagic-user-default"
-		namespace="regist">
+		namespace="/regist">
 		<action name="check_name" class="usernameUnique">
 			<result type="json">
 				<param name="includeProperties">checkResult</param>
@@ -155,7 +155,8 @@
 		</action>
 	</package>
 
-	<!-- 用户收藏夹有关的action -->
+
+<!-- 用户收藏夹有关的action -->
 	<package name="favority-user-default" extends="symagic-user-default"
 		namespace="/favorite">
 		<action name="add_favorite" class="addToFavorite">
@@ -170,7 +171,8 @@
 		</action>
 	</package>
 
-	<!-- 用户中与商品项有关的action -->
+<!-- 用户中与商品项有关的action -->
+
 	<package name="item-user-default" extends="symagic-user-default"
 		namespace="/item">
 		<action name="comment" class="submitComment">

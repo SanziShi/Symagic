@@ -38,19 +38,9 @@ public String execute() throws Exception {
 public String getUserName() {
 	return userName;
 }
-
-
-
 public void setUserName(String userName) {
 	this.userName = userName;
 }
-
-
-
-public Integer getLoginErrorTimes() {
-	return loginErrorTimes;
-}
-
 public String getNickname() {
 	return nickname;
 }
@@ -61,18 +51,16 @@ public Integer getTotalNumber() {
 	return totalNumber;
 }
 
-
-
 public void setTotalNumber(Integer totalNumber) {
 	this.totalNumber = totalNumber;
 }
-
-
 
 public void setLoginErrorTimes(Integer loginErrorTimes) {
 	this.loginErrorTimes = loginErrorTimes;
 }
 
-
+public Integer getLoginErrorTimes() {
+	return loginErrorTimes;
+}
 
 }

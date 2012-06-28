@@ -12,6 +12,7 @@
 		</property>
 	</bean>
 
+
 	<!-- 管理员拦截器配置 -->
 	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor">
 		<property name="guestIllegalURL">
@@ -141,6 +142,8 @@
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
 
+
+
 <!-- 用户的action bean -->
 
 
@@ -158,6 +161,7 @@
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 		<property name="userService" ref="UserService"></property>
 	</bean>
+	
 	<bean id="usernameUnique" class="org.symagic.user.action.register.CheckUsernameAction">
 		<property name="userService" ref="UserService"></property>
 	</bean>

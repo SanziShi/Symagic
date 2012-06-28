@@ -170,8 +170,13 @@ public class ItemService {
 				items.add(item);
 			}
 		}
-	//将购物车的信息进行填充
+	/**
+	 * 将购物车的信息进行填充
+	 * @param items不能为null
+	 * @return 商品总数量
+	 */
 	public float fillItemWithNumber(ArrayList<ItemTinyBean>items){
+		if(items==null)return -1;
 		//获得购物车
 		//test
 		 UserSessionUtilty.addToCart(1, 3);
