@@ -363,11 +363,52 @@ public class DaoUser {
 	 * 更新用户积分
 	 * @return	true 更新成功	false 更新失败
 	 */
-	public boolean updateScore()
+	public boolean updateScore(int score, String username)
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("update ");
+			ps	= conn.prepareStatement("update user set score=? where username=?");
+			ps.setInt(1, score);
+			ps.setString(2, username);
+			ps.execute();
+			if (ps.getUpdateCount() == 1)
+				return true;
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * 更新用户问题与答案
+	 * @param username	指定用户名
+	 * @param question	指定用户问题	
+	 * @param answer
+	 * @return
+	 */
+	public boolean updateQA(String username, String question, String answer)
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("update user set question=?, answer=? " +
+					"where username=?");
+			ps.setString(1, question);
+			ps.setString(2, Util.getMD5(answer.getBytes()));
+			ps.setString(3, username);
+			ps.execute();
+			
+			if (ps.getUpdateCount() == 1)
+				return true;
+			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
