@@ -8,6 +8,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class CartModifyItemAction extends ActionSupport {
 
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3920616007203094591L;
+
 private DaoCart daoCart;//访问数据库中会员购物车信息
 
 private Integer itemID;//商品id
@@ -32,8 +37,10 @@ public String execute() throws Exception {
 		 updateResult=false;
 		 return "SUCCESS";
 	 }
-	updateResult=UserSessionUtilty.addToCart(itemID, itemNumber);
-		//会员登录更新到数据库中
+	 
+	updateResult=UserSessionUtilty.modifyFromCart(itemID, itemNumber);
+		
+	//会员登录更新到数据库中
 		if(UserSessionUtilty.isLogin()){
 			
 			updateResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber);

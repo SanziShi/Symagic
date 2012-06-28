@@ -175,50 +175,48 @@ public class ItemService {
 			items.add(item);
 		}
 	}
-
-	// 将购物车的信息进行填充
-	public float fillItemWithNumber(ArrayList<ItemTinyBean> items) {
-		// 获得购物车
-		// test
-		UserSessionUtilty.addToCart(1, 3);
-		UserSessionUtilty.addToCart(4, 4);
-		HashMap<Integer, Integer> cart = UserSessionUtilty.getCart();
-
-		if (cart == null) {
-			return 0;
-		}
-		// 遍历购物车中的商品信息
-		Set<Integer> keySet = cart.keySet();
-
-		BeanBook book;
-		ItemTinyBean item;
-		float totalPrice = 0;
-
-		// 记录购物车每项商品的信息
-		for (Iterator<Integer> ids = keySet.iterator(); ids.hasNext();) {
-			int bookId = ids.next();
-			int number = cart.get(bookId);
-			book = daoBook.getDetail(bookId);
-			item = new ItemTinyBean();
-			item.setItemID(bookId);
-			item.setItemNumber(number);
-			float marketPrice = MathUtilty.roundWithdigits(book
-					.getMarketPrice());
-			float discount = MathUtilty.roundWithdigits(book.getDiscount());
-			float bookprice = MathUtilty
-					.roundWithdigits(marketPrice * discount);
-			float itemTotalPrice = MathUtilty.roundWithdigits(bookprice
-					* number);
-			item.setItemTotalPrice(itemTotalPrice);
-			item.setName(book.getBookName());
-			item.setPrice(bookprice);// 商城价
-			item.setSavePrice(MathUtilty.roundWithdigits(number * marketPrice
-					* (1 - discount)));
-			item.setPicturePath(book.getPicture());
-			items.add(item);
-			totalPrice += itemTotalPrice;
-		}
-		return MathUtilty.roundWithdigits(totalPrice);
+	/**
+	 * 将购物车的信息进行填充
+	 * @param items不能为null
+	 * @return 商品总数量
+	 */
+	public float fillItemWithNumber(ArrayList<ItemTinyBean>items){
+		if(items==null)return -1;
+		//获得购物车
+		//test
+		 UserSessionUtilty.addToCart(1, 3);
+		 UserSessionUtilty.addToCart(4, 4);
+		HashMap<Integer,Integer> cart=UserSessionUtilty.getCart();
+		
+		 if(cart==null){return 0;}
+		 //遍历购物车中的商品信息
+		 Set<Integer>keySet=cart.keySet();
+		
+		 BeanBook book;
+		 ItemTinyBean item;
+		float totalPrice=0;
+		 
+		 //记录购物车每项商品的信息
+		 for(Iterator<Integer> ids=keySet.iterator();ids.hasNext();){
+			  int bookId=ids.next();
+			  int number=cart.get(bookId);
+			  book=daoBook.getDetail(bookId);
+			  item=new ItemTinyBean();
+			  item.setItemID(bookId);
+			  item.setItemNumber(number);
+			  float marketPrice=MathUtilty.roundWithdigits(book.getMarketPrice());
+			  float discount=MathUtilty.roundWithdigits(book.getDiscount());
+			  float bookprice=MathUtilty.roundWithdigits(marketPrice*discount);
+			  float itemTotalPrice=MathUtilty.roundWithdigits(bookprice*number);
+			  item.setItemTotalPrice(itemTotalPrice);
+			  item.setName(book.getBookName());
+			  item.setPrice(bookprice);//商城价
+			  item.setSavePrice(MathUtilty.roundWithdigits(number*marketPrice*(1-discount)));
+			  item.setPicturePath(book.getPicture());
+			  items.add(item);
+			  totalPrice+=itemTotalPrice;
+		 }
+		 return MathUtilty.roundWithdigits(totalPrice);
 	}
 
 	public DaoBook getDaoBook() {

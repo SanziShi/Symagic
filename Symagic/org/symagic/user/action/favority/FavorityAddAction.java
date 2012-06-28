@@ -13,12 +13,12 @@ public class FavorityAddAction extends ActionSupport {
 	private static final long serialVersionUID = 8679639043977363919L;
 	private DaoFavorityFolder daoFavorityFolder;//对收藏夹的管理
 	private Integer itemID; //添加商品的id
-	
 	private boolean addResult;//添加是否成功
 	 
 	 @Override
 		public String execute() throws Exception {
 			// TODO Auto-generated method stub
+		 //商品不能为空且用户已登录
 			if(itemID==null||!UserSessionUtilty.isLogin()){
 				addResult=false;
 				return SUCCESS;

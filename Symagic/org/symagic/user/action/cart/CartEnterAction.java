@@ -12,7 +12,7 @@ public class CartEnterAction extends CatalogBase {
 	 * 
 	 */
 	private static final long serialVersionUID = 2966695836419045173L;
-	private float totalPrice;
+	private Float totalPrice;
 	private ItemService itemService;
 	private ArrayList<ItemTinyBean>items;
 	private ArrayList<ItemTinyBean>recommendItems;
@@ -35,7 +35,7 @@ public class CartEnterAction extends CatalogBase {
 	 return super.execute();
 	}
 
-public float getTotalPrice() {
+public Float getTotalPrice() {
 	return totalPrice;
 }
 public void setTotalPrice(float totalPrice) {
