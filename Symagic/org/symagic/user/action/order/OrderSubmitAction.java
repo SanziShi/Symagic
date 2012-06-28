@@ -15,8 +15,7 @@ import org.symagic.common.db.func.DaoUserAddress;
 import org.symagic.common.service.OrderService;
 import org.symagic.common.service.RecommandService;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
-import org.symagic.common.utilty.presentation.bean.ItemBean;
-import org.symagic.common.utilty.presentation.bean.OrderDetailBean;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 public class OrderSubmitAction extends OrderBase{
@@ -47,7 +46,7 @@ public class OrderSubmitAction extends OrderBase{
 	
 	private String addressDetail;
 	
-	private List<ItemBean> items;
+	private List<ItemTinyBean> items;
 	
 	private DaoOrder daoOrder;
 	
@@ -130,11 +129,11 @@ public class OrderSubmitAction extends OrderBase{
 		this.daoOrder = order;
 	}
 	
-	public List<ItemBean> getItems(){
+	public List<ItemTinyBean> getItems(){
 		return items;
 	}
 	
-	public void setItems(List<ItemBean> items){
+	public void setItems(List<ItemTinyBean> items){
 		this.items = items;
 	}
 	
