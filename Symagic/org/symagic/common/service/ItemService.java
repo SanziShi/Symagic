@@ -43,7 +43,7 @@ public class ItemService {
 	for(Iterator<BeanBook>index=newBooks.iterator();index.hasNext();){
 		book=new ItemBean();
 		BeanBook newBook=index.next();
-		book.setItemId(newBook.getBookId());
+		book.setItemID(newBook.getBookId());
 		book.setName(newBook.getBookName());
 		book.setPicturePath(newBook.getPicture());
 		book.setPrice(MathUtilty.roundWithdigits(newBook.getMarketPrice()*newBook.getDiscount(), 1));
@@ -122,7 +122,7 @@ public class ItemService {
 			for(Iterator<Integer> index=ids.iterator();index.hasNext();){
 				int id=index.next();
 				item=new ItemBean();
-				item.setItemId(id);
+				item.setItemID(id);
 				book=daoBook.getDetail(id);
 				item.setName(book.getBookName());
 				item.setPicturePath(book.getPicture());
@@ -154,7 +154,7 @@ public class ItemService {
 			  int number=cart.get(bookId);
 			  book=daoBook.getDetail(bookId);
 			  item=new ItemBean();
-			  item.setItemId(bookId);
+			  item.setItemID(bookId);
 			  item.setItemNumber(number);
 			  float marketPrice=book.getMarketPrice();
 			  float discount=book.getDiscount();
