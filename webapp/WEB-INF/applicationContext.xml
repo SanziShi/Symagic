@@ -43,7 +43,7 @@
 		<property name="orderService" ref="OrderService"></property>
 	</bean>
 
-	<!-- 管理员的action bean -->
+		<!-- 管理员的action bean -->
 	<bean id="AdminIndex" class="org.symagic.admin.action.index.AdminIndexAction">
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="daoOrder" ref="DaoOrder"></property>
@@ -57,6 +57,7 @@
 		<property name="daoAdmin" ref="DaoAdmin"></property>
 	</bean>
 
+	<!-- 管理员Item -->
 	<bean id="AdminAddItem" class="org.symagic.admin.action.item.ItemAddAction">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="book-image"></property>
@@ -73,6 +74,12 @@
 
 	<bean id="AdminUplineItem" class="org.symagic.admin.action.item.ItemUpAction">
 		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="lines" value="15"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"
@@ -129,6 +136,11 @@
 		<property name="daoLevel" ref="DaoLevel"></property>
 	</bean>
 
+	<bean id="AdminEnterCommentManager"
+		class="org.symagic.admin.action.comment.AdminEnterCommentManagerAction">
+		<property name="daoComment" ref="DaoComment"></property>
+	</bean>
+
 <!-- 用户的action bean -->
 
 
@@ -168,6 +180,7 @@
    <bean id="cartEnter" class="org.symagic.user.action.cart.CartEnterAction">
      <property name="itemService" ref="ItemService"></property>
      <property name="catalogService" ref="CatalogService"></property>
+     
    </bean>
 
 	<!-- 关于收藏夹的bean -->
@@ -192,10 +205,12 @@
    <bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction">
       <property name="itemService" ref="ItemService"></property>
       <property name="catalogService" ref="CatalogService"></property>
+      <property name="lines" value="15"></property>
    </bean>
     
     <bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction">
       <property name="itemService" ref="ItemService"></property>
+      <property name="lines" value="15"></property>
     </bean>
  
 
@@ -212,7 +227,6 @@
 
 	<bean id="OrderService" class="org.symagic.common.service.OrderService">
 		<property name="daoOrder" ref="DaoOrder"></property>
-		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="ItemService" class="org.symagic.common.service.ItemService">

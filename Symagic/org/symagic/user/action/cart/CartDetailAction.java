@@ -12,6 +12,7 @@ import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.service.ItemService;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
+import org.symagic.user.utilty.MathUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -29,7 +30,7 @@ private  ItemService itemService;//访问商品信息
 
 private ArrayList<ItemTinyBean>items;//购物车中每项商品
 private Integer totalNumber;//购物车中的商品数量
-private float totalPrice;//购物车中商品的总价
+private Float totalPrice;//购物车中商品的总价
  
  @Override
 	public String execute() throws Exception {
@@ -65,7 +66,7 @@ private float totalPrice;//购物车中商品的总价
 	}
 
 
-public float getTotalPrice() {
+public Float getTotalPrice() {
 	return totalPrice;
 }
 public void setTotalPrice(float totalPrice) {
