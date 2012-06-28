@@ -1,8 +1,7 @@
 package org.symagic.admin.action.item;
 
-import com.opensymphony.xwork2.ActionSupport;
 
-public class ItemModifyEnterAction extends ActionSupport {
+public class ItemModifyEnterAction extends AdminItemDetailAction {
 
 	/**
 	 * 
