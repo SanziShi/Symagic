@@ -356,6 +356,38 @@ public class DaoUser {
 	 */
 	public int getSearchNum(UserRequire req)
 	{
+		String sql	= "select count(*) from user where ";
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			sql += " username like " + "'%" + req.getUsername() + "%'";
+			if (req.getStartTime() != null)
+				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
+			if (req.getEndTime() != null)
+				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
+			if (req.getUserLevel() != null)
+				sql += " and " + " registedate > " + "'" + req.getUserLevel() + "'";
+			
+			
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			
+			count	= 0;
+			while (rs.next()) {
+				count++;
+			}
+			return count;
+		} catch (Exception e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return -1;
 	}
 	

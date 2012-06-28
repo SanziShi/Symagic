@@ -209,7 +209,6 @@ public class DaoBook {
 	 */
 	public List<BeanBook> search(int sign, BookRequire req) {
 		List<BeanBook> list	= null;
-		String r	= "";
 		String sql	= "select * from book where ";
 		// 普通查询
 		if (sign == 0) {
@@ -621,14 +620,10 @@ public class DaoBook {
 		return false;
 	}
 	
-	/**
-	 * 获取指定书籍的销售总量、销售总价
-	 * @param bookID	指定用户ID
-	 * @return	BeanBookStatistics 封装各种统计数据的Bean实例
-	 */
-	public BeanBookStatistics getBookStatistics(int bookID)
+ 
+	public List<BeanBookStatistics> getBookStatistics(BookStatisticsRequire req)
 	{
-		BeanBookStatistics	bbs	= null;
+		List <BeanBookStatistics>	list	= null;
 		String sql	= "";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
@@ -645,7 +640,7 @@ public class DaoBook {
 			}
 		}
 		
-		return bbs;
+		return list;
 	}
 	
 	/**
