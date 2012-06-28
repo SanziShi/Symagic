@@ -113,7 +113,7 @@
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
-
+	<!-- 管理员订单管理Action -->
 	<bean id="AdminEnterOrderEdit"
 		class="org.symagic.admin.action.order.AdminOrderEditEnterAction">
 		<property name="orderService" ref="OrderService"></property>
@@ -138,6 +138,11 @@
 
 	<bean id="AdminDeleteOrder" class="org.symagic.admin.action.order.AdminDeleteOrderAction">
 		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
+
+	<bean id="AdminSuccessOrder" class="org.symagic.admin.action.order.AdminSuccessOrderAction">
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 
 	<bean id="AdminSubmitScoreRate"
