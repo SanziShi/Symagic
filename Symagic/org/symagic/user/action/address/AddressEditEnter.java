@@ -42,8 +42,6 @@ public class AddressEditEnter extends CatalogBase{
 	
 	private DaoDistrict daoDistrict;
 	
-	private AddressService addressService;
-	
 	public DaoUserAddress getDaoAddress() {
 		return daoAddress;
 	}
@@ -133,16 +131,8 @@ public class AddressEditEnter extends CatalogBase{
 		
 	}
 	
-	public AddressService getAddressService() {
-		return addressService;
-	}
-
-	public void setAddressService(AddressService addressService) {
-		this.addressService = addressService;
-	}
-	
 	public String execute() throws Exception{
-		
+		super.execute();
 		BeanAddress addressDetail = daoAddress.getAddressDetail(UserSessionUtilty.getUsername(), Integer.parseInt(addressID));
 		OrderService.Address address = OrderService.deserializerAddress(addressDetail.getAddrdetail());
 		
@@ -152,26 +142,26 @@ public class AddressEditEnter extends CatalogBase{
 		level3District = new ArrayList<DistrictBean>();
 		//三级地区列表
 		List<BeanDistrict> beanDaoDistricts1 = daoDistrict.getDistrict(0);
-		DistrictBean provinceBean = addressService.convertBeanDistrictToDistrictBean(daoDistrict.getDistrictById(address.level1District.getID()));
+		DistrictBean provinceBean = AddressService.convertBeanDistrictToDistrictBean(daoDistrict.getDistrictById(address.level1District.getID()));
 		level1District.add(provinceBean);
 		for(int i = 0; i < beanDaoDistricts1.size(); i ++){
 			if(beanDaoDistricts1.get(i).getId() != provinceBean.getID())
-				level1District.add(addressService.convertBeanDistrictToDistrictBean(beanDaoDistricts1.get(i)));
+				level1District.add(AddressService.convertBeanDistrictToDistrictBean(beanDaoDistricts1.get(i)));
 		}
 		
 		List<BeanDistrict> beanDaoDistricts2 = daoDistrict.getDistrict(address.level1District.getID());
-		DistrictBean cityBean =addressService.convertBeanDistrictToDistrictBean(daoDistrict.getDistrictById(address.level2District.getID()));
+		DistrictBean cityBean =AddressService.convertBeanDistrictToDistrictBean(daoDistrict.getDistrictById(address.level2District.getID()));
 		level2District.add(cityBean);
 		for(int i = 0; i < beanDaoDistricts2.size(); i ++){
 			if(beanDaoDistricts2.get(i).getId() != cityBean.getID())
-				level2District.add(addressService.convertBeanDistrictToDistrictBean(beanDaoDistricts2.get(i)));
+				level2District.add(AddressService.convertBeanDistrictToDistrictBean(beanDaoDistricts2.get(i)));
 		}
 		
 		List<BeanDistrict> beanDaoDistricts3 = daoDistrict.getDistrict(address.level2District.getID());
-		DistrictBean areaBean = addressService.convertBeanDistrictToDistrictBean(daoDistrict.getDistrictById(address.level3District.getID()));
+		DistrictBean areaBean = AddressService.convertBeanDistrictToDistrictBean(daoDistrict.getDistrictById(address.level3District.getID()));
 		for(int i = 0; i < beanDaoDistricts3.size(); i ++){
 			if(beanDaoDistricts3.get(i).getId() != areaBean.getID())
-				level3District.add(addressService.convertBeanDistrictToDistrictBean(beanDaoDistricts3.get(i)));
+				level3District.add(AddressService.convertBeanDistrictToDistrictBean(beanDaoDistricts3.get(i)));
 		}
 		
 		receiverName = addressDetail.getReceivername();
