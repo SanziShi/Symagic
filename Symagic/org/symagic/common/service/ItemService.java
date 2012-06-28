@@ -13,6 +13,7 @@ import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoComment;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
+import org.symagic.user.utilty.MathUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 public class ItemService {
@@ -27,16 +28,33 @@ public class ItemService {
 	public List<BeanBook> search(int sign,BookRequire require){
 		return daoBook.search(sign,require);
 	}
+	
 	public int getSearchNum(int sign,BookRequire require){
 		return daoBook.getSearchRowNumber(sign, require);
 	}
 	
+	/**
+	 * @param books为外部引用，不能为null
+	 */
+ public void getNewBook(List<ItemBean> books){
+	List<BeanBook> newBooks=daoBook.getLatestBook();
+	if(newBooks==null)return ;
+	ItemBean book;
+	for(Iterator<BeanBook>index=newBooks.iterator();index.hasNext();){
+		book=new ItemBean();
+		BeanBook newBook=index.next();
+		book.setItemID(newBook.getBookId());
+		book.setName(newBook.getBookName());
+		book.setPicturePath(newBook.getPicture());
+		book.setPrice(MathUtilty.roundWithdigits(newBook.getMarketPrice()*newBook.getDiscount(), 1));
+		books.add(book);
+	 }
+ }
 	
 	
 	
 	//将查询 得到的书本信息装饰成前台所需的信息
 	public void decorate(List<BeanBook>books,List<ItemDetailBean>items){
-		
 		BeanBook book;
 		ItemDetailBean bean;
 		for(Iterator<BeanBook>index=books.iterator();index.hasNext();){
@@ -104,7 +122,7 @@ public class ItemService {
 			for(Iterator<Integer> index=ids.iterator();index.hasNext();){
 				int id=index.next();
 				item=new ItemBean();
-				item.setItemId(id);
+				item.setItemID(id);
 				book=daoBook.getDetail(id);
 				item.setName(book.getBookName());
 				item.setPicturePath(book.getPicture());
@@ -136,11 +154,11 @@ public class ItemService {
 			  int number=cart.get(bookId);
 			  book=daoBook.getDetail(bookId);
 			  item=new ItemBean();
-			  item.setItemId(bookId);
+			  item.setItemID(bookId);
 			  item.setItemNumber(number);
-			  float marketPrice=book.getMarketPrice();//书本市场价
-			  float discount=book.getDiscount();//书本折扣价
-			  float bookprice=(float)(Math.round(marketPrice*discount*100))/100;
+			  float marketPrice=book.getMarketPrice();
+			  float discount=book.getDiscount();
+			  float bookprice=MathUtilty.roundWithdigits(marketPrice*discount, 1);
 			  float itemTotalPrice=bookprice*number;
 			  item.setItemTotalPrice(itemTotalPrice);
 			  item.setName(book.getBookName());

@@ -22,10 +22,12 @@ public class ItemDeleteAction extends ActionSupport {
 		deleteResult = false;
 		
 		if( itemID != null ){
-			//daoBook.delete???
+			if( !daoBook.deleteBook(itemID) )
+				return super.execute();
+			deleteResult = true;
 		}
 		
-		return SUCCESS;
+		return super.execute();
 	}
 
 	public Integer getItemID() {

@@ -14,7 +14,7 @@
 
 	<!-- 管理员拦截器配置 -->
 	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor">
-	<property name="guestIllegalURL">
+		<property name="guestIllegalURL">
 			<set>
 				<!-- 被认为是非法的管理员操作 -->
 			</set>
@@ -132,8 +132,9 @@
 
 	<!-- 用户的action bean -->
 	<bean id="indexClass" class="org.symagic.user.action.index.IndexAction">
-	<property name="recommendService" ref="RecommendService"></property>
-	<property name="catalogService" ref="CatalogService"></property>
+		<property name="recommendService" ref="RecommendService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="itemService" ref="ItemService"></property>
 	</bean>
 	<bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
 	<bean id="loginClass" class="org.symagic.user.action.login.LoginAction">
@@ -147,7 +148,7 @@
 	<bean id="usernameUnique" class="org.symagic.user.action.register.CheckUsernameAction">
 		<property name="userService" ref="UserService"></property>
 	</bean>
-	
+
 	<!-- 关于购物的bean -->
 	<bean id="addToCart" class="org.symagic.user.action.cart.CartAddItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
@@ -162,7 +163,7 @@
 	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
 	</bean>
-	
+
 	<!-- 关于收藏夹的bean -->
 	<bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction">
 		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
@@ -170,21 +171,21 @@
 	<bean id="deleteFromFavority" class="org.symagic.user.action.favority.FavorityDeleteAction">
 		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
 	</bean>
-	
+
 	<!-- 关于商品的bean -->
 	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction">
-	   <property name="itemService" ref="ItemService"></property>
-	   <property name="recommendService"  ref="RecommendService"></property>
+		<property name="itemService" ref="ItemService"></property>
+		<property name="recommendService" ref="RecommendService"></property>
 	</bean>
-	
+
 	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction">
-	  <property name="itemService" ref="ItemService"></property>
-	  <property name="recommendService" ref="RecommendService"></property>
+		<property name="itemService" ref="ItemService"></property>
+		<property name="recommendService" ref="RecommendService"></property>
 	</bean>
 
 
 
-<!-- service bean -->
+	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="daoCart" ref="DaoCart"></property>
@@ -203,7 +204,7 @@
 	<bean id="ItemService" class="org.symagic.common.service.ItemService">
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
-	
+
 	<bean id="RecommendService" class="org.symagic.common.service.RecommandService">
 	</bean>
 
@@ -221,3 +222,4 @@
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 </beans>
+
