@@ -35,6 +35,8 @@ public class AddressSubmitAction extends AddressBase{
 	}
 
 	public String execute() throws Exception{
+		super.execute();
+		
 		BeanAddress address = new BeanAddress();
 		
 		OrderService.Address addressDetail = new OrderService.Address();
