@@ -73,6 +73,10 @@
 		<property name="shopImageFileFolder" value="book-image"></property>
 	</bean>
 
+	<bean id="AdminDeleteItem" class="org.symagic.admin.action.item.ItemDeleteAction">
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction">
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
@@ -140,9 +144,13 @@
 		class="org.symagic.admin.action.level.AdminScoreRateSubmitAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
 	</bean>
-
+	<!-- 管理员处理comment -->
 	<bean id="AdminEnterCommentManager"
 		class="org.symagic.admin.action.comment.AdminEnterCommentManagerAction">
+		<property name="daoComment" ref="DaoComment"></property>
+	</bean>
+	<bean id="AdminDeleteComment"
+		class="org.symagic.admin.action.comment.AdminDeleteCommentAction">
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
 

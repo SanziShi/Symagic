@@ -29,6 +29,9 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 		
 		totalPage = (int)Math.floor(rowNumber / lines);
 		
+		if( page == null )
+			page = 1;
+		
 		List<BeanComment> comments = daoComment.getAllComment(page, lines);
 		commentList = new ArrayList<CommentBean>();
 		
