@@ -15,15 +15,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 class="UserLoginInterceptor"></interceptor>
 
-			<interceptor-stack 
-
-name="userLoginInterceptorStack">
-				<interceptor-ref 
-
-name="defaultStack"></interceptor-ref>
-				<interceptor-ref 
-
-name="userLoginInterceptor"></interceptor-ref>
+			<interceptor-stack name="userLoginInterceptorStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 			</interceptor-stack>
 
 		</interceptors>
@@ -42,29 +36,19 @@ name="userLoginInterceptor"></interceptor-ref>
 
 class="AdminLoginInterceptor"></interceptor>
 
-			<interceptor-stack 
-
-name="adminLoginInterceptorStack">
-				<interceptor-ref 
-
-name="defaultStack"></interceptor-ref>
-				<interceptor-ref 
-
-name="adminLoginInterceptor"></interceptor-ref>
+			<interceptor-stack name="adminLoginInterceptorStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
 			</interceptor-stack>
 
 		</interceptors>
 
 		<!-- 配置登录拦截器栈最为默认拦截器 -->
-		<default-interceptor-ref 
-
-name="adminLoginInterceptorStack"></default-interceptor-ref>
+		<default-interceptor-ref name="adminLoginInterceptorStack"></default-interceptor-ref>
 
 		<!-- 用于错误处理的result -->
 		<global-results>
-			<result 
-
-name="enforceLogin">/admin/login.jsp</result>
+			<result name="enforceLogin">/admin/login.jsp</result>
 		</global-results>
 
 	</package>
@@ -79,17 +63,13 @@ class="generateCaptcha">
 				<param name="contentType">
 
 ${symagicCaptcha.getCaptchaContentType}</param>
-				<param 
-
-name="inputName">imageInputStream</param>
+				<param name="inputName">imageInputStream</param>
 			</result>
 		</action>
 
 		<action name="captcha_check_captcha" class="checkCaptcha">
 			<result type="json">
-				<param 
-
-name="includeProperties">captchaCheckResult</param>
+				<param name="includeProperties">captchaCheckResult</param>
 			</result>
 		</action>
 
@@ -107,9 +87,7 @@ name="includeProperties">captchaCheckResult</param>
 
 		<action name="login" class="loginClass">
 			<result type="json">
-				<param 
-
-name="includeProperties">loginResult,toURL</param>
+				<param name="includeProperties">loginResult,toURL</param>
 			</result>
 		</action>
 
@@ -121,18 +99,14 @@ name="includeProperties">loginResult,toURL</param>
   
 		<action name="regist" class="registerClass">
 			<result type="json">
-				<param 
-
-name="includeProperties">toURL,registerResult</param>
+				<param name="includeProperties">toURL,registerResult</param>
 			</result>
 		</action>
 
 		
 
 		<action name="cartDetail" class="detailOfCart">
-			<result 
-
-name="success">/lib/cart_inner.jsp</result>
+			<result name="success">/lib/cart_inner.jsp</result>
 		</action>
 		<action name="cart" class="cartEnter">
 		  <result>/cart.jsp</result>
@@ -149,6 +123,8 @@ name="success">/lib/cart_inner.jsp</result>
 		
 		<action name="item_detail" class="itemDetail">
 		  <result>/item_info.jsp</result>
+		  <result name="error">/error.jsp</result>
+		  <result name="input">/error.jsp</result>
 		</action>
 		<action name="comment" class="browseComment">
 		 <result>/lib/comment_inner.jsp</result>
@@ -163,9 +139,7 @@ name="success">/lib/cart_inner.jsp</result>
 		namespace="/regist">
 		<action name="check_name" class="usernameUnique">
 			<result type="json">
-				<param 
-
-name="includeProperties">checkResult</param>
+				<param name="includeProperties">checkResult</param>
 			</result>
 		</action>
 
@@ -176,46 +150,34 @@ name="includeProperties">checkResult</param>
 		namespace="/cart">
 		<action name="add_to_cart" class="addToCart">
 			<result type="json">
-				<param 
-
-name="includeProperties">addResult</param>
+				<param name="includeProperties">addResult</param>
 			</result>
 		</action>
 		<action name="delete" class="deleteFromCart">
 			<result type="json">
-				<param 
-
-name="includeProperties">deleteResult</param>
+				<param name="includeProperties">deleteResult</param>
 			</result>
 		</action>
 
 		<action name="update" class="updateCart">
 			<result type="json">
-				<param 
-
-name="includeProperties">updateResult</param>
+				<param name="includeProperties">updateResult</param>
 			</result>
 		</action>
 	</package>
 
 
 <!-- 用户收藏夹有关的action -->
-	<package name="favority-user-default" extends="symagic-user-
-
-default"
+	<package name="favority-user-default" extends="symagic-user-default"
 		namespace="/favorite">
 		<action name="add_favorite" class="addToFavorite">
 			<result type="json">
-				<param 
-
-name="includeProperties">addResult</param>
+				<param name="includeProperties">addResult</param>
 			</result>
 		</action>
 		<action name="delete_favorite" class="deleteFromFavority">
 			<result type="json">
-				<param 
-
-name="includeProperties">deleteResult</param>
+				<param name="includeProperties">deleteResult</param>
 			</result>
 		</action>
 	</package>
@@ -226,9 +188,7 @@ name="includeProperties">deleteResult</param>
 		namespace="/item">
 		<action name="comment" class="submitComment">
 			<result type="json">
-				<param 
-
-name="includeProperties">submitResult</param>
+				<param name="includeProperties">submitResult</param>
 			</result>
 		</action>
 		
