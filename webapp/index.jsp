@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
     </s:if>
     <s:else>
-    <li>欢迎来到Symagic！<s:property value="#request.get('javax.servlet.forward.context_path')"/></li>
+    <li>欢迎来到Symagic！</li>
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
     </s:else>
