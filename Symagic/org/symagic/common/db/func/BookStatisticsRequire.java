@@ -10,12 +10,12 @@ public class BookStatisticsRequire {
 	/**
 	 * 结束时间yyyy-MM-dd
 	 */
-	private String endTime	= null;
+	private String endTime	= "2100-01-01";
 	
 	/**
 	 * 销售量下线
 	 */
-	private Integer	lowlimit	= null;
+	private Integer	lowlimit	= 0;
 	
 	/**
 	 * 目录ID
