@@ -211,8 +211,8 @@ public class DaoOrder {
 				ps	= conn.prepareStatement("insert into order_detail " +
 						"(bookid, isbn, " +
 						" bookname, marketprice," +
-						" amount, orderid) values" +
-						"(?, ?, ?, ?, ?, ?)");
+						" amount, orderid, discount) values" +
+						"(?, ?, ?, ?, ?, ?, ?)");
 				for (int i=0; i < list.size(); i++) {
 					ps.setInt(1, list.get(i).getBookId());
 					ps.setString(2, list.get(i).getIsbn());
@@ -220,6 +220,7 @@ public class DaoOrder {
 					ps.setFloat(4, list.get(i).getMarketPrice());
 					ps.setInt(5, list.get(i).getAmount());
 					ps.setInt(6, orderid);
+					ps.setFloat(7, list.get(i).getDiscount());
 					ps.execute();
 				}
 				return true;
@@ -379,6 +380,7 @@ public class DaoOrder {
 			rs	= ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
+			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -390,7 +392,7 @@ public class DaoOrder {
 				e.printStackTrace();
 			}
 		}
-		return 10;
+		return -1;
 	}
 	
 	/**
@@ -405,7 +407,7 @@ public class DaoOrder {
 			rs	= ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
-			
+			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -432,7 +434,7 @@ public class DaoOrder {
 			rs	= ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
-			return 0;
+			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -444,7 +446,7 @@ public class DaoOrder {
 				e.printStackTrace();
 			}
 		}
-		return 0;
+		return -1;
 	}
 	
 	/**

@@ -1,6 +1,5 @@
 package org.symagic.user.action.order;
 
-import java.awt.ItemSelectable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,10 +7,7 @@ import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.service.OrderService;
-import org.symagic.common.utilty.presentation.bean.ItemBean;
-import org.symagic.user.utilty.UserSessionUtilty;
-
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 
 public class OrderDetailAction extends OrderBase{
 	
@@ -34,15 +30,15 @@ public class OrderDetailAction extends OrderBase{
 	
 	private DaoOrder daoOrder;
 	
-	private List<ItemBean> items;
+	private List<ItemTinyBean> items;
 
 	
-	public List<ItemBean> getItems() {
+	public List<ItemTinyBean> getItems() {
 		return items;
 	}
 
 
-	public void setItems(List<ItemBean> items) {
+	public void setItems(List<ItemTinyBean> items) {
 		this.items = items;
 	}
 
@@ -153,10 +149,10 @@ public class OrderDetailAction extends OrderBase{
 			setPayment("货到付款");
 		setPhoneNum(order.getPhonenum());
 		setReceiverName(order.getReceiverName());
-		items = new ArrayList<ItemBean>();
+		items = new ArrayList<ItemTinyBean>();
 		List<BeanOrderDetail> orderList = order.getList();
 		for(int i = 0; i < orderList.size(); i ++){
-			ItemBean item = new ItemBean();
+			ItemTinyBean item = new ItemTinyBean();
 			item.setItemNumber(orderList.get(i).getAmount());
 			item.setName(orderList.get(i).getBookName());
 			item.setPrice(orderList.get(i).getMarketPrice() - orderList.get(i).getAmount());

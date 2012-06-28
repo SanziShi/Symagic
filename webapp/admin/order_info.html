@@ -49,35 +49,64 @@ document.form1.webUserEntity.phone="";
 				<table id="doublecontenttable3">
 				 <tr>
 					<td>订单号</td>
-					<td>1483728</td>
-            		<td>客户号</td>
-					<td>wangxj123@163.com</td>
+					<td><s:property value="orderID"/></td>
+            		<td>用户名</td>
+					<td><s:property value="userName"/>edsfgdsgdfeeertertewgdf</td>
 					<td>下单时间</td>
-					<td>2007-10-01&nbsp;10:25:04</td>
+					<td><s:property value="orderTime"/>sdfadsfdsfdsfdsaf</td>
          		 </tr>
 		  		 <tr>
            			<td>订单金额</td>
-					<td>￥30.18</td>
+					<td><s:property value="price"/></td>
 					<td>支付方式</td>
-					<td>货到付款</td>
+					<td><s:property value="payment"/></td>
             		<td>送货方式</td>
-					<td>送货上门</td>
+					<td><s:property value="deliverWay"/></td>
 			</tr>
 			 <tr>
             	<td>收货人</td>
-			    <td>王小静</td>
+			    <td>
+               <s:if test="#order.orderStatus!=交易成功'||'交易失败'">
+                <input type="text" value="<s:property value='receiver'/>"/>
+                </s:if>
+                <s:else>
+                <s:property value="receiver"/>
+                </s:else>
+                </td>
 			    <td>收货人地址</td>
-            <td>北京市海淀区翠微路甲5号</td>
-					<td>订单状态</td>
-					<td>已支付</td>
+            <td colspan="3">
+            <select id="level1"></select>
+            <select id="level2"></select>
+            <select id="level3"></select>
+            </td>	
 			</tr>
+            
 			 <tr>
-            <td>收货人E-mail</td>
-			<td>wangxj123@163.com</td>
+           <td>邮政编码</td>
+           <td>
+             <s:if test="#order.orderStatus!=交易成功'||'交易失败'">
+                <input type="text" value="<s:property value='zipcode'/>"/>
+                </s:if>
+                <s:else>
+                <s:property value="zipcode"/>
+                </s:else>
+           </td>
+            
 			<td>收货人手机</td>
-			<td>13812345678</td>
-					<td></td>
-					<td></td>					
+			<td> <s:if test="#order.orderStatus!=交易成功'||'交易失败'">
+                <input type="text" value="<s:property value='mobileNumber'/>"/>
+                </s:if>
+                <s:else>
+                <s:property value="mobileNumber"/>
+                </s:else></td>
+            <td>收货人电话</td>
+            <td></td>
+            </tr>
+            <tr>
+            
+		    <td>订单状态</td>
+			<td><s:property value="orderStatus"/></td>
+									
 				 </tr>
 				</from> 
             </table>

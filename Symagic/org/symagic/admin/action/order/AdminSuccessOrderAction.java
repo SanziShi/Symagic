@@ -50,8 +50,7 @@ public class AdminSuccessOrderAction extends ActionSupport {
 					order.setOrderState("2");
 					daoOrder.updateOrder(order);
 					BeanUser user = daoUser.getUser(order.getUsername());
-					user.setScore( user.getScore() + order.getScore() );
-					//daoUser.(提交修改）
+					daoUser.updateScore(user.getScore() + order.getScore(), order.getUsername());
 					MailService.sendSuccessOrder(order);
 				}
 			}
@@ -61,5 +60,37 @@ public class AdminSuccessOrderAction extends ActionSupport {
 		}
 
 		return super.execute();
+	}
+
+	public String getOrderIDList() {
+		return orderIDList;
+	}
+
+	public void setOrderIDList(String orderIDList) {
+		this.orderIDList = orderIDList;
+	}
+
+	public Boolean getChangeResult() {
+		return changeResult;
+	}
+
+	public void setChangeResult(Boolean changeResult) {
+		this.changeResult = changeResult;
+	}
+
+	public DaoOrder getDaoOrder() {
+		return daoOrder;
+	}
+
+	public void setDaoOrder(DaoOrder daoOrder) {
+		this.daoOrder = daoOrder;
+	}
+
+	public DaoUser getDaoUser() {
+		return daoUser;
+	}
+
+	public void setDaoUser(DaoUser daoUser) {
+		this.daoUser = daoUser;
 	}
 }
