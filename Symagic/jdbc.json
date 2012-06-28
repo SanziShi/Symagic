@@ -1,7 +1,7 @@
 {
 	"dbname":"bookshop",
 	"username":"root",
-	"password":"111111",
+	"password":"905213",
 	"server":"localhost",
-	"port":"3306"
+	"port":"3309"
 }

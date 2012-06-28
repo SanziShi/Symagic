@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul>
             <!--迭代开始-->
             <s:iterator value='newBook' var='iter'>
-				<li><a href="item_list?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
+				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
 	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul>
 		 		<!--迭代开始-->
             <s:iterator value='hotBook' var='iter'>
-				<li><a href="item_list?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
+				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
 	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
@@ -117,7 +117,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<ul>
 			<!--迭代开始-->
             <s:iterator value='recommendItem' var='iter'>
-				<li><a href="item_list?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
+				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#iter.picturePath'/>">
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
 	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
