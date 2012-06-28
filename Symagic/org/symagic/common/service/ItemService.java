@@ -206,7 +206,7 @@ public class ItemService {
 			  items.add(item);
 			  totalPrice+=itemTotalPrice;
 		 }
-		 return totalPrice;
+		 return MathUtilty.roundWithdigits(totalPrice);
 	}
 
 	public DaoBook getDaoBook() {
