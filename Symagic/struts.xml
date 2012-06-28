@@ -220,6 +220,19 @@
 				/admin/admin_error.jsp
 			</result>
 		</action>
+		
+		<!-- 管理员编辑商品 -->
+		<action name="item_modify" class="AdminEnterModifyItem">
+		<result>
+				/admin/item_edit.jsp
+			</result>
+			<result name="error">
+				/admin/admin_error.jsp
+			</result>
+			<result name="input">
+				/admin/admin_error.jsp
+			</result>
+		</action>
 
 	</package>
 
