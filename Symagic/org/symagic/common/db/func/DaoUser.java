@@ -358,4 +358,27 @@ public class DaoUser {
 	{
 		return -1;
 	}
+	
+	/**
+	 * 更新用户积分
+	 * @return	true 更新成功	false 更新失败
+	 */
+	public boolean updateScore()
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("update ");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
 }

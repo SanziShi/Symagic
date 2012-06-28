@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.symagic.common.db.bean.BeanLevel;
@@ -129,6 +130,32 @@ public class DaoLevel {
 	public List<BeanLevel> getAll()
 	{
 		List<BeanLevel> list	= null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select * from score_level");
+			rs	= ps.executeQuery();
+			list	= new ArrayList<BeanLevel>();
+			while (rs.next()) {
+				BeanLevel level	= new BeanLevel();
+				level.setId(rs.getInt("id"));
+				level.setLowLimit(rs.getInt("lowlimit"));
+				level.setUpLimit(rs.getInt("uplimit"));
+				level.setName(rs.getString("name"));
+				level.setRate(rs.getFloat("rate"));
+				list.add(level);
+			}
+			return list;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return list;
 	}
 }
