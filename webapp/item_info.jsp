@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -22,9 +23,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<span id="cart_loading"></span>
 	<div id="cart_none">您的购物车中还没有商品，请选购！</div>
 	<div id="cart_container"></div>
+	
 </div>
 	<div id="logalleft">
-    <div id="top-overlay"></div>
+		<div id="top-overlay"></div>
     <!----吊顶栏------>
 	<div class="top">
     <div class="top_right">
@@ -66,9 +68,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<img src="image/ico_site.jpg"  id="ico_site"/>
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">商品详细信息</a>
 			</div>
+            <form action="quick_search" >
 			<div id="searchright2">
-			  <form action="quick_search" >
-			  <select name="catalogID" >
+			  <input type="text" name="product" id="textInput"/>
+			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
+			</div>
+			<div id="searchright1">
+			 <select name="catalogID" >
 			  <option value="0">所有类别</option>
 			  <s:iterator value="catalog" var='outer'>
 				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
@@ -77,10 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</s:iterator>
 				</s:iterator>
               </select>
-			  <input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />
-			  <input type="button" name="Submit" value="搜索" onClick="">
-			</form>
 		  </div>
+          </form>
 		</div>
         <div class="clear"></div>
         <!--购买推荐左边栏-->
@@ -90,6 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        <li><div class="p-img"><a href="" title="数学之美" target="_blank"><img width="50" height="50" src="upload/linux.jpg"></a></div>						 		<div class="p-name"><a href="" >高性能Linux服务器构建实战</a></div>
        <div class="p-price"><strong>￥30.00</strong></div></li>
        <!----推荐迭代li结束---->
+       
         </div>
         <!--购买推荐左边栏结束-->
         <!--商品详细信息-->
@@ -103,21 +108,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </ul>
         </div>
         <ul id="summary">
-        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span><s:property value='#book.author'/></li>
-        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span><s:property value='#book.publisher'/></li>
-        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span><s:property value='#book.isbn'/></li>
-        <li><span>出版日期：</span><s:property value='#book.publishDate'/></li>
-        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span><s:property value='#book.version'/></li>
-        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span><s:property value='#book.folio'/></li>
-        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span><s:property value='#book.binding'/></li>
-        <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span><s:property value='#book.page'/></li>
-        <li><span>语&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;种：</span>中文</li>
+        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>null<s:property value='#book.author'/></li>
+        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>null<s:property value='#book.publisher'/></li>
+        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>null<s:property value='#book.isbn'/></li>
+        <li><span>出版日期：</span>null<s:property value='#book.publishDate'/></li>
+        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>null<s:property value='#book.version'/></li>
+        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>null<s:property value='#book.folio'/></li>
+        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>null<s:property value='#book.binding'/></li>
+        <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span>null<s:property value='#book.page'/></li>
         </ul>
         <ul id="book_price">
-        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del><s:property value='#book.marketPrice'/></del></li>
-        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong><s:property value='#book.price'/></strong></li>
-        <li><span>为您节省：</span><strong>￥1.42</strong></li>
-        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span><s:property value='#book.inventory'/></li>
+        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>null<s:property value='#book.marketPrice'/></del></li>
+        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>null<s:property value='#book.price'/></strong></li>
+        <li><span>为您节省：</span><strong>null</strong></li>
+        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>null<s:property value='#book.inventory'/></li>
         </ul>
         <div id="add_to_cart">
         <div id="item_amount">
@@ -133,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="clear"></div>
         <div class="item_desc">
         <div class="banner"><li>内容简介</li></div>
-        <div class="item_desc_con">&nbsp;&nbsp;&nbsp;&nbsp;<s:property value='#book.bookDesc'/></div>
+        <div class="item_desc_con">&nbsp;&nbsp;&nbsp;&nbsp;本书是清华大学教材《大学物理学》的第四册，讲述振动与波的一般基本规律和波动光学的基本原理，包括光的干涉、衍射和偏振。除了基本内容外，还专题介绍了全息照相、光学信息处理、液晶等今日物理趣闻和着名物理学家托马斯·杨和菲涅耳的传略。<br/>&nbsp;&nbsp;&nbsp;&nbsp;基本内容扼要，附加内容通俗易懂。本书可作为高等院校的大学物理教材，也可以作为中学物理教师教学或其他读者自学的参考书。</div>
         </div>
         <div id="comment">
         <div class="banner"><li>用户评价</li></div>

@@ -1,17 +1,13 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>BC2商城</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Symagic商城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
-<script language="javascript">
-function clear(){
-
-document.form1.webUserEntity.name="";
-document.form1.webUserEntity.address="";
-document.form1.webUserEntity.postcode="";
-document.form1.webUserEntity.phone="";
-}
-</script>
+<link href="css/gz.css" rel="stylesheet" type="text/css"/>
+<script language="javascript" src="js/gz.js"></script>
+<script language="javascript" src="js/jquery.js"></script>
 </head>
 
 <body>
@@ -39,17 +35,17 @@ document.form1.webUserEntity.phone="";
 		<div id="search2">
 			<div id="searchleft">
 				<img src="../image/ico_site.jpg"  id="ico_site"/>
-				网站路径：订单详细信息
+				网站路径：订单修改
 			</div>
 		</div>
 		<div id="double1">
 			<div id="doublehead1"><strong>配送信息</strong></div>
 			<div id="doublecontent1">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
+		<form action="order_edit_submit" method="post" enctype="multipart/form-data" name="form1">
 				<table id="doublecontenttable3">
 				 <tr>
 					<td>订单号</td>
-					<td><s:property value="orderID"/></td>
+					<td><input type="text" id="inputGray" readonly="readonly" value="<s:property value='orderID'/>" /></td>
             		<td>用户名</td>
 					<td><s:property value="userName"/>edsfgdsgdfeeertertewgdf</td>
 					<td>下单时间</td>
@@ -66,7 +62,7 @@ document.form1.webUserEntity.phone="";
 			 <tr>
             	<td>收货人</td>
 			    <td>
-               <s:if test="orderStatus!=交易成功'||'交易失败'">
+               <s:if test="orderStatus!='交易成功'||'交易失败'">
                 <input type="text" value="<s:property value='receiver'/>"/>
                 </s:if>
                 <s:else>
@@ -84,7 +80,7 @@ document.form1.webUserEntity.phone="";
 			 <tr>
            <td>邮政编码</td>
            <td>
-             <s:if test="orderStatus!=交易成功'||'交易失败'">
+             <s:if test="orderStatus!='交易成功'||'交易失败'">
                 <input type="text" value="<s:property value='zipcode'/>"/>
                 </s:if>
                 <s:else>
@@ -94,7 +90,7 @@ document.form1.webUserEntity.phone="";
             
 			<td>收货人手机</td>
 			<td> 
-                <s:if test="orderStatus!=交易成功'||'交易失败'">
+                <s:if test="orderStatus!='交易成功'||'交易失败'">
                 <input type="text" name="mobileNumber" value="<s:property value='mobileNumber'/>"/>
                 </s:if>
                 <s:else>
@@ -103,7 +99,7 @@ document.form1.webUserEntity.phone="";
                 </td>
             <td>收货人电话</td>
             <td>
-                <s:if test="orderStatus!=交易成功'||'交易失败'">
+                <s:if test="orderStatus!='交易成功'||'交易失败'">
                 <input type="text" value="<s:property value='phoneNumber'/>"/>
                 </s:if>
                 <s:else>
@@ -123,7 +119,7 @@ document.form1.webUserEntity.phone="";
 			<div id="double2">
 			<div id="doublehead2"><strong>商品信息</strong></div>
 			<div id="doublecontent2">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
+
 				<table id="favorite">
 				<thead>
 					<tr>
@@ -144,10 +140,10 @@ document.form1.webUserEntity.phone="";
                     </td>
 					<td>￥<s:property value = "#itemArray.price"/></td>
 					<td> 
-                    <s:if test="orderStatus!=交易成功'||'交易失败'">
-                  <span><a class="reduce" onclick="reduce();" href="javascript:void(0)">-</a>
-        <input type="text" value="1" id="amount" onkeyup="amount_modify(this)" name>
-        <a class="reduce" onclick="add();" href="javascript:void(0)">+</a>
+                    <s:if test="orderStatus!='交易成功'||'交易失败'">
+                  <span><a class="reduce" onclick="reduce(<s:property value = '#itemArray.itemID'/>);" href="javascript:void(0)">-</a>
+        <input type="text" class="amount" value="<s:property value = '#itemArray.itemNumber'/>" id="<s:property value = '#itemArray.itemID'/>" onkeyup="amount_modify(this)" name>
+        <a class="reduce" onclick="add(<s:property value = '#itemArray.itemID'/>);" href="javascript:void(0)">+</a>
         </span>
                    </s:if>
                    <s:else>
@@ -158,9 +154,23 @@ document.form1.webUserEntity.phone="";
           		  </tr>
                   </s:iterator>
                   <!--商品条项迭代结束-->
-				 </tbody>
-            </table>
+                  <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                </s:if></td>
+                  <td><s:if test="orderStatus=='已下单'">
+                <input onclick="" type="submit" value="审核"/>
+                </s:if><input type="submit" value = "提交修改"/></td>
 			</form> 
+                  
+                  </tr>
+				 </tbody>
+                 
+            </table>
+            
+                
   </div>
 
 <div id="footer">
