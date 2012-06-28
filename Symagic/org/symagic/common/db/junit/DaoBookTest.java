@@ -19,6 +19,7 @@ public class DaoBookTest extends TestCase{
 //
 //	@Test
 //	public void testAddBook1(){
+//		DaoBook	db	= new DaoBook();
 //		BeanBook book1 = new BeanBook();
 //		//设置book1的参数
 //		book1.setAuthor("yusen");
@@ -142,13 +143,19 @@ public class DaoBookTest extends TestCase{
 //		assertEquals("计算机组成", db.getLatestBook().get(0).getBookName());
 //	}
 	
-	public void testSearch()
+//	public void testSearch()
+//	{
+//		DaoBook	db	= new DaoBook();
+//		BookRequire req	= new BookRequire();
+//		req.setPage(1);
+//		req.setLines(10);
+//		req.setItemName("经");
+//		assertEquals("素描的诀窍（经典版）", db.search(1, req).get(0).getBookName());
+//	}
+	
+	public void testGetDetail()
 	{
-		DaoBook	db	= new DaoBook();
-		BookRequire req	= new BookRequire();
-		req.setPage(1);
-		req.setLines(10);
-		req.setItemName("经");
-		assertEquals("素描的诀窍（经典版）", db.search(1, req).get(0).getBookName());
+		DaoBook db	= new DaoBook();
+		assertEquals(31, db.getDetail(31).getBookId());
 	}
 }

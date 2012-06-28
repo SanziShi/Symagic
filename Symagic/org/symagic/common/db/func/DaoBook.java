@@ -155,6 +155,7 @@ public class DaoBook {
 			ps	= conn.prepareStatement("select * from book, book_catalog_detail " +
 					"where  book.bookid = ? and " +
 					"book.bookid=book_catalog_detail.bookid");
+			
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
 			
@@ -180,6 +181,31 @@ public class DaoBook {
 				book.setCatalogID(rs.getInt("catalogid"));
 				
 				return book;
+			} else {
+				ps	= conn.prepareStatement("select * from book where bookid=?");
+				ps.setInt(1, bookID);
+				rs	= ps.executeQuery();
+				if (rs.next()) {
+					book	= new BeanBook();
+					book.setAuthor(rs.getString("author"));
+					book.setBinding(rs.getString("binding"));
+					book.setBookDesc(rs.getString("bookdesc"));
+					book.setBookId(rs.getInt("bookid"));
+					book.setBookName(rs.getString("bookname"));
+					book.setDiscount(rs.getFloat("discount"));
+					book.setFolio(rs.getString("folio"));
+					book.setInventory(rs.getInt("inventory"));
+					book.setIsbn(rs.getString("isbn"));
+					book.setMarketPrice(rs.getFloat("marketprice"));
+					book.setOffline(rs.getString("folio"));
+					book.setPage(rs.getInt("page"));
+					book.setPicture(rs.getString("picture"));
+					book.setPublisher(rs.getString("publisher"));
+					book.setPublishDate(rs.getString("publishdate"));
+					book.setVersion(rs.getInt("version"));
+					
+					return book;
+				}
 			}
 			
 			
@@ -623,11 +649,50 @@ public class DaoBook {
  
 	public List<BeanBookStatistics> getBookStatistics(BookStatisticsRequire req)
 	{
+		boolean haveCatalogID	= true;
+		if (req.getCatalogid() == null)
+			haveCatalogID	= false;
+			
 		List <BeanBookStatistics>	list	= null;
 		String sql	= "";
+		if (haveCatalogID == false) 
+			sql = "select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price " +
+			"from book_order, order_detail " +
+			"where book_order.orderid=order_detail.orderid and orderdate >  " + req.getStartTime() + " and orderdate < " + req.getEndTime() + " " +
+			"group by bookid " +
+			"having sum(amount) > ? " +
+			"order by bookid asc asc  limit ?, ?";
+		else 
+			sql	= "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid " +
+				"from (" +
+					"select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price " +
+					"from book_order, order_detail " +
+					"where book_order.orderid=order_detail.orderid and orderdate >  "  + req.getStartTime() + " and orderdate < " + req.getEndTime() + " " +
+					"group by bookid asc  limit ?, ?" +
+					"having sum(amount) > ? " +
+					"order by bookid asc ) " +
+					"as t1, book_catalog_detail as t2 " +
+				"where t1.bookid=t2.bookid and t2.catalogid=?" +
+				"order by bookid asc";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement(sql);
+			ps.setInt(1, (req.getPage() - 1)*req.getLines());
+			ps.setInt(2, req.getLines());
+			ps.setInt(3, req.getLowlimit());
+			if (haveCatalogID)
+				ps.setInt(4, req.getCatalogid());
 			
+			rs	= ps.executeQuery();
+			while (rs.next()) {
+				BeanBookStatistics	bbs	= new BeanBookStatistics();
+				bbs.setBookid(rs.getInt("bookid"));
+				bbs.setBookname(rs.getString("bookname"));
+				bbs.setTotalSaleAmount(rs.getInt("sum_amount"));
+				bbs.setTotalSaleRevenue(rs.getFloat("sum_price"));
+				list.add(bbs);
+			}
+			return list;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -643,25 +708,6 @@ public class DaoBook {
 		return list;
 	}
 	
-	/**
-	 * 获取指定书籍销售总量
-	 * @param bookID	指定书籍ID
-	 * @return	-1 查询失败	>=0 查询成功
-	 */
-	public int getTotalAmount(int bookID)
-	{
-		try {
-			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select sum(amount) from book_order where bookid=?");
-			ps.setInt(1, bookID);
-			rs	= ps.executeQuery();
-			if (rs.next())
-				return rs.getInt(1);
-			return -1;
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return -1;
-	}
+	
+
 }
