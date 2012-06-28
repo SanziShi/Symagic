@@ -1,6 +1,7 @@
 package org.symagic.admin.action.user;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -26,8 +27,9 @@ public class UserManagerAction extends CatalogBase {
 	private TimeBean endTime;// :结束索引时间（year：年，month:月，day:日);
 	private Integer page;
 	private List<LevelBean> levelList;
-	private Integer currentPage;
 	private Integer totalPage;
+	
+	private Integer lines;
 	
 	private DaoUser daoUser;
 	private DaoLevel daoLevel;
@@ -40,7 +42,19 @@ public class UserManagerAction extends CatalogBase {
 		if (!validateResult)
 			return ERROR;
 		
-		//List<BeanLevel> levels = daoLevel.
+		List<BeanLevel> levels = daoLevel.getAll();
+		
+		levelList = new ArrayList<LevelBean>();
+		
+		for( BeanLevel bean : levels ){
+			LevelBean level = new LevelBean();
+			level.setHight(bean.getUpLimit());
+			level.setLevelID(bean.getId());
+			level.setLevelName(bean.getName());
+			level.setLow(bean.getLowLimit());
+			level.setScoreRate(bean.getRate());
+			levelList.add(level);
+		}
 
 		UserRequire userRequire = new UserRequire();
 		userRequire.setUsername(userName);
@@ -64,6 +78,10 @@ public class UserManagerAction extends CatalogBase {
 		userRequire.setPage(page);
 		
 		//分页用的Number
+		float number = daoUser.getSearchNum(userRequire);
+		
+		totalPage = (int) Math.ceil(number / lines);
+		
 		List<BeanUser> orderList = daoUser.search(userRequire);
 		
 
