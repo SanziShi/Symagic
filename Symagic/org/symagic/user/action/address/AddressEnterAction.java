@@ -77,6 +77,8 @@ public class AddressEnterAction extends CatalogBase {
 	}
 
 	public String execute() throws Exception{
+		super.execute();
+		
 		addressList = new ArrayList<AddressBean>();
 		level1Districts = new ArrayList<DistrictBean>();
 		List<BeanDistrict> districts = daoDistrict.getDistrict(0);

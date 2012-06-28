@@ -56,7 +56,9 @@ public class AddressEditSubmit extends AddressBase{
 	}
 
 	public String execute() throws Exception{
-BeanAddress address = new BeanAddress();
+		super.execute();
+		
+		BeanAddress address = new BeanAddress();
 		
 		OrderService.Address addressDetail = new OrderService.Address();
 		addressDetail.districtDetail = getAddressDetail();
