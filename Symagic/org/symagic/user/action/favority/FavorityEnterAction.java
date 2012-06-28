@@ -3,17 +3,17 @@ package org.symagic.user.action.favority;
 import java.util.List;
 
 import org.symagic.common.db.func.DaoFavorityFolder;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
-import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 public class FavorityEnterAction extends ActionSupport {
 	
 	private DaoFavorityFolder daoFavorityFolder;
 	private int page;//第几页
-	private List<ItemDetailBean> items;//显示收藏夹中的东西
+	private List<ItemBean> items;//显示收藏夹中的东西
 	private int offlines=10;//一页显示 的条数
-	private List<ItemBean> recommend;
+	private List<ItemTinyBean> recommend;
 	private int totalPages;
 	@Override
 	public String execute() throws Exception {
@@ -41,11 +41,11 @@ public class FavorityEnterAction extends ActionSupport {
 		this.page = page;
 	}
 
-	public List<ItemDetailBean> getItems() {
+	public List<ItemBean> getItems() {
 		return items;
 	}
 
-	public void setItems(List<ItemDetailBean> items) {
+	public void setItems(List<ItemBean> items) {
 		this.items = items;
 	}
 

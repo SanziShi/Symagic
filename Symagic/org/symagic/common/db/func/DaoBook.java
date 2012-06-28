@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.symagic.common.db.bean.BeanBook;
+import org.symagic.common.db.bean.BeanBookStatistics;
 import org.symagic.common.db.pool.ConnectionPool;
 
 /**
@@ -148,12 +149,12 @@ public class DaoBook {
 	 * @return BeanBook实例，封装着书籍的详细信息
 	 */
 	public BeanBook getDetail(int bookID) {
+		BeanBook book	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select * from book where bookid=?");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
-			BeanBook book;
 			
 			// 如果查询成功
 			if (rs.next()) {
@@ -175,16 +176,23 @@ public class DaoBook {
 				book.setPublishDate(rs.getString("publishdate"));
 				book.setVersion(rs.getInt("version"));
 				
-				conn.close();
 				return book;
 			}
 			
-			conn.close();
+			
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return new BeanBook();
+		return book;
 	}
 
 	/**
@@ -202,23 +210,82 @@ public class DaoBook {
 		String sql	= "select * from book where ";
 		// 普通查询
 		if (sign == 0) {
-			r	= " or ";
+			sql += " author like " + " '%" + req.getAuthor() + "%' "
+				+  " and " + " bookname like " + " '%" + req.getItemName() + "%' "
+				+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
+			
+			
+			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
+				+  " , " + req.getLines();
+	
+		}
+		// 高阶查询
+		else {
+			sql += " author like " + " '%" + req.getAuthor() + "%' "
+			+  " and " + " bookname like " + " '%" + req.getItemName() + "%' "
+			+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
+		
 			// 年前
 			if (req.getBefore() == true) {
 				// 条件 年
 				if (req.getYear() != null)
-					sql += " year(publishdate) < " + req.getYear() + " ";
+					sql += " and " + " year(publishdate) < " + req.getYear() + " ";
 			}
 			// 当前年
 			else {
 				// 条件 年
 				if (req.getYear() != null)
-					sql += " year(publishdate) = " + req.getYear() + " ";
+					sql += " and " + " year(publishdate) = " + req.getYear() + " ";
 			}
-		}
-		// 高阶查询
-		else {
-			r	= " and ";
+			
+			if (req.getVersion() != null) 
+				sql += " and " + " version = " + req.getVersion() + " ";
+			
+			if (req.getBinding() != null)
+				sql += " and " + " binding like " + " '%" +  req.getBinding() + "%' ";
+			
+			if (req.getFolio() != null)
+				sql += " and " + " folio like " + " '%" + req.getFolio() + "%' ";
+		
+			if (req.getLowPrice() != null)
+				sql += " and " + " marketprice > " + req.getLowPrice() + " ";
+			
+			if (req.getUpPrice() != null)
+				sql += " and " + " marketprice < " + req.getUpPrice() + " ";
+			
+			if (req.getLowPage() != null)
+				sql += " and " + " page > " + req.getLowPage() + " ";
+			
+			if (req.getUpPage() != null)
+				sql += " and " + " page < " + req.getUpPage() + " ";
+			
+			if (req.getDiscount() != null) {
+				float low = 0.0f;
+				float up = 0.0f;
+				switch (req.getDiscount()) {
+				case 0:
+					low = 0.0f;
+					up	= 0.1f;
+					break;
+				case 1:
+					low	= 0.1f;
+					up	= 0.3f;
+					break;
+				case 2:
+					low	= 0.3f;
+					up	= 0.5f;
+				case 3:
+					low	= 0.5f;
+					up	= 1.0f;
+				}
+				sql += " and " + " discount > " + low + " "
+					+  " and " + " discount < " + up + " ";
+			}
+			
+			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
+			+  " , " + req.getLines();
+			
+		
 		}
 		
 		try {
@@ -273,9 +340,94 @@ public class DaoBook {
 	 * @return int	返回符合条件的条数
 	 */
 	public int getSearchRowNumber(int sign, BookRequire req) {
+		String sql	= "select * from book where ";
+		// 普通查询
+		if (sign == 0) {
+			sql += " author like " + " '%" + req.getAuthor() + "%' "
+				+  " and " + " bookname like " + " '%" + req.getItemName() + "%' "
+				+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
+			
+			
+			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
+				+  " , " + req.getLines();
+	
+		}
+		// 高阶查询
+		else {
+			sql += " author like " + " '%" + req.getAuthor() + "%' "
+			+  " and " + " bookname like " + " '%" + req.getItemName() + "%' "
+			+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
+		
+			// 年前
+			if (req.getBefore() == true) {
+				// 条件 年
+				if (req.getYear() != null)
+					sql += " and " + " year(publishdate) < " + req.getYear() + " ";
+			}
+			// 当前年
+			else {
+				// 条件 年
+				if (req.getYear() != null)
+					sql += " and " + " year(publishdate) = " + req.getYear() + " ";
+			}
+			
+			if (req.getVersion() != null) 
+				sql += " and " + " version = " + req.getVersion() + " ";
+			
+			if (req.getBinding() != null)
+				sql += " and " + " binding like " + " '%" +  req.getBinding() + "%' ";
+			
+			if (req.getFolio() != null)
+				sql += " and " + " folio like " + " '%" + req.getFolio() + "%' ";
+		
+			if (req.getLowPrice() != null)
+				sql += " and " + " marketprice > " + req.getLowPrice() + " ";
+			
+			if (req.getUpPrice() != null)
+				sql += " and " + " marketprice < " + req.getUpPrice() + " ";
+			
+			if (req.getLowPage() != null)
+				sql += " and " + " page > " + req.getLowPage() + " ";
+			
+			if (req.getUpPage() != null)
+				sql += " and " + " page < " + req.getUpPage() + " ";
+			
+			if (req.getDiscount() != null) {
+				float low = 0.0f;
+				float up = 0.0f;
+				switch (req.getDiscount()) {
+				case 0:
+					low = 0.0f;
+					up	= 0.1f;
+					break;
+				case 1:
+					low	= 0.1f;
+					up	= 0.3f;
+					break;
+				case 2:
+					low	= 0.3f;
+					up	= 0.5f;
+				case 3:
+					low	= 0.5f;
+					up	= 1.0f;
+				}
+				sql += " and " + " discount > " + low + " "
+					+  " and " + " discount < " + up + " ";
+			}
+			
+			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
+			+  " , " + req.getLines();
+			
+		
+		}
 		try {
+			count = -1;
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("");
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			while (rs.next())
+				count ++;
+			return count;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -287,7 +439,7 @@ public class DaoBook {
 				e.printStackTrace();
 			}
 		}
-		return 0;
+		return -1;
 	}
 
 	
@@ -464,5 +616,54 @@ public class DaoBook {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * 获取指定书籍的销售总量、销售总价
+	 * @param bookID	指定用户ID
+	 * @return	BeanBookStatistics 封装各种统计数据的Bean实例
+	 */
+	public BeanBookStatistics getBookStatistics(int bookID)
+	{
+		BeanBookStatistics	bbs	= null;
+		String sql	= "";
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return bbs;
+	}
+	
+	/**
+	 * 获取指定书籍销售总量
+	 * @param bookID	指定书籍ID
+	 * @return	-1 查询失败	>=0 查询成功
+	 */
+	public int getTotalAmount(int bookID)
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select sum(amount) from book_order where bookid=?");
+			ps.setInt(1, bookID);
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 }

@@ -8,45 +8,21 @@ package org.symagic.common.utilty.presentation.bean;
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
  * @author hao
+ * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class ItemBean {
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private int itemID;
 	
-	
-	public int getItemID() {
-		return itemID;
-	}
-	public void setItemID(int itemID) {
-		this.itemID = itemID;
-	}
-	public Float getSavePrice() {
-		return savePrice;
-	}
-	public void setSavePrice(Float savePrice) {
-		this.savePrice = savePrice;
-	}
-	public float getItemTotalPrice() {
-		return itemTotalPrice;
-	}
-	public void setItemTotalPrice(float itemTotalPrice) {
-		this.itemTotalPrice = itemTotalPrice;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public float getPrice() {
 		return price;
 	}
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	public float getDiscount() {
+		return discount;
+	}
+	public void setDiscount(float discount) {
+		this.discount = discount;
 	}
 	public String getPicturePath() {
 		return picturePath;
@@ -54,30 +30,68 @@ public class ItemBean {
 	public void setPicturePath(String picturePath) {
 		this.picturePath = picturePath;
 	}
-	public int getItemNumber() {
-		return itemNumber;
+	public String getName() {
+		return name;
 	}
-	public void setItemNumber(int itemNumber) {
-		this.itemNumber = itemNumber;
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getPublishTime() {
+		return publishTime;
+	}
+	public void setPublishTime(String publishTime) {
+		this.publishTime = publishTime;
+	}
+	public String getPublisher() {
+		return publisher;
+	}
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	public String getAuthor() {
+		return author;
+	}
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	public float getMarketPrice() {
+		return marketPrice;
+	}
+	public void setMarketPrice(float marketPrice) {
+		this.marketPrice = marketPrice;
+	}
+	private int offline;
+	public int getOffline() {
+		return offline;
+	}
+	public void setOffline(int offline) {
+		this.offline = offline;
+	}
+	private int inventory;
+	public int getInventory() {
+		return inventory;
+	}
+	public void setInventory(int inventory) {
+		this.inventory = inventory;
 	}
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Float savePrice;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private float itemTotalPrice;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private String name;
+	private String itemID;
+	public String getItemID() {
+		return itemID;
+	}
+	public void setItemID(String itemID) {
+		this.itemID = itemID;
+	}
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -89,12 +103,52 @@ public class ItemBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
+	private float discount;
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
 	private String picturePath;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private int itemNumber;
-
+	private String name;
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private String publishTime;
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private String publisher;
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private String author;
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private int rating;
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private float marketPrice;
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
 }

@@ -7,7 +7,7 @@ import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.service.OrderService;
-import org.symagic.common.utilty.presentation.bean.ItemBean;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 
 public class OrderDetailAction extends CatalogBase {
 
@@ -28,7 +28,7 @@ public class OrderDetailAction extends CatalogBase {
 	private String orderStatus;// ),收货人手机(
 	private String receiverMobile;// ),收货人电话(
 	private String receiverPhone;// ),items:一维数组（一个包含商品ID（itemId),商品名字（itemName),商品单价(price),商品小计(itemTotalPrice),商品数量（itemNumber));catalog:一维数组（一个含有名字(name)和简介(desc)id,目录的ID，二级目录的一维数组（含有名字(name)和简介(desc)id,目录的ID，一个空的一维数组））；
-	private List<ItemBean> items;
+	private List<ItemTinyBean> items;
 
 	private OrderService orderService;
 
@@ -90,11 +90,11 @@ public class OrderDetailAction extends CatalogBase {
 		receiverPhone = order.getPhonenum();
 		zipcode = order.getZipcode();
 
-		items = new ArrayList<ItemBean>();
+		items = new ArrayList<ItemTinyBean>();
 
 		List<BeanOrderDetail> itemsList = order.getList();
 		for (BeanOrderDetail detail : itemsList) {
-			ItemBean itemBean = new ItemBean();
+			ItemTinyBean itemBean = new ItemTinyBean();
 			itemBean.setItemID(detail.getBookId());
 			itemBean.setItemNumber(detail.getAmount());
 			itemBean.setItemTotalPrice(detail.getMarketPrice()
@@ -205,11 +205,11 @@ public class OrderDetailAction extends CatalogBase {
 		this.receiverPhone = receiverPhone;
 	}
 
-	public List<ItemBean> getItems() {
+	public List<ItemTinyBean> getItems() {
 		return items;
 	}
 
-	public void setItems(List<ItemBean> items) {
+	public void setItems(List<ItemTinyBean> items) {
 		this.items = items;
 	}
 

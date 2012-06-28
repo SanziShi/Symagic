@@ -238,4 +238,16 @@ public class DaoComment {
 		return -1;
 	}
 	
+	
+	/**
+	 * 删除指定用户对指定书籍的评论
+	 * @param bookid	指定书籍ID
+	 * @param username	指定用户名
+	 * @return	true 删除成功	false 删除失败
+	 */
+	public boolean delete(int bookid, String username)
+	{
+		return false;
+	}
+	
 }

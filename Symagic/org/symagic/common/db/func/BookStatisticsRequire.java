@@ -3,8 +3,9 @@ package org.symagic.common.db.func;
 public class BookStatisticsRequire {
 	/**
 	 * 起始时间 yyyy-MM-dd
+	 * 默认 1500-01-01
 	 */
-	private String startTime	= null;
+	private String startTime	= "1500-01-01";
 	
 	/**
 	 * 结束时间yyyy-MM-dd

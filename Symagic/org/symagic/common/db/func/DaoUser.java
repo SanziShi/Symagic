@@ -349,5 +349,13 @@ public class DaoUser {
 		return list;
 	}
 	
-	
+	/**
+	 * 获取搜索获取的总数目
+	 * @param req	所搜条件
+	 * @return	int -1 所搜出错	>=0 搜索成功
+	 */
+	public int getSearchNum(UserRequire req)
+	{
+		return -1;
+	}
 }
