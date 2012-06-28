@@ -152,7 +152,9 @@ public class DaoBook {
 		BeanBook book	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select * from book where bookid=?");
+			ps	= conn.prepareStatement("select * from book, book_catalog_detail " +
+					"where  book.bookid = ? and " +
+					"book.bookid=book_catalog_detail.bookid");
 			ps.setInt(1, bookID);
 			rs	= ps.executeQuery();
 			
@@ -175,6 +177,7 @@ public class DaoBook {
 				book.setPublisher(rs.getString("publisher"));
 				book.setPublishDate(rs.getString("publishdate"));
 				book.setVersion(rs.getInt("version"));
+				book.setCatalogID(rs.getInt("catalogid"));
 				
 				return book;
 			}
