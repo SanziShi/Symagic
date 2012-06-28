@@ -242,3 +242,41 @@ background-color: white;
 	padding-left:10px;
 	padding-top:4px;
 	}
+	
+a.reduce
+	{
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	border: 1px solid #DBDBDB;
+	line-height: 13px;
+	text-align: center;
+	overflow: hidden;
+	text-decoration: none;
+	font-family: arial;
+}
+
+/*设定提交修改按钮位置*/
+#submit{
+	position:relative;
+	left:600px;
+	}
+	
+#submit2{
+	position:relative;
+	left:550px;
+	}
+	
+/*输入框只读为灰色*/
+#inputGray{
+	background-color: #CCF;
+	}
+	
+.amount {
+width: 30px;
+height: 18px;
+line-height: 18px;
+padding: 0;
+border: 1px solid 
+#989898;
+text-align: center;
