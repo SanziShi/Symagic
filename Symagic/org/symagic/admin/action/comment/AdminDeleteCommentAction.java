@@ -23,7 +23,7 @@ public class AdminDeleteCommentAction extends ActionSupport {
 		deleteResult = false;
 		
 		if( commentID != null ){
-			//daoComment.delete??!!!
+			//daoComment.
 		}
 		
 		return super.execute();

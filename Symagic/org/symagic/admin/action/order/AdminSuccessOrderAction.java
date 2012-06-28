@@ -6,6 +6,7 @@ import net.sf.json.JSONSerializer;
 
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.func.DaoOrder;
+import org.symagic.common.db.func.DaoUser;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -19,6 +20,7 @@ public class AdminSuccessOrderAction extends ActionSupport {
 	private Boolean changeResult;
 	
 	private DaoOrder daoOrder;
+	private DaoUser daoUser;
 	
 	@Override
 	public String execute() throws Exception {
@@ -44,7 +46,7 @@ public class AdminSuccessOrderAction extends ActionSupport {
 				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
 				order.setOrderState("2");
 				daoOrder.updateOrder(order);
-				//orderScore
+				//daoUser.order.getScore();(用户改积分）
 			}
 
 			changeResult = true;
