@@ -129,23 +129,25 @@
 						href="index.jsp">后台</a>
 				</div>
 				<div id="searchright">
-					<select name="category" id="searchrightcategory">
+					<select name="catalogID">
 						<option value="0">所有类别</option>
-						<option value="1">文艺</option>
-						<option value="2">少儿</option>
-						<option value="3">人文社会</option>
-						<option value="4">经济与管理</option>
-						<option value="5">生活与励志</option>
-						<option value="6">科技</option>
-						<option value="7">教育</option>
-						<option value="8">其他</option>
+						<s:iterator value="catalog" var='outer'>
+							<option value="<s:property value='#outer.ID'/>">
+								<s:property value='#outer.name' />
+							</option>
+							<s:iterator value="#outer.childCatalog" var="inner">
+								<option value="<s:property value='#inner.ID'/>">
+									&nbsp;&nbsp;&nbsp;
+									<s:property value='#inner.name' />
+								</option>
+							</s:iterator>
+						</s:iterator>
 					</select> <input type="text" name="quick_search" id="quick_search"
 						class="gray" value="书名快速搜索...."
 						onfocus="onfocus_check(this,'书名快速搜索....')"
 						onblur="onblur_check(this,'书名快速搜索....')" /> <input type="button"
 						name="Submit" value="搜索" id="searchbutton"
 						onclick="javascript:window.open('item_search_list.html','_parent','')" />
-
 				</div>
 			</div>
 

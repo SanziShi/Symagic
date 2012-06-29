@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</s:iterator>
               </select>
 			  <input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />
-			  <input type="submit"  value="搜索" onClick="">
+			  <input type="submit"  value="搜索" onclick=""/>
 			</form>
             </div>
 		</div>
