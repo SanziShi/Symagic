@@ -548,6 +548,29 @@ public class DaoOrder {
 		return list;
 	}
 	
+	public int getTodayOrderNum()
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from order where date(orderdate) = date(now)");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+	
 }
 
 
