@@ -33,5 +33,11 @@ public class AdminSessionUtilty extends SessionUtilty {
 
 	}
 	
+	public static void logLogout(){
+		Map<String, Object> session = ActionContext.getContext().getSession();
+
+		session.remove("adminName");
+	}
+	
 	
 }
