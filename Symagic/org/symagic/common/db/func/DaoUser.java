@@ -327,7 +327,7 @@ public class DaoUser {
 			conn	= ConnectionPool.getInstance().getConnection();
 			
 			if (req.getUserLevel() != null) {
-				ps	= conn.prepareStatement("select lowlimit from score_level where id=?");
+				ps	= conn.prepareStatement("select lowlimit,uplimit from score_level where id=?");
 				ps.setInt(1, req.getUserLevel());
 				rs	= ps.executeQuery();
 			}
@@ -338,8 +338,11 @@ public class DaoUser {
 				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
 			if (req.getEndTime() != null)
 				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
-			if (req.getUserLevel() != null)
-				sql += " and " + " score > " + "'" + rs.getInt("lowlimit") + "'";
+			if (req.getUserLevel() != null){
+				rs.next();
+				sql += " and " + " score >= " + "'" + rs.getInt("lowlimit") + "'";
+				sql += " and " + " score < " + "'" + rs.getInt("uplimit") + "'";
+			}
 			
 			
 			sql += " order by userid asc limit " 
@@ -387,7 +390,7 @@ public class DaoUser {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			if (req.getUserLevel() != null) {
-				ps	= conn.prepareStatement("select lowlimit from score_level where id=?");
+				ps	= conn.prepareStatement("select lowlimit,uplimit from score_level where id=?");
 				ps.setInt(1, req.getUserLevel());
 				rs	= ps.executeQuery();
 			}
@@ -397,8 +400,12 @@ public class DaoUser {
 				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
 			if (req.getEndTime() != null)
 				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
-			if (req.getUserLevel() != null)
-				sql += " and " + " score > " + "'" + rs.getInt("lowlimit") + "'";
+			if (req.getUserLevel() != null) {
+				rs.next();
+				sql += " and " + " score >= " + "'" + rs.getInt("lowlimit") + "'";
+				sql += " and " + " score < " + "'" + rs.getInt("uplimit") + "'";
+			}
+				
 			
 			
 			st	= conn.createStatement();

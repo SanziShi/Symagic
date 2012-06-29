@@ -163,6 +163,7 @@ public class DaoUserTest extends TestCase{
 		req.setLines(10);
 		req.setEndTime("2012-12-01");
 		req.setUsername("641567");
+		req.setUserLevel(1);
 		assertEquals("641567179@qq.com", du.search(req).get(0).getUsername());
 	}
 }
