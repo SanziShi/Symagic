@@ -18,6 +18,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">loginResult,toURL</param>
 			</result>
 		</action>
+		
+		<action name="logout" class="logoutClass">
+		 <result type="json">
+		   <param name="includeProperties">logoutResult</param>
+		 </result>
+		</action>
 
 		<action name="get_session_info" class="getSessionInfo">
 			<result type="json">

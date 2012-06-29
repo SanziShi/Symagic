@@ -18,65 +18,27 @@ public class RegisterAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = -7443659242913503854L;
-    private JCaptcha symagicCaptcha;
-    private UserService userService;
-    
+    //传入
 	private String userName; // 注册用户名
     private String password; // 注册密码
 	private String passwordConfirm;// 注册时密码确认
 	private String nickname; // 注册昵称
-    public JCaptcha getSymagicCaptcha() {
-		return symagicCaptcha;
-	}
-
-	public void setSymagicCaptcha(JCaptcha symagicCaptcha) {
-		this.symagicCaptcha = symagicCaptcha;
-	}
-
-	public UserService getUserService() {
-		return userService;
-	}
-
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
-
-
 	
-	
-
-
-
-	
-
-
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-
-
-	
-	public String getNickname() {
-		return nickname;
-	}
-
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-
-
-
 	private String securityQuestion;// 安全问题
 	private String securityAnswer; // 安全问题的甜答案
 	private String captchaValue; // 注册验证码
 	private String toURL; // 注册之后转向的页面地址
+	//配置项
+	private JCaptcha symagicCaptcha;
+    private UserService userService;
+    
+	
+    
+	//传出
+	private boolean registerResult; // 注册是否成功
+	
+
+	private boolean validateResult=true;// 验证输入是否合法
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -147,8 +109,7 @@ public class RegisterAction extends ActionSupport {
 	
 	
 
-	private boolean validateResult=true;// 验证输入是否合法
-	private boolean registerResult; // 注册是否成功
+	
 
 	
 
@@ -210,6 +171,51 @@ public class RegisterAction extends ActionSupport {
 
 	public void setToURL(String toURL) {
 		this.toURL = toURL;
+	}
+	public JCaptcha getSymagicCaptcha() {
+		return symagicCaptcha;
+	}
+
+	public void setSymagicCaptcha(JCaptcha symagicCaptcha) {
+		this.symagicCaptcha = symagicCaptcha;
+	}
+
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
+	}
+
+
+
+	
+	
+
+
+
+	
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+
+	
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	

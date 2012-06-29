@@ -10,11 +10,16 @@
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
 	</bean>
+	
 	<bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
+	
+	
 	<bean id="loginClass" class="org.symagic.user.action.login.LoginAction">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 		<property name="userService" ref="UserService"></property>
 	</bean>
+	
+	<bean id="logoutClass" class="org.symagic.user.action.login.LogoutAction"></bean>
 	<bean id="registerClass" class="org.symagic.user.action.register.RegisterAction">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 		<property name="userService" ref="UserService"></property>
