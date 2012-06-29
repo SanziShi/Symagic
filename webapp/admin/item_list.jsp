@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -222,7 +222,7 @@
 									value="<s:property value = '#bookItems.itemID'/>" />
 								</td>
 								<td width="16%" rowspan="1" align="right" class="inputHeader">
-									<a href="item_detail?itemID=<s:property value = '#bookItems.itemID'/>"><img
+									<a href="item_info.html"><img
 										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="#bookItems.picturePath"/>"
 										alt="<s:property value = '#bookItems.name'/>" id="img_format" />
 								</a></td>
@@ -302,7 +302,7 @@
 				</div>
 				<div id="doublecontent2">
 					<form action="item_add_submit" method="post">
-						<table id="itemsearch">
+						<table id="tradequery">
 							<tr>
 								<th width="181">图书名称：</th>
 								<td width="390"><input type="text" class="inputttextlarge"
@@ -340,12 +340,35 @@
 								<td><span class="red">*必填项</span>
 								</td>
 							</tr>
-							<tr>
+							
 
 								<tr>
 									<th>出版时间：</th>
-									<td><input type="text" name="publishTime" value="" />
-									</td>
+									<td>
+						<select name="publishTime.year" id="sYear">
+              			
+              			</select>
+						&nbsp;年&nbsp;
+						<select name="publishTime.month" id="sMonth">
+              			
+            			</select>
+						&nbsp;月&nbsp;
+						<select name="publishTime.day" id="sDay">
+              			           
+            			</select>
+						&nbsp;日
+					</td>
+<script type="text/javascript">
+var selYear = window.document.getElementById("sYear");
+var selMonth = window.document.getElementById("sMonth");
+var selDay = window.document.getElementById("sDay");
+
+// 新建一个DateSelector类的实例，将三个select对象传进去
+//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
+// 也可以试试下边的代码
+var dt = new Date(2012, 0, 1);
+new DateSelector(sYear, sMonth ,sDay, dt);
+</script>
 									<td>#选填项</td>
 								</tr>
 								<tr>
