@@ -73,10 +73,7 @@ function load_regist()
 			}
 	})
 }
-function get_session()
-{
-	Ajax({url:'get_session_info',async:false,onSuccess:function(e){return e;}})
-}
+
 function login(form)
 {
 	var login_form=$(form).serialize();
