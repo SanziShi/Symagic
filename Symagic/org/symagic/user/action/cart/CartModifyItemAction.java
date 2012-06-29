@@ -20,7 +20,7 @@ private Integer itemID;//商品id
 
 private Integer itemNumber;//更改后的数量
 private boolean validateResult=true;
-private boolean updateResult;//修改是否成功
+private boolean updateResult=false;//修改是否成功
 
 @Override
 public void validate() {
@@ -35,9 +35,12 @@ public String execute() throws Exception {
 	// TODO Auto-generated method stub
 	 if(validateResult==false){
 		 updateResult=false;
-		 return "SUCCESS";
+		 return "success";
 	 }
-	 
+	 if(UserSessionUtilty.getCart().get(itemID)==null){
+		 updateResult=false;
+		 return "success";
+	 }
 	updateResult=UserSessionUtilty.modifyFromCart(itemID, itemNumber);
 		
 	//会员登录更新到数据库中

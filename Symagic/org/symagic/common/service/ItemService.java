@@ -11,13 +11,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
-import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.db.func.DaoComment;
 import org.symagic.common.utilty.presentation.bean.CatalogBean;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
@@ -30,7 +28,7 @@ import org.symagic.user.utilty.UserSessionUtilty;
 public class ItemService {
 	private DaoComment daoComment;// 访问comment
 	private DaoBook daoBook;// 访问数据库中的书籍信息
-	private DaoCatalog daoCatalog;
+	
 
 	/**
 	 * 
@@ -279,12 +277,5 @@ public class ItemService {
 		this.daoComment = daoComment;
 	}
 
-	public DaoCatalog getDaoCatalog() {
-		return daoCatalog;
-	}
-
-	public void setDaoCatalog(DaoCatalog daoCatalog) {
-		this.daoCatalog = daoCatalog;
-	}
-
+	
 }
