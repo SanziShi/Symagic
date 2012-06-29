@@ -50,8 +50,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="order_statistics" class="AdminOrderStatistics">
 			<result>
-			/admin/salesdata_admin.jsp
+				/admin/salesdata_admin.jsp
 			</result>
+		</action>
+
+		<action name="item_add_submit" class="AdminAddItem">
+			<param name="actionName">item_detail</param>
+			<param name="namespace">/admin</param>
+			<param name="itemID">${itemID}</param>
 		</action>
 
 	</package>
