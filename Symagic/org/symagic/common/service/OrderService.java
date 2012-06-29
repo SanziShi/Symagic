@@ -96,19 +96,19 @@ public class OrderService {
 	 *            终止时间
 	 * @param OrderStatus
 	 *            订单状态
-	 * @return 用户订单列表
+	 * @return 用户订单列表和totalPage
 	 */
 
 	public OrderListResult orderList(String username, int itemPerPage,
 			int page, Date start, Date end, Integer orderState) {
 		List<OrderBean> orderList = new ArrayList<OrderBean>();
 		OrderRequire require = new OrderRequire();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		if (start != null)
 			require.setStartTime(format.format(start));
 		if (end != null)
 			require.setEndTime(format.format(end));
-		if (orderState != 0)
+		if (orderState != null && orderState != 0)
 			require.setOrderState(Integer.toString(orderState - 1));
 		require.setPage(page);
 		require.setLines(itemPerPage);

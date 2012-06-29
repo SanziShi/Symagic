@@ -21,6 +21,7 @@ public class AdminOrderListAction extends CatalogBase {
 	private TimeBean endTime;//结束索引时间（year：年，month:月，day:日），
 	private Integer orderState;//:订单状态(0：未指定，1：已下单，2：已审核，3：交易成功，4：交易失败）,
 	private Integer page;//:分页
+	private String userName;
 	
 	private List<OrderBean> orderList;
 	private Integer totalPage;
@@ -37,11 +38,11 @@ public class AdminOrderListAction extends CatalogBase {
 		GregorianCalendar endCalendar = null;
 		if (startTime != null) {
 			startCalendar = new GregorianCalendar(startTime.getYear(),
-					startTime.getMonth(), startTime.getDay());
+					startTime.getMonth() - 1, startTime.getDay());
 		}
 		if (endTime != null) {
 			endCalendar = new GregorianCalendar(
-					endTime.getYear(), endTime.getMonth(), endTime.getDay());
+					endTime.getYear(), endTime.getMonth() - 1, endTime.getDay());
 
 			if (startCalendar != null
 					&& endCalendar.getTime().before(startCalendar.getTime())) {
@@ -52,7 +53,7 @@ public class AdminOrderListAction extends CatalogBase {
 		if( page == null )
 			page = 1;
 		
-		OrderListResult result = orderService.orderList(null, lines, page, startCalendar == null ? null : startCalendar.getTime() , endCalendar == null ? null : endCalendar.getTime(), orderState);
+		OrderListResult result = orderService.orderList(userName, lines, page, startCalendar == null ? null : startCalendar.getTime() , endCalendar == null ? null : endCalendar.getTime(), orderState);
 		
 		orderList = result.orders;
 		totalPage = result.totalPage;
@@ -138,6 +139,16 @@ public class AdminOrderListAction extends CatalogBase {
 
 	public void setLines(Integer lines) {
 		this.lines = lines;
+	}
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 }
