@@ -29,7 +29,7 @@ private static final long serialVersionUID = 8991605145652333401L;
  private Integer page=1;//分页显示
  
 	
- //配置项
+ //配置项(加上catalogService)
  private  Integer recommendNumber;
  private String errorHeader;
  private String errorSpecification;
@@ -49,7 +49,7 @@ private List<ItemBean>items;//用于显示的商品列表
 		 items=new ArrayList<ItemBean>();
 			//设置搜索的条件,两个条件 都为空时，返回所有商品
 		   BookRequire require=new BookRequire();
-		   
+		   if(catalogID!=null)
 		   require.setCatalogID(catalogID);
 		   if(keyword!=null){
 		   require.setAuthor(keyword);
@@ -88,7 +88,17 @@ private List<ItemBean>items;//用于显示的商品列表
 		 return super.execute();
 		}
 	 
-	 public ItemService getItemService() {
+	 
+	 
+	 @Override
+	public void validate() {
+		// TODO Auto-generated method stub
+		super.validate();
+	}
+
+
+
+	public ItemService getItemService() {
 			return itemService;
 		}
 
