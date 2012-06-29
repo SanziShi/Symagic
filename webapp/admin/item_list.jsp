@@ -222,7 +222,7 @@
 									value="<s:property value = '#bookItems.itemID'/>" />
 								</td>
 								<td width="16%" rowspan="1" align="right" class="inputHeader">
-									<a href="item_info.html"><img
+									<a href="item_detail?itemID=<s:property value = '#bookItems.itemID'/>"><img
 										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="#bookItems.picturePath"/>"
 										alt="<s:property value = '#bookItems.name'/>" id="img_format" />
 								</a></td>
