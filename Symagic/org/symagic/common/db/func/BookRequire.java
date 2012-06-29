@@ -78,6 +78,10 @@ public class BookRequire {
 	 */
 	private Integer discount	= null;
 	
+	private Float upDiscount	= null;
+	
+	private Float lowDiscount	= null;
+	
 	/**
 	 * 第几页
 	 */
@@ -223,6 +227,33 @@ public class BookRequire {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+
+
+	public Float getUpDiscount() {
+		return upDiscount;
+	}
+
+
+	public void setUpDiscount(Float upDiscount) {
+		this.upDiscount = upDiscount;
+	}
+
+
+	public Float getLowDiscount() {
+		return lowDiscount;
+	}
+
+
+	public void setLowDiscount(Float lowDiscount) {
+		this.lowDiscount = lowDiscount;
+	}
+
+
+
+
+
+
+	
 	
 	
 }
