@@ -1,9 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>BC2商城</title>
-<link href="css/frame.css" rel="stylesheet" type="text/css">
-<link href="css/gz.css" rel="stylesheet" type="text/css">
+<link href="css/frame.css" rel="stylesheet" type="text/css"/>
+<link href="css/gz.css" rel="stylesheet" type="text/css"/>
 <script language="javascript" src="js/gz.js"></script>
 <script language="javascript" src="js/jquery.js"></script>
 
@@ -38,10 +40,12 @@
 			</div>
 		</div>
 			<div id="sendnotehead"><strong>销售量查询</strong></div>
-			<div id="sendnotecontent">
-				<form action="" method="post" enctype="multipart/form-data" name="form1">
+<div id="sendnotecontent">
+			<form action="order_list" method="post" enctype="multipart/form-data" name="form1">
 				<table id="tradequery">
-				  <tr>
+					
+                   
+				   <tr>
 					<th>起始时间：&nbsp;</th>
             		<td>
 						<select name="startTime.year" id="sYear">
@@ -65,7 +69,7 @@ var selDay = window.document.getElementById("sDay");
 // 新建一个DateSelector类的实例，将三个select对象传进去
 //new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 // 也可以试试下边的代码
-var dt = new Date(2012, 0, 1);
+var dt = new Date(2012, 0, 1) ;
 new DateSelector(sYear, sMonth ,sDay, dt);
 </script>
           		 </tr>
@@ -97,34 +101,35 @@ var dt = new Date(2012, 0, 1);
 new DateSelector(eYear, eMonth ,eDay, dt);
 </script>                
           		 </tr>
-				 <tr>
-				 <th>类别：</th>
-            		<td>
-					  	<select name="category">
-			   <option value="0">所有类别</option>
-                <option value="1">文艺</option>
-                <option value="2">少儿</option>
-                <option value="3">人文社会</option>
-                <option value="4">经济与管理</option>
-                <option value="5">生活与励志</option>
-                <option value="6">科技</option>
-                <option value="7">教育</option>
-                <option value="8">其他</option>
-              </select> 
-					</td>
-          		 </tr>
-                 <tr>
-				 <th>销量下限</th>
-            		<th><span width="40px" style="float:left">
-            		  <input type="text"  value="" size="7" />本</span></th>
-          		 </tr>
+                  <tr>
+					<th>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</th>
+					<td>
+              <select name="catalogID" >
+			  <option value="0">所有类别</option>
+			  <s:iterator value="catalog" var='outer'>
+				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
+				<s:iterator value="#outer.childCatalog" var="inner">
+				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
+				</s:iterator>
+				</s:iterator>
+              </select>
+                    </td>
+					</tr>
+                      <tr>
+					<th>销售下限：</th>
+					<td>
+                    <input type="text" name="limit" />
+                     </td>
+					</tr>
 				 <tr>
 				 <th></th>
-				 	<td><input type="Button" class="bt2" name="button22" value="查询" onClick="javascript:window.location.href='salesdata_list.html'"><td>
+				 	<td><input type="submit" name="button22" value="查询"/>
+                    </td>
 				 </tr>
         </table>
 		</form>  		
-		</div>
+			</div>
+        </div>
 		
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
