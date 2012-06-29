@@ -46,17 +46,26 @@ public class UserListAction extends CatalogBase {
 		userRequire.setUsername(userName);
 		userRequire.setUserLevel(userLevel);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+		GregorianCalendar startCalendar = null;
 		if (startTime != null) {
-			GregorianCalendar calendar = new GregorianCalendar(
-					startTime.getYear(), startTime.getMonth(),
-					startTime.getDay());
-			userRequire.setStartTime(formater.format(calendar.getTime()));
+			startCalendar = new GregorianCalendar(startTime.getYear(),
+					startTime.getMonth(), startTime.getDay());
+			userRequire.setStartTime(formater.format(startCalendar.getTime()));
+		} else {
+			userRequire.setStartTime(null);
 		}
-
 		if (endTime != null) {
-			GregorianCalendar calendar = new GregorianCalendar(
+			GregorianCalendar endCalendar = new GregorianCalendar(
 					endTime.getYear(), endTime.getMonth(), endTime.getDay());
-			userRequire.setStartTime(formater.format(calendar.getTime()));
+
+			if (startCalendar != null
+					&& endCalendar.getTime().before(startCalendar.getTime())) {
+				return ERROR;
+			}
+
+			userRequire.setEndTime(formater.format(endCalendar.getTime()));
+		} else {
+			userRequire.setEndTime(null);
 		}
 
 		userRequire.setPage(page);
