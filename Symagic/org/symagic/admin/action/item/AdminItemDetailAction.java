@@ -13,7 +13,7 @@ public class AdminItemDetailAction extends CatalogBase {
 	 * 
 	 */
 	private static final long serialVersionUID = 2135206510537863273L;
-	
+
 	private Integer lines;
 	private Integer totalPage;// 评论有多少页
 
@@ -21,41 +21,42 @@ public class AdminItemDetailAction extends CatalogBase {
 	private ItemDetailBean book;// 书籍详细信息
 	private ItemService itemService;// 访问服务层
 	private List<BeanComment> commentList;// 评论列表
-	
+
 	private String errorHeader;
 	private String errorSpecification;
-	
+
 	private boolean validateResult;
 
 	@Override
 	public void validate() {
-		
+
 		validateResult = true;
-		
-		if( itemID == null )
+
+		if (itemID == null)
 			validateResult = false;
-		
+
 		super.validate();
 	}
 
 	@Override
 	public String execute() throws Exception {
-		
-		if( !validateResult ){
+
+		if (!validateResult) {
 			return INPUT;
 		}
-		
+
 		book = new ItemDetailBean();
-		if( !itemService.fillDetailBean(itemID, book) ){
+		if (!itemService.fillDetailBean(itemID, book)) {
 			return ERROR;
 		}
 		book.setBookDesc(book.getBookDesc().replaceAll("\n", "<br>"));
 		int commentNumber = itemService.getCommentNumber(itemID);
-		totalPage = (commentNumber + lines - 1) / lines;
+		if (commentNumber != -1)
+			totalPage = (commentNumber + lines - 1) / lines;
 		commentList = itemService.getCommentWithPage(itemID, 1, lines);
-		
+
 		return super.execute();
-		
+
 	}
 
 	public Integer getLines() {
@@ -122,5 +123,4 @@ public class AdminItemDetailAction extends CatalogBase {
 		this.errorSpecification = errorSpecification;
 	}
 
-	
 }
