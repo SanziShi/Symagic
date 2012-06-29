@@ -552,7 +552,7 @@ public class DaoOrder {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select count(*) from order where date(orderdate) = date(now)");
+			ps	= conn.prepareStatement("select count(*) from book_order where date(orderdate) = date(now)");
 			rs	= ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
