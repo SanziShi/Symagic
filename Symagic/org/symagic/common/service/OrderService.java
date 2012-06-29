@@ -155,19 +155,24 @@ public class OrderService {
 			JSONObject district = new JSONObject();
 			district.put("id", address.level1District.getID() );
 			district.put("name", address.level1District.getName());
+			jsonObject.put("level1", district);
 		}
 		
 		if( address.level2District != null ){
 			JSONObject district = new JSONObject();
 			district.put("id", address.level2District.getID() );
 			district.put("name", address.level2District.getName());
+			jsonObject.put("level2", district);
 		}
 		
 		if( address.level3District != null ){
 			JSONObject district = new JSONObject();
 			district.put("id", address.level3District.getID() );
 			district.put("name", address.level3District.getName());
+			jsonObject.put("level3", district);
 		}
+		
+		
 		
 		return jsonObject.toString();
 		
