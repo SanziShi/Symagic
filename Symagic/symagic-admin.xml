@@ -8,7 +8,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="admin-default" extends="symagic-admin-default"
 		namespace="/admin">
 
-		<action name="index">
+		<action name="index" class="AdminIndex">
 			<result>/admin/index.jsp</result>
 		</action>
 
