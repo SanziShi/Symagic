@@ -272,6 +272,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<param name="itemID">${itemID}</param>
 		</action>
 
+		<action name="quick_search" class="AdminQuickSearchItem">
+			<result>
+				/admin/item_list.jsp
+			</result>
+		</action>
+
 	</package>
 
 </struts>    

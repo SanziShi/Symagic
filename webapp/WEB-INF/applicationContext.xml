@@ -115,6 +115,7 @@
 		scope="prototype">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="lines" value="15"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"
