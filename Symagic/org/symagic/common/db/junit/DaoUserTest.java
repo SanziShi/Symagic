@@ -9,58 +9,7 @@ import org.symagic.common.db.func.UserRequire;
 public class DaoUserTest extends TestCase{
 
 
-	//设置环境参数
-
-//	@Ignore
-//	@Test
-//	public void testValidateUser() {
-//		DaoUser du	= new DaoUser();
-//		assertEquals(true, du.validateUser("单小熙1", "12"));
-//	}
-//	
-//	@Ignore
-//	@Test
-//	public void testValidateUserName() {
-//		DaoUser du	= new DaoUser();
-//		assertEquals(false, du.validateUserName("单小熙"));
-//	}
-	
-//	@Ignore
-//	@Test
-//	public void testAddUser() {
-//		BeanUser user	= new BeanUser();
-//		DaoUser du	= new DaoUser();
-//		user.setUsername("单小熙1");
-//		user.setNickname("小单车");
-//		user.setPassword("12");
-//		user.setQuestion("我的姓氏");
-//		user.setAnswer("单小熙");
-//		assertEquals(true, du.addUser(user));
-//	}
-//	
-//	@Test
-//	public void testUpdateNickname()
-//	{
-//		DaoUser du	= new DaoUser();
-//		assertEquals(true, du.updateNickname("单小熙1", "单小车11"));
-//	}
-	
-//	@Test
-//	public void testGetScore()
-//	{
-//		DaoUser du = new DaoUser();
-//		assertEquals(0, du.getScore("单小熙1"));
-//	}
-	
-//	@Test
-//	public void testUpdatePassword()
-//	{
-//		DaoUser du = new DaoUser();
-//		assertEquals(true, du.updatePassword("单小熙1", "21", "12"));
-//	}
-
-
-//	DaoUser du = new DaoUser();
+	DaoUser du = new DaoUser();
 //	
 //	@Test
 //	public void testAddUser1(){
@@ -153,7 +102,7 @@ public class DaoUserTest extends TestCase{
 		assertEquals(null,du.getUser("12345@qq.com"));
 	}*/
 	
-	@Test
+/*	@Test
 	public void testSearch()
 	{
 		DaoUser	du	= new DaoUser();
@@ -164,5 +113,91 @@ public class DaoUserTest extends TestCase{
 		req.setEndTime("2012-12-01");
 		req.setUsername("641567");
 		assertEquals("641567179@qq.com", du.search(req).get(0).getUsername());
+	}*/
+	@Test
+	public void testGetUserNum(){
+		
+		assertEquals(10,du.getUserNum());			
+	}
+	
+	@Test
+	public void testSearch1(){
+		UserRequire	req	= new UserRequire();
+		req.setUsername("641567179@qq.com");
+		req.setUserLevel(1);
+		req.setStartTime("2012-01-01");
+		req.setEndTime("2013-01-01");
+		
+		req.setLines(3);
+		req.setPage(1);
+		
+		assertEquals("641567179@qq.com",du.search(req).get(0).getUsername());
+	}
+	@Test
+	public void testSearch2(){
+		UserRequire	req	= new UserRequire();
+		req.setUsername("12345@qq.com");
+		req.setUserLevel(1);
+		req.setStartTime("2012-01-01");
+		req.setEndTime("2013-01-01");
+		
+		req.setLines(3);
+		req.setPage(1);
+		
+		assertEquals(0,du.search(req).size());
+	}
+	@Test
+	public void testSearch3(){
+		UserRequire	req	= new UserRequire();
+		
+		req.setLines(3);
+		req.setPage(1);
+		
+		assertEquals(3,du.search(req).size());
+	}
+	
+	@Test
+	public void testGetSearchNum1(){
+		UserRequire	req	= new UserRequire();
+		req.setUsername("641567179@qq.com");
+		req.setUserLevel(1);
+		req.setStartTime("2012-01-01");
+		req.setEndTime("2013-01-01");
+		
+		assertEquals(1,du.getSearchNum(req));
+	}
+	@Test
+	public void testGetSearchNum2(){
+		UserRequire	req	= new UserRequire();
+		req.setUsername("123456@qq.com");
+		req.setUserLevel(1);
+		req.setStartTime("2012-01-01");
+		req.setEndTime("2013-01-01");
+		
+		assertEquals(0,du.getSearchNum(req));
+	}
+	@Test
+	public void testGetSearchNum3(){
+		UserRequire	req	= new UserRequire();
+		
+		assertEquals(10,du.getSearchNum(req));
+	}
+	
+	@Test
+	public void testUpdateScore(){
+		assertEquals(true,du.updateScore(10000, "544921965@qq.com"));
+	}
+	@Test
+	public void testUpdateScore2(){
+		assertEquals(false,du.updateScore(10000, "123456@qq.com"));
+	}
+	
+	@Test
+	public void testUpdateQA1(){
+		assertEquals(true,du.updateQA("544921965@qq.com", "我是谁", "刘光宗"));
+	}
+	@Test
+	public void testUpdateQA2(){
+		assertEquals(false,du.updateQA("123456@qq.com", "我是谁", "刘光宗"));
 	}
 }

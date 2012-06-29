@@ -105,9 +105,9 @@ public class DaoUser {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into user (" +
-					"username, nickname, score, question, answer)" +
+					"username, nickname, score, question, answer, registedate)" +
 					"values (" +
-					"?, ?, ?, ?, ?" +
+					"?, ?, ?, ?, ?, date(now())" +
 					")");
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getNickname());
@@ -325,13 +325,24 @@ public class DaoUser {
 		String sql	= "select * from user where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			
+			if (req.getUserLevel() != null) {
+				ps	= conn.prepareStatement("select lowlimit,uplimit from score_level where id=?");
+				ps.setInt(1, req.getUserLevel());
+				rs	= ps.executeQuery();
+			}
+			
+			
 			sql += " username like " + "'%" + req.getUsername() + "%'";
 			if (req.getStartTime() != null)
 				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
 			if (req.getEndTime() != null)
 				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
-			if (req.getUserLevel() != null)
-				sql += " and " + " registedate > " + "'" + req.getUserLevel() + "'";
+			if (req.getUserLevel() != null){
+				rs.next();
+				sql += " and " + " score >= " + "'" + rs.getInt("lowlimit") + "'";
+				sql += " and " + " score < " + "'" + rs.getInt("uplimit") + "'";
+			}
 			
 			
 			sql += " order by userid asc limit " 
@@ -375,16 +386,26 @@ public class DaoUser {
 	 */
 	public int getSearchNum(UserRequire req)
 	{
-		String sql	= "select count(*) from user where ";
+		String sql	= "select * from user where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			if (req.getUserLevel() != null) {
+				ps	= conn.prepareStatement("select lowlimit,uplimit from score_level where id=?");
+				ps.setInt(1, req.getUserLevel());
+				rs	= ps.executeQuery();
+			}
+
 			sql += " username like " + "'%" + req.getUsername() + "%'";
 			if (req.getStartTime() != null)
 				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
 			if (req.getEndTime() != null)
 				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
-			if (req.getUserLevel() != null)
-				sql += " and " + " registedate > " + "'" + req.getUserLevel() + "'";
+			if (req.getUserLevel() != null) {
+				rs.next();
+				sql += " and " + " score >= " + "'" + rs.getInt("lowlimit") + "'";
+				sql += " and " + " score < " + "'" + rs.getInt("uplimit") + "'";
+			}
+				
 			
 			
 			st	= conn.createStatement();

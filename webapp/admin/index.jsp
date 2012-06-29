@@ -1,3 +1,4 @@
+
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -23,22 +24,14 @@
 		<a name="0"></a>
 		<div id="globallink">
 			<ul>
-				<li><a href="index.html">首页</a>
-				</li>
-				<li><a href="category_list.html">目录管理</a>
-				</li>
-				<li><a href="item_list.html">商品管理</a>
-				</li>
-				<li><a href="order_admin.html">订单管理</a>
-				</li>
-				<li><a href="salesdata_admin.html">销售量统计</a>
-				</li>
-				<li><a href="user_admin.html">会员管理</a>
-				</li>
-				<li><a href="comment_list.html">评论管理</a>
-				</li>
-				<li><a href="" class="nouseful">&nbsp;</a>
-				</li>
+				<li><a href="index">首页</a></li>
+				<li><a href="category_list.html">目录管理</a></li>
+				<li><a href="item_manager">商品管理</a></li>
+				<li><a href="order_admin.html">订单管理</a></li>
+				<li><a href="order_statistics">销售量统计</a></li>
+				<li><a href="user_admin.html">会员管理</a></li>
+				<li><a href="comment_list.html">评论管理</a></li>
+				<li><a href="" class="nouseful">&nbsp;</a></li>
 			</ul>
 		</div>
 		<!-- <div class="clear"></div>
@@ -69,56 +62,44 @@
 					<span>后台首页</span>
 				</h4>
 				<ul>
-					<li><a href="index.jsp">后台首页</a>
-					</li>
+					<li><a href="index.jsp">后台首页</a></li>
 
 				</ul>
 				<h4>
 					<span>销售管理</span>
 				</h4>
 				<ul>
-					<li><a href="salesdata_admin.html">查询销售情况</a>
-					</li>
-					<li><a href="salesdata_list.html">销售量统计</a>
-					</li>
+					<li><a href="salesdata_admin.html">查询销售情况</a></li>
+					<li><a href="salesdata_list.html">销售量统计</a></li>
 				</ul>
 				<h4>
 					<span>目录管理</span>
 				</h4>
 				<ul>
-					<li><a href="category_list.html">编辑商品目录</a>
-					</li>
-					<li><a href="category_list.html">添加商品目录</a>
-					</li>
+					<li><a href="category_list.html">编辑商品目录</a></li>
+					<li><a href="category_list.html">添加商品目录</a></li>
 				</ul>
 				<h4>
 					<span>商品管理</span>
 				</h4>
 				<ul>
-					<li><a href="item_list.html">添加商品</a>
-					</li>
-					<li><a href="item_list.html">修改商品信息</a>
-					</li>
-					<li><a href="item_search.html">商品搜索</a>
-					</li>
+					<li><a href="item_list.html">添加商品</a></li>
+					<li><a href="item_list.html">修改商品信息</a></li>
+					<li><a href="item_search.html">商品搜索</a></li>
 				</ul>
 				<h4>
 					<span>订单管理</span>
 				</h4>
 				<ul>
-					<li><a href="order_list">订单审核</a>
-					</li>
-					<li><a href="order_admin.html">查询订单</a>
-					</li>
+					<li><a href="order_list">订单审核</a></li>
+					<li><a href="order_admin.html">查询订单</a></li>
 				</ul>
 				<h4>
 					<span>会员管理</span>
 				</h4>
 				<ul>
-					<li><a href="user_admin.html">查询会员</a>
-					</li>
-					<li><a href="user_admin.html">设置会员等级规定</a>
-					</li>
+					<li><a href="user_admin.html">查询会员</a></li>
+					<li><a href="user_admin.html">设置会员等级规定</a></li>
 				</ul>
 			</div>
 		</div>
@@ -129,23 +110,24 @@
 						href="index.jsp">后台</a>
 				</div>
 				<div id="searchright">
-					<select name="category" id="searchrightcategory">
-						<option value="0">所有类别</option>
-						<option value="1">文艺</option>
-						<option value="2">少儿</option>
-						<option value="3">人文社会</option>
-						<option value="4">经济与管理</option>
-						<option value="5">生活与励志</option>
-						<option value="6">科技</option>
-						<option value="7">教育</option>
-						<option value="8">其他</option>
-					</select> <input type="text" name="quick_search" id="quick_search"
-						class="gray" value="书名快速搜索...."
-						onfocus="onfocus_check(this,'书名快速搜索....')"
-						onblur="onblur_check(this,'书名快速搜索....')" /> <input type="button"
-						name="Submit" value="搜索" id="searchbutton"
-						onclick="javascript:window.open('item_search_list.html','_parent','')" />
-
+					<form action="quick_search">
+						<select name="catalogID">
+							<option value="0">所有类别</option>
+							<s:iterator value="catalog" var='outer'>
+								<option value="<s:property value='#outer.ID'/>">
+									<s:property value='#outer.name' />
+								</option>
+								<s:iterator value="#outer.childCatalog" var="inner">
+									<option value="<s:property value='#inner.ID'/>">
+										&nbsp;&nbsp;&nbsp;
+										<s:property value='#inner.name' />
+									</option>
+								</s:iterator>
+							</s:iterator>
+						</select> <input type="text" name="keyword" id="keyword" class="gray"
+							value="" /> <input type="submit"
+							value="搜索" onclick=""/>
+					</form>
 				</div>
 			</div>
 
@@ -178,7 +160,8 @@
 								<td id="myfont" class="mywidth"><s:property
 										value="productNum" />个</td>
 							</tr>
-						</table></td>
+						</table>
+					</td>
 
 					<td class="mywidth">
 						<table width="100% " style="display:inline ">
@@ -205,7 +188,8 @@
 								<td id="myfont"><span class="redStrong"><s:property
 											value="finishOrderAmount" /> </span>个</td>
 							</tr>
-						</table></td>
+						</table>
+					</td>
 				</tr>
 			</table>
 			<!--      <table width="100%">
@@ -270,7 +254,8 @@
 								<tr id="<s:property value = '#orders.orderID'/>">
 
 									<td><input type="checkbox" name="orders"
-										value="<s:property value = '#orders.orderID'/>" /></td>
+										value="<s:property value = '#orders.orderID'/>" />
+									</td>
 
 									<td class="antoWidth"><s:property value="#orders.orderID" />
 									</td>
@@ -282,8 +267,7 @@
 									</td>
 
 									<td class="autoWidth"><s:property
-											value="#orders.orderStatus" />
-									</td>
+											value="#orders.orderStatus" /></td>
 									<td><s:if test="#orders.orderStatus=='已下单' ">
 											<a
 												href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
@@ -313,7 +297,8 @@
 												<s:property value = '#orders.orderID'/>)"
 												href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
   </s:else>
-  </td>
+									</td>
+
 
 								</tr>
 							</s:iterator>
@@ -324,7 +309,7 @@
 				</form>
 
 			</div>
-</div>
+
 
 			<div id="footer">
 				<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |

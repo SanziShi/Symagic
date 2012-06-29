@@ -15,15 +15,30 @@ function test(e)
 function add_to_cart(id)
 {
 	var amount=document.getElementById('amount').value;
+	var cart_num=document.getElementById('cart_num')
 	Ajax({
-		url:'cart/add_to_cart',
-		data:'itemID='+id+'itemNumber='+amount,
-		onSuccess:function(e){alert(e)}
+		url:'cart/add_to_cart?'+'itemID='+id+'&itemNumber='+amount,
+		//data:'itemID='+id+'&itemNumber='+amount,
+		onSuccess:function(e){
+			var r=JSON.parse(e);
+			if(r.addResult)alert('添加成功');
+			Ajax({url:'get_session_info',onSuccess:function(q){var res=JSON.parse(q);cart_num.innerHTML=res.totalNumber}})
+			}
 		})
 }
 function change_captcha(e)
 {
 	e.src='captcha_get_captcha';
+}
+function logout()
+{
+	Ajax({
+		url:'logout',
+		onSuccess:function(e){
+			var a=JSON.parse(e);
+			if(a.logoutResult){alert('成功退出');location.reload();}
+			}
+		})
 }
 function load_login()
 {
@@ -58,10 +73,7 @@ function load_regist()
 			}
 	})
 }
-function get_session()
-{
-	Ajax({url:'get_session_info',async:false,onSuccess:function(e){return e;}})
-}
+
 function login(form)
 {
 	var login_form=$(form).serialize();
@@ -69,7 +81,10 @@ function login(form)
 		url:'login',
 		type:'POST',
 		data:login_form,
-		onSuccess:function(e){},
+		onSuccess:function(e){
+				var a=JSON.parse(e);
+				alert(a.loginResult);
+				},
 		onError:function(){
 			location.pathname='/index.html'}
 	})

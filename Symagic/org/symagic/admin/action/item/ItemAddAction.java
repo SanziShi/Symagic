@@ -170,7 +170,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setPicture("/" + shopImageFileFolder + "/" + fileName);
 		book.setOffline("在架");
 
-		daoBook.addBook(book);
+		if( !daoBook.addBook(book) ) return ERROR;
 
 		return SUCCESS;
 	}
@@ -346,14 +346,6 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 
 	public void setShopImageFileFolder(String shopImageFileFolder) {
 		this.shopImageFileFolder = shopImageFileFolder;
-	}
-
-	public Integer getSize() {
-		return size;
-	}
-
-	public void setSize(Integer size) {
-		this.size = size;
 	}
 
 }

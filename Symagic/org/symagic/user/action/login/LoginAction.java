@@ -9,15 +9,18 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport{
 
-	private JCaptcha symagicCaptcha;//用于检验验证码是否正确
-	
-	private UserService userService;
-
-	private boolean loginResult;//登录是否成功
+	//传入
 	private String password;//登录密码
 	private String captchaValue;//验证码
-	private String name;//登录用户名
+	private String userName;//登录用户名
+	
 	private String toURL;//记录登录前的页面
+	//配置项
+	private JCaptcha symagicCaptcha;//用于检验验证码是否正确
+    private UserService userService;
+    //传出
+	private boolean loginResult;//登录是否成功
+	
 	private boolean validateResult=true;
 	
 	@Override
@@ -27,20 +30,21 @@ public class LoginAction extends ActionSupport{
 			loginResult=false;
 			return SUCCESS;
 		}
-		loginResult=userService.login(name, password);
+		loginResult=userService.login(userName, password);
 		
 		
 		return super.execute();
 	}
+	
 	@Override
 	public void validate() {
 		// TODO Auto-generated method stub
 		//用户名和密码的验证
-		if(isEmpty(name)||isEmpty(password)){
+		if(isEmpty(userName)||isEmpty(password)){
 			validateResult=false;
 			return;
 		}
-		if(!name.matches("*@*")){
+		if(!userName.matches("*@*")){
 			validateResult=false;
 			return;
 		}
@@ -93,12 +97,15 @@ public class LoginAction extends ActionSupport{
 	public void setCaptchaValue(String captchaValue) {
 		this.captchaValue = captchaValue;
 	}
-	public String getName() {
-		return name;
+	
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
 	public String getToURL() {
 		return toURL;
 	}
