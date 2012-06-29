@@ -43,12 +43,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 商品项 -->
 		<action name="item_list" class="advanceSearch">
 			<result>/item_list.jsp</result>
+			<result name="input">/error.jsp</result>
 		</action>
 
 		<action name="quick_search" class="quickSearch">
 			<result>/item_list.jsp</result>
 		</action>
-
 		<action name="item_detail" class="itemDetail">
 			<result>/item_info.jsp</result>
 			<result name="error">/error.jsp</result>
@@ -56,6 +56,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="comment" class="browseComment">
 			<result>/lib/comment_inner.jsp</result>
+			<result name="input">/error.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
 
 
@@ -120,12 +122,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
-		<action name="item_list" class="advanceSearch">
-			<result>/item_list.jsp</result>
-		</action>
-
-		<action name="quick_search" class="quickSearch">
-			<result>/item_list.jsp</result>
-		</action>
+		
 	</package>
 </struts>

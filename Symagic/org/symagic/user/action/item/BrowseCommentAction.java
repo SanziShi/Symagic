@@ -12,20 +12,26 @@ public class BrowseCommentAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = -7684113880187640570L;
-	private Integer page;
+	//传入参数
+	private Integer page; 
     private Integer itemID;
-    
-	private List<BeanComment> commentList;
+    //配置项
+    private int lines ;
 	private ItemService itemService;
-	private int lines ;
+	
+	
+	private List<BeanComment> commentList;
+
+	
 
 	
 
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		if(page==null||itemID==null)return "success";
-		commentList = itemService.getCommentWithPage(itemID, page, lines);
+		if(page==null||itemID==null)return "error";
+		commentList=itemService.getCommentWithPage(itemID, page, lines);
+		if(commentList==null)return "error";
 		return super.execute();
 	}
 	
