@@ -121,8 +121,7 @@ public class ItemService {
 		detail.setVersion(book.getVersion());
 		detail.setPicturePath(book.getPicture());
 		return true;
-
-	}
+}
 
 	// 得到目录的描述
 	private String getCatalogName(Integer catalogid) {
@@ -216,6 +215,7 @@ public class ItemService {
 			  float bookprice=MathUtilty.roundWithdigits(marketPrice*discount);
 			  float itemTotalPrice=MathUtilty.roundWithdigits(bookprice*number);
 			  item.setItemTotalPrice(itemTotalPrice);
+			  item.setMarketPrice(marketPrice);
 			  item.setName(book.getBookName());
 			  item.setPrice(bookprice);//商城价
 			  item.setSavePrice(MathUtilty.roundWithdigits(number*marketPrice*(1-discount)));
