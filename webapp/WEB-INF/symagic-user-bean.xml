@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- 用户的action bean -->
+
+
+	<bean id="indexClass" class="org.symagic.user.action.index.IndexAction">
+		<property name="recommendService" ref="RecommendService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="itemService" ref="ItemService"></property>
+	</bean>
+	<bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
+	<bean id="loginClass" class="org.symagic.user.action.login.LoginAction">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+		<property name="userService" ref="UserService"></property>
+	</bean>
+	<bean id="registerClass" class="org.symagic.user.action.register.RegisterAction">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+		<property name="userService" ref="UserService"></property>
+	</bean>
+	<bean id="usernameUnique" class="org.symagic.user.action.register.CheckUsernameAction">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+
+	<!-- 关于购物的bean -->
+	<bean id="addToCart" class="org.symagic.user.action.cart.CartAddItemAction">
+		<property name="daoCart" ref="DaoCart"></property>
+	</bean>
+
+	<bean id="deleteFromCart" class="org.symagic.user.action.cart.CartDeleteItemAction">
+		<property name="daoCart" ref="DaoCart"></property>
+	</bean>
+	<bean id="detailOfCart" class="org.symagic.user.action.cart.CartDetailAction">
+		<property name="itemService" ref="ItemService"></property>
+	</bean>
+	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction">
+		<property name="daoCart" ref="DaoCart"></property>
+	</bean>
+
+	<bean id="cartEnter" class="org.symagic.user.action.cart.CartEnterAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+
+	</bean>
+
+	<!-- 关于收藏夹的bean -->
+	<bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction">
+		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
+	</bean>
+	<bean id="deleteFromFavority" class="org.symagic.user.action.favority.FavorityDeleteAction">
+		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
+	</bean>
+
+	<!-- 关于商品的bean -->
+	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="recommendService" ref="RecommendService"></property>
+	</bean>
+
+	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="recommendService" ref="RecommendService"></property>
+	</bean>
+
+	<bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="lines" value="15"></property>
+	</bean>
+
+	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="lines" value="15"></property>
+	</bean>
+
+
+
+
+</beans>

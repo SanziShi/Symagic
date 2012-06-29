@@ -25,15 +25,35 @@ public class AdvanceSearchAction extends CatalogBase {
 
 	private ItemService itemService;// 访问书本的业务层
 	private RecommandService recommendService;// 推荐系统
+	private Integer page=1;// 分页显示
+	// 配置项
+	private Integer lines;
+	private Integer recommendNumber;
+	private String errorHeader;
+	private String errorSpecification;
 
-	private Integer page;// 分页显示
-	private Integer lines = 10;
 	private Integer totalPage;
 
 	private List<ItemTinyBean> recommend;// 推荐商品
 	private List<ItemBean> items;// 用于显示的商品列表
-	private Integer recommendNumber = 15;
 
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
+	}
+
+	private String author;// 作者
 	private String name;// 书本名字
 	private String publisher;// 出版社
 	private Integer catalogID;// 目录id
@@ -43,10 +63,10 @@ public class AdvanceSearchAction extends CatalogBase {
 	private Integer binding;// 装帧
 	private Integer booksize;// 书的大小
 	private Integer price;// 书的价格
-	private Integer discount;// 折扣
-	private String author;// 作者
 
-	private int sign = 1;// 搜索标志，1为高级搜索
+	private Integer discount;// 折扣
+
+	private int sign;// 搜索标志，1为高级搜索
 
 	@Override
 	public String execute() throws Exception {
@@ -68,23 +88,29 @@ public class AdvanceSearchAction extends CatalogBase {
 
 		require.setLines(lines);
 		require.setPage(page);
-		// 搜索符合条件的商品
-		List<BeanBook> books = itemService.search(sign, require);
-		totalPage = (itemService.getSearchNum(sign, require) + lines - 1)
-				/ lines;
-		// 装饰成前台所需的信息
-		itemService.decorateForItem(books, items);
+		
 
-		List<Integer> bookIds;
+//		List<Integer> bookIds;
+		
 		// 推荐商品
-		if (UserSessionUtilty.isLogin()) {
-			bookIds = recommendService.recommendationsForUser(
-					UserSessionUtilty.getUsername(), recommendNumber);
-		} else {
-			bookIds = recommendService.mostViewedItems(recommendNumber);
-		}
-		itemService.fillItem(bookIds, recommend);
+		/**
+		 * 
+		 */
+//		if (UserSessionUtilty.isLogin()) {
+//			bookIds = recommendService.recommendationsForUser(
+//					UserSessionUtilty.getUsername(), recommendNumber);
+//		} else {
+//			bookIds = recommendService.mostViewedItems(recommendNumber);
+//		}
+//		
+//		itemService.fillItem(bookIds, recommend);
 
+		      // 搜索符合条件的商品
+				List<BeanBook> books = itemService.search(sign, require);
+				if (books == null)return "success";
+				totalPage = (itemService.getSearchNum(sign, require) + lines - 1)/ lines;
+				// 装饰成前台所需的信息
+				itemService.decorateForItem(books, items);
 		return super.execute();
 	}
 
@@ -378,6 +404,14 @@ public class AdvanceSearchAction extends CatalogBase {
 
 	public void setDiscount(Integer discount) {
 		this.discount = discount;
+	}
+
+	public int getSign() {
+		return sign;
+	}
+
+	public void setSign(int sign) {
+		this.sign = sign;
 	}
 
 }

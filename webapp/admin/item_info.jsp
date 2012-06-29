@@ -53,7 +53,7 @@
 									alt="<s:property value="book.bookName"/>" class="picture1" />
 								</td>
 								<td colspan="4" class="tdleftalign"><s:property
-										value="book.bookDesc" />
+										value="book.bookDesc" escape="false"/>
 								</td>
 							</tr>
 							<tr>
