@@ -68,8 +68,8 @@
 	    <property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="recommendService" ref="RecommendService"></property>
-		<property name="errorHeader" value="没有相应 的商品"></property>
-		<property name="errorSpecification" value="symagic商城目前没有符合此类商品"></property>
+		<property name="errorHeader" value="出现异常"></property>
+		<property name="errorSpecification" value="可能 是由于输入的数据有误造成的"></property>
 		<property name="recommendNumber" value="15"></property>
 		<property name="sign" value="0"></property>
 		<property name="lines" value="15"></property>
@@ -80,7 +80,7 @@
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
 		<property name="errorHeader" value="没有相应 的商品"></property>
-		<property name="errorSpecification" value="symagic商城目前没有符合此类商品"></property>
+		<property name="errorSpecification" value="symagic商城目前没有此类商品"></property>
 	</bean>
 
 	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction">
