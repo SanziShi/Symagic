@@ -26,6 +26,7 @@ public class AdminIndexAction extends CatalogBase {
 	private Integer unauditedOrderAmount;// ：待审核订单数；
 	private Integer finishOrderAmount;// ：完成订单数；
 	private List<OrderBean> LatestOrders;// ：包含订单信息对象的一维数组（每个数组成员是一个订单信息类的对象：它的成员包括：orderID：订单号，userName：用户名，orderTime：下单时间，orderStatus：订单状态）
+	private Integer todayOrderAmount;
 
 	private DaoOrder daoOrder;
 	private DaoUser daoUser;
@@ -45,6 +46,7 @@ public class AdminIndexAction extends CatalogBase {
 		totalOrderAmout = daoOrder.getTotalOrderAmount();
 		unauditedOrderAmount = daoOrder.getUnauditedOrderAmount();
 		finishOrderAmount = daoOrder.getFinishOrderAmount();
+		todayOrderAmount = daoOrder.getTodayOrderNum();
 		List<BeanOrder> orderList = daoOrder.getLatestOrders();
 		LatestOrders = new ArrayList<OrderBean>();
 
@@ -152,6 +154,14 @@ public class AdminIndexAction extends CatalogBase {
 
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
+	}
+
+	public Integer getTodayOrderAmount() {
+		return todayOrderAmount;
+	}
+
+	public void setTodayOrderAmount(Integer todayOrderAmount) {
+		this.todayOrderAmount = todayOrderAmount;
 	}
 
 }

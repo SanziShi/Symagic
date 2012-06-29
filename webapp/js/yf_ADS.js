@@ -11,32 +11,28 @@ function test(e)
 	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 	
 }
-function get_session(e)
-{
-	Ajax({
-		url:'get_session_info',
-		onSuccess:e(result)
-	})
-	
-}
 /****添加商品至购物车***/
 function add_to_cart(id)
 {
 	var amount=document.getElementById('amount').value;
+	var cart_num=document.getElementById('cart_num')
 	Ajax({
 		url:'cart/add_to_cart?'+'itemID='+id+'&itemNumber='+amount,
 		//data:'itemID='+id+'&itemNumber='+amount,
 		onSuccess:function(e){
 			var r=JSON.parse(e);
-			alert(r.addResult);
-			if(r.addResult=='ture')alert('添加成功');
-			get_session(function(re){alert(re)});
+			if(r.addResult)alert('添加成功');
+			Ajax({url:'get_session_info',onSuccess:function(q){var res=JSON.parse(q);cart_num.innerHTML=res.totalNumber}})
 			}
 		})
 }
 function change_captcha(e)
 {
 	e.src='captcha_get_captcha';
+}
+function logout()
+{
+	
 }
 function load_login()
 {

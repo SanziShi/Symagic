@@ -348,12 +348,4 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		this.shopImageFileFolder = shopImageFileFolder;
 	}
 
-	public Integer getSize() {
-		return size;
-	}
-
-	public void setSize(Integer size) {
-		this.size = size;
-	}
-
 }
