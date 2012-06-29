@@ -1,17 +1,12 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>BC2商城</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Symagic网上书城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
-<script language="javascript">
-function clear(){
-
-document.form1.webUserEntity.name="";
-document.form1.webUserEntity.address="";
-document.form1.webUserEntity.postcode="";
-document.form1.webUserEntity.phone="";
-}
-</script>
+<link href="css/gz.css"  rel="stylesheet" type="text/css"/>
+<script language="javascript" src="js/gz.js" ></script> 
 </head>
 
 <body>
@@ -42,18 +37,19 @@ document.form1.webUserEntity.phone="";
 				网站路径：订单详细信息
 			</div>
 		</div>
+		<form action="" method="post" enctype="multipart/form-data" name="form1">
 		<div id="double1">
 			<div id="doublehead1"><strong>配送信息</strong></div>
 			<div id="doublecontent1">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
+
 				<table id="doublecontenttable3">
 				 <tr>
 					<td>订单号</td>
 					<td><s:property value="orderID"/></td>
             		<td>用户名</td>
-					<td><s:property value="userName"/>edsfgdsgdfeeertertewgdf</td>
+					<td><s:property value="userName"/></td>
 					<td>下单时间</td>
-					<td><s:property value="orderTime"/>sdfadsfdsfdsfdsaf</td>
+					<td><s:property value="orderTime"/></td>
          		 </tr>
 		  		 <tr>
            			<td>订单金额</td>
@@ -66,12 +62,7 @@ document.form1.webUserEntity.phone="";
 			 <tr>
             	<td>收货人</td>
 			    <td>
-               <s:if test="orderStatus!=交易成功'||'交易失败'">
-                <input type="text" value="<s:property value='receiver'/>"/>
-                </s:if>
-                <s:else>
                 <s:property value="receiver"/>
-                </s:else>
                 </td>
 			    <td>收货人地址</td>
             <td colspan="3">
@@ -84,31 +75,16 @@ document.form1.webUserEntity.phone="";
 			 <tr>
            <td>邮政编码</td>
            <td>
-             <s:if test="orderStatus!=交易成功'||'交易失败'">
-                <input type="text" value="<s:property value='zipcode'/>"/>
-                </s:if>
-                <s:else>
-                <s:property value="zipcode"/>
-                </s:else>
+           <s:property value="zipcode"/>
            </td>
             
 			<td>收货人手机</td>
 			<td> 
-                <s:if test="orderStatus!=交易成功'||'交易失败'">
-                <input type="text" name="mobileNumber" value="<s:property value='mobileNumber'/>"/>
-                </s:if>
-                <s:else>
-                <s:property value="mobileNumber"/>
-                </s:else>
+               <s:property value="mobileNumber"/>
                 </td>
             <td>收货人电话</td>
             <td>
-                <s:if test="orderStatus!=交易成功'||'交易失败'">
-                <input type="text" value="<s:property value='phoneNumber'/>"/>
-                </s:if>
-                <s:else>
-                <s:property value="phoneNumber"/>
-                </s:else>
+               <s:property value="phoneNumber"/>
             </td>
             </tr>
             <tr>
@@ -116,14 +92,12 @@ document.form1.webUserEntity.phone="";
 		    <td>订单状态</td>
 			<td><s:property value="orderStatus"/></td>
 									
-				 </tr>
-				</from> 
+				 </tr> 
             </table>
 			</div></div>
 			<div id="double2">
 			<div id="doublehead2"><strong>商品信息</strong></div>
 			<div id="doublecontent2">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
 				<table id="favorite">
 				<thead>
 					<tr>
@@ -144,15 +118,7 @@ document.form1.webUserEntity.phone="";
                     </td>
 					<td>￥<s:property value = "#itemArray.price"/></td>
 					<td> 
-                    <s:if test="orderStatus!=交易成功'||'交易失败'">
-                  <span><a class="reduce" onclick="reduce();" href="javascript:void(0)">-</a>
-        <input type="text" value="1" id="amount" onkeyup="amount_modify(this)" name>
-        <a class="reduce" onclick="add();" href="javascript:void(0)">+</a>
-        </span>
-                   </s:if>
-                   <s:else>
                    <s:property value="itemNumber"/>
-                   </s:else>
                     </td>
 					<td>￥<s:property value = "#itemArray.itemTotalPrice"/></td>
           		  </tr>
@@ -160,12 +126,16 @@ document.form1.webUserEntity.phone="";
                   <!--商品条项迭代结束-->
 				 </tbody>
             </table>
+            </div>
+            </div>
 			</form> 
+  </div>
   </div>
 
 <div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
 		<span id="footerright"> Symagic网上书城  Power by Symagic	 &nbsp;</span>
 	</div>
+
 </body>
 </html>

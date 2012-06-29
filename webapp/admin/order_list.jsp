@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>BC2商城</title>
-<link href="css/frame.css" rel="stylesheet" type="text/css">
-<link href="css/gz.css" rel="stylesheet" type="text/css">
+<link href="css/frame.css" rel="stylesheet" type="text/css"/>
+<link href="css/gz.css" rel="stylesheet" type="text/css"/>
 <script language="javascript" src="js/checkform.js"></script>
 <script language="javascript" src="js/gz.js"></script>
 <script src="js/jquery.js" type="text/javascript" language="javascript"></script>
@@ -52,7 +52,7 @@
             <table id = tradequery>
             <tr>
 					<th>订&nbsp;&nbsp;单&nbsp;&nbsp;号：	</th>
-					<td><input type="text" class="inputtext" name="orderID" onFocus="nextfield='webUserEntity.order'" maxlength="25"></td>
+					<td><input type="text" class="inputtext" name="orderID"  maxlength="25"/></td>
 					</tr>
                     </table>
             </form>
@@ -61,7 +61,7 @@
 					
 					<tr>
 					<th>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</th>
-					<td><input type="text" class="inputtext" name="userName" onFocus="nextfield='webUserEntity.order'" maxlength="25"></td>
+					<td><input type="text" class="inputtext" name="userName"  maxlength="25"/></td>
 					</tr>
                     <tr>
 					<th>订单状态：&nbsp;</th>
@@ -72,6 +72,7 @@
                     <option>已审核</option>
                     <option>交易成功</option>
                     <option>交易失败</option>
+                    </select>
                     </td>
 					</tr>
 				   <tr>
@@ -133,7 +134,7 @@ new DateSelector(eYear, eMonth ,eDay, dt);
 				 <tr>
 				 <th></th>
 				 	<td><input type="submit" name="button22" value="查询"/>
-					<input type="reset" class="bt2" name="button2" value="重填">
+					<input type="reset" class="bt2" name="button2" value="重填"/>
                     </td>
 				 </tr>
         </table>
@@ -170,19 +171,19 @@ new DateSelector(eYear, eMonth ,eDay, dt);
 					<td><s:if test="#order.orderStatus=='已下单'">
 <a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
 <a href="order/pass?orderID=<s:property value = '#orders.orderID'/>">审核</a>&nbsp; 
-<a  onclick="ajax_delete_order("<s:property value = "#orders.orderID"/>");"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+<a  onclick="ajax_delete_order(<s:property value = "#orders.orderID"/>)"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:if>
  <s:elseif test="#order.orderStatus=='已审核'">
  <a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
  <a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
-<a onclick="ajax_delete_order("<s:property value = "#orders.orderID"/>")"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+<a onclick="ajax_delete_order(<s:property value = "#orders.orderID"/>)"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:elseif>
  <s:elseif test="#order.orderStatus=='交易成功'">
  <a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
   </s:elseif>
   <s:else>
   <a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
-<a  onclick="ajax_delete_order("<s:property value = "#orders.orderID"/>")"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+<a  onclick="ajax_delete_order(<s:property value = "#orders.orderID"/>)"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
   </s:else>
   </td>
           		  </tr>
@@ -206,6 +207,7 @@ new DateSelector(eYear, eMonth ,eDay, dt);
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
 		<span id="footerright"> Symagic网上书城  Power by Symagic	 &nbsp;</span>
 	</div>
+</div>
 </div>
 
 </body>

@@ -38,10 +38,13 @@
 				网站路径：订单修改
 			</div>
 		</div>
+	<form action="order_edit_submit" method="post" enctype="multipart/form-data" name="form1">	
 		<div id="double1">
+		
 			<div id="doublehead1"><strong>配送信息</strong></div>
+				
 			<div id="doublecontent1">
-		<form action="order_edit_submit" method="post" enctype="multipart/form-data" name="form1">
+	
 				<table id="doublecontenttable3">
 				 <tr>
 					<td>订单号</td>
@@ -113,7 +116,6 @@
 			<td><s:property value="orderStatus"/></td>
 									
 				 </tr>
-				</from> 
             </table>
 			</div></div>
 			<div id="double2">
@@ -142,7 +144,7 @@
 					<td> 
                     <s:if test="orderStatus!='交易成功'||'交易失败'">
                   <span><a class="reduce" onclick="reduce(<s:property value = '#itemArray.itemID'/>);" href="javascript:void(0)">-</a>
-        <input type="text" class="amount" value="<s:property value = '#itemArray.itemNumber'/>" id="<s:property value = '#itemArray.itemID'/>" onkeyup="amount_modify(this)" name>
+        <input type="text" class="amount" value="<s:property value = '#itemArray.itemNumber'/>" id="<s:property value = '#itemArray.itemID'/>" onkeyup="amount_modify(this)" />
         <a class="reduce" onclick="add(<s:property value = '#itemArray.itemID'/>);" href="javascript:void(0)">+</a>
         </span>
                    </s:if>
@@ -158,24 +160,25 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td>
-                </s:if></td>
+                  <td></td>
                   <td><s:if test="orderStatus=='已下单'">
                 <input onclick="" type="submit" value="审核"/>
                 </s:if><input type="submit" value = "提交修改"/></td>
-			</form> 
+		
                   
                   </tr>
 				 </tbody>
                  
             </table>
             
-                
+   </div>     
   </div>
-
+  </form>
+</div>
 <div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
 		<span id="footerright"> Symagic网上书城  Power by Symagic	 &nbsp;</span>
+	</div>
 	</div>
 </body>
 </html>
