@@ -78,7 +78,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		BookRequire require = new BookRequire();
 		if(name!=null)
 		require.setItemName(name);
-		if(name!=null)
+		if(publisher!=null)
 		require.setPublisher(publisher);
 		require.setCatalogID(catalogID);
 		setYear(require, publishTime);
