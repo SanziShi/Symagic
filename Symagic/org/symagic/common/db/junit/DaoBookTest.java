@@ -17,7 +17,7 @@ public class DaoBookTest extends TestCase{
 
 
 	
-/*
+
 	@Test
 	public void testAddBook1(){
 		BeanBook book1 = new BeanBook();
@@ -37,11 +37,12 @@ public class DaoBookTest extends TestCase{
 		book1.setPublisher("public department");
 		book1.setPublishDate("2009-03-27");
 		book1.setVersion(5);
+		book1.setCatalogID(1);
 		
 		//断言判断
 		assertEquals(true,db.addBook(book1));
 		}
-	
+	/*
 	@Test
 	public void testAddBook2(){
 		BeanBook book2 = new BeanBook();  //book2采用默认值
@@ -144,16 +145,16 @@ public class DaoBookTest extends TestCase{
 	}
 	*/
 	
-	public void testSearch()
-	{
-		DaoBook	db	= new DaoBook();
-		BookRequire req	= new BookRequire();
-		req.setPage(1);
-		req.setLines(10);
-//		req.setYear("2012");
-		req.setItemName("");
-		assertEquals(1, db.search(1, req).get(0).getBookId());
-	}
+//	public void testSearch()
+//	{
+//		DaoBook	db	= new DaoBook();
+//		BookRequire req	= new BookRequire();
+//		req.setPage(1);
+//		req.setLines(10);
+////		req.setYear("2012");
+//		req.setItemName("");
+//		assertEquals(1, db.search(1, req).get(0).getBookId());
+//	}
 	
 /*	@Test
 	public void testGetProductNum1(){
@@ -419,70 +420,70 @@ public class DaoBookTest extends TestCase{
 		assertEquals(0,db.getSearchRowNumber(1, br));
 	}*/
 	
-	@Test
-	public void testGetBookStatistics(){
-		BookStatisticsRequire req = new BookStatisticsRequire();
-		req.setLines(3);
-		req.setPage(1);
-		
-		assertEquals(3,db.getBookStatistics(req).size());
-	}
-	@Test
-	public void testGetBookStatistics2(){
-		BookStatisticsRequire req = new BookStatisticsRequire();
-		req.setLines(3);
-		req.setPage(1);
-		req.setLowlimit(1000);
-		
-		assertEquals(0,db.getBookStatistics(req).size());
-	}
-	@Test
-	public void testGetBookStatistics3(){
-		BookStatisticsRequire req = new BookStatisticsRequire();
-		req.setLines(3);
-		req.setPage(1);
-		req.setCatalogid(12);
-		
-		assertEquals(1,db.getBookStatistics(req).size());
-	}
-	@Test
-	public void testGetBookStatistics4(){
-		BookStatisticsRequire req = new BookStatisticsRequire();
-		req.setLines(3);
-		req.setPage(1);
-		req.setLowlimit(1000);
-		req.setCatalogid(12);
-		
-		assertEquals(0,db.getBookStatistics(req).size());
-	}
-	@Test
-	public void testGetBookStatistics5(){
-		BookStatisticsRequire req = new BookStatisticsRequire();
-		req.setLines(3);
-		req.setPage(1);
-		req.setCatalogid(12);
-		req.setStartTime("2011-01-01");
-		
-		assertEquals(1,db.getBookStatistics(req).size());
-	}
-	@Test
-	public void testGetBookStatistics6(){
-		BookStatisticsRequire req = new BookStatisticsRequire();
-		req.setLines(3);
-		req.setPage(1);
-		req.setCatalogid(12);
-		req.setStartTime("2013-01-01");
-		
-		assertEquals(0,db.getBookStatistics(req).size());
-	}
-	@Test
-	public void testGetBookStatistics7(){
-		BookStatisticsRequire req = new BookStatisticsRequire();
-		req.setLines(3);
-		req.setPage(1);
-		req.setCatalogid(120);
-		
-		assertEquals(0,db.getBookStatistics(req).size());
-	}
+//	@Test
+//	public void testGetBookStatistics(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		
+//		assertEquals(3,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics2(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setLowlimit(1000);
+//		
+//		assertEquals(0,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics3(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setCatalogid(12);
+//		
+//		assertEquals(1,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics4(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setLowlimit(1000);
+//		req.setCatalogid(12);
+//		
+//		assertEquals(0,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics5(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setCatalogid(12);
+//		req.setStartTime("2011-01-01");
+//		
+//		assertEquals(1,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics6(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setCatalogid(12);
+//		req.setStartTime("2013-01-01");
+//		
+//		assertEquals(0,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics7(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setCatalogid(120);
+//		
+//		assertEquals(0,db.getBookStatistics(req).size());
+//	}
  
 }

@@ -98,10 +98,16 @@ public class DaoBook {
 			// 插入成功
 			if (ps.getUpdateCount() == 1) {
 				if (book.getCatalogID() != null) {
+					ps	= conn.prepareStatement("select bookid from book where isbn = ?");
+					ps.setString(1, book.getIsbn());
+					rs	= ps.executeQuery();
+					if (!rs.next())
+						return false;
+						
 					ps	= conn.prepareStatement("insert into book_catalog_detail " +
 							"(bookid, catalogid) " +
 							"values (?, ?)");
-					ps.setInt(1, book.getBookId());
+					ps.setInt(1, rs.getInt("bookid"));
 					ps.setInt(2, book.getCatalogID());
 					
 					ps.execute();
