@@ -103,46 +103,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div  class="user_note">
 			<div class="fliter"><font>商品搜索</font><span class="collapse" onclick="show_item_search(this);"></span></div>
 			<div id="item_search1" class="user_note_content hide">
-				<table>
+				<form action="item_list">
+                <table>
 				<tr>
 					<th>书&nbsp;&nbsp;&nbsp;名：</th>
             		<td>
-					<input type="text" />
+					<input type="text"  name="name"/>
 					</td>
                    <th>作&nbsp;&nbsp;&nbsp;者：</th>
                     <td>
-					<input type="text"/>
+					<input type="text" name="author"/>
 					</td>
           		 </tr>
 				<tr>
 					<th>出版社：</th>
             		<td>
-					<input type="text"/>
+					<input type="text" name="publisher"/>
 					</td>
-                    <th>书籍描述：</th>
-            		<td>
-					<input type="text"/>
+                    
 					</td>
           		 </tr>
 				 <tr>
 					<th>书籍类别：</th>
             		<td>
-						<select name="catogory" class="midselect">
-              				<option>所有类别</option>
-             				<option>文学</option>
-              				<option>艺术</option>
-              				<option>金融与投资</option>
-			  				<option></option>
+						<select name="catalogId" class="midselect">
+              				<option value="0">所有类别</option>
+			  				<s:iterator value="catalog" var='outer'>
+							<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
+							<s:iterator value="#outer.childCatalog" var="inner">
+							<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
+							</s:iterator>
+							</s:iterator>
             			</select>
 					</td>
                    <th>出版时间：</th>
             		<td>
-						<select name="publish_time" class="midselect">
-              				<option>不论时间</option>
-             				<option>2012</option>
-              				<option>2011</option>
-              				<option>2010</option>
-			  				<option>2009</option>
+						<select name="publishTime" class="midselect">
+              				<option value="0">不论时间</option>
+                            <option value="1">2012至今</option>
+             				<option value="2">2011~2012</option>
+              				<option value="3">2010~2011</option>
+              				<option value="4">2009~2010</option>
+			  				<option value="5">2009之前</option>
             			</select>
 					</td> 
           		 </tr>
@@ -159,12 +161,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<th>版&nbsp;&nbsp;&nbsp;次：</th>
             		<td>
-						<select name="catogory" class="midselect">
-              				<option>全部版次</option>
-             				<option>1</option>
-              				<option>2</option>
-              				<option>3</option>
-			  				<option>4</option>
+						<select name="edition" class="midselect">
+              				<option value="0">全部版次</option>
+             				<option value="1">第一版</option>
+              				<option value="2">第二版</option>
+              				<option value="3">第三版</option>
+			  				<option value="4">第四版</option>
             			</select>
 					</td>
           		 </tr>
@@ -172,19 +174,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					
 					<th>装&nbsp;&nbsp;&nbsp;帧：</th>
             		<td>
-						<select name="catogory" class="midselect">
-              				<option>不论</option>
-             				<option>平装</option>
-              				<option>精装</option>
+						<select name="binding" class="midselect">
+              				<option value="0">不论</option>
+             				<option value="1">平装</option>
+              				<option value="2">精装</option>
             			</select>
 					</td>
                     <th>开&nbsp;&nbsp;&nbsp;本：</th>
             		<td>
 						<select name="catogory" class="midselect">
-              				<option>不论</option>
-             				<option>32</option>
-              				<option>16</option>
-							<option>8</option>
+              				<option value="0">不限</option>
+             				<option value="1">32开</option>
+              				<option value="2">16开</option>
+							<option value="3">8开</option>
             			</select>
 					</td>
           		 </tr>
@@ -193,31 +195,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 <th>价&nbsp;&nbsp;&nbsp;格：</th>
             		<td>
 						<select name="price" class="midselect">
-              				<option>不指定</option>
-             				<option>0-10元</option>
-              				<option>10-30元</option>
-              				<option>30-50元</option>
-			  				<option>50-100元</option>
-              				<option>100元以上</option>
+              				<option value="0">任意价格</option>
+             				<option value="1">0-10元</option>
+              				<option value="2">10-30元</option>
+              				<option value="3">30-50元</option>
+			  				<option value="4">50-100元</option>
+              				<option value="5">100元以上</option>
             			</select>
 					</td>
                     <th>商品折扣：</th>
             		<td>
 					  	<select name="discount" class="midselect">
-							<option>所有折扣</option>
-              				<option>3折以下</option>
-              				<option>3-5折</option>
-							<option>5-7折</option>
-							<option>7折及以上</option>
+							<option value="0">所有折扣</option>
+              				<option value="1">3折以下</option>
+              				<option value="2">3-5折</option>
+							<option value="3">5-7折</option>
+							<option value="4">7折及以上</option>
             			</select> 
 					</td>
           		 </tr>
 				 <tr>
 				 <th></th>
-				 	<td><input type="button"  value="搜索" onClick="">
+				 	<td><input type="submit"  value="搜索" onClick="">
 				 </tr>
         </table>	
-				
+		</form>		
 			</div>
 		</div>
  <div class="user_note">
