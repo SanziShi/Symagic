@@ -54,6 +54,16 @@
 		<property name="errorSpecification" value="反正是错了"></property>
 	</bean>
 
+	<bean id="AdminEnterItemManager" class="org.symagic.admin.action.item.ItemManagerEnterAction">
+		<property name="sign" value="1"></property>
+		<property name="itemService" ref="ItemService"></property>
+	</bean>
+
+	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.ItemManagerEnterAction">
+		<property name="sign" value="0"></property>
+		<property name="itemService" ref="ItemService"></property>
+	</bean>
+
 	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="lines" value="15"></property>

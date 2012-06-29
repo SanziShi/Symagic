@@ -9,7 +9,6 @@ import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.service.ItemService;
-import org.symagic.common.service.RecommandService;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 
 /**
@@ -26,7 +25,6 @@ public class ItemManagerEnterAction extends CatalogBase {
 	private static final long serialVersionUID = 7734758591630202798L;
 
 	private ItemService itemService;// 访问书本的业务层
-	private RecommandService recommendService;// 推荐系统
 	private int sign;// 搜索标志，1为高级搜索
 
 	private Integer page = 1;// 分页显示
@@ -302,15 +300,7 @@ public class ItemManagerEnterAction extends CatalogBase {
 	public void setItemService(ItemService itemService) {
 		this.itemService = itemService;
 	}
-
-	public RecommandService getRecommendService() {
-		return recommendService;
-	}
-
-	public void setRecommendService(RecommandService recommendService) {
-		this.recommendService = recommendService;
-	}
-
+	
 	public List<ItemBean> getItems() {
 		return items;
 	}
