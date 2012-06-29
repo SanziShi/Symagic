@@ -108,6 +108,7 @@ public class AdvanceSearchAction extends CatalogBase {
 
 		      // 搜索符合条件的商品
 				List<BeanBook> books = itemService.search(sign, require);
+			
 				if(books==null)return "error";
 				int searchNumber=itemService.getSearchNum(sign, require);
 				if(searchNumber==-1)return "error";

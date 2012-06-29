@@ -40,7 +40,9 @@ public class ItemDetailAction extends CatalogBase {
 		book = new ItemDetailBean();
 		//无此商品
 		if(!itemService.fillDetailBean(itemID, book))return "error";
+		book.setBookDesc(book.getBookDesc().replaceAll("\n", "<br>"));
 		int commentNumber = itemService.getCommentNumber(itemID);
+		if(commentNumber==-1)return "error";
 		totalPage = (commentNumber + lines - 1) / lines;
 		commentList = itemService.getCommentWithPage(itemID, 1, lines);
 		/*
