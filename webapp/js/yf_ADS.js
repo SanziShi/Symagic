@@ -17,8 +17,11 @@ function add_to_cart(id)
 	var amount=document.getElementById('amount').value;
 	Ajax({
 		url:'cart/add_to_cart',
-		data:'itemID='+id+'itemNumber='+amount,
-		onSuccess:function(e){alert(e)}
+		data:'itemID='+id+'&itemNumber='+amount,
+		onSuccess:function(e){
+			var r=JSON.parse(e)
+			alert(r.addResult);
+			}
 		})
 }
 function change_captcha(e)
