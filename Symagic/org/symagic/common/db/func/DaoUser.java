@@ -105,9 +105,9 @@ public class DaoUser {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into user (" +
-					"username, nickname, score, question, answer)" +
+					"username, nickname, score, question, answer, registedate)" +
 					"values (" +
-					"?, ?, ?, ?, ?" +
+					"?, ?, ?, ?, ?, date(now())" +
 					")");
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getNickname());
