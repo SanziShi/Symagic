@@ -473,7 +473,7 @@ public class DaoBook {
 			rs	= st.executeQuery(sql);
 			while (rs.next())
 				count ++;
-			return count;
+			return ++count;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
