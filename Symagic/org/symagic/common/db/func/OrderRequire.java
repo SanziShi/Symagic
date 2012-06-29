@@ -20,7 +20,7 @@ public class OrderRequire {
 	private String endTime	= null;
 	
 	/**
-	 * orderState:订单状态(0：未指定，1：已下单，2：已审核，3：交易成功，4：交易失败）,
+	 * orderState:订单状态(0：已下单	1：已审核	2：交易成功	3：交易失败	null: 未指定）,
 	 */
 	private String orderState	= null;
 	
