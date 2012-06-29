@@ -47,7 +47,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
 		</global-results>
-
+		
 
 	</package>
 
@@ -263,6 +263,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="order_statistics" class="AdminOrderStatistics">
 			<result>
 				/admin/salesdata_admin.jsp
+			</result>
+		</action>
+
+		<action name="order_detail" class="OrderDetailAction">
+			<result>
+				/admin/order_info.jsp
 			</result>
 		</action>
 
