@@ -1,10 +1,7 @@
-﻿use bookshop;
-
--- 向admin表中插入数据
-insert into admin (adminname, password) values ("管理员", md5(12));
-insert into admin (adminname, password) values ("单小熙", md5(12));
-
--- 向book表插入数据
+-- 插入admin
+insert into admin(adminname,password) values ("admin",md5("123456"));
+    
+-- 插入book
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
@@ -290,73 +287,59 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
                           "《金刚经》、《心经》、《坛经》在佛教中的地位，不仅在中国佛教中体现着原典精神和独有的思想价值，从中国文化史的视野来看，它们的影响并且关涉到僧俗各界，渗透到社会文化的方方面面。因而如欲深入佛教研究或是欲对中国文化有进一步的了解，
                           此三部经是一个基础，是必须一读的经典。。",
                           "9787101059328","在架");
-
--- 向user表和secret表插入数据
-insert into user(username, nickname, score, question, answer)
-values ("641567179@qq.com","sanzi","1023","您高中的班主任是？","何老师");
+    
+-- 插入user和secret
+insert into user(username, nickname, score, question, answer, registedate)
+values ("641567179@qq.com","sanzi","1023","您高中的班主任是？","何老师", date(now()));
 insert into secret(userid, password)
 values(1,md5("123456"));
 
-insert into user(username, nickname, score, question, answer)
-values ("544921965@qq.com","北楼嗣音","1123","您的出生地","高州");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("544921965@qq.com","北楼嗣音","1123","您的出生地","高州", "2009-03-12");
 insert into secret(userid, password)
 values(2,md5("234567"));
 
-insert into user(username, nickname, score, question, answer)
-values ("236497339@qq.com","曲线茬侧","983","您的出生地","温州");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("236497339@qq.com","曲线茬侧","983","您的出生地","温州", "2008-04-07");
 insert into secret(userid, password)
 values(3,md5("345678"));
 
-insert into user(username, nickname, score, question, answer)
-values ("1292740870@qq.com","pacman","2983","您的出生地","北海");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("1292740870@qq.com","pacman","2983","您的出生地","北海", "2005-02-24");
 insert into secret(userid, password)
 values(4,md5("4567893"));
 
-insert into user(username, nickname, score, question, answer)
-values ("1274892950@qq.com","wanran","83","我的名字","单小熙");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("1274892950@qq.com","wanran","83","我的名字","单小熙", "2012-02-12");
 insert into secret(userid, password)
 values(5,md5("56789012"));
 
-insert into user(username, nickname, score, question, answer)
-values ("290047285@qq.com","麦比乌斯","10883","我的名字","王启明");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("290047285@qq.com","麦比乌斯","10883","我的名字","王启明", "2002-03-17");
 insert into secret(userid, password)
 values(6,md5("5678901sdsf2"));
 
-insert into user(username, nickname, score, question, answer)
-values ("317012583@qq.com","E.pHatAi.M","13883","我的名字","尹帆");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("317012583@qq.com","E.pHatAi.M","13883","我的名字","尹帆", "2003-12-30");
 insert into secret(userid, password)
 values(7,md5("34768gh2"));
 
-insert into user(username, nickname, score, question, answer)
-values ("549047626@qq.com","川","13883","我的名字","张盛川");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("549047626@qq.com","川","13883","我的名字","张盛川", "2011-10-01");
 insert into secret(userid, password)
 values(8,md5("347df68gt2"));
 
-insert into user(username, nickname, score, question, answer)
-values ("1037942090@qq.com","陈万忠","883","我的名字","陈万忠");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("1037942090@qq.com","陈万忠","883","我的名字","陈万忠", "2009-10-21");
 insert into secret(userid, password)
 values(9,md5("qqfgh567"));
 
-insert into user(username, nickname, score, question, answer)
-values ("115551007@qq.com","swpeng","8833","我的名字","彭绍武");
+insert into user(username, nickname, score, question, answer, registedate)
+values ("115551007@qq.com","swpeng","8833","我的名字","彭绍武", "2004-04-04");
 insert into secret(userid, password)
 values(10,md5("436556879"));
 
--- 向user_addr表插入数据
-insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("641567179@qq.com","时钰森","广东省广州市番禺区大学城","510000",null,"15018713530");
-insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("641567179@qq.com","时钰森","安徽省合肥市庐江县庐城镇","231500",null,"15018713530");
-insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("544921965@qq.com","刘光宗","广东省广州市番禺区大学城","510000",null,"15920551404");
-insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("544921965@qq.com","刘光宗","广东省广州市越秀区华南理工大学","510000",null,"15920551404");
-insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("236497339@qq.com","缪云彬","广东省广州市番禺区大学城","510000",null,"15920551434");
-insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("236497339@qq.com","缪云彬","浙江省温州市瑞安市安阳街道","325000",null,"15920551434");
-
--- 向book_cata表插入数据
+-- 插入book_catalog
 insert into book_catalog(catalogname,level,upID,catalogdesc)
       values("文艺","1",0,"文学艺术");
 insert into book_catalog(catalogname,level,upID,catalogdesc)
@@ -484,6 +467,7 @@ insert into book_catalog(catalogname,level,upID,catalogdesc)
 insert into book_catalog(catalogname,level,upID,catalogdesc)
       values("工程","2",6,"工程");
 
+
 insert into book_catalog(catalogname,level,upID,catalogdesc)
       values("教材","2",7,"教材");
 insert into book_catalog(catalogname,level,upID,catalogdesc)
@@ -502,58 +486,139 @@ insert into book_catalog(catalogname,level,upID,catalogdesc)
 insert into book_catalog(catalogname,level,upID,catalogdesc)
       values("套装书","2",8,"套装书");
 
--- 向Book_order表插入数据
+insert into book_catalog(catalogname,level,upID,catalogdesc)
+      values("工业","2",6,"工程");
+      
+-- 插入book_catalog_detail
+insert into book_catalog_detail(bookID,catalogID)
+      values (1,12);
+insert into book_catalog_detail(bookID,catalogID)
+      values (2,9);
+insert into book_catalog_detail(bookID,catalogID)
+      values (3,10);
+insert into book_catalog_detail(bookID,catalogID)
+      values (4,11);
+insert into book_catalog_detail(bookID,catalogID)
+      values (5,13);
+insert into book_catalog_detail(bookID,catalogID)
+      values (6,14);
+insert into book_catalog_detail(bookID,catalogID)
+      values (7,19);
+insert into book_catalog_detail(bookID,catalogID)
+      values (8,28);
+insert into book_catalog_detail(bookID,catalogID)
+      values (9,27);
+insert into book_catalog_detail(bookID,catalogID)
+      values (10,20);
+insert into book_catalog_detail(bookID,catalogID)
+      values (11,22);
+insert into book_catalog_detail(bookID,catalogID)
+      values (12,21);
+insert into book_catalog_detail(bookID,catalogID)
+      values (13,24);
+insert into book_catalog_detail(bookID,catalogID)
+      values (14,23);
+insert into book_catalog_detail(bookID,catalogID)
+      values (15,25);
+      
+insert into book_catalog_detail(bookID,catalogID)
+      values (16,61);
+insert into book_catalog_detail(bookID,catalogID)
+      values (17,62);
+insert into book_catalog_detail(bookID,catalogID)
+      values (18,62);
+insert into book_catalog_detail(bookID,catalogID)
+      values (19,64);
+insert into book_catalog_detail(bookID,catalogID)
+      values (20,65);
+      
+insert into book_catalog_detail(bookID,catalogID)
+      values (21,60);
+insert into book_catalog_detail(bookID,catalogID)
+      values (22,69);
+insert into book_catalog_detail(bookID,catalogID)
+      values (23,57);
+insert into book_catalog_detail(bookID,catalogID)
+      values (24,53);
+insert into book_catalog_detail(bookID,catalogID)
+      values (25,52);
+insert into book_catalog_detail(bookID,catalogID)
+      values (26,55);
+insert into book_catalog_detail(bookID,catalogID)
+      values (27,58);
+insert into book_catalog_detail(bookID,catalogID)
+      values (28,54);
+insert into book_catalog_detail(bookID,catalogID)
+      values (29,56);
+insert into book_catalog_detail(bookID,catalogID)
+      values (30,26);
+      
+-- 插入user_address
+insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
+values("641567179@qq.com","时钰森","广东省广州市番禺区大学城","510000",null,"15018713530");
+insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
+values("641567179@qq.com","时钰森","安徽省合肥市庐江县庐城镇","231500",null,"15018713530");
+insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
+values("544921965@qq.com","刘光宗","广东省广州市番禺区大学城","510000",null,"15920551404");
+insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
+values("544921965@qq.com","刘光宗","广东省广州市越秀区华南理工大学","510000",null,"15920551404");
+insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
+values("236497339@qq.com","缪云彬","广东省广州市番禺区大学城","510000",null,"15920551434");
+insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
+values("236497339@qq.com","缪云彬","浙江省温州市瑞安市安阳街道","325000",null,"15920551434");
+
+-- 插入book_order
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
 values ("2011-03-23","0","0","0","641567179@qq.com","时钰森","广东省广州市番禺区大学城",
-        "510000",null,"15018713530",125.0);
+        "510000",null,"15018713530",125.0, 120);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
 values ("2011-05-03","2","0","0","641567179@qq.com","时钰森","广东省广州市番禺区大学城",
-        "510000",null,"15018713530",57.0);
+        "510000",null,"15018713530",57.0, 50);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
 values ("2011-05-24","3","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
-        "510000",null,"15920551404",2345.5);
+        "510000",null,"15920551404",2345.5, 2500);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
 values ("2011-07-01","0","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
-        "510000",null,"15920551404",0.51);
+        "510000",null,"15920551404",0.51, 0);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
 values ("2012-01-01","0","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
-        "510000",null,"15920551434",35.3);
+        "510000",null,"15920551434",35.3, 40);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
 values ("2012-01-07","0","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
-        "510000",null,"15920551434",76.3);
+        "510000",null,"15920551434",76.3, 80);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
-values ("2012-02-15","4","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
-        "510000",null,"15920551434",76.3);
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
+values ("2012-02-15","3","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
+        "510000",null,"15920551434",76.3, 100);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
-values ("2012-03-15","4","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
-        "510000",null,"15920551404",176.3);
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
+values ("2012-03-15","3","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
+        "510000",null,"15920551404",176.3, 200);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
-values ("2012-06-15","4","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
-        "510000",null,"15920551434",55.3);
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
+values ("2012-06-15","3","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
+        "510000",null,"15920551434",55.3, 60);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
-                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE)
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
 values ("2012-03-23","2","0","0","641567179@qq.com","时钰森","广东省广州市番禺区大学城",
-        "510000",null,"15018713530",75.0);
+        "510000",null,"15018713530",75.0, 100);
         
--- 向Order_detail表插入数据
+-- 插入order_detail
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
     values(1,1,9787538296846,"曾国藩和他的湘军",32.80,0.69,2);
 
@@ -602,5 +667,17 @@ insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUN
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
     values(10,27,9787546400839,"陈式太极拳简易24式",22.80,0.48,2);
     
+-- 插入favority_folder
+insert into favority_folder(username,bookID)
+      values ("641567179@qq.com",1);
+insert into favority_folder(username,bookID)
+      values ("641567179@qq.com",2);
+insert into favority_folder(username,bookID)
+      values ("641567179@qq.com",12);
+insert into favority_folder(username,bookID)
+      values ("641567179@qq.com",23);
+insert into favority_folder(username,bookID)
+      values ("641567179@qq.com",30);
+      
 
 
