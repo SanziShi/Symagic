@@ -111,6 +111,26 @@ public class DaoOrder {
 				orderDetail.setOrderId(rs.getInt("orderid"));
 				order.getList().add(orderDetail);
 			}
+			ps	= conn.prepareStatement("select * from book_order where orderid=?");
+			ps.setInt(1, orderID);
+			rs	= ps.executeQuery();
+			if (rs.next()) {
+				order.setAddrDetail(rs.getString("addrdetail"));
+				order.setDeliveryWay(rs.getString("deliveryway"));
+				if (rs.getString("mobilenum") != null)
+					order.setMobilenum(rs.getString("mobilenum"));
+				if (rs.getString("mobilenum") != null)
+					order.setMobilenum(rs.getString("mobilenum"));
+				order.setOrderDate(rs.getString("orderdate"));
+				order.setOrderId(rs.getInt("orderid"));
+				order.setOrderState(rs.getString("orderstate"));
+				order.setPayment(rs.getString("payment"));
+				order.setReceiverName(rs.getString("receivername"));
+				order.setScore(rs.getInt("score"));
+				order.setTotalprice(rs.getFloat("totalprice"));
+				order.setUsername(rs.getString("username"));
+				order.setZipcode(rs.getString("zipcode"));
+			}
 			return order;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
