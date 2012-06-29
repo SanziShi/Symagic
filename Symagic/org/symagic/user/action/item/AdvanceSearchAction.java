@@ -76,7 +76,9 @@ public class AdvanceSearchAction extends CatalogBase {
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
+		if(name!=null)
 		require.setItemName(name);
+		if(name!=null)
 		require.setPublisher(publisher);
 		require.setCatalogID(catalogID);
 		setYear(require, publishTime);
@@ -86,6 +88,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		setBookSize(require, booksize);
 		setPrice(require, price);
 		require.setDiscount(discount);
+		if(author!=null)
 		require.setAuthor(author);
         require.setLines(lines);
 		require.setPage(page);

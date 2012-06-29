@@ -37,6 +37,7 @@ private static final long serialVersionUID = 8991605145652333401L;
  private RecommandService recommendService;//推荐系统
  private Integer sign;//搜索标志，0为快速搜索
  private  Integer lines;
+ 
 //传出
 private Integer totalPage;
 private List<ItemTinyBean>recommend;//推荐商品
@@ -48,10 +49,13 @@ private List<ItemBean>items;//用于显示的商品列表
 		 items=new ArrayList<ItemBean>();
 			//设置搜索的条件,两个条件 都为空时，返回所有商品
 		   BookRequire require=new BookRequire();
+		   
 		   require.setCatalogID(catalogID);
+		   if(keyword!=null){
 		   require.setAuthor(keyword);
 		   require.setItemName(keyword);
 		   require.setPublisher(keyword);
+		   }
 		   require.setLines(lines);
 		   require.setPage(page);
 		      //搜索符合条件的商品
@@ -65,15 +69,22 @@ private List<ItemBean>items;//用于显示的商品列表
 			itemService.decorateForItem(books, items);
 			
 			List<Integer> bookIds;
+			/**
+			 * 处于test状态，待修改
+			 */
 			//推荐商品
 			if(UserSessionUtilty.isLogin()){
 			bookIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), recommendNumber);
 			}
 			else{
-				bookIds=recommendService.mostViewedItems(recommendNumber);
+				   recommend=new ArrayList<ItemTinyBean>();
+				   itemService.getNewBook(recommend);
+				 
+//				bookIds=recommendService.mostViewedItems(recommendNumber);
 			}
-			itemService.fillItem(bookIds, recommend);
-		
+//			itemService.fillItem(bookIds, recommend);
+			 recommend=new ArrayList<ItemTinyBean>();
+			  itemService.getNewBook(recommend);
 		 return super.execute();
 		}
 	 

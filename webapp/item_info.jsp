@@ -137,7 +137,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <ul id="book_price">
         <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>￥<s:property value='book.marketPrice'/></del></li>
         <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>￥<s:property value='book.price'/></strong></li>
-        <li><span>为您节省：</span><strong>&nbsp;</strong></li>
+        <li><span>为您节省：</span><strong>&nbsp;<strong>￥<s:property value='book.savePrice'/></strong></strong></li>
         <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>&nbsp;<s:property value='book.inventory'/></li>
         </ul>
         <div id="add_to_cart">

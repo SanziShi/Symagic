@@ -5,10 +5,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html><head>
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <title>BC2商城</title>
-<link href="css/home.css" rel="stylesheet" type="text/css">
+<link href="css/frame.css" rel="stylesheet" type="text/css"/>
+<link href="css/item.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
 </head>
@@ -18,9 +21,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<span id="cart_loading"></span>
 	<div id="cart_none">您的购物车中还没有商品，请选购！</div>
 	<div id="cart_container"></div>
+	
 </div>
 	<div id="logalleft">
-    <div id="top-overlay"></div>
+		<div id="top-overlay"></div>
     <!----吊顶栏------>
 	<div class="top">
     <div class="top_right">
@@ -55,13 +59,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
+	<!--<div id="banner"></div>-->
 	<div id="main">
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">商品详细信息</a>
+				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="">商品搜索</a>
 			</div>
-            <form action="quick_search" >
+			<form action="quick_search" >
 			<div id="searchright2">
 			  <input type="text" name="product" id="textInput"/>
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
@@ -78,17 +83,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </select> 
               </div>
 		  </form>
-         
 		</div>
+		
         <div class="clear"></div>
         <div id="item_left">
         <dl>
+        <!--左边迭代--->
         <s:iterator value="catalog" var='outer'>
         <dt id="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></dt>
         <s:iterator value="#outer.childCatalog" var="inner">
-        <div ><dd id="<s:property value='#inner.ID'/>"><s:property value='#outer.name'/></dd></div>
+        <div id="<s:property value='#inner.ID'/>"><dd><s:property value='#inner.name'/></dd></div>
         </s:iterator>
-		</s:iterator>
+        </s:iterator>
+        <!--左边迭代结束--->
         <br/>
         <dt></dt>
         </dl>
@@ -207,7 +214,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           		 </tr>
 				 <tr>
 				 <th></th>
-				 	<td><input type="button" value="搜索" onClick="">
+				 	<td><input type="button"  value="搜索" onClick="">
 				 </tr>
         </table>	
 				
@@ -219,14 +226,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <div class="fliter"></div>
    <!--商品迭代div-->
    <s:iterator value="items" var='iter'>
-   		<div class="item"><div class="p-img"><div class="i-img"><a  href="item_info?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"></a></div></div><div class="dl"><div class="p-name"><a target="_blank" href="item_info?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a></div>
-  			 <div class="p-info">作　　者：<a href=""><s:property value='#iter.author'/></a> 著&nbsp;&nbsp;&nbsp;&nbsp;</div>
-   			<div class="p-info">出&nbsp;版&nbsp;社：<s:property value='#iter.publisher'/>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-   			<div class="p-info"><span class="date-pub">出版时间：<s:property value='#iter.publishTime'/></span><span class="fl">顾客评价：</span>(已有4人评价)</div>
-   				<div class="p-info"><div class="mark-price">定　　价：<del>￥<s:property value='#iter.marketPrice'/></del></div>商城价：<strong>￥<s:property value='#iter.price'/></strong><span>（<s:property value='#iter.discount'/>折）</span></div>
-   			<div class="btns"><div class="add_to_cart1"></div></div>
-   			</div>
-   		</div>
+   <div class="item">
+   	<div class="p-img">
+   		<div class="i-img"><a  href="item_info?itemID=<s:property value='#iter.itemID'/>"><img src="image/ssbs.jpg"></a>
+        </div>
+     </div>
+        <div class="dl">
+        <div class="p-name"><a target="_blank" href="item_info?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a>
+        </div>
+   		<div class="p-info">作　　者：<a href=""><s:property value='#iter.author'/></a>著&nbsp;&nbsp;&nbsp;&nbsp;
+    	</div>
+   	<div class="p-info">出&nbsp;版&nbsp;社：<a href=""><s:property value='#iter.publisher'/></a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+   	<div class="p-info"><span class="date-pub">出版时间：<s:property value='#iter.publishTime'/></span><span class="fl">顾客评价：</span>(已有4人评价)</div>
+   	<div class="p-info"><div class="mark-price">定　　价：<del>￥<s:property value='#iter.marketPrice'/></del>
+    </div>商城价：<strong>￥<s:property value='#iter.price'/></strong><span>（<s:property value='#iter.discount'/>折）</span>
+    </div>
+   <div class="btns"><div class="add_to_cart1"></div>
+   </div>
+   </div>
+   </div>
    </s:iterator>
    <!--商品迭代div---end-->
    </div>
