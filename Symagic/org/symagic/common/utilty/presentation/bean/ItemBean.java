@@ -66,11 +66,12 @@ public class ItemBean {
 	public void setMarketPrice(float marketPrice) {
 		this.marketPrice = marketPrice;
 	}
-	private int offline;
-	public int getOffline() {
+	private boolean offline;
+	
+	public boolean isOffline() {
 		return offline;
 	}
-	public void setOffline(int offline) {
+	public void setOffline(boolean offline) {
 		this.offline = offline;
 	}
 	private int inventory;
