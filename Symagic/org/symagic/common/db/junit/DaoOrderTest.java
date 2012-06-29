@@ -13,10 +13,12 @@ public class DaoOrderTest extends TestCase{
 	//初始化
 	DaoOrder order	= new DaoOrder();
 	
-/*	@Test
+	@Test
 	public void testGetOrderDetail1(){
-		assertEquals(3,order.getOrderDetail(1).getList().size());
+		assertEquals("641567179@qq.com",order.getOrderDetail(1).getUsername());
 	}
+	
+	/*
 	@Test
 	public void testGetOrderDetail2(){
 		assertEquals(0,order.getOrderDetail(100).getList().size());
@@ -187,35 +189,35 @@ public class DaoOrderTest extends TestCase{
 		assertEquals(3,order.search(or, null).size());
 	}*/
 	
-	@Test
-	public void testGetRowNumber1(){
-		OrderRequire or = new OrderRequire();
-		or.setLines(3);
-		or.setPage(1);
-		or.setStartTime("2010-01-01");
-		or.setEndTime("2012-06-28");
-		or.setOrderState("2");
-		
-		assertEquals(2,order.getRowNumber(or, "641567179@qq.com"));
-	}
-	@Test
-	public void testGetRowNumber2(){
-		OrderRequire or = new OrderRequire();
-		or.setLines(3);
-		or.setPage(1);
-		or.setStartTime("2012-09-09");
-		
-		assertEquals(-1,order.getRowNumber(or, null));
-	}
-	@Test
-	public void testGetRowNumber3(){
-		OrderRequire or = new OrderRequire();
-		or.setLines(3);
-		or.setPage(1);
-		or.setStartTime("2010-01-01");
-		or.setEndTime("2012-06-28");
-		or.setOrderState("0");
-		
-		assertEquals(4,order.getRowNumber(or, null));
-	}
+//	@Test
+//	public void testGetRowNumber1(){
+//		OrderRequire or = new OrderRequire();
+//		or.setLines(3);
+//		or.setPage(1);
+//		or.setStartTime("2010-01-01");
+//		or.setEndTime("2012-06-28");
+//		or.setOrderState("2");
+//		
+//		assertEquals(2,order.getRowNumber(or, "641567179@qq.com"));
+//	}
+//	@Test
+//	public void testGetRowNumber2(){
+//		OrderRequire or = new OrderRequire();
+//		or.setLines(3);
+//		or.setPage(1);
+//		or.setStartTime("2012-09-09");
+//		
+//		assertEquals(-1,order.getRowNumber(or, null));
+//	}
+//	@Test
+//	public void testGetRowNumber3(){
+//		OrderRequire or = new OrderRequire();
+//		or.setLines(3);
+//		or.setPage(1);
+//		or.setStartTime("2010-01-01");
+//		or.setEndTime("2012-06-28");
+//		or.setOrderState("0");
+//		
+//		assertEquals(4,order.getRowNumber(or, null));
+//	}
 }
