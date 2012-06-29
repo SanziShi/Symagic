@@ -9,15 +9,17 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport{
 
-	private JCaptcha symagicCaptcha;//用于检验验证码是否正确
-	
-	private UserService userService;
-
-	private boolean loginResult;//登录是否成功
+	//传入
 	private String password;//登录密码
 	private String captchaValue;//验证码
 	private String name;//登录用户名
 	private String toURL;//记录登录前的页面
+	//配置项
+	private JCaptcha symagicCaptcha;//用于检验验证码是否正确
+    private UserService userService;
+    //传出
+	private boolean loginResult;//登录是否成功
+	
 	private boolean validateResult=true;
 	
 	@Override
@@ -32,6 +34,7 @@ public class LoginAction extends ActionSupport{
 		
 		return super.execute();
 	}
+	
 	@Override
 	public void validate() {
 		// TODO Auto-generated method stub
