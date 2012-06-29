@@ -42,5 +42,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
+		<action name="item_manager" class="AdminEnterItemManager">
+			<result>
+				/admin/item_list.jsp
+			</result>
+		</action>
+
 	</package>
 </struts>
