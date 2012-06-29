@@ -98,10 +98,16 @@ public class DaoBook {
 			// 插入成功
 			if (ps.getUpdateCount() == 1) {
 				if (book.getCatalogID() != null) {
+					ps	= conn.prepareStatement("select bookid from book where isbn = ?");
+					ps.setString(1, book.getIsbn());
+					rs	= ps.executeQuery();
+					if (!rs.next())
+						return false;
+						
 					ps	= conn.prepareStatement("insert into book_catalog_detail " +
 							"(bookid, catalogid) " +
 							"values (?, ?)");
-					ps.setInt(1, book.getBookId());
+					ps.setInt(1, rs.getInt("bookid"));
 					ps.setInt(2, book.getCatalogID());
 					
 					ps.execute();
@@ -305,27 +311,9 @@ public class DaoBook {
 			if (req.getUpPage() != null)
 				sql += " and " + " page < " + req.getUpPage() + " ";
 			
-			if (req.getDiscount() != null) {
-				float low = 0.0f;
-				float up = 0.0f;
-				switch (req.getDiscount()) {
-				case 0:
-					low = 0.0f;
-					up	= 0.1f;
-					break;
-				case 1:
-					low	= 0.1f;
-					up	= 0.3f;
-					break;
-				case 2:
-					low	= 0.3f;
-					up	= 0.5f;
-				case 3:
-					low	= 0.5f;
-					up	= 1.0f;
-				}
-				sql += " and " + " discount > " + low + " "
-					+  " and " + " discount < " + up + " ";
+			if (req.getUpDiscount() != null) {
+				sql += " and " + " discount > " + req.getLowDiscount() + " "
+					+  " and " + " discount < " + req.getUpDiscount() + " ";
 			}
 			
 			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
@@ -437,27 +425,9 @@ public class DaoBook {
 			if (req.getUpPage() != null)
 				sql += " and " + " page < " + req.getUpPage() + " ";
 			
-			if (req.getDiscount() != null) {
-				float low = 0.0f;
-				float up = 0.0f;
-				switch (req.getDiscount()) {
-				case 0:
-					low = 0.0f;
-					up	= 0.1f;
-					break;
-				case 1:
-					low	= 0.1f;
-					up	= 0.3f;
-					break;
-				case 2:
-					low	= 0.3f;
-					up	= 0.5f;
-				case 3:
-					low	= 0.5f;
-					up	= 1.0f;
-				}
-				sql += " and " + " discount > " + low + " "
-					+  " and " + " discount < " + up + " ";
+			if (req.getUpDiscount() != null) {
+				sql += " and " + " discount > " + req.getLowDiscount() + " "
+					+  " and " + " discount < " + req.getUpDiscount() + " ";
 			}
 			
 			sql += " order by bookid asc";
@@ -526,8 +496,20 @@ public class DaoBook {
 			ps.setString(15, book.getOffline());
 			ps.setInt(16, book.getBookId());
 			
-			if (ps.executeUpdate() == 1)
+			if (ps.executeUpdate() == 1) {
+				if (book.getCatalogID() != null) {
+					ps	= conn.prepareStatement("update book_catalog_detail set " +
+							" catalodid=? " +
+							" where bookid=? ");
+					ps.setInt(1, book.getCatalogID());
+					ps.setInt(2, book.getBookId());
+					if (ps.executeUpdate() == 1) 
+						return true;
+					return false;
+				}
 				return true;
+			}
+				
 			return false;
 			
 		} catch (Exception e) {
