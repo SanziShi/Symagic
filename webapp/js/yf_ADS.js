@@ -32,7 +32,13 @@ function change_captcha(e)
 }
 function logout()
 {
-	
+	Ajax({
+		url:'logout',
+		onSuccess:function(e){
+			var a=JSON.parse(e);
+			if(a.logoutResult){alert('成功退出');location.reload();}
+			}
+		})
 }
 function load_login()
 {
@@ -78,7 +84,10 @@ function login(form)
 		url:'login',
 		type:'POST',
 		data:login_form,
-		onSuccess:function(e){},
+		onSuccess:function(e){
+				var a=JSON.parse(e);
+				alert(a.loginResult);
+				},
 		onError:function(){
 			location.pathname='/index.html'}
 	})
