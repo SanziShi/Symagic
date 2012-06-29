@@ -103,7 +103,7 @@
 		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
-	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.ItemManagerEnterAction"
+	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.AdminItemQuickSearch"
 		scope="prototype">
 		<property name="sign" value="0"></property>
 		<property name="itemService" ref="ItemService"></property>
