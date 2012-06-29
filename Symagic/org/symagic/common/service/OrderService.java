@@ -27,8 +27,13 @@ public class OrderService {
 		public String districtDetail = null;
 	}
 
+	public static class OrderListResult {
+		public Integer totalPage;
+		public List<OrderBean> orders;
+	}
+
 	private DaoOrder daoOrder;
-	
+
 	private DaoBook daoBook;
 
 	public DaoBook getDaoBook() {
@@ -63,10 +68,10 @@ public class OrderService {
 		case 3:
 			result.setOrderStatus("交易失败");
 			break;
-			
+
 		default:
 			result.setOrderStatus("无效状态");
-		
+
 		}
 		result.setOrderTime(bean.getOrderDate());
 		result.setReceiverName(bean.getReceiverName());
@@ -75,117 +80,131 @@ public class OrderService {
 		result.setUserName(bean.getUsername());
 		return result;
 	}
+
 	/**
 	 * 列出指定用户订单列表，当username为空时为列出所有订单，
-	 * @param username 用户名
-	 * @param itemPerPage 每页几项
-	 * @param page 想要第几页的数据
-	 * @param start 起始时间
-	 * @param end 终止时间
-	 * @param OrderStatus 订单状态
-	 * @return 用户订单列表
+	 * 
+	 * @param username
+	 *            用户名
+	 * @param itemPerPage
+	 *            每页几项
+	 * @param page
+	 *            想要第几页的数据
+	 * @param start
+	 *            起始时间
+	 * @param end
+	 *            终止时间
+	 * @param OrderStatus
+	 *            订单状态
+	 * @return 用户订单列表和totalPage
 	 */
-	
-	public List<OrderBean> orderList(String username, int itemPerPage, int page,
-			Date start, Date end, String orderState){
+
+	public OrderListResult orderList(String username, int itemPerPage,
+			int page, Date start, Date end, Integer orderState) {
 		List<OrderBean> orderList = new ArrayList<OrderBean>();
 		OrderRequire require = new OrderRequire();
-		SimpleDateFormat format = new SimpleDateFormat("yyyy:mm:dd");
-		require.setStartTime(format.format(start));
-		require.setEndTime(format.format(end));
-		require.setOrderState(orderState);
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		if (start != null)
+			require.setStartTime(format.format(start));
+		if (end != null)
+			require.setEndTime(format.format(end));
+		if (orderState != null && orderState != 0)
+			require.setOrderState(Integer.toString(orderState - 1));
 		require.setPage(page);
 		require.setLines(itemPerPage);
 		List<BeanOrder> orders = daoOrder.search(require, username);
-		for(int i = 0; i < orders.size(); i ++){
-			OrderBean orderBean = this.convertBeanOrderToOrderBean(orders.get(i));
+		float rowNumber = daoOrder.getRowNumber(require, username);
+		for (int i = 0; i < orders.size(); i++) {
+			OrderBean orderBean = this.convertBeanOrderToOrderBean(orders
+					.get(i));
 			orderList.add(orderBean);
 		}
-		return orderList;
+		OrderListResult result = new OrderListResult();
+		result.totalPage = (int) Math.ceil(rowNumber / itemPerPage);
+		result.orders = orderList;
+
+		return result;
 	}
-	
-	public static Address deserializerAddress( String receiverAddress ){
-			
+
+	public static Address deserializerAddress(String receiverAddress) {
+
 		JSON json = JSONSerializer.toJSON(receiverAddress);
-		if( !(json instanceof JSONObject ) )
+		if (!(json instanceof JSONObject))
 			return null;
 		JSONObject addressObject = (JSONObject) json;
 		Address result = new Address();
-		
+
 		JSONObject level1 = addressObject.getJSONObject("level1");
 		JSONObject level2 = addressObject.getJSONObject("level2");
 		JSONObject level3 = addressObject.getJSONObject("level3");
 		String detail = addressObject.getString("detail");
-		
-		if( detail != null ){
+
+		if (detail != null) {
 			result.districtDetail = detail;
-		}
-		else{
+		} else {
 			return null;
 		}
-		
-		if( level1 != null ){
+
+		if (level1 != null) {
 			result.level1District = new DistrictBean();
 			result.level1District.setID(level1.getInt("id"));
 			result.level1District.setName(level1.getString("name"));
 		}
-		
-		if( level2 != null ){
+
+		if (level2 != null) {
 			result.level1District = new DistrictBean();
 			result.level1District.setID(level2.getInt("id"));
 			result.level1District.setName(level2.getString("name"));
 		}
-		
-		if( level3 != null ){
+
+		if (level3 != null) {
 			result.level1District = new DistrictBean();
 			result.level1District.setID(level3.getInt("id"));
 			result.level1District.setName(level3.getString("name"));
 		}
-			
+
 		return result;
 	}
-	
-	public static String serializerAddress( Address address ){
-		
+
+	public static String serializerAddress(Address address) {
+
 		JSONObject jsonObject = new JSONObject();
-		
+
 		jsonObject.put("detail", address.districtDetail);
-		
-		if( address.level1District != null ){
+
+		if (address.level1District != null) {
 			JSONObject district = new JSONObject();
-			district.put("id", address.level1District.getID() );
+			district.put("id", address.level1District.getID());
 			district.put("name", address.level1District.getName());
 			jsonObject.put("level1", district);
 		}
-		
-		if( address.level2District != null ){
+
+		if (address.level2District != null) {
 			JSONObject district = new JSONObject();
-			district.put("id", address.level2District.getID() );
+			district.put("id", address.level2District.getID());
 			district.put("name", address.level2District.getName());
 			jsonObject.put("level2", district);
 		}
-		
-		if( address.level3District != null ){
+
+		if (address.level3District != null) {
 			JSONObject district = new JSONObject();
-			district.put("id", address.level3District.getID() );
+			district.put("id", address.level3District.getID());
 			district.put("name", address.level3District.getName());
 			jsonObject.put("level3", district);
 		}
-		
-		
-		
+
 		return jsonObject.toString();
-		
+
 	}
-	
-	public List<BeanOrderDetail> getOrderDetail(List<ItemTinyBean> items){
+
+	public List<BeanOrderDetail> getOrderDetail(List<ItemTinyBean> items) {
 		List<BeanOrderDetail> orderDetails = new ArrayList<BeanOrderDetail>();
-		for(int i = 0; i < items.size(); i ++){
+		for (int i = 0; i < items.size(); i++) {
 			BeanOrderDetail detail = new BeanOrderDetail();
 			ItemTinyBean item = items.get(i);
 			detail.setAmount(item.getItemNumber());
 			detail.setBookId(item.getItemID());
-			//detail.set
+			// detail.set
 		}
 		return orderDetails;
 	}
