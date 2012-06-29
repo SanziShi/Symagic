@@ -25,11 +25,11 @@ public class DaoBookTest extends TestCase{
 //		book1.setAuthor("yusen");
 //		book1.setBinding("精装");
 //		book1.setBookDesc("good");
-//		book1.setBookName("what is that");
+//		book1.setBookName("what is that?????");
 //		book1.setDiscount(0.5f);
 //		book1.setFolio("16");
 //		book1.setInventory(20);
-//		book1.setIsbn("12kjkjdf24");
+//		book1.setIsbn("123456");
 //		book1.setMarketPrice(49.21f);
 //		book1.setOffline("在架");
 //		book1.setPage(400);
@@ -37,7 +37,7 @@ public class DaoBookTest extends TestCase{
 //		book1.setPublisher("public department");
 //		book1.setPublishDate("2009-03-27");
 //		book1.setVersion(5);
-//		book1.setCatalogID(1);
+//		//book1.setCatalogID(1);
 //		
 //		//断言判断
 //		assertEquals(true,db.addBook(book1));
@@ -485,5 +485,16 @@ public class DaoBookTest extends TestCase{
 //		
 //		assertEquals(0,db.getBookStatistics(req).size());
 //	}
+	
+	@Test
+	public void testSearch()
+	{
+		DaoBook	db	= new DaoBook();
+		BookRequire	req	= new BookRequire();
+		req.setPage(1);
+		req.setLines(10);
+		req.setCatalogID(1);
+		assertEquals(1, db.search(1, req).get(0).getBookId());
+	}
  
 }
