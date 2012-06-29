@@ -11,7 +11,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.bean.BeanComment;
@@ -31,7 +30,6 @@ public class ItemService {
 	private DaoComment daoComment;// 访问comment
 	private DaoBook daoBook;// 访问数据库中的书籍信息
 	private DaoCatalog daoCatalog;
-
 	/**
 	 * 
 	 * @param sign
@@ -86,9 +84,9 @@ public class ItemService {
 			bean.setMarketPrice(book.getMarketPrice());
 			String status = book.getOffline();
 			if (status.trim().equals("下架")) {
-				bean.setOffline(0);
+				bean.setOffline(true);
 			} else {
-				bean.setOffline(1);
+				bean.setOffline(false);
 			}
 			bean.setRating(getAverage(book.getBookId()));
 			bean.setInventory(book.getInventory());
@@ -110,7 +108,7 @@ public class ItemService {
 		detail.setBookName(book.getBookName());
 		detail.setCatalogClassify(getCatalogName(currentCatalog));
 		detail.setDiscout(book.getDiscount());
-		detail.setSize(book.getFolio());
+		detail.setSize(book.getFolio()+"开");
 		detail.setInventory(book.getInventory());
 		detail.setIsbn(book.getIsbn());
 		float marketPrice = MathUtilty.roundWithdigits(book.getMarketPrice());
@@ -225,9 +223,6 @@ public class ItemService {
 	public float fillItemWithNumber(ArrayList<ItemTinyBean>items){
 		if(items==null)return -1;
 		//获得购物车
-		//test
-		 UserSessionUtilty.addToCart(1, 3);
-		 UserSessionUtilty.addToCart(4, 4);
 		HashMap<Integer,Integer> cart=UserSessionUtilty.getCart();
 		
 		 if(cart==null){return 0;}
@@ -287,4 +282,5 @@ public class ItemService {
 		this.daoCatalog = daoCatalog;
 	}
 
+	
 }

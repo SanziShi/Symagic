@@ -102,7 +102,7 @@ input.txt {
 }
 #pay
 {
-	display:inline-block;
-	margin-right:30px;
+	list-style:none;
+	min-width:90px;
 	float:right;
 }

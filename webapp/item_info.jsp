@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="spec-n1"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='book.picturePath'/>"/></div>
         <ul>
         <li><span>总评分：</span><span class="star"><span class="sa45"></span></span></li>
-        <li><span>书籍分类：</span><s:property value='book.offline'/><s:property value='book.catalogClassify'/></li>
+        <li><span>书籍分类：</span><s:property value='book.catalogClassify'/></li>
         </ul>
         </div>
         <ul id="summary">

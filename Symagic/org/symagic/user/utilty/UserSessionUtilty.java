@@ -3,6 +3,7 @@ package org.symagic.user.utilty;
 import java.util.*;
 
 
+import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.utilty.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -76,7 +77,9 @@ public class UserSessionUtilty extends SessionUtilty {
 	 * @param number
 	 */
 	
-	public static boolean addToCart(int id,int number){
+	public static boolean addToCart(Integer id,Integer number){
+		//商品id是否存在
+		
 		//得到session
 		Map<String ,Object> session=ActionContext.getContext().getSession();
 		//得到购物车
@@ -91,7 +94,7 @@ public class UserSessionUtilty extends SessionUtilty {
 		if(value==null)
 		  cart.put(id, number); 
 		else 
-		{
+		{   //如果购物车已有相应 的商品
 			cart.put(id, value+number);
 		}
 		//商品总数量增加
@@ -103,8 +106,8 @@ public class UserSessionUtilty extends SessionUtilty {
 	 * 当用户将从购物车中删除商品时
 	 */
 	public static boolean deleteFromCart(int id){
-		          //得到session
-				 Map<String ,Object> session=ActionContext.getContext().getSession();
+		         //得到session
+				Map<String ,Object> session=ActionContext.getContext().getSession();
 				//得到购物车
 				HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
 				int number=cart.get(id);

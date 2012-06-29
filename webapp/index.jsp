@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="globallink">
 		<ul>
 			<li><a href="index">首页</a></li>
-			<li><a href="item_list.html">商品列表</a></li>
+			<li><a href="item_list">商品列表</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
 			<li><a href="address.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
@@ -86,7 +86,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</s:iterator>
               </select>
 			  <input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />
-			  <input type="submit"  value="搜索" onclick=""/>
+			  <input type="submit"  value="搜索" onClick="">
 			</form>
             </div>
 		</div>
