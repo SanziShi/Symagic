@@ -54,7 +54,11 @@
 }
 .p-price
 {
-	width:80px;
+	width:150px;
+}
+.p-price-p
+{
+	line-height:17px;
 }
 .quantity
 {
@@ -70,7 +74,7 @@
 }
 .action
 {
-	width:91px;
+	width:97px;
 	border-right:0px;
 }
 

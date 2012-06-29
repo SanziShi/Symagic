@@ -2,9 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
-
-	<!-- 用户的action bean -->
+<!-- 用户的action bean -->
 
 
 	<bean id="indexClass" class="org.symagic.user.action.index.IndexAction">
@@ -58,22 +56,39 @@
 	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="recommendService" ref="RecommendService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="lines" value="15"></property>
+		<property name="recommendNumber" value="15"></property>
+		<property name="errorHeader" value="没有相应 的商品"></property>
+		<property name="errorSpecification" value="symagic商城目前没有符合此类商品"></property>
+		<property name="sign" value="1"></property>
 	</bean>
 
 	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction">
+	    <property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="recommendService" ref="RecommendService"></property>
+		<property name="errorHeader" value="出现异常"></property>
+		<property name="errorSpecification" value="可能 是由于输入的数据有误造成的"></property>
+		<property name="recommendNumber" value="15"></property>
+		<property name="sign" value="0"></property>
+		<property name="lines" value="15"></property>
 	</bean>
 
 	<bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
+		<property name="errorHeader" value="没有相应 的商品"></property>
+		<property name="errorSpecification" value="symagic商城目前没有此类商品"></property>
 	</bean>
 
 	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
+		<property name="errorHeader" value="检索信息有误"></property>
+		 <property name="errorSpecification" value="没有相应 的评论"></property>
+		
 	</bean>
 
 

@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@taglib prefix="s" uri="/struts-tags"%><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -51,19 +57,23 @@
 			<div id="searchleft">
 				<img src="image/ico_site.jpg" id="ico_site"/>
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">购物车</a>			</div>
+			<form action="quick_search" >
 			<div id="searchright2">
-			 <input type="text" name="quick_search" id="quick_search" class="gray" value="书名快速搜索...."onFocus="onfocus_check(this,'书名快速搜索....')" onblur="onblur_check(this,'书名快速搜索....')" />
+			  <input type="text" name="product" id="textInput"/>
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
 			</div>
 			<div id="searchright1">
-			  <select name="category" id="searchrightcategory">
-				<option value="5">所有类别</option>
-                <option value="1">图书音像</option>
-                <option value="2">时尚生活</option>
-                <option value="3">饰品配件</option>
-                <option value="4">数码产品</option>
-              </select>
-		  </div>
+			 <select name="catalogID" >
+			  <option value="0">所有类别</option>
+			  <s:iterator value="catalog" var='outer'>
+				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
+				<s:iterator value="#outer.childCatalog" var="inner">
+				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
+				</s:iterator>
+				</s:iterator>
+              </select> 
+              </div>
+		  </form>
 		</div>
         <div class="clear"></div>
         <div id="cart-a">
@@ -81,31 +91,31 @@
             	</div>
             	<div id="cart_table_content">
                 	<!--购物车迭代-->
+                     <s:iterator value="items" var='iter'>
                     <div class="each">
                     <div class="cell checkbox">
-                		<input class="" type="checkbox"/>
+                		<input id="<s:property value='#iter.itemId'/>" class="" type="checkbox"/>
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-img">
-                        	<a><img src="upload/9787030133083.png"></a>
+                        	<a><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"></a>
                         </div>
-                      <div class="p-name-de">大学物理学.第四册：波动与光学（第2版）大学物理学.第四册：波动与光学大学物理学.第四册：波动与光学（第2版（第2版
-                        </div>
+                      <div class="p-name-de"><s:property value='#iter.name'/></div>
                     </div>
-                    <div class="cell p-price p-price-p"><del>￥<span>40.00</span></del><br>￥<span>现价</span><br><font class="red">为您节省：<span>￥20.00</span></font></div>
-                    <!--<div class="cell save"><strong>￥<span>11.00</span></strong></div>-->
+                    <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.marketPrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
                     <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
-        <input type="text" value="1"  onkeyup="amount_modify(this)">
+        <input type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
         <a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
         </span></div>
-         			<div class="cell total">￥<span>40.00</span></div>
+         			<div class="cell total">￥<span><s:property value='#iter.itemTotalPrice'/></span></div>
                     <div class="cell action"><a href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)">删除</a></div>
                     </div>
+                    </s:iterator>
                     <!--购物车迭代--end-->
             	</div>
             	<div id="cart_table_bottom">
                 <a href="javascript:void(0);">删除选中的商品</a>
-                <div id="total-price">总计:<span id="final-price">￥200.50</span></div>
+                <div id="total-price">总计:<span id="final-price">￥<s:property value='totalPrice'/></span></div>
             	</div>
         	</div>
         </div>

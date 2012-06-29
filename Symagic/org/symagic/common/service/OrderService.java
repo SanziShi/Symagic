@@ -49,7 +49,7 @@ public class OrderService {
 	public OrderBean convertBeanOrderToOrderBean(BeanOrder bean) {
 		OrderBean result = new OrderBean();
 
-		result.setOrderId(Integer.toString(bean.getOrderId()));
+		result.setOrderID(Integer.toString(bean.getOrderId()));
 		switch (Integer.parseInt(bean.getOrderState())) {
 		case 0:
 			result.setOrderStatus("已下单");
@@ -63,10 +63,14 @@ public class OrderService {
 		case 3:
 			result.setOrderStatus("交易失败");
 			break;
+			
+		default:
+			result.setOrderStatus("无效状态");
+		
 		}
 		result.setOrderTime(bean.getOrderDate());
 		result.setReceiverName(bean.getReceiverName());
-		//result.setScore();
+		result.setScore(Integer.toString(bean.getScore()));
 		result.setTotalPrice(bean.getTotalprice());
 		result.setUserName(bean.getUsername());
 		return result;

@@ -14,28 +14,29 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 	 * 
 	 */
 	private static final long serialVersionUID = -6278899703556693654L;
-	
-	private List<CommentBean> commentList;//(一维数组包含评论编号（commentID），用户名(username),打分(rating),内容(content),时间(date))；page（页数);catalog:一维数组（一个含有名字(name)和简介(desc)id,目录的ID，二级目录的一维数组（含有名字(name)和简介(desc)id,目录的ID，一个空的一维数组））；
-	private Integer totalPage;//（总页数）；
-	private Integer page; //请求的页数
-	private Integer lines; //每页的条数
-	
+
+	private List<CommentBean> commentList;// (一维数组包含评论编号（commentID），用户名(username),打分(rating),内容(content),时间(date))；page（页数);catalog:一维数组（一个含有名字(name)和简介(desc)id,目录的ID，二级目录的一维数组（含有名字(name)和简介(desc)id,目录的ID，一个空的一维数组））；
+	private Integer totalPage;// （总页数）；
+	private Integer page; // 请求的页数
+	private Integer lines; // 每页的条数
+
 	private DaoComment daoComment;
-	
+
 	@Override
 	public String execute() throws Exception {
-		
+
 		float rowNumber = daoComment.getAllCommmentRowNum();
-		
-		totalPage = (int)Math.ceil(rowNumber / lines);
-		
-		if( page == null )
+
+		if (rowNumber != -1)
+			totalPage = (int) Math.ceil(rowNumber / lines);
+
+		if (page == null)
 			page = 1;
-		
+
 		List<BeanComment> comments = daoComment.getAllComment(page, lines);
 		commentList = new ArrayList<CommentBean>();
-		
-		for( BeanComment comment : comments ){
+
+		for (BeanComment comment : comments) {
 			CommentBean bean = new CommentBean();
 			bean.setUserName(comment.getUsername());
 			bean.setContent(comment.getContent());
@@ -43,7 +44,7 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 			bean.setRating(comment.getRating());
 			commentList.add(bean);
 		}
-		
+
 		return super.execute();
 	}
 
@@ -86,6 +87,5 @@ public class AdminEnterCommentManagerAction extends CatalogBase {
 	public void setDaoComment(DaoComment daoComment) {
 		this.daoComment = daoComment;
 	}
-	
 
 }

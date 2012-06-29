@@ -40,22 +40,28 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>/cart.jsp</result>
 		</action>
 
-		<!-- 商品项 -->
+<!-- 商品项 -->
 		<action name="item_list" class="advanceSearch">
 			<result>/item_list.jsp</result>
+			<result name="input">/error.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
 
 		<action name="quick_search" class="quickSearch">
 			<result>/item_list.jsp</result>
+			<result name="input">/error.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
-
 		<action name="item_detail" class="itemDetail">
 			<result>/item_info.jsp</result>
 			<result name="error">/error.jsp</result>
 			<result name="input">/error.jsp</result>
+			
 		</action>
 		<action name="comment" class="browseComment">
 			<result>/lib/comment_inner.jsp</result>
+			<result name="input">/error.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
 
 
@@ -74,22 +80,30 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	</package>
 
 	<!-- 用户中与购物车有关的action -->
-	<package name="cart-user-default" extends="symagic-user-default"
-		namespace="/cart">
+	<package name="cart-user-default" extends="symagic-user-default" namespace="/cart">
 		<action name="add_to_cart" class="addToCart">
 			<result type="json">
 				<param name="includeProperties">addResult</param>
+			</result>
+	       <result type="json" name="input">
+			  <param name="includeProperties">addResult</param>
 			</result>
 		</action>
 		<action name="delete" class="deleteFromCart">
 			<result type="json">
 				<param name="includeProperties">deleteResult</param>
 			</result>
+			 <result type="json" name="input">
+			  <param name="includeProperties">deleteResult</param>
+			</result>
 		</action>
 
 		<action name="update" class="updateCart">
 			<result type="json">
 				<param name="includeProperties">updateResult</param>
+			</result>
+			 <result type="json" name="input">
+			  <param name="includeProperties">updateResult</param>
 			</result>
 		</action>
 	</package>
@@ -110,22 +124,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 	</package>
 
-	<!-- 用户中与商品项有关的action -->
+	<!-- 用户中与商品项有关的小接口 -->
 
-	<package name="item-user-default" extends="symagic-user-default"
-		namespace="/item">
+	<package name="item-user-default" extends="symagic-user-default" namespace="/item">
 		<action name="comment" class="submitComment">
 			<result type="json">
 				<param name="includeProperties">submitResult</param>
 			</result>
+			<result name="input" type="json">
+			  <param name="includeProperties">submitResult</param>
+			</result>
 		</action>
 
-		<action name="item_list" class="advanceSearch">
-			<result>/item_list.jsp</result>
-		</action>
-
-		<action name="quick_search" class="quickSearch">
-			<result>/item_list.jsp</result>
-		</action>
+		
 	</package>
 </struts>

@@ -61,7 +61,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-<!--	<div id="banner"></div>-->
 	<div id="main">
 		<div id="search2">
 			<div id="searchleft">
@@ -79,65 +78,89 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  <s:iterator value="catalog" var='outer'>
 				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
 				<s:iterator value="#outer.childCatalog" var="inner">
-				<option value="<s:property value='#inner.ID'/>"><s:property value='#inner.name'/></option>
+				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
 				</s:iterator>
 				</s:iterator>
-              </select>
-		  </div>
-          </form>
+              </select> 
+              </div>
+		  </form>
+         
 		</div>
         <div class="clear"></div>
+        <div id="recommend-container">
         <!--购买推荐左边栏-->
       <div class="recommend">
         <div class="head"><h3>购买本书的顾客还购买了</h3></div>
         <!----推荐迭代li---->
-       <li><div class="p-img"><a href="" title="数学之美" target="_blank"><img width="50" height="50" src="upload/linux.jpg"></a></div>						 		<div class="p-name"><a href="" >高性能Linux服务器构建实战</a></div>
-       <div class="p-price"><strong>￥30.00</strong></div></li>
+        <s:iterator value="recommendBought" var='iter'>
+       <li><div class="p-img"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>" title="数学之美" target="_blank"><img width="50" height="50" src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"></a></div><div class="p-name"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>" ><s:property value='#iter.name'/></a></div>
+       <div class="p-price"><strong>￥<s:property value='#iter.price'/></strong></div></li>
+       </s:iterator>
        <!----推荐迭代li结束---->
        
         </div>
         <!--购买推荐左边栏结束-->
+        <!--购买推荐左边栏-->
+      <div class="recommend">
+        <div class="head"><h3>浏览本书的顾客还浏览了</h3></div>
+        <!----推荐迭代li---->
+        <s:iterator value="recommendView" var='iter'>
+       <li><div class="p-img"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>" title="数学之美" target="_blank"><img width="50" height="50" src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"></a></div><div class="p-name"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>" ><s:property value='#iter.name'/></a></div>
+       <div class="p-price"><strong>￥<s:property value='#iter.price'/></strong></div></li>
+       </s:iterator>
+       <!----推荐迭代li结束---->
+       
+        </div>
+        <!--购买推荐左边栏结束-->
+        </div>
         <!--商品详细信息-->
         <div class="item_info">
         <div class="fliter"></div>
-        <div class="name"><h2><s:property value='#book.bookName'/></h2></div>
+        <div class="name"><h2><s:property value='book.bookName'/></h2></div>
         <div id="preview">
-        <div id="spec-n1"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#book.picturePath'/>"/></div>
+        <div id="spec-n1"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='book.picturePath'/>"/></div>
         <ul>
         <li><span>总评分：</span><span class="star"><span class="sa45"></span></span></li>
+        <li><span>书籍分类：</span><s:property value='book.catalogClassify'/></li>
         </ul>
         </div>
         <ul id="summary">
-        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>null<s:property value='#book.author'/></li>
-        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>null<s:property value='#book.publisher'/></li>
-        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>null<s:property value='#book.isbn'/></li>
-        <li><span>出版日期：</span>null<s:property value='#book.publishDate'/></li>
-        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>null<s:property value='#book.version'/></li>
-        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>null<s:property value='#book.folio'/></li>
-        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>null<s:property value='#book.binding'/></li>
-        <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span>null<s:property value='#book.page'/></li>
+        <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>&nbsp;<s:property value='book.author'/></li>
+        <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>&nbsp;<s:property value='book.publisher'/></li>
+        <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>&nbsp;<s:property value='book.isbn'/></li>
+        <li><span>出版日期：</span>&nbsp;<s:property value='#book.publishDate'/></li>
+        <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>&nbsp;<s:property value='book.version'/></li>
+        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>&nbsp;<s:property value='book.size'/></li>
+        <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>&nbsp;<s:property value='book.binding'/></li>
+        <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span>&nbsp;<s:property value='book.page'/></li>
         </ul>
         <ul id="book_price">
-        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>null<s:property value='#book.marketPrice'/></del></li>
-        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>null<s:property value='#book.price'/></strong></li>
-        <li><span>为您节省：</span><strong>null</strong></li>
-        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>null<s:property value='#book.inventory'/></li>
+        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>￥<s:property value='book.marketPrice'/></del></li>
+        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>￥<s:property value='book.price'/></strong></li>
+        <li><span>为您节省：</span><strong>&nbsp;<strong>￥<s:property value='book.savePrice'/></strong></strong></li>
+        <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>&nbsp;<s:property value='book.inventory'/></li>
         </ul>
         <div id="add_to_cart">
         <div id="item_amount">
         <span id="buy_num">购买数量：</span><span><a class="reduce" onclick="reduce();" href="javascript:void(0)">-</a>
-        <input type="text" value="1" id="amount" onkeyup="amount_modify(this)">
+        <input type="text" value="1" id="amount" onkeyup="amount_modify(this)"/>
         <a class="reduce" onclick="add();" href="javascript:void(0)">+</a>
         </span></div>
         <div class="btns">
-					<a onclick="add_to_cart()" href="javascript:void(0)" class="append" ></a><a onclick="favorite()" href="javascript:void(0)" class="favorite"></a>
+        			<s:if test='!book.offline'>
+					<a onclick="add_to_cart(<s:property value='itemID'/>)" href="javascript:void(0)" class="append" ></a>
+                    </s:if>
+                    <s:else>
+                    <a  href="javascript:void(0)" class="disable" ></a>
+                    </s:else>
+                    <a onclick="favorite()" href="javascript:void(0)" class="favorite"></a>
 					<div class="clear"></div>
 				</div>
         </div>
         <div class="clear"></div>
         <div class="item_desc">
         <div class="banner"><li>内容简介</li></div>
-        <div class="item_desc_con">&nbsp;&nbsp;&nbsp;&nbsp;本书是清华大学教材《大学物理学》的第四册，讲述振动与波的一般基本规律和波动光学的基本原理，包括光的干涉、衍射和偏振。除了基本内容外，还专题介绍了全息照相、光学信息处理、液晶等今日物理趣闻和着名物理学家托马斯·杨和菲涅耳的传略。<br/>&nbsp;&nbsp;&nbsp;&nbsp;基本内容扼要，附加内容通俗易懂。本书可作为高等院校的大学物理教材，也可以作为中学物理教师教学或其他读者自学的参考书。</div>
+        <div class="item_desc_con">&nbsp;&nbsp;&nbsp;&nbsp;<s:property value='book.bookDesc'/></div>
         </div>
         <div id="comment">
         <div class="banner"><li>用户评价</li></div>
@@ -159,6 +182,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         </div>
         </div>
+        
+  </div>       
       <div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
 		<span id="footerright"> B2C商城  Power by IBM &nbsp;</span>

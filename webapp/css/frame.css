@@ -135,7 +135,8 @@ span.red
 }
 .top #cart_top
 {
-	width:85px;
+	min-width:85px;
+	
 }
 .top #cart_top.hover
 {
@@ -521,6 +522,7 @@ span.close
 	height:28px;
 	margin:0px;
 	padding:0px;
+	float:left;
 }
 #globallink li{
 	float:left;
@@ -623,8 +625,8 @@ strong{
 #search2 #searchright1{
 	float:right;
 	height:30px;
-	margin:0px 0px 0px 0px;
-	padding-top:0px;
+	padding:0px;
+	margin-top:4px;
 	color:#2696ca;
 }
 
@@ -668,15 +670,6 @@ strong{
 #search2 #searchright2 #searchbutton{
 	height:23px;
 	font-size:12px;
-}
-#search2 #searchright1 #searchrightcategory{
-	height: 23px;
-	margin-top:5px;
-	border-width:1px;
-	border-style:solid;
-	border-color:#CCCCCC;
-	font-size:12px;
-	color:#2696ca;
 }
 
 #sendnote, #double1, #double2{

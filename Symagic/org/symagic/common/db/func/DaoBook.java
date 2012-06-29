@@ -97,17 +97,35 @@ public class DaoBook {
 			
 			// 插入成功
 			if (ps.getUpdateCount() == 1) {
-				conn.close();
+				if (book.getCatalogID() != null) {
+					ps	= conn.prepareStatement("insert into book_catalog_detail " +
+							"(bookid, catalogid) " +
+							"values (?, ?)");
+					ps.setInt(1, book.getBookId());
+					ps.setInt(2, book.getCatalogID());
+					
+					ps.execute();
+					
+					if (ps.getUpdateCount() == 1)
+						return true;
+					return false;
+				}
 				return true;
 			}
 			
-			conn.close();
 			return false;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return true;
+		return false;
 	}
 
 	/**
@@ -376,8 +394,7 @@ public class DaoBook {
 				+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
 			
 			
-			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
-				+  " , " + req.getLines();
+			sql += " order by bookid asc  ";
 	
 		}
 		// 高阶查询
@@ -443,8 +460,7 @@ public class DaoBook {
 					+  " and " + " discount < " + up + " ";
 			}
 			
-			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
-			+  " , " + req.getLines();
+			sql += " order by bookid asc";
 			
 		
 		}
@@ -455,7 +471,7 @@ public class DaoBook {
 			rs	= st.executeQuery(sql);
 			while (rs.next())
 				count ++;
-			return count;
+			return ++count;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -628,6 +644,8 @@ public class DaoBook {
 			ps.setInt(1, bookid);
 			ps.execute();
 			
+			// 删除收藏夹中指定书籍记录
+			
 			if (ps.getUpdateCount() == 1)
 				return true;
 			return false;
@@ -711,5 +729,66 @@ public class DaoBook {
 	}
 	
 	
+
+	/**
+	 * 获取统计数据条数
+	 * @param req	封装搜索条件
+	 * @return	-1 搜索失败	>=0 搜索成功
+	 */
+	public int getStatisticsNum(BookStatisticsRequire req)
+	{
+		count	= -1;
+		boolean haveCatalogID	= true;
+		if (req.getCatalogid() == null)
+			haveCatalogID	= false;
+			
+		String sql	= "";
+		if (haveCatalogID == false) 
+			sql = "select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price " +
+			"from book_order, order_detail " +
+			"where book_order.orderid=order_detail.orderid and orderdate >  " + " '" + req.getStartTime() + "' " + " and orderdate < " + " '" + req.getEndTime() + "' " +
+			"group by bookid " +
+			"having sum(amount) > ? " +
+			"order by bookid asc  limit ?, ?";
+		else 
+			sql	= "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid " +
+				"from (" +
+					" select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price " +
+					" from book_order, order_detail " +
+					" where book_order.orderid=order_detail.orderid and orderdate >  "  + " '" + req.getStartTime() + "' " + " and orderdate < " + " '" + req.getEndTime() + "' " +
+					" group by bookid " +
+					" having sum(amount) > ? " +
+					"order by bookid asc limit ?, ?) " +
+					" as t1, book_catalog_detail as t2 " +
+				" where t1.bookid=t2.bookid and t2.catalogid=? " +
+				" order by bookid asc ";
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement(sql);
+			ps.setInt(1, req.getLowlimit());
+			ps.setInt(2, (req.getPage() - 1)*req.getLines());
+			ps.setInt(3, req.getLines());
+			
+			if (haveCatalogID)
+				ps.setInt(4, req.getCatalogid());
+			
+			rs	= ps.executeQuery();
+			while (rs.next()) {
+				count++;
+			}
+			return count;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return count;
+	}
 
 }
