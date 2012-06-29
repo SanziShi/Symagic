@@ -80,7 +80,7 @@ public class ItemManagerEnterAction extends CatalogBase {
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
 		setBookSize(require, booksize);
-		setPrice(require, price);
+		setPrice(require, price); 
 		require.setDiscount(discount);
 		if (author != null)
 			require.setAuthor(author);

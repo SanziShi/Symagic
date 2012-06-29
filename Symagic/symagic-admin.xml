@@ -48,5 +48,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
+		<action name="order_statistics" class="AdminOrderStatistics">
+			<result>
+			/admin/salesdata_admin.jsp
+			</result>
+		</action>
+
 	</package>
 </struts>
