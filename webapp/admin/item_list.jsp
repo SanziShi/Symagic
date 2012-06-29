@@ -25,22 +25,14 @@
 		<a name="0"></a>
 		<div id="globallink">
 			<ul>
-				<li><a href="index.html">首页</a>
-				</li>
-				<li><a href="category_list.html">目录管理</a>
-				</li>
-				<li><a href="item_list.html">商品管理</a>
-				</li>
-				<li><a href="order_admin.html">订单管理</a>
-				</li>
-				<li><a href="salesdata_admin.html">销售量统计</a>
-				</li>
-				<li><a href="user_admin.html">会员管理</a>
-				</li>
-				<li><a href="comment_list.html">评论管理</a>
-				</li>
-				<li><a href="" class="nouseful">&nbsp;</a>
-				</li>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="category_list.html">目录管理</a></li>
+				<li><a href="item_list.html">商品管理</a></li>
+				<li><a href="order_admin.html">订单管理</a></li>
+				<li><a href="salesdata_admin.html">销售量统计</a></li>
+				<li><a href="user_admin.html">会员管理</a></li>
+				<li><a href="comment_list.html">评论管理</a></li>
+				<li><a href="" class="nouseful">&nbsp;</a></li>
 			</ul>
 		</div>
 
@@ -56,16 +48,20 @@
 				<div id="" style="float:right">
 					<select name="category" id="searchrightcategory">
 						<option value="0">所有类别</option>
-						<!-- 迭代开始 -->
-						<s:iterator value="catalog" var="itr">
-							<option value="<s:property value="#itr.id" />">
-								<s:property value="#itr.name" />
+						<s:iterator value="catalog" var='outer'>
+							<option value="<s:property value='#outer.ID'/>">
+								<s:property value='#outer.name' />
 							</option>
+							<s:iterator value="#outer.childCatalog" var="inner">
+								<option value="<s:property value='#inner.ID'/>">
+									&nbsp;&nbsp;&nbsp;
+									<s:property value='#inner.name' />
+								</option>
+							</s:iterator>
 						</s:iterator>
-						<!-- 迭代结束 -->
 					</select> <input type="text" name="product" id="textInput" /> <input
 						type="button" name="Submit" value="搜索" id="searchbutton"
-						onClick="javascript:window.open('item_search_list.html','_parent','')">
+						onclick="javascript:window.open('item_search_list.html','_parent','')" />
 				</div>
 				<div class="user_note" id="myfont">
 					<a href="#1"><img src="image/add_product.png" /> </a> <a href="#2"><img
@@ -92,29 +88,37 @@
 						<table>
 							<tr>
 								<th>书&nbsp;&nbsp;&nbsp;名：</th>
-								<td><input type="text" name="itemName" /></td>
+								<td><input type="text" name="itemName" />
+								</td>
 								<th>作&nbsp;&nbsp;&nbsp;者：</th>
-								<td><input type="text" name="author" /></td>
+								<td><input type="text" name="author" />
+								</td>
 							</tr>
 							<tr>
 								<th>出版社：</th>
-								<td><input type="text" name="publisher" /></td>
+								<td><input type="text" name="publisher" />
+								</td>
 								<th>书籍描述：</th>
-								<td><input type="text" name="detail" /></td>
+								<td><input type="text" name="detail" />
+								</td>
 							</tr>
 							<tr>
 								<th>书籍类别：</th>
 								<td><select name="catalogID" class="midselect">
 										<option value="0">所有类别</option>
-										<option value="1">文艺</option>
-										<option value="2">少儿</option>
-										<option value="3">人文社会</option>
-										<option value="4">经济与管理</option>
-										<option value="5">生活与励志</option>
-										<option value="6">科技</option>
-										<option value="7">教育</option>
-										<option value="8">其他</option>
-								</select></td>
+										<s:iterator value="catalog" var='outer'>
+											<option value="<s:property value='#outer.ID'/>">
+												<s:property value='#outer.name' />
+											</option>
+											<s:iterator value="#outer.childCatalog" var="inner">
+												<option value="<s:property value='#inner.ID'/>">
+													&nbsp;&nbsp;&nbsp;
+													<s:property value='#inner.name' />
+												</option>
+											</s:iterator>
+										</s:iterator>
+								</select>
+								</td>
 								<th>出版时间：</th>
 								<td><select name="publish_time" class="midselect">
 										<option>不论时间</option>
@@ -122,7 +126,8 @@
 										<option>2011</option>
 										<option>2010</option>
 										<option>2009</option>
-								</select></td>
+								</select>
+								</td>
 							</tr>
 
 							<tr>
@@ -132,7 +137,8 @@
 										<option>200-400</option>
 										<option>400-600</option>
 										<option>600以上</option>
-								</select></td>
+								</select>
+								</td>
 								<th>版&nbsp;&nbsp;&nbsp;次：</th>
 								<td><select name="version" class="midselect">
 										<option>全部版次</option>
@@ -140,7 +146,8 @@
 										<option>2</option>
 										<option>3</option>
 										<option>4</option>
-								</select></td>
+								</select>
+								</td>
 							</tr>
 							<tr>
 
@@ -149,14 +156,16 @@
 										<option>不论</option>
 										<option>平装</option>
 										<option>精装</option>
-								</select></td>
+								</select>
+								</td>
 								<th>开&nbsp;&nbsp;&nbsp;本：</th>
 								<td><select name="booksize" class="midselect">
 										<option>不论</option>
 										<option>32</option>
 										<option>16</option>
 										<option>8</option>
-								</select></td>
+								</select>
+								</td>
 							</tr>
 							<tr>
 
@@ -168,7 +177,8 @@
 										<option>30-50元</option>
 										<option>50-100元</option>
 										<option>100元以上</option>
-								</select></td>
+								</select>
+								</td>
 								<th>商品折扣：</th>
 								<td><select name="discount" class="midselect">
 										<option>所有折扣</option>
@@ -176,7 +186,8 @@
 										<option>3-5折</option>
 										<option>5-7折</option>
 										<option>7折及以上</option>
-								</select></td>
+								</select>
+								</td>
 							</tr>
 							<tr>
 								<th></th>
@@ -205,17 +216,16 @@
 							<s:iterator value="items" var="bookItems" status="st">
 								<tr id="<s:property value = '#bookItems.itemID'/>">
 									<td width="7%" rowspan="1" align="center"><span
-										class="red"><s:property value="#st.index" /> </span>
-									</td>
+										class="red"><s:property value="#st.index" /> </span></td>
 									<td class="checkBoxWidth" align="center"><input
 										type="checkbox"
-										value="<s:property value = '#bookItems.itemID'/>" />
-									</td>
+										value="<s:property value = '#bookItems.itemID'/>" /></td>
 									<td width="16%" rowspan="1" align="right" class="inputHeader">
 										<a href="item_info.html"><img
 											src="../<s:property value = '#bookItems.picturePath'/>"
 											alt="<s:property value = '#bookItems.name'/>" id="img_format">
-									</a></td>
+									</a>
+									</td>
 									<td width="77%" align="left" class="inputHeader"><span
 										class="red" id="item_font20"><s:property
 												value="#bookItems.name" /> </span></font><br /> <font id="item_font17">作者：<s:property
@@ -226,13 +236,16 @@
 										id="item_font17"> 市场价:<s:property
 												value="#bookItems.marketPrice" />&nbsp;</font><font
 										id="item_font17" class="font_right">商城价：<s:property
-												value="#bookItems.price" /> </font></td>
+												value="#bookItems.price" /> </font>
+									</td>
 									<td align="left" class="inputHeader"><a
 										href="item_modify?itemID=<s:property value = '#bookItems.itemID'/>"><input
 											type="button" value="修改" /> </a>&nbsp;&nbsp; <a> <input
-											type="button" onclick="ajax_item_off(this,
-											<s:property value = "#bookItems.itemID"/>);" value="下架" />
-									</a>&nbsp;&nbsp; <a onclick="ajax_delete_tag(<s:property value = '#bookItems.itemID'/>);" ><input
+											type="button"
+											onclick="ajax_item_off(this,
+											<s:property value = "#bookItems.itemID"/>);"
+											value="下架" /> </a>&nbsp;&nbsp; <a
+										onclick="ajax_delete_tag(<s:property value = '#bookItems.itemID'/>);"><input
 											type="button" value="删除" /> </a>&nbsp;&nbsp;</td>
 								</tr>
 							</s:iterator>
@@ -297,8 +310,7 @@
 									name="name" onFocus="nextfield='name'" maxlength="25">
 								</td>
 
-								<td width="211"><span class="red">*必填项</span>
-								</td>
+								<td width="211"><span class="red">*必填项</span></td>
 							</tr>
 							<tr>
 								<th>商品描述：</th>
@@ -307,8 +319,7 @@
 								<td></td>
 							</tr>
 							<tr>
-								<th><span class="inputHeader">商品图片：</span>
-								</th>
+								<th><span class="inputHeader">商品图片：</span></th>
 								<td><input type="file" name="picture">
 								</td>
 								<td></td>
@@ -317,16 +328,14 @@
 								<th>作者：</th>
 								<td><input type="text" name="author" value="">
 								</td>
-								<td><span class="red">*必填项</span>
-								</td>
+								<td><span class="red">*必填项</span></td>
 							</tr>
 
 							<tr>
 								<th>出版社：</th>
 								<td><input type="text" name="publisher" value="">
 								</td>
-								<td><span class="red">*必填项</span>
-								</td>
+								<td><span class="red">*必填项</span></td>
 							</tr>
 							<tr>
 
@@ -340,8 +349,7 @@
 									<th>ISBN：</th>
 									<td><input type="text" name="ISBN" value="">
 									</td>
-									<td><span class="red">*必填项</span>
-									</td>
+									<td><span class="red">*必填项</span></td>
 								</tr>
 								<th>版次：</th>
 								<td><input type="text" name="edition" class="smallinputext"
@@ -363,10 +371,8 @@
 								<td><select name="binding">
 										<option>精装</option>
 										<option>平装</option>
-								</select>
-								</td>
-								<td><span class="red">*必填项</span>
-								</td>
+								</select></td>
+								<td><span class="red">*必填项</span></td>
 							</tr>
 							<tr>
 								<th>分类标签：</th>
@@ -379,24 +385,21 @@
 							<td><input type="text" name="price" class="smallinputext"
 								value="">
 							</td>
-							<td><span class="red">*必填项</span>
-							</td>
+							<td><span class="red">*必填项</span></td>
 							</tr>
 							<tr>
 								<th>折扣：</th>
 								<td><input type="text" name="discount"
 									class="smallinputext" value="">
 								</td>
-								<td><span class="red">*必填项</span>
-								</td>
+								<td><span class="red">*必填项</span></td>
 							</tr>
 							<tr>
 								<th>库存量：</th>
 								<td><input type="text" name="inventory"
 									class="smallinputext" value="">
 								</td>
-								<td><span class="red">*必填项</span>
-								</td>
+								<td><span class="red">*必填项</span></td>
 
 								<tr>
 									<th></th>

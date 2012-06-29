@@ -174,7 +174,10 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		book.setDiscount(discount);
 		book.setInventory(inventory);
 		book.setBookDesc(description);
-		book.setCatalogID(bookClassify);
+		if (bookClassify != 0)
+			book.setCatalogID(bookClassify);
+		else
+			book.setCatalogID(null);
 
 		daoBook.modifyBook(book);
 

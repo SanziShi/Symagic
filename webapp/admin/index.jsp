@@ -107,8 +107,8 @@
                 <option value="7">教育</option>
                 <option value="8">其他</option>
               </select>
-			  <input type="text" name="quick_search" id="quick_search" class="gray" value="书名快速搜索...."onFocus="onfocus_check(this,'书名快速搜索....')" onblur="onblur_check(this,'书名快速搜索....')" />
-			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
+			  <input type="text" name="quick_search" id="quick_search" class="gray" value="书名快速搜索...."onfocus="onfocus_check(this,'书名快速搜索....')" onblur="onblur_check(this,'书名快速搜索....')" />
+			  <input type="button" name="Submit" value="搜索" id="searchbutton" onclick="javascript:window.open('item_search_list.html','_parent','')"/>
 				
 			</div>
 		</div>
@@ -234,7 +234,7 @@
 
 					<td class="autoWidth"><s:property value = "#orders.orderStatus"/></td>
  <td><s:if test="#order.orderStatus=='已下单'">
- <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="">审核</a>&nbsp;
+ <a href="#" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>" style="display:none"><img src="../image/xq.gif" alt="详情" class="picture"/></a><a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;</a><a href="">审核</a>&nbsp;
  <a  onclick="delete_tag("<s:property value = "#orders.orderID"/>");"  href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
  </s:if>
  <s:elseif test="#order.orderStatus=='已审核'">
