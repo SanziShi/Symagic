@@ -394,8 +394,7 @@ public class DaoBook {
 				+  " and " + " publisher like " + " '%" + req.getPublisher() + "%' ";
 			
 			
-			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
-				+  " , " + req.getLines();
+			sql += " order by bookid asc  ";
 	
 		}
 		// 高阶查询
@@ -461,8 +460,7 @@ public class DaoBook {
 					+  " and " + " discount < " + up + " ";
 			}
 			
-			sql += " order by bookid asc limit " + (req.getPage() - 1)*req.getLines() 
-			+  " , " + req.getLines();
+			sql += " order by bookid asc";
 			
 		
 		}
