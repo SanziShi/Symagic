@@ -11,7 +11,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.bean.BeanComment;
@@ -31,7 +30,6 @@ public class ItemService {
 	private DaoComment daoComment;// 访问comment
 	private DaoBook daoBook;// 访问数据库中的书籍信息
 	private DaoCatalog daoCatalog;
-
 	/**
 	 * 
 	 * @param sign
@@ -287,4 +285,5 @@ public class ItemService {
 		this.daoCatalog = daoCatalog;
 	}
 
+	
 }
