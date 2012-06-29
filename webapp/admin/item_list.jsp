@@ -54,22 +54,24 @@
 				</div>
 
 				<div id="" style="float:right">
-					<select name="category" id="searchrightcategory">
-						<option value="0">所有类别</option>
-						<s:iterator value="catalog" var='outer'>
-							<option value="<s:property value='#outer.ID'/>">
-								<s:property value='#outer.name' />
-							</option>
-							<s:iterator value="#outer.childCatalog" var="inner">
-								<option value="<s:property value='#inner.ID'/>">
-									&nbsp;&nbsp;&nbsp;
-									<s:property value='#inner.name' />
+					<form action="quick_search">
+						<select name="catalogID">
+							<option value="0">所有类别</option>
+							<s:iterator value="catalog" var='outer'>
+								<option value="<s:property value='#outer.ID'/>">
+									<s:property value='#outer.name' />
 								</option>
+								<s:iterator value="#outer.childCatalog" var="inner">
+									<option value="<s:property value='#inner.ID'/>">
+										&nbsp;&nbsp;&nbsp;
+										<s:property value='#inner.name' />
+									</option>
+								</s:iterator>
 							</s:iterator>
-						</s:iterator>
-					</select> <input type="text" name="product" id="textInput" /> <input
-						type="button" name="Submit" value="搜索" id="searchbutton"
-						onclick="javascript:window.open('item_search_list.html','_parent','')" />
+						</select> <input type="text" name="keyword" id="keyword" class="gray"
+							value="" /> <input type="submit"
+							value="搜索" onclick=""/>
+					</form>
 				</div>
 				<div class="user_note" id="myfont">
 					<a href="#1"><img src="image/add_product.png" /> </a> <a href="#2"><img
@@ -221,7 +223,7 @@
 								</td>
 								<td width="16%" rowspan="1" align="right" class="inputHeader">
 									<a href="item_info.html"><img
-										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="book.picturePath"/>"
+										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="#bookItems.picturePath"/>"
 										alt="<s:property value = '#bookItems.name'/>" id="img_format" />
 								</a></td>
 								<td width="77%" align="left" class="inputHeader"><span

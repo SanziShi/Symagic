@@ -70,17 +70,20 @@ public class ItemManagerEnterAction extends CatalogBase {
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
-		require.setItemName(name);
-		require.setPublisher(publisher);
+		if (name != null)
+			require.setItemName(name);
+		if (publisher != null)
+			require.setPublisher(publisher);
 		require.setCatalogID(catalogID);
 		setYear(require, publishTime);
 		require.setVersion(edition);
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
 		setBookSize(require, booksize);
-		setPrice(require, price);
+		setPrice(require, price); 
 		require.setDiscount(discount);
-		require.setAuthor(author);
+		if (author != null)
+			require.setAuthor(author);
 		require.setLines(lines);
 		require.setPage(page);
 
@@ -300,7 +303,7 @@ public class ItemManagerEnterAction extends CatalogBase {
 	public void setItemService(ItemService itemService) {
 		this.itemService = itemService;
 	}
-	
+
 	public List<ItemBean> getItems() {
 		return items;
 	}
