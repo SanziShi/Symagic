@@ -22,8 +22,6 @@ public class ItemModifyEnterAction extends CatalogBase {
 	private ItemDetailBean book;// 书籍详细信息
 	private ItemService itemService;// 访问服务层
 	
-	private TimeBean parseTime; //用于时间解析
-	
 	private String errorHeader;
 	private String errorSpecification;
 	
@@ -80,16 +78,7 @@ public class ItemModifyEnterAction extends CatalogBase {
 		book = new ItemDetailBean();
 		if( !itemService.fillDetailBean(itemID, book) )
 			return ERROR;
-		
-		//时间解析
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date date = dateFormat.parse(book.getPublishDate());
-		GregorianCalendar calender = new GregorianCalendar();
-		calender.setTime(date);
-		parseTime = new TimeBean();
-		parseTime.setYear(calender.get(Calendar.YEAR));
-		parseTime.setYear(calender.get(Calendar.MONTH));
-		parseTime.setYear(calender.get(Calendar.DAY_OF_MONTH));
+
 		
 		return super.execute();
 		
@@ -111,13 +100,6 @@ public class ItemModifyEnterAction extends CatalogBase {
 		this.errorSpecification = errorSpecification;
 	}
 
-	public TimeBean getParseTime() {
-		return parseTime;
-	}
-
-	public void setParseTime(TimeBean parseTime) {
-		this.parseTime = parseTime;
-	}
 
 	
 }

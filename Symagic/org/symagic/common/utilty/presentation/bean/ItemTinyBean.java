@@ -16,8 +16,14 @@ public class ItemTinyBean {
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private int itemID;
+	private Float marketPrice;
 	
-	
+	public Float getMarketPrice() {
+		return marketPrice;
+	}
+	public void setMarketPrice(Float marketPrice) {
+		this.marketPrice = marketPrice;
+	}
 	public int getItemID() {
 		return itemID;
 	}

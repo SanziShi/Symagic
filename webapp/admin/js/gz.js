@@ -506,7 +506,7 @@ function delete_tag(id){
 	tag.parentNode.removeChild(tag);
 	}
 
-//订单管理中删除一个商品
+//订单管理中删除一个订单
 function ajax_delete_order(id){
 	var result = confirm("该操作将会将订单删除，确定继续吗？");
 	if(result==true){

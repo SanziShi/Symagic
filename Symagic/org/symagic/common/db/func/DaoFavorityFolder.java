@@ -36,21 +36,14 @@ public class DaoFavorityFolder {
 		try {
 			BeanBook book	= new BeanBook();
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select * from book where bookid=?");
-			ps.setInt(1, bookID);
-			rs	= ps.executeQuery();
-			rs.next();
+ 
 			
-			ps	= conn.prepareStatement("insert into favority_folder (username, bookid," +
-					"isbn, publisher, " +
-					"publishdate, marketprice) values (" +
-					"?, ?, ?, ?, ?, ?)");
+			ps	= conn.prepareStatement("insert into favority_folder (username, bookid)" +
+					"values (?, ?)");
+					 
 			ps.setString(1, username);
 			ps.setInt(2, bookID);
-			ps.setString(3, rs.getString("isbn"));
-			ps.setString(4, rs.getString("publisher"));
-			ps.setString(5, rs.getString("publishdate"));
-			ps.setFloat(6, rs.getFloat("marketprice"));
+	 
 			
 			ps.execute();
 			
@@ -132,10 +125,6 @@ public class DaoFavorityFolder {
 				BeanFavorityFolder	favority	= new BeanFavorityFolder();
 				favority.setBookID(rs.getInt("bookid"));
 				favority.setFavorityID(rs.getInt("favorityid"));
-				favority.setIsbn(rs.getString("isbn"));
-				favority.setMarketPrice(rs.getFloat("marketPrice"));
-				favority.setPublisher(rs.getString("publisher"));
-				favority.setPublishDate(rs.getString("publishdate"));
 				favority.setUsername(rs.getString("username"));
 				list.add(favority);
 			}

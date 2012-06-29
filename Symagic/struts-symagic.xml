@@ -19,6 +19,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/login.jsp</result>
+			<result name="error">/error.jsp</result>
 		</global-results>
 
 		<global-exception-mappings>
@@ -47,6 +48,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
+			<result name="error">/admin/admin_error.jsp</result>
+			<result name="input">/admin/admin_error.jsp</result>
 		</global-results>
 
 		<global-exception-mappings>
