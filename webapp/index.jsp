@@ -47,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="globallink">
 		<ul>
 			<li><a href="index">首页</a></li>
-			<li><a href="item_list.html">商品列表</a></li>
+			<li><a href="item_list">商品列表</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
 			<li><a href="address.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
