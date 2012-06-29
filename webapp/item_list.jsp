@@ -228,20 +228,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <s:iterator value="items" var='iter'>
    <div class="item">
    	<div class="p-img">
-   		<div class="i-img"><a  href="item_info?itemID=<s:property value='#iter.itemID'/>"><img src="image/ssbs.jpg"></a>
+   		<div class="i-img"><a  href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='iter.picturePath'/>"></a>
         </div>
      </div>
         <div class="dl">
-        <div class="p-name"><a target="_blank" href="item_info?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a>
+        <div class="p-name"><a target="_blank" href="item_detail?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a>
         </div>
-   		<div class="p-info">作　　者：<a href=""><s:property value='#iter.author'/></a>著&nbsp;&nbsp;&nbsp;&nbsp;
+   		<div class="p-info">作　　者：<a href="quick_search?keyword=<s:property value='#iter.author'/>"><s:property value='#iter.author'/></a>著&nbsp;&nbsp;&nbsp;&nbsp;
     	</div>
-   	<div class="p-info">出&nbsp;版&nbsp;社：<a href=""><s:property value='#iter.publisher'/></a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-   	<div class="p-info"><span class="date-pub">出版时间：<s:property value='#iter.publishTime'/></span><span class="fl">顾客评价：</span>(已有4人评价)</div>
+   	<div class="p-info">出&nbsp;版&nbsp;社：<a href="quick_search?keyword=<s:property value='#iter.publisher'/>"><s:property value='#iter.publisher'/></a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+   	<div class="p-info"><span class="date-pub">出版时间：<s:property value='#iter.publishTime'/></span>&nbsp;&nbsp;<span class="fl">评&nbsp;&nbsp;分：</span><s:property value='#iter.rating'/></div>
    	<div class="p-info"><div class="mark-price">定　　价：<del>￥<s:property value='#iter.marketPrice'/></del>
     </div>商城价：<strong>￥<s:property value='#iter.price'/></strong><span>（<s:property value='#iter.discount'/>折）</span>
     </div>
-   <div class="btns"><div class="add_to_cart1"></div>
+   <div class="btns"><div class="add_to_cart1" onclick="add_to_cart(<s:property value='#iter.itemID'/>)"></div>
    </div>
    </div>
    </div>

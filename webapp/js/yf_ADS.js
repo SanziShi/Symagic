@@ -11,6 +11,10 @@ function test(e)
 	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 	
 }
+function add_to_cart(id)
+{
+	alert(id);
+}
 function change_captcha(e)
 {
 	e.src='captcha_get_captcha';

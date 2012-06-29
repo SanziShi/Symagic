@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="spec-n1"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='book.picturePath'/>"/></div>
         <ul>
         <li><span>总评分：</span><span class="star"><span class="sa45"></span></span></li>
-        <li><span>书籍分类：</span><s:property value='book.catalogClassify'/></li>
+        <li><span>书籍分类：</span><s:property value='book.offline'/><s:property value='book.catalogClassify'/></li>
         </ul>
         </div>
         <ul id="summary">
@@ -147,8 +147,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <a class="reduce" onclick="add();" href="javascript:void(0)">+</a>
         </span></div>
         <div class="btns">
-        			<s:if test="book.offline=='false'">
-					<a onclick="add_to_cart()" href="javascript:void(0)" class="append" ></a>
+        			<s:if test='!book.offline'>
+					<a onclick="add_to_cart(<s:property value='itemID'/>)" href="javascript:void(0)" class="append" ></a>
                     </s:if>
                     <s:else>
                     <a  href="javascript:void(0)" class="disable" ></a>
