@@ -108,7 +108,7 @@ public class ItemService {
 		detail.setBookName(book.getBookName());
 		detail.setCatalogClassify(getCatalogName(currentCatalog));
 		detail.setDiscout(book.getDiscount());
-		detail.setSize(book.getFolio());
+		detail.setSize(book.getFolio()+"开");
 		detail.setInventory(book.getInventory());
 		detail.setIsbn(book.getIsbn());
 		float marketPrice = MathUtilty.roundWithdigits(book.getMarketPrice());
@@ -223,9 +223,6 @@ public class ItemService {
 	public float fillItemWithNumber(ArrayList<ItemTinyBean>items){
 		if(items==null)return -1;
 		//获得购物车
-		//test
-		 UserSessionUtilty.addToCart(1, 3);
-		 UserSessionUtilty.addToCart(4, 4);
 		HashMap<Integer,Integer> cart=UserSessionUtilty.getCart();
 		
 		 if(cart==null){return 0;}
