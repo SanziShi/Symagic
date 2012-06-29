@@ -167,5 +167,8 @@ public class UserSessionUtilty extends SessionUtilty {
 	public static String getUsername(){
 		return (String)ActionContext.getContext().getSession().get("username");
 	}
+	public static void cleanSession(){
+		ActionContext.getContext().getSession().clear();
+	}
 
 }
