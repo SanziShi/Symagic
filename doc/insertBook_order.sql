@@ -30,17 +30,17 @@ values ("2012-01-07","0","0","0","236497339@qq.com","缪云彬","广东省广州
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-02-15","4","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
+values ("2012-02-15","3","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
         "510000",null,"15920551434",76.3, 100);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-03-15","4","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
+values ("2012-03-15","3","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
         "510000",null,"15920551404",176.3, 200);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-06-15","4","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
+values ("2012-06-15","3","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
         "510000",null,"15920551434",55.3, 60);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
