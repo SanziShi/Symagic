@@ -141,14 +141,18 @@ public class DaoBookTest extends TestCase{
 		DaoBook	db	= new DaoBook();
 		assertEquals("计算机组成", db.getLatestBook().get(0).getBookName());
 	}
+	*/
 	
 	public void testSearch()
 	{
 		DaoBook	db	= new DaoBook();
 		BookRequire req	= new BookRequire();
-		req.setYear("2012");
-		assertEquals(4, db.search(0, req).get(0).getBookId());
-	}*/
+		req.setPage(1);
+		req.setLines(10);
+//		req.setYear("2012");
+		req.setItemName("");
+		assertEquals(1, db.search(1, req).get(0).getBookId());
+	}
 	
 /*	@Test
 	public void testGetProductNum1(){
@@ -165,52 +169,52 @@ public class DaoBookTest extends TestCase{
 		assertEquals(1,db.getLatestBook().size());
 	}*/
 	
-	@Test
-	public void testModifyBook1(){
-		BeanBook book = new BeanBook();
-		book.setBookId(29);
-		book.setAuthor("单小熙1");
-		book.setBinding("精装");
-		book.setBookDesc("第三本好书");
-		book.setBookName("计算机导论");
-		book.setDiscount(0.5f);
-		book.setFolio("16");
-		book.setInventory(30);
-		book.setIsbn("12kjkjdf23");
-		book.setMarketPrice(49.21f);
-		book.setOffline("在架");
-		book.setPage(400);
-		book.setPicture("picture3.jpg");
-		book.setPublisher("电子工业出版社");
-		book.setPublishDate("2009-03-27");
-		book.setVersion(5);
-		
-		assertEquals(true,db.modifyBook(book));
-	}
-	@Test
-	public void testModifyBook2(){
-		BeanBook book = new BeanBook();
-		book.setBookId(29);
-	
-		assertEquals(false,db.modifyBook(book));
-	}
-	
-	@Test
-	public void testGetProductNum2(){
-		assertEquals(30,db.getProductNum());
-	}
-	
-	@Test
-	public void testGetLatestBook3(){
-		assertEquals(10,db.getLatestBook().size());
-	}
-	
-	@Test
-	public void testDeleteBook1(){
-		assertEquals(true,db.deleteBook(29));
-	}
-	@Test
-	public void testDeleteBook2(){
-		assertEquals(false,db.deleteBook(50));
-	}
+//	@Test
+//	public void testModifyBook1(){
+//		BeanBook book = new BeanBook();
+//		book.setBookId(29);
+//		book.setAuthor("单小熙1");
+//		book.setBinding("精装");
+//		book.setBookDesc("第三本好书");
+//		book.setBookName("计算机导论");
+//		book.setDiscount(0.5f);
+//		book.setFolio("16");
+//		book.setInventory(30);
+//		book.setIsbn("12kjkjdf23");
+//		book.setMarketPrice(49.21f);
+//		book.setOffline("在架");
+//		book.setPage(400);
+//		book.setPicture("picture3.jpg");
+//		book.setPublisher("电子工业出版社");
+//		book.setPublishDate("2009-03-27");
+//		book.setVersion(5);
+//		
+//		assertEquals(true,db.modifyBook(book));
+//	}
+//	@Test
+//	public void testModifyBook2(){
+//		BeanBook book = new BeanBook();
+//		book.setBookId(29);
+//	
+//		assertEquals(false,db.modifyBook(book));
+//	}
+//	
+//	@Test
+//	public void testGetProductNum2(){
+//		assertEquals(30,db.getProductNum());
+//	}
+//	
+//	@Test
+//	public void testGetLatestBook3(){
+//		assertEquals(10,db.getLatestBook().size());
+//	}
+//	
+//	@Test
+//	public void testDeleteBook1(){
+//		assertEquals(true,db.deleteBook(29));
+//	}
+//	@Test
+//	public void testDeleteBook2(){
+//		assertEquals(false,db.deleteBook(50));
+//	}
 }
