@@ -40,7 +40,7 @@ public class DaoOrder {
 			conn	= ConnectionPool.getInstance().getConnection();
 			sql += "orderdate > " + " '" + req.getStartTime() + "' ";
 			if (username != null)
-				sql += " and username like " + " '" + username + "' ";
+				sql += " and username like " + " '%" + username + "%' ";
 			if (req.getEndTime() != null)
 				sql += " and orderdate < " + " '" + req.getEndTime() + "' ";
 			if (req.getOrderState() != null)
