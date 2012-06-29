@@ -54,6 +54,11 @@
 		<property name="errorSpecification" value="反正是错了"></property>
 	</bean>
 
+	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="lines" value="15"></property>
+	</bean>
+
 	<bean id="AdminEnterCatalogManager"
 		class="org.symagic.admin.action.catalog.CatalogManagerEnterAction">
 		<property name="catalogService" ref="CatalogService"></property>
@@ -112,4 +117,11 @@
 		class="org.symagic.admin.action.comment.AdminEnterCommentManagerAction">
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
+
+	<bean id="AdminEnterUserManager" class="org.symagic.admin.action.user.UserManagerAction">
+		<property name="daoLevel" ref="DaoLevel"></property>
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="lines" value="15"></property>
+	</bean>
+
 </beans>

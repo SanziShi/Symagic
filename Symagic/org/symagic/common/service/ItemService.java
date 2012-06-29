@@ -96,7 +96,7 @@ public class ItemService {
 		detail.setAuthor(book.getAuthor());
 		detail.setAverageRating(daoComment.getAverageRating(itemId));
 		detail.setBinding(book.getBinding());
-		detail.setBookDesc(book.getBookDesc().replaceAll("\n", "<br>"));
+		detail.setBookDesc(book.getBookDesc());
 		detail.setBookName(book.getBookName());
 		detail.setCatalogClassify(getCatalogName(book.getCatalogID()));
 		float discount = MathUtilty.roundWithdigits(book.getDiscount());

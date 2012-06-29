@@ -49,6 +49,7 @@ public class AdminItemDetailAction extends CatalogBase {
 		if( !itemService.fillDetailBean(itemID, book) ){
 			return ERROR;
 		}
+		book.setBookDesc(book.getBookDesc().replaceAll("\n", "<br>"));
 		int commentNumber = itemService.getCommentNumber(itemID);
 		totalPage = (commentNumber + lines - 1) / lines;
 		commentList = itemService.getCommentWithPage(itemID, 1, lines);
