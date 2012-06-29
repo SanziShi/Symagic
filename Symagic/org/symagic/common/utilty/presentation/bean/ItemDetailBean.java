@@ -177,4 +177,20 @@ public class ItemDetailBean {
 		this.picturePath = picturePath;
 	}
 
+	public TimeBean getParseTime() {
+		return parseTime;
+	}
+
+	public void setParseTime(TimeBean parseTime) {
+		this.parseTime = parseTime;
+	}
+
+	public CatalogBean getParseCatalog() {
+		return parseCatalog;
+	}
+
+	public void setParseCatalog(CatalogBean parseCatalog) {
+		this.parseCatalog = parseCatalog;
+	}
+
 }
