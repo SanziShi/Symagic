@@ -50,10 +50,7 @@ public class CartAddItemAction extends ActionSupport {
 	    	else
 	    		addResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber+number);
 	    	}
-	   
-	    
-	  
-		return SUCCESS;
+	   return SUCCESS;
 		
 	}
 	@Override
