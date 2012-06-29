@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  <s:iterator value="catalog" var='outer'>
 				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
 				<s:iterator value="#outer.childCatalog" var="inner">
-				<option value="<s:property value='#inner.ID'/>"><s:property value='#inner.name'/></option>
+				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
 				</s:iterator>
 				</s:iterator>
               </select> 
@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!--购买推荐左边栏结束-->
         <!--购买推荐左边栏-->
       <div class="recommend">
-        <div class="head"><h3>购买本书的顾客还购买了</h3></div>
+        <div class="head"><h3>浏览本书的顾客还浏览了</h3></div>
         <!----推荐迭代li---->
         <s:iterator value="recommendView" var='iter'>
        <li><div class="p-img"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>" title="数学之美" target="_blank"><img width="50" height="50" src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"></a></div><div class="p-name"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>" ><s:property value='#iter.name'/></a></div>
@@ -130,13 +130,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>&nbsp;<s:property value='book.isbn'/></li>
         <li><span>出版日期：</span>&nbsp;<s:property value='#book.publishDate'/></li>
         <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>&nbsp;<s:property value='book.version'/></li>
-        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>&nbsp;<s:property value='book.folio'/></li>
+        <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>&nbsp;<s:property value='book.size'/></li>
         <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>&nbsp;<s:property value='book.binding'/></li>
         <li><span>页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数：</span>&nbsp;<s:property value='book.page'/></li>
         </ul>
         <ul id="book_price">
-        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>&nbsp;<s:property value='book.marketPrice'/></del></li>
-        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>&nbsp;<s:property value='book.price'/></strong></li>
+        <li><span>定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</span><del>￥<s:property value='book.marketPrice'/></del></li>
+        <li><span>商&nbsp;&nbsp;城&nbsp;&nbsp;价：</span><strong>￥<s:property value='book.price'/></strong></li>
         <li><span>为您节省：</span><strong>&nbsp;</strong></li>
         <li><span>库&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存：</span>&nbsp;<s:property value='book.inventory'/></li>
         </ul>

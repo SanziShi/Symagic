@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  <s:iterator value="catalog" var='outer'>
 				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
 				<s:iterator value="#outer.childCatalog" var="inner">
-				<option value="<s:property value='#inner.ID'/>"><s:property value='#inner.name'/></option>
+				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
 				</s:iterator>
 				</s:iterator>
               </select>

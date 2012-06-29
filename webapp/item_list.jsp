@@ -59,36 +59,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="">商品搜索</a>
+				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">商品详细信息</a>
 			</div>
+            <form action="quick_search" >
 			<div id="searchright2">
 			  <input type="text" name="product" id="textInput"/>
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
 			</div>
 			<div id="searchright1">
-			  <select name="category" id="searchrightcategory">
-				<option value="5">所有类别</option>
-                <option value="1">图书音像</option>
-                <option value="2">时尚生活</option>
-                <option value="3">饰品配件</option>
-                <option value="4">数码产品</option>
-              </select>
-		  </div>
+			 <select name="catalogID" >
+			  <option value="0">所有类别</option>
+			  <s:iterator value="catalog" var='outer'>
+				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
+				<s:iterator value="#outer.childCatalog" var="inner">
+				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
+				</s:iterator>
+				</s:iterator>
+              </select> 
+              </div>
+		  </form>
+         
 		</div>
-		
         <div class="clear"></div>
         <div id="item_left">
         <dl>
-        <dt>文学作品</dt>
-        <div ><dd>诗词歌曲</dd></div>
-        <div ><dd>中国文学</dd></div>
-        <div ><dd>儿童文学</dd></div>
-        <div ><dd>民间文学</dd></div>
-        <dt>金融与投资</dt>
-        <div ><dd>诗词歌曲</dd></div>
-        <div ><dd>中国文学</dd></div>
-        <div ><dd>儿童文学</dd></div>
-        <div ><dd>民间文学</dd></div>
+        <s:iterator value="catalog" var='outer'>
+        <dt id="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></dt>
+        <s:iterator value="#outer.childCatalog" var="inner">
+        <div ><dd id="<s:property value='#inner.ID'/>"><s:property value='#outer.name'/></dd></div>
+        </s:iterator>
+		</s:iterator>
         <br/>
         <dt></dt>
         </dl>
@@ -218,26 +218,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <div id="item_container">
    <div class="fliter"></div>
    <!--商品迭代div-->
-   <div class="item"><div class="p-img"><div class="i-img"><a  href="item_info.html"><img src="image/ssbs.jpg"></a></div></div><div class="dl"><div class="p-name"><a target="_blank" href="">BVLGARI Chinese-English Edn (PB)(宝格丽)</a></div>
-
-   <div class="p-info">作　　者：<a href="">Amanda Triossi（阿曼达·特廖西）</a> 著&nbsp;&nbsp;&nbsp;&nbsp;</div>
-   <div class="p-info">出&nbsp;版&nbsp;社：<a href="">SKIRA EDITORE</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-   <div class="p-info"><span class="date-pub">出版时间：2011年09月</span><span class="fl">顾客评价：</span>(已有4人评价)</div>
-   <div class="p-info"><div class="mark-price">定　　价：<del>￥533.90</del></div>商城价：<strong>￥220.00</strong><span>（7.8折）</span></div>
-   <div class="btns"><div class="add_to_cart1"></div></div>
-   </div>
-   </div>
-   <!--商品迭代div---end-->
-   <!--商品迭代div-->
-   <div class="item"><div class="p-img"><div class="i-img"><a target="_blank" href=""><img src="image/ssbs.jpg"></a></div></div><div class="dl"><div class="p-name"><a target="_blank" href="">BVLGARI Chinese-English Edn (PB)(宝格丽)</a></div>
-
-   <div class="p-info">作　　者：<a href="">Amanda Triossi（阿曼达·特廖西）</a> 著&nbsp;&nbsp;&nbsp;&nbsp;</div>
-   <div class="p-info">出&nbsp;版&nbsp;社：<a href="">SKIRA EDITORE</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
-   <div class="p-info"><span class="date-pub">出版时间：2011年09月</span><span class="fl">顾客评价：</span>(已有4人评价)</div>
-   <div class="p-info"><div class="mark-price">定　　价：<del>￥533.90</del></div>商城价：<strong>￥220.00</strong><span>（7.8折）</span></div>
-   <div class="btns"><div class="add_to_cart1"></div></div>
-   </div>
-   </div>
+   <s:iterator value="items" var='iter'>
+   		<div class="item"><div class="p-img"><div class="i-img"><a  href="item_info?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"></a></div></div><div class="dl"><div class="p-name"><a target="_blank" href="item_info?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a></div>
+  			 <div class="p-info">作　　者：<a href=""><s:property value='#iter.author'/></a> 著&nbsp;&nbsp;&nbsp;&nbsp;</div>
+   			<div class="p-info">出&nbsp;版&nbsp;社：<s:property value='#iter.publisher'/>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+   			<div class="p-info"><span class="date-pub">出版时间：<s:property value='#iter.publishTime'/></span><span class="fl">顾客评价：</span>(已有4人评价)</div>
+   				<div class="p-info"><div class="mark-price">定　　价：<del>￥<s:property value='#iter.marketPrice'/></del></div>商城价：<strong>￥<s:property value='#iter.price'/></strong><span>（<s:property value='#iter.discount'/>折）</span></div>
+   			<div class="btns"><div class="add_to_cart1"></div></div>
+   			</div>
+   		</div>
+   </s:iterator>
    <!--商品迭代div---end-->
    </div>
  </div>
