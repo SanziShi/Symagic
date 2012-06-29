@@ -150,7 +150,7 @@
                 </tr> 
                 <tr> 
                    <td id="myfont" width = "60%">今日订单:&nbsp;&nbsp;</td> 
-                    <td id="myfont" ><span class="redStrong"><s:property value = ""/></span>个</td>
+                    <td id="myfont" ><span class="redStrong"><s:property value = "todayOrderAmount"/></span>个</td>
                 </tr> 
                  <tr> 
                    <td id="myfont" width = "60%">待审核订单:&nbsp;&nbsp;</td> 
