@@ -23,6 +23,12 @@ public class CartAddItemAction extends ActionSupport {
     private DaoBook daoBook;
 	//传出	
 	private Boolean addResult=false;//添加结果
+	public DaoBook getDaoBook() {
+		return daoBook;
+	}
+	public void setDaoBook(DaoBook daoBook) {
+		this.daoBook = daoBook;
+	}
 	private Boolean validateResult=true;//对参数有效性的验证结果
 	
 	@Override
