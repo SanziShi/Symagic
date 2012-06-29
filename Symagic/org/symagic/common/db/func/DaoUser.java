@@ -386,9 +386,12 @@ public class DaoUser {
 		String sql	= "select count(*) from user where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select lowlimit from score_level where id=?");
-			ps.setInt(1, req.getUserLevel());
-			rs	= ps.executeQuery();
+			if (req.getUserLevel() != null) {
+				ps	= conn.prepareStatement("select lowlimit from score_level where id=?");
+				ps.setInt(1, req.getUserLevel());
+				rs	= ps.executeQuery();
+			}
+
 			sql += " username like " + "'%" + req.getUsername() + "%'";
 			if (req.getStartTime() != null)
 				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
