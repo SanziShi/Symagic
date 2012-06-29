@@ -132,10 +132,14 @@
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
 
-	<bean id="AdminEnterUserManager" class="org.symagic.admin.action.user.UserManagerAction">
+	<bean id="AdminListUser" class="org.symagic.admin.action.user.UserListAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="lines" value="15"></property>
+	</bean>
+
+	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
+		<property name="daoLevel" ref="DaoLevel"></property>
 	</bean>
 
 </beans>
