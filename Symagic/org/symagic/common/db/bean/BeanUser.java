@@ -31,6 +31,8 @@ public class BeanUser {
 	 * 密码，未加密状态
 	 */
 	private String password	= "";	
+	
+	private String registedate	= "";
 
 	/**
 	 * 默认无参构造方法
@@ -96,6 +98,14 @@ public class BeanUser {
 
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	public String getRegistedate() {
+		return registedate;
+	}
+
+	public void setRegistedate(String registedate) {
+		this.registedate = registedate;
 	}
 	
 	
