@@ -144,6 +144,15 @@ public class DaoUserTest extends TestCase{
 //		assertEquals(true,du.updatePassword("641567179@qq.com", "1234567", "123456"));
 //	}
 	
+/*	@Test
+	public void testGetUser1(){
+		assertEquals("sanzi",du.getUser("641567179@qq.com").getNickname());
+	}
+	@Test
+	public void testGetUser2(){
+		assertEquals(null,du.getUser("12345@qq.com"));
+	}*/
+	
 	@Test
 	public void testSearch()
 	{
