@@ -44,6 +44,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="item_list" class="advanceSearch">
 			<result>/item_list.jsp</result>
 			<result name="input">/error.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
 
 		<action name="quick_search" class="quickSearch">
@@ -52,9 +53,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="error">/error.jsp</result>
 		</action>
 		<action name="item_detail" class="itemDetail">
-			<result>/item_info.jsp</result>
-			<result name="error">/error.jsp</result>
-			<result name="input">/error.jsp</result>
+			 <result type="json">
+			  <param name="includePropertiest">book</param>
+			 </result>
 		</action>
 		<action name="comment" class="browseComment">
 			<result>/lib/comment_inner.jsp</result>
