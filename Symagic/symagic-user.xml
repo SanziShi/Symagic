@@ -48,6 +48,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="quick_search" class="quickSearch">
 			<result>/item_list.jsp</result>
+			<result name="input">/error.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
 		<action name="item_detail" class="itemDetail">
 			<result>/item_info.jsp</result>
@@ -112,7 +114,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 	</package>
 
-	<!-- 用户中与商品项有关的action -->
+	<!-- 用户中与商品项有关的小接口 -->
 
 	<package name="item-user-default" extends="symagic-user-default"
 		namespace="/item">

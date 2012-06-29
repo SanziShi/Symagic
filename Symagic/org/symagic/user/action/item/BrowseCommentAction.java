@@ -18,7 +18,8 @@ public class BrowseCommentAction extends ActionSupport {
     //配置项
     private int lines ;
 	private ItemService itemService;
-	
+	private String errorHeader;
+	private String errorSpecification;
 	
 	private List<BeanComment> commentList;
 
@@ -57,6 +58,22 @@ public class BrowseCommentAction extends ActionSupport {
 
 	public void setCommentList(List<BeanComment> commentList) {
 		this.commentList = commentList;
+	}
+
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
 	}
 
 	public ItemService getItemService() {
