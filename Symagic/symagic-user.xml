@@ -118,11 +118,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<!-- 用户中与商品项有关的小接口 -->
 
-	<package name="item-user-default" extends="symagic-user-default"
-		namespace="/item">
+	<package name="item-user-default" extends="symagic-user-default" namespace="/item">
 		<action name="comment" class="submitComment">
 			<result type="json">
 				<param name="includeProperties">submitResult</param>
+			</result>
+			<result name="input" type="json">
+			  <param name="includeProperties">submitResult</param>
 			</result>
 		</action>
 

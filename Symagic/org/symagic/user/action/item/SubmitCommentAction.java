@@ -22,7 +22,7 @@ public class SubmitCommentAction extends ActionSupport {
 	 private Integer rating;//评分
 	 //配置项
 	 private ItemService itemService;//访问商品项
-	 private Boolean submitResult;//评论是否成功
+	 private Boolean submitResult=false;//评论是否成功
 	
 @Override
 	public String execute() throws Exception {
@@ -33,10 +33,50 @@ public class SubmitCommentAction extends ActionSupport {
 		comment.setRating(rating+"");//?string
 		comment.setUsername(UserSessionUtilty.getUsername());
 		submitResult=itemService.addItemComment(comment);
-return super.execute();
+       return super.execute();
 	}
+
+public Integer getItemID() {
+	return itemID;
+}
+
+public void setItemID(Integer itemID) {
+	this.itemID = itemID;
+}
+
+public String getContent() {
+	return content;
+}
+
+public void setContent(String content) {
+	this.content = content;
+}
+
+public Integer getRating() {
+	return rating;
+}
+
+public void setRating(Integer rating) {
+	this.rating = rating;
+}
+
+public ItemService getItemService() {
+	return itemService;
+}
+
+public void setItemService(ItemService itemService) {
+	this.itemService = itemService;
+}
+
+public Boolean getSubmitResult() {
+	return submitResult;
+}
+
+public void setSubmitResult(Boolean submitResult) {
+	this.submitResult = submitResult;
+}
  
 
-
+ 
  
 }

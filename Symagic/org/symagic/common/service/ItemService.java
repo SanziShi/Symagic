@@ -115,7 +115,7 @@ public class ItemService {
 		detail.setPage(book.getPage());
 		float price=MathUtilty.roundWithdigits(discount * marketPrice);
 		detail.setPrice(price);
-	    detail.setSavePrice(marketPrice-price);
+	    detail.setSavePrice(MathUtilty.roundWithdigits(marketPrice-price));
 		detail.setPublishDate(book.getPublishDate());
 		detail.setPublisher(book.getPublisher());
 		detail.setVersion(book.getVersion());
