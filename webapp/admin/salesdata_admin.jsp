@@ -39,8 +39,11 @@
 				网站路径：<a href="">销售量统计</a>
 			</div>
 		</div>
+          <div  class="user_note">
 			<div id="sendnotehead"><strong>销售量查询</strong></div>
-<div id="sendnotecontent">
+             <div class="fliter"><span id="search_banner" class="collapse" onclick="show_item_search(this);"></span></div>
+            <div id="item_search1" class="user_note_content hide">
+            <div id="sendnotecontent">
 			<form action="order_list" method="post" enctype="multipart/form-data" name="form1">
 				<table id="tradequery">
 					
@@ -127,7 +130,42 @@ new DateSelector(eYear, eMonth ,eDay, dt);
                     </td>
 				 </tr>
         </table>
-		</form>  		
+		</form> 
+        	</div>
+		</div> 
+        		<div id="sendnote">
+			<div id="sendnotehead"><strong>查询结果</strong></div>
+			<div id="sendnotecontent">
+            <table>
+              <tr>
+            		<td></td>
+					<td></td>
+					<td></td>
+					<td>该类别总销售额：</td>
+					<td><span class="red">￥<s:property value = "totalSalesRevenue"/></span></td>
+          		  </tr>	
+            </table>
+				<table id="favorite">
+				<thead>
+					<tr>
+						<th>商品代码</th>
+						<th>商品名称</th>
+						<th>销售数量</th>
+						<th>销售单价</th>
+						<th>销售总价</th>
+					</tr>
+				</thead>
+				<tbody>
+				  <tr>
+            		<td><s:property value = "itemID"/></td>
+					<td><a href="item_detail?itemID = <s:property value = 'itemID'/>"><s:property value = "itemName"/></a></td>
+					<td><s:property value = "sales"/></td>
+					<td>￥<s:property value = "price"/></td>
+					<td>￥<s:property value = "totalPrice"/></td>
+          		  </tr>
+				 </tbody>
+            </table>
+				
 			</div>
         </div>
 		
