@@ -11,9 +11,15 @@ function test(e)
 	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 	
 }
+/****添加商品至购物车***/
 function add_to_cart(id)
 {
-	alert(id);
+	var amount=document.getElementById('amount').value;
+	Ajax({
+		url:'cart/add_to_cart',
+		data:'itemID='+id+'itemNumber='+amount,
+		onSuccess:function(e){alert(e)}
+		})
 }
 function change_captcha(e)
 {
