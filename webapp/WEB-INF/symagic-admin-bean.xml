@@ -57,11 +57,15 @@
 	<bean id="AdminEnterItemManager" class="org.symagic.admin.action.item.ItemManagerEnterAction">
 		<property name="sign" value="1"></property>
 		<property name="itemService" ref="ItemService"></property>
+		<property name="lines" value="15"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.ItemManagerEnterAction">
 		<property name="sign" value="0"></property>
 		<property name="itemService" ref="ItemService"></property>
+		<property name="lines" value="15"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction">

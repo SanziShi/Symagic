@@ -221,7 +221,7 @@
 								</td>
 								<td width="16%" rowspan="1" align="right" class="inputHeader">
 									<a href="item_info.html"><img
-										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="book.picturePath"/>"
+										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="#bookItems.picturePath"/>"
 										alt="<s:property value = '#bookItems.name'/>" id="img_format" />
 								</a></td>
 								<td width="77%" align="left" class="inputHeader"><span
