@@ -23,6 +23,7 @@
 	<bean id="ItemService" class="org.symagic.common.service.ItemService">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="daoComment" ref="DaoComment"></property>
+	    <property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
 	<bean id="RecommendService" class="org.symagic.common.service.RecommandService">

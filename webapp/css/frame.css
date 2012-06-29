@@ -135,7 +135,8 @@ span.red
 }
 .top #cart_top
 {
-	width:85px;
+	min-width:85px;
+	
 }
 .top #cart_top.hover
 {

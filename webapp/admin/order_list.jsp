@@ -78,39 +78,15 @@
 					<th>起始时间：&nbsp;</th>
             		<td>
 						<select name="startTime.year" id="sYear">
-              				<!--<option>2012</option>
-              				<option>2011</option>
-                            <option>2010</option>
-                            <option>2009</option>
-                            <option>2008</option>-->
+              			
               			</select>
 						&nbsp;年&nbsp;
 						<select name="startTime.month" id="sMonth">
-              				<!--<option>01</option>
-              				<option>02</option>
-              				<option>03</option>
-              				<option>04</option>
-			  				<option>05</option>
-              				<option>06</option>
-                            <option>07</option>
-              				<option>09</option>
-              				<option>10</option>
-              				<option>11</option>
-			  				<option>12</option>  -->
+              			
             			</select>
 						&nbsp;月&nbsp;
 						<select name="startTime.day" id="sDay">
-              				<!--<option>01</option>
-              				<option>02</option>
-              				<option>03</option>
-              				<option>04</option>
-			  				<option>05</option>
-              				<option>06</option>
-                            <option>07</option>
-              				<option>09</option>
-              				<option>10</option>
-              				<option>11</option>
-			  				<option>12</option> -->              
+              			           
             			</select>
 						&nbsp;日
 					</td>

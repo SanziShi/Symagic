@@ -1,6 +1,11 @@
 package org.symagic.common.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -13,16 +18,18 @@ import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.db.func.DaoComment;
+import org.symagic.common.utilty.presentation.bean.CatalogBean;
+import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
-import org.symagic.common.utilty.presentation.bean.ItemBean;
+import org.symagic.common.utilty.presentation.bean.TimeBean;
 import org.symagic.user.utilty.MathUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 public class ItemService {
 	private DaoComment daoComment;// 访问comment
 	private DaoBook daoBook;// 访问数据库中的书籍信息
-
+	private DaoCatalog daoCatalog;
 	/**
 	 * 
 	 * @param sign
@@ -77,9 +84,9 @@ public class ItemService {
 			bean.setMarketPrice(book.getMarketPrice());
 			String status = book.getOffline();
 			if (status.trim().equals("下架")) {
-				bean.setOffline(0);
+				bean.setOffline(true);
 			} else {
-				bean.setOffline(1);
+				bean.setOffline(false);
 			}
 			bean.setRating(getAverage(book.getBookId()));
 			bean.setInventory(book.getInventory());
@@ -93,14 +100,15 @@ public class ItemService {
 		BeanBook book = daoBook.getDetail(itemId);
 		if (book == null)
 			return false;
+		BeanCatalog currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
 		detail.setAuthor(book.getAuthor());
 		detail.setAverageRating(daoComment.getAverageRating(itemId));
 		detail.setBinding(book.getBinding());
 		detail.setBookDesc(book.getBookDesc());
 		detail.setBookName(book.getBookName());
-		detail.setCatalogClassify(getCatalogName(book.getCatalogID()));
+		detail.setCatalogClassify(getCatalogName(currentCatalog));
 		detail.setDiscout(book.getDiscount());
-		detail.setSize(book.getFolio());
+		detail.setSize(book.getFolio()+"开");
 		detail.setInventory(book.getInventory());
 		detail.setIsbn(book.getIsbn());
 		float marketPrice = MathUtilty.roundWithdigits(book.getMarketPrice());
@@ -120,17 +128,43 @@ public class ItemService {
 		detail.setPublisher(book.getPublisher());
 		detail.setVersion(book.getVersion());
 		detail.setPicturePath(book.getPicture());
+		
+		//时间解析
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
+		try {
+			date = dateFormat.parse(book.getPublishDate());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		GregorianCalendar calender = new GregorianCalendar();
+		calender.setTime(date);
+		TimeBean parseTime = new TimeBean();
+		parseTime.setYear(calender.get(Calendar.YEAR));
+		parseTime.setYear(calender.get(Calendar.MONTH));
+		parseTime.setYear(calender.get(Calendar.DAY_OF_MONTH));
+		detail.setParseTime(parseTime);
+		
+		//设置当前选中的ID
+		CatalogBean catalog = new CatalogBean();
+		
+		catalog.setID(currentCatalog.getCatalogID());
+		catalog.setDescription(currentCatalog.getCatalogDesc());
+		catalog.setName(currentCatalog.getCatalogName());
+		catalog.setChildCatalog(null);
+		detail.setParseCatalog(catalog);
+		
 		return true;
 }
 
 	// 得到目录的描述
-	private String getCatalogName(Integer catalogid) {
-		if (catalogid == null)
+	private String getCatalogName(BeanCatalog catalog) {
+		if (catalog == null)
 			return "";
 		StringBuilder content = new StringBuilder();
-		DaoCatalog daocatalog = new DaoCatalog();
-		BeanCatalog catalog = daocatalog.getCatalogByID(catalogid);
-		BeanCatalog upLevel = daocatalog.getCatalogByID(catalog.getUpID());
+		BeanCatalog upLevel = daoCatalog.getCatalogByID(catalog.getUpID());
 		content.append(upLevel.getCatalogName());
 		content.append("->");
 		content.append(catalog.getCatalogName());
@@ -189,9 +223,6 @@ public class ItemService {
 	public float fillItemWithNumber(ArrayList<ItemTinyBean>items){
 		if(items==null)return -1;
 		//获得购物车
-		//test
-		 UserSessionUtilty.addToCart(1, 3);
-		 UserSessionUtilty.addToCart(4, 4);
 		HashMap<Integer,Integer> cart=UserSessionUtilty.getCart();
 		
 		 if(cart==null){return 0;}
@@ -243,4 +274,13 @@ public class ItemService {
 		this.daoComment = daoComment;
 	}
 
+	public DaoCatalog getDaoCatalog() {
+		return daoCatalog;
+	}
+
+	public void setDaoCatalog(DaoCatalog daoCatalog) {
+		this.daoCatalog = daoCatalog;
+	}
+
+	
 }

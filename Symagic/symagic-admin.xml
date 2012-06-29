@@ -17,12 +17,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="success" type="redirect">
 				/admin/${toURL}
 			</result>
-			<result name="error">
-				/admin/admin_error.jsp
-			</result>
-			<result name="input">
-				/admin/admin_error.jsp
-			</result>
 		</action>
 
 		<!-- 管理员商品Detail -->
@@ -30,24 +24,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>
 				/admin/item_info.jsp
 			</result>
-			<result name="error">
-				/admin/admin_error.jsp
-			</result>
-			<result name="input">
-				/admin/admin_error.jsp
-			</result>
 		</action>
 
 		<!-- 管理员编辑商品 -->
 		<action name="item_modify" class="AdminEnterModifyItem">
 			<result>
 				/admin/item_edit.jsp
-			</result>
-			<result name="error">
-				/admin/admin_error.jsp
-			</result>
-			<result name="input">
-				/admin/admin_error.jsp
 			</result>
 		</action>
 
@@ -57,12 +39,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="actionName">item_detail</param>
 				<param name="namespace">/admin</param>
 				<param name="itemID">${itemID}</param>
-			</result>
-			<result name="error">
-				/admin/admin_error.jsp
-			</result>
-			<result name="input">
-				/admin/admin_error.jsp
 			</result>
 		</action>
 

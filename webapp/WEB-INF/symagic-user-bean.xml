@@ -26,6 +26,7 @@
 	<!-- 关于购物的bean -->
 	<bean id="addToCart" class="org.symagic.user.action.cart.CartAddItemAction">
 		<property name="daoCart" ref="DaoCart"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="deleteFromCart" class="org.symagic.user.action.cart.CartDeleteItemAction">

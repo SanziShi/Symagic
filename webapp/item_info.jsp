@@ -143,12 +143,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="add_to_cart">
         <div id="item_amount">
         <span id="buy_num">购买数量：</span><span><a class="reduce" onclick="reduce();" href="javascript:void(0)">-</a>
-        <input type="text" value="1" id="amount" onkeyup="amount_modify(this)">
+        <input type="text" value="1" id="amount" onkeyup="amount_modify(this)"/>
         <a class="reduce" onclick="add();" href="javascript:void(0)">+</a>
         </span></div>
         <div class="btns">
-        			<s:if test="book.offline=='false'">
-					<a onclick="add_to_cart()" href="javascript:void(0)" class="append" ></a>
+        			<s:if test='!book.offline'>
+					<a onclick="add_to_cart(<s:property value='itemID'/>)" href="javascript:void(0)" class="append" ></a>
                     </s:if>
                     <s:else>
                     <a  href="javascript:void(0)" class="disable" ></a>
