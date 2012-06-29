@@ -386,7 +386,7 @@ public class DaoUser {
 	 */
 	public int getSearchNum(UserRequire req)
 	{
-		String sql	= "select count(*) from user where ";
+		String sql	= "select * from user where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			if (req.getUserLevel() != null) {

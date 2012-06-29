@@ -142,14 +142,18 @@ public class DaoBookTest extends TestCase{
 		DaoBook	db	= new DaoBook();
 		assertEquals("计算机组成", db.getLatestBook().get(0).getBookName());
 	}
+	*/
 	
 	public void testSearch()
 	{
 		DaoBook	db	= new DaoBook();
 		BookRequire req	= new BookRequire();
-		req.setYear("2012");
-		assertEquals(4, db.search(0, req).get(0).getBookId());
-	}*/
+		req.setPage(1);
+		req.setLines(10);
+//		req.setYear("2012");
+		req.setItemName("");
+		assertEquals(1, db.search(1, req).get(0).getBookId());
+	}
 	
 /*	@Test
 	public void testGetProductNum1(){
@@ -165,7 +169,7 @@ public class DaoBookTest extends TestCase{
 	public void testGetLatestBook2(){
 		assertEquals(1,db.getLatestBook().size());
 	}*/
-	
+
 /*	@Test
 	public void testModifyBook1(){
 		BeanBook book = new BeanBook();
@@ -480,4 +484,5 @@ public class DaoBookTest extends TestCase{
 		
 		assertEquals(0,db.getBookStatistics(req).size());
 	}
+ 
 }
