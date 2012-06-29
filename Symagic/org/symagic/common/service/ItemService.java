@@ -279,4 +279,12 @@ public class ItemService {
 		this.daoComment = daoComment;
 	}
 
+	public DaoCatalog getDaoCatalog() {
+		return daoCatalog;
+	}
+
+	public void setDaoCatalog(DaoCatalog daoCatalog) {
+		this.daoCatalog = daoCatalog;
+	}
+
 }
