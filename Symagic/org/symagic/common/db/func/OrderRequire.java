@@ -12,7 +12,7 @@ public class OrderRequire {
 	/**
 	 * startTime:开始索引时间(year:年，month:月;day:日）;
 	 */
-	private String startTime	= "1990-01-01";
+	private String startTime	= "1970-01-01";
 	
 	/**
 	 * endTime:结束索引时间（year：年，month:月，day:日），
