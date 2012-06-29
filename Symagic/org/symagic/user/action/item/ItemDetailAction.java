@@ -16,23 +16,30 @@ public class ItemDetailAction extends CatalogBase {
 	 */
 	private static final long serialVersionUID = 9054557857853861076L;
 	private Integer lines ;
-	
-
-	private Integer totalPage;// 评论有多少页
-
-	private Integer itemID;// 商品id
-	private ItemDetailBean book;// 书籍详细信息
+	private String errorHeader;
+	private String errorSpecification ;
 	private ItemService itemService;// 访问服务层
+	
+	private ItemDetailBean book;// 书籍详细信息
+	
+    private Integer itemID;// 商品id
+	
+	private Integer totalPage;// 评论有多少页
 	private List<BeanComment> commentList;// 评论列表
 	private ArrayList<ItemTinyBean> recommendView;
 	private ArrayList<ItemTinyBean> recommendBought;
+ 
+    
+	
 
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		if(lines==null||itemID==null)return "success";
+		//商品项为空返回error
+		if(itemID==null)return "error";
 		book = new ItemDetailBean();
-		itemService.fillDetailBean(itemID, book);
+		//无此商品
+		if(!itemService.fillDetailBean(itemID, book))return "error";
 		int commentNumber = itemService.getCommentNumber(itemID);
 		totalPage = (commentNumber + lines - 1) / lines;
 		commentList = itemService.getCommentWithPage(itemID, 1, lines);
@@ -109,6 +116,26 @@ public class ItemDetailAction extends CatalogBase {
 	public void setRecommendBought(ArrayList<ItemTinyBean> recommendBought) {
 		this.recommendBought = recommendBought;
 	}
+	
+	
+
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
+	}
+
+	
 
 	
 }

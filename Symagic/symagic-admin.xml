@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts 
+
+Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<!-- 配置管理员的action -->
+	<package name="admin-default" extends="symagic-admin-default"
+		namespace="/admin">
+
+		<action name="index">
+			<result>/admin/index.jsp</result>
+		</action>
+
+		<action name="login" class="AdminLogin">
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">
+				/admin/${toURL}
+			</result>
+			<result name="error">
+				/admin/admin_error.jsp
+			</result>
+			<result name="input">
+				/admin/admin_error.jsp
+			</result>
+		</action>
+
+		<!-- 管理员商品Detail -->
+		<action name="item_detail" class="AdminViewItemDetail">
+			<result>
+				/admin/item_info.jsp
+			</result>
+			<result name="error">
+				/admin/admin_error.jsp
+			</result>
+			<result name="input">
+				/admin/admin_error.jsp
+			</result>
+		</action>
+
+		<!-- 管理员编辑商品 -->
+		<action name="item_modify" class="AdminEnterModifyItem">
+			<result>
+				/admin/item_edit.jsp
+			</result>
+			<result name="error">
+				/admin/admin_error.jsp
+			</result>
+			<result name="input">
+				/admin/admin_error.jsp
+			</result>
+		</action>
+
+		<!-- 管理员提交商品修改 -->
+		<action name="item_modify_submit" class="AdminModifyItemSubmit">
+			<result name="success" type="redirectAction">
+				<param name="actionName">item_detail</param>
+				<param name="namespace">/admin</param>
+				<param name="itemID">${itemID}</param>
+			</result>
+			<result name="error">
+				/admin/admin_error.jsp
+			</result>
+			<result name="input">
+				/admin/admin_error.jsp
+			</result>
+		</action>
+
+	</package>
+</struts>

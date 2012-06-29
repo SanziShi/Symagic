@@ -7,21 +7,17 @@ import org.symagic.common.db.func.DaoDistrict;
 
 public class DaoDistrictTest extends TestCase{
 
-	/*@Test
-	public void testGetDistrict() {
-		DaoDistrict	dd	= new DaoDistrict();
-		assertEquals("北京市", dd.getDistrict(null).get(0).getName());
-	}*/
+	
 	//初始化
 	DaoDistrict	dd	= new DaoDistrict();
-/*	@Test
+    @Test
 	public void testGetDistrict(){
 		assertEquals(0,dd.getDistrict(null).size());
 	}
 	@Test
 	public void testGetDistrict2(){
 		assertEquals(0,dd.getDistrict(1).size());
-	}*/
+	}
 	@Test
 	public void testGetDistrict3(){
 		assertEquals(2,dd.getDistrict(null).size());
