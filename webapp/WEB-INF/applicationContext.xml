@@ -105,14 +105,12 @@
 	</bean>
 
 
-	<bean id="AdminEnterOrderEdit"
-		class="org.symagic.admin.action.order.AdminOrderEditEnterAction">
+	<bean id="AdminEnterOrderEdit" class="org.symagic.admin.action.order.AdminOrderEditEnterAction">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 	</bean>
 
-	<bean id="AdminSubmitOrderEdit"
-		class="org.symagic.admin.action.order.AdminOrderEditSubmitAction">
+	<bean id="AdminSubmitOrderEdit" class="org.symagic.admin.action.order.AdminOrderEditSubmitAction">
 		<property name="daoOrder" ref="DaoOrder"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 		<property name="daoBook" ref="DaoBook"></property>
@@ -193,9 +191,14 @@
 
 	<!-- 关于商品的bean -->
 	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction">
+		<property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="recommendService" ref="RecommendService"></property>
-	</bean>
+		<property name="errorHeader" value="输入数据有误"></property>
+		<property name="errorSpecification" value="请使用商城提供的高级搜索页面进行搜索"></property>
+		<property name="lines" value="10"></property>
+		<property name="recommendNumber" value="15"></property>	
+		</bean>
 
 	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction">
 		<property name="itemService" ref="ItemService"></property>
@@ -206,6 +209,8 @@
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
+		<property name="errorHeader" value="没有相应的商品"></property>
+		<property name="errorSpecification" value="symagic商城中没有此商品"></property>
 	</bean>
 
 	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction">

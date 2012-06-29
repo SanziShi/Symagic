@@ -11,9 +11,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="symagic-user-default" extends="json-default">
 		<!-- 配置登陆用的拦截器 -->
 		<interceptors>
-			<interceptor name="userLoginInterceptor" 
-
-class="UserLoginInterceptor"></interceptor>
+			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
 
 			<interceptor-stack name="userLoginInterceptorStack">
 				<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -60,9 +58,7 @@ class="AdminLoginInterceptor"></interceptor>
 
 class="generateCaptcha">
 			<result type="stream">
-				<param name="contentType">
-
-${symagicCaptcha.getCaptchaContentType}</param>
+				<param name="contentType">${symagicCaptcha.getCaptchaContentType}</param>
 				<param name="inputName">imageInputStream</param>
 			</result>
 		</action>
@@ -113,13 +109,7 @@ ${symagicCaptcha.getCaptchaContentType}</param>
 		</action>
 
 	<!-- 商品项 -->	
-		<action name="item_list" class="advanceSearch">
-		  <result>/item_list.jsp</result>
-		</action>
 		
-		<action name="quick_search" class="quickSearch">
-		  <result>/item_list.jsp</result>
-		</action>
 		
 		<action name="item_detail" class="itemDetail">
 		  <result>/item_info.jsp</result>
@@ -129,12 +119,19 @@ ${symagicCaptcha.getCaptchaContentType}</param>
 		<action name="comment" class="browseComment">
 		 <result>/lib/comment_inner.jsp</result>
 		</action>
+		<action name="item_list" class="advanceSearch">
+		  <result>/item_list.jsp</result>
+		  <result name="input">/error.jsp</result>
+		</action>
 		
+		<action name="quick_search" class="quickSearch">
+		  <result>/item_list.jsp</result>
+		</action>
 
 
 	</package>
 
-	<!-- 注册时用户名检测 -->
+<!-- 注册时用户名检测 -->
 	<package name="regist-user-default" extends="symagic-user-default"
 		namespace="/regist">
 		<action name="check_name" class="usernameUnique">
@@ -182,7 +179,7 @@ ${symagicCaptcha.getCaptchaContentType}</param>
 		</action>
 	</package>
 
-<!-- 用户中与商品项有关的action -->
+<!-- 用户中与商品项有关的小接口 -->
 
 	<package name="item-user-default" extends="symagic-user-default"
 		namespace="/item">
@@ -192,13 +189,7 @@ ${symagicCaptcha.getCaptchaContentType}</param>
 			</result>
 		</action>
 		
-		<action name="item_list" class="advanceSearch">
-		  <result>/item_list.jsp</result>
-		</action>
 		
-		<action name="quick_search" class="quickSearch">
-		  <result>/item_list.jsp</result>
-		</action>
 	</package>
 
 		<!-- 配置管理员的action -->
