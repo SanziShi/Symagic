@@ -225,6 +225,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <div id="item_container">
    <div class="fliter"></div>
    <!--商品迭代div-->
+   <input id="amount" value="1" style="display:none"/>
    <s:iterator value="items" var='iter'>
    <div class="item">
    	<div class="p-img">
