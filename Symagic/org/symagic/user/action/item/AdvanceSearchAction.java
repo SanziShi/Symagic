@@ -25,7 +25,24 @@ public class AdvanceSearchAction extends CatalogBase {
 
 	private ItemService itemService;// 访问书本的业务层
 	private RecommandService recommendService;// 推荐系统
+	 private int sign;// 搜索标志，1为高级搜索
+	
 	private Integer page=1;// 分页显示
+	private String author;// 作者
+	private String name;// 书本名字
+	private String publisher;// 出版社
+	private Integer catalogID;// 目录id
+	private Integer publishTime;// 出版时间
+	private Integer edition;// 版次
+	private Integer searchPage;// 书的页数范围
+	private Integer binding;// 装帧
+	private Integer booksize;// 书的大小
+	private Integer price;// 书的价格
+    private Integer discount;// 折扣
+   
+
+	
+	
 	// 配置项
 	private Integer lines;
 	private Integer recommendNumber;
@@ -33,8 +50,7 @@ public class AdvanceSearchAction extends CatalogBase {
 	private String errorSpecification;
 
 	private Integer totalPage;
-
-	private List<ItemTinyBean> recommend;// 推荐商品
+    private List<ItemTinyBean> recommend;// 推荐商品
 	private List<ItemBean> items;// 用于显示的商品列表
 
 	public String getErrorHeader() {
@@ -53,21 +69,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		this.errorSpecification = errorSpecification;
 	}
 
-	private String author;// 作者
-	private String name;// 书本名字
-	private String publisher;// 出版社
-	private Integer catalogID;// 目录id
-	private Integer publishTime;// 出版时间
-	private Integer edition;// 版次
-	private Integer searchPage;// 书的页数范围
-	private Integer binding;// 装帧
-	private Integer booksize;// 书的大小
-	private Integer price;// 书的价格
-
-	private Integer discount;// 折扣
-
-	private int sign;// 搜索标志，1为高级搜索
-
+	
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -85,8 +87,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		setPrice(require, price);
 		require.setDiscount(discount);
 		require.setAuthor(author);
-
-		require.setLines(lines);
+        require.setLines(lines);
 		require.setPage(page);
 		
 
@@ -107,8 +108,11 @@ public class AdvanceSearchAction extends CatalogBase {
 
 		      // 搜索符合条件的商品
 				List<BeanBook> books = itemService.search(sign, require);
-				if (books == null)return "success";
-				totalPage = (itemService.getSearchNum(sign, require) + lines - 1)/ lines;
+			
+				if(books==null)return "error";
+				int searchNumber=itemService.getSearchNum(sign, require);
+				if(searchNumber==-1)return "error";
+				totalPage = (searchNumber + lines - 1)/ lines;
 				// 装饰成前台所需的信息
 				itemService.decorateForItem(books, items);
 		return super.execute();

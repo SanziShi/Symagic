@@ -96,19 +96,26 @@ public class ItemService {
 		detail.setAuthor(book.getAuthor());
 		detail.setAverageRating(daoComment.getAverageRating(itemId));
 		detail.setBinding(book.getBinding());
-		detail.setBookDesc(book.getBookDesc().replaceAll("\n", "<br>"));
+		detail.setBookDesc(book.getBookDesc());
 		detail.setBookName(book.getBookName());
 		detail.setCatalogClassify(getCatalogName(book.getCatalogID()));
-		float discount = MathUtilty.roundWithdigits(book.getDiscount());
 		detail.setDiscout(book.getDiscount());
-		detail.setFolio(book.getFolio());
+		detail.setSize(book.getFolio());
 		detail.setInventory(book.getInventory());
 		detail.setIsbn(book.getIsbn());
 		float marketPrice = MathUtilty.roundWithdigits(book.getMarketPrice());
+		float discount = MathUtilty.roundWithdigits(book.getDiscount());
 		detail.setMarketPrice(marketPrice);
-		detail.setOffline(book.getOffline());
+		if(book.getOffline().equals("下架")){
+		detail.setOffline(true);
+		}
+		else{
+			detail.setOffline(false);
+		}
 		detail.setPage(book.getPage());
-		detail.setPrice(MathUtilty.roundWithdigits(discount * marketPrice));
+		float price=MathUtilty.roundWithdigits(discount * marketPrice);
+		detail.setPrice(price);
+	    detail.setSavePrice(marketPrice-price);
 		detail.setPublishDate(book.getPublishDate());
 		detail.setPublisher(book.getPublisher());
 		detail.setVersion(book.getVersion());

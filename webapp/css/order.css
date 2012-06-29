@@ -104,4 +104,5 @@ input.txt {
 {
 	display:inline-block;
 	margin-right:30px;
+	float:right;
 }

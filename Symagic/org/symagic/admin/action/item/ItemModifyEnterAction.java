@@ -1,8 +1,14 @@
 package org.symagic.admin.action.item;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.service.ItemService;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
+import org.symagic.common.utilty.presentation.bean.TimeBean;
 
 
 public class ItemModifyEnterAction extends CatalogBase {
@@ -15,6 +21,8 @@ public class ItemModifyEnterAction extends CatalogBase {
 	private Integer itemID;// 商品id
 	private ItemDetailBean book;// 书籍详细信息
 	private ItemService itemService;// 访问服务层
+	
+	private TimeBean parseTime; //用于时间解析
 	
 	private String errorHeader;
 	private String errorSpecification;
@@ -73,6 +81,16 @@ public class ItemModifyEnterAction extends CatalogBase {
 		if( !itemService.fillDetailBean(itemID, book) )
 			return ERROR;
 		
+		//时间解析
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = dateFormat.parse(book.getPublishDate());
+		GregorianCalendar calender = new GregorianCalendar();
+		calender.setTime(date);
+		parseTime = new TimeBean();
+		parseTime.setYear(calender.get(Calendar.YEAR));
+		parseTime.setYear(calender.get(Calendar.MONTH));
+		parseTime.setYear(calender.get(Calendar.DAY_OF_MONTH));
+		
 		return super.execute();
 		
 	}
@@ -91,6 +109,14 @@ public class ItemModifyEnterAction extends CatalogBase {
 
 	public void setErrorSpecification(String errorSpecification) {
 		this.errorSpecification = errorSpecification;
+	}
+
+	public TimeBean getParseTime() {
+		return parseTime;
+	}
+
+	public void setParseTime(TimeBean parseTime) {
+		this.parseTime = parseTime;
 	}
 
 	

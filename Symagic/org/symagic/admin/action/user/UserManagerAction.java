@@ -30,9 +30,9 @@ public class UserManagerAction extends CatalogBase {
 	private List<LevelBean> levelList;
 	private List<UserBean> userList;
 	private Integer totalPage;
-	
+
 	private Integer lines;
-	
+
 	private DaoUser daoUser;
 	private DaoLevel daoLevel;
 
@@ -43,12 +43,12 @@ public class UserManagerAction extends CatalogBase {
 
 		if (!validateResult)
 			return ERROR;
-		
+
 		List<BeanLevel> levels = daoLevel.getAll();
-		
+
 		levelList = new ArrayList<LevelBean>();
-		
-		for( BeanLevel bean : levels ){
+
+		for (BeanLevel bean : levels) {
 			LevelBean level = new LevelBean();
 			level.setHight(bean.getUpLimit());
 			level.setLevelID(bean.getId());
@@ -68,33 +68,31 @@ public class UserManagerAction extends CatalogBase {
 					startTime.getDay());
 			userRequire.setStartTime(formater.format(calendar.getTime()));
 		}
-		
+
 		if (endTime != null) {
 			GregorianCalendar calendar = new GregorianCalendar(
-					endTime.getYear(), endTime.getMonth(),
-					endTime.getDay());
+					endTime.getYear(), endTime.getMonth(), endTime.getDay());
 			userRequire.setStartTime(formater.format(calendar.getTime()));
 		}
-		
+
 		userRequire.setPage(page);
-		
-		//分页用的Number
+
+		// 分页用的Number
 		float number = daoUser.getSearchNum(userRequire);
-		
-		totalPage = (int) Math.ceil(number / lines);
-		
+		if (number != -1)
+			totalPage = (int) Math.ceil(number / lines);
+
 		List<BeanUser> users = daoUser.search(userRequire);
 		List<UserBean> userList = new ArrayList<UserBean>();
-		
-		for( BeanUser user : users ){
+
+		for (BeanUser user : users) {
 			UserBean bean = new UserBean();
 			bean.setUserName(user.getUsername());
-			//bean.setRegisterDate(user.get)(注册时间）
+			bean.setRegisterDate(user.getRegistedate());
 			BeanLevel level = daoLevel.judgeLevel(user.getScore());
 			bean.setLevelName(level.getName());
 			userList.add(bean);
 		}
-		
 
 		return super.execute();
 	}
