@@ -84,9 +84,9 @@ public class ItemService {
 			bean.setMarketPrice(book.getMarketPrice());
 			String status = book.getOffline();
 			if (status.trim().equals("下架")) {
-				bean.setOffline(0);
+				bean.setOffline(true);
 			} else {
-				bean.setOffline(1);
+				bean.setOffline(false);
 			}
 			bean.setRating(getAverage(book.getBookId()));
 			bean.setInventory(book.getInventory());
