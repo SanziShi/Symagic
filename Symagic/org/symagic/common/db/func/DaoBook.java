@@ -496,8 +496,20 @@ public class DaoBook {
 			ps.setString(15, book.getOffline());
 			ps.setInt(16, book.getBookId());
 			
-			if (ps.executeUpdate() == 1)
+			if (ps.executeUpdate() == 1) {
+				if (book.getCatalogID() != null) {
+					ps	= conn.prepareStatement("update book_catalog_detail set " +
+							" catalodid=? " +
+							" where bookid=? ");
+					ps.setInt(1, book.getCatalogID());
+					ps.setInt(2, book.getBookId());
+					if (ps.executeUpdate() == 1) 
+						return true;
+					return false;
+				}
 				return true;
+			}
+				
 			return false;
 			
 		} catch (Exception e) {
