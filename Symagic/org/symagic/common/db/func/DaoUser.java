@@ -103,7 +103,7 @@ public class DaoUser {
 		if (!this.validateUserName(user.getUsername()))
 			return false;
 		try {
-			conn	= ConnectionPool.getInstance().getInstance().getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into user (" +
 					"username, nickname, score, question, answer)" +
 					"values (" +
@@ -332,6 +332,7 @@ public class DaoUser {
 				user.setQuestion(rs.getString("question"));
 				user.setScore(rs.getInt("score"));
 				user.setUsername(rs.getString("username"));
+				user.setRegistedate(rs.getString("registedate"));
 				list.add(user);
 			}
 		} catch (Exception e) {
