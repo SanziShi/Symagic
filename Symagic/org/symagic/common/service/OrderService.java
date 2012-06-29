@@ -49,7 +49,7 @@ public class OrderService {
 	public OrderBean convertBeanOrderToOrderBean(BeanOrder bean) {
 		OrderBean result = new OrderBean();
 
-		result.setOrderId(Integer.toString(bean.getOrderId()));
+		result.setOrderID(Integer.toString(bean.getOrderId()));
 		switch (Integer.parseInt(bean.getOrderState())) {
 		case 0:
 			result.setOrderStatus("已下单");

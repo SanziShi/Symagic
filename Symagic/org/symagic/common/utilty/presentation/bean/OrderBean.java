@@ -17,7 +17,7 @@ public class OrderBean {
 	 * @generated 
 	 *            "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private String orderId;
+	private String orderID;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -56,12 +56,7 @@ public class OrderBean {
 	
 	private String userName;
 	
-	public String getOrderId() {
-		return orderId;
-	}
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
-	}
+
 	public String getOrderStatus() {
 		return orderStatus;
 	}
@@ -97,5 +92,11 @@ public class OrderBean {
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	public String getOrderID() {
+		return orderID;
+	}
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 }

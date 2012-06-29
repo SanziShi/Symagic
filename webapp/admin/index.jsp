@@ -203,7 +203,7 @@
 
 						<th class="qWidth">订单号</th>
 
-						<th class="autoWidth">客户号</th>
+						<th class="autoWidth">用户名</th>
 
 						<th>下单时间</th>
 
