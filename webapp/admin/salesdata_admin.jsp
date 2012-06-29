@@ -44,7 +44,7 @@
              <div class="fliter"><span id="search_banner" class="collapse" onclick="show_item_search(this);"></span></div>
             <div id="item_search1" class="user_note_content hide">
             <div id="sendnotecontent">
-			<form action="order_list" method="post" enctype="multipart/form-data" name="form1">
+			<form action="order_statistics" method="post" enctype="multipart/form-data" name="form1">
 				<table id="tradequery">
 					
                    
