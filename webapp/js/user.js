@@ -38,7 +38,7 @@ function pass_submit()
 	var b=document.getElementById('pass_new').value;
 	var c=document.getElementById('pass_confirm').value;
 	Ajax({
-		url:'user/update_password?password='+a+'&newPasswordnew='+b+'&PasswordConfirm='+c,
+		url:'user/update_password?password='+a+'&newPassword='+b+'&newPasswordConfirm='+c,
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');}
 		})
 }
