@@ -20,10 +20,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<div class="cell checkbox">
                 		<input class="" value="" type="checkbox"/>
                 	</div>
-                    <div class="cell p-name"><div class="p-name-img"><a href=""><img src="upload/9787214078476.png"/></a></div><div class="p-name-n"><a href=""><s:property value='#item.name'/></a>
+                    <div class="cell p-name"><div class="p-name-img"><a href=""><img src="upload/9787214078476.png"/></a></div><div class="p-name-n"><a href=""><s:property value='#iter.name'/></a>
                     <br>综合评分：<span class="sa45"></span></div></div>
-                   <div class="cell p-price p-price-p"><del>￥<span>40.00</span></del><br>￥<span>现价</span><br><font class="red">为您节省：<span>￥20.00</span></font></div>
-                    <div class="cell inventory">库存</div>
+                   <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.savePrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
+                    <div class="cell inventory"><s:property value='#iter.inventory'/></div>
                     <div class="cell action"><span class="fav-add"></span>
                     <a href="" class="fav_cancel">取消收藏</a></div>
             	</s:iterator >
@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>   
                 <div id="favorite-content-bottom">
                 	<input type="checkbox" />全选&nbsp;&nbsp;
-                	<span class="fav-add-b"></span>
-                    <a href="">加入购物车</a>&nbsp;&nbsp;<a href="">取消收藏</a>
+                	<span onclick="add_to_cart()" class="fav-add-b"></span>
+                    <a href="">取消收藏</a>
                 </div>
         	</div>
