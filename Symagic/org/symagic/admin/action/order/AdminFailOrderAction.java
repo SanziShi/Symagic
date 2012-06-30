@@ -2,10 +2,6 @@ package org.symagic.admin.action.order;
 
 import java.util.List;
 
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONSerializer;
-
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
@@ -21,7 +17,7 @@ public class AdminFailOrderAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 3790488288537580693L;
-	private String orderIDList;
+	private List<Integer> orderIDList;
 	private Boolean changeResult;
 
 	private DaoOrder daoOrder;
@@ -32,39 +28,35 @@ public class AdminFailOrderAction extends ActionSupport {
 
 		changeResult = false;
 
-		JSON json = JSONSerializer.toJSON(orderIDList);
+		if (orderIDList == null)
+			return ERROR;
 
-		if (json.isArray()) {
-
-			// 检查状态是否符合
-			JSONArray ids = (JSONArray) json;
-			for (int i = 0; i < ids.size(); i++) {
-				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				if (!order.getOrderState().equals("1")) {
-					changeResult = false;
-					return super.execute();
-				}
+		// 检查状态是否符合
+		for (int i = 0; i < orderIDList.size(); i++) {
+			BeanOrder order = daoOrder.getOrderDetail(orderIDList.get(i));
+			if (!order.getOrderState().equals("1")) {
+				changeResult = false;
+				return super.execute();
 			}
+		}
 
-			for (int i = 0; i < ids.size(); i++) {
-				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				if (order != null) {
-					order.setOrderState("3");
-					daoOrder.updateOrder(order);
-					List<BeanOrderDetail> items = order.getList();
-					for (BeanOrderDetail detail : items) {
-						BeanBook bookDetail = daoBook.getDetail(detail
-								.getBookId());
-						if (bookDetail == null)
-							return super.execute();
-						bookDetail.setInventory(bookDetail.getInventory()
-								+ detail.getAmount());
-						if (!daoBook.modifyBook(bookDetail))
-							return super.execute();
-					}
-					
-					MailService.sendFailOrder(order);
+		for (int i = 0; i < orderIDList.size(); i++) {
+			BeanOrder order = daoOrder.getOrderDetail(orderIDList.get(i));
+			if (order != null) {
+				order.setOrderState("3");
+				daoOrder.updateOrder(order);
+				List<BeanOrderDetail> items = order.getList();
+				for (BeanOrderDetail detail : items) {
+					BeanBook bookDetail = daoBook.getDetail(detail.getBookId());
+					if (bookDetail == null)
+						return super.execute();
+					bookDetail.setInventory(bookDetail.getInventory()
+							+ detail.getAmount());
+					if (!daoBook.modifyBook(bookDetail))
+						return super.execute();
 				}
+
+				MailService.sendFailOrder(order);
 			}
 
 			changeResult = true;
@@ -74,13 +66,7 @@ public class AdminFailOrderAction extends ActionSupport {
 		return super.execute();
 	}
 
-	public String getOrderIDList() {
-		return orderIDList;
-	}
 
-	public void setOrderIDList(String orderIDList) {
-		this.orderIDList = orderIDList;
-	}
 
 	public Boolean getChangeResult() {
 		return changeResult;
@@ -104,6 +90,18 @@ public class AdminFailOrderAction extends ActionSupport {
 
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
+	}
+
+
+
+	public List<Integer> getOrderIDList() {
+		return orderIDList;
+	}
+
+
+
+	public void setOrderIDList(List<Integer> orderIDList) {
+		this.orderIDList = orderIDList;
 	}
 
 }

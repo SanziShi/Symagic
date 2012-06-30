@@ -1,8 +1,6 @@
 package org.symagic.admin.action.order;
 
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONSerializer;
+import java.util.List;
 
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanUser;
@@ -18,7 +16,7 @@ public class AdminSuccessOrderAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = -3198437970465011919L;
-	private String orderIDList;
+	private List<Integer> orderIDList;
 	private Boolean changeResult;
 
 	private DaoOrder daoOrder;
@@ -29,46 +27,37 @@ public class AdminSuccessOrderAction extends ActionSupport {
 
 		changeResult = false;
 
-		JSON json = JSONSerializer.toJSON(orderIDList);
+		if (orderIDList == null)
+			return ERROR;
 
-		if (json.isArray()) {
-
-			// 检查状态是否符合(是否全部是已审核状态）
-			JSONArray ids = (JSONArray) json;
-			for (int i = 0; i < ids.size(); i++) {
-				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				if (!order.getOrderState().equals("1")) {
-					changeResult = false;
-					return super.execute();
-				}
+		// 检查状态是否符合(是否全部是已审核状态）
+		for (int i = 0; i < orderIDList.size(); i++) {
+			BeanOrder order = daoOrder.getOrderDetail(orderIDList.get(i));
+			if (!order.getOrderState().equals("1")) {
+				changeResult = false;
+				return super.execute();
 			}
-
-			// 设置为交易成功状态，并给相应用户添加积分
-			for (int i = 0; i < ids.size(); i++) {
-				BeanOrder order = daoOrder.getOrderDetail(ids.getInt(i));
-				if (order != null) {
-					order.setOrderState("2");
-					daoOrder.updateOrder(order);
-					BeanUser user = daoUser.getUser(order.getUsername());
-					daoUser.updateScore(user.getScore() + order.getScore(), order.getUsername());
-					MailService.sendSuccessOrder(order);
-				}
-			}
-
-			changeResult = true;
-
 		}
+
+		// 设置为交易成功状态，并给相应用户添加积分
+		for (int i = 0; i < orderIDList.size(); i++) {
+			BeanOrder order = daoOrder.getOrderDetail(orderIDList.get(i));
+			if (order != null) {
+				order.setOrderState("2");
+				daoOrder.updateOrder(order);
+				BeanUser user = daoUser.getUser(order.getUsername());
+				daoUser.updateScore(user.getScore() + order.getScore(),
+						order.getUsername());
+				MailService.sendSuccessOrder(order);
+			}
+		}
+
+		changeResult = true;
 
 		return super.execute();
 	}
 
-	public String getOrderIDList() {
-		return orderIDList;
-	}
-
-	public void setOrderIDList(String orderIDList) {
-		this.orderIDList = orderIDList;
-	}
+	
 
 	public Boolean getChangeResult() {
 		return changeResult;
@@ -92,5 +81,17 @@ public class AdminSuccessOrderAction extends ActionSupport {
 
 	public void setDaoUser(DaoUser daoUser) {
 		this.daoUser = daoUser;
+	}
+
+
+
+	public List<Integer> getOrderIDList() {
+		return orderIDList;
+	}
+
+
+
+	public void setOrderIDList(List<Integer> orderIDList) {
+		this.orderIDList = orderIDList;
 	}
 }
