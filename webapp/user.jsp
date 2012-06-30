@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
     </s:else>
-    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li class="division">|</li><li id="mymall"><a href="user"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
     <li id="cart_top"><a id="cart_a" href="cart">
     <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
@@ -51,8 +51,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	<div id="globallink">
 		<ul>
-			<li><a href="index.html">首页</a></li>
-			<li><a href="item_list.html">商品列表</a></li>
+			<li><a href="index">首页</a></li>
+			<li><a href="item_list">商品列表</a></li>
 			<li><a href="favorite.html">收藏夹</a></li>
 			<li><a href="address.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
@@ -174,12 +174,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="2" class="user_note hide">
         	<div class="head">修改密码</div>
         	<div class="user_note_content">
-        		<form>
-        			<p><span>原密码：</span><input class="inputtext"/></p>
-            		<p><span>新密码：</span><input class="inputtext"/></p>
-            		<p><span>密码确认：</span><input class="inputtext"/></p>
-            		<p><span><input type="submit" value="确定修改"/></span></p>
-    			</form>
+        		
+        			<p><span>原密码：</span><input id="pass_before" class="inputtext"/></p>
+            		<p><span>新密码：</span><input id="pass_new" class="inputtext"/></p>
+            		<p><span>密码确认：</span><input id="pass_confirm" class="inputtext"/></p>
+            		<p><span><input type="button" onblur="pass_submit()" value="确定修改"/></span></p>
+    			
         	</div>
         </div>
         <div id="3" class="user_note hide">
