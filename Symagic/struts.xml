@@ -333,6 +333,26 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	</package>
 
+	<!-- 配置管理员的item manage action -->
+	<package name="admin-item-manager" extends="symagic-admin-default"
+		namespace="/admin/item_manager">
+		<action name="off" class="AdminDeleteItem">
+			<result type="json">
+				<param name="includeProperties">deleteResult</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="admin-order-manager" extends="symagic-admin-default"
+		namespace="/admin/order">
+		<action name="pass" class="AdminPassOrder">
+			<result type="json">
+				<param name="includeProperties">checkResult</param>
+			</result>
+		</action>
+	</package>
+
+
 </struts>    
 
 

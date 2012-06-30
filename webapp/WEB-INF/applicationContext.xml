@@ -86,6 +86,11 @@
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
+	<bean id="AdminDeleteItem" class="org.symagic.admin.action.item.ItemDeleteAction"
+		scope="prototype">
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
 	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction"
 		scope="prototype">
 		<property name="itemService" ref="ItemService"></property>
@@ -310,31 +315,30 @@
 		<property name="errorSpecification" value="没有相应 的评论"></property>
 
 	</bean>
-	
-	<bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction" 
+
+	<!-- <bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction" 
+		scope="prototype"> <property name="daoUser" ref="DaoUser"></property> <property 
+		name="orderService" ref="OrderService"></property> </bean> -->
+
+	<bean id="forgetPassword" class="org.symagic.user.action.userinfo.ForgetPasswordAction"
 		scope="prototype">
 		<property name="daoUser" ref="DaoUser"></property>
-		<property name="orderService" ref="OrderService"></property>
 	</bean>
-	
-	<bean id="forgetPassword" class="org.symagic.user.action.userinfo.ForgetPasswordAction"
-	scope="prototype">
-		<property name="daoUser" ref="DaoUser"></property>	
-	</bean>
-	
-	<bean id="updateNickName" class="org.symagic.user.action.userinfo.UpdateUserNicknameAction"
+
+	<bean id="updateNickName"
+		class="org.symagic.user.action.userinfo.UpdateUserNicknameAction"
 		scope="prototype">
-		<property name="daoUser" ref="DaoUser"></property>	
+		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
-	
-	<bean id="updatePassword" class="org.symagic.user.action.userinfo.UpdateUserPasswordAction"
+
+	<bean id="updatePassword"
+		class="org.symagic.user.action.userinfo.UpdateUserPasswordAction"
 		scope="prototype">
-		<property name="daoUser" ref="DaoUser"></property>	
+		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
-	
-	<bean id="forgetPasswordEnter" class="org.symagic.action.userinfo.ForgetPasswordEnterAction"
-	scope="prototype">
-	</bean>
+
+	<!-- <bean id="forgetPasswordEnter" class="org.symagic.action.userinfo.ForgetPasswordEnterAction" 
+		scope="prototype"> </bean> -->
 
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
