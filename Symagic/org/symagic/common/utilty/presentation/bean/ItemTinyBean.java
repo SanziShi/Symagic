@@ -60,6 +60,12 @@ public class ItemTinyBean {
 	public void setItemNumber(int itemNumber) {
 		this.itemNumber = itemNumber;
 	}
+	public Integer getScore() {
+		return score;
+	}
+	public void setScore(Integer score) {
+		this.score = score;
+	}
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -96,5 +102,9 @@ public class ItemTinyBean {
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private int itemNumber;
+	
+	private Integer score;
+	
+	
 
 }

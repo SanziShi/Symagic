@@ -13,7 +13,7 @@ import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
-public class AddressEditEnter extends CatalogBase{
+public class AddressEditEnterAction extends CatalogBase{
 	
 	/**
 	 * 
