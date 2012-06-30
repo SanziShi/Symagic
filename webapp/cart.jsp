@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </form>
 		</div>
         <div class="clear"></div>
-        <form name="cart" action="order">
+        <form onsubmit="return tests(this)" id="checkout" action="order" method="post">
         <div id="cart-a">
         	<h2>我的购物车</h2>
         	<div id="cart_table">
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <s:iterator value="items" var='iter'>
                     <div class="each">
                     <div class="cell checkbox">
-                		<input id="<s:property value='#iter.itemId'/>" class="" type="checkbox"/>
+                		<input name="itemIDs" id="<s:property value='#iter.itemId'/>" class="" type="checkbox"/>
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-img">
@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.marketPrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
                     <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
-        <input type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
+        <input name="itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
         <a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
         </span></div>
          			<div class="cell total">￥<span><s:property value='#iter.itemTotalPrice'/></span></div>
@@ -126,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	</div>
         </div>
         </form>
-        <div class="cart-button"><a onclick="cart_submit()" href="javascript:void(0);" class="checkout"></a></div>
+        <div class="cart-button"><a onclick="checkout()" href="javascript:void(0);" class="checkout"></a></div>
         <div id="recommend"></div>
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
