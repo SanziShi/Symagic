@@ -80,10 +80,10 @@ public class AdvanceSearchAction extends CatalogBase {
 		require.setItemName(name);
 		if(!isEmpty(publisher))
 		require.setPublisher(publisher);
-		if(isEmpty(author))
+		if(!isEmpty(author))
 			require.setAuthor(author);
 		if(catalogID!=null&&catalogID!=0)
-		require.setCatalogID(catalogID);
+		 require.setCatalogID(catalogID);
 		setYear(require, publishTime);
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
@@ -130,12 +130,12 @@ public class AdvanceSearchAction extends CatalogBase {
 	
 	
 	private void setVersion(BookRequire require,Integer index){
-		if(index==0)return;
+		if(index==null||index==0)return;
 		else
 		require.setVersion(index);
 	}
 	private void setDiscount(BookRequire require,Integer index){
-		if(index==0)return;
+		if(index==null||index==0)return;
 		switch(index){
 		case 1:require.setUpDiscount(0.3F);
 			   require.setLowDiscount(0.1F);
