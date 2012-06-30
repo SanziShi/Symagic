@@ -28,12 +28,12 @@ public class BeanOrder {
 	/**
 	 * 付款方式，目前只有货到付款。 即 0:货到付款
 	 */
-	private String payment = "";	
+	private String payment = "0";	
 	
 	/**
 	 * 送货方式，目前只有一种送货方式，即 0:快递
 	 */
-	private String deliveryWay = "";	
+	private String deliveryWay = "0";	
 	
 	/**
 	 * 用户名

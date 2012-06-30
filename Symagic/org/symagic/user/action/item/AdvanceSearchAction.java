@@ -80,16 +80,18 @@ public class AdvanceSearchAction extends CatalogBase {
 		require.setItemName(name);
 		if(publisher!=null)
 		require.setPublisher(publisher);
+		if(author!=null)
+			require.setAuthor(author);
 		require.setCatalogID(catalogID);
 		setYear(require, publishTime);
-		require.setVersion(edition);
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
 		setBookSize(require, booksize);
 		setPrice(require, price);
+		
+		require.setVersion(edition);
 		require.setDiscount(discount);
-		if(author!=null)
-		require.setAuthor(author);
+		
         require.setLines(lines);
 		require.setPage(page);
 		
@@ -119,6 +121,18 @@ public class AdvanceSearchAction extends CatalogBase {
 				// 装饰成前台所需的信息
 				itemService.decorateForItem(books, items);
 		return super.execute();
+	}
+	
+	private void setVersion(BookRequire require,Integer index){
+		if(index==0)return;
+		else
+		require.setVersion(index);
+	}
+	private void setDiscount(BookRequire require,Integer index){
+		if(index==0)return;
+		switch(index){
+		case 1:require.setDiscount(index-1);
+		}
 	}
 
 	private void setBookSize(BookRequire require, Integer index) {

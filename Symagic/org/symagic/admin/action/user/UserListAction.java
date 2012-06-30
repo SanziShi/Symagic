@@ -11,11 +11,10 @@ import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.func.DaoLevel;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.db.func.UserRequire;
-import org.symagic.common.utilty.presentation.bean.LevelBean;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
 import org.symagic.common.utilty.presentation.bean.UserBean;
 
-public class UserManagerAction extends CatalogBase {
+public class UserListAction extends CatalogBase {
 
 	/**
 	 * 
@@ -27,7 +26,6 @@ public class UserManagerAction extends CatalogBase {
 	private TimeBean startTime;// :开始索引时间(year:年，month:月;day:日）;
 	private TimeBean endTime;// :结束索引时间（year：年，month:月，day:日);
 	private Integer page;
-	private List<LevelBean> levelList;
 	private List<UserBean> userList;
 	private Integer totalPage;
 
@@ -44,35 +42,30 @@ public class UserManagerAction extends CatalogBase {
 		if (!validateResult)
 			return ERROR;
 
-		List<BeanLevel> levels = daoLevel.getAll();
-
-		levelList = new ArrayList<LevelBean>();
-
-		for (BeanLevel bean : levels) {
-			LevelBean level = new LevelBean();
-			level.setHight(bean.getUpLimit());
-			level.setLevelID(bean.getId());
-			level.setLevelName(bean.getName());
-			level.setLow(bean.getLowLimit());
-			level.setScoreRate(bean.getRate());
-			levelList.add(level);
-		}
-
 		UserRequire userRequire = new UserRequire();
 		userRequire.setUsername(userName);
 		userRequire.setUserLevel(userLevel);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
+		GregorianCalendar startCalendar = null;
 		if (startTime != null) {
-			GregorianCalendar calendar = new GregorianCalendar(
-					startTime.getYear(), startTime.getMonth(),
-					startTime.getDay());
-			userRequire.setStartTime(formater.format(calendar.getTime()));
+			startCalendar = new GregorianCalendar(startTime.getYear(),
+					startTime.getMonth(), startTime.getDay());
+			userRequire.setStartTime(formater.format(startCalendar.getTime()));
+		} else {
+			userRequire.setStartTime(null);
 		}
-
 		if (endTime != null) {
-			GregorianCalendar calendar = new GregorianCalendar(
+			GregorianCalendar endCalendar = new GregorianCalendar(
 					endTime.getYear(), endTime.getMonth(), endTime.getDay());
-			userRequire.setStartTime(formater.format(calendar.getTime()));
+
+			if (startCalendar != null
+					&& endCalendar.getTime().before(startCalendar.getTime())) {
+				return ERROR;
+			}
+
+			userRequire.setEndTime(formater.format(endCalendar.getTime()));
+		} else {
+			userRequire.setEndTime(null);
 		}
 
 		userRequire.setPage(page);
@@ -152,14 +145,6 @@ public class UserManagerAction extends CatalogBase {
 
 	public void setPage(Integer page) {
 		this.page = page;
-	}
-
-	public List<LevelBean> getLevelList() {
-		return levelList;
-	}
-
-	public void setLevelList(List<LevelBean> levelList) {
-		this.levelList = levelList;
 	}
 
 	public List<UserBean> getUserList() {

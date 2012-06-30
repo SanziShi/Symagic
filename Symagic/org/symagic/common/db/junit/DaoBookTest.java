@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.db.func.BookRequire;
+import org.symagic.common.db.func.BookStatisticsRequire;
 import org.symagic.common.db.func.DaoBook;
 
 public class DaoBookTest extends TestCase{
@@ -16,31 +17,32 @@ public class DaoBookTest extends TestCase{
 
 
 	
-/*
-	@Test
-	public void testAddBook1(){
-		BeanBook book1 = new BeanBook();
-		//设置book1的参数
-		book1.setAuthor("yusen");
-		book1.setBinding("精装");
-		book1.setBookDesc("good");
-		book1.setBookName("what is that");
-		book1.setDiscount(0.5f);
-		book1.setFolio("16");
-		book1.setInventory(20);
-		book1.setIsbn("12kjkjdf24");
-		book1.setMarketPrice(49.21f);
-		book1.setOffline("在架");
-		book1.setPage(400);
-		book1.setPicture("picture3.jpg");
-		book1.setPublisher("public department");
-		book1.setPublishDate("2009-03-27");
-		book1.setVersion(5);
-		
-		//断言判断
-		assertEquals(true,db.addBook(book1));
-		}
-	
+
+//	@Test
+//	public void testAddBook1(){
+//		BeanBook book1 = new BeanBook();
+//		//设置book1的参数
+//		book1.setAuthor("yusen");
+//		book1.setBinding("精装");
+//		book1.setBookDesc("good");
+//		book1.setBookName("what is that?????");
+//		book1.setDiscount(0.5f);
+//		book1.setFolio("16");
+//		book1.setInventory(20);
+//		book1.setIsbn("123456");
+//		book1.setMarketPrice(49.21f);
+//		book1.setOffline("在架");
+//		book1.setPage(400);
+//		book1.setPicture("picture3.jpg");
+//		book1.setPublisher("public department");
+//		book1.setPublishDate("2009-03-27");
+//		book1.setVersion(5);
+//		//book1.setCatalogID(1);
+//		
+//		//断言判断
+//		assertEquals(true,db.addBook(book1));
+//		}
+	/*
 	@Test
 	public void testAddBook2(){
 		BeanBook book2 = new BeanBook();  //book2采用默认值
@@ -141,14 +143,18 @@ public class DaoBookTest extends TestCase{
 		DaoBook	db	= new DaoBook();
 		assertEquals("计算机组成", db.getLatestBook().get(0).getBookName());
 	}
+	*/
 	
-	public void testSearch()
-	{
-		DaoBook	db	= new DaoBook();
-		BookRequire req	= new BookRequire();
-		req.setYear("2012");
-		assertEquals(4, db.search(0, req).get(0).getBookId());
-	}*/
+//	public void testSearch()
+//	{
+//		DaoBook	db	= new DaoBook();
+//		BookRequire req	= new BookRequire();
+//		req.setPage(1);
+//		req.setLines(10);
+////		req.setYear("2012");
+//		req.setItemName("");
+//		assertEquals(1, db.search(1, req).get(0).getBookId());
+//	}
 	
 /*	@Test
 	public void testGetProductNum1(){
@@ -164,8 +170,8 @@ public class DaoBookTest extends TestCase{
 	public void testGetLatestBook2(){
 		assertEquals(1,db.getLatestBook().size());
 	}*/
-	
-	@Test
+
+/*	@Test
 	public void testModifyBook1(){
 		BeanBook book = new BeanBook();
 		book.setBookId(29);
@@ -212,5 +218,283 @@ public class DaoBookTest extends TestCase{
 	@Test
 	public void testDeleteBook2(){
 		assertEquals(false,db.deleteBook(50));
+	}*/
+	
+/*	@Test
+	public void testSearch1(){
+		BookRequire br = new BookRequire();
+		br.setAuthor("张云,韩洪泉");
+		br.setItemName("曾国藩和他的湘军");
+		br.setPublisher("辽宁教育出版社");
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(1,db.search(0, br).size());
 	}
+	@Test
+	public void testSearch2(){
+		BookRequire br = new BookRequire();
+
+		br.setPublisher("中华书局");
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(3,db.search(0, br).size());
+	}
+	@Test
+	public void testSearch3(){
+		BookRequire br = new BookRequire();
+
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(3,db.search(0, br).size());
+	}
+	@Test
+	public void testSearch4(){
+		BookRequire br = new BookRequire();
+		br.setAuthor("郭光文 等主编");
+		br.setItemName("人体解剖彩色图谱（第2版）");
+		br.setPublisher("人民卫生出版社");
+		br.setBefore(true);
+		br.setYear("2009");
+		br.setVersion(2);
+		br.setBinding("精装");
+		br.setFolio("16开");
+		br.setLowPrice(10f);
+		br.setUpPrice(100f);
+		br.setLowPage(100);
+		br.setUpPage(1000);
+		br.setDiscount(3);
+		
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(1,db.search(1, br).size());
+	}
+	@Test
+	public void testSearch5(){
+		BookRequire br = new BookRequire();
+		br.setAuthor("郭光文 等主编");
+		br.setItemName("人体解剖彩色图谱（第2版）");
+		br.setPublisher("人民卫生出版社");
+		br.setBefore(true);
+		br.setVersion(2);
+		br.setBinding("精装");
+		br.setFolio("16开");
+		br.setLowPrice(10f);
+		br.setUpPrice(100f);
+		br.setLowPage(100);
+		br.setUpPage(1000);
+		br.setDiscount(3);
+		
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(1,db.search(1, br).size());
+	}
+	@Test
+	public void testSearch6(){
+		BookRequire br = new BookRequire();
+
+		br.setBefore(false);
+		br.setYear("2012");
+		
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(3,db.search(1, br).size());
+	}
+	@Test
+	public void testSearch7(){
+		BookRequire br = new BookRequire();
+
+		br.setBefore(false);
+		
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(3,db.search(1, br).size());
+	}
+	@Test
+	public void testSearch8(){
+		BookRequire br = new BookRequire();
+		br.setAuthor("郭光文 等主编");
+		br.setItemName("人体解剖彩色图谱（第2版）");
+		br.setPublisher("人民卫生出版社");
+		br.setBefore(true);
+		br.setVersion(2);
+		br.setBinding("精装");
+		br.setFolio("16开");
+		br.setLowPrice(10f);
+		br.setUpPrice(100f);
+		br.setLowPage(100);
+		br.setUpPage(1000);
+		br.setDiscount(1);
+		
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(0,db.search(1, br).size());
+	}*/
+/*	@Test
+	public void testSearch9(){
+		BookRequire br = new BookRequire();
+		br.setPublisher("digvijdfj");
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(0,db.search(0, br).size());
+	}*/
+	
+/*	@Test 
+	public void testGetSearchRowNumber1(){
+		BookRequire br = new BookRequire();
+		br.setAuthor("张云,韩洪泉");
+		br.setItemName("曾国藩和他的湘军");
+		br.setPublisher("辽宁教育出版社");
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(1,db.getSearchRowNumber(0, br));
+	}
+	@Test 
+	public void testGetSearchRowNumber2(){
+		BookRequire br = new BookRequire();
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(3,db.getSearchRowNumber(0, br));
+	}
+	@Test 
+	public void testGetSearchRowNumber3(){
+		BookRequire br = new BookRequire();
+		br.setAuthor("郭光文 等主编");
+		br.setItemName("人体解剖彩色图谱（第2版）");
+		br.setPublisher("人民卫生出版社");
+		br.setBefore(true);
+		br.setYear("2009");
+		br.setVersion(2);
+		br.setBinding("精装");
+		br.setFolio("16开");
+		br.setLowPrice(10f);
+		br.setUpPrice(100f);
+		br.setLowPage(100);
+		br.setUpPage(1000);
+		br.setDiscount(3);
+		
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(1,db.getSearchRowNumber(1, br));
+	}*/
+/*	@Test 
+	public void testGetSearchRowNumber4(){
+		BookRequire br = new BookRequire();
+		
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(30,db.getSearchRowNumber(1, br));
+	}
+	@Test 
+	public void testGetSearchRowNumber5(){
+		BookRequire br = new BookRequire();
+		br.setAuthor("郭光文 等主编");
+		br.setItemName("人体解剖彩色图谱（第2版）");
+		br.setPublisher("中国建筑工业出版社");
+		br.setBefore(true);
+		br.setYear("2009");
+		br.setVersion(2);
+		br.setBinding("精装");
+		br.setFolio("16开");
+		br.setLowPrice(10f);
+		br.setUpPrice(100f);
+		br.setLowPage(100);
+		br.setUpPage(1000);
+		br.setDiscount(3);
+		
+		br.setPage(1);
+		br.setLines(3);
+		
+		assertEquals(0,db.getSearchRowNumber(1, br));
+	}*/
+	
+//	@Test
+//	public void testGetBookStatistics(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		
+//		assertEquals(3,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics2(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setLowlimit(1000);
+//		
+//		assertEquals(0,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics3(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setCatalogid(12);
+//		
+//		assertEquals(1,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics4(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setLowlimit(1000);
+//		req.setCatalogid(12);
+//		
+//		assertEquals(0,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics5(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setCatalogid(12);
+//		req.setStartTime("2011-01-01");
+//		
+//		assertEquals(1,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics6(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setCatalogid(12);
+//		req.setStartTime("2013-01-01");
+//		
+//		assertEquals(0,db.getBookStatistics(req).size());
+//	}
+//	@Test
+//	public void testGetBookStatistics7(){
+//		BookStatisticsRequire req = new BookStatisticsRequire();
+//		req.setLines(3);
+//		req.setPage(1);
+//		req.setCatalogid(120);
+//		
+//		assertEquals(0,db.getBookStatistics(req).size());
+//	}
+	
+	@Test
+	public void testSearch()
+	{
+		DaoBook	db	= new DaoBook();
+		BookRequire	req	= new BookRequire();
+		req.setPage(1);
+		req.setLines(10);
+		req.setCatalogID(1);
+		assertEquals(1, db.search(1, req).get(0).getBookId());
+	}
+ 
 }
