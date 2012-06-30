@@ -288,7 +288,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="login" class="AdminLogin">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirect">
-				/admin/${toURL}
+				${toURL}
 			</result>
 		</action>
 
@@ -381,13 +381,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 		
-		<action name="off" class="AdminOffItem">
+		<action name="off" class="AdminOfflineItem">
 			<result type="json">
 				<param name="includeProperties">offResult</param>
 			</result>
 		</action>
 		
-		<action name="up" class="AdminUpItem">
+		<action name="up" class="AdminUplineItem">
 			<result type="json">
 				<param name="includeProperties">upResult</param>
 			</result>

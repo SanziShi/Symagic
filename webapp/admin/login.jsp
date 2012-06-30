@@ -29,7 +29,7 @@
 			<div id="sendnotehead"><strong> 管理员登录</strong></div>
 			<div id="sendnotecontent">
 
-			<form action="login" method="post" >
+			<form action="<s:property value="#request.get('javax.servlet.forward.context_path')"/>/admin/login" method="post">
 				<table id="itemsearch">
 				   <tr>
 					<th class="itemsearchth" >用户名：</th>
@@ -53,7 +53,7 @@
 						<input name="captchaValue" />
 					</td>
 					<td>
-					 <img  src="captcha_get_captcha" onclick="change_captcha(this)"/>	
+					 <img  src="<s:property value="#request.get('javax.servlet.forward.context_path')"/>/captcha_get_captcha" onclick="change_captcha(this)"/>	
 					</td>
           		 </tr>
 				
@@ -64,7 +64,7 @@
 					</td>
 				 </tr>
         </table>
-		</form>>	
+		</form>
 			</div>
 		</div>
 	
