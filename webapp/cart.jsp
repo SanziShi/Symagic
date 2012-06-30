@@ -125,7 +125,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div>
         	</div>
         </div>
-        
         <div class="cart-button"><a onclick="checkout()" href="javascript:void(0);" class="checkout"></a></div>
         </form>
         <div id="recommend"></div>
