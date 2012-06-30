@@ -63,7 +63,7 @@ public class DaoBook {
 	 *            封装者书籍详细信息的BeanBook实例
 	 * @return true 添加成功 false 添加失败
 	 */
-	public boolean addBook(BeanBook book) {
+	public int addBook(BeanBook book) {
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn.prepareStatement("insert into book ("
@@ -91,15 +91,16 @@ public class DaoBook {
 
 			ps.execute();
 
+			ps = conn
+					.prepareStatement("select bookid from book where isbn = ?");
+			ps.setString(1, book.getIsbn());
+			rs = ps.executeQuery();
+			if (!rs.next())
+				return -1;
+
 			// 插入成功
 			if (ps.getUpdateCount() == 1) {
 				if (book.getCatalogID() != null) {
-					ps = conn
-							.prepareStatement("select bookid from book where isbn = ?");
-					ps.setString(1, book.getIsbn());
-					rs = ps.executeQuery();
-					if (!rs.next())
-						return false;
 
 					ps = conn
 							.prepareStatement("insert into book_catalog_detail "
@@ -110,13 +111,13 @@ public class DaoBook {
 					ps.execute();
 
 					if (ps.getUpdateCount() == 1)
-						return true;
-					return false;
+						return rs.getInt("bookid");
+					return -1;
 				}
-				return true;
+				return rs.getInt("bookid");
 			}
 
-			return false;
+			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -128,7 +129,7 @@ public class DaoBook {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return -1;
 	}
 
 	/**
@@ -256,14 +257,15 @@ public class DaoBook {
 	 */
 	public List<BeanBook> search(int sign, BookRequire req) {
 		List<BeanBook> list = null;
-		String sql = "select t1.*, t2.catalogid " +
-				" from book as t1 left join book_catalog_detail as t2 " +
-				" on t1.bookid=t2.bookid where ";
+		String sql = "select t1.*, t2.catalogid "
+				+ " from book as t1 left join book_catalog_detail as t2 "
+				+ " on t1.bookid=t2.bookid where ";
 		// 普通查询
 		if (sign == 0) {
-			sql += " t1.author like " + " '%" + req.getAuthor() + "%' " + " and "
-					+ " t1.bookname like " + " '%" + req.getItemName() + "%' "
-					+ " and " + " t1.publisher like " + " '%" + req.getPublisher()
+			sql += " t1.author like " + " '%" + req.getAuthor() + "%' "
+					+ " and " + " t1.bookname like " + " '%"
+					+ req.getItemName() + "%' " + " and "
+					+ " t1.publisher like " + " '%" + req.getPublisher()
 					+ "%' ";
 
 			sql += " order by t1.bookid asc limit " + (req.getPage() - 1)
@@ -273,9 +275,10 @@ public class DaoBook {
 		// 高阶查询
 		else {
 
-			sql += " t1.author like " + " '%" + req.getAuthor() + "%' " + " and "
-					+ " t1.bookname like " + " '%" + req.getItemName() + "%' "
-					+ " and " + " t1.publisher like " + " '%" + req.getPublisher()
+			sql += " t1.author like " + " '%" + req.getAuthor() + "%' "
+					+ " and " + " t1.bookname like " + " '%"
+					+ req.getItemName() + "%' " + " and "
+					+ " t1.publisher like " + " '%" + req.getPublisher()
 					+ "%' ";
 
 			// 年前
@@ -318,9 +321,10 @@ public class DaoBook {
 
 			if (req.getUpDiscount() != null) {
 				sql += " and " + " t1.discount > " + req.getLowDiscount() + " "
-						+ " and " + " t1.discount < " + req.getUpDiscount() + " ";
+						+ " and " + " t1.discount < " + req.getUpDiscount()
+						+ " ";
 			}
-			
+
 			if (req.getCatalogID() != null) {
 				sql += " and " + " t2.catalogid = " + req.getCatalogID() + " ";
 			}
