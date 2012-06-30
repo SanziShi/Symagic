@@ -32,6 +32,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div id="favorite-content-bottom">
                 	<input type="checkbox" />全选&nbsp;&nbsp;
                 	<span class="fav-add-b"></span>
-                    <a href="">取消收藏</a>
+                    <a href="">加入购物车</a>&nbsp;&nbsp;<a href="">取消收藏</a>
                 </div>
         	</div>

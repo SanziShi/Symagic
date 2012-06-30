@@ -1,5 +1,6 @@
 function show_user_con(num)
 {
+	$('#favorite').slideUp(1);
 	for(var x=1;x!=5;++x)
 	{
 		if(x!=num)
@@ -43,11 +44,14 @@ function pass_submit()
 }
 function show_favorite()
 {
+	//document.getElementById('favorite_loading').style.display='block';
 	for(var x=1;x!=5;++x)$('#'+x).slideUp(1);
 	$('#favorite').slideDown(1);
 	Ajax({
 		url:'favorite',
+		onSend:function(){document.getElementById('favorite_loading').style.display='block';},
 		onSuccess:function(e){
+			document.getElementById('favorite_loading').style.display='none';
 			document.getElementById('favorite-container').innerHTML=e;
 			}
 		})

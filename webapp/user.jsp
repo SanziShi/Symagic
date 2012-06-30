@@ -102,13 +102,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="favorite" class="user_note hide">
         	<div class="head">我的收藏商品</div>
-        	<div id="loading"></div>
+        	<div id="favorite_loading"></div>
         	<div id="favorite-container">
         	</div>
         </div>
         <div id="address" class="user_note hide">
         	<div class="head">我的收货地址</div>
-        	<div id="loading"></div>
+        	<div id="address_loading"></div>
         	<div id="address-container">
             	<div id="address-content">
                 <!--修改地址迭代开始-->
