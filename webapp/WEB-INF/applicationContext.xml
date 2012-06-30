@@ -327,7 +327,7 @@
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 
-	<bean id="updateNickName"
+	<bean id="updateNickname"
 		class="org.symagic.user.action.userinfo.UpdateUserNicknameAction"
 		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
