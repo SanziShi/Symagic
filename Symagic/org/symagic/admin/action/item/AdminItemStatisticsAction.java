@@ -44,7 +44,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		if (catalogID == null || catalogID != 0)
 			require.setCatalogid(catalogID);
 		require.setLines(lines);
-		require.setLowlimit(limit);
+		if (limit != null)
+			require.setLowlimit(limit);
 		require.setPage(page);
 		// 编码时间
 		GregorianCalendar startCalendar = null;
