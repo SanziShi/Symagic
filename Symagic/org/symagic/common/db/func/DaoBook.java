@@ -91,6 +91,10 @@ public class DaoBook {
 
 			ps.execute();
 
+			if (ps.getUpdateCount() != 1)
+				return -1;
+
+			// 插入成功
 			ps = conn
 					.prepareStatement("select bookid from book where isbn = ?");
 			ps.setString(1, book.getIsbn());
@@ -98,26 +102,23 @@ public class DaoBook {
 			if (!rs.next())
 				return -1;
 
-			// 插入成功
-			if (ps.getUpdateCount() == 1) {
-				if (book.getCatalogID() != null) {
+			
 
-					ps = conn
-							.prepareStatement("insert into book_catalog_detail "
-									+ "(bookid, catalogid) " + "values (?, ?)");
-					ps.setInt(1, rs.getInt("bookid"));
-					ps.setInt(2, book.getCatalogID());
+			if (book.getCatalogID() != null) {
 
-					ps.execute();
+				ps = conn.prepareStatement("insert into book_catalog_detail "
+						+ "(bookid, catalogid) " + "values (?, ?)");
+				ps.setInt(1, rs.getInt("bookid"));
+				ps.setInt(2, book.getCatalogID());
 
-					if (ps.getUpdateCount() == 1)
-						return rs.getInt("bookid");
-					return -1;
-				}
+				ps.execute();
+
+				if (ps.getUpdateCount() == 1)
+					return rs.getInt("bookid");
+				return -1;
+			} else
 				return rs.getInt("bookid");
-			}
 
-			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

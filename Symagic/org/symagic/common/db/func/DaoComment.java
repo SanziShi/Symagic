@@ -89,7 +89,7 @@ public class DaoComment {
 				BeanComment	comment	= new BeanComment();
 				comment.setBookID(rs.getInt("bookid"));
 				comment.setCommentDate(rs.getString("commentdate"));
-				comment.setContent(rs.getString("comment"));
+				comment.setContent(rs.getString("content"));
 				comment.setRating(rs.getString("rating"));
 				comment.setUsername(rs.getString("username"));
 				list.add(comment);
