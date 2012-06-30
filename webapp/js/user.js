@@ -28,15 +28,14 @@ function nickname_c(e)
 	var c=document.getElementById('nickname_c').value;
 	Ajax({
 		url:'user/update_nickname&nickname='+c,
-		onSuccess:function(e){var a=JSON.parse(e);alert(a.updateResult);//if(a.updateResult){alert('修改成功');location.href='user'}}
-			}
+		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult){alert('修改成功');location.href='user'}}
 		})
 }
 function pass_submit()
 {
-	var a=document.getElementById('pass_before');
-	var b=document.getElementById('pass_new');
-	var c=document.getElementById('pass_confirm');
+	var a=document.getElementById('pass_before').value;
+	var b=document.getElementById('pass_new').value;
+	var c=document.getElementById('pass_confirm').value;
 	Ajax({
 		url:'user/update_password&password='+a+'&newPasswordnew='+b+'&PasswordConfirm='+c,
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');}
