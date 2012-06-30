@@ -142,7 +142,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 
 		File destFile = new File(fileFolder, fileName);
 
-		FileUtils.moveFile(picture, destFile);
+		FileUtils.copyFile(picture, destFile);
 
 		// 生成时间
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");

@@ -55,6 +55,8 @@ public class AdminOrderListAction extends CatalogBase {
 		
 		OrderListResult result = orderService.orderList(userName, lines, page, startCalendar == null ? null : startCalendar.getTime() , endCalendar == null ? null : endCalendar.getTime(), orderState);
 		
+		if( result == null ) return ERROR;
+		
 		orderList = result.orders;
 		totalPage = result.totalPage;
 		

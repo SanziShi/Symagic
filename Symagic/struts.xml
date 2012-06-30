@@ -273,9 +273,19 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="item_add_submit" class="AdminAddItem">
-			<param name="actionName">item_detail</param>
-			<param name="namespace">/admin</param>
-			<param name="itemID">${itemID}</param>
+			<interceptor-ref name="fileUpload">
+				<!-- 文件过滤 -->
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+				<!-- 文件大小, 以字节为单位 -->
+				<param name="maximumSize">1025956</param>
+			</interceptor-ref>
+			<!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+			<interceptor-ref name="adminLoginInterceptorStack" />
+			<result type="redirectAction">
+				<param name="actionName">item_detail</param>
+				<param name="namespace">/admin</param>
+				<param name="itemID">${itemID}</param>
+			</result>
 		</action>
 
 		<action name="quick_search" class="AdminQuickSearchItem">

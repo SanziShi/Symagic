@@ -152,7 +152,7 @@ public class ItemModifySubmitAction extends ActionSupport implements
 			File destFile = new File(fileFolder, book.getPicture().substring(
 					book.getPicture().lastIndexOf('/') + 1));
 
-			FileUtils.moveFile(picture, destFile);
+			FileUtils.copyFile(picture, destFile);
 		}
 
 		// 生成时间

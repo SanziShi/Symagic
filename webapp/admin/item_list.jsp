@@ -54,7 +54,7 @@
 				</div>
 
 				<div id="" style="float:right">
-					<form action="quick_search">
+					<form action="quick_search" method="post">
 						<select name="catalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>
@@ -222,7 +222,7 @@
 									value="<s:property value = '#bookItems.itemID'/>" />
 								</td>
 								<td width="16%" rowspan="1" align="right" class="inputHeader">
-									<a href="item_info.html"><img
+									<a href="item_detail?itemID=<s:property value = '#bookItems.itemID'/>"><img
 										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="#bookItems.picturePath"/>"
 										alt="<s:property value = '#bookItems.name'/>" id="img_format" />
 								</a></td>
@@ -301,7 +301,7 @@
 						type="button" value="返回顶部" /> </a>
 				</div>
 				<div id="doublecontent2">
-					<form action="item_add_submit" method="post">
+					<form action="item_add_submit" method="post" enctype="multipart/form-data">
 						<table id="tradequery">
 							<tr>
 								<th width="181">图书名称：</th>
