@@ -76,6 +76,14 @@ function delete_from_cart(id)
 		}
 	})
 }
+/******商品加入收藏夹*******/
+function add_to_favorite(id)
+{
+	Ajax({
+		url:'favortite/add_favorite?itemID='+id,
+		onSuccess:function(e){var t=JSON.parse(e);if(e.addResult)alert('添加成功！');}
+		})
+}
 function change_captcha(e)
 {
 	e.src='captcha_get_captcha';

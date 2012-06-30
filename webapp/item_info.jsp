@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <s:else>
                     <a  href="javascript:void(0)" class="disable" ></a>
                     </s:else>
-                    <a onclick="favorite()" href="javascript:void(0)" class="favorite"></a>
+                    <a onclick="add_to_favorite(<s:property value='itemID'/>)" href="javascript:void(0)" class="favorite"></a>
 					<div class="clear"></div>
 				</div>
         </div>

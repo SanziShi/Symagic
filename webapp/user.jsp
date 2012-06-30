@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="head">我的收货地址</div>
         	<div id="address_loading"></div>
         	<div id="address-container">
-            	<div id="address-content">
+            	<div id="address-content" class="">
                 <!--修改地址迭代开始-->
                 <div id="test" class="address-edit">
                 <h2>修改地址<span class="close" onclick="close_address(this)"></span></h2>
