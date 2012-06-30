@@ -1,5 +1,7 @@
 package org.symagic.common.db.func;
 
+import java.util.List;
+
 /**
  * 封装所有书籍搜索条件的类
  * @author wanran
@@ -23,7 +25,7 @@ public class BookRequire {
 	/**
 	 * 分类ID
 	 */
-	private Integer catalogID = null;
+	private List<Integer> catalogIDList = null;
 	
 	/**
 	 * 出版年
@@ -94,9 +96,7 @@ public class BookRequire {
 	
 	
 
-	public Integer getCatalogID() {
-		return catalogID;
-	}
+	 
 	
 	
 	/**
@@ -208,9 +208,7 @@ public class BookRequire {
 
 
 
-	public void setCatalogID(Integer catalogID) {
-		this.catalogID = catalogID;
-	}
+ 
 
 	public Boolean getBefore() {
 		return before;
@@ -248,6 +246,15 @@ public class BookRequire {
 		this.lowDiscount = lowDiscount;
 	}
 
+	public List<Integer> getCatalogIDList() {
+		return catalogIDList;
+	}
+
+	public void setCatalogIDList(List<Integer> catalogIDList) {
+		this.catalogIDList = catalogIDList;
+	}
+
+ 
 
 
 
