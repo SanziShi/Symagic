@@ -44,12 +44,13 @@ public class LoginAction extends ActionSupport{
 			validateResult=false;
 			return;
 		}
-		if(!userName.matches("*@*")){
+		if(userName.indexOf("@")==-1){
 			validateResult=false;
 			return;
 		}
 		//登录三次失败后，验证码的检验
-		if(UserSessionUtilty.getLoginErrorTime()>=3){
+		Integer errorTimes=UserSessionUtilty.getLoginErrorTime();
+		if(errorTimes!=null&&errorTimes>=3){
 			if(isEmpty(captchaValue)){
 				validateResult=false;
 				return;
@@ -61,6 +62,11 @@ public class LoginAction extends ActionSupport{
 		
 		super.validate();
 	}
+	
+	private boolean isEmpty(String content){
+		return (content==null||content.trim().equals(""));
+	}
+	
 	
 	public JCaptcha getSymagicCaptcha() {
 		return symagicCaptcha;
@@ -75,9 +81,7 @@ public class LoginAction extends ActionSupport{
 		this.userService = userService;
 	}
 	
-	private boolean isEmpty(String content){
-		return (content==null||content.trim().equals(""));
-	}
+	
 	
 	public boolean isLoginResult() {
 		return loginResult;

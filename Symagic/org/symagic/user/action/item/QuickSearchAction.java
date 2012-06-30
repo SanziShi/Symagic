@@ -74,7 +74,8 @@ private List<ItemBean>items;//用于显示的商品列表
 			 */
 			//推荐商品
 			if(UserSessionUtilty.isLogin()){
-			bookIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), recommendNumber);
+			//未完成 
+//				bookIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), recommendNumber);
 			}
 			else{
 				   recommend=new ArrayList<ItemTinyBean>();
