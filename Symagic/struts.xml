@@ -140,6 +140,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="user" class="enterUserInfo">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>/user.jsp</result>
 		</action>
 
@@ -232,7 +233,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="update_nickname" class="updateNickname">
 			<result type="json">
-				<param name="includeProperties">upadteResult</param>
+				<param name="includeProperties">updateResult</param>
 			</result>
 		</action>
 	</package>

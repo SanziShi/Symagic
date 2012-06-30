@@ -89,7 +89,6 @@
 	<bean id="AdminDeleteItem" class="org.symagic.admin.action.item.ItemDeleteAction"
 		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
-		<property name="shopImageFileFolder" value="upload"></property>
 	</bean>
 
 	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction"
@@ -328,7 +327,7 @@
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 
-	<bean id="updateNickName"
+	<bean id="updateNickname"
 		class="org.symagic.user.action.userinfo.UpdateUserNicknameAction"
 		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
