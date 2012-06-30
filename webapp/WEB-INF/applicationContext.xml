@@ -24,7 +24,7 @@
 
 
 	<bean id="checkCaptcha" class="org.symagic.common.action.captcha.CheckCaptchaAction"
-		scope="prototype">
+		scope="request">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 	</bean>
 
@@ -34,7 +34,7 @@
 
 	<!-- 通用的ActionBean -->
 	<bean id="OrderDetailAction" class="org.symagic.common.action.order.OrderDetailAction"
-		scope="prototype">
+		scope="request">
 		<property name="orderService" ref="OrderService"></property>
 	</bean>
 
@@ -48,20 +48,20 @@
 	</bean>
 
 	<bean id="AdminLogin" class="org.symagic.admin.action.login.AdminLoginAction"
-		scope="prototype">
+		scope="request">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 		<property name="daoAdmin" ref="DaoAdmin"></property>
 	</bean>
 
 	<!-- 管理员Item -->
 	<bean id="AdminAddItem" class="org.symagic.admin.action.item.ItemAddAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="upload"></property>
 	</bean>
 
 	<bean id="AdminEnterModifyItem" class="org.symagic.admin.action.item.ItemModifyEnterAction"
-		scope="prototype">
+		scope="request">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="errorHeader" value="错了"></property>
@@ -69,7 +69,7 @@
 	</bean>
 
 	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="upload"></property>
 		<property name="errorHeader" value="错了"></property>
@@ -77,22 +77,22 @@
 	</bean>
 
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="AdminUplineItem" class="org.symagic.admin.action.item.ItemUpAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="AdminDeleteItem" class="org.symagic.admin.action.item.ItemDeleteAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction"
-		scope="prototype">
+		scope="request">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
@@ -101,7 +101,7 @@
 	</bean>
 
 	<bean id="AdminEnterItemManager" class="org.symagic.admin.action.item.ItemManagerEnterAction"
-		scope="prototype">
+		scope="request">
 		<property name="sign" value="1"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
@@ -109,7 +109,7 @@
 	</bean>
 
 	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.AdminItemQuickSearch"
-		scope="prototype">
+		scope="request">
 		<property name="sign" value="0"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
@@ -117,7 +117,7 @@
 	</bean>
 
 	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
@@ -129,28 +129,28 @@
 	</bean>
 
 	<bean id="AdminAddCatalog" class="org.symagic.admin.action.catalog.CatalogAddAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
 	<bean id="AdminSubmitCatalogModify"
 		class="org.symagic.admin.action.catalog.CatalogEditSubmitAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
 	<bean id="AdminEnterEditCatalog" class="org.symagic.admin.action.catalog.CatalogEditEnterAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
 	<bean id="AdminDeleteCatalog" class="org.symagic.admin.action.catalog.CatalogDeleteAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
 	<bean id="AdminOrderList" class="org.symagic.admin.action.order.AdminOrderListAction"
-		scope="prototype">
+		scope="request">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
@@ -158,49 +158,49 @@
 
 	<bean id="AdminEnterOrderEdit"
 		class="org.symagic.admin.action.order.AdminOrderEditEnterAction"
-		scope="prototype">
+		scope="request">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 	</bean>
 
 	<bean id="AdminSubmitOrderEdit"
 		class="org.symagic.admin.action.order.AdminOrderEditSubmitAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoOrder" ref="DaoOrder"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="AdminPassOrder" class="org.symagic.admin.action.order.AdminPassOrderAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
 	<bean id="AdminFailOrder" class="org.symagic.admin.action.order.AdminFailOrderAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoOrder" ref="DaoOrder"></property>
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="AdminDeleteOrder" class="org.symagic.admin.action.order.AdminDeleteOrderAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
 	<bean id="AdminSubmitScoreRate"
 		class="org.symagic.admin.action.level.AdminScoreRateSubmitAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoLevel" ref="DaoLevel"></property>
 	</bean>
 
 	<bean id="AdminEnterCommentManager"
 		class="org.symagic.admin.action.comment.AdminEnterCommentManagerAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
 
 	<bean id="AdminListUser" class="org.symagic.admin.action.user.UserListAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoLevel" ref="DaoLevel"></property>
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="lines" value="15"></property>
@@ -223,38 +223,38 @@
 
 
 	<bean id="loginClass" class="org.symagic.user.action.login.LoginAction"
-		scope="prototype">
+		scope="request">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 		<property name="userService" ref="UserService"></property>
 	</bean>
 
 	<bean id="logoutClass" class="org.symagic.user.action.login.LogoutAction"></bean>
 	<bean id="registerClass" class="org.symagic.user.action.register.RegisterAction"
-		scope="prototype">
+		scope="request">
 		<property name="symagicCaptcha" ref="JCaptcha"></property>
 		<property name="userService" ref="UserService"></property>
 	</bean>
 	<bean id="usernameUnique" class="org.symagic.user.action.register.CheckUsernameAction"
-		scope="prototype">
+		scope="request">
 		<property name="userService" ref="UserService"></property>
 	</bean>
 
 	<!-- 关于购物的bean -->
 	<bean id="addToCart" class="org.symagic.user.action.cart.CartAddItemAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoCart" ref="DaoCart"></property>
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="deleteFromCart" class="org.symagic.user.action.cart.CartDeleteItemAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoCart" ref="DaoCart"></property>
 	</bean>
 	<bean id="detailOfCart" class="org.symagic.user.action.cart.CartDetailAction">
 		<property name="itemService" ref="ItemService"></property>
 	</bean>
 	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoCart" ref="DaoCart"></property>
 	</bean>
 
@@ -265,17 +265,17 @@
 
 	<!-- 关于收藏夹的bean -->
 	<bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
 	</bean>
 	<bean id="deleteFromFavority" class="org.symagic.user.action.favority.FavorityDeleteAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
 	</bean>
 
 	<!-- 关于商品的bean -->
 	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction"
-		scope="prototype">
+		scope="request">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="recommendService" ref="RecommendService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
@@ -287,7 +287,7 @@
 	</bean>
 
 	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction"
-		scope="prototype">
+		scope="request">
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="recommendService" ref="RecommendService"></property>
@@ -299,7 +299,7 @@
 	</bean>
 
 	<bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction"
-		scope="prototype">
+		scope="request">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
@@ -308,7 +308,7 @@
 	</bean>
 
 	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction"
-		scope="prototype">
+		scope="request">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
 		<property name="errorHeader" value="检索信息有误"></property>
@@ -317,28 +317,28 @@
 	</bean>
 
 	<!-- <bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction" 
-		scope="prototype"> <property name="daoUser" ref="DaoUser"></property> <property 
+		scope="request"> <property name="daoUser" ref="DaoUser"></property> <property 
 		name="orderService" ref="OrderService"></property> </bean> -->
 
 	<bean id="forgetPassword" class="org.symagic.user.action.userinfo.ForgetPasswordAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 
 	<bean id="updateNickName"
 		class="org.symagic.user.action.userinfo.UpdateUserNicknameAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 
 	<bean id="updatePassword"
 		class="org.symagic.user.action.userinfo.UpdateUserPasswordAction"
-		scope="prototype">
+		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 
 	<!-- <bean id="forgetPasswordEnter" class="org.symagic.action.userinfo.ForgetPasswordEnterAction" 
-		scope="prototype"> </bean> -->
+		scope="request"> </bean> -->
 
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
