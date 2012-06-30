@@ -196,7 +196,7 @@ public class DaoComment {
 			}
 			if (count != 0)
 				return sum / count;
-			
+			return 0;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

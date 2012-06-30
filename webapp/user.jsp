@@ -70,8 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<form action="quick_search" >
 			<div id="searchright2">
-			  <input type="text" name="product" id="textInput"/>
-			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
+			  <input type="text" name="keyword" id="textInput"/>
+			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
 			<div id="searchright1">
 			 <select name="catalogID" >
@@ -207,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <s:iterator value="orderList" var='iter'>
 				  <tr>
             		<td>
-						<a href="order_info.html"><s:property value='#iter.orderId'/></a>
+						<a href="order_info.html"><s:property value='#iter.orderID'/></a>
 					</td>
 					<td>
 						<s:property value='#iter.orderTime'/>

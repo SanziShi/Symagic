@@ -37,7 +37,7 @@ private Float totalPrice;//购物车中商品的总价
 		// TODO Auto-generated method stub
 	 items=new ArrayList<ItemTinyBean>();
 
-	 totalPrice=itemService.fillItemWithNumber(items);
+	 totalPrice=itemService.fillItemFromCart(items);
      totalNumber=UserSessionUtilty.getTotalNumber();
 	
 	 return super.execute();
