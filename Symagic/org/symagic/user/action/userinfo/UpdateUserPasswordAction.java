@@ -51,8 +51,8 @@ public class UpdateUserPasswordAction extends CatalogBase{
 		return newPasswordConfirm;
 	}
 
-	public void setNewPasswordConirm(String newPasswordConirm) {
-		this.newPasswordConfirm = newPasswordConirm;
+	public void setNewPasswordConfirm(String newPasswordConfirm) {
+		this.newPasswordConfirm = newPasswordConfirm;
 	}
 
 	public static long getSerialversionuid() {
