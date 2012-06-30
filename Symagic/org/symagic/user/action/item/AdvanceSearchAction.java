@@ -76,11 +76,11 @@ public class AdvanceSearchAction extends CatalogBase {
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
-		if(name!=null)
+		if(!isEmpty(name))
 		require.setItemName(name);
-		if(publisher!=null)
+		if(!isEmpty(publisher))
 		require.setPublisher(publisher);
-		if(author!=null)
+		if(isEmpty(author))
 			require.setAuthor(author);
 		require.setCatalogID(catalogID);
 		setYear(require, publishTime);
@@ -122,6 +122,9 @@ public class AdvanceSearchAction extends CatalogBase {
 				// 装饰成前台所需的信息
 				itemService.decorateForItem(books, items);
 		return super.execute();
+	}
+	private boolean isEmpty(String content){
+		return content==null||content.trim().equals("");
 	}
 	
 	

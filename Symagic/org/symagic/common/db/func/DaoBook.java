@@ -268,6 +268,9 @@ public class DaoBook {
 					+ req.getItemName() + "%' " + " and "
 					+ " t1.publisher like " + " '%" + req.getPublisher()
 					+ "%' ";
+			if (req.getCatalogID() != null) {
+				sql += " and " + " t2.catalogid = " + req.getCatalogID() + " ";
+			}	
 
 			sql += " order by t1.bookid asc limit " + (req.getPage() - 1)
 					* req.getLines() + " , " + req.getLines();

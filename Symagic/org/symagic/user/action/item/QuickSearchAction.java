@@ -51,7 +51,7 @@ private List<ItemBean>items;//用于显示的商品列表
 		   BookRequire require=new BookRequire();
 		   if(catalogID!=null)
 		   require.setCatalogID(catalogID);
-		   if(keyword!=null){
+		   if(keyword!=null&&!keyword.trim().equals("")){
 		   require.setAuthor(keyword);
 		   require.setItemName(keyword);
 		   require.setPublisher(keyword);
