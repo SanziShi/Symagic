@@ -76,13 +76,14 @@ public class AdvanceSearchAction extends CatalogBase {
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
-		if(name!=null)
+		if(!isEmpty(name))
 		require.setItemName(name);
-		if(publisher!=null)
+		if(!isEmpty(publisher))
 		require.setPublisher(publisher);
-		if(author!=null)
+		if(!isEmpty(author))
 			require.setAuthor(author);
-		require.setCatalogID(catalogID);
+		if(catalogID!=null&&catalogID!=0)
+		 require.setCatalogID(catalogID);
 		setYear(require, publishTime);
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
@@ -123,15 +124,18 @@ public class AdvanceSearchAction extends CatalogBase {
 				itemService.decorateForItem(books, items);
 		return super.execute();
 	}
+	private boolean isEmpty(String content){
+		return content==null||content.trim().equals("");
+	}
 	
 	
 	private void setVersion(BookRequire require,Integer index){
-		if(index==0)return;
+		if(index==null||index==0)return;
 		else
 		require.setVersion(index);
 	}
 	private void setDiscount(BookRequire require,Integer index){
-		if(index==0)return;
+		if(index==null||index==0)return;
 		switch(index){
 		case 1:require.setUpDiscount(0.3F);
 			   require.setLowDiscount(0.1F);
@@ -144,6 +148,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		   break;
 		case 4:
 		   require.setLowDiscount(0.7F);
+		   require.setLowDiscount(1.0F);
 		   break;
 		}
 	}
