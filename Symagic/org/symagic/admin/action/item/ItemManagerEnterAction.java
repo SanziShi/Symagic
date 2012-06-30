@@ -70,25 +70,30 @@ public class ItemManagerEnterAction extends CatalogBase {
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
-		if (name != null)
+		if (!isEmpty(name))
 			require.setItemName(name);
-		if (publisher != null)
+		if (!isEmpty(publisher))
 			require.setPublisher(publisher);
-		require.setCatalogID(catalogID);
+		if (!isEmpty(author))
+			require.setAuthor(author);
+		if (catalogID != null && catalogID != 0)
+			require.setCatalogID(catalogID);
 		setYear(require, publishTime);
-		require.setVersion(edition);
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
 		setBookSize(require, booksize);
-		setPrice(require, price); 
-		require.setDiscount(discount);
-		if (author != null)
-			require.setAuthor(author);
+		setPrice(require, price);
+
+		setVersion(require, edition);
+
+		setDiscount(require, discount);
+
 		require.setLines(lines);
 		require.setPage(page);
 
 		// 搜索符合条件的商品
 		List<BeanBook> books = itemService.search(sign, require);
+
 		if (books == null)
 			return "error";
 		int searchNumber = itemService.getSearchNum(sign, require);
@@ -98,6 +103,44 @@ public class ItemManagerEnterAction extends CatalogBase {
 		// 装饰成前台所需的信息
 		itemService.decorateForItem(books, items);
 		return super.execute();
+	}
+
+	private boolean isEmpty(String content) {
+		return content == null || content.trim().equals("");
+	}
+
+	private void setVersion(BookRequire require, Integer index) {
+		if (index == null)
+			return;
+		if (index == 0)
+			return;
+		else
+			require.setVersion(index);
+	}
+
+	private void setDiscount(BookRequire require, Integer index) {
+		if (index == null)
+			return;
+		if (index == 0)
+			return;
+		switch (index) {
+		case 1:
+			require.setUpDiscount(0.3F);
+			require.setLowDiscount(0.1F);
+			break;
+		case 2:
+			require.setUpDiscount(0.5F);
+			require.setLowDiscount(0.3F);
+			break;
+		case 3:
+			require.setUpDiscount(0.7F);
+			require.setLowDiscount(0.5F);
+			break;
+		case 4:
+			require.setLowDiscount(0.7F);
+			require.setLowDiscount(1.0F);
+			break;
+		}
 	}
 
 	private void setBookSize(BookRequire require, Integer index) {

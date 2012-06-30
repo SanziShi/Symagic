@@ -36,9 +36,9 @@ public class AdminItemQuickSearch extends CatalogBase {
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件,两个条件 都为空时，返回所有商品
 		BookRequire require = new BookRequire();
-		if (catalogID != null)
+		if (catalogID != null && catalogID != 0)
 			require.setCatalogID(catalogID);
-		if (keyword != null) {
+		if (keyword != null && !keyword.trim().equals("")) {
 			require.setAuthor(keyword);
 			require.setItemName(keyword);
 			require.setPublisher(keyword);
@@ -60,28 +60,27 @@ public class AdminItemQuickSearch extends CatalogBase {
 		return super.execute();
 	}
 
+	@Override
+	public void validate() {
+		// TODO Auto-generated method stub
+		super.validate();
+	}
+
+	public ItemService getItemService() {
+		return itemService;
+	}
+
+	public void setItemService(ItemService itemService) {
+		this.itemService = itemService;
+	}
+
+
 	public String getKeyword() {
 		return keyword;
 	}
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
-	}
-
-	public Integer getCatalogID() {
-		return catalogID;
-	}
-
-	public void setCatalogID(Integer catalogID) {
-		this.catalogID = catalogID;
-	}
-
-	public Integer getPage() {
-		return page;
-	}
-
-	public void setPage(Integer page) {
-		this.page = page;
 	}
 
 	public String getErrorHeader() {
@@ -100,12 +99,36 @@ public class AdminItemQuickSearch extends CatalogBase {
 		this.errorSpecification = errorSpecification;
 	}
 
-	public ItemService getItemService() {
-		return itemService;
+	public Integer getPage() {
+		return page;
 	}
 
-	public void setItemService(ItemService itemService) {
-		this.itemService = itemService;
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
+
+	public List<ItemBean> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemBean> items) {
+		this.items = items;
+	}
+
+	public Integer getCatalogID() {
+		return catalogID;
+	}
+
+	public void setCatalogID(Integer catalogID) {
+		this.catalogID = catalogID;
 	}
 
 	public Integer getSign() {
@@ -124,20 +147,5 @@ public class AdminItemQuickSearch extends CatalogBase {
 		this.lines = lines;
 	}
 
-	public Integer getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(Integer totalPage) {
-		this.totalPage = totalPage;
-	}
-
-	public List<ItemBean> getItems() {
-		return items;
-	}
-
-	public void setItems(List<ItemBean> items) {
-		this.items = items;
-	}
 
 }
