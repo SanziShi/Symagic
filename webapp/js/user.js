@@ -1,6 +1,7 @@
 function show_user_con(num)
 {
 	$('#favorite').slideUp(1);
+	$('#address').slideUp(1);
 	for(var x=1;x!=5;++x)
 	{
 		if(x!=num)
@@ -46,6 +47,7 @@ function show_favorite()
 {
 	//document.getElementById('favorite_loading').style.display='block';
 	for(var x=1;x!=5;++x)$('#'+x).slideUp(1);
+	$('#address').slideUp(1);
 	$('#favorite').slideDown(1);
 	Ajax({
 		url:'favorite',
@@ -53,6 +55,20 @@ function show_favorite()
 		onSuccess:function(e){
 			document.getElementById('favorite_loading').style.display='none';
 			document.getElementById('favorite-container').innerHTML=e;
+			}
+		})
+}
+function show_address()
+{
+	for(var x=1;x!=5;++x)$('#'+x).slideUp(1);
+	$('#favorite').slideUp(1);
+	$('#address').slideDown(1);
+	Ajax({
+		url:'address',
+		onSend:function(){document.getElementById('address_loading').style.display='block';},
+		onSuccess:function(e){
+			document.getElementById('address_loading').style.display='none';
+			document.getElementById('adress-container').innerHTML=e;
 			}
 		})
 }

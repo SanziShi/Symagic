@@ -550,7 +550,7 @@ function ajax_delete_tag(id){
 							document.getElementById('cart').appendChild(t);
 							t=null;*/
 							 var obj = JSON.parse(e);
-							 if(e.deleteResult==true){
+							 if(obj.deleteResult==true){
 							 var tag = document.getElementById(id);
                              tag.parentNode.removeChild(tag);
 							  alert("删除成功！");
@@ -564,8 +564,9 @@ function ajax_delete_tag(id){
 
 //商品下架
 function ajax_item_off(e,id){
+	var result = confirm("该操作将会将商品下架，确定继续吗？");
 	Ajax({
-	                url:'item_manager/off?itemId='+id,
+	                url:'item_manager/off?itemID='+id,
 				    type:'GET',
 					onSend:function(){},
 					onSuccess:function()
@@ -576,6 +577,13 @@ function ajax_item_off(e,id){
 							document.getElementById('cart').appendChild(t);
 							t=null;*/
 							set_value(e);
+							var obj = JSON.parse(e);
+							 if(obj.deleteResult==true){
+							 var tag = document.getElementById(id);
+                            tag.parentNode.removeChild(tag);
+							  alert("下架成功！");
+							 }
+							 else alert("下架出错，请返回重新尝试！");
 						}
 						});
 	

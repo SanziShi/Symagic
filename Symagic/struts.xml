@@ -45,9 +45,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
 		</global-results>
-
-
-	</package>
+    </package>
 
 
 	<!-- 通用的action -->
@@ -212,8 +210,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<!-- 用户中与商品项有关的小接口 -->
 
-	<package name="item-user-default" extends="symagic-user-default"
-		namespace="/item">
+	<package name="item-user-default" extends="symagic-user-default" namespace="/item">
 		<action name="comment" class="submitComment">
 			<result type="json">
 				<param name="includeProperties">submitResult</param>
@@ -225,7 +222,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 	</package>
-
+	
 	<!-- 用户信息相关 -->
 	<package name="info-user-default" extends="symagic-user-default"
 		namespace="/user">
@@ -237,6 +234,26 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="update_nickname" class="updateNickname">
 			<result type="json">
 				<param name="includeProperties">updateResult</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 地址相关 -->
+	<package name="address-user-default" extends="symagic-user-default"
+		namespace="/address">
+		<action name="submit_address" class="addAddress">
+			<result type="json">
+				<param name="includeProperties">addResult</param>
+			</result>
+		</action>
+		<action name="get_next_level" class="getNextLevel">
+			<result type="json">
+				<param name="includeProperties">nextLevelArray</param>
+			</result>
+		</action>
+		<action name="delete_address" class="deleteAddress">
+			<result type="json">
+				<param name="includeproperties">deleteResult</param>
 			</result>
 		</action>
 	</package>
@@ -367,9 +384,5 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 	</package>
-
-
-</struts>    
-
-
-
+</struts>
+	

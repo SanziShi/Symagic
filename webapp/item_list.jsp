@@ -183,7 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
                     <th>开&nbsp;&nbsp;&nbsp;本：</th>
             		<td>
-						<select name="catogory" class="midselect">
+						<select name="booksize" class="midselect">
               				<option value="0">不限</option>
              				<option value="1">32开</option>
               				<option value="2">16开</option>

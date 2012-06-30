@@ -635,23 +635,32 @@ public class DaoBook {
 	public boolean deleteBook(int bookid) {
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
-			// 删除书籍目录
 			ps = conn
 					.prepareStatement("delete from book_catalog_detail where bookid=?");
 			ps.setInt(1, bookid);
 			ps.execute();
 
-			// 删除包含此商品的购物车
+			// 删除购物车记录
 			ps = conn.prepareStatement("delete from cart where bookid=?");
 			ps.setInt(1, bookid);
 			ps.execute();
 
-			// 删除book表中指定书籍记录
+		
+
+			// 删除收藏夹记录
+			ps	= conn.prepareStatement("delete from favority_folder where bookid=?");
+			ps.setInt(1, bookid);
+			ps.execute();
+			
+			// 删除评论记录
+			ps	= conn.prepareStatement("delete from comment where bookid=?");
+			ps.setInt(1, bookid);
+			ps.execute();
+			
+			// 删除书籍记录
 			ps = conn.prepareStatement("delete from book where bookid=?");
 			ps.setInt(1, bookid);
 			ps.execute();
-
-			// 删除收藏夹中指定书籍记录
 
 			if (ps.getUpdateCount() == 1)
 				return true;
