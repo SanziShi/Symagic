@@ -108,7 +108,7 @@ public class ItemService {
 		detail.setBookName(book.getBookName());
 		detail.setCatalogClassify(getCatalogName(currentCatalog));
 		detail.setDiscout(book.getDiscount());
-		detail.setSize(book.getFolio()+"开");
+		detail.setSize(book.getFolio());
 		detail.setInventory(book.getInventory());
 		detail.setIsbn(book.getIsbn());
 		float marketPrice = MathUtilty.roundWithdigits(book.getMarketPrice());
@@ -143,8 +143,8 @@ public class ItemService {
 		calender.setTime(date);
 		TimeBean parseTime = new TimeBean();
 		parseTime.setYear(calender.get(Calendar.YEAR));
-		parseTime.setYear(calender.get(Calendar.MONTH));
-		parseTime.setYear(calender.get(Calendar.DAY_OF_MONTH));
+		parseTime.setMonth(calender.get(Calendar.MONTH) + 1);
+		parseTime.setDay(calender.get(Calendar.DAY_OF_MONTH));
 		detail.setParseTime(parseTime);
 		
 		//设置当前选中的ID

@@ -47,7 +47,7 @@
 					<strong>编辑商品</strong>
 				</div>
 				<div id="sendnotecontent">
-					<form action="item_modify_submit" method="post">
+					<form action="item_modify_submit" method="post" enctype="multipart/form-data">
 						<table id="tradequery">
 							<tr>
 								<th width="181" id="tr_align">图书名称：</th>
@@ -69,7 +69,7 @@
 								<th id="tr_align"><span class="inputHeader">商品图片：</span></th>
 								<td><img id="img_format"
 									src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value='book.picturePath'/>" />
-									<input type="file" name="<s:property value='book.bookName'/>" />
+									<input type="file" name="picture" />
 								</td>
 								<td></td>
 							</tr>
@@ -90,17 +90,14 @@
 
 							<tr>
 								<th id="tr_align">出版时间：</th>
-								<td>
-						<select name="publishTime.year" id="sYear">
-              				<!--<option>2012</option>
+								<td><select name="publishTime.year" id="sYear">
+										<!--<option>2012</option>
               				<option>2011</option>
                             <option>2010</option>
                             <option>2009</option>
                             <option>2008</option>-->
-              			</select>
-						&nbsp;年&nbsp;
-						<select name="publishTime.month" id="sMonth">
-              				<!--<option>01</option>
+								</select> &nbsp;年&nbsp; <select name="publishTime.month" id="sMonth">
+										<!--<option>01</option>
               				<option>02</option>
               				<option>03</option>
               				<option>04</option>
@@ -111,10 +108,8 @@
               				<option>10</option>
               				<option>11</option>
 			  				<option>12</option>  -->
-            			</select>
-						&nbsp;月&nbsp;
-						<select name="publishTime.day" id="sDay">
-              				<!--<option>01</option>
+								</select> &nbsp;月&nbsp; <select name="publishTime.day" id="sDay">
+										<!--<option>01</option>
               				<option>02</option>
               				<option>03</option>
               				<option>04</option>
@@ -124,26 +119,27 @@
               				<option>09</option>
               				<option>10</option>
               				<option>11</option>
-			  				<option>12</option> -->              
-            			</select>
-						&nbsp;日
-					</td>
-                    <s:set var = "pTime" value = "parseTime">
-<script type="text/javascript">
-var selYear = window.document.getElementById("sYear");
-var selMonth = window.document.getElementById("sMonth");
-var selDay = window.document.getElementById("sDay");
+			  				<option>12</option> -->
+								</select> &nbsp;日</td>
+								<script type="text/javascript">
+									var selYear = window.document
+											.getElementById("sYear");
+									var selMonth = window.document
+											.getElementById("sMonth");
+									var selDay = window.document
+											.getElementById("sDay");
 
-// 新建一个DateSelector类的实例，将三个select对象传进去
-//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
-// 也可以试试下边的代码
-var defaultYear = $("#pTime").year;
-var defaultMonth = $("#pTime").month - 1;
-var defaultDay = $("#pTime").day;
-var dt = new Date(defaultYear, defaultMonth, defaultDay);
-new DateSelector(sYear, sMonth ,sDay, dt);
-</script>
-<td>#选填项</td>
+									// 新建一个DateSelector类的实例，将三个select对象传进去
+									//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
+									// 也可以试试下边的代码
+									var defaultYear = <s:property value="book.parseTime.year" />;
+									var defaultMonth = <s:property value="book.parseTime.month" /> - 1;
+									var defaultDay = <s:property value="book.parseTime.day" />;
+									var dt = new Date(defaultYear,
+											defaultMonth, defaultDay);
+									new DateSelector(sYear, sMonth, sDay, dt);
+								</script>
+								<td>#选填项</td>
 							</tr>
 							<tr>
 								<th id="tr_align">ISBN：</th>
@@ -151,7 +147,7 @@ new DateSelector(sYear, sMonth ,sDay, dt);
 									value="<s:property value='book.isbn'/>" /></td>
 								<td><span class="red">*必填项</span></td>
 							</tr>
-                            <tr>
+							<tr>
 								<th id="tr_align">页数：</th>
 								<td><input type="text" name="page" class="smallinputext"
 									value="<s:property value='book.page'/>" /></td>
@@ -168,7 +164,7 @@ new DateSelector(sYear, sMonth ,sDay, dt);
 							<tr>
 								<th id="tr_align">开本：</th>
 								<td><input type="text" name="size" class="smallinputext"
-									value="<s:property value='book.folio'/>" />
+									value="<s:property value='book.size'/>" />
 								</td>
 								<td>#选填项</td>
 							</tr>
@@ -189,8 +185,28 @@ new DateSelector(sYear, sMonth ,sDay, dt);
 							</tr>
 							<tr>
 								<th id="tr_align">分类标签：</th>
-								<td><input type="text" name="bookClassify" size="12"
-									value="<s:property value='book.catalogClassify'/>" />
+								<td><select name="bookClassify">
+										<option value="0">不分类</option>
+										<s:iterator value="catalog" var='outer'>
+											<s:iterator value="#outer.childCatalog" var="inner">
+												<s:if test="%{book.parseCatalog.ID==#inner.ID}">
+													<option value="<s:property value='#inner.ID'/>"
+														selected="selected">
+														<s:property value='#outer.name' />
+														--
+														<s:property value='#inner.name' />
+													</option>
+												</s:if>
+												<s:else>
+													<option value="<s:property value='#inner.ID'/>">
+														<s:property value='#outer.name' />
+														--
+														<s:property value='#inner.name' />
+													</option>
+												</s:else>
+											</s:iterator>
+										</s:iterator>
+								</select>
 								</td>
 								<td>#选填项</td>
 							</tr>

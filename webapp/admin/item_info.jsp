@@ -79,7 +79,7 @@
 							<tr>
 								<td>版次：<s:property value="book.version" />
 								</td>
-								<td>开本：<s:property value="book.folio" />
+								<td>开本：<s:property value="book.size" />
 								</td>
 								<td>装帧：<s:property value="book.binding" />
 								</td>

@@ -138,11 +138,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="input">/error.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
-		
+
 		<action name="user" class="enterUserInfo">
 			<result>/user.jsp</result>
 		</action>
-		
+
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
@@ -221,7 +221,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 	</package>
-	
+
 	<!-- 用户信息相关 -->
 	<package name="info-user-default" extends="symagic-user-default"
 		namespace="/user">
@@ -229,8 +229,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result type="json">
 				<param name="includeProperties">updateResult</param>
 			</result>
-		</action>	
-		
+		</action>
+
 		<action name="update_nickname" class="updateNickname">
 			<result type="json">
 				<param name="includeProperties">upadteResult</param>
@@ -269,6 +269,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<!-- 管理员提交商品修改 -->
 		<action name="item_modify_submit" class="AdminModifyItemSubmit">
+			<interceptor-ref name="fileUpload">
+				<!-- 文件过滤 -->
+				<param name="allowedTypes">image/bmp,image/png,image/gif,image/jpeg</param>
+				<!-- 文件大小, 以字节为单位 -->
+				<param name="maximumSize">1025956</param>
+			</interceptor-ref>
+			<!-- 默认拦截器必须放在fileUpload之后，否则无效 -->
+			<interceptor-ref name="adminLoginInterceptorStack" />
+
 			<result name="success" type="redirectAction">
 				<param name="actionName">item_detail</param>
 				<param name="namespace">/admin</param>
