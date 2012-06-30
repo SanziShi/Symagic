@@ -556,67 +556,100 @@ insert into book_catalog_detail(bookID,catalogID)
       
 -- 插入user_address
 insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("641567179@qq.com","时钰森","广东省广州市番禺区大学城","510000",null,"15018713530");
+values("641567179@qq.com","时钰森",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
+        "510000",null,"15018713530");
 insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("641567179@qq.com","时钰森","安徽省合肥市庐江县庐城镇","231500",null,"15018713530");
+values("641567179@qq.com","时钰森",
+'{"level1":{"id":12,"name":"安徽省"},"level2":{"id":198,"name":"巢湖市"},
+        "level3":{"id":2305,"name":"庐江县"},"detail":"庐城镇"}',"231500",null,"15018713530");
 insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("544921965@qq.com","刘光宗","广东省广州市番禺区大学城","510000",null,"15920551404");
+values("544921965@qq.com","刘光宗",
+'{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',"510000",null,"15920551404");
 insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("544921965@qq.com","刘光宗","广东省广州市越秀区华南理工大学","510000",null,"15920551404");
+values("544921965@qq.com","刘光宗",
+'{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3046,"name":"越秀区"},"detail":"华南理工大学"}',"510000",null,"15920551404");
 insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("236497339@qq.com","缪云彬","广东省广州市番禺区大学城","510000",null,"15920551434");
+values("236497339@qq.com","缪云彬",
+'{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',"510000",null,"15920551434");
 insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
-values("236497339@qq.com","缪云彬","浙江省温州市瑞安市安阳街道","325000",null,"15920551434");
+values("236497339@qq.com","缪云彬",
+'{"level1":{"id":11,"name":"浙江省"},"level2":{"id":177,"name":"温州市"},
+        "level3":{"id":2164,"name":"瑞安市"},"detail":"安阳街道"}',"325000",null,"15920551434");
 
 -- 插入book_order
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2011-03-23","0","0","0","641567179@qq.com","时钰森","广东省广州市番禺区大学城",
+values ("2014-03-23","0","0","0","641567179@qq.com","时钰森",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15018713530",125.0, 120);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2011-05-03","2","0","0","641567179@qq.com","时钰森","广东省广州市番禺区大学城",
+values ("2011-05-03","2","0","0","641567179@qq.com","时钰森",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15018713530",57.0, 50);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2011-05-24","3","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
+values ("2011-05-24","3","0","0","544921965@qq.com","刘光宗",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",2345.5, 2500);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2011-07-01","0","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
+values ("2011-07-01","0","0","0","544921965@qq.com","刘光宗",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",0.51, 0);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-01","0","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
+values ("2012-01-01","0","0","0","236497339@qq.com","缪云彬",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",35.3, 40);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-07","0","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
+values ("2012-01-07","0","0","0","236497339@qq.com","缪云彬",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",76.3, 80);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-02-15","3","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
+values ("2012-02-15","3","0","0","236497339@qq.com","缪云彬",
+         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",76.3, 100);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-03-15","3","0","0","544921965@qq.com","刘光宗","广东省广州市番禺区大学城",
+values ("2012-03-15","3","0","0","544921965@qq.com","刘光宗",
+'{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",176.3, 200);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-06-15","3","0","0","236497339@qq.com","缪云彬","广东省广州市番禺区大学城",
+values ("2012-06-15","3","0","0","236497339@qq.com","缪云彬",
+'{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",55.3, 60);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-03-23","2","0","0","641567179@qq.com","时钰森","广东省广州市番禺区大学城",
+values ("2012-03-23","2","0","0","641567179@qq.com","时钰森",
+'{"level1":{"id":12,"name":"安徽省"},"level2":{"id":198,"name":"巢湖市"},
+        "level3":{"id":2305,"name":"庐江县"},"detail":"庐城镇"}',
         "510000",null,"15018713530",75.0, 100);
         
 -- 插入order_detail
