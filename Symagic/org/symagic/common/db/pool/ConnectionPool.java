@@ -76,7 +76,6 @@ public class ConnectionPool {
 		String url = "jdbc:mysql://" + server + ":" + port +  "/" + dbName + "?useUnicode=true&characterEncoding=utf8";
 		
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		//Connection connection = DriverManager.getConnection(url);		// 获取Connection实例
 		Connection connection = DriverManager.getConnection(url, userName, userPasswd);
 		ConnectionProxy handler = new ConnectionProxy(connection);		// 创建代理类
 		
