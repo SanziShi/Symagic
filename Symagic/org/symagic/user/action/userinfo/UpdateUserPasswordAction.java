@@ -61,7 +61,7 @@ public class UpdateUserPasswordAction extends CatalogBase{
 	
 	public String execute() throws Exception{
 		updateResult = daoUser.updatePassword(UserSessionUtilty.getUsername(), newPasswordConirm, password);
-		return super.execute();
+		return SUCCESS;
 	}
 
 	public Boolean getUpdateResult() {
