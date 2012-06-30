@@ -86,7 +86,7 @@ function logout()
 		url:'logout',
 		onSuccess:function(e){
 			var a=JSON.parse(e);
-			if(a.logoutResult){alert('成功退出');location.reload();}
+			if(a.logoutResult){alert('成功退出');location.href=location.pathname}
 			}
 		})
 }
