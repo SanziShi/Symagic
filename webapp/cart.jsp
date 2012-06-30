@@ -114,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
         </span></div>
          			<div class="cell total">￥<span id="<s:property value='#iter.itemID'/>total_price"><s:property value='#iter.itemTotalPrice'/></span></div>
-                    <div class="cell action"><a href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)">删除</a></div>
+                    <div class="cell action"><a href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="delete_from_page(<s:property value='#iter.itemID'/>)">删除</a></div>
                     </div>
                     </s:iterator>
                     <!--购物车迭代--end-->

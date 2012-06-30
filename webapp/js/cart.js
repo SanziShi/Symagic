@@ -18,3 +18,8 @@ function checkbox_change(e)
 {
 	alert(e.id);
 }
+/*****从cart页面删除商品*******/
+function delete_from_page(id)
+{
+	
+}
