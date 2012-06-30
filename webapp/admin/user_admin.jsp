@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>BC2商城</title>
@@ -36,8 +38,8 @@
     <div id="left_user_admin">
 			<div id="admin_user_left">		
 				<ul>
-					<li><a href="user_admin.html">查询会员</a></li>
-					<li><a href="user_admin.html">设置会员等级规定</a></li>
+					<li><a href="user_list">查询会员</a></li>
+					<li><a href="user_score_rate_submit">设置会员等级规定</a></li>
 				</ul>
 			</div>
 		</div>
@@ -71,9 +73,8 @@
 				</div>
                 </div>
 		<div id="mydouble">
-			<div id="mydoublehead1"><strong>会员级别设置</strong></div>
+			<div id="mydoublehead1"><strong>会员级别说明</strong></div>
 			<div id="doublecontent1">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
 				<table id="xialabiao">
 				<tr>
 				<td class="inputHeader">&nbsp;</td>
@@ -93,9 +94,12 @@
             </tr>
             </s:interator>
              <!--会员等级说明迭代结束-->
-          
-          
-         
+             </table>
+             </div>
+       <div id="mydoublehead1"><strong>设置会员级别</strong></div>   
+      <div id="doublecontent1">    
+         <form action="user_score_rate_submit" method="post">
+         <table id="xialabiao">
             <tr>
               <td colspan="6" class="titlegrey">&nbsp;</td>
             </tr>
@@ -104,11 +108,14 @@
               <td width="12%" align="center" class="inputHeader">会员级别：</td>
               <td width="25%" align="left" class="inputContent">
 			  
-			  <select name="userlevel">
-                <option value="4">普通会员</option>
-                <option value="1">银卡</option>
-                <option value="2">金卡</option>
-                <option value="3">白金卡</option>
+			<select name="userLevel">
+                <!--会员等级迭代开始-->
+			    <s:iterator value= "levelList" var = "level">
+                <option value="<s:property value='#level.levelID'/>">
+									<s:property value='#level.levelName' />
+				</option>
+                </s:iterator>
+                 <!--会员等级迭代结束-->
               </select></td>
               <td colspan="2" align="center" class="inputContent"><font color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</font></td>
               <td width="8%" align="center" class="inputContent">&nbsp;</td>
@@ -117,7 +124,7 @@
               <td class="inputHeader"><label></label></td>
               <td align="center" class="inputHeader">积分下限：</td>
               <td align="left" class="inputContent">
-                <input type="Text" class="inputtext" name="credit" onFocus="nextfield='credit'" maxlength="25">
+                <input type="text" class="inputtext" name="low" onFocus="nextfield='credit'" maxlength="25"/>
               </td>
               <td colspan="2" align="left" class="inputContent"><font color="#CC0000">当积分大于相应等级的积分下限时，会员将自动升级</font></td>
               <td align="center" class="inputContent">&nbsp;</td>
@@ -125,7 +132,7 @@
             <tr>
               <td class="inputHeader">&nbsp;</td>
               <td align="center" class="inputHeader">积分比例：</td>
-              <td align="left" class="inputContent"><input type="Text" size="6" name="ratio" onFocus="nextfield='ratio'" maxlength="6">
+              <td align="left" class="inputContent"><input type="text" size="6" name="scoreRate" onFocus="nextfield='ratio'" />
                 % </td>
               <td colspan="2" align="left" class="inputContent"><font color="#CC0000">会员购买物品时获得的积分占购买金额的比例</font></td>
               <td align="center" class="inputContent">&nbsp;</td>
@@ -133,11 +140,14 @@
             <tr>
               <td colspan="2" class="inputHeader">&nbsp;</td>
               <td colspan="3" align="left" class="inputContent">
-                <input type="Button" class="bt2" name="button22" value="提交" onClick="checkusersetform()">&nbsp;
+                <input type="submit" class="bt2" name="button22" value="提交" onClick="checkusersetform()">&nbsp;
                 &nbsp;<input type="Reset" class="bt2" name="button12" value="重填""></td>
               <td align="center" class="inputContent">&nbsp;</td>
 				</tr>
+      
             </table>
+            </form>
+            </div>
 			</div>
 			</div>
 			
@@ -150,5 +160,6 @@
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
 		<span id="footerright"> Symagic网上书城  Power by Symagic	 &nbsp;</span>
 	</div>
+    </div>
 </body>
 </html>
