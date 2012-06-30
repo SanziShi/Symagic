@@ -167,7 +167,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="head">浏览信息</div>
         	<div class="user_note_content">
         		<p><span>用户名：</span><s:property value='#session.userName'/></p>
-            	<p><span>昵&nbsp;&nbsp;&nbsp;称：</span><s:property value="#session.nickname"/></p>
+            	<p><span>昵&nbsp;&nbsp;&nbsp;称：</span><s:property value='#session.nickName'/></p>
             	<p><span>现有积分：</span><s:property value='totalScore'/></p>
         	</div>
         </div>
@@ -178,7 +178,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         			<p><span>原密码：</span><input id="pass_before" class="inputtext"/></p>
             		<p><span>新密码：</span><input id="pass_new" class="inputtext"/></p>
             		<p><span>密码确认：</span><input id="pass_confirm" class="inputtext"/></p>
-            		<p><span><input type="button"  onclick="pass_submit()" value="确定修改"/></span></p>
+            		<p><span><input type="button" onblur="pass_submit()" value="确定修改"/></span></p>
     			
         	</div>
         </div>
@@ -190,7 +190,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<p><span><input type="button" onclick="nickname_c(this)" value="确定修改"/></span></p>
         	</div>
         </div>
-        <div id="4" class="user_note hide">
+        <div id="4" class="user_note ">
         <div class="head">积分详情</div>
         <div class="user_note_content">
         	<table>
@@ -207,7 +207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <s:iterator value="orderList" var='iter'>
 				  <tr>
             		<td>
-						<a href="order_info"><s:property value='#iter.orderID'/></a>
+						<a href="order_info.html"><s:property value='#iter.orderID'/></a>
 					</td>
 					<td>
 						<s:property value='#iter.orderTime'/>

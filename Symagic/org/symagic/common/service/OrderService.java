@@ -113,7 +113,7 @@ public class OrderService {
 		require.setPage(page);
 		require.setLines(itemPerPage);
 		List<BeanOrder> orders = daoOrder.search(require, username);
-		if(orders == null || orders.isEmpty()){
+		if(orders == null){
 			OrderListResult listResult =  new OrderListResult();
 			listResult.orders = new ArrayList<OrderBean>();
 			OrderBean order = new OrderBean();
