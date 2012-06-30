@@ -96,15 +96,21 @@ private void accordCart(){
 	    //会员未登录前加商品到购物车中
 	   HashMap<Integer,Integer> lastingItems=UserSessionUtilty.getCart();
 	   BeanCart item;
-	   //更新session中购物车的信息,将历史记录中当前session的购物车没有的项加入到session购物车中
+	   //更新session中购物车的信息,将历史记录中当前session的购物车没有的项加入到session购物车中，session中则将数量相加
 	   for(Iterator<BeanCart> index=historyItems.iterator();index.hasNext();){
 		   item=index.next();
-		   if(!lastingItems.containsKey(item.getBookID())){
+		   //增加总数量
+		   UserSessionUtilty.addTotalNumber(item.getAmount());
+		   Integer sessionNumber=lastingItems.get(item.getBookID());
+		   if(sessionNumber==null){
 			   lastingItems.put(item.getBookID(), item.getAmount());
-			   //增加总数量
-			   UserSessionUtilty.addTotalNumber(item.getAmount());
+			  
+			  }
+		   else{
+			   lastingItems.put(item.getBookID(), item.getAmount()+sessionNumber);
 		   }
 	   }
+	   
 	   
 	   //更新数据库中购物车中的信息，遍历session中的购物车（此时已是合并后的结果），加入新项，对于已有id的项，更新数量
 	   Set<Integer> historyId=new HashSet();

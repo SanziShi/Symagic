@@ -48,6 +48,86 @@ public class ItemManagerEnterAction extends CatalogBase {
 	private Integer totalPage;
 	private List<ItemBean> items;// 用于显示的商品列表
 
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		items = new ArrayList<ItemBean>();
+		// 设置搜索的条件
+		BookRequire require = new BookRequire();
+		if (!isEmpty(name))
+			require.setItemName(name);
+		if (!isEmpty(publisher))
+			require.setPublisher(publisher);
+		if (!isEmpty(author))
+			require.setAuthor(author);
+		setCatalog(require, catalogID);
+		setYear(require, publishTime);
+		setPageNumber(require, searchPage);
+		setBinding(require, binding);
+		setBookSize(require, booksize);
+		setPrice(require, price);
+
+		setVersion(require, edition);
+
+		setDiscount(require, discount);
+
+		require.setLines(lines);
+		require.setPage(page);
+
+		// 搜索符合条件的商品
+		List<BeanBook> books = itemService.search(sign, require);
+
+		if (books == null)
+			return "error";
+		int searchNumber = itemService.getSearchNum(sign, require);
+		if (searchNumber == -1)
+			return "error";
+		totalPage = (searchNumber + lines - 1) / lines;
+		// 装饰成前台所需的信息
+		itemService.decorateForItem(books, items);
+		return super.execute();
+	}
+
+	private void setCatalog(BookRequire require, Integer catalogID) {
+		if (catalogID == null || catalogID == 0)
+			return;
+		require.setCatalogIDList(itemService.getCatalogList(catalogID));
+	}
+
+	private boolean isEmpty(String content) {
+		return content == null || content.trim().equals("");
+	}
+
+	private void setVersion(BookRequire require, Integer index) {
+		if (index == null || index == 0)
+			return;
+		else
+			require.setVersion(index);
+	}
+
+	private void setDiscount(BookRequire require, Integer index) {
+		if (index == null || index == 0)
+			return;
+		switch (index) {
+		case 1:
+			require.setUpDiscount(0.3F);
+			require.setLowDiscount(0.1F);
+			break;
+		case 2:
+			require.setUpDiscount(0.5F);
+			require.setLowDiscount(0.3F);
+			break;
+		case 3:
+			require.setUpDiscount(0.7F);
+			require.setLowDiscount(0.5F);
+			break;
+		case 4:
+			require.setLowDiscount(0.7F);
+			require.setLowDiscount(1.0F);
+			break;
+		}
+	}
+
 	public String getErrorHeader() {
 		return errorHeader;
 	}
@@ -62,42 +142,6 @@ public class ItemManagerEnterAction extends CatalogBase {
 
 	public void setErrorSpecification(String errorSpecification) {
 		this.errorSpecification = errorSpecification;
-	}
-
-	@Override
-	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		items = new ArrayList<ItemBean>();
-		// 设置搜索的条件
-		BookRequire require = new BookRequire();
-		if (name != null)
-			require.setItemName(name);
-		if (publisher != null)
-			require.setPublisher(publisher);
-		require.setCatalogID(catalogID);
-		setYear(require, publishTime);
-		require.setVersion(edition);
-		setPageNumber(require, searchPage);
-		setBinding(require, binding);
-		setBookSize(require, booksize);
-		setPrice(require, price); 
-		require.setDiscount(discount);
-		if (author != null)
-			require.setAuthor(author);
-		require.setLines(lines);
-		require.setPage(page);
-
-		// 搜索符合条件的商品
-		List<BeanBook> books = itemService.search(sign, require);
-		if (books == null)
-			return "error";
-		int searchNumber = itemService.getSearchNum(sign, require);
-		if (searchNumber == -1)
-			return "error";
-		totalPage = (searchNumber + lines - 1) / lines;
-		// 装饰成前台所需的信息
-		itemService.decorateForItem(books, items);
-		return super.execute();
 	}
 
 	private void setBookSize(BookRequire require, Integer index) {
