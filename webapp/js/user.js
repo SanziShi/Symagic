@@ -1,5 +1,6 @@
 function show_user_con(num)
 {
+	$('#favorite').slideUp(1);
 	for(var x=1;x!=5;++x)
 	{
 		if(x!=num)
@@ -37,17 +38,20 @@ function pass_submit()
 	var b=document.getElementById('pass_new').value;
 	var c=document.getElementById('pass_confirm').value;
 	Ajax({
-		url:'user/update_password?password='+a+'&newPasswordnew='+b+'&PasswordConfirm='+c,
+		url:'user/update_password?password='+a+'&newPassword='+b+'&newPasswordConfirm='+c,
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');}
 		})
 }
 function show_favorite()
 {
+	//document.getElementById('favorite_loading').style.display='block';
 	for(var x=1;x!=5;++x)$('#'+x).slideUp(1);
 	$('#favorite').slideDown(1);
 	Ajax({
 		url:'favorite',
+		onSend:function(){document.getElementById('favorite_loading').style.display='block';},
 		onSuccess:function(e){
+			document.getElementById('favorite_loading').style.display='none';
 			document.getElementById('favorite-container').innerHTML=e;
 			}
 		})
