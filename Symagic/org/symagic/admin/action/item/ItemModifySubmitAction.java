@@ -166,10 +166,19 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		book.setBookName(name);
 		book.setAuthor(author);
 		book.setPublisher(publisher);
-		book.setVersion(edition);
-		book.setPage(page);
+		if (edition != null)
+			book.setVersion(edition);
+		else
+			book.setVersion(1);
+		if (page != null)
+			book.setPage(page);
+		else
+			book.setPage(1);
 		book.setBinding(binding);
-		book.setFolio(size.toString());
+		if (size != null)
+			book.setFolio(size.toString());
+		else
+			book.setFolio("");
 		book.setMarketPrice(marketPrice);
 		book.setDiscount(discount);
 		book.setInventory(inventory);
