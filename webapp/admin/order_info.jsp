@@ -19,7 +19,7 @@
 	</div>
 	<div id="globallink">
 		<ul>
-			<li><a href="index.html">首页</a></li>
+			<li><a href="index">首页</a></li>
                         <li><a href="category_list.html">目录管理</a></li>
 			<li><a href="item_list.html">商品管理</a></li>
 			<li><a href="order_admin.html">订单管理</a></li>

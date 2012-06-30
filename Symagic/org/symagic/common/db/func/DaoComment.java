@@ -89,7 +89,7 @@ public class DaoComment {
 				BeanComment	comment	= new BeanComment();
 				comment.setBookID(rs.getInt("bookid"));
 				comment.setCommentDate(rs.getString("commentdate"));
-				comment.setContent(rs.getString("comment"));
+				comment.setContent(rs.getString("content"));
 				comment.setRating(rs.getString("rating"));
 				comment.setUsername(rs.getString("username"));
 				list.add(comment);
@@ -196,7 +196,7 @@ public class DaoComment {
 			}
 			if (count != 0)
 				return sum / count;
-			
+			return 0;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

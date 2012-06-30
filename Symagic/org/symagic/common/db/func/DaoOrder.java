@@ -40,7 +40,7 @@ public class DaoOrder {
 			conn	= ConnectionPool.getInstance().getConnection();
 			sql += "orderdate > " + " '" + req.getStartTime() + "' ";
 			if (username != null)
-				sql += " and username like " + " '" + username + "' ";
+				sql += " and username like " + " '%" + username + "%' ";
 			if (req.getEndTime() != null)
 				sql += " and orderdate < " + " '" + req.getEndTime() + "' ";
 			if (req.getOrderState() != null)
@@ -110,6 +110,26 @@ public class DaoOrder {
 				orderDetail.setMarketPrice(rs.getFloat("marketprice"));
 				orderDetail.setOrderId(rs.getInt("orderid"));
 				order.getList().add(orderDetail);
+			}
+			ps	= conn.prepareStatement("select * from book_order where orderid=?");
+			ps.setInt(1, orderID);
+			rs	= ps.executeQuery();
+			if (rs.next()) {
+				order.setAddrDetail(rs.getString("addrdetail"));
+				order.setDeliveryWay(rs.getString("deliveryway"));
+				if (rs.getString("mobilenum") != null)
+					order.setMobilenum(rs.getString("mobilenum"));
+				if (rs.getString("mobilenum") != null)
+					order.setMobilenum(rs.getString("mobilenum"));
+				order.setOrderDate(rs.getString("orderdate"));
+				order.setOrderId(rs.getInt("orderid"));
+				order.setOrderState(rs.getString("orderstate"));
+				order.setPayment(rs.getString("payment"));
+				order.setReceiverName(rs.getString("receivername"));
+				order.setScore(rs.getInt("score"));
+				order.setTotalprice(rs.getFloat("totalprice"));
+				order.setUsername(rs.getString("username"));
+				order.setZipcode(rs.getString("zipcode"));
 			}
 			return order;
 		} catch (Exception e) {
@@ -552,7 +572,7 @@ public class DaoOrder {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			ps	= conn.prepareStatement("select count(*) from book_order where date(orderdate) = date(now)");
+			ps	= conn.prepareStatement("select count(*) from book_order where date(orderdate) = date(now())");
 			rs	= ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);

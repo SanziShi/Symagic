@@ -41,19 +41,31 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		BookStatisticsRequire require = new BookStatisticsRequire();
 
 		// 建立require
-		require.setCatalogid(catalogID);
+		if (catalogID == null || catalogID != 0)
+			require.setCatalogid(catalogID);
 		require.setLines(lines);
-		require.setLowlimit(limit);
+		if (limit != null)
+			require.setLowlimit(limit);
 		require.setPage(page);
 		// 编码时间
-		GregorianCalendar calendar = new GregorianCalendar(startTime.getYear(),
-				startTime.getMonth(), startTime.getDay());
+		GregorianCalendar startCalendar = null;
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
-		require.setStartTime(formater.format(calendar.getTime()));
-		calendar = new GregorianCalendar(endTime.getYear(), endTime.getMonth(),
-				endTime.getDay());
-		require.setEndTime(formater.format(calendar.getTime()));
+		if (startTime != null) {
+			startCalendar = new GregorianCalendar(startTime.getYear(),
+					startTime.getMonth(), startTime.getDay());
+			require.setStartTime(formater.format(startCalendar.getTime()));
+		} 
+		if (endTime != null) {
+			GregorianCalendar endCalendar = new GregorianCalendar(
+					endTime.getYear(), endTime.getMonth(), endTime.getDay());
 
+			if (startCalendar != null
+					&& endCalendar.getTime().before(startCalendar.getTime())) {
+				return ERROR;
+			}
+
+			require.setEndTime(formater.format(endCalendar.getTime()));
+		} 
 		List<BeanBookStatistics> statistics = daoBook
 				.getBookStatistics(require);
 
@@ -70,13 +82,13 @@ public class AdminItemStatisticsAction extends CatalogBase {
 				bean.setPrice(bean.getTotalPrice() / bean.getSales());
 				items.add(bean);
 			}
-			
+
 			float rowNumber = daoBook.getStatisticsNum(require);
-			
-			if( rowNumber != -1 ){
-				totalPage = (int)Math.ceil(rowNumber / lines);
+
+			if (rowNumber != -1) {
+				totalPage = (int) Math.ceil(rowNumber / lines);
 			}
-			
+
 		}
 
 		return super.execute();

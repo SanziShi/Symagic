@@ -3,15 +3,384 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<import resource="symagic-interceptor-bean.xml" />
+
+	<!-- 用户拦截器配置 -->
+	<bean id="UserLoginInterceptor" class="org.symagic.common.interceptor.UserLoginInterceptor">
+		<property name="guestIllegalURL">
+			<set>
+				<!-- 被认为是非法的用户操作 -->
+			</set>
+		</property>
+	</bean>
+
+	<!-- 管理员拦截器配置 -->
+	<bean id="AdminLoginInterceptor" class="org.symagic.common.interceptor.AdminLoginInterceptor">
+		<property name="guestIllegalURL">
+			<set>
+				<!-- 被认为是非法的管理员操作 -->
+			</set>
+		</property>
+	</bean>
+
+
+	<bean id="checkCaptcha" class="org.symagic.common.action.captcha.CheckCaptchaAction"
+		scope="prototype">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+	</bean>
+
+	<bean id="generateCaptcha" class="org.symagic.common.action.captcha.GenerateCaptchaAction">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+	</bean>
+
+	<!-- 通用的ActionBean -->
+	<bean id="OrderDetailAction" class="org.symagic.common.action.order.OrderDetailAction"
+		scope="prototype">
+		<property name="orderService" ref="OrderService"></property>
+	</bean>
+
+	<!-- 管理员的action bean -->
+	<bean id="AdminIndex" class="org.symagic.admin.action.index.AdminIndexAction">
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<bean id="AdminLogin" class="org.symagic.admin.action.login.AdminLoginAction"
+		scope="prototype">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+		<property name="daoAdmin" ref="DaoAdmin"></property>
+	</bean>
+
+	<!-- 管理员Item -->
+	<bean id="AdminAddItem" class="org.symagic.admin.action.item.ItemAddAction"
+		scope="prototype">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="shopImageFileFolder" value="upload"></property>
+	</bean>
+
+	<bean id="AdminEnterModifyItem" class="org.symagic.admin.action.item.ItemModifyEnterAction"
+		scope="prototype">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="errorHeader" value="错了"></property>
+		<property name="errorSpecification" value="反正是错了"></property>
+	</bean>
+
+	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction"
+		scope="prototype">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="shopImageFileFolder" value="upload"></property>
+		<property name="errorHeader" value="错了"></property>
+		<property name="errorSpecification" value="反正是错了"></property>
+	</bean>
+
+	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction"
+		scope="prototype">
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="AdminUplineItem" class="org.symagic.admin.action.item.ItemUpAction"
+		scope="prototype">
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction"
+		scope="prototype">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="lines" value="15"></property>
+		<property name="errorHeader" value="错了"></property>
+		<property name="errorSpecification" value="反正是错了"></property>
+	</bean>
+
+	<bean id="AdminEnterItemManager" class="org.symagic.admin.action.item.ItemManagerEnterAction"
+		scope="prototype">
+		<property name="sign" value="1"></property>
+		<property name="itemService" ref="ItemService"></property>
+		<property name="lines" value="15"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.AdminItemQuickSearch"
+		scope="prototype">
+		<property name="sign" value="0"></property>
+		<property name="itemService" ref="ItemService"></property>
+		<property name="lines" value="15"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction"
+		scope="prototype">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="lines" value="15"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<bean id="AdminEnterCatalogManager"
+		class="org.symagic.admin.action.catalog.CatalogManagerEnterAction">
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<bean id="AdminAddCatalog" class="org.symagic.admin.action.catalog.CatalogAddAction"
+		scope="prototype">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<bean id="AdminSubmitCatalogModify"
+		class="org.symagic.admin.action.catalog.CatalogEditSubmitAction"
+		scope="prototype">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<bean id="AdminEnterEditCatalog" class="org.symagic.admin.action.catalog.CatalogEditEnterAction"
+		scope="prototype">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<bean id="AdminDeleteCatalog" class="org.symagic.admin.action.catalog.CatalogDeleteAction"
+		scope="prototype">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<bean id="AdminOrderList" class="org.symagic.admin.action.order.AdminOrderListAction"
+		scope="prototype">
+		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="lines" value="15"></property>
+	</bean>
+
+	<bean id="AdminEnterOrderEdit"
+		class="org.symagic.admin.action.order.AdminOrderEditEnterAction"
+		scope="prototype">
+		<property name="orderService" ref="OrderService"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+	</bean>
+
+	<bean id="AdminSubmitOrderEdit"
+		class="org.symagic.admin.action.order.AdminOrderEditSubmitAction"
+		scope="prototype">
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="AdminPassOrder" class="org.symagic.admin.action.order.AdminPassOrderAction"
+		scope="prototype">
+		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
+
+	<bean id="AdminFailOrder" class="org.symagic.admin.action.order.AdminFailOrderAction"
+		scope="prototype">
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="AdminDeleteOrder" class="org.symagic.admin.action.order.AdminDeleteOrderAction"
+		scope="prototype">
+		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
+
+	<bean id="AdminSubmitScoreRate"
+		class="org.symagic.admin.action.level.AdminScoreRateSubmitAction"
+		scope="prototype">
+		<property name="daoLevel" ref="DaoLevel"></property>
+	</bean>
+
+	<bean id="AdminEnterCommentManager"
+		class="org.symagic.admin.action.comment.AdminEnterCommentManagerAction"
+		scope="prototype">
+		<property name="daoComment" ref="DaoComment"></property>
+	</bean>
+
+	<bean id="AdminListUser" class="org.symagic.admin.action.user.UserListAction"
+		scope="prototype">
+		<property name="daoLevel" ref="DaoLevel"></property>
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="lines" value="15"></property>
+	</bean>
+
+	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
+		<property name="daoLevel" ref="DaoLevel"></property>
+	</bean>
+
+	<!-- 用户的action bean -->
+
+
+	<bean id="indexClass" class="org.symagic.user.action.index.IndexAction">
+		<property name="recommendService" ref="RecommendService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="itemService" ref="ItemService"></property>
+	</bean>
+
+	<bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
+
+
+	<bean id="loginClass" class="org.symagic.user.action.login.LoginAction"
+		scope="prototype">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+		<property name="userService" ref="UserService"></property>
+	</bean>
+
+	<bean id="logoutClass" class="org.symagic.user.action.login.LogoutAction"></bean>
+	<bean id="registerClass" class="org.symagic.user.action.register.RegisterAction"
+		scope="prototype">
+		<property name="symagicCaptcha" ref="JCaptcha"></property>
+		<property name="userService" ref="UserService"></property>
+	</bean>
+	<bean id="usernameUnique" class="org.symagic.user.action.register.CheckUsernameAction"
+		scope="prototype">
+		<property name="userService" ref="UserService"></property>
+	</bean>
+
+	<!-- 关于购物的bean -->
+	<bean id="addToCart" class="org.symagic.user.action.cart.CartAddItemAction"
+		scope="prototype">
+		<property name="daoCart" ref="DaoCart"></property>
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+
+	<bean id="deleteFromCart" class="org.symagic.user.action.cart.CartDeleteItemAction"
+		scope="prototype">
+		<property name="daoCart" ref="DaoCart"></property>
+	</bean>
+	<bean id="detailOfCart" class="org.symagic.user.action.cart.CartDetailAction">
+		<property name="itemService" ref="ItemService"></property>
+	</bean>
+	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction"
+		scope="prototype">
+		<property name="daoCart" ref="DaoCart"></property>
+	</bean>
+
+	<bean id="cartEnter" class="org.symagic.user.action.cart.CartEnterAction">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+
+	<!-- 关于收藏夹的bean -->
+	<bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction"
+		scope="prototype">
+		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
+	</bean>
+	<bean id="deleteFromFavority" class="org.symagic.user.action.favority.FavorityDeleteAction"
+		scope="prototype">
+		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
+	</bean>
+
+	<!-- 关于商品的bean -->
+	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction"
+		scope="prototype">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="recommendService" ref="RecommendService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="lines" value="15"></property>
+		<property name="recommendNumber" value="15"></property>
+		<property name="errorHeader" value="没有相应 的商品"></property>
+		<property name="errorSpecification" value="symagic商城目前没有符合此类商品"></property>
+		<property name="sign" value="1"></property>
+	</bean>
+
+	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction"
+		scope="prototype">
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="itemService" ref="ItemService"></property>
+		<property name="recommendService" ref="RecommendService"></property>
+		<property name="errorHeader" value="出现异常"></property>
+		<property name="errorSpecification" value="可能 是由于输入的数据有误造成的"></property>
+		<property name="recommendNumber" value="15"></property>
+		<property name="sign" value="0"></property>
+		<property name="lines" value="15"></property>
+	</bean>
+
+	<bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction"
+		scope="prototype">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="lines" value="15"></property>
+		<property name="errorHeader" value="没有相应 的商品"></property>
+		<property name="errorSpecification" value="symagic商城目前没有此类商品"></property>
+	</bean>
+
+	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction"
+		scope="prototype">
+		<property name="itemService" ref="ItemService"></property>
+		<property name="lines" value="15"></property>
+		<property name="errorHeader" value="检索信息有误"></property>
+		<property name="errorSpecification" value="没有相应 的评论"></property>
+
+	</bean>
 	
-	<import resource="symagic-common-bean.xml"/>
+	<bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction" 
+		scope="prototype">
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="orderService" ref="OrderService"></property>
+	</bean>
 	
-	<import resource="symagic-admin-bean.xml"/>
+	<bean id="forgetPassword" class="org.symagic.user.action.userinfo.ForgetPasswordAction"
+	scope="prototype">
+		<property name="daoUser" ref="DaoUser"></property>	
+	</bean>
 	
-	<import resource="symagic-user-bean.xml"/>
+	<bean id="updateNickName" class="org.symagic.user.action.userinfo.UpdateUserNicknameAction"
+		scope="prototype">
+		<property name="daoUser" ref="DaoUser"></property>	
+	</bean>
 	
-	<import resource="symagic-service-bean.xml"/>
+	<bean id="updatePassword" class="org.symagic.user.action.userinfo.UpdateUserPasswordAction"
+		scope="prototype">
+		<property name="daoUser" ref="DaoUser"></property>	
+	</bean>
 	
-	<import resource="symagic-data-bean.xml"/>
+	<bean id="forgetPasswordEnter" class="org.symagic.action.userinfo.ForgetPasswordEnterAction"
+	scope="prototype">
+	</bean>
+
+	<!-- service bean -->
+	<bean id="UserService" class="org.symagic.common.service.UserService">
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="daoCart" ref="DaoCart"></property>
+		<property name="beanUser" ref="BeanUser"></property>
+	</bean>
+
+	<bean id="CatalogService" class="org.symagic.common.service.CatalogService">
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<bean id="OrderService" class="org.symagic.common.service.OrderService">
+		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
+
+	<bean id="ItemService" class="org.symagic.common.service.ItemService">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="daoComment" ref="DaoComment"></property>
+		<property name="daoCatalog" ref="DaoCatalog"></property>
+	</bean>
+
+	<bean id="RecommendService" class="org.symagic.common.service.RecommandService">
+	</bean>
+
+	<!-- 配置验证码生成及检查 -->
+	<bean class="org.symagic.common.utilty.captcha.SymagicCaptchaService"
+		id="imageCaptchaService" />
+
+	<bean id="JCaptcha" class="org.symagic.common.utilty.captcha.JCaptcha">
+		<property name="jcaptchaImageServer" ref="imageCaptchaService"></property>
+	</bean>
+
+
+	<!-- 数据层bean -->
+	<bean id="DaoAdmin" class="org.symagic.common.db.func.DaoAdmin" />
+	<bean id="DaoBook" class="org.symagic.common.db.func.DaoBook" />
+	<bean id="DaoCart" class="org.symagic.common.db.func.DaoCart"></bean>
+	<bean id="DaoUser" class="org.symagic.common.db.func.DaoUser"></bean>
+	<bean id="DaoFavorityFolder" class="org.symagic.common.db.func.DaoFavorityFolder"></bean>
+	<bean id="DaoCatalog" class="org.symagic.common.db.func.DaoCatalog" />
+	<bean id="DaoOrder" class="org.symagic.common.db.func.DaoOrder" />
+	<bean id="DaoDistrict" class="org.symagic.common.db.func.DaoDistrict" />
+	<bean id="DaoLevel" class="org.symagic.common.db.func.DaoLevel" />
+	<bean id="DaoComment" class="org.symagic.common.db.func.DaoComment"></bean>
+	<!-- 数据层实体bean -->
+	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
+
 </beans>

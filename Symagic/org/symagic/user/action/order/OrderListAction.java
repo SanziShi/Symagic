@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.service.OrderService;
+import org.symagic.common.service.OrderService.OrderListResult;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
@@ -90,8 +91,6 @@ public class OrderListAction extends CatalogBase{
 	}
 
 	public String execute() throws Exception{
-		//获得catalog
-		super.execute();
 		orderList = new ArrayList<OrderBean>();
 		String username = UserSessionUtilty.getUsername();
 		Calendar calender = Calendar.getInstance();
@@ -114,9 +113,11 @@ public class OrderListAction extends CatalogBase{
 		}
 		calender.add(Calendar.MONTH, amount);
 		Date start = calender.getTime();
-		String orderState = orderStatus.toString();
-		orderList = orderService.orderList(username, ITEM_PER_PAGE, page, start, end, orderState);
+		//为了让修订后orderList工作
+		OrderListResult result = orderService.orderList(username, ITEM_PER_PAGE, page, start, end, orderStatus);
+		orderList = result.orders;
+		totalPage = result.totalPage;
 		currentPage = page;
-		return SUCCESS;
+		return super.execute();
 	}
 }

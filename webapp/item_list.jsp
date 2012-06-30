@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
     </s:else>
-    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li class="division">|</li><li id="mymall"><a href="user"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
     <li id="cart_top"><a id="cart_a" href="cart">
     <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
@@ -68,8 +68,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<form action="quick_search" >
 			<div id="searchright2">
-			  <input type="text" name="product" id="textInput"/>
-			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
+			  <input type="text" name="keyword" id="textInput"/>
+			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
 			<div id="searchright1">
 			 <select name="catalogID" >
@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div  class="user_note">
 			<div class="fliter"><font>商品搜索</font><span class="collapse" onclick="show_item_search(this);"></span></div>
 			<div id="item_search1" class="user_note_content hide">
-				<form action="item_list">
+				<form action="item_list" method="post">
                 <table>
 				<tr>
 					<th>书&nbsp;&nbsp;&nbsp;名：</th>

@@ -119,8 +119,9 @@ public class OrderDetailAction extends OrderBase{
 
 
 	public String execute() throws Exception{
-		super.execute();
 		BeanOrder order = daoOrder.getOrderDetail(Integer.parseInt(orderId));
+		if(order == null)
+			return ERROR;
 		if(order.getDeliveryWay() == "0")
 			setDeliverWay("送货上门");
 		OrderService.Address address = OrderService.deserializerAddress(order.getAddrDetail());
@@ -159,6 +160,6 @@ public class OrderDetailAction extends OrderBase{
 			item.setItemTotalPrice(item.getPrice() * item.getItemNumber());
 			items.add(item);
 		}
-		return SUCCESS;
+		return super.execute();
 	}
 }

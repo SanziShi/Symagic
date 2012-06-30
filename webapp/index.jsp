@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
     </s:else>
-    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li class="division">|</li><li id="mymall"><a href="user"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
     <li id="cart_top"><a id="cart_a" href="cart">
     <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
@@ -60,10 +60,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="left">
 		<div id="category">
 		<s:iterator value="catalog" var='outer'>
-			<a href="quick_search?catalog=<s:property value='#outer.ID'/>"><h4 ><span><s:property value='#outer.name'/></span></h4></a>
+			<a href="quick_search?catalogID=<s:property value='#outer.ID'/>"><h4 ><span><s:property value='#outer.name'/></span></h4></a>
 			<ul>
 			<s:iterator value="#outer.childCatalog" var="inner">
-				<li><a href="quick_search?catalog=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
+				<li><a href="quick_search?catalogID=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
 			</s:iterator>
 			</ul>
 		</s:iterator>
@@ -85,8 +85,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</s:iterator>
 				</s:iterator>
               </select>
-			  <input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />
-			  <input type="submit"  value="搜索" onClick="">
+			  <!--<input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />-->
+			  <input type="text" name="keyword" id="keyword"/>
+              <input type="submit"  value="搜索" >
 			</form>
             </div>
 		</div>

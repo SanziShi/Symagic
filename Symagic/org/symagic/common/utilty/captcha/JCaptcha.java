@@ -54,7 +54,8 @@ public class JCaptcha implements Captcha {
 	@Override
 	public boolean validateCaptcha(String ID, String captcha) {
 		try {
-			return jcaptchaImageServer.validateResponseForID(ID, captcha);
+			String change = captcha.toUpperCase();
+			return jcaptchaImageServer.validateResponseForID(ID, change);
 		} catch (CaptchaServiceException ex) {
 			return false;
 		}
@@ -63,7 +64,8 @@ public class JCaptcha implements Captcha {
 	@Override
 	public boolean ajaxValidateCaptcha(String ID, String captcha) {
 		try {
-			return jcaptchaImageServer.ajaxValidateResponseForID(ID, captcha);
+			String change = captcha.toUpperCase();
+			return jcaptchaImageServer.ajaxValidateResponseForID(ID, change);
 		} catch (CaptchaServiceException ex) {
 			return false;
 		}

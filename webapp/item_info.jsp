@@ -69,8 +69,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
             <form action="quick_search" >
 			<div id="searchright2">
-			  <input type="text" name="product" id="textInput"/>
-			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
+			  <input type="text" name="keyword" id="textInput"/>
+			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
 			<div id="searchright1">
 			 <select name="catalogID" >
@@ -128,7 +128,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <li><span>作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者：</span>&nbsp;<s:property value='book.author'/></li>
         <li><span>出&nbsp;&nbsp;版&nbsp;&nbsp;社：</span>&nbsp;<s:property value='book.publisher'/></li>
         <li><span>I&nbsp;&nbsp;S&nbsp;&nbsp;B&nbsp;&nbsp;N：</span>&nbsp;<s:property value='book.isbn'/></li>
-        <li><span>出版日期：</span>&nbsp;<s:property value='#book.publishDate'/></li>
+        <li><span>出版日期：</span>&nbsp;<s:property value='#book.publishTime'/></li>
         <li><span>版&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;次：</span>&nbsp;<s:property value='book.version'/></li>
         <li><span>开&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本：</span>&nbsp;<s:property value='book.size'/></li>
         <li><span>装&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帧：</span>&nbsp;<s:property value='book.binding'/></li>

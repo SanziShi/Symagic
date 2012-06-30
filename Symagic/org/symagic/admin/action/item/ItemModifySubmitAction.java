@@ -126,11 +126,9 @@ public class ItemModifySubmitAction extends ActionSupport implements
 	public void validate() {
 
 		// 处理商品类别以外其他都不能为空
-		if (itemID == null || ISBN == null || name == null || author == null
-				|| publisher == null || publishTime == null || edition == null
-				|| page == null || binding == null || size == null
-				|| marketPrice == null || discount == null || inventory == null
-				|| description == null) {
+		if (ISBN == null || name == null || author == null || publisher == null
+				|| binding == null || marketPrice == null || discount == null
+				|| inventory == null || description == null) {
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;
@@ -152,24 +150,35 @@ public class ItemModifySubmitAction extends ActionSupport implements
 			File destFile = new File(fileFolder, book.getPicture().substring(
 					book.getPicture().lastIndexOf('/') + 1));
 
-			FileUtils.moveFile(picture, destFile);
+			FileUtils.copyFile(picture, destFile);
 		}
 
 		// 生成时间
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		GregorianCalendar calender = new GregorianCalendar(
-				publishTime.getYear(), publishTime.getMonth(),
-				publishTime.getDay());
+		if (publishTime != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			GregorianCalendar calender = new GregorianCalendar(
+					publishTime.getYear(), publishTime.getMonth(),
+					publishTime.getDay());
+			book.setPublishDate(dateFormat.format(calender.getTime()));
+		}
 
 		book.setIsbn(ISBN);
 		book.setBookName(name);
 		book.setAuthor(author);
 		book.setPublisher(publisher);
-		book.setPublishDate(dateFormat.format(calender.getTime()));
-		book.setVersion(edition);
-		book.setPage(page);
+		if (edition != null)
+			book.setVersion(edition);
+		else
+			book.setVersion(1);
+		if (page != null)
+			book.setPage(page);
+		else
+			book.setPage(1);
 		book.setBinding(binding);
-		book.setFolio(size.toString());
+		if (size != null)
+			book.setFolio(size.toString());
+		else
+			book.setFolio("");
 		book.setMarketPrice(marketPrice);
 		book.setDiscount(discount);
 		book.setInventory(inventory);
