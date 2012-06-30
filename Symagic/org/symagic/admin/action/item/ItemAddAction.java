@@ -165,8 +165,10 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setBookName(name);
 		book.setAuthor(author);
 		book.setPublisher(publisher);
-		book.setVersion(edition);
-		book.setPage(page);
+		if (edition != null)
+			book.setVersion(edition);
+		if (page != null)
+			book.setPage(page);
 		book.setBinding(binding);
 		if (size != null)
 			book.setFolio(size.toString());
@@ -174,7 +176,8 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setDiscount(discount);
 		book.setInventory(inventory);
 		book.setBookDesc(description);
-		book.setCatalogID(bookClassify);
+		if (bookClassify != null)
+			book.setCatalogID(bookClassify);
 		book.setOffline("在架");
 
 		if (!daoBook.addBook(book))
