@@ -147,7 +147,22 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
-
+		
+		<action name="address" class="addressList">
+			<result>/lib/address.jsp</result>
+		</action>
+		
+		<action name="submit_address" class="addAddress">
+			<result>/lib/address.jsp</result>
+		</action>
+		
+		<action name="address_edit" class="editAddressEnter">
+			<result>/lib/address.jsp</result>
+		</action>
+		
+		<action name="address_edit_submit" class="editAddress">
+			<result>/lib/address.jsp</result>
+		</action>
 	</package>
 
 	<!-- 注册时用户名检测 -->
@@ -234,6 +249,26 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="update_nickname" class="updateNickname">
 			<result type="json">
 				<param name="includeProperties">updateResult</param>
+			</result>
+		</action>
+	</package>
+	
+	<!-- 地址相关 -->
+	<package name="address-user-default" extends="symagic-user-default"
+		namedspace="/address">
+		<action name="submit_address" class="addAddress">
+			<result type="json">
+				<param name="includeProperties">addResult</param>
+			</result>
+		</action>
+		<action name="get_next_level" class="getNextLevel">
+			<result type="json">
+				<param name="includeProperties">nextLevelArray</param>
+			</result>
+		</action>
+		<action name="delete_address" class="deleteAddress">
+			<result type="json">
+				<param name="includeproperties">deleteResult</param>
 			</result>
 		</action>
 	</package>

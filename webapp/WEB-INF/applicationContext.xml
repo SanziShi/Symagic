@@ -339,7 +339,43 @@
 		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
-
+	
+	<bean id="addressList" class="org.symagic.user.action.address.AddressEnterAction"
+		scope="request">
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="addressService" ref="AddressService"></property>
+	</bean>
+	
+	<bean id="editAddress" class="org.symagic.user.action.address.AddressEditSubmitAction"
+		scope="request"> 
+		<property name="daoUserAddress" ref="DaoUserAddress"></property>
+		<property name="addressService" ref="AddressService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+	
+	<bean id="editAddressEnter" class="org.symagic.user.action.address.AddressEditEnterAction"
+		scope="request">
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+		<property name="daoUserAddress" ref="DaoUserAddress"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+	
+	<bean id="addAddress" class="org.symagic.user.action.address.AddressSubmitAction"
+		scope="request">
+		<property name="daoAddress" ref="DaoUserAddress"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+	</bean>
+	
+	<bean id="deleteAddress" class="org.symagic.user.action.address.DeleteAddressAction"
+		scope="request">
+		<property name="daoUserAddress" ref="DaoUserAddress"></property>
+	</bean>
+	
+	<bean id="getNextLevel" class="org.symagic.user.action.address.GetNextLevelAction"
+		scope="request">
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+	</bean>
+	
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
 		<property name="daoUser" ref="DaoUser"></property>
@@ -363,6 +399,11 @@
 
 	<bean id="RecommendService" class="org.symagic.common.service.RecommandService">
 	</bean>
+	
+	<bean id="AddressService" class="org.symagic.common.service.AddressService">
+		<property name="daoUserAddress" ref="DaoUserAddress"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+	</bean>
 
 	<!-- 配置验证码生成及检查 -->
 	<bean class="org.symagic.common.utilty.captcha.SymagicCaptchaService"
@@ -384,6 +425,7 @@
 	<bean id="DaoDistrict" class="org.symagic.common.db.func.DaoDistrict" />
 	<bean id="DaoLevel" class="org.symagic.common.db.func.DaoLevel" />
 	<bean id="DaoComment" class="org.symagic.common.db.func.DaoComment"></bean>
+	<bean id="DaoUserAddress" class="org.symagic.common.db.func.DaoUserAddress"></bean>
 	<!-- 数据层实体bean -->
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 
