@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<dl>
         		<dt>我的商城</dt>
         		<div onclick="show_user_con('1')"><dd>浏览信息</dd></div>
-        		<div onclick=""><dd>我的收藏</dd></div>
+        		<div onclick="show_favorite()"><dd>我的收藏</dd></div>
         		<div onclick=""><dd>收货地址</dd></div>
         		<div onclick="show_user_con('2')"><dd>修改密码</dd></div>
         		<div onclick="show_user_con('3')"><dd>修改昵称</dd></div>

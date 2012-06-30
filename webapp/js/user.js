@@ -41,6 +41,17 @@ function pass_submit()
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');}
 		})
 }
+function show_favorite()
+{
+	for(var x=1;x!=5;++x)$('#'+x).slideUp(1);
+	$('#favorite').slideDown(1);
+	Ajax({
+		url:'favorite',
+		onSuccess:function(e){
+			document.getElementById('favorite-container').innerHTML=e;
+			}
+		})
+}
 $().ready(function(e) {
     addListener(document.getElementById('t1'),"click",function(e){
 		stopDefault(e);
