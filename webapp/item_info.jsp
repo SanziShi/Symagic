@@ -160,7 +160,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="clear"></div>
         <div class="item_desc">
         <div class="banner"><li>内容简介</li></div>
-        <div class="item_desc_con">&nbsp;&nbsp;&nbsp;&nbsp;<s:property value='book.bookDesc'/></div>
+        <div class="item_desc_con">&nbsp;&nbsp;&nbsp;&nbsp;<s:property value='book.bookDesc' escape='false'/></div>
         </div>
         <div id="comment">
         <div class="banner"><li>用户评价</li></div>

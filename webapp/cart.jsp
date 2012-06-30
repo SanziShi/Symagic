@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div id="cart_table">
         		<div id="cart_table_head">
                 	<div class="column checkbox">
-                		<input class="" type="checkbox"/>
+                		<input checked="checked" type="checkbox"/>
                 	</div>
                     <div class="column p-name">商品信息</div>
                     <div class="column p-price">商城价</div>
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <s:iterator value="items" var='iter'>
                     <div class="each">
                     <div class="cell checkbox">
-                		<input name="itemIDs" id="<s:property value='#iter.itemId'/>" class="" type="checkbox"/>
+                		<input onchange="checkbox_change(this)" checked="checked" name="itemIDs" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-img">
@@ -113,7 +113,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <input name="itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
         <a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
         </span></div>
-         			<div class="cell total">￥<span><s:property value='#iter.itemTotalPrice'/></span></div>
+         			<div class="cell total">￥<span id="<s:property value='#iter.itemID'/>total_price"><s:property value='#iter.itemTotalPrice'/></span></div>
                     <div class="cell action"><a href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)">删除</a></div>
                     </div>
                     </s:iterator>
@@ -125,8 +125,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div>
         	</div>
         </div>
-        </form>
+        
         <div class="cart-button"><a onclick="checkout()" href="javascript:void(0);" class="checkout"></a></div>
+        </form>
         <div id="recommend"></div>
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
