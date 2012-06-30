@@ -6,8 +6,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<!-- 设置为开发模式输出DEBUG信息 -->
 	<constant name="struts.devMode" value="true" />
-
-	<!-- 配置用户的拦截器 -->
+  <!-- 配置用户的拦截器 -->
 	<package name="symagic-user-default" extends="json-default">
 		<!-- 配置登陆用的拦截器 -->
 		<interceptors>
@@ -17,8 +16,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
-
-		</interceptors>
+       </interceptors>
 
 		<!-- 用于错误处理的result -->
 		<global-results>
@@ -47,9 +45,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
 		</global-results>
-
-
-	</package>
+    </package>
 
 
 	<!-- 通用的action -->
@@ -151,22 +147,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
-		
-		<action name="address" class="addressList">
-			<result>/lib/address.jsp</result>
-		</action>
-		
-		<action name="submit_address" class="addAddress">
-			<result>/lib/address.jsp</result>
-		</action>
-		
-		<action name="address_edit" class="editAddressEnter">
-			<result>/lib/address.jsp</result>
-		</action>
-		
-		<action name="address_edit_submit" class="editAddress">
-			<result>/lib/address.jsp</result>
-		</action>
+
+      
 	</package>
 
 	<!-- 注册时用户名检测 -->
@@ -228,8 +210,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<!-- 用户中与商品项有关的小接口 -->
 
-	<package name="item-user-default" extends="symagic-user-default"
-		namespace="/item">
+	<package name="item-user-default" extends="symagic-user-default" namespace="/item">
 		<action name="comment" class="submitComment">
 			<result type="json">
 				<param name="includeProperties">submitResult</param>
@@ -241,7 +222,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 	</package>
-
+	
 	<!-- 用户信息相关 -->
 	<package name="info-user-default" extends="symagic-user-default"
 		namespace="/user">
@@ -404,8 +385,5 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 	</package>
 
-
-</struts>    
-
-
+</struts>
 
