@@ -319,7 +319,8 @@
 	<bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction" 
 		scope="prototype"> 
 		<property name="daoUser" ref="DaoUser"></property> 
-		<property name="orderService" ref="OrderService"></property> 
+		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="forgetPassword" class="org.symagic.user.action.userinfo.ForgetPasswordAction"
