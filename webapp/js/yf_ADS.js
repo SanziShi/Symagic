@@ -50,19 +50,29 @@ function delete_from_cart(id)
 			var result=JSON.parse(e);
 			if(result.deleteResult=='ture')
 			{
-				var r=document.getElementById("ct"+id);
-				r.parentNode.removeChild(r);
-			}
-			get_session({S:function(l)
-				{
-					alert(l.totalNumber);
-					if(l.totalNumber==0)
+				get_session({S:function(l)
 					{
-						document.getElementById('cart_container').style.display='none';
-						document.getElementById('cart_none').style.display='block';
+						alert(l.totalNumber);
+						if(l.totalNumber==0)
+						{
+							document.getElementById('cart_container').innerHTML='';
+							document.getElementById('cart_none').style.display='block';
+						}
+						else
+						{
+							 Ajax({
+								url:'cartDetail',
+								onSuccess:function(e)
+								{
+									document.getElementById('cart_container').innerHTML=e;
+								}
+							});
+						}
 					}
-				}
-			});
+				});
+				//var r=document.getElementById("ct"+id);
+				//r.parentNode.removeChild(r);
+			}
 		}
 	})
 }
