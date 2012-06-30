@@ -648,6 +648,14 @@ public class DaoBook {
 			ps.execute();
 
 			// 删除收藏夹中指定书籍记录
+			ps	= conn.prepareStatement("delete from favority_folder where bookid=?");
+			ps.setInt(1, bookid);
+			ps.execute();
+			
+			// 删除评论中指定书籍记录
+			ps	= conn.prepareStatement("delete from comment where bookid=?");
+			ps.setInt(1, bookid);
+			ps.execute();
 
 			if (ps.getUpdateCount() == 1)
 				return true;
