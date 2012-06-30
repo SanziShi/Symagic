@@ -64,8 +64,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">购物车</a>			</div>
 			<form action="quick_search" >
 			<div id="searchright2">
-			  <input type="text" name="product" id="textInput"/>
-			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
+			  <input type="text" name="keyword" id="textInput"/>
+			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
 			<div id="searchright1">
 			 <select name="catalogID" >
