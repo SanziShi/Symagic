@@ -93,7 +93,7 @@ public boolean login(String username,String password){
 private void accordCart(){
 	  //会员数据库中已有关于购物车的信息
 	   List<BeanCart> historyItems=daoCart.getBooks(UserSessionUtilty.getUsername());
-	      //会员未登录前加商品到购物车中
+	    //会员未登录前加商品到购物车中
 	   HashMap<Integer,Integer> lastingItems=UserSessionUtilty.getCart();
 	   BeanCart item;
 	   //更新session中购物车的信息,将历史记录中当前session的购物车没有的项加入到session购物车中
@@ -101,6 +101,8 @@ private void accordCart(){
 		   item=index.next();
 		   if(!lastingItems.containsKey(item.getBookID())){
 			   lastingItems.put(item.getBookID(), item.getAmount());
+			   //增加总数量
+			   UserSessionUtilty.addTotalNumber(item.getAmount());
 		   }
 	   }
 	   
@@ -116,10 +118,10 @@ private void accordCart(){
 			 int id=(Integer)key.next();
 			 int number=lastingItems.get(id);
 			 if(historyId.contains(id)){
-				 daoCart.modifyBook(UserSessionUtilty.getSessionID(), id, number);
+				 daoCart.modifyBook(UserSessionUtilty.getUsername(), id, number);
 			 }
 			 else{
-				 daoCart.addBook(UserSessionUtilty.getSessionID(), id, number);
+				 daoCart.addBook(UserSessionUtilty.getUsername(), id, number);
 			 }
 		 }
 }

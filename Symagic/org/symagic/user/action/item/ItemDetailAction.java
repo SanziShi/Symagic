@@ -15,19 +15,22 @@ public class ItemDetailAction extends CatalogBase {
 	 * 
 	 */
 	private static final long serialVersionUID = 9054557857853861076L;
+	//传入
+    private Integer itemID;// 商品id
+	//配置项
 	private Integer lines ;
 	private String errorHeader;
 	private String errorSpecification ;
 	private ItemService itemService;// 访问服务层
-	
+	//传出
 	private ItemDetailBean book;// 书籍详细信息
-	
-    private Integer itemID;// 商品id
-	
 	private Integer totalPage;// 评论有多少页
 	private List<BeanComment> commentList;// 评论列表
 	private ArrayList<ItemTinyBean> recommendView;
 	private ArrayList<ItemTinyBean> recommendBought;
+
+	
+	
  
     
 	
