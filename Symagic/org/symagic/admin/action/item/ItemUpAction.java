@@ -19,6 +19,7 @@ public class ItemUpAction extends ActionSupport {
 	public String execute() throws Exception {
 		if (itemID != null) {
 			BeanBook book = daoBook.getDetail(itemID);
+			if( book == null ) return super.execute();
 			if( book.getOffline().equals("上架") ){
 				upResult = false;
 				return SUCCESS;
@@ -29,7 +30,7 @@ public class ItemUpAction extends ActionSupport {
 		} else {
 			upResult = false;
 		}
-		return SUCCESS;
+		return super.execute();
 	}
 
 	public Integer getItemID() {
