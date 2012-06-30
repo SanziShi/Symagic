@@ -197,7 +197,7 @@ public class DaoBook {
 				book.setInventory(rs.getInt("inventory"));
 				book.setIsbn(rs.getString("isbn"));
 				book.setMarketPrice(rs.getFloat("marketprice"));
-				book.setOffline(rs.getString("folio"));
+				book.setOffline(rs.getString("offline"));
 				book.setPage(rs.getInt("page"));
 				book.setPicture(rs.getString("picture"));
 				book.setPublisher(rs.getString("publisher"));
@@ -510,7 +510,7 @@ public class DaoBook {
 				if (book.getCatalogID() != null) {
 					ps = conn
 							.prepareStatement("update book_catalog_detail set "
-									+ " catalodid=? " + " where bookid=? ");
+									+ " catalogid=? " + " where bookid=? ");
 					ps.setInt(1, book.getCatalogID());
 					ps.setInt(2, book.getBookId());
 					if (ps.executeUpdate() == 1)

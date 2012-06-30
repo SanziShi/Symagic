@@ -85,7 +85,7 @@ public class BeanBook {
 	/**
 	 * (在架、下架)必须是这两个字符串之一
 	 */
-	private String	offline	= "";	
+	private String	offline	= "在架";	
 	
 	private Integer catalogID	= null;
 	

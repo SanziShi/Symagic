@@ -89,8 +89,9 @@ public class AdvanceSearchAction extends CatalogBase {
 		setBookSize(require, booksize);
 		setPrice(require, price);
 		
-		require.setVersion(edition);
-		require.setDiscount(discount);
+		setVersion(require,edition);
+		
+		setDiscount(require,discount);
 		
         require.setLines(lines);
 		require.setPage(page);
@@ -123,6 +124,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		return super.execute();
 	}
 	
+	
 	private void setVersion(BookRequire require,Integer index){
 		if(index==0)return;
 		else
@@ -131,7 +133,18 @@ public class AdvanceSearchAction extends CatalogBase {
 	private void setDiscount(BookRequire require,Integer index){
 		if(index==0)return;
 		switch(index){
-		case 1:require.setDiscount(index-1);
+		case 1:require.setUpDiscount(0.3F);
+			   require.setLowDiscount(0.1F);
+			   break;
+		case 2:require.setUpDiscount(0.5F);
+		   require.setLowDiscount(0.3F);
+		   break;
+		case 3:require.setUpDiscount(0.7F);
+		   require.setLowDiscount(0.5F);
+		   break;
+		case 4:
+		   require.setLowDiscount(0.7F);
+		   break;
 		}
 	}
 
