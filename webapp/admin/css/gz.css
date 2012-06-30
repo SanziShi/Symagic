@@ -70,6 +70,38 @@ td.mywidth{
 	color:#666666;
 }
 
+/*会员管理左侧栏*/
+#admin_user_left{
+	background:url(../image/user_admin.jpg) no-repeat;
+	padding:55px 0px 15px 0px;
+	}
+#admin_user_left h4{
+	margin:0px 18px 0px 18px;
+	padding:3px 0px 1px 5px;
+	background: #4796E4;
+	font-size:14px;
+}
+#admin_user_left ul{
+	list-style:none;
+	margin:0px;
+	padding:5px 22px 15px 22px;
+}
+#admin_user_left ul li{
+	padding:2px 0px 2px 16px;
+	border-bottom:1px dashed #999999;
+	background:url(../image/icon1.gif) no-repeat 5px 7px;
+}
+
+#admin_user_left ul li a:link, #category ul li a:visited{
+	color:#000000;
+	text-decoration:none;
+}
+#admin_user_left ul li a:hover{
+	color:#666666;
+}
+
+/*会员管理左侧栏*/
+
 #item_left
 {
 	background:#EAF2F7;
@@ -284,7 +316,7 @@ text-align: center;
 
 #search1 #mysearchleft,#search2 #mysearchleft{
 	float:left;
-	width:150px;
+	width:250px;
 	height:30px;
 	margin:0px 0px 0px 0px;
 	padding-top:5px;
@@ -310,4 +342,13 @@ text-align: center;
 	padding-top:5px;
 	text-align:left;
 	}
-<!--当有左侧栏时右侧栏的格式控制-->
+<!--当有左侧栏时右侧栏的格式控制end-->
+
+<!--table格式控制-->
+#mytable2{
+	width:600px;
+	font-size:13px;
+	text-align:center;
+	line-height:28px;
+}
+<!--table格式控制--end>

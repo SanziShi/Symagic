@@ -15,10 +15,11 @@ public class FavorityDeleteAction extends ActionSupport {
 	 * 
 	 */
 private static final long serialVersionUID = -6979940644982084061L;
+//配置
 private DaoFavorityFolder daoFavorityFolder;//对收藏夹的管理
-
+//传入
 private List<Integer>itemID;//批量删除的id组合
-
+//传出
 private boolean deleteResult;//全部删除结果
 
 @Override
@@ -32,6 +33,8 @@ if(itemID==null){
 deleteResult=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),itemID);
 return super.execute();
 }
+
+
 
 public List<Integer> getItemID() {
 	return itemID;
