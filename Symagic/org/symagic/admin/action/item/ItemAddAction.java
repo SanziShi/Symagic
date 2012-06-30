@@ -27,6 +27,8 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 	 * 
 	 */
 	private static final long serialVersionUID = -6680323098777982598L;
+	
+	private Integer itemID;
 
 	/**
 	 * 
@@ -180,8 +182,8 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 			book.setCatalogID(bookClassify);
 		book.setOffline("在架");
 
-		if (!daoBook.addBook(book))
-			return ERROR;
+		itemID = daoBook.addBook(book);
+		if( itemID == -1 ) return ERROR;
 
 		return SUCCESS;
 	}
@@ -363,6 +365,14 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 
 	public void setSize(Integer size) {
 		this.size = size;
+	}
+
+	public Integer getItemID() {
+		return itemID;
+	}
+
+	public void setItemID(Integer itemID) {
+		this.itemID = itemID;
 	}
 
 }
