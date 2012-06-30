@@ -54,9 +54,7 @@ public class AdminItemStatisticsAction extends CatalogBase {
 			startCalendar = new GregorianCalendar(startTime.getYear(),
 					startTime.getMonth(), startTime.getDay());
 			require.setStartTime(formater.format(startCalendar.getTime()));
-		} else {
-			require.setStartTime(null);
-		}
+		} 
 		if (endTime != null) {
 			GregorianCalendar endCalendar = new GregorianCalendar(
 					endTime.getYear(), endTime.getMonth(), endTime.getDay());
@@ -67,10 +65,7 @@ public class AdminItemStatisticsAction extends CatalogBase {
 			}
 
 			require.setEndTime(formater.format(endCalendar.getTime()));
-		} else {
-			require.setEndTime(null);
-		}
-
+		} 
 		List<BeanBookStatistics> statistics = daoBook
 				.getBookStatistics(require);
 

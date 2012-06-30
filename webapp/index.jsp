@@ -60,10 +60,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="left">
 		<div id="category">
 		<s:iterator value="catalog" var='outer'>
-			<a href="quick_search?catalog=<s:property value='#outer.ID'/>"><h4 ><span><s:property value='#outer.name'/></span></h4></a>
+			<a href="quick_search?catalogID=<s:property value='#outer.ID'/>"><h4 ><span><s:property value='#outer.name'/></span></h4></a>
 			<ul>
 			<s:iterator value="#outer.childCatalog" var="inner">
-				<li><a href="quick_search?catalog=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
+				<li><a href="quick_search?catalogID=<s:property value='#inner.ID'/>"/><s:property value='#inner.name'/></a></li>
 			</s:iterator>
 			</ul>
 		</s:iterator>
@@ -85,8 +85,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</s:iterator>
 				</s:iterator>
               </select>
-			  <input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />
-			  <input type="submit"  value="搜索" onClick="">
+			  <!--<input type="text" name="keyword" id="keyword" class="gray" value="快速搜索...."onFocus="onfocus_check(this,'快速搜索....')" onblur="onblur_check(this,'快速搜索....')" />-->
+			  <input type="text" name="keyword" id="keyword"/>
+              <input type="submit"  value="搜索" >
 			</form>
             </div>
 		</div>

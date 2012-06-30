@@ -27,12 +27,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="top">
     <div class="top_right">
     <ul>
+    <s:if test="#session.nickname!=null">
+    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
+    </s:if>
+    <s:else>
     <li>欢迎来到Symagic！</li>
-    <!--<s:property value="#session.username"/><s:property value="#session.nickname"/>-->
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
-    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart.html">
+    </s:else>
+    <li class="division">|</li><li id="mymall"><a href="user"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li id="cart_top"><a id="cart_a" href="cart">
     <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
     </ul>
@@ -59,8 +64,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">购物车</a>			</div>
 			<form action="quick_search" >
 			<div id="searchright2">
-			  <input type="text" name="product" id="textInput"/>
-			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
+			  <input type="text" name="keyword" id="textInput"/>
+			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
 			<div id="searchright1">
 			 <select name="catalogID" >
@@ -76,6 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </form>
 		</div>
         <div class="clear"></div>
+        <form onsubmit="return tests(this)" id="checkout" action="order" method="post">
         <div id="cart-a">
         	<h2>我的购物车</h2>
         	<div id="cart_table">
@@ -94,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <s:iterator value="items" var='iter'>
                     <div class="each">
                     <div class="cell checkbox">
-                		<input id="<s:property value='#iter.itemId'/>" class="" type="checkbox"/>
+                		<input name="itemIDs" id="<s:property value='#iter.itemId'/>" class="" type="checkbox"/>
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-img">
@@ -104,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.marketPrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
                     <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
-        <input type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
+        <input name="itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
         <a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
         </span></div>
          			<div class="cell total">￥<span><s:property value='#iter.itemTotalPrice'/></span></div>
@@ -119,7 +125,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div>
         	</div>
         </div>
-        <div class="cart-button"><a href="javascript:void(0);" class="checkout"></a></div>
+        </form>
+        <div class="cart-button"><a onclick="checkout()" href="javascript:void(0);" class="checkout"></a></div>
         <div id="recommend"></div>
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
