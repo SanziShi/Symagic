@@ -1,11 +1,13 @@
 package org.symagic.admin.action.item;
 
 import java.io.File;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 import javax.servlet.ServletContext;
 
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.util.ServletContextAware;
 import org.symagic.common.db.bean.BeanBook;
@@ -105,6 +107,11 @@ public class ItemModifySubmitAction extends ActionSupport implements
 	/**
 	 * 
 	 */
+	private String pictureFileName;
+
+	/**
+	 * 
+	 */
 	private boolean formValidateResult;
 
 	private DaoBook daoBook;
@@ -150,6 +157,18 @@ public class ItemModifySubmitAction extends ActionSupport implements
 			File destFile = new File(fileFolder, book.getPicture().substring(
 					book.getPicture().lastIndexOf('/') + 1));
 
+			if (destFile.exists()) {
+				 FileUtils.forceDelete(destFile);
+			}
+			MessageDigest md5Encoder = MessageDigest.getInstance("MD5");
+			String fileName = new String(Hex.encodeHex(md5Encoder.digest(ISBN
+					.getBytes("UTF-8"))))
+					+ pictureFileName.substring(pictureFileName.indexOf('.'));
+
+			book.setPicture("/" + shopImageFileFolder + "/" + fileName);
+
+			destFile = new File(fileFolder, fileName);
+
 			FileUtils.copyFile(picture, destFile);
 		}
 
@@ -157,7 +176,7 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		if (publishTime != null) {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			GregorianCalendar calender = new GregorianCalendar(
-					publishTime.getYear(), publishTime.getMonth(),
+					publishTime.getYear(), publishTime.getMonth() - 1,
 					publishTime.getDay());
 			book.setPublishDate(dateFormat.format(calender.getTime()));
 		}
@@ -188,7 +207,8 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		else
 			book.setCatalogID(null);
 
-		daoBook.modifyBook(book);
+		if (!daoBook.modifyBook(book))
+			return ERROR;
 
 		return SUCCESS;
 	}
@@ -365,6 +385,14 @@ public class ItemModifySubmitAction extends ActionSupport implements
 
 	public void setErrorSpecification(String errorSpecification) {
 		this.errorSpecification = errorSpecification;
+	}
+
+	public String getPictureFileName() {
+		return pictureFileName;
+	}
+
+	public void setPictureFileName(String pictureFileName) {
+		this.pictureFileName = pictureFileName;
 	}
 
 }

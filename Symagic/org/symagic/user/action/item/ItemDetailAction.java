@@ -41,6 +41,7 @@ public class ItemDetailAction extends CatalogBase {
 		//无此商品
 		if(!itemService.fillDetailBean(itemID, book))return "error";
 		book.setBookDesc(book.getBookDesc().replaceAll("\n", "<br>"));
+		book.setSize(book.getSize()+"开");
 		int commentNumber = itemService.getCommentNumber(itemID);
 		if(commentNumber==-1)return "error";
 		totalPage = (commentNumber + lines - 1) / lines;

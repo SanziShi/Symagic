@@ -50,6 +50,7 @@ public class AdminItemDetailAction extends CatalogBase {
 			return ERROR;
 		}
 		book.setBookDesc(book.getBookDesc().replaceAll("\n", "<br>"));
+		book.setSize(book.getSize()+"开");
 		int commentNumber = itemService.getCommentNumber(itemID);
 		if (commentNumber != -1)
 			totalPage = (commentNumber + lines - 1) / lines;
