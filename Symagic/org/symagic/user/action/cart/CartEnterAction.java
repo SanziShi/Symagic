@@ -24,7 +24,7 @@ public class CartEnterAction extends CatalogBase {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 	 items=new ArrayList<ItemTinyBean>();
-	 totalPrice=itemService.fillItemWithNumber(items);
+	 totalPrice=itemService.fillItemFromCart(items);
 	 totalNumber=UserSessionUtilty.getTotalNumber();
 	 //推荐商品
 	 /*
