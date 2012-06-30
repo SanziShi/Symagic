@@ -264,15 +264,17 @@ public class DaoBook {
 				+ " on t1.bookid=t2.bookid where ";
 		// 普通查询
 		if (sign == 0) {
-			sql += " t1.author like " + " '%" + req.getAuthor() + "%' "
+			sql += " (t1.author like " + " '%" + req.getAuthor() + "%' "
 					+ " or " + " t1.bookname like " + " '%"
 					+ req.getItemName() + "%' " + " or "
 					+ " t1.publisher like " + " '%" + req.getPublisher()
-					+ "%' ";
+					+ "%' )";
 			if (req.getCatalogIDList() != null) {
 				idList	= req.getCatalogIDList();
-				for (int i=0; i<idList.size(); i++)
-					sql += " or " + " t2.catalogid = " + idList.get(i) + " ";
+				sql += " and " + " t2.catalogid  in (" + idList.get(0);
+				for (int i=1; i<idList.size(); i++)
+					 sql += " ," + idList.get(i) + " ";
+				sql += " )";
 			}	
 
 			sql += " order by t1.bookid asc limit " + (req.getPage() - 1)
@@ -334,8 +336,10 @@ public class DaoBook {
 
 			if (req.getCatalogIDList() != null) {
 				idList	= req.getCatalogIDList();
-				for (int i=0; i<idList.size(); i++)
-					sql += " or " + " t2.catalogid = " + idList.get(i) + " ";
+				sql += " and " + " t2.catalogid  in (" + idList.get(0);
+				for (int i=1; i<idList.size(); i++)
+					 sql += " ," + idList.get(i) + " ";
+				sql += " )";
 			}	
 
 			sql += " order by t1.bookid asc limit " + (req.getPage() - 1)

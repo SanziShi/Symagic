@@ -52,7 +52,6 @@ public class ItemService {
 		//二级目录 
 		if(requiredCatalog.getLevel().trim().equals("2")){
 			catalogList.add(catalogID);
-		
 		}
 		//一级目录
 		else{
