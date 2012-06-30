@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
+import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.func.BookRequire;
+import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.service.ItemService;
 import org.symagic.common.service.RecommandService;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
@@ -37,7 +39,7 @@ private static final long serialVersionUID = 8991605145652333401L;
  private RecommandService recommendService;//推荐系统
  private Integer sign;//搜索标志，0为快速搜索
  private  Integer lines;
- 
+ private  DaoCatalog daoCatalog;
 //传出
 private Integer totalPage;
 private List<ItemTinyBean>recommend;//推荐商品
@@ -67,7 +69,6 @@ private List<ItemBean>items;//用于显示的商品列表
 		     
 		    //装饰成前台所需的信息
 			itemService.decorateForItem(books, items);
-			
 			List<Integer> bookIds;
 			/**
 			 * 处于test状态，待修改
@@ -89,7 +90,7 @@ private List<ItemBean>items;//用于显示的商品列表
 		 return super.execute();
 		}
 	 
-	 
+	
 	 
 	 @Override
 	public void validate() {
@@ -211,6 +212,14 @@ private List<ItemBean>items;//用于显示的商品列表
 
 		public void setRecommendNumber(Integer recommendNumber) {
 			this.recommendNumber = recommendNumber;
+		}
+
+		public DaoCatalog getDaoCatalog() {
+			return daoCatalog;
+		}
+
+		public void setDaoCatalog(DaoCatalog daoCatalog) {
+			this.daoCatalog = daoCatalog;
 		}
 	
 }

@@ -89,7 +89,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		setBinding(require, binding);
 		setBookSize(require, booksize);
 		setPrice(require, price);
-		
+	  
 		setVersion(require,edition);
 		
 		setDiscount(require,discount);

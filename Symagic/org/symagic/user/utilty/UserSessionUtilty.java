@@ -52,7 +52,7 @@ public class UserSessionUtilty extends SessionUtilty {
 		// 获得session
 		Map<String, Object> session = ActionContext.getContext().getSession();
 
-		session.put("username", userName);
+		session.put("userName", userName);
 		session.put("nickname", nickname);
 	}
 
@@ -66,7 +66,7 @@ public class UserSessionUtilty extends SessionUtilty {
 		// 获得session
 		Map<String, Object> session = ActionContext.getContext().getSession();
 
-		return session.containsKey("username")
+		return session.containsKey("userName")
 				&& session.containsKey("nickname");
 
 	}
@@ -165,7 +165,7 @@ public class UserSessionUtilty extends SessionUtilty {
 		ActionContext.getContext().getSession().put("nickname", nickname);
 	}
 	public static String getUsername(){
-		return (String)ActionContext.getContext().getSession().get("username");
+		return (String)ActionContext.getContext().getSession().get("userName");
 	}
 	public static void cleanSession(){
 		ActionContext.getContext().getSession().clear();
