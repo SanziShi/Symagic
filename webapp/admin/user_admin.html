@@ -5,9 +5,10 @@
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
 <link href="css/gz.css" rel="stylesheet" type="text/css"/>
 <link href="css/home.css" rel="stylesheet" type="text/css"/>
-<script language="javascript" src="js/checkform.js">
+<script language="javascript" src="js/checkform.js"></script>
+<script language="javascript" src="js/gz.js"></script>
 
-</script>
+
 
 </head>
 
@@ -33,11 +34,7 @@
 	</div>
  
     <div id="left_user_admin">
-			<div id="categoryFixed">
-		
-				<h4>
-					<span>会员管理</span>
-				</h4>
+			<div id="admin_user_left">		
 				<ul>
 					<li><a href="user_admin.html">查询会员</a></li>
 					<li><a href="user_admin.html">设置会员等级规定</a></li>
@@ -47,10 +44,10 @@
 
 <!--     <div style="text-align:left; font-size:16px; background-color: #FFF""><span style="padding-right:20px;padding-left:2px;"><a href="item_list.html">[会员级别设置]</a></span><span style="padding-right:20px;padding-left:2px;"><a href="item_list.html">[会员查询]</a></span></div>-->
 	<div id="main">
-		  	<div id="search1">
+		  <div id="search1">
 				<div id="mysearchleft">
 					<img src="image/ico_site.jpg" id="ico_site" /> 网站路径：
-                    <a href="index.jsp">会员管理</a>
+                    <a href="index.jsp">会员管理</a>&gt;&gt;设置会员级别
 				</div>
                 <div id="searchright">
 					<form action="quick_search">
@@ -81,43 +78,24 @@
 				<tr>
 				<td class="inputHeader">&nbsp;</td>
               <td align="center" class="inputHeader">会员级别&nbsp;&nbsp;</td>
-              <td align="center" class="inputContent ">积分下限</td>
-              <td width="18%" align="center" class="inputContent ">积分比例</td>
-              <td width="33%" align="center" class="inputContent ">备注</td>
+              <td align="center"  width="50%" class="inputContent ">积分下限</td>
+              <td width="20%" align="center" class="inputContent ">积分比例</td>
               <td align="center" class="inputContent">&nbsp;</td>
             </tr>
+            <!--会员等级说明迭代开始-->
+            <s:interator value="levelList" var="levelInfo">
             <tr>
               <td class="inputHeader">&nbsp;</td>
-              <td align="center" class="inputHeader">普通会员&nbsp;&nbsp;</td>
-              <td align="center" class="inputContent">0</td>
-              <td align="center" class="inputContent">100%</td>
-              <td align="center" class="inputContent"><font color="#CC0000">只需注册即可成为普通会员</font></td>
+              <td align="center" class="inputHeader"><s:property value="#levelInfo.levelName"/>&nbsp;&nbsp;</td>
+              <td align="center" class="inputContent"><s:property value="#levelInfo.low"/></td>
+              <td align="center" class="inputContent"><s:property value="#levelInfo.scoreRate"/></td>
               <td align="center" class="inputContent">&nbsp;</td>
             </tr>
-            <tr>
-              <td class="inputHeader">&nbsp;</td>
-              <td align="center" class="inputHeader">银&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卡&nbsp;&nbsp;</td>
-              <td align="center" class="inputContent">3000</td>
-              <td align="center" class="inputContent">120%</td>
-              <td align="left" class="inputContent">&nbsp;</td>
-              <td align="center" class="inputContent">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="inputHeader">&nbsp;</td>
-              <td align="center" class="inputHeader">金&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;卡&nbsp;&nbsp;</td>
-              <td align="center" class="inputContent">8000</td>
-              <td align="center" class="inputContent">130%</td>
-              <td align="left" class="inputContent">&nbsp;</td>
-              <td align="center" class="inputContent">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="inputHeader">&nbsp;</td>
-              <td align="center" class="inputHeader">白&nbsp;&nbsp;金&nbsp;&nbsp;卡&nbsp;&nbsp;</td>
-              <td align="center" class="inputContent">15000</td>
-              <td align="center" class="inputContent">140%</td>
-              <td align="left" class="inputContent">&nbsp;</td>
-              <td align="center" class="inputContent">&nbsp;</td>
-            </tr>
+            </s:interator>
+             <!--会员等级说明迭代结束-->
+          
+          
+         
             <tr>
               <td colspan="6" class="titlegrey">&nbsp;</td>
             </tr>
@@ -165,100 +143,7 @@
 			
 			
 			
-			<div id="mydouble">
-			<div id="doublehead2"><strong>会员查询</strong></div>
-			<div id="doublecontent2">
-				<table width="100%">
-				   <tr>
-					  <td width="3%" class="inputHeader">&nbsp;</td>
-              <td width="16%" class="inputHeader">用户名：</td>
-              <td width="39%" class="inputContent"><input type="Text" name="name" onFocus="nextfield='password'" value="" maxlength="15" size="15">              </td>
-              <td width="42%" class="inputContent">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="inputHeader">&nbsp;</td>
-              <td class="inputHeader">会员级别：</td>
-              <td class="inputContent"><select name="select">
-                <option value="5">所有会员</option>
-				<option value="4">普通会员</option>
-                <option value="1">银卡</option>
-                <option value="2">金卡</option>
-                <option value="3">白金卡</option>
-              </select></td>
-              <td class="inputContent">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="inputHeader">&nbsp;</td>
-              <td width="16%" class="inputHeader">注册起始时间：</td>
-              <td width="39%" class="inputContent"><select name="year">
-                  <option>2007</option>
-                  <option>2006</option>
-                </select>
-                &nbsp;&nbsp;年&nbsp;&nbsp;
-                <select name="month">
-                  <option>01</option>
-                  <option>02</option>
-                  <option>03</option>
-                  <option>04</option>
-                  <option>05</option>
-                  <option>06</option>
-                </select>
-                &nbsp;&nbsp;
-                月&nbsp;&nbsp;
-              <select name="day">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-              </select>
-              &nbsp;&nbsp;日 </td>
-              <td class="inputContent">&nbsp;</td>
-            </tr>
-            <tr>
-              <td class="inputHeader">&nbsp;</td>
-              <td class="inputHeader">注册结束时间：</td>
-              <td class="inputContent"><select name="year">
-                  <option>2007</option>
-                  <option>2006</option>
-                </select>
-                &nbsp;&nbsp;年&nbsp;&nbsp;
-                <select name="month">
-                  <option>01</option>
-                  <option>02</option>
-                  <option>03</option>
-                  <option>04</option>
-                  <option>05</option>
-                  <option>06</option>
-                </select>
-                &nbsp;&nbsp;
-                月&nbsp;&nbsp;
-              <select name="day">
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-                <option>05</option>
-                <option>06</option>
-              </select>
-                &nbsp;&nbsp;日 </td>
-              <td class="inputContent">&nbsp;</td>
-            </tr>
-          </table>
-                <table width="100%" border="0" cellspacing="1" cellpadding="0">
-                  <tr>
-                    <td width="4%" class="inputContent">&nbsp;</td>
-                    <td width="17%" class="inputHeader">&nbsp;</td>
-                    <td width="39%" class="inputContent">
-                      <strong> <input type="Button" class="bt2" name="button222" value="查询" onClick="javascript:window.location.href='user_list.html'"></strong>&nbsp;&nbsp;
-                     <input type="Reset" class="bt2" name="button1" value="重填" onClick="clear()">
-                      &nbsp; </td>
-                    <td width="40%" class="inputContent">&nbsp;</td>
-				 </tr>
-        </table>
-		</form>		
-			</div>
+		
 
 </div>
 	<div id="footer">

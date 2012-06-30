@@ -126,7 +126,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 <tr>
 					<th>书籍类别：</th>
             		<td>
-						<select name="catalogId" class="midselect">
+						<select name="catalogID" class="midselect">
               				<option value="0">所有类别</option>
 			  				<s:iterator value="catalog" var='outer'>
 							<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
@@ -152,11 +152,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 <tr>
 					<th>页数范围：</th>
             		<td>
-						<select name="catogory" class="midselect">
-              				<option>0-200</option>
-             				<option>200-400</option>
-              				<option>400-600</option>
-			  				<option>600以上</option>
+						<select name="searchPage" class="midselect">
+                        	<option value="0">不限页数</option>
+              				<option value="1">0-200</option>
+             				<option value="2">200-400</option>
+              				<option value="3">400-600</option>
+			  				<option value="4">600以上</option>
             			</select>
 					</td>
 					<th>版&nbsp;&nbsp;&nbsp;次：</th>

@@ -1,5 +1,7 @@
 package org.symagic.admin.action.level;
 
+import java.util.List;
+
 import org.symagic.common.db.bean.BeanLevel;
 import org.symagic.common.db.func.DaoLevel;
 
@@ -11,45 +13,77 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = -2799351158227669070L;
-	
+
 	private Integer levelID;
-	
+
 	private Integer low;
-	
-	private Integer hight;
-	
+
 	private Float scoreRate;
-	
+
 	private boolean validateResult;
-	
+
 	private DaoLevel daoLevel;
-	
+
 	private String levelName;
 
 	@Override
 	public String execute() throws Exception {
-		
-		if( !validateResult )
+
+		if (!validateResult)
 			return ERROR;
-		BeanLevel level = new BeanLevel();
-		level.setId(levelID);
-		level.setLowLimit(low);
-		level.setRate(scoreRate);
-		level.setUpLimit(hight);
-		level.setName(levelName);
-		daoLevel.update(level);
-		
+
+		List<BeanLevel> levels = daoLevel.getAll();
+
+		int modifyLevelIndex = -1;
+
+		for (int i = 0; i < levels.size(); i++) {
+			if (levels.get(i).getId() == levelID) {
+				modifyLevelIndex = i;
+				break;
+			}
+		}
+
+		if (modifyLevelIndex == -1)
+			return ERROR;
+
+		BeanLevel level = levels.get(modifyLevelIndex);
+
+		if (modifyLevelIndex == 0) {
+			if (level.getUpLimit() <= low) {
+				return ERROR;
+			}
+			level.setLowLimit(low);
+			daoLevel.update(level);
+		} else if (modifyLevelIndex == levels.size() - 1) {
+			if (levels.get(modifyLevelIndex - 1).getLowLimit() >= low)
+				return ERROR;
+			level.setLowLimit(low);
+			levels.get(modifyLevelIndex - 1).setUpLimit(low);
+			daoLevel.update(level);
+			daoLevel.update(levels.get(modifyLevelIndex - 1));
+		} else {
+
+			if (levels.get(modifyLevelIndex - 1).getLowLimit() >= low
+					|| level.getUpLimit() <= low) {
+				return ERROR;
+			}
+			level.setLowLimit(low);
+			levels.get(modifyLevelIndex - 1).setUpLimit(low);
+			daoLevel.update(level);
+			daoLevel.update(levels.get(modifyLevelIndex - 1));
+		}
+
 		return super.execute();
 	}
 
 	@Override
 	public void validate() {
-		
-		if( levelID == null || low == null || scoreRate == null )
+
+		if (levelID == null || low == null || scoreRate == null)
 			validateResult = false;
 		else
 			validateResult = true;
-		
+
 		super.validate();
 	}
 
@@ -67,14 +101,6 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 
 	public void setLow(Integer low) {
 		this.low = low;
-	}
-
-	public Integer getHight() {
-		return hight;
-	}
-
-	public void setHight(Integer hight) {
-		this.hight = hight;
 	}
 
 	public Float getScoreRate() {
@@ -108,7 +134,5 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 	public void setLevelName(String levelName) {
 		this.levelName = levelName;
 	}
-	
-	
-	
+
 }
