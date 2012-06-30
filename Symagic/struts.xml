@@ -230,7 +230,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">updateResult</param>
 			</result>
 		</action>
-
 		<action name="update_nickname" class="updateNickname">
 			<result type="json">
 				<param name="includeProperties">upadteResult</param>

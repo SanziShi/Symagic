@@ -17,7 +17,7 @@ public class UpdateUserPasswordAction extends CatalogBase{
 	
 	private String newPassword;
 	
-	private String newPasswordConirm;
+	private String newPasswordConfirm;
 	
 	private Boolean updateResult;
 	
@@ -47,12 +47,12 @@ public class UpdateUserPasswordAction extends CatalogBase{
 		this.newPassword = newPassword;
 	}
 
-	public String getNewPasswordConirm() {
-		return newPasswordConirm;
+	public String getNewPasswordConfirm() {
+		return newPasswordConfirm;
 	}
 
 	public void setNewPasswordConirm(String newPasswordConirm) {
-		this.newPasswordConirm = newPasswordConirm;
+		this.newPasswordConfirm = newPasswordConirm;
 	}
 
 	public static long getSerialversionuid() {
@@ -60,7 +60,11 @@ public class UpdateUserPasswordAction extends CatalogBase{
 	}
 	
 	public String execute() throws Exception{
-		updateResult = daoUser.updatePassword(UserSessionUtilty.getUsername(), newPasswordConirm, password);
+		if(newPassword.equals(newPasswordConfirm))
+			updateResult = daoUser.updatePassword(UserSessionUtilty.getUsername(), newPasswordConfirm, password);
+		else {
+			updateResult = false;
+		}
 		return SUCCESS;
 	}
 
