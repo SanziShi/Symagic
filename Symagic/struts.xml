@@ -138,8 +138,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="input">/error.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
-
-
+		
+		<action name="user" class="enterUserInfo">
+			<result>/user.jsp</result>
+		</action>
+		
+		<action name="forget_password" class="forgetPasswordEnter">
+			<result>forget.jsp</result>
+		</action>
 
 	</package>
 
@@ -214,6 +220,22 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 
+	</package>
+	
+	<!-- 用户信息相关 -->
+	<package name="info-user-default" extends="symagic-user-default"
+		namespace="/user">
+		<action name="update_password" class="updatePassword">
+			<result type="json">
+				<param name="includeProperties">updateResult</param>
+			</result>
+		</action>	
+		
+		<action name="update_nickname" class="updateNickname">
+			<result type="json">
+				<param name="includeProperties">upadteResult</param>
+			</result>
+		</action>
 	</package>
 
 	<!-- 配置管理员的action -->
