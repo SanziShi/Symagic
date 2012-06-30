@@ -86,7 +86,7 @@ function logout()
 		url:'logout',
 		onSuccess:function(e){
 			var a=JSON.parse(e);
-			if(a.logoutResult){alert('成功退出');location.href=location.pathname}
+			if(a.logoutResult){alert('成功退出');location.replace(location.href);}
 			}
 		})
 }
@@ -133,10 +133,9 @@ function login(form)
 		data:login_form,
 		onSuccess:function(e){
 				var a=JSON.parse(e);
-				if(a.loginResult)location.href=location.pathname;
+				if(a.loginResult)location.replace(location.href);
 				},
-		onError:function(){
-			location.pathname='/index.html'}
+		onError:function(){}
 	})
 	return false;
 }
@@ -151,7 +150,7 @@ function regist(form)
 			r=JSON.parse(e);
 			if(r.registerResult)
 			{
-				location.href='';
+				location.replace(location.href);
 			}
 		}
 	})
