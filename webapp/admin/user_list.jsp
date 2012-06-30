@@ -39,8 +39,8 @@
 		
 				
 				<ul>
-					<li><a href="user_admin.html">查询会员</a></li>
-					<li><a href="user_admin.html">设置会员等级规定</a></li>
+					<li><a href="user_list">查询会员</a></li>
+					<li><a href="user_score_rate_submit">设置会员等级规定</a></li>
 				</ul>
 			</div>
 		</div>
