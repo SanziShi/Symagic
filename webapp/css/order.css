@@ -58,6 +58,7 @@ input.txt {
 	color: #333;
 	line-height: 18px;
 	height: 18px;
+	margin-left:0;
 }
 #c-input,#payment-c table
 {
@@ -100,9 +101,30 @@ input.txt {
 {
 	background:#F8FBFC
 }
+.total_price
+{
+	padding:10px 30px 10px 0;
+	float:right;
+}
 #pay
 {
-	list-style:none;
 	min-width:90px;
+	font-size: 16px;
+	font-weight:bold;
+}
+.order_confirm
+{
+	background:url(../image/order_confirm.gif);
+	width:150px;
+	height:43px;
 	float:right;
+	margin-right:30px;
+}
+.long
+{
+	width:300px;
+}
+.short
+{
+	width:60px;
 }

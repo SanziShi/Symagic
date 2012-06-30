@@ -20,6 +20,12 @@ ul
 	padding:0px;
 	list-style:none;
 }
+#captcha_td img
+{
+	height::30px;
+	width:125px;
+	float:left;
+}
 /*---------------∆¯≈›Ã· æ------------------*/
 .lj-tipsWrap{min-width:10px;min-height:15px;font-family:'Segoe UI',Calibri, 'Myriad Pro', Myriad, 'Trebuchet MS', Helvetica, Arial, sans-serif;}
 .lj-tipsWrap,.lj-in,.lj-close{display:inline-block;}
@@ -266,11 +272,11 @@ span.close
 }
 #overlay
 {
-	background:#000;
-	filter:alpha(opacity=50);
-	-moz-opacity:0.5;
-	-khtml-opacity: 0.5;
-	opacity:0.5;
+	background: #000;
+	filter:alpha(opacity=40);
+	-moz-opacity:0.4;
+	-khtml-opacity: 0.4;
+	opacity:0.4;
 	display:none;
 	position:fixed;
 	top:0px;
