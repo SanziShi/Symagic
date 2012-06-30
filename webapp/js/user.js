@@ -26,7 +26,6 @@ function close_address(e)
 function nickname_c(e)
 {
 	var c=document.getElementById('nickname_c').value;
-	alert(c);
 	Ajax({
 		url:'user/update_nickname?nickname='+c,
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult){alert('修改成功');location.href='user'}}
