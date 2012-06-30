@@ -36,6 +36,7 @@
 	<bean id="OrderDetailAction" class="org.symagic.common.action.order.OrderDetailAction"
 		scope="request">
 		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<!-- 管理员的action bean -->
@@ -162,6 +163,7 @@
 		scope="request">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminSubmitOrderEdit"
