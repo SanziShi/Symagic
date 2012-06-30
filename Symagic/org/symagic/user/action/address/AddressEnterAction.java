@@ -33,16 +33,6 @@ public class AddressEnterAction extends CatalogBase {
 	private DaoDistrict daoDistrict;
 	
 	private DaoUserAddress daoUserAddress;
-	
-	private AddressService addressService;
-
-	public AddressService getAddressService() {
-		return addressService;
-	}
-
-	public void setAddressService(AddressService addressService) {
-		this.addressService = addressService;
-	}
 
 	public List<AddressBean> getAddressList() {
 		return addressList;
@@ -83,12 +73,15 @@ public class AddressEnterAction extends CatalogBase {
 		level1Districts = new ArrayList<DistrictBean>();
 		List<BeanDistrict> districts = daoDistrict.getDistrict(0);
 		for(int i = 0; i < districts.size() ; i ++){
-			level1Districts.add(addressService.convertBeanDistrictToDistrictBean(districts.get(i)));
+			level1Districts.add(AddressService.convertBeanDistrictToDistrictBean(districts.get(i)));
 		}
 		
 		List<BeanAddress> addresses = daoUserAddress.listAddress(UserSessionUtilty.getUsername());
-		for(int i = 0; i < addresses.size(); i ++){
-			addressList.add(addressService.convertBeanAddressToAddressBean(addresses.get(i)));
+		if(addresses != null){
+			for(int i = 0; i < addresses.size(); i ++){
+				if(addresses.get(i) != null)
+					addressList.add(AddressService.convertBeanAddressToAddressBean(addresses.get(i)));
+			}
 		}
 		return SUCCESS;
 	}

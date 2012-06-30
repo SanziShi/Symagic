@@ -103,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div  class="user_note">
 			<div class="fliter"><font>商品搜索</font><span class="collapse" onclick="show_item_search(this);"></span></div>
 			<div id="item_search1" class="user_note_content hide">
-				<form action="item_list">
+				<form action="item_list" method="post">
                 <table>
 				<tr>
 					<th>书&nbsp;&nbsp;&nbsp;名：</th>

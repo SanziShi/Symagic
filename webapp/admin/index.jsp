@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -110,7 +109,7 @@
 						href="index.jsp">后台</a>
 				</div>
 				<div id="searchright">
-					<form action="quick_search">
+					<form action="quick_search" method="post">
 						<select name="catalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>
@@ -176,7 +175,7 @@
 							<tr>
 								<td id="myfont" width="60%">今日订单:&nbsp;&nbsp;</td>
 								<td id="myfont"><span class="redStrong"><s:property
-											value="" /> </span>个</td>
+											value="todayOrderAmount" /> </span>个</td>
 							</tr>
 							<tr>
 								<td id="myfont" width="60%">待审核订单:&nbsp;&nbsp;</td>
