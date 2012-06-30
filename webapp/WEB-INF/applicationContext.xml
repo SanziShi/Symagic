@@ -316,9 +316,11 @@
 
 	</bean>
 
-	<!-- <bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction" 
-		scope="request"> <property name="daoUser" ref="DaoUser"></property> <property 
-		name="orderService" ref="OrderService"></property> </bean> -->
+	<bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction">
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
 
 	<bean id="forgetPassword" class="org.symagic.user.action.userinfo.ForgetPasswordAction"
 		scope="request">
@@ -336,9 +338,6 @@
 		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
-
-	<!-- <bean id="forgetPasswordEnter" class="org.symagic.action.userinfo.ForgetPasswordEnterAction" 
-		scope="request"> </bean> -->
 
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
