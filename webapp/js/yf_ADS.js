@@ -48,11 +48,11 @@ function delete_from_cart(id)
 		data:'itemID='+id,
 		onSuccess:function(e){
 			var result=JSON.parse(e);
-			if(result.deleteResult=='ture')
+			if(result.deleteResult)
 			{
 				get_session({S:function(l)
 					{
-						alert(l.totalNumber);
+						document.getElementById('cart_num').innerHTML=l.totalNumber;
 						if(l.totalNumber==0)
 						{
 							document.getElementById('cart_container').innerHTML='';
@@ -958,12 +958,15 @@ $().ready(function() {
 					onSuccess:function(e)
 						{						
 							var result=JSON.parse(e);	
-							if(result.totalNumber=='0')
+							if(result.totalNumber==0)
 							{
 								cart.loading.style.display='none';
 								cart.none.style.display='block';
 							}
-							else Ajax({
+							else 
+							{
+								cart.none.style.display='none';
+							Ajax({
 								url:'cartDetail',
 								onSend:function(){document.getElementById('cart_loading').style.display='block';},
 								onSuccess:function(e)
@@ -977,6 +980,7 @@ $().ready(function() {
 									cart.container.innerHTML=e;
 								}
 							});
+							}
 						}
 					});
 				$('#cart').fadeIn(1);
