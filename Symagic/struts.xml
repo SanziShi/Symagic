@@ -6,8 +6,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<!-- 设置为开发模式输出DEBUG信息 -->
 	<constant name="struts.devMode" value="true" />
-
-	<!-- 配置用户的拦截器 -->
+  <!-- 配置用户的拦截器 -->
 	<package name="symagic-user-default" extends="json-default">
 		<!-- 配置登陆用的拦截器 -->
 		<interceptors>
@@ -17,8 +16,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
-
-		</interceptors>
+       </interceptors>
 
 		<!-- 用于错误处理的result -->
 		<global-results>
