@@ -49,7 +49,7 @@ private List<ItemBean>items;//用于显示的商品列表
 		 items=new ArrayList<ItemBean>();
 			//设置搜索的条件,两个条件 都为空时，返回所有商品
 		   BookRequire require=new BookRequire();
-		   if(catalogID!=null)
+		   if(catalogID!=null&&catalogID!=0)
 		   require.setCatalogID(catalogID);
 		   if(keyword!=null&&!keyword.trim().equals("")){
 		   require.setAuthor(keyword);

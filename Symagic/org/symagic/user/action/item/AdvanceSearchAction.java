@@ -82,6 +82,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		require.setPublisher(publisher);
 		if(isEmpty(author))
 			require.setAuthor(author);
+		if(catalogID!=null&&catalogID!=0)
 		require.setCatalogID(catalogID);
 		setYear(require, publishTime);
 		setPageNumber(require, searchPage);
@@ -147,6 +148,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		   break;
 		case 4:
 		   require.setLowDiscount(0.7F);
+		   require.setLowDiscount(1.0F);
 		   break;
 		}
 	}
