@@ -26,7 +26,6 @@ function close_address(e)
 function nickname_c(e)
 {
 	var c=document.getElementById('nickname_c').value;
-	alert(c);
 	Ajax({
 		url:'user/update_nickname?nickname='+c,
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult){alert('修改成功');location.href='user'}}
@@ -40,6 +39,17 @@ function pass_submit()
 	Ajax({
 		url:'user/update_password?password='+a+'&newPasswordnew='+b+'&PasswordConfirm='+c,
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');}
+		})
+}
+function show_favorite()
+{
+	for(var x=1;x!=5;++x)$('#'+x).slideUp(1);
+	$('#favorite').slideDown(1);
+	Ajax({
+		url:'favorite',
+		onSuccess:function(e){
+			document.getElementById('favorite-container').innerHTML=e;
+			}
 		})
 }
 $().ready(function(e) {

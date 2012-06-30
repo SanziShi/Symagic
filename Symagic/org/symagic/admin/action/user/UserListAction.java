@@ -43,8 +43,10 @@ public class UserListAction extends CatalogBase {
 			return ERROR;
 
 		UserRequire userRequire = new UserRequire();
-		userRequire.setUsername(userName);
-		userRequire.setUserLevel(userLevel);
+		if (userName != null)
+			userRequire.setUsername(userName);
+		if (userLevel != null)
+			userRequire.setUserLevel(userLevel);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 		GregorianCalendar startCalendar = null;
 		if (startTime != null) {
@@ -84,6 +86,7 @@ public class UserListAction extends CatalogBase {
 			bean.setRegisterDate(user.getRegistedate());
 			BeanLevel level = daoLevel.judgeLevel(user.getScore());
 			bean.setLevelName(level.getName());
+			bean.setScore(Integer.toString(user.getScore()));
 			userList.add(bean);
 		}
 
