@@ -45,14 +45,14 @@ private Integer totalPage;
 private List<ItemTinyBean>recommend;//推荐商品
 private List<ItemBean>items;//用于显示的商品列表
 	
-	 @Override
+	@Override
 		public String execute() throws Exception {
 			// TODO Auto-generated method stub
 		 items=new ArrayList<ItemBean>();
 			//设置搜索的条件,两个条件 都为空时，返回所有商品
 		   BookRequire require=new BookRequire();
-		   if(catalogID!=null&&catalogID!=0)
-		   require.setCatalogID(catalogID);
+		   
+		   setCatalog(require,catalogID);
 		   if(keyword!=null&&!keyword.trim().equals("")){
 		   require.setAuthor(keyword);
 		   require.setItemName(keyword);
@@ -98,7 +98,10 @@ private List<ItemBean>items;//用于显示的商品列表
 		super.validate();
 	}
 
-
+	 private void setCatalog(BookRequire require,Integer catalogID ){
+			if(catalogID==null||catalogID==0)return;
+			require.setCatalogIDList(itemService.getCatalogList(catalogID));
+		}
 
 	public ItemService getItemService() {
 			return itemService;

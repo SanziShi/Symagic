@@ -23,10 +23,8 @@ public class AdvanceSearchAction extends CatalogBase {
 	 */
 	private static final long serialVersionUID = -3732461805669850866L;
 
-	private ItemService itemService;// 访问书本的业务层
-	private RecommandService recommendService;// 推荐系统
-	 private int sign;// 搜索标志，1为高级搜索
 	
+	//传入
 	private Integer page=1;// 分页显示
 	private String author;// 作者
 	private String name;// 书本名字
@@ -48,26 +46,15 @@ public class AdvanceSearchAction extends CatalogBase {
 	private Integer recommendNumber;
 	private String errorHeader;
 	private String errorSpecification;
-
+	private ItemService itemService;// 访问书本的业务层
+	private RecommandService recommendService;// 推荐系统
+	 private int sign;// 搜索标志，1为高级搜索
+  //传出
 	private Integer totalPage;
     private List<ItemTinyBean> recommend;// 推荐商品
 	private List<ItemBean> items;// 用于显示的商品列表
 
-	public String getErrorHeader() {
-		return errorHeader;
-	}
-
-	public void setErrorHeader(String errorHeader) {
-		this.errorHeader = errorHeader;
-	}
-
-	public String getErrorSpecification() {
-		return errorSpecification;
-	}
-
-	public void setErrorSpecification(String errorSpecification) {
-		this.errorSpecification = errorSpecification;
-	}
+	
 
 	
 	@Override
@@ -82,8 +69,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		require.setPublisher(publisher);
 		if(!isEmpty(author))
 			require.setAuthor(author);
-		if(catalogID!=null&&catalogID!=0)
-		 require.setCatalogID(catalogID);
+		setCatalog(require,catalogID);
 		setYear(require, publishTime);
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
@@ -124,6 +110,11 @@ public class AdvanceSearchAction extends CatalogBase {
 				itemService.decorateForItem(books, items);
 		return super.execute();
 	}
+	private void setCatalog(BookRequire require,Integer catalogID ){
+		if(catalogID==null||catalogID==0)return;
+		require.setCatalogIDList(itemService.getCatalogList(catalogID));
+	}
+	
 	private boolean isEmpty(String content){
 		return content==null||content.trim().equals("");
 	}
@@ -151,6 +142,22 @@ public class AdvanceSearchAction extends CatalogBase {
 		   require.setLowDiscount(1.0F);
 		   break;
 		}
+	}
+	
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
 	}
 
 	private void setBookSize(BookRequire require, Integer index) {

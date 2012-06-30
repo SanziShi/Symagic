@@ -45,6 +45,28 @@ public class ItemService {
 	public int getSearchNum(int sign, BookRequire require) {
 		return daoBook.getSearchRowNumber(sign, require);
 	}
+	
+	public List<Integer> getCatalogList(Integer catalogID){
+		List<Integer> catalogList=new ArrayList<Integer>();
+		BeanCatalog requiredCatalog=daoCatalog.getCatalogByID(catalogID);
+		//二级目录 
+		if(requiredCatalog.getLevel().trim().equals("2")){
+			catalogList.add(catalogID);
+		
+		}
+		//一级目录
+		else{
+		List<BeanCatalog> allCatalog=daoCatalog.getCatalog();
+		BeanCatalog catalog;
+		for(Iterator<BeanCatalog> index=allCatalog.iterator();index.hasNext();){
+			catalog=index.next();
+			if(catalog.getUpID()==catalogID){
+				catalogList.add(catalog.getCatalogID());
+			}
+		}
+		}
+		return catalogList;
+	}
 
 	// 为推荐项填充信息
 	private void fillItemTinyBean(BeanBook book, ItemTinyBean item) {
