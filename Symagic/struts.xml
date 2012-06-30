@@ -114,6 +114,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="cart" class="cartEnter">
 			<result>/cart.jsp</result>
 		</action>
+		
+		<action name="favorite" class="detailOfFavorite">
+		  <result>/lib/favorite.jsp</result>
+		</action>
 
 		<!-- 商品项 -->
 		<action name="item_list" class="advanceSearch">
@@ -148,6 +152,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>forget.jsp</result>
 		</action>
 
+      
 	</package>
 
 	<!-- 注册时用户名检测 -->

@@ -273,6 +273,11 @@
 		scope="request">
 		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
 	</bean>
+	<bean id="detailOfFavorite" class="org.symagic.user.action.favority.FavorityEnterAction" scope="request">
+	   <property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
+	   <property name="itemService" ref="ItemService"></property>
+	   <property name="lines" value="15"></property>
+	</bean>
 
 	<!-- 关于商品的bean -->
 	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction"

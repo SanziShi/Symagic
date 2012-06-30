@@ -24,7 +24,7 @@ public class FavorityEnterAction extends ActionSupport {
 	private static final long serialVersionUID = -517295759985703579L;
 	
 	//传入
-	private Integer page;//第几页
+	private Integer page=1;//第几页
 	//配置项
 	private DaoFavorityFolder daoFavorityFolder;
 	private ItemService itemService;
@@ -33,8 +33,7 @@ public class FavorityEnterAction extends ActionSupport {
 	private List<ItemBean> items;//显示收藏夹中的东西
 	private List<ItemTinyBean> recommend;
 	private Integer totalPage;
-
-	@Override
+    @Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		
