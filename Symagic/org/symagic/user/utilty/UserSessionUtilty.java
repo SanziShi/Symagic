@@ -169,6 +169,7 @@ public class UserSessionUtilty extends SessionUtilty {
 	}
 	public static void cleanSession(){
 		ActionContext.getContext().getSession().clear();
+		ActionContext.getContext().getSession().put("totalNumber", 0);
 	}
 
 }
