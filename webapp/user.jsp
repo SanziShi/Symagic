@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@taglib prefix="s" uri="/struts-tags"%><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -25,13 +31,18 @@
 	<div class="top">
     <div class="top_right">
     <ul>
+    <s:if test="#session.nickname!=null">
+    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
+    </s:if>
+    <s:else>
     <li>欢迎来到Symagic！</li>
-    <s:property value="#session.username"/><s:property value="#session.nickname"/>
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
+    </s:else>
     <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart.html">
-    <span id="cart_icon"></span>购物车 <strong id="cart_num">0</strong> 件</a>
+    <li id="cart_top"><a id="cart_a" href="cart">
+    <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
     </ul>
     </div>
@@ -57,19 +68,23 @@
 				<img src="image/ico_site.jpg"  id="ico_site"/>
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
 			</div>
+			<form action="quick_search" >
 			<div id="searchright2">
 			  <input type="text" name="product" id="textInput"/>
 			  <input type="button" name="Submit" value="搜索" id="searchbutton" onClick="javascript:window.open('item_search_list.html','_parent','')">
 			</div>
 			<div id="searchright1">
-			  <select name="category" id="searchrightcategory">
-				<option value="5">所有类别</option>
-                <option value="1">图书音像</option>
-                <option value="2">时尚生活</option>
-                <option value="3">饰品配件</option>
-                <option value="4">数码产品</option>
-              </select>
-		  </div>
+			 <select name="catalogID" >
+			  <option value="0">所有类别</option>
+			  <s:iterator value="catalog" var='outer'>
+				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
+				<s:iterator value="#outer.childCatalog" var="inner">
+				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
+				</s:iterator>
+				</s:iterator>
+              </select> 
+              </div>
+		  </form>
 		</div>
         </div>
         <div class="user_left">
@@ -151,9 +166,9 @@
         <div id="1" class="user_note">
         	<div class="head">浏览信息</div>
         	<div class="user_note_content">
-        		<p><span>用户名：</span></p>
-            	<p><span>昵&nbsp;&nbsp;&nbsp;称：</span>测试昵称</p>
-            	<p><span>现有积分：</span>300</p>
+        		<p><span>用户名：</span><s:property value='#session.userName'/></p>
+            	<p><span>昵&nbsp;&nbsp;&nbsp;称：</span><s:property value='#session.nickName'/></p>
+            	<p><span>现有积分：</span><s:property value='totalScore'/></p>
         	</div>
         </div>
         <div id="2" class="user_note hide">
@@ -172,10 +187,10 @@
         	<div class="user_note_content">
             	<p><span>昵&nbsp;&nbsp;&nbsp;称：</span><s:property value='#session.nickname'/></p>
             	<p><span>修改昵称：</span><input name="nickname_c" id="nickname_c" class="inputtext"/></p>
-            	<p><span><input type="button" onclick="nickname_c()" value="确定修改"/></span></p>
+            	<p><span><input type="button" onclick="nickname_c(this)" value="确定修改"/></span></p>
         	</div>
         </div>
-        <div id="4" class="user_note hide">
+        <div id="4" class="user_note ">
         <div class="head">积分详情</div>
         <div class="user_note_content">
         	<table>
@@ -188,34 +203,24 @@
 					</tr>
 				</thead>
 				<tbody>
+                <!--订单迭代开始-->
+                <s:iterator value="orderList" var='iter'>
 				  <tr>
             		<td>
-						<a href="order_info.html">1483728</a>
+						<a href="order_info.html"><s:property value='#iter.orderId'/></a>
 					</td>
 					<td>
-						2012-05-16 10:25:04
+						<s:property value='#iter.orderTime'/>
 					</td>
 					<td>
-						￥30.18
+						<s:property value='#iter.totalPrice'/>
 					</td>
 					<td>
-						30
+						<s:property value='#iter.score'/>
 					</td>
           		  </tr>
-				  <tr>
-            		<td>
-						<a href="#">1483729</a>
-					</td>
-					<td>
-						2012-05-28 16:02:24
-					</td>
-					<td>
-						￥70.00
-					</td>
-					<td>
-						70
-					</td>
-          		  </tr>
+                  </s:iterator>
+				 <!--订单迭代结束--> 
 				 </tbody>
             </table>
         </div>
@@ -229,3 +234,4 @@
 
 </body>
 </html>
+

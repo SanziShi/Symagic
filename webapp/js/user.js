@@ -23,6 +23,15 @@ function close_address(e)
 	p.style.display='none';
 	hideOverlay();
 }
+function nickname_c(e)
+{
+	var c=document.getElementById('nickname_c').value;
+	Ajax({
+		url:'user/update_nickname',
+		onSuccess:function(e){var a=JSON.parse(e);alert(a.updateResult);//if(a.updateResult){alert('修改成功');location.href='user'}}
+			}
+		})
+}
 $().ready(function(e) {
     addListener(document.getElementById('t1'),"click",function(e){
 		stopDefault(e);

@@ -111,7 +111,7 @@ function login(form)
 		data:login_form,
 		onSuccess:function(e){
 				var a=JSON.parse(e);
-				if(a.loginResult)location.reload();
+				if(a.loginResult)location.href=location.pathname;
 				},
 		onError:function(){
 			location.pathname='/index.html'}
@@ -126,6 +126,11 @@ function regist(form)
 		type:'POST',
 		data:regist_form,
 		onSuccess:function(e){
+			r=JSON.parse(e);
+			if(r.registerResult)
+			{
+				location.href='';
+			}
 		}
 	})
 	return false;
