@@ -539,7 +539,7 @@ function ajax_delete_tag(id){
 	var result = confirm("该操作将会将商品移除，确定继续吗？");
 	if(result==true){
 	Ajax({
-					url:'item_manager/delete?itemId='+id,
+					url:'item_manager/delete?itemID='+id,
 				    type:'GET',
 					onSend:function(){},
 					onSuccess:function(e)

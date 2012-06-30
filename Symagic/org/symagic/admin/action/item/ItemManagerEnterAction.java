@@ -48,22 +48,6 @@ public class ItemManagerEnterAction extends CatalogBase {
 	private Integer totalPage;
 	private List<ItemBean> items;// 用于显示的商品列表
 
-	public String getErrorHeader() {
-		return errorHeader;
-	}
-
-	public void setErrorHeader(String errorHeader) {
-		this.errorHeader = errorHeader;
-	}
-
-	public String getErrorSpecification() {
-		return errorSpecification;
-	}
-
-	public void setErrorSpecification(String errorSpecification) {
-		this.errorSpecification = errorSpecification;
-	}
-
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -76,8 +60,7 @@ public class ItemManagerEnterAction extends CatalogBase {
 			require.setPublisher(publisher);
 		if (!isEmpty(author))
 			require.setAuthor(author);
-		if (catalogID != null && catalogID != 0)
-			require.setCatalogID(catalogID);
+		setCatalog(require, catalogID);
 		setYear(require, publishTime);
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
@@ -105,23 +88,25 @@ public class ItemManagerEnterAction extends CatalogBase {
 		return super.execute();
 	}
 
+	private void setCatalog(BookRequire require, Integer catalogID) {
+		if (catalogID == null || catalogID == 0)
+			return;
+		require.setCatalogIDList(itemService.getCatalogList(catalogID));
+	}
+
 	private boolean isEmpty(String content) {
 		return content == null || content.trim().equals("");
 	}
 
 	private void setVersion(BookRequire require, Integer index) {
-		if (index == null)
-			return;
-		if (index == 0)
+		if (index == null || index == 0)
 			return;
 		else
 			require.setVersion(index);
 	}
 
 	private void setDiscount(BookRequire require, Integer index) {
-		if (index == null)
-			return;
-		if (index == 0)
+		if (index == null || index == 0)
 			return;
 		switch (index) {
 		case 1:
@@ -141,6 +126,22 @@ public class ItemManagerEnterAction extends CatalogBase {
 			require.setLowDiscount(1.0F);
 			break;
 		}
+	}
+
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
 	}
 
 	private void setBookSize(BookRequire require, Integer index) {

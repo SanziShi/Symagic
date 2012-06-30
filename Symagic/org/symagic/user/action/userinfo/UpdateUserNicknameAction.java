@@ -42,8 +42,9 @@ public class UpdateUserNicknameAction extends CatalogBase{
 	}
 	
 	public String execute() throws Exception{
-		daoUser.updateNickname(UserSessionUtilty.getUsername(), nickname);
-		super.execute();
+		updateResult = daoUser.updateNickname(UserSessionUtilty.getUsername(), nickname);
+		//super.execute();
+		UserSessionUtilty.setNickname(nickname);
 		return SUCCESS;
 	}
 }
