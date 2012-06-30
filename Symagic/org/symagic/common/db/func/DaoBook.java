@@ -258,18 +258,21 @@ public class DaoBook {
 	 */
 	public List<BeanBook> search(int sign, BookRequire req) {
 		List<BeanBook> list = null;
+		List<Integer> idList	= null;
 		String sql = "select t1.*, t2.catalogid "
 				+ " from book as t1 left join book_catalog_detail as t2 "
 				+ " on t1.bookid=t2.bookid where ";
 		// 普通查询
 		if (sign == 0) {
 			sql += " t1.author like " + " '%" + req.getAuthor() + "%' "
-					+ " and " + " t1.bookname like " + " '%"
-					+ req.getItemName() + "%' " + " and "
+					+ " or " + " t1.bookname like " + " '%"
+					+ req.getItemName() + "%' " + " or "
 					+ " t1.publisher like " + " '%" + req.getPublisher()
 					+ "%' ";
-			if (req.getCatalogID() != null) {
-				sql += " and " + " t2.catalogid = " + req.getCatalogID() + " ";
+			if (req.getCatalogIDList() != null) {
+				idList	= req.getCatalogIDList();
+				for (int i=0; i<idList.size(); i++)
+					sql += " or " + " t2.catalogid = " + idList.get(i) + " ";
 			}	
 
 			sql += " order by t1.bookid asc limit " + (req.getPage() - 1)
@@ -329,9 +332,11 @@ public class DaoBook {
 						+ " ";
 			}
 
-			if (req.getCatalogID() != null) {
-				sql += " and " + " t2.catalogid = " + req.getCatalogID() + " ";
-			}
+			if (req.getCatalogIDList() != null) {
+				idList	= req.getCatalogIDList();
+				for (int i=0; i<idList.size(); i++)
+					sql += " or " + " t2.catalogid = " + idList.get(i) + " ";
+			}	
 
 			sql += " order by t1.bookid asc limit " + (req.getPage() - 1)
 					* req.getLines() + " , " + req.getLines();
