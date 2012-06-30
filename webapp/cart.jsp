@@ -27,12 +27,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="top">
     <div class="top_right">
     <ul>
+    <s:if test="#session.nickname!=null">
+    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
+    </s:if>
+    <s:else>
     <li>欢迎来到Symagic！</li>
-    <!--<s:property value="#session.username"/><s:property value="#session.nickname"/>-->
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
-    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart.html">
+    </s:else>
+    <li class="division">|</li><li id="mymall"><a href="user"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li id="cart_top"><a id="cart_a" href="cart">
     <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
     </ul>
@@ -76,6 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </form>
 		</div>
         <div class="clear"></div>
+        <form name="cart" action="order">
         <div id="cart-a">
         	<h2>我的购物车</h2>
         	<div id="cart_table">
@@ -119,7 +125,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div>
         	</div>
         </div>
-        <div class="cart-button"><a href="javascript:void(0);" class="checkout"></a></div>
+        </form>
+        <div class="cart-button"><a onclick="cart_submit()" href="javascript:void(0);" class="checkout"></a></div>
         <div id="recommend"></div>
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>

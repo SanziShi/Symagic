@@ -11,6 +11,18 @@ function test(e)
 	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 	
 }
+/****检查用户是否注册****/
+is_login=function(o)
+{
+	o={
+		is:o.is,
+		no:o.no
+	}
+	Ajax({
+		url:'get_session_info',
+		onSuccess:function(e){var a=JSON.parse(e);if(a.userName)o.is();else o.no()}
+		})
+}
 /****添加商品至购物车***/
 function add_to_cart(id)
 {
