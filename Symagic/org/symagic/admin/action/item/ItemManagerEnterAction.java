@@ -1,11 +1,15 @@
 package org.symagic.admin.action.item;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.symagic.common.action.catalog.CatalogBase;
+import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.BookRequire;
-import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.service.ItemService;
+import org.symagic.common.utilty.presentation.bean.ItemBean;
 
 /**
  * 控制进入商品管理页面的Action
@@ -20,96 +24,188 @@ public class ItemManagerEnterAction extends CatalogBase {
 	 */
 	private static final long serialVersionUID = 7734758591630202798L;
 
-	/**
-	 * 搜索用的书名
-	 */
-	private String name;
+	private ItemService itemService;// 访问书本的业务层
+	private int sign;// 搜索标志，1为高级搜索
 
-	/**
-	 * 出版社名字
-	 */
-	private String publisher;
+	private Integer page = 1;// 分页显示
+	private String author;// 作者
+	private String name;// 书本名字
+	private String publisher;// 出版社
+	private Integer catalogID;// 目录id
+	private Integer publishTime;// 出版时间
+	private Integer edition;// 版次
+	private Integer searchPage;// 书的页数范围
+	private Integer binding;// 装帧
+	private Integer booksize;// 书的大小
+	private Integer price;// 书的价格
+	private Integer discount;// 折扣
 
-	/**
-	 * 类别的ID
-	 */
-	private Integer catalogID;
+	// 配置项
+	private Integer lines;
+	private String errorHeader;
+	private String errorSpecification;
 
-	/**
-	 * 书籍出版的年份
-	 */
-	private Integer publishTime;
-
-	/**
-	 * 书籍的版次
-	 */
-	private Integer edition;
-
-	/**
-	 * 搜索的页数范围
-	 */
-	private Integer searchPage;// (0:0~200,1:200~400;2:400~600,3:>600)
-
-	/**
-	 * 搜索书籍的装帧
-	 */
-	private String binding;
-
-	/**
-	 * 搜索数据的开本
-	 */
-	private String booksize;
-
-	private Integer price;// （0:0`10,1:10`30,2:30`50,3:50`100,4:>100）;
-	private Integer discount;// (0：所有；1:3折以下;2:3-5折；3：5-7折；4：7折以上）
-
-	private String author;
-
-	private String description;
-
-	private Integer page;// （第几页)
 	private Integer totalPage;
-	private Integer currentPage;
+	private List<ItemBean> items;// 用于显示的商品列表
 
-	private DaoBook daoBook;
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
+	}
 
 	@Override
 	public String execute() throws Exception {
-
-		// 建立书籍搜索的require
+		// TODO Auto-generated method stub
+		items = new ArrayList<ItemBean>();
+		// 设置搜索的条件
 		BookRequire require = new BookRequire();
-		require.setItemName(name);
-		require.setPublisher(publisher);
-		if (catalogID != 0)
-			require.setCatalogID(catalogID);
-		else
-			require.setCatalogID(null);
-		
-		GregorianCalendar calendar = new GregorianCalendar();
-		
-		switch( publishTime ){
-		case 0:
-			require.setYear(null);
-			break;
+		if (name != null)
+			require.setItemName(name);
+		if (publisher != null)
+			require.setPublisher(publisher);
+		require.setCatalogID(catalogID);
+		setYear(require, publishTime);
+		require.setVersion(edition);
+		setPageNumber(require, searchPage);
+		setBinding(require, binding);
+		setBookSize(require, booksize);
+		setPrice(require, price); 
+		require.setDiscount(discount);
+		if (author != null)
+			require.setAuthor(author);
+		require.setLines(lines);
+		require.setPage(page);
+
+		// 搜索符合条件的商品
+		List<BeanBook> books = itemService.search(sign, require);
+		if (books == null)
+			return "error";
+		int searchNumber = itemService.getSearchNum(sign, require);
+		if (searchNumber == -1)
+			return "error";
+		totalPage = (searchNumber + lines - 1) / lines;
+		// 装饰成前台所需的信息
+		itemService.decorateForItem(books, items);
+		return super.execute();
+	}
+
+	private void setBookSize(BookRequire require, Integer index) {
+		if (index == null)
+			return;
+		switch (index) {
 		case 1:
-			require.setYear(Integer.toString(calendar.get(Calendar.YEAR)));
+			require.setFolio("32");
+		case 2:
+			require.setFolio("16");
+		case 3:
+			require.setFolio("8");
+		}
+	}
+
+	private void setPrice(BookRequire require, Integer index) {
+		if (index == null)
+			return;
+		switch (index) {
+		case 1:
+			require.setUpPrice(10F);
+			require.setLowPrice(0F);
 			break;
 		case 2:
-			require.setYear(Integer.toString(calendar.get(Calendar.YEAR) - 1));
+			require.setUpPrice(30F);
+			require.setLowPrice(10F);
 			break;
 		case 3:
-			require.setYear(Integer.toString(calendar.get(Calendar.YEAR) - 2));
+			require.setUpPrice(50F);
+			require.setLowPrice(30F);
 			break;
 		case 4:
-			require.setYear(Integer.toString(calendar.get(Calendar.YEAR) - 3));
+			require.setUpPrice(100F);
+			require.setLowPrice(50F);
 			break;
 		case 5:
-			require.setYear(Integer.toString(calendar.get(Calendar.YEAR)-3));
-			require.setBefore(true);
+			require.setUpPrice(Float.MAX_VALUE);
+			require.setLowPrice(100F);
+		default:
 			break;
 		}
+	}
 
-		return super.execute();
+	private void setBinding(BookRequire require, Integer index) {
+		if (index == null)
+			return;
+		switch (index) {
+		case 1:
+			require.setBinding("平装");
+			break;
+		case 2:
+			require.setBinding("精装");
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void setYear(BookRequire require, Integer index) {
+		if (index == null)
+			return;
+		GregorianCalendar calender = new GregorianCalendar();
+		int year = calender.get(Calendar.YEAR);
+		switch (index) {
+		case 1:
+			require.setYear(String.valueOf(year));
+			break;
+		case 2:
+			require.setYear(String.valueOf(year - 1));
+			break;
+		case 3:
+			require.setYear(String.valueOf(year - 2));
+			break;
+		case 4:
+			require.setYear(String.valueOf(year - 3));
+			break;
+		case 5:
+			require.setYear(String.valueOf(year - 4));
+			require.setBefore(true);
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void setPageNumber(BookRequire require, Integer index) {
+		if (index == null)
+			return;
+		switch (index) {
+		case 1:
+			require.setUpPage(200);
+			require.setLowPage(0);
+			break;
+		case 2:
+			require.setUpPage(400);
+			require.setLowPage(200);
+			break;
+		case 3:
+			require.setUpPage(600);
+			require.setLowPage(400);
+			break;
+		case 4:
+			require.setUpPage(Integer.MAX_VALUE);
+			require.setLowPage(600);
+			break;
+		default:
+			break;
+		}
 	}
 
 	public String getName() {
@@ -128,52 +224,92 @@ public class ItemManagerEnterAction extends CatalogBase {
 		this.publisher = publisher;
 	}
 
-	public Integer getEdition() {
+	public int getPublishTime() {
+		return publishTime;
+	}
+
+	public void setPublishTime(int publishTime) {
+		this.publishTime = publishTime;
+	}
+
+	public int getEdition() {
 		return edition;
 	}
 
-	public void setEdition(Integer edition) {
+	public void setEdition(int edition) {
 		this.edition = edition;
 	}
 
-	public Integer getSearchPage() {
+	public int getSearchPage() {
 		return searchPage;
 	}
 
-	public void setSearchPage(Integer searchPage) {
+	public void setSearchPage(int searchPage) {
 		this.searchPage = searchPage;
 	}
 
-	public String getBinding() {
+	public int getBinding() {
 		return binding;
 	}
 
-	public void setBinding(String binding) {
+	public void setBinding(int binding) {
 		this.binding = binding;
 	}
 
-	public Integer getPrice() {
+	public int getBooksize() {
+		return booksize;
+	}
+
+	public void setBooksize(int booksize) {
+		this.booksize = booksize;
+	}
+
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
-	public Integer getDiscount() {
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public int getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(Integer discount) {
+	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
 
-	public Integer getPage() {
+	public int getPage() {
 		return page;
 	}
 
-	public void setPage(Integer page) {
+	public void setPage(int page) {
 		this.page = page;
+	}
+
+	public ItemService getItemService() {
+		return itemService;
+	}
+
+	public void setItemService(ItemService itemService) {
+		this.itemService = itemService;
+	}
+
+	public List<ItemBean> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemBean> items) {
+		this.items = items;
 	}
 
 	public Integer getTotalPage() {
@@ -184,20 +320,60 @@ public class ItemManagerEnterAction extends CatalogBase {
 		this.totalPage = totalPage;
 	}
 
-	public Integer getCurrentPage() {
-		return currentPage;
+	public Integer getLines() {
+		return lines;
 	}
 
-	public void setCurrentPage(Integer currentPage) {
-		this.currentPage = currentPage;
+	public void setLines(Integer lines) {
+		this.lines = lines;
 	}
 
-	public DaoBook getDaoBook() {
-		return daoBook;
+	public Integer getCatalogID() {
+		return catalogID;
 	}
 
-	public void setDaoBook(DaoBook daoBook) {
-		this.daoBook = daoBook;
+	public void setCatalogID(Integer catalogID) {
+		this.catalogID = catalogID;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public void setPublishTime(Integer publishTime) {
+		this.publishTime = publishTime;
+	}
+
+	public void setEdition(Integer edition) {
+		this.edition = edition;
+	}
+
+	public void setSearchPage(Integer searchPage) {
+		this.searchPage = searchPage;
+	}
+
+	public void setBinding(Integer binding) {
+		this.binding = binding;
+	}
+
+	public void setBooksize(Integer booksize) {
+		this.booksize = booksize;
+	}
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+	public void setDiscount(Integer discount) {
+		this.discount = discount;
+	}
+
+	public int getSign() {
+		return sign;
+	}
+
+	public void setSign(int sign) {
+		this.sign = sign;
 	}
 
 }

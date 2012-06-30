@@ -17,7 +17,7 @@ public class FavorityDeleteAction extends ActionSupport {
 private static final long serialVersionUID = -6979940644982084061L;
 private DaoFavorityFolder daoFavorityFolder;//对收藏夹的管理
 
-private int[]itemID;//批量删除的id组合
+private List<Integer>itemID;//批量删除的id组合
 
 private boolean deleteResult;//全部删除结果
 
@@ -28,14 +28,17 @@ if(itemID==null){
 	deleteResult=false;
 	return SUCCESS;
 }	
-//将id数组封装成一个list
-List<Integer> list=new ArrayList<Integer>();
-for(int index=0;index<itemID.length;index++){
-	list.add(itemID[index]);
-}
 //数据库中删除
-deleteResult=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),list);
+deleteResult=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),itemID);
 return super.execute();
+}
+
+public List<Integer> getItemID() {
+	return itemID;
+}
+
+public void setItemID(List<Integer> itemID) {
+	this.itemID = itemID;
 }
 
 public boolean isDeleteResult() {
@@ -52,12 +55,6 @@ public void setDaoFavorityFolder(DaoFavorityFolder daoFavorityFolder) {
 	this.daoFavorityFolder = daoFavorityFolder;
 }
 
-public int[] getItemID() {
-	return itemID;
-}
 
-public void setItemID(int[] itemID) {
-	this.itemID = itemID;
-}
 
 }

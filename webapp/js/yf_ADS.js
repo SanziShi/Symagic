@@ -6,9 +6,67 @@ GLOBAL=
 	cart_on_buff:''
 }
 //业务逻辑函数
+function test(e)
+{
+	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
+	
+}
+/****添加商品至购物车***/
+function add_to_cart(id)
+{
+	var amount=document.getElementById('amount').value;
+	var num=document.getElementById('cart_num');
+	Ajax({
+		url:'cart/add_to_cart?'+'itemID='+id+'&itemNumber='+amount,
+		//data:'itemID='+id+'&itemNumber='+amount,
+		onSuccess:function(e){
+			var r=JSON.parse(e);
+			if(r.addResult)alert('添加成功');
+			get_session({S:function(s){num.innerHTML=s.totalNumber}});
+			//Ajax({url:'get_session_info',onSuccess:function(q){var res=JSON.parse(q);cart_num.innerHTML=res.totalNumber}})
+			}
+		})
+}
+
+/*****将商品移除出购物车******/
+function delete_from_cart(id)
+{
+	Ajax({
+		url:'cart/delete',
+		data:'itemID='+id,
+		onSuccess:function(e){
+			var result=JSON.parse(e);
+			if(result.deleteResult=='ture')
+			{
+				var r=document.getElementById("ct"+id);
+				r.parentNode.removeChild(r);
+			}
+			get_session({S:function(l)
+				{
+					alert(l.totalNumber);
+					if(l.totalNumber==0)
+					{
+						document.getElementById('cart_container').style.display='none';
+						document.getElementById('cart_none').style.display='block';
+					}
+				}
+			});
+		}
+	})
+}
 function change_captcha(e)
 {
 	e.src='captcha_get_captcha';
+}
+function logout()
+{
+	Ajax({
+		url:'logout',
+		onSuccess:function(e){
+			var a=JSON.parse(e);
+			if(a.logoutResult){alert('成功退出');location.reload();}
+			}
+		})
 }
 function load_login()
 {
@@ -43,10 +101,7 @@ function load_regist()
 			}
 	})
 }
-function get_session()
-{
-	Ajax({url:'get_session_info',async:false,onSuccess:function(e){return e;}})
-}
+
 function login(form)
 {
 	var login_form=$(form).serialize();
@@ -54,7 +109,10 @@ function login(form)
 		url:'login',
 		type:'POST',
 		data:login_form,
-		onSuccess:function(e){},
+		onSuccess:function(e){
+				var a=JSON.parse(e);
+				if(a.loginResult)location.reload();
+				},
 		onError:function(){
 			location.pathname='/index.html'}
 	})
@@ -128,19 +186,7 @@ function close_float(elem)
 		});
 	a=null;n=null;
 }
-function show_user_con(num)
-{
-	for(var x=1;x!=5;++x)
-	{
-		if(x!=num)
-		{
-			//if(document.getElementById(x).style&&document.getElementById(x).style.display=='block')
-			$('#'+x).slideUp(1);
-		}
-	}
-	//if(!document.getElementById(x).style||document.getElementById(x).style.display!='block')
-	$('#'+num).slideDown(250);
-}
+
 function show_item_search(e)
 {
 	if(e.className=='collapse')
@@ -154,22 +200,14 @@ function show_item_search(e)
 		$('#item_search1').slideUp(70);
 	}
 }
-function delete_from_cart(c)
+get_session=function(o)
 {
+	o={S:o.S,E:o.E};
 	Ajax({
-		url:'cart/delete',
-		data:'itemID='+e,
-		onSuccess:function(e){
-			var result=JSON.toJSON(e);
-			if(result.deleteResult=='ture')
-			var r=document.getElementById(c);
-			r.parentNode.removeChild(r);
-			if(document.getElementById('cart_total_num').innerHTML=='0')
-				{
-					document.getElementById('cart_none').style.display='block';
-				}
-			}
-		});
+		url:'get_session_info',
+		onSuccess:function(e){o.S(JSON.parse(e))},
+		onError:function(e){o.E(e)}
+		})
 }
 
 /*--------------yf_ADS库函数-------------------*/
@@ -290,10 +328,12 @@ Ajax=function (option){
 					{
 						case 200:if(timer)clearTimeout(timer);
 							option.onSuccess(ajax.responseText);
+							option.onComplete(ajax.responseText);
 							ajax=null;
 							break;
 						case 404:if(timer)clearTimeout(timer);
 							option.onError(ajax.responseText);
+							option.onComplete(ajax.responseText);
 							ajax=null;
 							break;
 						default:if(timer)clearTimeout(timer);
@@ -406,7 +446,16 @@ function trim(str)
 {
      return str.replace(/(^\s*)|(\s*$)/g,'');
 }
-
+function getX(e)
+{
+	e=e||window.event;
+	return e.pageX||e.clientX+document.body.scrollLeft;
+}
+function getY(e)
+{
+	e=e||window.event;
+	return e.pageY||e.clientY+document.body.scrollTop;
+}
 
 
 /**************
@@ -880,9 +929,13 @@ $().ready(function() {
 					url:'get_session_info',
 					onSend:function(){cart.loading.style.display='block';},
 					onSuccess:function(e)
-						{
-							var result=JSON.toJSON(e);
-							if(result.totalNumber=='0')cart.none.style.display='block';
+						{						
+							var result=JSON.parse(e);	
+							if(result.totalNumber=='0')
+							{
+								cart.loading.style.display='none';
+								cart.none.style.display='block';
+							}
 							else Ajax({
 								url:'cartDetail',
 								onSend:function(){document.getElementById('cart_loading').style.display='block';},

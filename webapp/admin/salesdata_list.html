@@ -1,18 +1,11 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>BC2商城</title>
-<link href="css/frame.css" rel="stylesheet" type="text/css">
-<script language="javascript">
-function clear(){
-
-document.form1.webUserEntity.name="";
-document.form1.webUserEntity.address="";
-document.form1.webUserEntity.postcode="";
-document.form1.webUserEntity.phone="";
-}
-</script>
-   </head>
+<link href="css/frame.css" rel="stylesheet" type="text/css"/>
+</head>
 
 <body>
 <div id="container">
@@ -34,7 +27,6 @@ document.form1.webUserEntity.phone="";
 			<li><a href="" class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-<!--	<div id="banner"></div>-->
 	<div id="main">
 		<div id="search2">
 			<div id="searchleft">
@@ -44,7 +36,15 @@ document.form1.webUserEntity.phone="";
 		<div id="sendnote">
 			<div id="sendnotehead"><strong>查询结果</strong></div>
 			<div id="sendnotecontent">
-			<form action="" method="post" enctype="multipart/form-data" name="form1">
+            <table>
+              <tr>
+            		<td></td>
+					<td></td>
+					<td></td>
+					<td>该类别总销售额：</td>
+					<td><span class="red">￥<s:property value = "totalSalesRevenue"/></span></td>
+          		  </tr>	
+            </table>
 				<table id="favorite">
 				<thead>
 					<tr>
@@ -57,44 +57,16 @@ document.form1.webUserEntity.phone="";
 				</thead>
 				<tbody>
 				  <tr>
-            		<td>300254</td>
-					<td><a href="item_info.html">大学物理学.第四册：波动与光学（第2版）</a></td>
-					<td>500</td>
-					<td>￥8.50</td>
-					<td>￥4250</td>
-          		  </tr>
-				  <tr>
-            		<td>300040</td>
-					<td><a href="#">大学物理学.第一册：力学（第2版）</a></td>
-					<td>300</td>
-					<td>￥13.60</td>
-					<td>￥4080</td>
-          		  </tr>
-				   <tr>
-            		<td>300095</td>
-					<td><a href="#">大学物理学.第二册：热学（第2版）</a></td>
-					<td>450</td>
-					<td>￥8.08</td>
-					<td>￥3636</td>
-          		  </tr>
-				  <tr>
-            		<td>400212</td>
-					<td><a href="#">异国靓包系列-时尚女挎包A-03款(黄色)</a></td>
-					<td>100</td>
-					<td>￥145</td>
-					<td>￥14500</td>
-          		  </tr>
-				   <tr>
-            		<td></td>
-					<td></td>
-					<td></td>
-					<td>总销售额：</td>
-					<td><span class="red">￥26466</span></td>
+            		<td><s:property value = "itemID"/></td>
+					<td><a href="item_detail?itemID = <s:property value = 'itemID'/>"><s:property value = "itemName"/></a></td>
+					<td><s:property value = "sales"/></td>
+					<td>￥<s:property value = "price"/></td>
+					<td>￥<s:property value = "totalPrice"/></td>
           		  </tr>
 				 </tbody>
             </table>
-			</form> 
 			</div>
+		</div>
 		</div>
 		
 	<div id="footer">

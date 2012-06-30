@@ -7,6 +7,7 @@ import java.util.GregorianCalendar;
 
 import javax.servlet.ServletContext;
 
+import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.util.ServletContextAware;
 import org.symagic.common.db.bean.BeanBook;
@@ -131,46 +132,56 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 			return ERROR;
 
 		// 文件处理
+		BeanBook book = new BeanBook();
 		MessageDigest md5Encoder = MessageDigest.getInstance("MD5");
 
 		// 生成文件名
-		String fileName = new String(md5Encoder.digest(ISBN
-				.getBytes("UTF-8")))
-				+ pictureFileName.substring(pictureFileName.indexOf('.'));
+		if (picture != null) {
+			String fileName = new String(Hex.encodeHex(md5Encoder.digest(ISBN
+					.getBytes("UTF-8"))))
+					+ pictureFileName.substring(pictureFileName.indexOf('.'));
 
-		String fileFolder = context.getRealPath("/" + shopImageFileFolder);
+			String fileFolder = context.getRealPath("/" + shopImageFileFolder);
 
-		File destFile = new File(fileFolder, fileName);
+			book.setPicture("/" + shopImageFileFolder + "/" + fileName);
 
-		FileUtils.moveFile(picture, destFile);
+			File destFile = new File(fileFolder, fileName);
+
+			FileUtils.copyFile(picture, destFile);
+		}
 
 		// 生成时间
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		GregorianCalendar calender = new GregorianCalendar(
-				publishTime.getYear(), publishTime.getMonth(),
-				publishTime.getDay());
+		if (publishTime != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			GregorianCalendar calender = new GregorianCalendar(
+					publishTime.getYear(), publishTime.getMonth() - 1,
+					publishTime.getDay());
+			book.setPublishDate(dateFormat.format(calender.getTime()));
+		}
 
 		// 生成数据库所需信息
-		BeanBook book = new BeanBook();
 
 		book.setIsbn(ISBN);
 		book.setBookName(name);
 		book.setAuthor(author);
 		book.setPublisher(publisher);
-		book.setPublishDate(dateFormat.format(calender.getTime()));
-		book.setVersion(edition);
-		book.setPage(page);
+		if (edition != null)
+			book.setVersion(edition);
+		if (page != null)
+			book.setPage(page);
 		book.setBinding(binding);
-		book.setFolio(size.toString());
+		if (size != null)
+			book.setFolio(size.toString());
 		book.setMarketPrice(marketPrice);
 		book.setDiscount(discount);
 		book.setInventory(inventory);
 		book.setBookDesc(description);
-		book.setCatalogID(bookClassify);
-		book.setPicture("/" + shopImageFileFolder + "/" + fileName);
+		if (bookClassify != null)
+			book.setCatalogID(bookClassify);
 		book.setOffline("在架");
 
-		daoBook.addBook(book);
+		if (!daoBook.addBook(book))
+			return ERROR;
 
 		return SUCCESS;
 	}
@@ -180,10 +191,8 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 
 		// 处理商品类别以外其他都不能为空
 		if (ISBN == null || name == null || author == null || publisher == null
-				|| publishTime == null || edition == null || page == null
-				|| binding == null || size == null || marketPrice == null
-				|| discount == null || inventory == null || description == null
-				|| picture == null) {
+				|| binding == null || marketPrice == null || discount == null
+				|| inventory == null || description == null) {
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;

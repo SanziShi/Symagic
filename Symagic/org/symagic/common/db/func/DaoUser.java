@@ -103,11 +103,11 @@ public class DaoUser {
 		if (!this.validateUserName(user.getUsername()))
 			return false;
 		try {
-			conn	= ConnectionPool.getInstance().getInstance().getConnection();
+			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("insert into user (" +
-					"username, nickname, score, question, answer)" +
+					"username, nickname, score, question, answer, registedate)" +
 					"values (" +
-					"?, ?, ?, ?, ?" +
+					"?, ?, ?, ?, ?, date(now())" +
 					")");
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getNickname());
@@ -257,7 +257,25 @@ public class DaoUser {
 	 */
 	public int getUserNum()
 	{
-		return 10;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from user");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1;
 	}
 	
 	/**
@@ -307,13 +325,24 @@ public class DaoUser {
 		String sql	= "select * from user where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			
+			if (req.getUserLevel() != null) {
+				ps	= conn.prepareStatement("select lowlimit,uplimit from score_level where id=?");
+				ps.setInt(1, req.getUserLevel());
+				rs	= ps.executeQuery();
+			}
+			
+			
 			sql += " username like " + "'%" + req.getUsername() + "%'";
 			if (req.getStartTime() != null)
 				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
 			if (req.getEndTime() != null)
 				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
-			if (req.getUserLevel() != null)
-				sql += " and " + " registedate > " + "'" + req.getUserLevel() + "'";
+			if (req.getUserLevel() != null){
+				rs.next();
+				sql += " and " + " score >= " + "'" + rs.getInt("lowlimit") + "'";
+				sql += " and " + " score < " + "'" + rs.getInt("uplimit") + "'";
+			}
 			
 			
 			sql += " order by userid asc limit " 
@@ -332,6 +361,7 @@ public class DaoUser {
 				user.setQuestion(rs.getString("question"));
 				user.setScore(rs.getInt("score"));
 				user.setUsername(rs.getString("username"));
+				user.setRegistedate(rs.getString("registedate"));
 				list.add(user);
 			}
 		} catch (Exception e) {
@@ -356,6 +386,48 @@ public class DaoUser {
 	 */
 	public int getSearchNum(UserRequire req)
 	{
+		String sql	= "select * from user where ";
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			if (req.getUserLevel() != null) {
+				ps	= conn.prepareStatement("select lowlimit,uplimit from score_level where id=?");
+				ps.setInt(1, req.getUserLevel());
+				rs	= ps.executeQuery();
+			}
+
+			sql += " username like " + "'%" + req.getUsername() + "%'";
+			if (req.getStartTime() != null)
+				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
+			if (req.getEndTime() != null)
+				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
+			if (req.getUserLevel() != null) {
+				rs.next();
+				sql += " and " + " score >= " + "'" + rs.getInt("lowlimit") + "'";
+				sql += " and " + " score < " + "'" + rs.getInt("uplimit") + "'";
+			}
+				
+			
+			
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			
+			count	= 0;
+			while (rs.next()) {
+				count++;
+			}
+			return count;
+		} catch (Exception e) {
+			
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return -1;
 	}
 	

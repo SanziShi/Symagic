@@ -3,6 +3,7 @@ package org.symagic.user.utilty;
 import java.util.*;
 
 
+import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.utilty.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -24,7 +25,8 @@ public class UserSessionUtilty extends SessionUtilty {
 			ActionContext.getContext().getSession().put("errorTimes", errorTimes);
 		}
 	}
-	//维持session中的数量
+	
+	//维护session中的数量
 	public static void addTotalNumber(int number){
 		Integer totalNumber=(Integer)ActionContext.getContext().getSession().get("totalNumber");
 		if(totalNumber==null){
@@ -75,7 +77,9 @@ public class UserSessionUtilty extends SessionUtilty {
 	 * @param number
 	 */
 	
-	public static boolean addToCart(int id,int number){
+	public static boolean addToCart(Integer id,Integer number){
+		//商品id是否存在
+		
 		//得到session
 		Map<String ,Object> session=ActionContext.getContext().getSession();
 		//得到购物车
@@ -88,25 +92,44 @@ public class UserSessionUtilty extends SessionUtilty {
 		//添加物品和数量
 		Integer value=cart.get(id);
 		if(value==null)
-		cart.put(id, number);
-		else
-		{
+		  cart.put(id, number); 
+		else 
+		{   //如果购物车已有相应 的商品
 			cart.put(id, value+number);
 		}
+		//商品总数量增加
+		UserSessionUtilty.addTotalNumber(number);
+		
 		return true;
 	}
 	/**
 	 * 当用户将从购物车中删除商品时
 	 */
 	public static boolean deleteFromCart(int id){
-		            //得到session
-				 Map<String ,Object> session=ActionContext.getContext().getSession();
+		         //得到session
+				Map<String ,Object> session=ActionContext.getContext().getSession();
 				//得到购物车
 				HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
 				int number=cart.get(id);
 				cart.remove(id);
+				//商品总数量减少
 				UserSessionUtilty.addTotalNumber(0-number);
 				return true;
+	}
+	/**
+	 * 用户修改购物车中商品的数量
+	 */
+	public static boolean modifyFromCart(int id,int number){
+		
+		//得到session
+		 Map<String ,Object> session=ActionContext.getContext().getSession();
+		//得到购物车
+		HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
+		int value=cart.get(id);
+		cart.put(id, number);
+		//改变session中的总数量
+		UserSessionUtilty.addTotalNumber(value-number);
+		return true;
 	}
 	
 	
@@ -143,6 +166,9 @@ public class UserSessionUtilty extends SessionUtilty {
 	}
 	public static String getUsername(){
 		return (String)ActionContext.getContext().getSession().get("username");
+	}
+	public static void cleanSession(){
+		ActionContext.getContext().getSession().clear();
 	}
 
 }

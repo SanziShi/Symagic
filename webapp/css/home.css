@@ -12,6 +12,16 @@ ul
 	padding:0px;
 	list-style:none;
 }
+a
+{
+	text-decoration:none;
+}
+#captcha_td img
+{
+	height::30px;
+	width:125px;
+	float:left;
+}
 /*---------------∆¯≈›Ã· æ------------------*/
 .lj-tipsWrap{min-width:10px;min-height:15px;font-family:'Segoe UI',Calibri, 'Myriad Pro', Myriad, 'Trebuchet MS', Helvetica, Arial, sans-serif;}
 .lj-tipsWrap,.lj-in,.lj-close{display:inline-block;}
@@ -125,7 +135,7 @@ span.red
 }
 .top #cart_top
 {
-	width:85px;
+	min-width:85px;
 }
 .top #cart_top.hover
 {

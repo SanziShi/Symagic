@@ -6,6 +6,10 @@ import org.symagic.user.utilty.UserSessionUtilty;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CartDeleteItemAction extends ActionSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 531344796388813069L;
 	private DaoCart daoCart;
 	public DaoCart getDaoCart() {
 		return daoCart;
@@ -15,13 +19,18 @@ public class CartDeleteItemAction extends ActionSupport {
 		this.daoCart = daoCart;
 	}
 	private Integer itemID;
-	private boolean deleteResult;
+private boolean deleteResult=false;;
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		if(itemID==null){
 			deleteResult=false;
 			return SUCCESS;
+		}
+		//购物车没有商品
+		if(UserSessionUtilty.getCart().get(itemID)==null){
+			deleteResult=false;
+			return "success";
 		}
 		//在session中将对应商品从cart中删除
 		deleteResult=UserSessionUtilty.deleteFromCart(itemID);

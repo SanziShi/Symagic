@@ -247,6 +247,27 @@ public class DaoComment {
 	 */
 	public boolean delete(int bookid, String username)
 	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("delete from comment " +
+					"where username=? and bookid=?");
+			ps.setString(1, username);
+			ps.setInt(2, bookid);
+			ps.execute();
+			if (ps.getUpdateCount() == 1)
+				return true;
+			return false;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		return false;
 	}
 	

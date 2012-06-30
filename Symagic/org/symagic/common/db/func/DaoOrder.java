@@ -40,7 +40,7 @@ public class DaoOrder {
 			conn	= ConnectionPool.getInstance().getConnection();
 			sql += "orderdate > " + " '" + req.getStartTime() + "' ";
 			if (username != null)
-				sql += " and username like " + " '" + username + "' ";
+				sql += " and username like " + " '%" + username + "%' ";
 			if (req.getEndTime() != null)
 				sql += " and orderdate < " + " '" + req.getEndTime() + "' ";
 			if (req.getOrderState() != null)
@@ -110,6 +110,26 @@ public class DaoOrder {
 				orderDetail.setMarketPrice(rs.getFloat("marketprice"));
 				orderDetail.setOrderId(rs.getInt("orderid"));
 				order.getList().add(orderDetail);
+			}
+			ps	= conn.prepareStatement("select * from book_order where orderid=?");
+			ps.setInt(1, orderID);
+			rs	= ps.executeQuery();
+			if (rs.next()) {
+				order.setAddrDetail(rs.getString("addrdetail"));
+				order.setDeliveryWay(rs.getString("deliveryway"));
+				if (rs.getString("mobilenum") != null)
+					order.setMobilenum(rs.getString("mobilenum"));
+				if (rs.getString("mobilenum") != null)
+					order.setMobilenum(rs.getString("mobilenum"));
+				order.setOrderDate(rs.getString("orderdate"));
+				order.setOrderId(rs.getInt("orderid"));
+				order.setOrderState(rs.getString("orderstate"));
+				order.setPayment(rs.getString("payment"));
+				order.setReceiverName(rs.getString("receivername"));
+				order.setScore(rs.getInt("score"));
+				order.setTotalprice(rs.getFloat("totalprice"));
+				order.setUsername(rs.getString("username"));
+				order.setZipcode(rs.getString("zipcode"));
 			}
 			return order;
 		} catch (Exception e) {
@@ -211,8 +231,8 @@ public class DaoOrder {
 				ps	= conn.prepareStatement("insert into order_detail " +
 						"(bookid, isbn, " +
 						" bookname, marketprice," +
-						" amount, orderid) values" +
-						"(?, ?, ?, ?, ?, ?)");
+						" amount, orderid, discount) values" +
+						"(?, ?, ?, ?, ?, ?, ?)");
 				for (int i=0; i < list.size(); i++) {
 					ps.setInt(1, list.get(i).getBookId());
 					ps.setString(2, list.get(i).getIsbn());
@@ -220,6 +240,7 @@ public class DaoOrder {
 					ps.setFloat(4, list.get(i).getMarketPrice());
 					ps.setInt(5, list.get(i).getAmount());
 					ps.setInt(6, orderid);
+					ps.setFloat(7, list.get(i).getDiscount());
 					ps.execute();
 				}
 				return true;
@@ -379,6 +400,7 @@ public class DaoOrder {
 			rs	= ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
+			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -390,7 +412,7 @@ public class DaoOrder {
 				e.printStackTrace();
 			}
 		}
-		return 10;
+		return -1;
 	}
 	
 	/**
@@ -405,7 +427,7 @@ public class DaoOrder {
 			rs	= ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
-			
+			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -432,7 +454,7 @@ public class DaoOrder {
 			rs	= ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
-			return 0;
+			return -1;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -444,7 +466,7 @@ public class DaoOrder {
 				e.printStackTrace();
 			}
 		}
-		return 0;
+		return -1;
 	}
 	
 	/**
@@ -544,6 +566,29 @@ public class DaoOrder {
 			}
 		}
 		return list;
+	}
+	
+	public int getTodayOrderNum()
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from book_order where date(orderdate) = date(now())");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1;
 	}
 	
 }

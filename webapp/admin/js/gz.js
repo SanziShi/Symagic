@@ -506,7 +506,7 @@ function delete_tag(id){
 	tag.parentNode.removeChild(tag);
 	}
 
-//订单管理中删除一个商品
+//订单管理中删除一个订单
 function ajax_delete_order(id){
 	var result = confirm("该操作将会将订单删除，确定继续吗？");
 	if(result==true){
@@ -612,3 +612,18 @@ function set_value(e){
 	else 
 	e.value = "下架";
 	}
+	
+//商品数量增加、减少
+function add(id)
+{
+	document.getElementById(id).value=parseInt(document.getElementById(id).value)+1;
+}
+function reduce(id)
+{
+	if(document.getElementById(id).value>1)document.getElementById(id).value=parseInt(document.getElementById(id).value)-1;
+}
+//数量修改
+function amount_modify(e)
+{
+	e.value=e.value.replace(/\D+/g,'');
+}
