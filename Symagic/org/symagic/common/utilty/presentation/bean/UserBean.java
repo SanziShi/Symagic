@@ -5,6 +5,7 @@ public class UserBean {
 	private String userName;
 	private String registerDate;
 	private String levelName;
+	private String score;
 	
 	public String getUserName() {
 		return userName;
@@ -23,6 +24,12 @@ public class UserBean {
 	}
 	public void setLevelName(String levelName) {
 		this.levelName = levelName;
+	}
+	public String getScore() {
+		return score;
+	}
+	public void setScore(String score) {
+		this.score = score;
 	}
 	
 	
