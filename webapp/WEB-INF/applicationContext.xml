@@ -143,6 +143,7 @@
 	<bean id="AdminEnterEditCatalog" class="org.symagic.admin.action.catalog.CatalogEditEnterAction"
 		scope="request">
 		<property name="daoCatalog" ref="DaoCatalog"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminDeleteCatalog" class="org.symagic.admin.action.catalog.CatalogDeleteAction"

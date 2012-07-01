@@ -36,7 +36,11 @@ public class CatalogEditEnterAction extends CatalogBase {
 	@Override
 	public String execute() throws Exception {
 		
+		if( catalogID == null ) return ERROR;
+		
 		BeanCatalog catalog = daoCatalog.getCatalogByID(catalogID);
+		
+		if( catalog == null ) return ERROR;
 		
 		catalogName = catalog.getCatalogName();
 		catalogDesc = catalog.getCatalogDesc();
