@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
     </s:else>
-    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li class="division">|</li><li id="mymall"><a href="user"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
     <li id="cart_top"><a id="cart_a" href="cart">
     <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
@@ -67,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<img src="image/ico_site.jpg"  id="ico_site"/>
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="#">商品详细信息</a>
 			</div>
-            <form action="quick_search" >
+            <form action="quick_search" method="post">
 			<div id="searchright2">
 			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="submit" value="搜索" id="searchbutton" />
@@ -120,8 +120,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="preview">
         <div id="spec-n1"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='book.picturePath'/>"/></div>
         <ul>
-        <li><span>总评分：</span><span class="star"><span class="sa45"></span></span></li>
+        <li><span>总评分：</span>
+        	<span class="star">
+            <!--评分表现逻辑-->
+            	<span class="sa<s:property value='book.averageRating'/>"></span>
+            <!---评分表现逻辑--->
+            </span>&nbsp;&nbsp;（&nbsp;<s:property value='book.averageRating'/>&nbsp;分&nbsp;）
+        </li>
         <li><span>书籍分类：</span><s:property value='book.catalogClassify'/></li>
+        <s:if test='book.offline'>
+            <li>该商品已下架，您可以收藏该商品！</li>
+            </s:if>
         </ul>
         </div>
         <ul id="summary">
@@ -142,10 +151,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </ul>
         <div id="add_to_cart">
         <div id="item_amount">
-        <span id="buy_num">购买数量：</span><span><a class="reduce" onclick="reduce();" href="javascript:void(0)">-</a>
-        <input type="text" value="1" id="amount" onkeyup="amount_modify(this)"/>
-        <a class="reduce" onclick="add();" href="javascript:void(0)">+</a>
-        </span></div>
+        	<span id="buy_num">购买数量：</span>
+        	<span><s:if test='book.offline'>
+            <a class="reduce" href="javascript:void(0)">-</a>
+            <input type="text" value="1" id="amount" disabled="disabled"/>
+        	<a class="reduce" href="javascript:void(0)">+</a>
+            </s:if>
+            <s:else>
+            <a class="reduce" onclick="reduce();" href="javascript:void(0)">-</a>
+            <input type="text" value="1" id="amount" onkeyup="amount_modify(this)"/>
+            <a class="reduce" onclick="add();" href="javascript:void(0)">+</a>
+            </s:else>
+            </span>
+            
+        </div>
         <div class="btns">
         			<s:if test='!book.offline'>
 					<a onclick="add_to_cart(<s:property value='itemID'/>)" href="javascript:void(0)" class="append" ></a>
@@ -164,22 +183,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="comment">
         <div class="banner"><li>用户评价</li></div>
-        <div class="comment_item">
-        <div class="buyer">
-        <span class="buyer_name">测试用户</span>
-        <span class="sa45"></span>
-        <span class="date-comment">2012-06-21 08:41:32</span>
-        </div>
-        <div class="comment-content">厚厚的一本，由浅入深，知识比较全面，适合初学者学习使用</div>
-        </div>
-        <div class="comment_item">
-        <div class="buyer">
-        <span class="buyer_name">测试用户2</span>
-        <span class="sa4"></span>
-        <span class="date-comment">2012-06-21 08:41:32</span>
-        </div>
-        <div class="comment-content">很不错的书，测试测试测试测试测试测试测试测试</div>
-        </div>
+        <!--用户评价迭代-->
+        <s:iterator value="commentList" var='iter'>
+        	<div class="comment_item">
+        		<div class="buyer">
+        		<span class="buyer_name"><s:property value='#iter.userName'/>测试用户</span>
+        		<span class="star"><span class="sa<s:property value='#iter.rating'/>"></span></span>
+        		<span class="date-comment"><s:property value='#iter.commentDate'/></span>
+        		</div>
+        		<div class="comment-content"><s:property value='#iter.content'/></div>
+        	</div>
+        </s:iterator>
+        <!--用户评价迭代-->
         </div>
         </div>
         

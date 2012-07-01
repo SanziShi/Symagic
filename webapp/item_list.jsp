@@ -66,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<img src="image/ico_site.jpg"  id="ico_site"/>
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="">商品搜索</a>
 			</div>
-			<form action="quick_search" >
+			<form action="quick_search" method="post">
 			<div id="searchright2">
 			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="submit" value="搜索" id="searchbutton" />

@@ -721,7 +721,7 @@ strong{
 }
 
 .itemsearchtd1{
-	width:221px;
+	width:185px;
 }
 
 .itemsearchtd2{
@@ -918,7 +918,7 @@ text-decoration:none;
 	height:80px;
 
 }
-span.star,span.sa1,span.sa2,span.sa3,span.sa35,span.sa4,span.sa45,span.sa5
+span.star,span.sa1,span.sa0,span.sa2,span.sa3,span.sa35,span.sa4,span.sa45,span.sa5
 {
 	background: url(../image/grade_bg.gif) no-repeat;
 	height:15px;
@@ -928,6 +928,11 @@ span.star
 {
 	background-position:0px -16px;
 	width:70px;
+}
+span.sa0
+{	
+	background-position:0px 2px;
+	width:0;	
 }
 span.sa1
 {
