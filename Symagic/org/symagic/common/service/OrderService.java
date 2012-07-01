@@ -76,7 +76,7 @@ public class OrderService {
 		result.setOrderTime(bean.getOrderDate());
 		result.setReceiverName(bean.getReceiverName());
 		result.setScore(Integer.toString(bean.getScore()));
-		result.setTotalPrice(String.format("%.2f",bean.getTotalprice()));
+		result.setTotalPrice(String.format("%.2f", bean.getTotalprice()));
 		result.setUserName(bean.getUsername());
 		return result;
 	}
@@ -113,7 +113,8 @@ public class OrderService {
 		require.setPage(page);
 		require.setLines(itemPerPage);
 		List<BeanOrder> orders = daoOrder.search(require, username);
-		if( orders == null ) return null;
+		if (orders == null)
+			return null;
 		float rowNumber = daoOrder.getRowNumber(require, username);
 		for (int i = 0; i < orders.size(); i++) {
 			OrderBean orderBean = this.convertBeanOrderToOrderBean(orders
@@ -209,17 +210,19 @@ public class OrderService {
 		}
 		return orderDetails;
 	}
-	
-	public int orderNumber(String userName, Integer itemID){
+
+	public int orderNumber(String userName, Integer itemID) {
 		int orderNum = 0;
 		OrderRequire orderRequire = new OrderRequire();
 		orderRequire.setOrderState("2");
 		orderRequire.setLines(Integer.MAX_VALUE);
 		orderRequire.setPage(1);
 		List<BeanOrder> orders = daoOrder.search(orderRequire, userName);
-		for(int i = 0; i < orders.size(); i ++){
-			if(isOrderHasItem(itemID, orders.get(i).getList()))
-				orderNum ++;
+		if (orders != null) {
+			for (int i = 0; i < orders.size(); i++) {
+				if (isOrderHasItem(itemID, orders.get(i).getList()))
+					orderNum++;
+			}
 		}
 		return orderNum;
 	}
@@ -231,12 +234,11 @@ public class OrderService {
 	public void setDaoOrder(DaoOrder daoOrder) {
 		this.daoOrder = daoOrder;
 	}
-	
-	private boolean isOrderHasItem(Integer itemID, List<BeanOrderDetail> order){
+
+	private boolean isOrderHasItem(Integer itemID, List<BeanOrderDetail> order) {
 		boolean isHas = false;
-		for(int i = 0; i < order.size(); i ++){
-			if(order.get(i).getBookId() == itemID)
-			{
+		for (int i = 0; i < order.size(); i++) {
+			if (order.get(i).getBookId() == itemID) {
 				isHas = true;
 				break;
 			}
