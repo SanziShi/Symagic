@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Symagic后台登录</title>
-<link href="../css/frame.css" rel="stylesheet" type="text/css"/>
-<script language="javascript" src="js/checkform.js"></script>
-<script language="javascript" src="js/gz.js"></script>
+<link href="<s:property value="#request.get('javax.servlet.forward.context_path')"/>/admin/css/frame.css" rel="stylesheet" type="text/css"/>
+<script language="javascript" src="<s:property value="#request.get('javax.servlet.forward.context_path')"/>/admin/js/checkform.js"></script>
+<script language="javascript" src="<s:property value="#request.get('javax.servlet.forward.context_path')"/>/admin/js/gz.js"></script>
 </head>
 
 <body>

@@ -44,8 +44,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
-			<result name="error">/admin/admin_error.jsp</result>
-			<result name="input">/admin/admin_error.jsp</result>
+			<!-- <result name="error">/admin/admin_error.jsp</result> -->
+			<!-- <result name="input">/admin/admin_error.jsp</result> -->
 		</global-results>
 	</package>
 
@@ -371,6 +371,19 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="user_list" class="AdminListUser">
 			<result>
 				/admin/user_list.jsp
+			</result>
+		</action>
+
+		<action name="user_level" class="AdminLevelManager">
+			<result>
+				/admin/user_admin.jsp
+			</result>
+		</action>
+
+		<action name="user_score_rate_submit" class="AdminSubmitScoreRate">
+			<result type="redirectAction">
+				<param name="actionName">user_level</param>
+				<param name="namespace">/admin</param>
 			</result>
 		</action>
 
