@@ -126,11 +126,11 @@ public class OrderEnterAction extends CatalogBase {
 		super.validate();
 	}
 
-	public String getBuyItems() {
+	public List<ItemTinyBean> getBuyItems() {
 		return buyItems;
 	}
 
-	public void setBuyItems(String buyItems) {
+	public void setBuyItems(List<ItemTinyBean> buyItems) {
 		this.buyItems = buyItems;
 	}
 
