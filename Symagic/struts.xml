@@ -215,8 +215,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 	<!-- 用户收藏夹有关的action -->
-	<package name="favority-user-default" extends="symagic-user-default"
-		namespace="/favorite">
+	<package name="favority-user-default" extends="symagic-user-default" namespace="/favorite">
 		<action name="add_favorite" class="addToFavorite">
 			<result type="json">
 				<param name="includeProperties">addResult</param>
