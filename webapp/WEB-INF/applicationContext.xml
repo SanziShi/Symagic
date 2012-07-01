@@ -150,8 +150,7 @@
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
-	<bean id="AdminOrderList" class="org.symagic.admin.action.order.AdminOrderListAction"
-		scope="request">
+	<bean id="AdminOrderList" class="org.symagic.admin.action.order.AdminOrderListAction">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
