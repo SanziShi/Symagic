@@ -188,7 +188,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		namespace="/cart">
 		<action name="add_to_cart" class="addToCart">
 			<result type="json">
-				<param name="includeProperties">addResult</param>
+				<param name="includeProperties">addResult,resultInfo</param>
 			</result>
 			<result type="json" name="input">
 				<param name="includeProperties">addResult</param>
