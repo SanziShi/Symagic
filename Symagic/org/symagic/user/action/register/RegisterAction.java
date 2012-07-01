@@ -23,7 +23,6 @@ public class RegisterAction extends ActionSupport {
     private String password; // 注册密码
 	private String passwordConfirm;// 注册时密码确认
 	private String nickname; // 注册昵称
-	
 	private String securityQuestion;// 安全问题
 	private String securityAnswer; // 安全问题的甜答案
 	private String captchaValue; // 注册验证码
@@ -37,7 +36,7 @@ public class RegisterAction extends ActionSupport {
 	//传出
 	private boolean registerResult; // 注册是否成功
 	
-
+    //内部使用
 	private boolean validateResult=true;// 验证输入是否合法
 	@Override
 	public String execute() throws Exception {
@@ -91,7 +90,7 @@ public class RegisterAction extends ActionSupport {
 			 return;
 		 }
 	}
-
+//返回中文字符长度
 	private int byteCount(String s) {
 		int length=0;
 		try {

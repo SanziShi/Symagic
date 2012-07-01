@@ -21,6 +21,7 @@ public class LoginAction extends ActionSupport{
     //传出
 	private boolean loginResult;//登录是否成功
 	
+	//内部变量
 	private boolean validateResult=true;
 	
 	@Override

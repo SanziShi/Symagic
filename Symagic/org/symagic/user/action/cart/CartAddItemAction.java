@@ -16,19 +16,13 @@ public class CartAddItemAction extends ActionSupport {
 	private static final long serialVersionUID = -8688962449531199326L;
 	//传入
    private Integer itemID;//商品id号
-
-	private Integer itemNumber;//商品数量
+   private Integer itemNumber;//商品数量
 	//配置项
 	private DaoCart daoCart;//对于会员来说，更新到数据库中
     private DaoBook daoBook;
 	//传出	
 	private Boolean addResult=false;//添加结果
-	public DaoBook getDaoBook() {
-		return daoBook;
-	}
-	public void setDaoBook(DaoBook daoBook) {
-		this.daoBook = daoBook;
-	}
+	//内部
 	private Boolean validateResult=true;//对参数有效性的验证结果
 	
 	@Override
@@ -41,15 +35,15 @@ public class CartAddItemAction extends ActionSupport {
 		//itemID不存在于数据库中
 	   if(daoBook.getDetail(itemID)==null){
 		   addResult=false;
-		   return "success";
+		   return SUCCESS;
 	   }
 	   
-		Integer  number=UserSessionUtilty.getCart().get(itemID);
-	   
-		addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
+		
+	    addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
 		
 	   
 	    //对于会员而言，后台数据库做同样的更新
+	    Integer  number=UserSessionUtilty.getCart().get(itemID);
 	    if(UserSessionUtilty.isLogin()){
 	    	if(number==null)
 	    		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
@@ -72,6 +66,12 @@ public class CartAddItemAction extends ActionSupport {
 	}
 	public void setDaoCart(DaoCart daoCart) {
 		this.daoCart = daoCart;
+	}
+	public DaoBook getDaoBook() {
+		return daoBook;
+	}
+	public void setDaoBook(DaoBook daoBook) {
+		this.daoBook = daoBook;
 	}
 	public Integer getItemID() {
 		return itemID;

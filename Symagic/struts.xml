@@ -112,9 +112,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="cart" class="cartEnter">
 			<result>/cart.jsp</result>
 		</action>
-
+		
 		<action name="favorite" class="detailOfFavorite">
-			<result>/lib/favorite.jsp</result>
+		  <result>/lib/favorite.jsp</result>
 		</action>
 
 		<!-- 商品项 -->
@@ -150,7 +150,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>forget.jsp</result>
 		</action>
 
-
+      
 	</package>
 
 	<!-- 注册时用户名检测 -->
@@ -212,8 +212,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<!-- 用户中与商品项有关的小接口 -->
 
-	<package name="item-user-default" extends="symagic-user-default"
-		namespace="/item">
+	<package name="item-user-default" extends="symagic-user-default" namespace="/item">
 		<action name="comment" class="submitComment">
 			<result type="json">
 				<param name="includeProperties">submitResult</param>
@@ -225,7 +224,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 	</package>
-
+	
 	<!-- 用户信息相关 -->
 	<package name="info-user-default" extends="symagic-user-default"
 		namespace="/user">
@@ -240,7 +239,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 	</package>
-
+	
 	<!-- 地址相关 -->
 	<package name="address-user-default" extends="symagic-user-default"
 		namespace="/address">
@@ -260,6 +259,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 	</package>
+	
 
 	<!-- 配置管理员的action -->
 	<package name="admin-default" extends="symagic-admin-default"
@@ -463,4 +463,5 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	</package>
 
 </struts>
+
 

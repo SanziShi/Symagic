@@ -28,11 +28,11 @@ private boolean deleteResult=false;;
 			deleteResult=false;
 			return SUCCESS;
 		}
-		//购物车没有商品
+		//购物车没有此商品
 		
 		if(UserSessionUtilty.getCart().get(itemID)==null){
 			deleteResult=false;
-			return "success";
+			return SUCCESS;
 		}
 		//在session中将对应商品从cart中删除
 		deleteResult=UserSessionUtilty.deleteFromCart(itemID);

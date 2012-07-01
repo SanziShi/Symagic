@@ -27,6 +27,8 @@ import org.symagic.user.utilty.MathUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 public class ItemService {
+	
+	//配置项
 	private DaoComment daoComment;// 访问comment
 	private DaoBook daoBook;// 访问数据库中的书籍信息
 	private DaoCatalog daoCatalog;
