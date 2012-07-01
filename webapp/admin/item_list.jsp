@@ -464,7 +464,7 @@
 									</s:else>
 								</s:if></td>
 							<td>当前第<s:property value="page" />页，共<s:property
-									value="totalPage" />页</td>
+									value="totalPage" />页，每页<s:property value="lines"/>条</td>
 						</tr>
 					</table>
 					</form>

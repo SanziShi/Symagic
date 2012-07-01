@@ -93,13 +93,12 @@
 		<property name="shopImageFileFolder" value="upload"></property>
 	</bean>
 
-	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction"
-		scope="request">
+	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
-		<property name="errorHeader" value="错了"></property>
-		<property name="errorSpecification" value="反正是错了"></property>
+		<property name="errorHeader" value="对应商品不存在"></property>
+		<property name="errorSpecification" value="您所请求的商品不存在"></property>
 	</bean>
 
 	<bean id="AdminEnterItemManager" class="org.symagic.admin.action.item.ItemManagerEnterAction">
