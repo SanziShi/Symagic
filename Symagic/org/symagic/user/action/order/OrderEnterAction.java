@@ -98,14 +98,17 @@ public class OrderEnterAction extends CatalogBase {
 				itemTinyBean.setItemNumber(items.get(i).getItemNumber());
 				itemTinyBean
 						.setPrice(String.format("%.2f", (beanBook
-								.getMarketPrice() * beanBook.getMarketPrice())));
+								.getMarketPrice() * beanBook.getDiscount())));
 				itemTinyBean
 						.setItemTotalPrice(String.format(
 								"%.2f",
 								(beanBook.getMarketPrice()
-										* beanBook.getMarketPrice() * itemTinyBean
+										* beanBook.getDiscount() * itemTinyBean
 										.getItemNumber())));
-				temp += beanBook.getMarketPrice() * beanBook.getMarketPrice()
+				itemTinyBean.setScore((int)(beanBook.getMarketPrice()
+						* beanBook.getDiscount() * itemTinyBean
+						.getItemNumber()));
+				temp += beanBook.getMarketPrice() * beanBook.getDiscount()
 						* itemTinyBean.getItemNumber();
 				buyItems.add(itemTinyBean);
 			}
