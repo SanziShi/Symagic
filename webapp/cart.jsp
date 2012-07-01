@@ -97,10 +97,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div>
             	<div id="cart_table_content">
                 	<!--购物车迭代-->
-                     <s:iterator value="items" var='iter'>
+                     <s:iterator value="items" var='iter' status='st'>
                     <div class="each">
                     <div class="cell checkbox">
-                		<input onchange="checkbox_change(this)" checked="checked" name="itemIDs" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
+                		<input onchange="checkbox_change(this)" checked="checked" name="items[<s:property value='#st.index'/>].itemID" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-img">
@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.marketPrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
                     <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
-        				<input name="itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
+        				<input name="items[<s:property value='#st.index'/>].itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
         				<a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
         				</span></div>
          			<div class="cell total">￥<span id="<s:property value='#iter.itemID'/>total_price"><s:property value='#iter.itemTotalPrice'/></span></div>
