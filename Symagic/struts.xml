@@ -366,6 +366,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
+		<action name="user_list" class="AdminListUser">
+			<result>
+				/admin/user_list.jsp
+			</result>
+		</action>
+
 	</package>
 
 	<!-- 配置管理员的item manage action -->

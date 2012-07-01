@@ -207,10 +207,12 @@
 		<property name="daoLevel" ref="DaoLevel"></property>
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="lines" value="15"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<!-- 用户的action bean -->
