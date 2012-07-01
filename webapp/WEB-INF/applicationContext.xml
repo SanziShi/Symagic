@@ -22,6 +22,12 @@
 		</property>
 	</bean>
 
+	<!-- 默认错误信息注入拦截器 -->
+	<bean id="ErrorMessageIterceptor" class="org.symagic.common.interceptor.ErrorMessageIterceptor">
+		<property name="defaultErrorHeader" value="非法操作"></property>
+		<property name="defaultErrorSpecification" value="您的操作非法"></property>
+	</bean>
+
 
 	<bean id="checkCaptcha" class="org.symagic.common.action.captcha.CheckCaptchaAction"
 		scope="request">

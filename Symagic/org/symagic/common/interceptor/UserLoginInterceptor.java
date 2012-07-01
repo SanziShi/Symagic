@@ -52,8 +52,7 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 
 		// 设置url
 		if (guestIllegalURL.contains(url)) {
-			invocation.getInvocationContext().getValueStack().getContext()
-					.put("toURL", "index");
+			return "error";
 		} else {
 
 			if (request.getMethod().equals("GET")) {
