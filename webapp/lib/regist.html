@@ -25,8 +25,8 @@
 				 <tr>
 				 <th class="itemsearchth"><span class="red">*</span>登录密码：</th>
             		<td class="itemsearchtd1">
-					  	<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" value="" maxlength="20" >
-                    <input type="text" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" msg_num="" >
+					  	<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" value="" maxlength="20" />
+                    <input type="text" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" msg_num=""/>
 					</td>
 					<td class="itemsearchtd2">
 					</td>
@@ -34,8 +34,8 @@
 				 <tr>
 				 <th class="itemsearchth"><span class="red">*</span>密码确认：</th>
             		<td class="itemsearchtd1">
-					<input type="password" id="passwordConfirm" class="inputtext hide" name="passwordConfirm" onblur="password_onblur(this)" value="" maxlength="20" >
-                    <input type="text" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" msg_num="">
+					<input type="password" id="passwordConfirm" class="inputtext hide" name="passwordConfirm" onblur="password_onblur(this)" value="" maxlength="20" />
+                    <input type="text" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" msg_num=""/>
 					</td>
 					<td class="itemsearchtd2">
 					</td>
@@ -50,6 +50,7 @@
 						 <option >您出生与哪个医院？</option>
                         <option >您高中的班主任是？</option>
                         <option >自定义问题</option>
+                        </select>
 					</td>
 					<td class="itemsearchtd2">
 					<span class="red">用于找回密码	</span>
@@ -77,14 +78,14 @@
 						<input type="text" name="captchaValue" class="inputtext" msg_num=""/>
 					</td>
 					<td id="captcha_td" >
-					 <img onclick="change_captcha(this)"  src="captcha_get_captcha" />	
+					 <img  id="cap" onclick="change_captcha(this)"  src="captcha_get_captcha" />	
 					</td>
           		 </tr>
 				 <tr>
 				 <th></th>
-				 	<td><input type="submit" class="bt2" name="button2" value="提交" >
-						&nbsp;<input type="Reset" class="bt2" name="button1" value="重填" >
-						&nbsp;<input type="Button" class="bt2" name="button3" value="返回" onClick="">
+				 	<td><input type="submit" class="bt2" name="button2" value="提交" />
+						&nbsp;<input type="Reset" class="bt2" name="button1" value="重填" />
+						&nbsp;<input type="Button" class="bt2" name="button3" value="返回" onClick=""/>
 					</td>
 				 </tr>
         </table>

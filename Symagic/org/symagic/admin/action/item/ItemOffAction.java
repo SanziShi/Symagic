@@ -26,7 +26,7 @@ public class ItemOffAction extends ActionSupport {
 				return SUCCESS;
 			}
 			book.setOffline("下架");
-			daoBook.modifyBook(book);
+			if( !daoBook.modifyBook(book) ) return super.execute();
 			offResult = true;
 		} else {
 			offResult = false;

@@ -53,11 +53,13 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 				return ERROR;
 			}
 			level.setLowLimit(low);
+			level.setRate(scoreRate);
 			daoLevel.update(level);
 		} else if (modifyLevelIndex == levels.size() - 1) {
 			if (levels.get(modifyLevelIndex - 1).getLowLimit() >= low)
 				return ERROR;
 			level.setLowLimit(low);
+			level.setRate(scoreRate);
 			levels.get(modifyLevelIndex - 1).setUpLimit(low);
 			daoLevel.update(level);
 			daoLevel.update(levels.get(modifyLevelIndex - 1));
@@ -68,6 +70,7 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 				return ERROR;
 			}
 			level.setLowLimit(low);
+			level.setRate(scoreRate);
 			levels.get(modifyLevelIndex - 1).setUpLimit(low);
 			daoLevel.update(level);
 			daoLevel.update(levels.get(modifyLevelIndex - 1));
@@ -79,7 +82,8 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 	@Override
 	public void validate() {
 
-		if (levelID == null || low == null || scoreRate == null)
+		if (levelID == null || low == null || scoreRate == null
+				|| scoreRate < 0 || low < 0)
 			validateResult = false;
 		else
 			validateResult = true;

@@ -36,6 +36,7 @@
 	<bean id="OrderDetailAction" class="org.symagic.common.action.order.OrderDetailAction"
 		scope="request">
 		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<!-- 管理员的action bean -->
@@ -162,6 +163,7 @@
 		scope="request">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminSubmitOrderEdit"
@@ -188,6 +190,12 @@
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
+	<bean id="AdminSuccessOrder" class="org.symagic.admin.action.order.AdminSuccessOrderAction"
+		scope="request">
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoUser" ref="DaoUser"></property>
+	</bean>
+
 	<bean id="AdminSubmitScoreRate"
 		class="org.symagic.admin.action.level.AdminScoreRateSubmitAction"
 		scope="request">
@@ -200,15 +208,23 @@
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
 
+	<bean id="AdminDeleteComment"
+		class="org.symagic.admin.action.comment.AdminDeleteCommentAction"
+		scope="request">
+		<property name="daoComment" ref="DaoComment"></property>
+	</bean>
+
 	<bean id="AdminListUser" class="org.symagic.admin.action.user.UserListAction"
 		scope="request">
 		<property name="daoLevel" ref="DaoLevel"></property>
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="lines" value="15"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<!-- 用户的action bean -->

@@ -364,6 +364,8 @@ public class DaoUser {
 				user.setRegistedate(rs.getString("registedate"));
 				list.add(user);
 			}
+			
+			return list;
 		} catch (Exception e) {
 			
 			// TODO Auto-generated catch block
