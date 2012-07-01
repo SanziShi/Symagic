@@ -431,6 +431,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
+		<action name="catalog_edit_submit" class="AdminSubmitCatalogModify">
+			<result>
+				/admin/category_edit.jsp
+			</result>
+		</action>
+
+		<action name="catalog_add_submit" class="AdminAddCatalog">
+			<result>
+				/admin/category_edit.jsp
+			</result>
+		</action>
+
 	</package>
 
 	<!-- 配置管理员的item manage action -->
