@@ -215,7 +215,7 @@ public class OrderService {
 		OrderRequire orderRequire = new OrderRequire();
 		orderRequire.setOrderState("2");
 		orderRequire.setLines(Integer.MAX_VALUE);
-		orderRequire.setPage(2);
+		orderRequire.setPage(1);
 		List<BeanOrder> orders = daoOrder.search(orderRequire, userName);
 		for(int i = 0; i < orders.size(); i ++){
 			if(isOrderHasItem(itemID, orders.get(i).getList()))

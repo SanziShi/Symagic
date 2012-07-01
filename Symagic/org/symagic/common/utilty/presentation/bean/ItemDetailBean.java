@@ -23,7 +23,7 @@ public class ItemDetailBean {
 	private String picturePath;
 	private TimeBean parseTime; //用于时间解析结果
 	private CatalogBean parseCatalog; //
-	
+	private Boolean commentAble;//能否评论
 
 	public String getIsbn() {
 		return isbn;
@@ -87,6 +87,14 @@ public class ItemDetailBean {
 
 	public void setBinding(String binding) {
 		this.binding = binding;
+	}
+
+	public Boolean getCommentAble() {
+		return commentAble;
+	}
+
+	public void setCommentAble(Boolean commentAble) {
+		this.commentAble = commentAble;
 	}
 
 	public String getSize() {

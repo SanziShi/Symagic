@@ -29,8 +29,8 @@ import org.symagic.user.utilty.MathUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 public class ItemService {
-	
-	//配置项
+
+	// 配置项
 	private DaoComment daoComment;// 访问comment
 	private DaoBook daoBook;// 访问数据库中的书籍信息
 	private DaoCatalog daoCatalog;
@@ -50,24 +50,25 @@ public class ItemService {
 	public int getSearchNum(int sign, BookRequire require) {
 		return daoBook.getSearchRowNumber(sign, require);
 	}
-	
-	public List<Integer> getCatalogList(Integer catalogID){
-		List<Integer> catalogList=new ArrayList<Integer>();
-		BeanCatalog requiredCatalog=daoCatalog.getCatalogByID(catalogID);
-		//二级目录 
-		if(requiredCatalog.getLevel().trim().equals("2")){
+
+	public List<Integer> getCatalogList(Integer catalogID) {
+		List<Integer> catalogList = new ArrayList<Integer>();
+		BeanCatalog requiredCatalog = daoCatalog.getCatalogByID(catalogID);
+		// 二级目录
+		if (requiredCatalog.getLevel().trim().equals("2")) {
 			catalogList.add(catalogID);
 		}
-		//一级目录
-		else{
-		List<BeanCatalog> allCatalog=daoCatalog.getCatalog();
-		BeanCatalog catalog;
-		for(Iterator<BeanCatalog> index=allCatalog.iterator();index.hasNext();){
-			catalog=index.next();
-			if(catalog.getUpID()==catalogID){
-				catalogList.add(catalog.getCatalogID());
+		// 一级目录
+		else {
+			List<BeanCatalog> allCatalog = daoCatalog.getCatalog();
+			BeanCatalog catalog;
+			for (Iterator<BeanCatalog> index = allCatalog.iterator(); index
+					.hasNext();) {
+				catalog = index.next();
+				if (catalog.getUpID() == catalogID) {
+					catalogList.add(catalog.getCatalogID());
+				}
 			}
-		}
 		}
 		return catalogList;
 	}
@@ -202,7 +203,7 @@ public class ItemService {
 		}
 	}
 
-// 得到商品详情
+	// 得到商品详情
 	public boolean fillDetailBean(int itemId, ItemDetailBean detail) {
 		BeanBook book = daoBook.getDetail(itemId);
 		if (book == null)
@@ -262,8 +263,22 @@ public class ItemService {
 		catalog.setName(currentCatalog.getCatalogName());
 		catalog.setChildCatalog(null);
 		detail.setParseCatalog(catalog);
-        //是否可以评论
-		 daoComment.
+		// 是否可以评论，默认不能评论
+		detail.setCommentAble(false);
+		OrderService orderService = new OrderService();
+		// 是否已登录
+		if (UserSessionUtilty.getUsername() != null) {
+			// 购买记录
+			int purchaseRecord = orderService.orderNumber(
+					UserSessionUtilty.getUsername(), book.getBookId());
+			// 已评论数量
+			int commentNumber = daoComment.getNumByID(
+					UserSessionUtilty.getUsername(), book.getBookId());
+			if (purchaseRecord > commentNumber) {
+				detail.setCommentAble(true);
+			}
+		}
+
 		return true;
 	}
 
