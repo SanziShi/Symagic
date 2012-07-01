@@ -18,6 +18,8 @@ import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.db.func.DaoComment;
+import org.symagic.common.db.func.DaoOrder;
+import org.symagic.common.db.func.OrderRequire;
 import org.symagic.common.utilty.presentation.bean.CatalogBean;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
@@ -32,6 +34,7 @@ public class ItemService {
 	private DaoComment daoComment;// 访问comment
 	private DaoBook daoBook;// 访问数据库中的书籍信息
 	private DaoCatalog daoCatalog;
+	private DaoOrder daoOrder;
 
 	/**
 	 * 
@@ -199,7 +202,7 @@ public class ItemService {
 		}
 	}
 
-	// 得到商品详情
+// 得到商品详情
 	public boolean fillDetailBean(int itemId, ItemDetailBean detail) {
 		BeanBook book = daoBook.getDetail(itemId);
 		if (book == null)
@@ -259,7 +262,8 @@ public class ItemService {
 		catalog.setName(currentCatalog.getCatalogName());
 		catalog.setChildCatalog(null);
 		detail.setParseCatalog(catalog);
-
+        //是否可以评论
+		 daoComment.
 		return true;
 	}
 
