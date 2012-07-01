@@ -271,4 +271,36 @@ public class DaoComment {
 		return false;
 	}
 	
+	/**
+	 * 获取指定用户对定制书籍的评论数目
+	 * @param username	指定用户名
+	 * @param bookid	指定书籍ID
+	 * @return	-1 查询出错	>=0 查询成功
+	 */
+	public int getNumByID(String username, int bookid)
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) from comment where " +
+					"username=? and bookid=?");
+			ps.setString(1, username);
+			ps.setInt(2, bookid);
+			ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return -1;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return -1;
+	}
+	
 }
