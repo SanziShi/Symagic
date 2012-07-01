@@ -72,17 +72,18 @@ public class DaoFavorityFolder {
 	 * 
 	 * @param username
 	 *            指定用户名
-	 * @param bookIDList
-	 *            指定书籍ID列表
+	 * @param bookID
+	 *            指定书籍ID
 	 * @return true 删除成功 false 删除失败
 	 */
-	public boolean delete(String username, List<Integer> bookIDList) {
+	public boolean delete(String username, int bookID) {
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn
 					.prepareStatement("delete from favority_folder where username=? and "
 							+ "bookid=?");
 			ps.setString(1, username);
+			ps.setInt(2, bookID);
 
 			ps.execute(); // 后期这里需要处理
 			if (ps.getUpdateCount() == 1)
