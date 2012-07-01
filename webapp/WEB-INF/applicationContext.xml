@@ -102,8 +102,7 @@
 		<property name="errorSpecification" value="反正是错了"></property>
 	</bean>
 
-	<bean id="AdminEnterItemManager" class="org.symagic.admin.action.item.ItemManagerEnterAction"
-		scope="request">
+	<bean id="AdminEnterItemManager" class="org.symagic.admin.action.item.ItemManagerEnterAction">
 		<property name="sign" value="1"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
