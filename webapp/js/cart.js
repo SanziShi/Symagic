@@ -6,8 +6,8 @@ function amount_modify(e)
 function checkout()
 {
 	var a=document.getElementById('checkout');//.submit();
-	var q=$(a).serialize();
-	alert(q);
+	a.submit();
+	//var q=$(a).serialize();
 }
 function tests(e)
 {
