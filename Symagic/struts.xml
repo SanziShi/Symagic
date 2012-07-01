@@ -149,8 +149,27 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
-
-      
+		<!-- 
+		<action name="order" class="orderEnter">
+			<result></result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="order_list" class="orderList">
+			<result></result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="order_detail" class="orderDetail">
+			<result></result>
+			<result name="error">/error.jsp</result>
+		</action>
+		
+		<action name="order_submit" clas="orderSubmit">
+			<result></result>
+			<result name="error">/error.jsp</result>
+		</action> 
+      	-->
 	</package>
 
 	<!-- 注册时用户名检测 -->
@@ -255,6 +274,25 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="delete_address" class="deleteAddress">
 			<result type="json">
 				<param name="includeproperties">deleteResult</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="order-user-default" extends="symagic-user-default"
+		namespace="/order">
+		<action name="delete_order" class="deleteOrder">
+			<result type="json">
+				<param name="includeProperties">deleteResult</param>
+			</result>
+		</action>
+		<action name="check_score" class="checkScore">
+			<result type="json">
+				<param name="includeProperties">checkResult</param>
+			</result>
+		</action>
+		<action name="add_address" class="addAddress">
+			<result type="json">
+				<param name="include Properties">addResult</param>
 			</result>
 		</action>
 	</package>
