@@ -11,7 +11,13 @@ package org.symagic.common.utilty.presentation.bean;
  * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class ItemBean {
-	
+	public String savePrice;
+	public String getSavePrice() {
+		return savePrice;
+	}
+	public void setSavePrice(String savePrice) {
+		this.savePrice = savePrice;
+	}
 	public String getPrice() {
 		return price;
 	}
