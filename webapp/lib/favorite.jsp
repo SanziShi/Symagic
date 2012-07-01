@@ -20,12 +20,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<div class="cell checkbox">
                 		<input class="" value="" type="checkbox"/>
                 	</div>
-                    <div class="cell p-name"><div class="p-name-img"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="upload/9787214078476.png"/></a></div><div class="p-name-n"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a>
+                    <div class="cell p-name"><div class="p-name-img"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"/></a></div><div class="p-name-n"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a>
                     <br>综合评分：<span class="sa<s:property value='#iter.rating'/>"></span></div></div>
                    <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.savePrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
                     <div class="cell inventory"><s:property value='#iter.inventory'/></div>
                     <div class="cell action"><span class="fav-add"></span>
-                    <a href="javascript:void(0)" onclick="delete_from_favorite()" class="fav_cancel">取消收藏</a></div>
+                    <a href="javascript:void(0)" onclick="delete_from_favorite(<s:property value='#iter.itemID'/>)" class="fav_cancel">取消收藏</a></div>
             	</s:iterator >
                 <!--收藏夹商品迭代-->
                 </div>   

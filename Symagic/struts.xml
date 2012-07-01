@@ -149,27 +149,27 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
-		<!-- 
+		 
 		<action name="order" class="orderEnter">
-			<result></result>
+			<result>order_confirm.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		
 		<action name="order_list" class="orderList">
-			<result></result>
+			<result>order_list.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		
 		<action name="order_detail" class="orderDetail">
-			<result></result>
+			<result>order_info.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 		
-		<action name="order_submit" clas="orderSubmit">
-			<result></result>
+		<action name="order_submit" class="orderSubmit">
+			<result>order_success.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action> 
-      	-->
+      	
 	</package>
 
 	<!-- 注册时用户名检测 -->
