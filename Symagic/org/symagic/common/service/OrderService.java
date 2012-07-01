@@ -209,6 +209,20 @@ public class OrderService {
 		}
 		return orderDetails;
 	}
+	
+	public int orderNumber(String userName, Integer itemID){
+		int orderNum = 0;
+		OrderRequire orderRequire = new OrderRequire();
+		orderRequire.setOrderState("2");
+		orderRequire.setLines(Integer.MAX_VALUE);
+		orderRequire.setPage(2);
+		List<BeanOrder> orders = daoOrder.search(orderRequire, userName);
+		for(int i = 0; i < orders.size(); i ++){
+			if(isOrderHasItem(itemID, orders.get(i).getList()))
+				orderNum ++;
+		}
+		return orderNum;
+	}
 
 	public DaoOrder getDaoOrder() {
 		return daoOrder;
@@ -216,6 +230,18 @@ public class OrderService {
 
 	public void setDaoOrder(DaoOrder daoOrder) {
 		this.daoOrder = daoOrder;
+	}
+	
+	private boolean isOrderHasItem(Integer itemID, List<BeanOrderDetail> order){
+		boolean isHas = false;
+		for(int i = 0; i < order.size(); i ++){
+			if(order.get(i).getBookId() == itemID)
+			{
+				isHas = true;
+				break;
+			}
+		}
+		return isHas;
 	}
 
 }
