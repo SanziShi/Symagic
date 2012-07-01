@@ -94,6 +94,8 @@ public class OrderEnterAction extends CatalogBase {
 			if (beanBook != null) {
 				ItemTinyBean itemTinyBean = new ItemTinyBean();
 				itemTinyBean.setItemID(beanBook.getBookId());
+				itemTinyBean.setName(beanBook.getBookName());
+				itemTinyBean.setItemNumber(items.get(i).getItemNumber());
 				itemTinyBean
 						.setPrice(String.format("%.2f", (beanBook
 								.getMarketPrice() * beanBook.getMarketPrice())));
