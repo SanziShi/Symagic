@@ -466,7 +466,7 @@ function ajax_delete_order(id) {
 	var result = confirm("该操作将会将订单删除，确定继续吗？");
 	if (result == true) {
 		Ajax({
-			url : 'order/delete/?orderID=' + id,
+			url : 'order/delete?orderID=' + id,
 			type : 'GET',
 			onSend : function() {
 			},
