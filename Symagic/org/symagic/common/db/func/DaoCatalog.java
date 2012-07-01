@@ -21,7 +21,6 @@ public class DaoCatalog {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 	
 	/**
 	 * 获取所有书籍分类

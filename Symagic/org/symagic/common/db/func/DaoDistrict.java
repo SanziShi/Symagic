@@ -23,7 +23,6 @@ public class DaoDistrict {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 	
 	/**
 	 * 获取地区upID等于指定upID的地区详细信息

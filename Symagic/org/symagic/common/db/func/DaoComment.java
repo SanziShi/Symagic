@@ -21,7 +21,6 @@ public class DaoComment {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 	
 	/**
 	 * 返回所有评论，要分页
@@ -184,6 +183,7 @@ public class DaoComment {
 	 */
 	public int getAverageRating(int bookID)
 	{
+		int count	= 0;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("select rating from comment where bookid=? ");

@@ -24,7 +24,6 @@ public class DaoFavorityFolder {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 
 	/**
 	 * 添加书籍到指定用户的收藏夹

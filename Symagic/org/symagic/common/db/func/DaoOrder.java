@@ -24,7 +24,6 @@ public class DaoOrder {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 	
 	/**
 	 * 根据给定条件搜索用户订单

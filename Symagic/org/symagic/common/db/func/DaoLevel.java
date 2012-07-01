@@ -21,7 +21,6 @@ public class DaoLevel {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 	
 	/**
 	 * 添加等级标准

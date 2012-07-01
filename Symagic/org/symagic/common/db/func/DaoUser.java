@@ -22,7 +22,6 @@ public class DaoUser {
 	private PreparedStatement	ps;
 	private Statement	st;
 	private ResultSet	rs;
-	private int count	= 0;
 	
 	/**
 	 * 验证用户名与密码是否对应
@@ -100,6 +99,7 @@ public class DaoUser {
 	 */
 	public boolean addUser(BeanUser user) 
 	{
+		int count	= 0;
 		if (!this.validateUserName(user.getUsername()))
 			return false;
 		try {
@@ -388,6 +388,7 @@ public class DaoUser {
 	 */
 	public int getSearchNum(UserRequire req)
 	{
+		int count	= 0;
 		String sql	= "select * from user where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();

@@ -21,7 +21,6 @@ public class DaoUserAddress {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 	
 	/**
 	 * 添加用户预存地址
