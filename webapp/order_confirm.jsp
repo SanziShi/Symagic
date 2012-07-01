@@ -175,7 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     		<td width="15%">可获积分</td>
                     	</tr>
                 		<!--商品列表迭代开始-->
-                        <s:iterator value="items" var='iter'>
+                        <s:iterator value="buyItems" var='iter'>
                     	<tr>
                     		<td><s:property value='#iter.itemID'/></td>
                         	<td><s:property value='#iter.name'/></td>

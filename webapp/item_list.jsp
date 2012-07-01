@@ -229,7 +229,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <div class="fliter"></div>
    <!--商品迭代div-->
    <input id="amount" value="1" style="display:none"/>
-   <s:iterator value="items" var='iter'>
+   <s:iterator value="items" var='iter' status='st'>
    <div class="item">
    	<div class="p-img">
    		<div class="i-img"><a  href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"></a>
