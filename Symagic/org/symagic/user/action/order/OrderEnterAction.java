@@ -44,7 +44,7 @@ public class OrderEnterAction extends CatalogBase {
 
 	private List<ItemTinyBean> items;
 	
-	private List<DistrictBean> districtLevel1;
+	private List<DistrictBean> level1Districts;
 	
 	public List<AddressDetailBean> getAddressList() {
 		return addressList;
@@ -120,7 +120,7 @@ public class OrderEnterAction extends CatalogBase {
 		price = String.format("%.2f", temp);
 		userName = UserSessionUtilty.getUsername();
 		addressList = addressService.getAddressDetail(userName);
-		districtLevel1 = addressService.getDistricts(0);
+		level1Districts = addressService.getDistricts(0);
 		payment = "货到付款";
 		deliverWay = "快递";
 		return super.execute();
@@ -168,12 +168,13 @@ public class OrderEnterAction extends CatalogBase {
 		this.addressService = addressService;
 	}
 
-	public List<DistrictBean> getDistrictLevel1() {
-		return districtLevel1;
+	public List<DistrictBean> getLevel1Districts() {
+		return level1Districts;
 	}
 
-	public void setDistrictLevel1(List<DistrictBean> districtLevel1) {
-		this.districtLevel1 = districtLevel1;
+	public void setLevel1Districts(List<DistrictBean> level1Districts) {
+		this.level1Districts = level1Districts;
 	}
+
 
 }
