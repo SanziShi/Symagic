@@ -46,8 +46,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<tbody>
                              <tr class="tr"><td width="11%">收货人</td><td width="25%">所在地区</td><td width="30%" >详细地址</td><td width="8%">邮编</td><td width="13%">手机/电话</td><td width="13%">操作</td></tr>
                 			<!--地址迭代-->
-                    		<tr ><td>四字测试</td><td>广东省 深圳市 南山区</td><td class="detail">南山区南油路海辉大厦金波阁25B常常隧道发生的过再长一点儿在场一点儿</td><td>510006</td><td class="detail">13599999999<br/>2332623636</td><td><a href="" id="t1" onclick="">修改</a>&nbsp;|&nbsp;<a href="">删除</a></td></tr>
-                    		<!--地址迭代结束-->
+                            <s:iterator  var="iter">
+                    		<tr ><td><s:property value='#iter.itemId'/></td><td>广东省 深圳市 南山区</td><td class="detail">南山区南油路海辉大厦金波阁25B常常隧道发生的过再长一点儿在场一点儿</td><td>510006</td><td class="detail">13599999999<br/>2332623636</td><td><a href="" id="t1" onclick="">修改</a>&nbsp;|&nbsp;<a href="">删除</a></td></tr>
+                    		</s:iterator>
+                            <!--地址迭代结束-->
                             </tbody>
                         </table>
                     </div>

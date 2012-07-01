@@ -20,12 +20,12 @@ public class ItemUpAction extends ActionSupport {
 		if (itemID != null) {
 			BeanBook book = daoBook.getDetail(itemID);
 			if( book == null ) return super.execute();
-			if( book.getOffline().equals("上架") ){
+			if( book.getOffline().equals("在架") ){
 				upResult = false;
 				return SUCCESS;
 			}
-			book.setOffline("上架");
-			daoBook.modifyBook(book);
+			book.setOffline("在架");
+			if( !daoBook.modifyBook(book) ) return super.execute();
 			upResult = true;
 		} else {
 			upResult = false;

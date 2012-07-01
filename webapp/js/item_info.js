@@ -10,6 +10,7 @@ function reduce()
 function amount_modify(e)
 {
 	e.value=e.value.replace(/\D+/g,'');
+	if(e.value=='')e.value=1;
 }
 function favorite()
 {

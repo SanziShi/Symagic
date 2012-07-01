@@ -66,9 +66,7 @@
                 </td>
 			    <td>收货人地址</td>
             <td colspan="3">
-            <select id="level1"></select>
-            <select id="level2"></select>
-            <select id="level3"></select>
+            <s:property value="receiverAddress"/>
             </td>	
 			</tr>
             
@@ -114,7 +112,7 @@
 				  <tr>
             		<td><span><s:property value = "#itemArray.itemID"/></span></td>
 					<td><a href="item_detail?itemID=<s:property value = '#itemArray.itemID'/>">
-                    </a><s:property value = "#itemArray.itemName"/>
+                    </a><s:property value = "#itemArray.name"/>
                     </td>
 					<td>￥<s:property value = "#itemArray.price"/></td>
 					<td> 

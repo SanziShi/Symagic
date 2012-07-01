@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<img src="image/ico_site.jpg"  id="ico_site"/>
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
 			</div>
-			<form action="quick_search" >
+			<form action="quick_search" method="post">
 			<div id="searchright2">
 			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="submit" value="搜索" id="searchbutton" />
@@ -110,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="head">我的收货地址</div>
         	<div id="address_loading"></div>
         	<div id="address-container">
-            	<div id="address-content">
+            	<div id="address-content" class="">
                 <!--修改地址迭代开始-->
                 <div id="test" class="address-edit">
                 <h2>修改地址<span class="close" onclick="close_address(this)"></span></h2>
@@ -173,9 +173,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="head">修改密码</div>
         	<div class="user_note_content">
         		
-        			<p><span>原密码：</span><input id="pass_before" class="inputtext"/></p>
-            		<p><span>新密码：</span><input id="pass_new" class="inputtext"/></p>
-            		<p><span>密码确认：</span><input id="pass_confirm" class="inputtext"/></p>
+        			<p><span>原密码：</span><input id="pass_before" type="password" class="inputtext"/></p>
+            		<p><span>新密码：</span><input id="pass_new" type="password" class="inputtext"/></p>
+            		<p><span>密码确认：</span><input id="pass_confirm" type="password" class="inputtext"/></p>
             		<p><span><input type="button" onclick="pass_submit()" value="确定修改"/></span></p>
     			
         	</div>

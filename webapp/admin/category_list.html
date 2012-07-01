@@ -6,76 +6,7 @@
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <link href="css/home.css" rel="stylesheet" type="text/css" />
-<script language="javascript">
-function show(table,sum){
-var t;
-t=document.getElementById(table);
-  if(t.style.display=="") {
- t.style.display="none";
-  } 
- else {
-  t.style.display="";
- }
- for(i=0;i<sum;i++){
- if(("t"+i)!=table){
- t=document.getElementById("t"+i);
- t.style.display="none";
-   }
-  }
-}
 
-function checkselectno(){
-var el = document.getElementsByTagName('input');
-var len = el.length;
-var checkno=0;
-for(var i=0; i<len; i++)
-  {
-  if((el[i].type=="checkbox") && (el[i].checked==true))   
-     checkno++;   
-  }
-if(checkno==1)
-  {window.location.href="category_edit.html";
-   return true;
-  }
-if(checkno>1)
-  {
-  window.alert("每次只能修改一个目录！");
-  return false;
-  }
-else
-  {
-  window.alert("请先选择目录！");
-  return false;
-  }
-
-}
-
-function checkdelno(){
-var el = document.getElementsByTagName('input');
-var len = el.length;
-var checkno=0;
-for(var i=0; i<len; i++)
-  {
-  if((el[i].type=="checkbox") && (el[i].checked==true))   
-     {checkno=1;
-	 break;  }
-  }
-if(checkno==1)
-  {
-  if(window.confirm("确定删除？"))
-     return true;
-   else
-     return false;
-  }
- 
-else
-  {
-  window.alert("请先选择目录！");
-  return false;
-  }
-
-}
-</script>
 <script language="javascript" src="js/checkform.js"></script>
 
 </head>
@@ -136,10 +67,10 @@ else
       </div>
 	</div>
 <!--	<div id="banner"></div>-->
-    <div style="text-align:left; font-size:16px; background-color: #FFF""><span style="padding-right:20px;padding-left:2px;"><a href="category_list.html">[添加目录]</a></span><span style="padding-right:20px;padding-left:2px;"><a href="category_list.html">[目录列表]</a></span></div>
+   
 	<div id="main">
-		<div id="search2">
-			<div id="searchleft">
+		<div id="search1">
+			<div id="mysearchleft">
 				<img src="../image/ico_site.jpg"  id="ico_site"/>
 				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 商品管理</a>
 			</div>

@@ -285,8 +285,254 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
                   values ("/upload/9787101059328.png","金刚经 心经 坛经","陈秋平，尚荣　译注",
                           "中华书局","2007-12-01",1,302,"平装","32",16,0.63,145,
                           "《金刚经》、《心经》、《坛经》在佛教中的地位，不仅在中国佛教中体现着原典精神和独有的思想价值，从中国文化史的视野来看，它们的影响并且关涉到僧俗各界，渗透到社会文化的方方面面。因而如欲深入佛教研究或是欲对中国文化有进一步的了解，
-                          此三部经是一个基础，是必须一读的经典。。",
-                          "9787101059328","在架");       
+                          此三部经是一个基础，是必须一读的经典。",
+                          "9787101059328","在架");
+                          
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787507522716.png","拿破仑传","（德）埃米尔•路德维希　著，周何法，梁锡江，龚艳　译",
+                          "华文出版社","2010-10-01",1,548,"精装","32",29.8,0.58,45,
+                          "《拿破仑传》是享誉世界的德国传记大师埃米尔•路德维希的代表作，是拿破仑传记中的经典之作，也是迄今为止最权威、最全面的拿破仑生平传记。
+拿破仑是一个杰出的军事奇才，同时也是一个伟大的政治天才。他于1804年加冕为法兰西皇帝，从此他的名字就和他所取得的无数场战争的胜利联系在一起。",
+                          "9787507522716","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787100075114.png","传奇王阳明","董平 著",
+                          "商务印书馆","2010-12-01",1,228,"平装","16",30,0.68,133,
+                          "本书以中央电视台《百家讲坛》讲座《传奇王阳明》为基础整理润色而成。作者董平教授，系浙江大学哲学系主任、博士生导师。
+　　王阳明是明代的思想巨匠，精通儒、释、道，创立“心学”，彻底改变了明代中叶以后中国思想发展的整体格局；他也是明代一个重要的政治人物，当皇室内部出现军事叛乱之时，他力挽狂澜，拯救了明王朝的历史命运。",
+                          "9787100075114","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/10937944.png","2011科幻世界（精华本）","姚海军 编",
+                          "科幻世界杂志社","2012-03-01",1,820,"平装","16",88,0.49,233,
+                          "人类蜗居在银河系的一个小角落——太阳系，在围绕太阳旋转的第三颗行星上，生活了十多万年之久。
+　　人类在这个小小的行星（他们称之为“地球”）上，建立了两百多个不同的行政区域（他们称之为“国家”），直到地球上诞生了第一个会思考的机器人。",
+                          "10937944","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787229030933.png","三体3：死神永生","刘慈欣 著",
+                          "重庆出版社","2010-11-01",1,513,"平装","32",38,0.53,53,
+                          "与三体文明的战争使人类第一次看到了宇宙黑暗的真相，
+                          地球文明像一个恐惧的孩子，熄灭了寻友的篝火，在暗夜中发抖。",
+                          "9787229030933","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787530211021.png","三毛全集：滚滚红尘（新版）","三毛 著",
+                          "北京十月文艺出版社","2011-09-01",1,198,"平装","32",22,0.70,68,
+                          "三毛是个用简单的文字，写出唯美的作家，用舒服的方式让人们感受启悟。《滚滚红尘》是三毛的第一部中文电影原著剧本，以中国近代史上的动乱年代为背景，描绘一个全中国人悲欢离合的故事。实际上，
+                          《滚滚红尘》不经意流露出来的是一则凄怆无止的爱情故事，更是三毛自身灵魂的告白。",
+                          "9787530211021","在架");
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787546366708.png","橘生淮南•暗恋","八月长安 著 pano 绘",
+                          "吉林出版集团有限责任公司","2011-09-01",1,288,"平装","16",28.8,0.54,178,
+                          "《你好，旧时光》作者八月长安倾心写作四年，诠释青春年少时，爱上一个人的所有心情。
+　　豆瓣网评分最高的青春作家，晋江原创网最受读者期待的青春作品。
+　　“这是我写得最认真的文，最喜欢的文，投入感情最多的文，写作时间最长的文……如果说《你好，旧时光》我寻找的是共鸣，那么《橘生淮南》我寻找的是，同类。”
+　　——八月长安",
+                          "9787546366708","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787535441133.png","直到最后一句 ","卢丽莉 著",
+                          "湖北长江出版集团，长江文艺出版社","2010-01-01",1,219,"平装","16",24.8,0.69,478,
+                          "于青春的作品那么多，而你不曾见过这样一本书，可以把一个纯纯粹粹的校园故事写得那么行云流水、丝丝入扣，又能在瞬间把前一秒的美好捏碎轧扁，化作一汪人人恐慌的黑血；而你不曾见过这样一个作者，可以把自己的写作天分释放到每一天的生活中，这样淋漓尽致，这样毫无保留，她把自己的梦想写进故事，变万十万人声援的人气长篇；你可以在这本书中找到你想象中有关青春的一切，一切美好、一切幻想、一切渴望深爱的心情、一切背叛和混乱的残破；这是一本直到读到最后一句，你都不会忍心放开的好书。
+　　上海柯艾诚挚奉献超人气青春作家卢丽莉首部长篇小说《直到最后一句》。",
+                          "9787535441133","在架");
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787108027207.png","写给大家的中国美术史（新版） ","蒋勋 著",
+                          "生活•读书•新知三联书店","2012-07-01",1,327,"平装","16",69,0.76,250,
+                          "作者蒋勋，他试图用最简约的篇幅、最概括的手法和最通俗的语言，勾勒出中国美术的诞生、演变及其发展脉络。全书搜罗了大量的中国画家的经典之作，作为他的文字的补充。
+　　这个民族，历经数千年不曾停止的对美的信仰，下一代还有福分继承吗？我只是觉得在不断把年轻人带领
+　　到“美”的面前，使你们聆听“美”的言语，使你们在“美”的面前惊讶、好奇、留连、低徊，使你们在此后
+　　可能辛苦艰困，也可能丰富灿烂的一生中有所依伴，知道无论在如何的处境，不能放弃了对美的信仰。",
+                          "9787108027207","在架");
+
+
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787101057027.png","后汉书","范晔 著",
+                          "中华书局","2007-08-01",1,1051,"精装","32",42,0.72,1035,
+                          "《后汉书》是由南朝宋范晔所撰的一部纪传体断代史。其所记史事，起于刘秀起兵，终于汉献帝禅位，囊括了东汉一朝195年的历史。《后汉书》撷取众家之长，有条不紊地叙述了东汉一朝的兴亡大势，
+                          作为“正史”，与《史记》、《汉书》、《三国志》合称“四史”。",
+                          "9787101057027","在架");
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787208096844.png","中国震撼","张维为",
+                          "上海人民出版社","2011-01-01",1,249,"平装","16",30,0.65,235,
+                          "“中国崛起”震撼了全世界，“中国模式”也成为了国际学界、理论界热议的话题。张维为教授通过自己走访一百多个国家的所见所闻，以国际关系学者的深厚学术背景，以其独特观察和理性分析，
+                          丰富了“中国模式”的深刻涵义，更提出了中国作为一个“文明型国家”崛起的命题。",
+                          "9787208096844","在架");
+
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787100013031.png","文明论概略","（日）福泽谕吉 著 北京编译社 译",
+                          "商务印书馆","1999-01-01",1,175,"平装","32",18,0.75,235,
+                          "“文明论”是探讨人类精神发展的理论。其目的不在于讨论个人的精神发展，而是讨论广大群众的总的精神发展。 “文明论概略”一书共十章，书中阐述了文明的涵义。福泽认为文明一词至大至广，无所不包，从工商企业、科学技术到政法制度、文学艺术和道德智慧等等，举凡人类社会的一切物质和精神财富，都被他包括在文明这一概念之中。其中他特别强调道德智慧的重要，他说一国文明程度的高低，可以人民的德智水准来衡量。因此他认为要促进文明，
+                          必须首先提高人民的道德和智慧，人民德智的提高是没有止境的，因而文明的进步也没有止境",
+                          "9787100013031","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787532548095.png","世界宗教入门：犹太教","雅各•纽斯纳 著 周伟驰 译",
+                          "上海古籍出版社","2008-02-01",1,132,"平装","32",12,0.82,267,
+                          "本丛书与坊间的众多类似读物相比，具有自己的独特之处。首先，作者都为从事各个守教研究的顶尖学者，他们所取得的研究成果早已为人所瞩目，由他们来撰写具有入门性质的图书，不仅可读性强，而且能摆脱简单的知识介绍，白领各个宗教传统最精微，最深刻之处。同时中文译者也都是学者，在各自的专业领域学有所成，他们的忠实工作，使译著配得上原著的水准。其次，作者在传述中还充分地博达了自己民的宗教信仰和立场，并为此做出辩护。这不仅是同情式的理解，更是将自己的手命体验灌注其中。最后，在当代社会，宗教已经与社会高度融合，渗入到人们的日常生活之中，
+                          所带来的宗教传统与现代理念的冲撞也远远超出过去的传统社会。",
+                          "9787532548095","在架");
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787801149183.png","弗洛伊德心理哲学 ","（奥）弗洛伊德 著 杨韶刚 等 译",
+                          "九州出版社","2003-07-01",1,120,"平装","32",29.8,0.61,432,
+                          "生命的叫喊是从和爱欲的斗争中发出的，毋庸置疑，快乐原则在同力比多——即把这种障碍引入生命过程的一种力量——的斗争中是作为一种指南来为本我服务的。《弗洛伊德心理哲学》是弗洛伊德原著代表作的精选译本，基本反映了弗洛伊德心理哲学的主要思想和理论。
+　　日常生活的心理分析，性爱与文明，精神分析引论，梦的解析！
+　　哲学是人生观的学问，哲学是心灵的完善，哲学是生命的诗，
+这是一次走近大师的心灵之旅，或许会改变你的一生。",
+                          "9787801149183","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787802161610.png","比较民法：债编通则 ","李祖荫 著",
+                          "中国方正出版社","2006-10-01",1,280,"平装","32",20,0.75,145,
+                          "本书是华东政法学院珍藏民国法律名著丛书之一，原版由北平朝阳学院于1933年出版。它是李祖荫的主要著作，在一定意义上，也可以说是民国时期惟一的一本比较系统的比较民法著作，全书以中华民国民法第二编“债”第一章“通则”为中轴，以法、德、日、俄、意、荷、美、西、葡、瑞士、瑞典、土耳其、泰国、比利时、智利、阿根廷、巴西、墨西哥、秘鲁、委内瑞拉、奥地利、印度、洪都拉斯等二十多个国家的民法规范，以及美国纽约州民法典、瑞士马尔塔州民法典等十多个西方联邦制国家中的州民法典，英美国家民法学家的著作如英国詹克斯（Edward．1enks）的《英国民法汇纂》等为参照系，对债的发生、债的标的、债的效力、多数债务人及债权人、债的移转、债的消灭等专题作了详细的比较研究。
+                          最后，作为附录，本书收录了1930年5月5日施行的《民法债编施行法》。",
+                          "9787802161610","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787510100468.png","新中国人口六十年 ","路遇，翟振武 编",
+                          "中国人口出版社","2009-12-01",1,1182,"精装","16",298,0.69,105,
+                          "六十年是一个甲子轮回，回望和总结是为了在新的起点上更好地整装出发。新时期，人口理论和实践将不断发展。希望此书的出版作为新中国人口领域60年理论与实践的全景式梳理，让人们更加全面地了解人口计生事业，
+                          更让人口计生理论和实际工作者不断提高理论基础和专业素养，在新的征程中阔步前行。",
+                          "9787510100468","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787806434628.png","范仲淹全集（全二册、精装） ","（清）范能濬 编集，薛正舆 校点",
+                          "凤凰出版社（原江苏古籍出版社）","2004-11-01",1,1462,"精装","32",150,0.54,165,
+                          "我们这部范仲淹全集，是根据范文正公十九世孙范能濬编集、
+                          清康熙四十六年（一七七）范氏家塾岁寒堂刻范文正公忠宣公全集中的范文正公全集整理校点的。",
+                          "9787806434628","在架");
+
+
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787040238969.png","概率论与数理统计 浙大第四版（新版）","盛骤，谢式千，潘承毅　编",
+                          "高等教育出版社","2010-11-01",4,414,"平装","16",34.7,0.76,324,
+                          "  本书第四版是在第三版的基础上增订而成。新增的内容有：在数理统计中应用Excel，bootstrap方法，户值检验法，箱线图等；同时吸收了国内外优秀教材的优点对习题的类型和数量进行了调整和充实。 
+    本书可作为高等学校工科、理科各专业的教材和研究生入学考试的参考书，也可供工程技术人员、科技工作者参考。",
+                          "9787040238969","在架");
+
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787550609822.png","知日•书之国","苏静 等 著",
+                          "凤凰出版社","2011-11-01",1,178,"平装","16",35,0.67,134,
+                          "深入解读弹丸之地成为书之大国的奥秘。
+　 感动重温三十年经典TV秀超级变变变！
+　 万千粉丝翘首以盼，书之国特辑惊艳登场！“知日”系列第四本《知日•书之国》火热上市！
+　 知日系列出版物由国内最顶尖的知日派专家和编辑团队打造。每期以特辑方式推出日本最潮流和热度的人物和事件。",
+                          "9787550609822","在架");
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787108030139.png","汉字王国","（瑞典）林西莉 著 李之义 译",
+                          "中学图书馆文库","2008-11-01",1,401,"精装","32",46,0.75,1000,
+                          "《汉字王国》是一个外国人写的——瑞典汉学家林西莉女士，以图文并茂的形式讲述中国文字的起源的特点，选粹取200多个与人的生活有关的字进行细致的讲解，如与人的身体、住房、器皿、丝和麻、家畜、农具、车船、道路等有关的字，同时分析和描述中国人的生活方式和风俗习惯，从而使人加深对文字的理解。既有深度，又很好读。《汉字王国》初版于1989年，
+                          至今已被翻译成七八种语言，是西方人学习汉语的主要读物。",
+                          "9787108030139","在架");
+
+
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787560604961.png","计算机操作系统（第三版）","汤小丹　等编著",
+                        "西安电子科技大学出版社","2007-05-01",3,393,"平装","16",32,0.88,124,
+                          "本书全面介绍了计算机系统中的一个重要软件——操作系统(OS)，本书是第三版，对2001年出版的修订版的各章内容均作了较多的修改，
+                          基本上能反映当前操作系统发展的现状，但章节名称基本保持不变。",
+                          "9787560604961","在架");
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787564004019.png","创造力手册","（美）斯滕博格 著，施建农 等译",
+                        "北京理工大学出版社","2005-09-01",1,506,"平装","16",65,0.46,230,
+                          "《创造力手册》一书的目的在于为创造力领域提供最全面的、最明确的和最权威的单卷评论文章。为此目的，本书包括22间，涵盖该领域广泛的要点和话题，作者均系杰出学者。各章有意使对各领域创造性思维感兴的所有读者都能理解。虽然各章作者都是一流的行为科学家，而所有学科的人都会发现创造力所涵盖的艺术与科学各领域的例证研究也是令人感兴趣的。本书第一部分展示主要论题，
+                          回顾创造力的思想史，附加税各部分涉及方法、起源、自我与环境、研究专题以及结论。",
+                          "9787564004019","在架");
+
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787810034012.png","中国少林武术大全（上下）","德虔，德炎 著",
+                        "北京体育大学出版杜","2006-10-01",2,2301,"精装","16",350,0.74,1324,
+                          "少林武术是中华民族的优秀文化遗产，其历史久远，积淀深厚；其内容丰富，多姿多彩；其声望广播，闻名于世。
+                          《少林武术大全》分上、下两卷，书中内容图文并茂，丰富翔实，便于读者阅读参阅。",
+                          "9787810034012","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787117024754.png","色盲检查图","俞自萍 等 著",
+                        "人民卫生出版社","1958-05-01",5,23,"精装","32",38,0.75,324,
+                          "《色盲检查图》(精装)该图册为《色盲检查图》的第五版，原《色盲检查图》自1958年初版问世以来，在广大医务工作者的支持下，广泛用于各类体验，它的实用性和有效性得到广泛的认可。
+                          根据当前体检和临床工作需要，本修订版增添了丰富的新图并归类分为第5组。",
+                          "9787117024754","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787508616773.png","伟大的博弈（珍藏版）","（美）约翰S.戈登 著 祁斌 译",
+                        "中信出版社","2011-01-01",2,400,"平装","16",58,0.70,124,
+                          "《伟大的博弈（珍藏版）》是一本关于华尔街历史的书，也是一本关于美国金融史和经济史的书。作者约翰•S•戈登所描述的历史事件使我们清晰地看到，在很大程度上，华尔街推动了美国从一个原始而单一的经济体成长为一个强大而复杂的经济体。在美国经济发展的每一个阶段中，以华尔街为代表的美国资本市场都扮演着重要的角色。华尔街为美国经济的发展提供源源不断的资金，实现社会资金的优化配置，而华尔街本身也伴随着美国经济的发展而成长为全球金融体系的中心。美国经济的成功是资本市场和实体经济之间协同发展的很好的例证。
+                          《伟大的博弈（珍藏版）》不容错过！",
+                          "9787508616773","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787546310497.png","伊索寓言（儿童注音读本）","《图说天下：珍藏版》编委会 编",
+                        "吉林出版集团有限责任公司","2009-11-01",1,189,"精装","16",88,0.21,1124,
+                          "从远古的回顾到今天的眺望，如果只选择停留在原点，便永远望不见地平线另一端的模样。成长，是一个过程，如果不能让脚步飞扬，那么就该让思想插上翅膀。童话与故事赐予我们想象，它们是基石，垫高我们迈向前方的脚。当我们把“为什么”变成惊叹号，
+                          当我们无畏地闯入大自然的怀抱，成长的轨迹便会向未来伸展成有力的形状。",
+                          "9787546310497","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787104032953.png","别太单纯，也别太不单纯","张笑恒 著",
+                        "中国戏剧出版社","2010-12-01",1,191,"平装","16",26,0.53,724,
+                          "这本书并不是教你违心、虚伪、奸诈地迎合别人，钻空子，占便宜，而是告诉年轻人在处世方面，在善良、真诚、宽容的基础上，做事掌握分寸，谨言慎行，礼行天下，智慧灵活地待人撞物 如果能做到这些，
+                          我们会少很多烦恼，对自己的生活和工作必定会有所帮助！",
+                          "9787104032953","在架");
+insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
+                folio,marketprice, discount, inventory,bookdesc, 
+                  isbn, offline)
+                  values ("/upload/9787507419887.png","秘密 The Secret","（澳）拜恩（Byrne，R）著，谢明宪 译",
+                        "中国城市出版社","2008-11-1",1,221,"平装","32",32,0.58,3724,
+                          "在你手上的，是一个至大的秘密……
+这个秘密沉默了许多年，一些最伟大科学家、思想家、企业家都因运用这个秘密而获得了生命的成功。
+你将了解你可以掌控，却隐藏、受困了很久的力量。当你开始运用它时，会惊讶给你的人生带来的喜悦转变。",
+                          "9787507419887","在架");     
 
     
 -- 插入user和secret
@@ -554,6 +800,63 @@ insert into book_catalog_detail(bookID,catalogID)
 insert into book_catalog_detail(bookID,catalogID)
       values (30,26);
       
+insert into book_catalog_detail(bookID,catalogID)
+      values (31,12);
+insert into book_catalog_detail(bookID,catalogID)
+      values (32,12);     
+insert into book_catalog_detail(bookID,catalogID)
+      values (33,9);
+insert into book_catalog_detail(bookID,catalogID)
+      values (34,9);
+insert into book_catalog_detail(bookID,catalogID)
+      values (35,10);
+
+insert into book_catalog_detail(bookID,catalogID)
+      values (36,11);
+insert into book_catalog_detail(bookID,catalogID)
+      values (37,11);
+insert into book_catalog_detail(bookID,catalogID)
+      values (38,13);
+insert into book_catalog_detail(bookID,catalogID)
+      values (39,19);
+insert into book_catalog_detail(bookID,catalogID)
+      values (40,27);
+insert into book_catalog_detail(bookID,catalogID)
+      values (41,20);
+insert into book_catalog_detail(bookID,catalogID)
+      values (42,22);
+insert into book_catalog_detail(bookID,catalogID)
+      values (43,24);
+insert into book_catalog_detail(bookID,catalogID)
+      values (44,23);
+insert into book_catalog_detail(bookID,catalogID)
+      values (45,25);
+insert into book_catalog_detail(bookID,catalogID)
+      values (46,26);
+insert into book_catalog_detail(bookID,catalogID)
+      values (47,61);
+insert into book_catalog_detail(bookID,catalogID)
+      values (48,64);
+insert into book_catalog_detail(bookID,catalogID)
+      values (49,65);
+insert into book_catalog_detail(bookID,catalogID)
+      values (50,57);
+insert into book_catalog_detail(bookID,catalogID)
+      values (51,52);
+insert into book_catalog_detail(bookID,catalogID)
+      values (52,58);
+insert into book_catalog_detail(bookID,catalogID)
+      values (53,54);
+insert into book_catalog_detail(bookID,catalogID)
+      values (54,29);
+insert into book_catalog_detail(bookID,catalogID)
+      values (55,17);
+insert into book_catalog_detail(bookID,catalogID)
+      values (56,48);
+insert into book_catalog_detail(bookID,catalogID)
+      values (57,49);
+
+      
 -- 插入user_address
 insert user_addr(USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM)
 values("641567179@qq.com","时钰森",
@@ -725,4 +1028,43 @@ insert into score_level(name,lowlimit,uplimit,rate)
 insert into score_level(name,lowlimit,uplimit,rate)
        values ("蓝钻",37500,2147483647,3.5);
 
+-- 插入comment
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("641567179@qq.com",1,"晚上11点下单，早上8点就送到了。书还塑封了，不错","5","2012-01-06");
 
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("544921965@qq.com",2,"早就听说好看了，果然受益匪浅","4","2012-03-06");
+      
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("544921965@qq.com",3,"还没看完，感觉不错","5","2012-04-06");
+      
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("641567179@qq.com",10,"斯里兰卡的作者，写了几个哲学流派，从外国人的眼里看我们中国哲学，也是蛮有意思的。","3","2012-06-27");
+      
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("641567179@qq.com",11,"马克思韦伯的著作围绕于社会学的宗教和政治研究领域上，也对经济学领域作出极大的贡献。有余英时先生作序，更值得信赖！","4","2012-06-27");
+      
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("544921965@qq.com",11,"非常满意 本套书很不错","4","2012-04-06");
+      
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("236497339@qq.com",1,"收益匪浅","5","2012-04-06");
+      
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("1292740870@qq.com",1,"我很喜欢","5","2012-06-06");
+      
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("1292740870@qq.com",57,"我非常震惊这样一本风靡世界的伟大作品在国内居然没有得到足够的重视与尊重","5","2010-06-06");
+
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("236497339@qq.com",57,"我本人真的是很喜欢《秘密》这本书，要不我不会买这本书，并且每天都翻上几页","5","2010-03-06");
+
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("641567179@qq.com",57,"从综合的角度,这是一本很有立意的书,说理的方式很独特 ","5","2011-03-06");
+
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("544921965@qq.com",57,"这本书告诉我们一个道理，你首先要清楚地知道自己想要什么，这听起来很简单，但真正有多少人明白这个道理呢","5","2012-06-06");
+
+insert into comment(username,bookID,content,rating,commentdate)
+      values ("549047626@qq.com",57,"这本书比拿破仑希尔和《积极预言的力量》好在哪呢？我真没看出来。为什么会这么受欢迎？我看了3遍还是没看出新东西。是不是翻译的不好啊？",
+      "1","2012-06-06");

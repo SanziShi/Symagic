@@ -25,8 +25,8 @@
       width=100 border=0> 
     <TD>
     <TD><!--------System Return Begin------------>
-      <H1><s:property value="errorHeader"/></H1>
-      错误：<s:property value="errorSpecification"/>
+      <H1><s:property value="errorHeader" default="非法操作"/></H1>
+      错误：<s:property value="errorSpecification" default="您的操作非法"/>
       
 
      <!-- <P>☉ 请尝试以下操作：</P>

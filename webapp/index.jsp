@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<img src="image/ico_site.jpg" id="ico_site"/>
 				网站路径：<a href="index">首页</a>			</div>
 			<div id="searchright">
-            <form action="quick_search" >
+            <form action="quick_search" method="post">
 			  <select name="catalogID" >
 			  <option value="0">所有类别</option>
 			  <s:iterator value="catalog" var='outer'>

@@ -76,20 +76,50 @@ function delete_from_cart(id)
 		}
 	})
 }
+/******商品加入收藏夹*******/
+function add_to_favorite(id)
+{
+	Ajax({
+		url:'favortite/add_favorite?itemID='+id,
+		onSuccess:function(e){var t=JSON.parse(e);if(e.addResult)alert('添加成功！');}
+		})
+}
+/********刷新验证码************/
 function change_captcha(e)
 {
 	e.src='captcha_get_captcha';
 }
+/*****登出函数*******/
 function logout()
 {
 	Ajax({
 		url:'logout',
 		onSuccess:function(e){
 			var a=JSON.parse(e);
-			if(a.logoutResult){alert('成功退出');location.href='';}
+			if(a.logoutResult){alert('成功退出');location.pathname='';}
 			}
 		})
 }
+/********忘记密码表单提交******/
+function forget(f)
+{
+	var forget=$(f).serialize();
+	Ajax({
+		url:'forget_password_submit',
+		data:forget,
+		onSuccess:function(e){
+			r=JSON.parse(e);
+			if(r.submitResult)
+			{
+				alert('密码已发至您邮箱，请注意查收')
+				location.replace(location.href);
+			}
+			else alert('邮箱不存在或安全问题错误！！')
+		}
+	})
+	return false;
+}
+/******异步调用登录框*****/
 function load_login()
 {
 	if(window.event)stopDefault();
@@ -106,7 +136,7 @@ function load_login()
 			}
 	})
 }
-
+/******异步调用注册框*****/
 function load_regist()
 {
 	if(window.event)stopDefault();
@@ -123,28 +153,32 @@ function load_regist()
 			}
 	})
 }
-
+/****登录表单提交**********/
 function login(form)
 {
 	var login_form=$(form).serialize();
 	Ajax({
 		url:'login',
-		type:'POST',
 		data:login_form,
 		onSuccess:function(e){
 				var a=JSON.parse(e);
 				if(a.loginResult)location.replace(location.href);
+				else 
+				{
+					document.getElementById('cap').src='captcha_get_captcha';
+					alert('登录失败');
+				}
 				},
 		onError:function(){}
 	})
 	return false;
 }
+/***********注册表单提交************/
 function regist(form) 
 {
 	var regist_form=$(form).serialize();
 	Ajax({
 		url:'regist',
-		type:'POST',
 		data:regist_form,
 		onSuccess:function(e){
 			r=JSON.parse(e);
@@ -152,11 +186,12 @@ function regist(form)
 			{
 				location.replace(location.href);
 			}
+			else document.getElementById('cap').src='captcha_get_captcha';
 		}
 	})
 	return false;
-	
 }
+/*****选安全问题为自定义时操作函数****/
 function safe_question(e)
 {
 	var p=e.parentNode.parentNode.nextSibling.nextSibling;
@@ -173,6 +208,7 @@ function safe_question(e)
 		p.style.display='none';
 	}
 }
+/**清空品目所有浮动提示框**/
 function clear_notice()
 {
 	var a=document.body.childNodes;
@@ -279,7 +315,7 @@ function stopDefault(e){
 	}
     return false; 
 } 
-//异步调用函数
+/***********异步Ajax调用函数********/
 Ajax=function (option){
 	option=
 	{

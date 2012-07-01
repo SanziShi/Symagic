@@ -38,16 +38,16 @@ public class AddressEditEnterAction extends CatalogBase{
 	
 	private List<DistrictBean> level3District;
 	
-	private DaoUserAddress daoAddress;
+	private DaoUserAddress daoUserAddress;
 	
 	private DaoDistrict daoDistrict;
-	
-	public DaoUserAddress getDaoAddress() {
-		return daoAddress;
+
+	public DaoUserAddress getDaoUserAddress() {
+		return daoUserAddress;
 	}
 
-	public void setDaoAddress(DaoUserAddress daoAddress) {
-		this.daoAddress = daoAddress;
+	public void setDaoUserAddress(DaoUserAddress daoUserAddress) {
+		this.daoUserAddress = daoUserAddress;
 	}
 
 	public DaoDistrict getDaoDistrict() {
@@ -133,7 +133,7 @@ public class AddressEditEnterAction extends CatalogBase{
 	
 	public String execute() throws Exception{
 		super.execute();
-		BeanAddress addressDetail = daoAddress.getAddressDetail(UserSessionUtilty.getUsername(), Integer.parseInt(addressID));
+		BeanAddress addressDetail = daoUserAddress.getAddressDetail(UserSessionUtilty.getUsername(), Integer.parseInt(addressID));
 		OrderService.Address address = OrderService.deserializerAddress(addressDetail.getAddrdetail());
 		
 		this.addressDetail = address.districtDetail;

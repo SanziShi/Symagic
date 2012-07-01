@@ -97,6 +97,11 @@
 	width: 212px;
 	margin:0px 10px 20px 20px;
 }
+#preview li
+{
+	height:20px;
+	line-height:20px;
+}
 #spec-n1
 {
 	width: 210px;
