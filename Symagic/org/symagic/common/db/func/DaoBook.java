@@ -400,68 +400,90 @@ public class DaoBook {
 	 * @return int 返回符合条件的条数
 	 */
 	public int getSearchRowNumber(int sign, BookRequire req) {
-		String sql = "select * from book where ";
+		List<Integer> idList	= null;
+		String sql = "select t1.*, t2.catalogid "
+				+ " from book as t1 left join book_catalog_detail as t2 "
+				+ " on t1.bookid=t2.bookid where ";
 		// 普通查询
 		if (sign == 0) {
-			sql += " author like " + " '%" + req.getAuthor() + "%' " + " and "
-					+ " bookname like " + " '%" + req.getItemName() + "%' "
-					+ " and " + " publisher like " + " '%" + req.getPublisher()
-					+ "%' ";
+			sql += " (t1.author like " + " '%" + req.getAuthor() + "%' "
+					+ " or " + " t1.bookname like " + " '%"
+					+ req.getItemName() + "%' " + " or "
+					+ " t1.publisher like " + " '%" + req.getPublisher()
+					+ "%' )";
+			if (req.getCatalogIDList() != null) {
+				idList	= req.getCatalogIDList();
+				sql += " and " + " t2.catalogid  in (" + idList.get(0);
+				for (int i=1; i<idList.size(); i++)
+					 sql += " ," + idList.get(i) + " ";
+				sql += " )";
+			}	
 
-			sql += " order by bookid asc  ";
+			sql += " order by t1.bookid asc  ";
 
 		}
 		// 高阶查询
 		else {
-			sql += " author like " + " '%" + req.getAuthor() + "%' " + " and "
-					+ " bookname like " + " '%" + req.getItemName() + "%' "
-					+ " and " + " publisher like " + " '%" + req.getPublisher()
+
+			sql += " t1.author like " + " '%" + req.getAuthor() + "%' "
+					+ " and " + " t1.bookname like " + " '%"
+					+ req.getItemName() + "%' " + " and "
+					+ " t1.publisher like " + " '%" + req.getPublisher()
 					+ "%' ";
 
 			// 年前
 			if (req.getBefore() == true) {
 				// 条件 年
 				if (req.getYear() != null)
-					sql += " and " + " year(publishdate) < " + req.getYear()
+					sql += " and " + " year(t1.publishdate) < " + req.getYear()
 							+ " ";
 			}
 			// 当前年
 			else {
 				// 条件 年
 				if (req.getYear() != null)
-					sql += " and " + " year(publishdate) = " + req.getYear()
+					sql += " and " + " year(t1.publishdate) = " + req.getYear()
 							+ " ";
 			}
 
 			if (req.getVersion() != null)
-				sql += " and " + " version = " + req.getVersion() + " ";
+				sql += " and " + " t1.version = " + req.getVersion() + " ";
 
 			if (req.getBinding() != null)
-				sql += " and " + " binding like " + " '%" + req.getBinding()
+				sql += " and " + " t1.binding like " + " '%" + req.getBinding()
 						+ "%' ";
 
 			if (req.getFolio() != null)
-				sql += " and " + " folio like " + " '%" + req.getFolio()
+				sql += " and " + " t1.folio like " + " '%" + req.getFolio()
 						+ "%' ";
 
 			if (req.getLowPrice() != null)
-				sql += " and " + " marketprice > " + req.getLowPrice() + " ";
+				sql += " and " + " t1.marketprice > " + req.getLowPrice() + " ";
 
 			if (req.getUpPrice() != null)
 				sql += " and " + " marketprice < " + req.getUpPrice() + " ";
 
 			if (req.getLowPage() != null)
-				sql += " and " + " page > " + req.getLowPage() + " ";
+				sql += " and " + " t1.page > " + req.getLowPage() + " ";
 
 			if (req.getUpPage() != null)
-				sql += " and " + " page < " + req.getUpPage() + " ";
+				sql += " and " + " t1.page < " + req.getUpPage() + " ";
 
 			if (req.getUpDiscount() != null) {
-				sql += " and " + " discount > " + req.getLowDiscount() + " "
-						+ " and " + " discount < " + req.getUpDiscount() + " ";
+				sql += " and " + " t1.discount > " + req.getLowDiscount() + " "
+						+ " and " + " t1.discount < " + req.getUpDiscount()
+						+ " ";
 			}
 
-			sql += " order by bookid asc";
+			if (req.getCatalogIDList() != null) {
+				idList	= req.getCatalogIDList();
+				sql += " and " + " t2.catalogid  in (" + idList.get(0);
+				for (int i=1; i<idList.size(); i++)
+					 sql += " ," + idList.get(i) + " ";
+				sql += " )";
+			}	
+
+			sql += " order by t1.bookid asc ";
 
 		}
 		try {
