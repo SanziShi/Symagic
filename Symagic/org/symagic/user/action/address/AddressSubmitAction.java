@@ -17,6 +17,8 @@ public class AddressSubmitAction extends AddressBase{
 	private DaoUserAddress daoAddress;
 	
 	private DaoDistrict daoDistrict;
+	
+	private Boolean submitResult;
 
 	public DaoDistrict getDaoDistrict() {
 		return daoDistrict;
@@ -35,7 +37,6 @@ public class AddressSubmitAction extends AddressBase{
 	}
 
 	public String execute() throws Exception{
-		super.execute();
 		
 		BeanAddress address = new BeanAddress();
 		
@@ -59,5 +60,13 @@ public class AddressSubmitAction extends AddressBase{
 		
 		daoAddress.addAddress(address);
 		return SUCCESS;
+	}
+
+	public Boolean getSubmitResult() {
+		return submitResult;
+	}
+
+	public void setSubmitResult(Boolean submitResult) {
+		this.submitResult = submitResult;
 	}
 }

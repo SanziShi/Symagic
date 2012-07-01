@@ -11,6 +11,7 @@ import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.func.DaoLevel;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.db.func.UserRequire;
+import org.symagic.common.utilty.presentation.bean.LevelBean;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
 import org.symagic.common.utilty.presentation.bean.UserBean;
 
@@ -33,19 +34,31 @@ public class UserListAction extends CatalogBase {
 
 	private DaoUser daoUser;
 	private DaoLevel daoLevel;
-
-	private boolean validateResult;
+	
+	private List<LevelBean> levelList;
 
 	@Override
 	public String execute() throws Exception {
+		
+		List<BeanLevel> levels = daoLevel.getAll();
 
-		if (!validateResult)
-			return ERROR;
+		levelList = new ArrayList<LevelBean>();
+
+		for (BeanLevel bean : levels) {
+			LevelBean level = new LevelBean();
+			level.setHight(bean.getUpLimit());
+			level.setLevelID(bean.getId());
+			level.setLevelName(bean.getName());
+			level.setLow(bean.getLowLimit());
+			level.setScoreRate(bean.getRate());
+			levelList.add(level);
+		}
 
 		UserRequire userRequire = new UserRequire();
+		userRequire.setLines(lines);
 		if (userName != null)
 			userRequire.setUsername(userName);
-		if (userLevel != null)
+		if (userLevel != null && userLevel != 0)
 			userRequire.setUserLevel(userLevel);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 		GregorianCalendar startCalendar = null;
@@ -53,9 +66,7 @@ public class UserListAction extends CatalogBase {
 			startCalendar = new GregorianCalendar(startTime.getYear(),
 					startTime.getMonth(), startTime.getDay());
 			userRequire.setStartTime(formater.format(startCalendar.getTime()));
-		} else {
-			userRequire.setStartTime(null);
-		}
+		} 
 		if (endTime != null) {
 			GregorianCalendar endCalendar = new GregorianCalendar(
 					endTime.getYear(), endTime.getMonth(), endTime.getDay());
@@ -66,48 +77,33 @@ public class UserListAction extends CatalogBase {
 			}
 
 			userRequire.setEndTime(formater.format(endCalendar.getTime()));
-		} else {
-			userRequire.setEndTime(null);
 		}
+
+		if (page == null)
+			page = 1;
 
 		userRequire.setPage(page);
 
-		// 分页用的Number
-		float number = daoUser.getSearchNum(userRequire);
-		if (number != -1)
-			totalPage = (int) Math.ceil(number / lines);
-
 		List<BeanUser> users = daoUser.search(userRequire);
-		List<UserBean> userList = new ArrayList<UserBean>();
+		if (users != null) {
+			// 分页用的Number
+			float number = daoUser.getSearchNum(userRequire);
+			if (number != -1)
+				totalPage = (int) Math.ceil(number / lines);
+			userList = new ArrayList<UserBean>();
 
-		for (BeanUser user : users) {
-			UserBean bean = new UserBean();
-			bean.setUserName(user.getUsername());
-			bean.setRegisterDate(user.getRegistedate());
-			BeanLevel level = daoLevel.judgeLevel(user.getScore());
-			bean.setLevelName(level.getName());
-			bean.setScore(Integer.toString(user.getScore()));
-			userList.add(bean);
+			for (BeanUser user : users) {
+				UserBean bean = new UserBean();
+				bean.setUserName(user.getUsername());
+				bean.setRegisterDate(user.getRegistedate());
+				BeanLevel level = daoLevel.judgeLevel(user.getScore());
+				bean.setLevelName(level.getName());
+				bean.setScore(Integer.toString(user.getScore()));
+				userList.add(bean);
+			}
 		}
 
 		return super.execute();
-	}
-
-	@Override
-	public void validate() {
-		validateResult = true;
-
-		if (startTime != null && endTime != null) {
-			GregorianCalendar startTimeCalendar = new GregorianCalendar(
-					startTime.getYear(), startTime.getMonth(),
-					startTime.getDay());
-			GregorianCalendar endTimeCalendar = new GregorianCalendar(
-					endTime.getYear(), endTime.getMonth(), endTime.getDay());
-			if (startTimeCalendar.getTime().after(endTimeCalendar.getTime()))
-				validateResult = false;
-		}
-
-		super.validate();
 	}
 
 	public String getUserName() {
@@ -190,12 +186,12 @@ public class UserListAction extends CatalogBase {
 		this.daoLevel = daoLevel;
 	}
 
-	public boolean isValidateResult() {
-		return validateResult;
+	public List<LevelBean> getLevelList() {
+		return levelList;
 	}
 
-	public void setValidateResult(boolean validateResult) {
-		this.validateResult = validateResult;
+	public void setLevelList(List<LevelBean> levelList) {
+		this.levelList = levelList;
 	}
 
 }

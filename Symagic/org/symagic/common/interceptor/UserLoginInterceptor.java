@@ -46,19 +46,14 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 				.getInvocationContext().get(StrutsStatics.HTTP_REQUEST);
 		StringBuffer preURL = request.getRequestURL();
 
-		// 过滤对于未登录用户而言非法的URL请求
 		String contextPath = request.getContextPath();
 		int illegalCheckStartIndex = preURL.indexOf(contextPath);
-		String illegalCheckPath = preURL.substring(illegalCheckStartIndex + 1);
+		String url = preURL.substring(illegalCheckStartIndex);
 
 		// 设置url
-		if (guestIllegalURL.contains(illegalCheckPath)) {
-			invocation.getInvocationContext().getValueStack().getContext()
-					.put("toURL", "index");
+		if (guestIllegalURL.contains(url)) {
+			return "error";
 		} else {
-
-			String url = preURL
-					.substring(preURL.toString().lastIndexOf('/') + 1);
 
 			if (request.getMethod().equals("GET")) {
 				Map<String, String[]> parameter = request.getParameterMap();
@@ -78,7 +73,7 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 			}
 
 			invocation.getInvocationContext().getValueStack().getContext()
-					.put("toURL", url);
+					.put("toURL", url.substring(contextPath.length()));
 		}
 
 		return "enforceLogin";

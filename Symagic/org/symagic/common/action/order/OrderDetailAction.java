@@ -104,6 +104,7 @@ public class OrderDetailAction extends CatalogBase {
 			itemBean.setPrice(detail.getMarketPrice() * detail.getDiscount());
 			itemBean.setSavePrice((1 - detail.getDiscount())
 					* detail.getMarketPrice() * detail.getAmount());
+			items.add(itemBean);
 		}
 
 		return super.execute();

@@ -6,7 +6,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<!-- 设置为开发模式输出DEBUG信息 -->
 	<constant name="struts.devMode" value="true" />
-
 	<!-- 配置用户的拦截器 -->
 	<package name="symagic-user-default" extends="json-default">
 		<!-- 配置登陆用的拦截器 -->
@@ -17,7 +16,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
-
 		</interceptors>
 
 		<!-- 用于错误处理的result -->
@@ -46,9 +44,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
+			<!-- <result name="error">/admin/admin_error.jsp</result> -->
+			<!-- <result name="input">/admin/admin_error.jsp</result> -->
 		</global-results>
-
-
 	</package>
 
 
@@ -114,9 +112,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="cart" class="cartEnter">
 			<result>/cart.jsp</result>
 		</action>
-		
+
 		<action name="favorite" class="detailOfFavorite">
-		  <result>/lib/favorite.jsp</result>
+			<result>/lib/favorite.jsp</result>
 		</action>
 
 		<!-- 商品项 -->
@@ -152,7 +150,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>forget.jsp</result>
 		</action>
 
-      
+
 	</package>
 
 	<!-- 注册时用户名检测 -->
@@ -243,9 +241,31 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 	</package>
 
+	<!-- 地址相关 -->
+	<package name="address-user-default" extends="symagic-user-default"
+		namespace="/address">
+		<action name="submit_address" class="addAddress">
+			<result type="json">
+				<param name="includeProperties">addResult</param>
+			</result>
+		</action>
+		<action name="get_next_level" class="getNextLevel">
+			<result type="json">
+				<param name="includeProperties">nextLevelArray</param>
+			</result>
+		</action>
+		<action name="delete_address" class="deleteAddress">
+			<result type="json">
+				<param name="includeproperties">deleteResult</param>
+			</result>
+		</action>
+	</package>
+
 	<!-- 配置管理员的action -->
 	<package name="admin-default" extends="symagic-admin-default"
 		namespace="/admin">
+
+		<default-action-ref name="index"></default-action-ref>
 
 		<action name="index" class="AdminIndex">
 			<result>/admin/index.jsp</result>
@@ -254,7 +274,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="login" class="AdminLogin">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirect">
-				/admin/${toURL}
+				${toURL}
 			</result>
 		</action>
 
@@ -308,6 +328,18 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
+		<action name="order_edit" class="AdminEnterOrderEdit">
+			<result>
+				/admin/order_edit.jsp
+			</result>
+		</action>
+
+		<action name="order_edit_submit" class="AdminSubmitOrderEdit">
+			<result>
+				/admin/order_info.jsp
+			</result>
+		</action>
+
 		<action name="item_add_submit" class="AdminAddItem">
 			<interceptor-ref name="fileUpload">
 				<!-- 文件过滤 -->
@@ -336,6 +368,25 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
+		<action name="user_list" class="AdminListUser">
+			<result>
+				/admin/user_list.jsp
+			</result>
+		</action>
+
+		<action name="user_level" class="AdminLevelManager">
+			<result>
+				/admin/user_admin.jsp
+			</result>
+		</action>
+
+		<action name="user_score_rate_submit" class="AdminSubmitScoreRate">
+			<result type="redirectAction">
+				<param name="actionName">user_level</param>
+				<param name="namespace">/admin</param>
+			</result>
+		</action>
+
 	</package>
 
 	<!-- 配置管理员的item manage action -->
@@ -346,19 +397,19 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">deleteResult</param>
 			</result>
 		</action>
-		
-		<action name="off" class="AdminOffItem">
+
+		<action name="off" class="AdminOfflineItem">
 			<result type="json">
 				<param name="includeProperties">offResult</param>
 			</result>
 		</action>
-		
-		<action name="up" class="AdminUpItem">
+
+		<action name="up" class="AdminUplineItem">
 			<result type="json">
 				<param name="includeProperties">upResult</param>
 			</result>
 		</action>
-		
+
 	</package>
 
 	<package name="admin-order-manager" extends="symagic-admin-default"
@@ -370,8 +421,5 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 	</package>
 
-
-</struts>    
-
-
+</struts>
 

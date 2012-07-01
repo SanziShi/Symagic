@@ -27,6 +27,14 @@ public class GetNextLevelAction extends ActionSupport{
 		return ID;
 	}
 
+	public DaoDistrict getDaoDistrict() {
+		return daoDistrict;
+	}
+
+	public void setDaoDistrict(DaoDistrict daoDistrict) {
+		this.daoDistrict = daoDistrict;
+	}
+
 	public void setID(Integer iD) {
 		ID = iD;
 	}

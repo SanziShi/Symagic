@@ -113,18 +113,7 @@ public class OrderService {
 		require.setPage(page);
 		require.setLines(itemPerPage);
 		List<BeanOrder> orders = daoOrder.search(require, username);
-		if(orders == null || orders.isEmpty()){
-			OrderListResult listResult =  new OrderListResult();
-			listResult.orders = new ArrayList<OrderBean>();
-			OrderBean order = new OrderBean();
-			order.setOrderID("1");
-			order.setOrderTime("2012-1-1");
-			order.setScore("1234");
-			order.setTotalPrice(12.34f);
-			order.setUserName("martin");
-			listResult.orders.add(order);
-			return listResult;
-		}
+		if( orders == null ) return null;
 		float rowNumber = daoOrder.getRowNumber(require, username);
 		for (int i = 0; i < orders.size(); i++) {
 			OrderBean orderBean = this.convertBeanOrderToOrderBean(orders
