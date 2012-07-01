@@ -1,6 +1,6 @@
 GLOBAL=
 {
-	dir:'Symagic2/',
+	dir:'Symagic/',
 	lib:'lib/',
 	cart_buff:'',
 	cart_on_buff:''
@@ -80,8 +80,16 @@ function delete_from_cart(id)
 function add_to_favorite(id)
 {
 	Ajax({
-		url:'favortite/add_favorite?itemID='+id,
+		url:'favorite/add_favorite?itemID='+id,
 		onSuccess:function(e){var t=JSON.parse(e);if(e.addResult)alert('添加成功！');}
+		})
+}
+/******商品删除收藏夹*******/
+function delete_from_favorite(id)
+{
+	Ajax({
+		url:'favorite/delete_favorite?itemID='+id,
+		onSuccess:function(e){alert(e)}
 		})
 }
 /********刷新验证码************/
@@ -96,7 +104,7 @@ function logout()
 		url:'logout',
 		onSuccess:function(e){
 			var a=JSON.parse(e);
-			if(a.logoutResult){alert('成功退出');location.pathname='';}
+			if(a.logoutResult){alert('成功退出');location.pathname=GLOBAL.dir;}
 			}
 		})
 }
