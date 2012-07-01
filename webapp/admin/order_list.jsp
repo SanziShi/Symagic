@@ -7,6 +7,7 @@
 <title>BC2商城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
+<line href="css/order_operation.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="js/checkform.js"></script>
 <script language="javascript" src="js/gz.js"></script>
 <script src="js/jquery.js" type="text/javascript" language="javascript"></script>
@@ -180,27 +181,47 @@ new DateSelector(eYear, eMonth ,eDay, dt);
 										<td><s:property value="#orders.orderStatus" />
 										</td>
 
-										<td><s:if test="#order.orderStatus=='已下单'">
-												<a
-													href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
-<a href="order/pass?orderID=<s:property value = '#orders.orderID'/>">审核</a>&nbsp; 
-<a onclick="ajax_delete_order(<s:property value = "#orders.orderID"/>)"
-													href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
- </s:if> <s:elseif test="#order.orderStatus=='已审核'">
-												<a
-													href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
- <a href="order_detail?orderID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
-<a onclick="ajax_delete_order(<s:property value = "#orders.orderID"/>)"
-													href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
- </s:elseif> <s:elseif test="#order.orderStatus=='交易成功'">
-												<a
-													href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
+										<td><s:if test="#orders.orderStatus=='已下单' ">
+												<input type="button" class="operation_btn" value="详情"
+													onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+												<input type="button" class="operation_btn" value="修改"
+													onclick="location='order_edit?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+												<input type="button"
+													onclick="ajax_pass_order(<s:property value = '#orders.orderID'/>)"
+													value="审核" />												&nbsp;
+												<input type="button"
+													onclick="ajax_delete_order(
+												<s:property value = '#orders.orderID'/>)"
+													value="删除" />&nbsp;
+ </s:if> <s:elseif test="#orders.orderStatus=='已审核'">
+												<input type="button" class="operation_btn" value="详情"
+													onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+											<input type="button" class="operation_btn" value="修改"
+													onclick="location='order_edit?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+	<input type="button"
+													onclick="ajax_delete_order(
+												<s:property value = '#orders.orderID'/>)"
+													value="删除" />&nbsp;
+												
+<input type="button"
+													onclick="ajax_success_order(<s:property value = '#orders.orderID'/>)"
+													value="交易成功" />
+												<input type="button"
+													onclick="ajax_fail_order(<s:property value = '#orders.orderID'/>)"
+													value="交易失败" />
+											</s:elseif> <s:elseif test="#orders.orderStatus=='交易成功'">
+												<input type="button" class="operation_btn" value="详情"
+													onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
   </s:elseif> <s:else>
-												<a
-													href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
-<a onclick="ajax_delete_order(<s:property value = "#orders.orderID"/>)"
-													href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
-  </s:else></td>
+
+												<input type="button" class="operation_btn" value="详情"
+													onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+<input type="button"
+													onclick="ajax_delete_order(
+												<s:property value = '#orders.orderID'/>)"
+													value="删除" />&nbsp;
+  </s:else>
+										</td>
 									</tr>
 								</s:iterator>
 								<!--订单迭代结束-->
