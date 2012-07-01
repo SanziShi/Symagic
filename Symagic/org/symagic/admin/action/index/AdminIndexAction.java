@@ -19,7 +19,7 @@ public class AdminIndexAction extends CatalogBase {
 	private static final long serialVersionUID = 5870638099267465657L;
 
 	private Integer totalSalesAmount;// :总销售量
-	private Float totalSalesRevenue;// ：销售总额；
+	private String totalSalesRevenue;// ：销售总额；
 	private Integer userNum;// ：注册用户数；
 	private Integer productNum;// ：产品数量；
 	private Integer totalOrderAmout;// :总订单数；
@@ -40,7 +40,7 @@ public class AdminIndexAction extends CatalogBase {
 	public String execute() throws Exception {
 
 		totalSalesAmount = daoOrder.getTotalSaleAmount();
-		totalSalesRevenue = daoOrder.getTotalSalesRevenue();
+		totalSalesRevenue = String.format("%.2f", daoOrder.getTotalSalesRevenue());
 		userNum = daoUser.getUserNum();
 		productNum = daoBook.getProductNum();
 		totalOrderAmout = daoOrder.getTotalOrderAmount();
