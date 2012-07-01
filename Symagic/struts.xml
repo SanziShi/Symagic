@@ -11,10 +11,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 配置登陆用的拦截器 -->
 		<interceptors>
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
-			<interceptor name="errorMessageInterceptor" class="ErrorMessageIterceptor"></interceptor>
 
 			<interceptor-stack name="userLoginInterceptorStack">
-				<interceptor-ref name="errorMessageInterceptor"></interceptor-ref>
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
@@ -32,10 +30,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 配置登录拦截器 -->
 		<interceptors>
 			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
-			<interceptor name="errorMessageInterceptor" class="ErrorMessageIterceptor"></interceptor>
 
 			<interceptor-stack name="adminLoginInterceptorStack">
-				<interceptor-ref name="errorMessageInterceptor"></interceptor-ref>
 				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
