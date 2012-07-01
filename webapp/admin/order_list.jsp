@@ -26,22 +26,14 @@
 		</div>
 		<div id="globallink">
 			<ul>
-				<li><a href="index.html">首页</a>
-				</li>
-				<li><a href="category_list.html">目录管理</a>
-				</li>
-				<li><a href="item_list.html">商品管理</a>
-				</li>
-				<li><a href="order_admin.html">订单管理</a>
-				</li>
-				<li><a href="salesdata_admin.html">销售量统计</a>
-				</li>
-				<li><a href="user_admin.html">会员管理</a>
-				</li>
-				<li><a href="comment_list.html">评论管理</a>
-				</li>
-				<li><a href="" class="nouseful">&nbsp;</a>
-				</li>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="category_list.html">目录管理</a></li>
+				<li><a href="item_list.html">商品管理</a></li>
+				<li><a href="order_admin.html">订单管理</a></li>
+				<li><a href="salesdata_admin.html">销售量统计</a></li>
+				<li><a href="user_admin.html">会员管理</a></li>
+				<li><a href="comment_list.html">评论管理</a></li>
+				<li><a href="" class="nouseful">&nbsp;</a></li>
 			</ul>
 		</div>
 		<!--	<div id="banner"></div>-->
@@ -69,8 +61,7 @@
 								<tr>
 									<th>订&nbsp;&nbsp;单&nbsp;&nbsp;号：</th>
 									<td><input type="text" class="inputtext" name="orderID"
-										maxlength="25" />
-									</td>
+										maxlength="25" /></td>
 								</tr>
 							</table>
 						</form>
@@ -81,18 +72,43 @@
 								<tr>
 									<th>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</th>
 									<td><input type="text" class="inputtext" name="userName"
-										maxlength="25" />
-									</td>
+										maxlength="25" /></td>
 								</tr>
 								<tr>
 									<th>订单状态：&nbsp;</th>
 									<td><select name="orderState">
-											<option value="0">未指定</option>
-											<option value="1">已下单</option>
-											<option value="2">已审核</option>
-											<option value="3">交易成功</option>
-											<option value="4">交易失败</option>
-									</select></td>
+											<s:if test="%{orderState==0}">
+												<option value="0" selected="selected">未指定</option>
+											</s:if>
+											<s:else>
+												<option value="0">未指定</option>
+											</s:else>
+											<s:if test="%{orderState==1}">
+												<option value="1" selected="selected">已下单</option>
+											</s:if>
+											<s:else>
+												<option value="1">已下单</option>
+											</s:else>
+											<s:if test="%{orderState==2}">
+												<option value="2" selected="selected">已审核</option>
+											</s:if>
+											<s:else>
+												<option value="2">已审核</option>
+											</s:else>
+											<s:if test="%{orderState==3}">
+												<option value="3" selected="selected">交易成功</option>
+											</s:if>
+											<s:else>
+												<option value="3">交易成功</option>
+											</s:else>
+											<s:if test="%{orderState==4}">
+												<option value="4" selected="selected">交易失败</option>
+											</s:if>
+											<s:else>
+												<option value="4">交易失败</option>
+											</s:else>
+									</select>
+									</td>
 								</tr>
 								<tr>
 									<th>起始时间：&nbsp;</th>
@@ -111,8 +127,12 @@ var selDay = window.document.getElementById("sDay");
 // 新建一个DateSelector类的实例，将三个select对象传进去
 //new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 // 也可以试试下边的代码
-var dt = new Date(2012, 0, 1);
-new DateSelector(sYear, sMonth ,sDay, dt);
+var defaultYear = <s:property value="startTime.year" default="2007"/>;
+									var defaultMonth = <s:property value="startTime.month" default="1"/> - 1;
+									var defaultDay = <s:property value="startTime.day" default="1"/>;
+									var dt = new Date(defaultYear,
+											defaultMonth, defaultDay);
+									new DateSelector(selYear, selMonth, selDay, dt);
 </script>
 								</tr>
 								<tr>
@@ -132,14 +152,20 @@ var selDay = window.document.getElementById("eDay");
 // 新建一个DateSelector类的实例，将三个select对象传进去
 //new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 // 也可以试试下边的代码
-var dt = new Date(2012, 0, 1);
-new DateSelector(eYear, eMonth ,eDay, dt);
+var defaultYear = <s:property value="endTime.year" default="2012"/>;
+									var defaultMonth = <s:property value="endTime.month" default="12"/> - 1;
+									var defaultDay = <s:property value="endTime.day" default="31"/>;
+									var dt = new Date(defaultYear,
+											defaultMonth, defaultDay);
+									new DateSelector(selYear, selMonth, selDay, dt);
 </script>
 								</tr>
 								<tr>
 									<th></th>
 									<td><input type="submit" name="button22" value="查询" /> <input
-										type="reset" class="bt2" name="button2" value="重填" /></td>
+										type="reset" class="bt2" name="button2" value="重填" /> <input
+										type="hidden" name="page" value="1" />
+									</td>
 								</tr>
 							</table>
 						</form>
@@ -151,91 +177,97 @@ new DateSelector(eYear, eMonth ,eDay, dt);
 					<strong>查询结果</strong>
 				</div>
 				<div id="sendnotecontent">
-					<form action="" method="post" enctype="multipart/form-data"
-						name="form1">
-						<table id="favorite">
-							<thead>
-								<tr>
-									<th></th>
-									<th>订单号</th>
-									<th>客户号</th>
-									<th>下单时间</th>
-									<th>订单状态</th>
+					<table id="favorite">
+						<thead>
+							<tr>
+								<th></th>
+								<th>订单号</th>
+								<th>客户号</th>
+								<th>下单时间</th>
+								<th>订单状态</th>
 
-									<th>详情</th>
-								</tr>
-							</thead>
-							<tbody>
-								<!--订单条项迭代开始-->
-								<s:iterator value="orderList" var="orders">
-									<tr id="<s:property value = '#orders.orderID'/>">
-										<td><input type="checkbox" name="ordersn"
-											value="<s:property value = '#orders.orderID'/>" />
-										</td>
-										<td><s:property value="#orders.orderID" />
-										</td>
-										<td><s:property value="#orders.userName" />
-										</td>
-										<td><s:property value="#orders.orderTime" />
-										</td>
-										<td><s:property value="#orders.orderStatus" />
-										</td>
+								<th>详情</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!--订单条项迭代开始-->
+							<s:iterator value="orderList" var="orders">
+								<tr id="<s:property value = '#orders.orderID'/>">
+									<td><input type="checkbox" name="ordersn"
+										value="<s:property value = '#orders.orderID'/>" /></td>
+									<td><s:property value="#orders.orderID" /></td>
+									<td><s:property value="#orders.userName" /></td>
+									<td><s:property value="#orders.orderTime" /></td>
+									<td><s:property value="#orders.orderStatus" /></td>
 
-										<td><s:if test="#orders.orderStatus=='已下单' ">
-												<input type="button" class="operation_btn" value="详情"
-													onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+									<td><s:if test="#orders.orderStatus=='已下单' ">
+											<input type="button" class="operation_btn" value="详情"
+												onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
 												<input type="button" class="operation_btn" value="修改"
-													onclick="location='order_edit?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+												onclick="location='order_edit?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
 												<input type="button"
-													onclick="ajax_pass_order(<s:property value = '#orders.orderID'/>)"
-													value="审核" />												&nbsp;
+												onclick="ajax_pass_order(<s:property value = '#orders.orderID'/>)"
+												value="审核" />												&nbsp;
 												<input type="button"
-													onclick="ajax_delete_order(
+												onclick="ajax_delete_order(
 												<s:property value = '#orders.orderID'/>)"
-													value="删除" />&nbsp;
+												value="删除" />&nbsp;
  </s:if> <s:elseif test="#orders.orderStatus=='已审核'">
-												<input type="button" class="operation_btn" value="详情"
-													onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+											<input type="button" class="operation_btn" value="详情"
+												onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
 											<input type="button" class="operation_btn" value="修改"
-													onclick="location='order_edit?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+												onclick="location='order_edit?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
 	<input type="button"
-													onclick="ajax_delete_order(
+												onclick="ajax_delete_order(
 												<s:property value = '#orders.orderID'/>)"
-													value="删除" />&nbsp;
+												value="删除" />&nbsp;
 												
 <input type="button"
-													onclick="ajax_success_order(<s:property value = '#orders.orderID'/>)"
-													value="交易成功" />
-												<input type="button"
-													onclick="ajax_fail_order(<s:property value = '#orders.orderID'/>)"
-													value="交易失败" />
-											</s:elseif> <s:elseif test="#orders.orderStatus=='交易成功'">
-												<input type="button" class="operation_btn" value="详情"
-													onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+												onclick="ajax_success_order(<s:property value = '#orders.orderID'/>)"
+												value="交易成功" />
+											<input type="button"
+												onclick="ajax_fail_order(<s:property value = '#orders.orderID'/>)"
+												value="交易失败" />
+										</s:elseif> <s:elseif test="#orders.orderStatus=='交易成功'">
+											<input type="button" class="operation_btn" value="详情"
+												onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
   </s:elseif> <s:else>
 
-												<input type="button" class="operation_btn" value="详情"
-													onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
+											<input type="button" class="operation_btn" value="详情"
+												onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
 <input type="button"
-													onclick="ajax_delete_order(
+												onclick="ajax_delete_order(
 												<s:property value = '#orders.orderID'/>)"
-													value="删除" />&nbsp;
-  </s:else>
-										</td>
-									</tr>
-								</s:iterator>
-								<!--订单迭代结束-->
+												value="删除" />&nbsp;
+  </s:else></td>
+								</tr>
+							</s:iterator>
+							<!--订单迭代结束-->
 
-								<!--	  <tr>
+							<!--	  <tr>
 				  	<td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td colspan="3"><span style=" float:right"><input type="Button" class="bt2" value="交易成功"/>&nbsp;<input type="Button" class="bt2" value="交易失败"  />&nbsp;<input type="Button" class="bt2" name="button22" value="审核" onclick="checkorderselect()" />&nbsp;<input type="Button" class="bt2"  value="删除"  />&nbsp;                    </span></td>
                   </tr>-->
-
-							</tbody>
-						</table>
-					</form>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><s:if test="%{1==totalPage}"></s:if> <s:elseif
+										test="%{page==1}">
+										<a href="order_list?page=${ page + 1 }">下一页</a>
+									</s:elseif> <s:elseif test="%{page==totalPage}">
+										<a href="order_list?page=${ page - 1 }">上一页</a>
+									</s:elseif> <s:else>
+										<a href="order_list?page=${ page - 1 }">上一页</a>
+										<a href="order_list?page=${ page + 1 }">下一页</a>
+									</s:else>
+								</td>
+								<td>当前第<s:property value="page" />页，共<s:property
+										value="totalPage" />页</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 

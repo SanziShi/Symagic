@@ -143,6 +143,7 @@
 	<bean id="AdminEnterEditCatalog" class="org.symagic.admin.action.catalog.CatalogEditEnterAction"
 		scope="request">
 		<property name="daoCatalog" ref="DaoCatalog"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="AdminDeleteCatalog" class="org.symagic.admin.action.catalog.CatalogDeleteAction"
@@ -150,8 +151,7 @@
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	</bean>
 
-	<bean id="AdminOrderList" class="org.symagic.admin.action.order.AdminOrderListAction"
-		scope="request">
+	<bean id="AdminOrderList" class="org.symagic.admin.action.order.AdminOrderListAction">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
