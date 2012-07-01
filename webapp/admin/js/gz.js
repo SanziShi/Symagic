@@ -699,6 +699,10 @@ function amount_modify(e) {
 	e.value = e.value.replace(/\D+/g, '');
 }
 
+
+
+
+
 // 目录管理
 
 function show(table, sum) {
@@ -764,3 +768,11 @@ function checkdelno(name) {
 }
 
 // 目录管理结束
+
+
+//批量上架按钮提交
+function upsubmit(name)
+{
+	document.name.action = up; 
+    document.name.submit(); 
+	}
