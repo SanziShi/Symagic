@@ -16,12 +16,12 @@ public class ItemTinyBean {
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private int itemID;
-	private Float marketPrice;
+	private String marketPrice;
 	
-	public Float getMarketPrice() {
+	public String getMarketPrice() {
 		return marketPrice;
 	}
-	public void setMarketPrice(Float marketPrice) {
+	public void setMarketPrice(String marketPrice) {
 		this.marketPrice = marketPrice;
 	}
 	public int getItemID() {
@@ -30,16 +30,16 @@ public class ItemTinyBean {
 	public void setItemID(int itemID) {
 		this.itemID = itemID;
 	}
-	public Float getSavePrice() {
+	public String getSavePrice() {
 		return savePrice;
 	}
-	public void setSavePrice(Float savePrice) {
+	public void setSavePrice(String savePrice) {
 		this.savePrice = savePrice;
 	}
-	public float getItemTotalPrice() {
+	public String getItemTotalPrice() {
 		return itemTotalPrice;
 	}
-	public void setItemTotalPrice(float itemTotalPrice) {
+	public void setItemTotalPrice(String itemTotalPrice) {
 		this.itemTotalPrice = itemTotalPrice;
 	}
 	public String getName() {
@@ -48,10 +48,10 @@ public class ItemTinyBean {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	public String getPicturePath() {
@@ -77,13 +77,13 @@ public class ItemTinyBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Float savePrice;
+	private String savePrice;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private float itemTotalPrice;
+	private String itemTotalPrice;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -95,7 +95,7 @@ public class ItemTinyBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private float price;
+	private String price;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->

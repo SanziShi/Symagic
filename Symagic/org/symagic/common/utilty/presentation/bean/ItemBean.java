@@ -12,16 +12,16 @@ package org.symagic.common.utilty.presentation.bean;
  */
 public class ItemBean {
 	
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	public float getDiscount() {
+	public String getDiscount() {
 		return discount;
 	}
-	public void setDiscount(float discount) {
+	public void setDiscount(String discount) {
 		this.discount = discount;
 	}
 	public String getPicturePath() {
@@ -60,10 +60,10 @@ public class ItemBean {
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
-	public float getMarketPrice() {
+	public String getMarketPrice() {
 		return marketPrice;
 	}
-	public void setMarketPrice(float marketPrice) {
+	public void setMarketPrice(String marketPrice) {
 		this.marketPrice = marketPrice;
 	}
 	private boolean offline;
@@ -98,13 +98,13 @@ public class ItemBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private float price;
+	private String price;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private float discount;
+	private String discount;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -146,7 +146,7 @@ public class ItemBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private float marketPrice;
+	private String marketPrice;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->

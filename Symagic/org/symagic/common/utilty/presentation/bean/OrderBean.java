@@ -45,7 +45,7 @@ public class OrderBean {
 	 * @generated 
 	 *            "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Float totalPrice;
+	private String totalPrice;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -75,10 +75,10 @@ public class OrderBean {
 	public void setScore(String score) {
 		this.score = score;
 	}
-	public Float getTotalPrice() {
+	public String getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(Float totalPrice) {
+	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
 	}
 	public String getOrderTime() {

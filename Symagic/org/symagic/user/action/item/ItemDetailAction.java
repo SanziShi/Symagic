@@ -48,7 +48,8 @@ public class ItemDetailAction extends CatalogBase {
 		int commentNumber = itemService.getCommentNumber(itemID);
 		if(commentNumber==-1)return "error";
 		totalPage = (commentNumber + lines - 1) / lines;
-		commentList = itemService.getCommentWithPage(itemID, 1, lines);
+		//显示第一页的评论显示
+		commentList = itemService.getCommentWithPage(itemID,1, lines);
 		/*
 		 * test
 		 */

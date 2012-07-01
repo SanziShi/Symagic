@@ -106,10 +106,7 @@ public class UserSessionUtilty extends SessionUtilty {
 	 * 当用户将从购物车中删除商品时
 	 */
 	public static boolean deleteFromCart(int id){
-		         //得到session
-				Map<String ,Object> session=ActionContext.getContext().getSession();
-				//得到购物车
-				HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
+		        HashMap<Integer,Integer> cart=getCart();
 				int number=cart.get(id);
 				cart.remove(id);
 				//商品总数量减少
@@ -121,10 +118,9 @@ public class UserSessionUtilty extends SessionUtilty {
 	 */
 	public static boolean modifyFromCart(int id,int number){
 		
-		//得到session
-		 Map<String ,Object> session=ActionContext.getContext().getSession();
+		
 		//得到购物车
-		HashMap<Integer,Integer> cart=(HashMap<Integer,Integer>)session.get("cart");
+		HashMap<Integer,Integer> cart=getCart();
 		int value=cart.get(id);
 		cart.put(id, number);
 		//改变session中的总数量

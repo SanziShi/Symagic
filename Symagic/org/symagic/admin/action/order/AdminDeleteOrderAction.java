@@ -12,27 +12,32 @@ public class AdminDeleteOrderAction extends ActionSupport {
 	 * 
 	 */
 	private static final long serialVersionUID = 3490439026928167021L;
-	
+
 	private Integer orderID;
 	private Boolean deleteResult;
-	
+
 	private DaoOrder daoOrder;
 
 	@Override
 	public String execute() throws Exception {
-		
+
 		deleteResult = false;
-		
+
 		BeanOrder order = daoOrder.getOrderDetail(orderID);
-		
-		if( order.getOrderState().equals("2") ) return super.execute();
-		
-		if( !daoOrder.deleteOrder(orderID) ) return super.execute();
-		
+
+		if (order == null)
+			return super.execute();
+
+		if (order.getOrderState().equals("2"))
+			return super.execute();
+
+		if (!daoOrder.deleteOrder(orderID))
+			return super.execute();
+
 		deleteResult = true;
-		
+
 		MailService.sendDeleteOrder(order);
-		
+
 		return super.execute();
 	}
 
@@ -59,6 +64,5 @@ public class AdminDeleteOrderAction extends ActionSupport {
 	public void setDaoOrder(DaoOrder daoOrder) {
 		this.daoOrder = daoOrder;
 	}
-	
 
 }

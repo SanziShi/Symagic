@@ -20,14 +20,18 @@ public class SubmitCommentAction extends ActionSupport {
 	private Integer itemID;//评论的商品
 	private String content;//评论内容
 	 private Integer rating;//评分
-	 //配置项
+	//配置项
 	 private ItemService itemService;//访问商品项
+	 //传出
 	 private Boolean submitResult=false;//评论是否成功
 	
 @Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-        BeanComment comment=new BeanComment();
+        if(itemID==null||content==null||rating==null||UserSessionUtilty.getUsername()==null){
+        	return "error";
+        }
+	    BeanComment comment=new BeanComment();
 		comment.setBookID(itemID);
 		comment.setContent(content);
 		comment.setRating(rating+"");//?string

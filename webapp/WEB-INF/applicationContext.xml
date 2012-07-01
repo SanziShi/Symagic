@@ -190,6 +190,12 @@
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
+	<bean id="AdminSuccessOrder" class="org.symagic.admin.action.order.AdminSuccessOrderAction"
+		scope="request">
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoUser" ref="DaoUser"></property>
+	</bean>
+
 	<bean id="AdminSubmitScoreRate"
 		class="org.symagic.admin.action.level.AdminScoreRateSubmitAction"
 		scope="request">
@@ -198,6 +204,12 @@
 
 	<bean id="AdminEnterCommentManager"
 		class="org.symagic.admin.action.comment.AdminEnterCommentManagerAction"
+		scope="request">
+		<property name="daoComment" ref="DaoComment"></property>
+	</bean>
+
+	<bean id="AdminDeleteComment"
+		class="org.symagic.admin.action.comment.AdminDeleteCommentAction"
 		scope="request">
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
@@ -384,6 +396,54 @@
 	<bean id="getNextLevel" class="org.symagic.user.action.address.GetNextLevelAction"
 		scope="request">
 		<property name="daoDistrict" ref="DaoDistrict"></property>
+	</bean>
+
+	<bean id="cancelOrder" class="org.symagic.user.action.order.OrderCancelAction">
+		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
+	
+	<bean id="orderEnter" class="org.symagic.user.action.order.OrderEnterAction"
+		scope="request">
+		<property name="addressService" ref="AddressService"></property>
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
+	
+	<bean id="orderList" class="org.symagic.user.action.order.OrderListAction"
+		scope="request">
+		<property name="orderService" ref="OrderService"></property>		
+	</bean>
+	
+	<bean id="orderDetail" class="org.symagic.user.action.order.OrderDetailAction"
+		scope="request">
+		<property name="orderService" ref="OrderService"></property>
+		<property name="daoOrder" ref="DaoOrder"></property>	
+	</bean>
+	
+	<bean id="orderSubmit" class="org.symagic.user.action.order.OrderSubmitAction"
+		scope="request">
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+		<property name="recommandService" ref="RecommendService"></property>
+		<property name="daoUser" ref="DaoUser"></property>
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="daoLevel" ref="DaoLevel"></property>
+	</bean>
+	
+	<bean id="orderDelete" class="org.symagic.user.action.order.OrderDeleteOrderAction"
+		scope="request">
+		<property name="daoOrder" ref="DaoOrder"></property>	
+	</bean>
+	
+	<bean id="checkScore" class="org.symagic.user.action.order.OrderCheckScoreAction"
+		scope="request">
+		<property name="daoUser" ref="DaoUser"></property>
+	</bean>
+	
+	<bean id="orderAddAddress" class="org.symagic.user.action.order.OrderAddAddressAction"
+		scope="request">
+		<property name="daoUserAddress" ref="DaoUserAddress"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
+		<property name="orderService" ref="OrderService"></property>	
 	</bean>
 
 	<!-- service bean -->

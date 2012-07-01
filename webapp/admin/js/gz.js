@@ -461,12 +461,12 @@ function delete_tag(id) {
 	tag.parentNode.removeChild(tag);
 }
 
-// 订单管理中删除一个订单
-function ajax_delete_order(id) {
-	var result = confirm("该操作将会将订单删除，确定继续吗？");
+// 订单管理中订单通过审核
+function ajax_pass_order(id) {
+	var result = confirm("该操作将会将确认该订单，确定继续吗？");
 	if (result == true) {
 		Ajax({
-			url : 'order/delete/?orderID=' + id,
+			url : 'order/pass?orderIDList=' + id,
 			type : 'GET',
 			onSend : function() {
 			},
@@ -477,24 +477,77 @@ function ajax_delete_order(id) {
 				 * document.getElementById('cart').appendChild(t); t=null;
 				 */
 				var obj = JSON.parse(e);
-				if (e.deleteResult == true) {
+				if (obj.checkResult == true) {
 					var tag = document.getElementById(id);
-					tag.parentNode.removeChild(tag);
-					alert("删除成功！");
+					alert("订单通过审核！");
+					location.reload();
 				} else
-					alert("删除出错，请返回重新尝试！");
+					alert("审核出错，请返回重新尝试！");
 			}
 		});
 	}
-
 }
 
-// 商品管理中删除一个商品
-function ajax_delete_tag(id) {
-	var result = confirm("该操作将会将商品移除，确定继续吗？");
+//订单管理中设置订单为交易成功
+function ajax_success_order(id) {
+	var result = confirm("该操作将会将设置该订单为交易成功，确定继续吗？");
 	if (result == true) {
 		Ajax({
-			url : 'item_manager/delete?itemID=' + id,
+			url : 'order/success?orderIDList=' + id,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function(e) {
+				/*
+				 * var t=document.createElement('div'); t.id='cart_container';
+				 * t.innerHTML=e;
+				 * document.getElementById('cart').appendChild(t); t=null;
+				 */
+				var obj = JSON.parse(e);
+				if (obj.changeResult == true) {
+					var tag = document.getElementById(id);
+					alert("设置成功！");
+					location.reload();
+				} else
+					alert("设置出错，请返回重新尝试！");
+			}
+		});
+	}
+}
+
+//订单管理中设置订单为交易失败
+function ajax_fail_order(id) {
+	var result = confirm("该操作将会将设置该订单为交易失败，确定继续吗？");
+	if (result == true) {
+		Ajax({
+			url : 'order/fail?orderIDList=' + id,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function(e) {
+				/*
+				 * var t=document.createElement('div'); t.id='cart_container';
+				 * t.innerHTML=e;
+				 * document.getElementById('cart').appendChild(t); t=null;
+				 */
+				var obj = JSON.parse(e);
+				if (obj.changeResult == true) {
+					var tag = document.getElementById(id);
+					alert("设置成功！");
+					location.reload();
+				} else
+					alert("设置出错，请返回重新尝试！");
+			}
+		});
+	}
+}
+
+// 订单管理中删除一个订单
+function ajax_delete_order(id) {
+	var result = confirm("该操作将会将订单删除，确定继续吗？");
+	if (result == true) {
+		Ajax({
+			url : 'order/delete?orderID=' + id,
 			type : 'GET',
 			onSend : function() {
 			},
@@ -517,11 +570,42 @@ function ajax_delete_tag(id) {
 
 }
 
+// 商品管理中删除一个商品
+function ajax_delete_tag(id) {
+	var result = confirm("该操作将会将商品移除，确定继续吗？");
+	alert(id);
+	if (result == true) {
+		Ajax({
+			url : 'item_manager/delete?itemID=' + id,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function(e) {
+				/*
+				 * var t=document.createElement('div'); t.id='cart_container';
+				 * t.innerHTML=e;
+				 * document.getElementById('cart').appendChild(t); t=null;
+				 */
+				alert(e);
+				var obj = JSON.parse(e);
+				if (obj.deleteResult == true) {
+					var tag = document.getElementById(id);
+					tag.parentNode.removeChild(tag);
+					alert("删除成功！");
+				} else
+					alert("删除出错，请返回重新尝试！");
+			}
+		});
+	}
+
+}
+
 // 商品下架
 function ajax_item_off(e, id) {
 
 	var result = confirm("该操作将会将商品下架，确定继续吗？");
-	if(result == false) return;
+	if (result == false)
+		return;
 	Ajax({
 		url : 'item_manager/off?itemID=' + id,
 		type : 'GET',
@@ -533,9 +617,9 @@ function ajax_item_off(e, id) {
 			 * t.innerHTML=e; document.getElementById('cart').appendChild(t);
 			 * t=null;
 			 */
-			set_value(e);
+			set_value(e, id);
 			var obj = JSON.parse(e);
-			if (obj.deleteResult == true) {
+			if (obj.offResult == true) {
 				var tag = document.getElementById(id);
 				tag.parentNode.removeChild(tag);
 				alert("下架成功！");
@@ -546,11 +630,12 @@ function ajax_item_off(e, id) {
 
 }
 
-//商品上架
+// 商品上架
 function ajax_item_up(e, id) {
 
 	var result = confirm("该操作将会将商品上架，确定继续吗？");
-	if(result == false) return;
+	if (result == false)
+		return;
 	Ajax({
 		url : 'item_manager/up?itemID=' + id,
 		type : 'GET',
@@ -564,7 +649,7 @@ function ajax_item_up(e, id) {
 			 */
 			set_value(e);
 			var obj = JSON.parse(e);
-			if (obj.deleteResult == true) {
+			if (obj.upResult == true) {
 				var tag = document.getElementById(id);
 				tag.parentNode.removeChild(tag);
 				alert("商品上架成功！");
@@ -592,13 +677,13 @@ function expanse(e) {
 
 }
 
-function set_value(e) {
+function set_value(e, id) {
 	if (e.value == "下架") {
 		e.value = "上架";
-		e.onclick = ajax_item_up;
+		e.onclick = ajax_item_up(e, id);
 	} else {
 		e.value = "下架";
-		e.onclick = ajax_item_off;
+		e.onclick = ajax_item_off(e, id);
 	}
 }
 
@@ -616,76 +701,68 @@ function amount_modify(e) {
 	e.value = e.value.replace(/\D+/g, '');
 }
 
+// 目录管理
 
-//目录管理
-
-function show(table,sum){
-var t;
-t=document.getElementById(table);
-  if(t.style.display=="") {
- t.style.display="none";
-  } 
- else {
-  t.style.display="";
- }
- for(i=0;i<sum;i++){
- if(("t"+i)!=table){
- t=document.getElementById("t"+i);
- t.style.display="none";
-   }
-  }
+function show(table, sum) {
+	var t;
+	t = document.getElementById(table);
+	if (t.style.display == "") {
+		t.style.display = "none";
+	} else {
+		t.style.display = "";
+	}
+	for (i = 0; i < sum; i++) {
+		if (("t" + i) != table) {
+			t = document.getElementById("t" + i);
+			t.style.display = "none";
+		}
+	}
 }
 
-function checkselectno(name){
-var el = document.getElementsByTagName(name);
-var len = el.length;
-var checkno=0;
-for(var i=0; i<len; i++)
-  {
-  if((el[i].type=="checkbox") && (el[i].checked==true))   
-     checkno++;   
-  }
-if(checkno==1)
-  {window.location.href="category_edit.html";
-   return true;
-  }
-if(checkno>1)
-  {
-  window.alert("每次只能修改一个目录！");
-  return false;
-  }
-else
-  {
-  window.alert("请先选择目录！");
-  return false;
-  }
+function checkselectno(name) {
+	var el = document.getElementsByTagName(name);
+	var len = el.length;
+	var checkno = 0;
+	for ( var i = 0; i < len; i++) {
+		if ((el[i].type == "checkbox") && (el[i].checked == true))
+			checkno++;
+	}
+	if (checkno == 1) {
+		window.location.href = "category_edit.html";
+		return true;
+	}
+	if (checkno > 1) {
+		window.alert("每次只能修改一个目录！");
+		return false;
+	} else {
+		window.alert("请先选择目录！");
+		return false;
+	}
 
 }
 
-function checkdelno(name){
-var el = document.getElementsByTagName('name');
-var len = el.length;
-var checkno=0;
-for(var i=0; i<len; i++)
-  {
-  if((el[i].type=="checkbox") && (el[i].checked==true))   
-     {checkno=1;
-	 break;  }
-  }
-if(checkno==1)
-  {
-  if(window.confirm("确定删除？"))
-     return true;
-   else
-     return false;
-  }
- 
-else
-  {
-  window.alert("请先选择目录！");
-  return false;
-  }
+function checkdelno(name) {
+	var el = document.getElementsByTagName('name');
+	var len = el.length;
+	var checkno = 0;
+	for ( var i = 0; i < len; i++) {
+		if ((el[i].type == "checkbox") && (el[i].checked == true)) {
+			checkno = 1;
+			break;
+		}
+	}
+	if (checkno == 1) {
+		if (window.confirm("确定删除？"))
+			return true;
+		else
+			return false;
+	}
+
+	else {
+		window.alert("请先选择目录！");
+		return false;
+	}
 
 }
 
-//目录管理结束
+// 目录管理结束

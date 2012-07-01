@@ -3,7 +3,7 @@ package org.symagic.common.utilty.presentation.bean;
 public class LevelBean {
 	private Integer levelID;
 	private Integer low;
-	private Float scoreRate;
+	private String scoreRate;
 	private Integer hight;
 	private String levelName;
 	public Integer getLevelID() {
@@ -22,10 +22,10 @@ public class LevelBean {
 	public void setLow(Integer low) {
 		this.low = low;
 	}
-	public Float getScoreRate() {
+	public String getScoreRate() {
 		return scoreRate;
 	}
-	public void setScoreRate(Float scoreRate) {
+	public void setScoreRate(String scoreRate) {
 		this.scoreRate = scoreRate;
 	}
 	public Integer getHight() {
