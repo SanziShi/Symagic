@@ -173,11 +173,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="clear"></div>
         </div>     
     </div>
-    </form>
-  
-  	<div id="footer">
-	  <span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
-	  <span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
+   </form>
+	<div id="footer">
+		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
+		<span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
 	</div>
 </div>
 
