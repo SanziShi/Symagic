@@ -22,7 +22,7 @@ public class CatalogAddAction extends ActionSupport {
 	/**
 	 * 
 	 */
-	private Integer parentID;// :父目录的ID(0表示根目录）
+	private Integer upID;// :父目录的ID(0表示根目录）
 
 	private boolean validateResult;
 
@@ -37,12 +37,12 @@ public class CatalogAddAction extends ActionSupport {
 		BeanCatalog catalog = new BeanCatalog();
 		catalog.setCatalogName(catalogName);
 		catalog.setCatalogDesc(catalogDesc);
-		if (parentID == 0)
+		if (upID == 0)
 			catalog.setLevel("1");
 		else {
 			catalog.setLevel("2");
 		}
-		catalog.setUpID(parentID);
+		catalog.setUpID(upID);
 		daoCatalog.addCatalog(catalog);
 
 		return SUCCESS;
@@ -50,7 +50,7 @@ public class CatalogAddAction extends ActionSupport {
 
 	@Override
 	public void validate() {
-		if (catalogName == null || catalogDesc == null || parentID == null)
+		if (catalogName == null || catalogDesc == null || upID == null)
 			validateResult = false;
 		else
 			validateResult = true;
@@ -88,12 +88,13 @@ public class CatalogAddAction extends ActionSupport {
 		this.daoCatalog = daoCatalog;
 	}
 
-	public Integer getParentID() {
-		return parentID;
+	public Integer getUpID() {
+		return upID;
 	}
 
-	public void setParentID(Integer parentID) {
-		this.parentID = parentID;
+	public void setUpID(Integer upID) {
+		this.upID = upID;
 	}
+
 
 }

@@ -72,7 +72,7 @@
 							<tr>
 								<th class="itemsearchth">目录名：</th>
 								<td class="itemsearchtd1"><input type="text"
-									class="inputtext" name="name" onfocus="nextfield='password'"
+									class="inputtext" name="catalogName" onfocus="nextfield='password'"
 									value="<s:property value='catalogName'/>" maxlength="25" /></td>
 								<td class="itemsearchtd2"><span class="red">*&nbsp;必填项</span>
 								</td>
@@ -118,7 +118,7 @@
 							<tr>
 								<th></th>
 								<td><input type="submit" name="button2" value="提交修改"
-									onclick="checkcategoryform()" /> &nbsp;</td>
+									onclick="checkcategoryform()" /> &nbsp;<input type="hidden" name="catalogID" value="<s:property value="catalogID"/>"/></td>
 							</tr>
 						</table>
 					</form>
@@ -143,7 +143,7 @@
 							</tr>
 							<tr>
 								<th class="itemsearchth">父目录：</th>
-								<td class="itemsearchtd1"><select>
+								<td class="itemsearchtd1"><select name="upID">
 										<option value="0" selected="selected">根目录</option>
 										<s:iterator value="catalog" var="outer">
 											<option value="<s:property value='#outer.id'/>">
