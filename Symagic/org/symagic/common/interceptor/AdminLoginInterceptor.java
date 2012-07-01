@@ -49,16 +49,13 @@ public class AdminLoginInterceptor extends MethodFilterInterceptor {
 
 		String contextPath = request.getContextPath();
 		int illegalCheckStartIndex = preURL.indexOf(contextPath);
-		String illegalCheckPath = preURL.substring(illegalCheckStartIndex + 1);
+		String url = preURL.substring(illegalCheckStartIndex);
 
 		// 设置url
-		if (guestIllegalURL.contains(illegalCheckPath)) {
+		if (guestIllegalURL.contains(url)) {
 			invocation.getInvocationContext().getValueStack().getContext()
 					.put("toURL", "index");
 		} else {
-
-			String url = preURL
-					.substring(preURL.toString().lastIndexOf('/') + 1);
 
 			if (request.getMethod().equals("GET")) {
 				Map<String, String[]> parameter = request.getParameterMap();
@@ -72,13 +69,13 @@ public class AdminLoginInterceptor extends MethodFilterInterceptor {
 					for (String value : entry.getValue()) {
 						url += entry.getKey() + "=" + value;
 					}
-					if( itr.hasNext() )
+					if (itr.hasNext())
 						url += '&';
 				}
 			}
 
 			invocation.getInvocationContext().getValueStack().getContext()
-					.put("toURL", url);
+					.put("toURL", url.substring(contextPath.length()));
 		}
 
 		return "enforceLogin";

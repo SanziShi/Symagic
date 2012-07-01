@@ -48,13 +48,12 @@ public class ItemDeleteAction extends ActionSupport implements
 			File destFile = new File(fileFolder, book.getPicture().substring(
 					book.getPicture().lastIndexOf('/') + 1));
 
-			if (destFile.exists()) {
+			if (destFile.exists())
 				FileUtils.forceDelete(destFile);
 
-				if (!daoBook.deleteBook(itemID))
-					return super.execute();
-				deleteResult = true;
-			}
+			if (!daoBook.deleteBook(itemID))
+				return super.execute();
+			deleteResult = true;
 
 		}
 
