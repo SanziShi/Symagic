@@ -22,7 +22,6 @@ public class DaoCart {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 	
 	
 	/**

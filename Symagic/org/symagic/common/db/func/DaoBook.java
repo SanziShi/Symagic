@@ -23,7 +23,6 @@ public class DaoBook {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 
 	/**
 	 * 获取给定书籍的库存
@@ -400,6 +399,7 @@ public class DaoBook {
 	 * @return int 返回符合条件的条数
 	 */
 	public int getSearchRowNumber(int sign, BookRequire req) {
+		int count	= 0;
 		List<Integer> idList	= null;
 		String sql = "select t1.*, t2.catalogid "
 				+ " from book as t1 left join book_catalog_detail as t2 "
@@ -786,7 +786,7 @@ public class DaoBook {
 	 * @return -1 搜索失败 >=0 搜索成功
 	 */
 	public int getStatisticsNum(BookStatisticsRequire req) {
-		count = -1;
+		int count = -1;
 		boolean haveCatalogID = true;
 		if (req.getCatalogid() == null)
 			haveCatalogID = false;
