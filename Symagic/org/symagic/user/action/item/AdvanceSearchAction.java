@@ -37,18 +37,14 @@ public class AdvanceSearchAction extends CatalogBase {
 	private Integer booksize;// 书的大小
 	private Integer price;// 书的价格
     private Integer discount;// 折扣
-   
-
-	
-	
-	// 配置项
+   // 配置项
 	private Integer lines;
 	private Integer recommendNumber;
 	private String errorHeader;
 	private String errorSpecification;
 	private ItemService itemService;// 访问书本的业务层
 	private RecommandService recommendService;// 推荐系统
-	 private int sign;// 搜索标志，1为高级搜索
+	private int sign;// 搜索标志，1为高级搜索
      //传出
 	private Integer totalPage;
     private List<ItemTinyBean> recommend;// 推荐商品
