@@ -1,1 +1,4 @@
-// JavaScript Document
+function get_district(d)
+{
+	alert(d.value);
+}
