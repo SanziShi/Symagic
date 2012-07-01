@@ -419,6 +419,47 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">checkResult</param>
 			</result>
 		</action>
+
+		<action name="success" class="AdminSuccessOrder">
+			<result type="json">
+				<param name="includeProperties">changeResult</param>
+			</result>
+		</action>
+
+		<action name="fail" class="AdminFailOrder">
+			<result type="json">
+				<param name="includeProperties">changeResult</param>
+			</result>
+		</action>
+
+		<action name="delete" class="AdminDeleteOrder">
+			<result type="json">
+				<param name="includeProperties">deleteResult</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="admin-comment-manager" extends="symagic-admin-default"
+		namespace="/admin/comment">
+
+		<action name="delete" class="AdminDeleteComment">
+			<result type="json">
+				<param name="includeProperties">deleteResult</param>
+			</result>
+		</action>
+
+	</package>
+
+	<package name="admin-catalogmanager-manager" extends="symagic-admin-default"
+		namespace="/admin/catalog_manager">
+
+		<action name="delete" class="AdminDeleteCatalog">
+			<result type="json">
+				<param name="includeProperties">deleteResult</param>
+			</result>
+		</action>
+
 	</package>
 
 </struts>
