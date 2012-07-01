@@ -79,7 +79,7 @@
 							</tr>
 							<tr>
 								<th class="itemsearchth">父目录：</th>
-								<td class="itemsearchtd1"><select>
+								<td class="itemsearchtd1"><select name="parentID">
 										<!--若是根目录-->
 										<s:if test="%{upID==0}">
 											<option value="0" selected="selected">根目录</option>
@@ -89,14 +89,14 @@
 										</s:else>
 										<!--所选为非根目录迭代开始-->
 										<s:iterator value="catalog" var='outer'>
-											<s:if test="%{upID==#ourer.id}">
-												<option value="<s:property value='#outer.id'/>"
+											<s:if test="%{upID==#outer.ID}">
+												<option value="<s:property value='#outer.ID'/>"
 													selected="selected">
 													<s:property value="#outer.name" />
 												</option>
 											</s:if>
 											<s:else>
-												<option value="<s:property value='#outer.id'/>">
+												<option value="<s:property value='#outer.ID'/>">
 													<s:property value="#outer.name" />
 												</option>
 											</s:else>

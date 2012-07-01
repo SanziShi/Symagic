@@ -40,8 +40,10 @@ public class CatalogEditSubmitAction extends ActionSupport {
 		if( !validateResult ){
 			return ERROR;
 		}
+		BeanCatalog catalog = daoCatalog.getCatalogByID(catalogID);
 		
-		BeanCatalog catalog = new BeanCatalog();
+		if( catalog == null ) return ERROR;
+		
 		catalog.setCatalogID(catalogID);
 		catalog.setCatalogName(catalogName);
 		catalog.setCatalogDesc(catalogDesc);
