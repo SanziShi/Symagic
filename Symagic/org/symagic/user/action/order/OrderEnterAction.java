@@ -34,7 +34,7 @@ public class OrderEnterAction extends CatalogBase {
 
 	private boolean isValidate;
 
-	private String buyItems;
+	private List<ItemTinyBean> buyItems;
 
 	private AddressService addressService;
 
@@ -87,6 +87,7 @@ public class OrderEnterAction extends CatalogBase {
 		if (!isValidate)
 			return ERROR;
 		Float temp = 0.0f;
+		buyItems = new ArrayList<ItemTinyBean>();
 		for (int i = 0; i < items.size(); i++) {
 			Integer itemId = items.get(i).getItemID();
 			BeanBook beanBook = daoBook.getDetail(itemId);
@@ -104,7 +105,7 @@ public class OrderEnterAction extends CatalogBase {
 										.getItemNumber())));
 				temp += beanBook.getMarketPrice() * beanBook.getMarketPrice()
 						* itemTinyBean.getItemNumber();
-				items.add(itemTinyBean);
+				buyItems.add(itemTinyBean);
 			}
 		}
 		price = String.format("%.2f", temp);
