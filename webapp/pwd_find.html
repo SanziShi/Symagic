@@ -54,7 +54,6 @@
 		<div id="sendnote">
 			<div id="sendnotehead"><strong> 找回密码</strong></div>
 			<div id="sendnotecontent">
-
 			<form action="" method="post" enctype="multipart/form-data" name="form1">
 				<table id="itemsearch">
 				   <tr>
@@ -67,11 +66,14 @@
                     <tr>
 				 <th class="itemsearchth">安全提问问题：</th>
             		<td class="itemsearchtd1">
-					  	<select>
-                        <option>您最喜欢的动物是？</option>
-                        <option>您父亲的名字是？</option>
-                        <option>您母亲的名字是？</option>
-                        <option>您的证件号是？</option>
+					  	<select onchange="safe_question(this)" name="securityQuestion">
+                        <option >您父亲的名字是？</option>
+                        <option >您母亲的名字是？</option>
+                        <option >您小学就读的学校是？</option>
+						 <option >您出生与哪个医院？</option>
+                        <option >您高中的班主任是？</option>
+                        <option >自定义问题</option>
+                        </select>
 						<td class="itemsearchtd2">
 						<span class="red">*&nbsp;必选项<span class="red"></td>
 					</td>

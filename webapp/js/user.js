@@ -29,7 +29,8 @@ function nickname_c(e)
 {
 	var c=document.getElementById('nickname_c').value;
 	Ajax({
-		url:'user/update_nickname?nickname='+c,
+		url:'user/update_nickname',
+		data:'nickname='+c,
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult){alert('修改成功');location.href='user'}}
 		})
 }
@@ -40,7 +41,7 @@ function pass_submit()
 	var c=document.getElementById('pass_confirm').value;
 	Ajax({
 		url:'user/update_password?password='+a+'&newPassword='+b+'&newPasswordConfirm='+c,
-		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');}
+		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');location.reload();}
 		})
 }
 function show_favorite()

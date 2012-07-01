@@ -1,0 +1,44 @@
+#ok
+{
+	width:799px;
+	background:#FFFFFF;
+	padding-bottom: 30px;
+}
+#ok-container
+{
+	padding:30px 150px 30px 150px;
+	background: #F6FDF6;
+	color: #666;
+}
+#ok_icon
+{
+	background:url(../image/ok.png);
+	height:46px;
+	width:57px;
+	float:left;
+}
+#ok_content
+{
+	font-size: 16px;
+	font-family: "Microsoft YaHei" ;
+	font-weight: normal;
+	margin-bottom: 15px;
+	height:24px;
+	line-height:27px;
+	float:left;
+	color: #090;
+}
+#ok_content h2
+{
+	margin:13px 0 0 0;
+}
+#info
+{
+	padding-top:5px;
+	height:20px;
+	line-height:20px;
+	font-size:20px;
+	text-align:center;
+}
+
+
