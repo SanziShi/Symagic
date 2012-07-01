@@ -391,7 +391,7 @@
 				</div>
 
 				<div id="doublecontent1">
-
+                    <form action="off" method="post" name="itemForm">
 					<table id="xialabiao">
 
 						<s:iterator value="items" var="bookItems" status="st">
@@ -400,7 +400,7 @@
 											value="#st.index" /> </span>
 								</td>
 								<td class="checkBoxWidth" align="center"><input
-									type="checkbox"
+									type="checkbox" name="itemID"
 									value="<s:property value = '#bookItems.itemID'/>" />
 								</td>
 								<td width="16%" rowspan="1" align="right" class="inputHeader">
@@ -409,7 +409,7 @@
 										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="#bookItems.picturePath"/>"
 										alt="<s:property value = '#bookItems.name'/>" id="img_format" />
 								</a></td>
-								<td width="77%" align="left" class="inputHeader"><span
+								<td width="77%" align="left" class="inputHeader"><font><span
 									class="red" id="item_font20"><s:property
 											value="#bookItems.name" /> </span></font><br /> <font id="item_font17">作者：<s:property
 											value="#bookItems.author" />&nbsp; &nbsp; </font><br /> <font
@@ -439,6 +439,16 @@
 							</tr>
 						</s:iterator>
 						<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><input type="submit" name="off" value="批量下架"/>
+						<input type="button" name="up" onclick="upsubmit('itemForm')" value="批量上架"/> 
+						</td>
+						</tr>
+						<tr>
 							<td></td>
 							<td></td>
 							<td><s:if test="%{1!=totalPage}">
@@ -457,6 +467,7 @@
 									value="totalPage" />页</td>
 						</tr>
 					</table>
+					</form>
 				</div>
 			</div>
 			<!--        <a href="item_list_refresh.html" style="display:none" onClick="javascript:if(window.confirm('确定删除？')) window.location.href='item_list_refresh.html';else return false;"><img src="../image/bt_delete.gif" alt="删除" width="37" height="19" border="0"></a>-->
