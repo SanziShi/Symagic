@@ -5,8 +5,8 @@ public class StatisticBean {
 	private Integer itemID;
 	private String itemName;
 	private Integer sales;
-	private Float totalPrice;
-	private Float price;
+	private String totalPrice;
+	private String price;
 	
 	public Integer getItemID() {
 		return itemID;
@@ -26,16 +26,16 @@ public class StatisticBean {
 	public void setSales(Integer sales) {
 		this.sales = sales;
 	}
-	public Float getTotalPrice() {
+	public String getTotalPrice() {
 		return totalPrice;
 	}
-	public void setTotalPrice(Float totalPrice) {
+	public void setTotalPrice(String totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-	public Float getPrice() {
+	public String getPrice() {
 		return price;
 	}
-	public void setPrice(Float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	

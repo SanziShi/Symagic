@@ -19,7 +19,6 @@ import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.db.func.DaoComment;
 import org.symagic.common.db.func.DaoOrder;
-import org.symagic.common.db.func.OrderRequire;
 import org.symagic.common.utilty.presentation.bean.CatalogBean;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
@@ -81,7 +80,7 @@ public class ItemService {
 		item.setPicturePath(book.getPicture());
 		float marketPrice = book.getMarketPrice();
 		float discount = book.getDiscount();
-		item.setPrice(MathUtilty.roundWithdigits(marketPrice * discount));
+		item.setPrice(String.format("%.2f", (marketPrice * discount)));
 	}
 
 	// 搜索显示出来的信息
@@ -89,13 +88,13 @@ public class ItemService {
 	private void fillItemBean(BeanBook book, ItemBean item) {
 		item.setItemID(String.valueOf(book.getBookId()));
 		item.setName(book.getBookName());
-		item.setPrice(book.getMarketPrice() * book.getDiscount());
-		item.setDiscount(book.getDiscount());
+		item.setPrice(String.format("%.2f",book.getMarketPrice() * book.getDiscount()));
+		item.setDiscount(String.format("%.2f",book.getDiscount()));
 		item.setPicturePath(book.getPicture());
 		item.setPublishTime(book.getPublishDate());
 		item.setPublisher(book.getPublisher());
 		item.setAuthor(book.getAuthor());
-		item.setMarketPrice(book.getMarketPrice());
+		item.setMarketPrice(String.format("%.2f",book.getMarketPrice()));
 		String status = book.getOffline();
 		if (status.trim().equals("下架")) {
 			item.setOffline(true);
@@ -178,11 +177,11 @@ public class ItemService {
 					.roundWithdigits(marketPrice * discount);
 			float itemTotalPrice = MathUtilty.roundWithdigits(bookprice
 					* number);
-			item.setItemTotalPrice(itemTotalPrice);
-			item.setMarketPrice(marketPrice);
+			item.setItemTotalPrice(String.format("%.2f",itemTotalPrice));
+			item.setMarketPrice(String.format("%.2f",marketPrice));
 			item.setName(book.getBookName());
-			item.setPrice(bookprice);// 商城价
-			item.setSavePrice(MathUtilty.roundWithdigits(number * marketPrice
+			item.setPrice(String.format("%.2f",bookprice));// 商城价
+			item.setSavePrice(String.format("%.2f",number * marketPrice
 					* (1 - discount)));
 			item.setPicturePath(book.getPicture());
 			items.add(item);
@@ -216,13 +215,13 @@ public class ItemService {
 		detail.setBookDesc(book.getBookDesc());
 		detail.setBookName(book.getBookName());
 		detail.setCatalogClassify(getCatalogName(currentCatalog));
-		detail.setDiscout(book.getDiscount());
+		detail.setDiscout(String.format("%.2f",book.getDiscount()));
 		detail.setSize(book.getFolio());
 		detail.setInventory(book.getInventory());
 		detail.setIsbn(book.getIsbn());
 		float marketPrice = MathUtilty.roundWithdigits(book.getMarketPrice());
 		float discount = MathUtilty.roundWithdigits(book.getDiscount());
-		detail.setMarketPrice(marketPrice);
+		detail.setMarketPrice(String.format("%.2f",marketPrice));
 		if (book.getOffline().equals("下架")) {
 			detail.setOffline(true);
 		} else {
@@ -230,8 +229,8 @@ public class ItemService {
 		}
 		detail.setPage(book.getPage());
 		float price = MathUtilty.roundWithdigits(discount * marketPrice);
-		detail.setPrice(price);
-		detail.setSavePrice(MathUtilty.roundWithdigits(marketPrice - price));
+		detail.setPrice(String.format("%.2f",price));
+		detail.setSavePrice(String.format("%.2f",MathUtilty.roundWithdigits(marketPrice - price)));
 		detail.setPublishDate(book.getPublishDate());
 		detail.setPublisher(book.getPublisher());
 		detail.setVersion(book.getVersion());

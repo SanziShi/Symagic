@@ -78,8 +78,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 				bean.setItemID(statistic.getBookid());
 				bean.setItemName(statistic.getBookname());
 				bean.setSales(statistic.getTotalSaleAmount());
-				bean.setTotalPrice(statistic.getTotalSaleRevenue());
-				bean.setPrice(bean.getTotalPrice() / bean.getSales());
+				bean.setTotalPrice(String.format("%.2f",statistic.getTotalSaleRevenue()));
+				bean.setPrice(String.format("%.2f",statistic.getTotalSaleRevenue() / bean.getSales()));
 				items.add(bean);
 			}
 

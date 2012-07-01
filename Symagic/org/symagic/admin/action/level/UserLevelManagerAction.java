@@ -32,7 +32,7 @@ public class UserLevelManagerAction extends CatalogBase {
 			level.setLevelID(bean.getId());
 			level.setLevelName(bean.getName());
 			level.setLow(bean.getLowLimit());
-			level.setScoreRate(bean.getRate());
+			level.setScoreRate(String.format("%.2f", bean.getRate()));
 			levelList.add(level);
 		}
 

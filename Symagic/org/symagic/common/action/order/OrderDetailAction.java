@@ -45,7 +45,7 @@ public class OrderDetailAction extends CatalogBase {
 		order = orderService.orderDetail(orderID);
 		userName = order.getUsername();
 		orderTime = order.getOrderDate();
-		price = Float.toString(order.getTotalprice());
+		price = String.format("%.2f",order.getTotalprice());
 		switch( Integer.parseInt(order.getPayment() ) ){
 		case 0:
 			payment = "货到付款";
@@ -97,13 +97,13 @@ public class OrderDetailAction extends CatalogBase {
 			ItemTinyBean itemBean = new ItemTinyBean();
 			itemBean.setItemID(detail.getBookId());
 			itemBean.setItemNumber(detail.getAmount());
-			itemBean.setItemTotalPrice(detail.getMarketPrice()
-					* detail.getAmount() * detail.getDiscount());
+			itemBean.setItemTotalPrice(String.format("%.2f",detail.getMarketPrice()
+					* detail.getAmount() * detail.getDiscount()));
 			itemBean.setName(detail.getBookName());
 			itemBean.setPicturePath(null);
-			itemBean.setPrice(detail.getMarketPrice() * detail.getDiscount());
-			itemBean.setSavePrice((1 - detail.getDiscount())
-					* detail.getMarketPrice() * detail.getAmount());
+			itemBean.setPrice(String.format("%.2f", detail.getMarketPrice() * detail.getDiscount()));
+			itemBean.setSavePrice(String.format("%.2f",(1 - detail.getDiscount())
+					* detail.getMarketPrice() * detail.getAmount()));
 			items.add(itemBean);
 		}
 

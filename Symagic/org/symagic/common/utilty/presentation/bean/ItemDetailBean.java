@@ -11,14 +11,14 @@ public class ItemDetailBean {
 	private Integer page;// 书的页数
 	private String binding;
 	private String size;// 书的大小
-	private Float marketPrice;
-	private Float discout;
+	private String marketPrice;
+	private String discout;
 	private Integer inventory;// 库存
 	private String bookDesc;
 	private Boolean offline;// 是否上架
 	private String catalogClassify;
-	private Float price;
-	private Float savePrice;
+	private String price;
+	private String savePrice;
 	private Integer averageRating;// 用户评分
 	private String picturePath;
 	private TimeBean parseTime; //用于时间解析结果
@@ -105,19 +105,19 @@ public class ItemDetailBean {
 		this.size = size;
 	}
 
-	public Float getMarketPrice() {
+	public String getMarketPrice() {
 		return marketPrice;
 	}
 
-	public void setMarketPrice(Float marketPrice) {
+	public void setMarketPrice(String marketPrice) {
 		this.marketPrice = marketPrice;
 	}
 
-	public Float getDiscout() {
+	public String getDiscout() {
 		return discout;
 	}
 
-	public void setDiscout(Float discout) {
+	public void setDiscout(String discout) {
 		this.discout = discout;
 	}
 
@@ -153,19 +153,19 @@ public class ItemDetailBean {
 		this.catalogClassify = catalogClassify;
 	}
 
-	public Float getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	public Float getSavePrice() {
+	public String getSavePrice() {
 		return savePrice;
 	}
 
-	public void setSavePrice(Float savePrice) {
+	public void setSavePrice(String savePrice) {
 		this.savePrice = savePrice;
 	}
 

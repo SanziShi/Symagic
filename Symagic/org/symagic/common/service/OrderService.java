@@ -76,7 +76,7 @@ public class OrderService {
 		result.setOrderTime(bean.getOrderDate());
 		result.setReceiverName(bean.getReceiverName());
 		result.setScore(Integer.toString(bean.getScore()));
-		result.setTotalPrice(bean.getTotalprice());
+		result.setTotalPrice(String.format("%.2f",bean.getTotalprice()));
 		result.setUserName(bean.getUsername());
 		return result;
 	}
