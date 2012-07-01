@@ -102,7 +102,7 @@ function delete_from_favorite(id)
 /********刷新验证码************/
 function change_captcha(e)
 {
-	e.src='captcha_get_captcha';
+	e.src='captcha_get_captcha?t='+Math.random();
 }
 /*****登出函数*******/
 function logout()
@@ -154,6 +154,13 @@ function load_login()
 /******异步调用注册框*****/
 function load_regist()
 {
+	var temp=document.getElementById('login_float');
+	if(temp)
+	{
+		temp.parentNode.removeChild(temp)
+		var o=document.getElementById('overlay');
+		o.parentNode.removeChild(o);
+	}
 	if(window.event)stopDefault();
 	var r=document.createElement('div');
 	r.id='regist_float';
@@ -180,7 +187,7 @@ function login(form)
 				if(a.loginResult)location.replace(location.href);
 				else 
 				{
-					document.getElementById('cap').src='captcha_get_captcha';
+					document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
 					alert('登录失败');
 				}
 				},
@@ -201,7 +208,7 @@ function regist(form)
 			{
 				location.replace(location.href);
 			}
-			else document.getElementById('cap').src='captcha_get_captcha';
+			else document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
 		}
 	})
 	return false;
