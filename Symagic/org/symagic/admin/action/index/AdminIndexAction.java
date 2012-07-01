@@ -76,11 +76,11 @@ public class AdminIndexAction extends CatalogBase {
 		this.totalSalesAmount = totalSalesAmount;
 	}
 
-	public Float getTotalSalesRevenue() {
+	public String getTotalSalesRevenue() {
 		return totalSalesRevenue;
 	}
 
-	public void setTotalSalesRevenue(Float totalSalesRevenue) {
+	public void setTotalSalesRevenue(String totalSalesRevenue) {
 		this.totalSalesRevenue = totalSalesRevenue;
 	}
 
