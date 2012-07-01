@@ -9,8 +9,8 @@
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
 <script src="js/checkform.js" type="text/javascript"
 	language="javascript"></script>
-<script src="js/gz.js" type="text/javascript" language="javascript"></script>
 <script src="js/jquery.js" type="text/javascript" language="javascript"></script>
+<script src="js/gz.js" type="text/javascript" language="javascript"></script>
 <script src="js/search.js" type="text/javascript" language="javascript"></script>
 </head>
 
@@ -391,7 +391,7 @@
 				</div>
 
 				<div id="doublecontent1">
-                    <form action="off" method="post" name="itemForm">
+                    <form method="post" id="itemForm">
 					<table id="xialabiao">
 
 						<s:iterator value="items" var="bookItems" status="st">
@@ -444,7 +444,7 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><input type="submit" name="off" value="批量下架"/>
+						<td><input type="button" name="off" onclick="offsubmit('itemForm')" value="批量下架"/>
 						<input type="button" name="up" onclick="upsubmit('itemForm')" value="批量上架"/> 
 						</td>
 						</tr>
