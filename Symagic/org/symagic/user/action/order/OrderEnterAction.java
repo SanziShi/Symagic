@@ -10,8 +10,10 @@ import net.sf.json.JSONSerializer;
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.service.AddressService;
 import org.symagic.common.utilty.presentation.bean.AddressDetailBean;
+import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
@@ -41,7 +43,9 @@ public class OrderEnterAction extends CatalogBase {
 	private DaoBook daoBook;
 
 	private List<ItemTinyBean> items;
-
+	
+	private List<DistrictBean> districtLevel1;
+	
 	public List<AddressDetailBean> getAddressList() {
 		return addressList;
 	}
@@ -116,6 +120,7 @@ public class OrderEnterAction extends CatalogBase {
 		price = String.format("%.2f", temp);
 		userName = UserSessionUtilty.getUsername();
 		addressList = addressService.getAddressDetail(userName);
+		districtLevel1 = addressService.getDistricts(0);
 		payment = "货到付款";
 		deliverWay = "快递";
 		return super.execute();
@@ -161,6 +166,14 @@ public class OrderEnterAction extends CatalogBase {
 
 	public void setAddressService(AddressService addressService) {
 		this.addressService = addressService;
+	}
+
+	public List<DistrictBean> getDistrictLevel1() {
+		return districtLevel1;
+	}
+
+	public void setDistrictLevel1(List<DistrictBean> districtLevel1) {
+		this.districtLevel1 = districtLevel1;
 	}
 
 }

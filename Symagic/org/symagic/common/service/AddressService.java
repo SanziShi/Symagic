@@ -95,6 +95,18 @@ public class AddressService {
 		}
 		return addresses;
 	}
+	
+	public List<DistrictBean> getDistricts(int upID){
+		List<DistrictBean> districts = new ArrayList<DistrictBean>();
+		List<BeanDistrict> beanDistricts = daoDistrict.getDistrict(upID);
+		for(int i = 0; i < beanDistricts.size(); i ++){
+			DistrictBean dBean = new DistrictBean();
+			dBean.setID(beanDistricts.get(i).getId());
+			dBean.setName(beanDistricts.get(i).getName());
+			districts.add(dBean);
+		}
+		return districts;
+	}
 
 	public DaoDistrict getDaoDistrict() {
 		return daoDistrict;
