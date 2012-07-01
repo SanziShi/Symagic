@@ -73,8 +73,10 @@
 					</form>
 				</div>
 				<div class="user_note" id="myfont">
-					<a href="#1"><img src="image/add_product.png" /> </a> <a href="#2"><img
-						src="image/item_list.png" /> </a> <a href="#3"><img
+					<a href="#1"><img src="image/add_product.png" /> </a> 
+					<a href="#2"><img
+						src="image/item_list.png" /> </a> 
+					<a href="#3"><img
 						onclick="expanse(document.getElementById('search_banner'));"
 						src="image/item_search.png" /> </a>
 				</div>
@@ -301,8 +303,9 @@
 
 
 
-			<a name="1"></a>
+			
 			<div id="double2">
+			<a name="1"></a>
 				<div id="doublehead2">
 					<strong>添加商品</strong> <a id="header_right" href="#0"><input
 						type="button" value="返回顶部" /> </a>

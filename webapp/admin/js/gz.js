@@ -533,9 +533,9 @@ function ajax_item_off(e, id) {
 			 * t.innerHTML=e; document.getElementById('cart').appendChild(t);
 			 * t=null;
 			 */
-			set_value(e);
+			set_value(e,id);
 			var obj = JSON.parse(e);
-			if (obj.deleteResult == true) {
+			if (obj.offResult == true) {
 				var tag = document.getElementById(id);
 				tag.parentNode.removeChild(tag);
 				alert("下架成功！");
@@ -564,7 +564,7 @@ function ajax_item_up(e, id) {
 			 */
 			set_value(e);
 			var obj = JSON.parse(e);
-			if (obj.deleteResult == true) {
+			if (obj.upResult == true) {
 				var tag = document.getElementById(id);
 				tag.parentNode.removeChild(tag);
 				alert("商品上架成功！");
@@ -592,13 +592,13 @@ function expanse(e) {
 
 }
 
-function set_value(e) {
+function set_value(e,id) {
 	if (e.value == "下架") {
 		e.value = "上架";
-		e.onclick = ajax_item_up;
+		e.onclick = ajax_item_up(e,id);
 	} else {
 		e.value = "下架";
-		e.onclick = ajax_item_off;
+		e.onclick = ajax_item_off(e,id);
 	}
 }
 
