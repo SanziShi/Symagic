@@ -439,12 +439,12 @@
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 	
-	<!-- <bean id="orderAddAddress" class="org.symagic.user.action.order.OrderAddAddressAction"
+	<bean id="orderAddAddress" class="org.symagic.user.action.order.OrderAddAddressAction"
 		scope="request">
 		<property name="daoUserAddress" ref="DaoUserAddress"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 		<property name="orderService" ref="OrderService"></property>	
-	</bean>-->
+	</bean>
 
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
