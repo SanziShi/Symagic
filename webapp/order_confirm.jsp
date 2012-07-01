@@ -61,31 +61,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-	<div id="banner"></div>
-  	<div id="main">
-		<div id="search2">
-			<div id="searchleft">
-				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
-			</div>
-			<form action="quick_search" method="post">
-			<div id="searchright2">
-			  <input type="text" name="keyword" id="textInput"/>
-			  <input type="submit" value="搜索" id="searchbutton" />
-			</div>
-			<div id="searchright1">
-			 <select name="catalogID" >
-			  <option value="0">所有类别</option>
-			  <s:iterator value="catalog" var='outer'>
-				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
-				<s:iterator value="#outer.childCatalog" var="inner">
-				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
-				</s:iterator>
-			   </s:iterator>
-              </select> 
-              </div>
-		  	  </form>
-		</div>
     <form action="order_submit" method="post">
     <div id="order_container">
     	<div id="c-info">
@@ -199,7 +174,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>     
     </div>
     </form>
-  	</div>
+  
   	<div id="footer">
 	  <span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
 	  <span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
