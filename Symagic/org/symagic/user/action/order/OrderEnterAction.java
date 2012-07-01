@@ -13,34 +13,33 @@ import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.service.AddressService;
 import org.symagic.common.utilty.presentation.bean.AddressDetailBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
-import org.symagic.user.utilty.MathUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 public class OrderEnterAction extends CatalogBase {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4781084758132850598L;
 
 	private List<AddressDetailBean> addressList;
-	
+
 	private String userName;
-	
-	private Float price;
-	
+
+	private String price;
+
 	private String payment;
-	
+
 	private String deliverWay;
-	
+
 	private boolean isValidate;
-	
+
 	private String buyItems;
-	
+
 	private AddressService addressService;
-	
+
 	private DaoBook daoBook;
-	
+
 	private List<ItemTinyBean> items;
 
 	public List<AddressDetailBean> getAddressList() {
@@ -59,11 +58,11 @@ public class OrderEnterAction extends CatalogBase {
 		this.userName = userName;
 	}
 
-	public Float getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(Float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
@@ -89,7 +88,7 @@ public class OrderEnterAction extends CatalogBase {
 			return ERROR;
 		JSON json = JSONSerializer.toJSON(items);
 		items = new ArrayList<ItemTinyBean>();
-		price = 0.0f;
+		Float temp = 0.0f;
 		if(json.isArray()){
 			JSONArray jsonArray = (JSONArray)json;
 			for(int i = 0; i < jsonArray.size(); i ++){
@@ -99,14 +98,14 @@ public class OrderEnterAction extends CatalogBase {
 					ItemTinyBean itemTinyBean = new ItemTinyBean();
 					itemTinyBean.setItemID(beanBook.getBookId());
 					itemTinyBean.setItemNumber(jsonArray.getInt(i));
-					itemTinyBean.setPrice(MathUtilty.roundWithdigits
-							(beanBook.getMarketPrice() * beanBook.getMarketPrice()));
-					itemTinyBean.setItemTotalPrice(MathUtilty.roundWithdigits
-							(itemTinyBean.getPrice() * itemTinyBean.getItemNumber()));
-					price += itemTinyBean.getItemTotalPrice();
+					itemTinyBean.setPrice(String.format("%.2f",(beanBook.getMarketPrice() * beanBook.getMarketPrice())));
+					itemTinyBean.setItemTotalPrice(String.format("%.2f",						
+							(beanBook.getMarketPrice() * beanBook.getMarketPrice() * itemTinyBean.getItemNumber())));
+					temp += beanBook.getMarketPrice() * beanBook.getMarketPrice() * itemTinyBean.getItemNumber();
 					items.add(itemTinyBean);
 				}
 			}
+			price = String.format("%.2f", temp);
 		}
 		userName = UserSessionUtilty.getUsername();
 		addressList = addressService.getAddressDetail(userName);
@@ -117,7 +116,7 @@ public class OrderEnterAction extends CatalogBase {
 
 	@Override
 	public void validate() {
-		if(items == null){
+		if (items == null) {
 			isValidate = false;
 			return;
 		}
@@ -156,6 +155,5 @@ public class OrderEnterAction extends CatalogBase {
 	public void setAddressService(AddressService addressService) {
 		this.addressService = addressService;
 	}
-	
-	
+
 }
