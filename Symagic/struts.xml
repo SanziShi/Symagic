@@ -267,7 +267,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="get_next_level" class="getNextLevel">
 			<result type="json">
-				<param name="includeProperties">nextLevelArray</param>
+				<param name="root">nextLevelArray</param>
 			</result>
 		</action>
 		<action name="delete_address" class="deleteAddress">
