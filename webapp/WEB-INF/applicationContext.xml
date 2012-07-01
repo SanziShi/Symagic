@@ -471,6 +471,7 @@
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="daoComment" ref="DaoComment"></property>
 		<property name="daoCatalog" ref="DaoCatalog"></property>
+	    <property name="orderService" ref="OrderService"></property>
 	</bean>
 
 	<bean id="AddressService" class="org.symagic.common.service.AddressService">

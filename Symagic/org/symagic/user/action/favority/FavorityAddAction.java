@@ -26,6 +26,7 @@ public class FavorityAddAction extends ActionSupport {
 				addResult=false;
 				return SUCCESS;
 			}
+			
 			addResult=daoFavorityFolder.add(UserSessionUtilty.getUsername(), itemID);
 			return super.execute();
 		}
