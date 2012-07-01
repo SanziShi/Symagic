@@ -23,14 +23,22 @@
 		<a name="0"></a>
 		<div id="globallink">
 			<ul>
-				<li><a href="index">首页</a></li>
-				<li><a href="category_list.html">目录管理</a></li>
-				<li><a href="item_manager">商品管理</a></li>
-				<li><a href="order_list">订单管理</a></li>
-				<li><a href="order_statistics">销售量统计</a></li>
-				<li><a href="user_admin.html">会员管理</a></li>
-				<li><a href="comment_list.html">评论管理</a></li>
-				<li><a href="" class="nouseful">&nbsp;</a></li>
+				<li><a href="index">首页</a>
+				</li>
+				<li><a href="category_list.html">目录管理</a>
+				</li>
+				<li><a href="item_manager">商品管理</a>
+				</li>
+				<li><a href="order_list">订单管理</a>
+				</li>
+				<li><a href="order_statistics">销售量统计</a>
+				</li>
+				<li><a href="user_admin.html">会员管理</a>
+				</li>
+				<li><a href="comment_list.html">评论管理</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
 			</ul>
 		</div>
 		<!-- <div class="clear"></div>
@@ -61,44 +69,56 @@
 					<span>后台首页</span>
 				</h4>
 				<ul>
-					<li><a href="index.jsp">后台首页</a></li>
+					<li><a href="index.jsp">后台首页</a>
+					</li>
 
 				</ul>
 				<h4>
 					<span>销售管理</span>
 				</h4>
 				<ul>
-					<li><a href="salesdata_admin.html">查询销售情况</a></li>
-					<li><a href="salesdata_list.html">销售量统计</a></li>
+					<li><a href="salesdata_admin.html">查询销售情况</a>
+					</li>
+					<li><a href="salesdata_list.html">销售量统计</a>
+					</li>
 				</ul>
 				<h4>
 					<span>目录管理</span>
 				</h4>
 				<ul>
-					<li><a href="category_list.html">编辑商品目录</a></li>
-					<li><a href="category_list.html">添加商品目录</a></li>
+					<li><a href="category_list.html">编辑商品目录</a>
+					</li>
+					<li><a href="category_list.html">添加商品目录</a>
+					</li>
 				</ul>
 				<h4>
 					<span>商品管理</span>
 				</h4>
 				<ul>
-					<li><a href="item_list.html">添加商品</a></li>
-					<li><a href="item_list.html">修改商品信息</a></li>
-					<li><a href="item_search.html">商品搜索</a></li>
+					<li><a href="item_list.html">添加商品</a>
+					</li>
+					<li><a href="item_list.html">修改商品信息</a>
+					</li>
+					<li><a href="item_search.html">商品搜索</a>
+					</li>
 				</ul>
 				<h4>
 					<span>订单管理</span>
 				</h4>
 				<ul>
-					<li><a href="order_list">订单审核</a></li>
-					<li><a href="order_admin.html">查询订单</a></li>
+					<li><a href="order_list">订单审核</a>
+					</li>
+					<li><a href="order_admin.html">查询订单</a>
+					</li>
 				</ul>
 				<h4>
 					<span>会员管理</span>
 				</h4>
 				<ul>
-					<li><a href="user_admin.html">查询会员</a></li>
-					<li><a href="user_admin.html">设置会员等级规定</a></li>
+					<li><a href="user_admin.html">查询会员</a>
+					</li>
+					<li><a href="user_admin.html">设置会员等级规定</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -124,8 +144,7 @@
 								</s:iterator>
 							</s:iterator>
 						</select> <input type="text" name="keyword" id="keyword" class="gray"
-							value="" /> <input type="submit"
-							value="搜索" onclick=""/>
+							value="" /> <input type="submit" value="搜索" onclick="" />
 					</form>
 				</div>
 			</div>
@@ -159,8 +178,7 @@
 								<td id="myfont" class="mywidth"><s:property
 										value="productNum" />个</td>
 							</tr>
-						</table>
-					</td>
+						</table></td>
 
 					<td class="mywidth">
 						<table width="100% " style="display:inline ">
@@ -187,8 +205,7 @@
 								<td id="myfont"><span class="redStrong"><s:property
 											value="finishOrderAmount" /> </span>个</td>
 							</tr>
-						</table>
-					</td>
+						</table></td>
 				</tr>
 			</table>
 			<!--      <table width="100%">
@@ -253,8 +270,7 @@
 								<tr id="<s:property value = '#orders.orderID'/>">
 
 									<td><input type="checkbox" name="orders"
-										value="<s:property value = '#orders.orderID'/>" />
-									</td>
+										value="<s:property value = '#orders.orderID'/>" /></td>
 
 									<td class="antoWidth"><s:property value="#orders.orderID" />
 									</td>
@@ -266,25 +282,34 @@
 									</td>
 
 									<td class="autoWidth"><s:property
-											value="#orders.orderStatus" /></td>
+											value="#orders.orderStatus" />
+									</td>
 									<td><s:if test="#orders.orderStatus=='已下单' ">
 											<a
 												href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
-											<a href="">审核</a>&nbsp;
+												<a
+												href="order_edit?orderID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
+											<a href=""
+												onclick="ajax_pass_order(<s:property value = '#orders.orderID'/>)">审核</a>&nbsp;
  <a
 												onclick="ajax_delete_order(
 												<s:property value = '#orders.orderID'/>)"
-												href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
+												href="">删除</a>&nbsp;
  </s:if> <s:elseif test="#orders.orderStatus=='已审核'">
 											<a
 												href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
 											<a
-												href="order_detail?orderID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
+												href="order_edit?orderID=<s:property value = '#orders.orderID'/>">修改</a>&nbsp;
 <a
 												onclick="ajax_delete_order(
-												<s:property value = "#orders.orderID"/>)"
-												href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
- </s:elseif> <s:elseif test="#orders.orderStatus=='交易成功'">
+												<s:property value = '#orders.orderID'/>)"
+												href="">删除</a>&nbsp;
+												
+<a
+												onclick="ajax_success_order(<s:property value = '#orders.orderID'/>))" href="">交易成功</a>
+											<a
+												onclick="ajax_fail_order(<s:property value = '#orders.orderID'/>)" href="">交易失败</a>
+										</s:elseif> <s:elseif test="#orders.orderStatus=='交易成功'">
 											<a
 												href="order_detail?orderID=<s:property value = '#orders.orderID'/>">详情</a>&nbsp;
   </s:elseif> <s:else>
@@ -294,9 +319,8 @@
 <a
 												onclick="ajax_delete_order(
 												<s:property value = '#orders.orderID'/>)"
-												href="order/delete_order?orderID=<s:property value='#orders.orderID'/>">删除</a>&nbsp;
-  </s:else>
-									</td>
+												href="">删除</a>&nbsp;
+  </s:else></td>
 
 
 								</tr>

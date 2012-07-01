@@ -398,6 +398,10 @@
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 	</bean>
 
+	<bean id="cancelOrder" class="org.symagic.user.action.order.OrderCancelAction">
+		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
+
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
 		<property name="daoUser" ref="DaoUser"></property>

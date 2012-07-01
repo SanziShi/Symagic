@@ -28,13 +28,12 @@ public class AdminSuccessOrderAction extends ActionSupport {
 		changeResult = false;
 
 		if (orderIDList == null)
-			return ERROR;
+			return super.execute();
 
 		// 检查状态是否符合(是否全部是已审核状态）
 		for (int i = 0; i < orderIDList.size(); i++) {
 			BeanOrder order = daoOrder.getOrderDetail(orderIDList.get(i));
-			if (!order.getOrderState().equals("1")) {
-				changeResult = false;
+			if (order == null || !order.getOrderState().equals("1")) {
 				return super.execute();
 			}
 		}

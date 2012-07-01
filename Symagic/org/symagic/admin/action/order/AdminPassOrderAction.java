@@ -24,13 +24,12 @@ public class AdminPassOrderAction extends ActionSupport {
 
 		checkResult = false;
 		
-		if( orderIDList == null ) return SUCCESS;
+		if( orderIDList == null ) return super.execute();
 
 		// 检查状态是否符合
 		for (int i = 0; i < orderIDList.size(); i++) {
 			BeanOrder order = daoOrder.getOrderDetail(orderIDList.get(i));
-			if (!order.getOrderState().equals("0")) {
-				checkResult = false;
+			if (order == null || !order.getOrderState().equals("0")) {
 				return super.execute();
 			}
 		}
