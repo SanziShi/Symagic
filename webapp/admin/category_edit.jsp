@@ -79,7 +79,8 @@
 							</tr>
 							<tr>
 								<th class="itemsearchth">父目录：</th>
-								<td class="itemsearchtd1"><select name="parentID">
+								<td class="itemsearchtd1">
+								<select name="upID">
 										<!--若是根目录-->
 										<s:if test="%{upID==0}">
 											<option value="0" selected="selected">根目录</option>
