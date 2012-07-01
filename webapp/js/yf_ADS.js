@@ -89,7 +89,14 @@ function delete_from_favorite(id)
 {
 	Ajax({
 		url:'favorite/delete_favorite?itemID='+id,
-		onSuccess:function(e){alert(e)}
+		onSuccess:function(e){
+				var a=JSON.parse(e);
+				if(a.deleteResult)
+				{
+					alert('删除收藏成功！');
+					location.reload();
+				}
+			}
 		})
 }
 /********刷新验证码************/

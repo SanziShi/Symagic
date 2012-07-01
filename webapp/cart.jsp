@@ -81,7 +81,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </form>
 		</div>
         <div class="clear"></div>
-        <form onsubmit="return tests(this)" id="checkout" action="order" method="post">
+        <form id="checkout" action="order" method="post">
         <div id="cart-a">
         	<h2>我的购物车</h2>
         	<div id="cart_table">
@@ -110,9 +110,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.marketPrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
                     <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
-        <input name="itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
-        <a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
-        </span></div>
+        				<input name="itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
+        				<a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
+        				</span></div>
          			<div class="cell total">￥<span id="<s:property value='#iter.itemID'/>total_price"><s:property value='#iter.itemTotalPrice'/></span></div>
                     <div class="cell action"><a onclick="add_to_favorite(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="delete_from_page(<s:property value='#iter.itemID'/>)">删除</a></div>
                     </div>
