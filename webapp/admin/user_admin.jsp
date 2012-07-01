@@ -84,7 +84,7 @@
               <td align="center" class="inputContent">&nbsp;</td>
             </tr>
             <!--会员等级说明迭代开始-->
-            <s:interator value="levelList" var="levelInfo">
+            <s:iterator value="levelList" var="levelInfo">
             <tr>
               <td class="inputHeader">&nbsp;</td>
               <td align="center" class="inputHeader"><s:property value="#levelInfo.levelName"/>&nbsp;&nbsp;</td>
@@ -92,7 +92,7 @@
               <td align="center" class="inputContent"><s:property value="#levelInfo.scoreRate"/></td>
               <td align="center" class="inputContent">&nbsp;</td>
             </tr>
-            </s:interator>
+            </s:iterator>
              <!--会员等级说明迭代结束-->
              </table>
              </div>
@@ -124,7 +124,7 @@
               <td class="inputHeader"><label></label></td>
               <td align="center" class="inputHeader">积分下限：</td>
               <td align="left" class="inputContent">
-                <input type="text" class="inputtext" name="low" onFocus="nextfield='credit'" maxlength="25"/>
+                <input type="text" class="inputtext" name="low" onfocus="nextfield='credit'" maxlength="25"/>
               </td>
               <td colspan="2" align="left" class="inputContent"><font color="#CC0000">当积分大于相应等级的积分下限时，会员将自动升级</font></td>
               <td align="center" class="inputContent">&nbsp;</td>
@@ -132,7 +132,7 @@
             <tr>
               <td class="inputHeader">&nbsp;</td>
               <td align="center" class="inputHeader">积分比例：</td>
-              <td align="left" class="inputContent"><input type="text" size="6" name="scoreRate" onFocus="nextfield='ratio'" />
+              <td align="left" class="inputContent"><input type="text" size="6" name="scoreRate" onfocus="nextfield='ratio'" />
                 % </td>
               <td colspan="2" align="left" class="inputContent"><font color="#CC0000">会员购买物品时获得的积分占购买金额的比例</font></td>
               <td align="center" class="inputContent">&nbsp;</td>
@@ -140,8 +140,8 @@
             <tr>
               <td colspan="2" class="inputHeader">&nbsp;</td>
               <td colspan="3" align="left" class="inputContent">
-                <input type="submit" class="bt2" name="button22" value="提交" onClick="checkusersetform()">&nbsp;
-                &nbsp;<input type="Reset" class="bt2" name="button12" value="重填""></td>
+                <input type="submit" class="bt2" name="button22" value="提交" onclick="checkusersetform()"/>&nbsp;
+                &nbsp;<input type="reset" class="bt2" name="button12" value="重填"/></td>
               <td align="center" class="inputContent">&nbsp;</td>
 				</tr>
       
