@@ -615,3 +615,77 @@ function reduce(id) {
 function amount_modify(e) {
 	e.value = e.value.replace(/\D+/g, '');
 }
+
+
+//目录管理
+
+function show(table,sum){
+var t;
+t=document.getElementById(table);
+  if(t.style.display=="") {
+ t.style.display="none";
+  } 
+ else {
+  t.style.display="";
+ }
+ for(i=0;i<sum;i++){
+ if(("t"+i)!=table){
+ t=document.getElementById("t"+i);
+ t.style.display="none";
+   }
+  }
+}
+
+function checkselectno(name){
+var el = document.getElementsByTagName(name);
+var len = el.length;
+var checkno=0;
+for(var i=0; i<len; i++)
+  {
+  if((el[i].type=="checkbox") && (el[i].checked==true))   
+     checkno++;   
+  }
+if(checkno==1)
+  {window.location.href="category_edit.html";
+   return true;
+  }
+if(checkno>1)
+  {
+  window.alert("每次只能修改一个目录！");
+  return false;
+  }
+else
+  {
+  window.alert("请先选择目录！");
+  return false;
+  }
+
+}
+
+function checkdelno(name){
+var el = document.getElementsByTagName('name');
+var len = el.length;
+var checkno=0;
+for(var i=0; i<len; i++)
+  {
+  if((el[i].type=="checkbox") && (el[i].checked==true))   
+     {checkno=1;
+	 break;  }
+  }
+if(checkno==1)
+  {
+  if(window.confirm("确定删除？"))
+     return true;
+   else
+     return false;
+  }
+ 
+else
+  {
+  window.alert("请先选择目录！");
+  return false;
+  }
+
+}
+
+//目录管理结束
