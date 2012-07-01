@@ -367,7 +367,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">offResult</param>
 			</result>
 		</action>
-		
+		     
 		<action name="up" class="AdminUpItem">
 			<result type="json">
 				<param name="includeProperties">upResult</param>

@@ -13,15 +13,16 @@ public class CartModifyItemAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 3920616007203094591L;
 
+//传入
+	private Integer itemID;//商品id
+	private Integer itemNumber;//更改后的数量
+//配置
 private DaoCart daoCart;//访问数据库中会员购物车信息
+//传出
 
-private Integer itemID;//商品id
-
-
-private Integer itemNumber;//更改后的数量
-private boolean validateResult=true;
 private boolean updateResult=false;//修改是否成功
-
+//内部
+private boolean validateResult=true;
 @Override
 public void validate() {
 	// TODO Auto-generated method stub

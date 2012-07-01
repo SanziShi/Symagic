@@ -25,7 +25,7 @@ private boolean deleteResult;//全部删除结果
 @Override
 public String execute() throws Exception {
 	// TODO Auto-generated method stub
-if(itemID==null){
+if(itemID==null||!UserSessionUtilty.isLogin()){
 	deleteResult=false;
 	return SUCCESS;
 }	

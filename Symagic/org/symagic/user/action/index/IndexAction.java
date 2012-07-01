@@ -24,18 +24,18 @@ public class IndexAction extends CatalogBase{
 	 */
 private static final long serialVersionUID = 5685501467658534869L;
 
+//配置项
 private RecommandService recommendService; //访问推荐系统
 private ItemService itemService;//访问商品项
 
 
 //传出参数
 private String nickname;//昵称
-
 private List<ItemTinyBean> recommendItem;//浏览量的商品
 private List<ItemTinyBean> newBook;//新书
 private List<ItemTinyBean> hotBook;//热销书
 
-	@Override
+@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		//增加购物车的数量

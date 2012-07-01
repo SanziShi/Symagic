@@ -20,7 +20,7 @@ public class BrowseCommentAction extends ActionSupport {
 	private ItemService itemService;
 	private String errorHeader;
 	private String errorSpecification;
-	
+	//传出
 	private List<BeanComment> commentList;
 
 	

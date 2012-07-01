@@ -49,7 +49,7 @@ public class AdvanceSearchAction extends CatalogBase {
 	private ItemService itemService;// 访问书本的业务层
 	private RecommandService recommendService;// 推荐系统
 	 private int sign;// 搜索标志，1为高级搜索
-  //传出
+     //传出
 	private Integer totalPage;
     private List<ItemTinyBean> recommend;// 推荐商品
 	private List<ItemBean> items;// 用于显示的商品列表
@@ -110,6 +110,7 @@ public class AdvanceSearchAction extends CatalogBase {
 				itemService.decorateForItem(books, items);
 		return super.execute();
 	}
+	
 	private void setCatalog(BookRequire require,Integer catalogID ){
 		if(catalogID==null||catalogID==0)return;
 		require.setCatalogIDList(itemService.getCatalogList(catalogID));
