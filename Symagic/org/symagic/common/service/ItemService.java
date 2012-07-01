@@ -210,8 +210,7 @@ public class ItemService {
 		BeanBook book = daoBook.getDetail(itemId);
 		if (book == null)
 			return false;
-		BeanCatalog currentCatalog = daoCatalog.getCatalogByID(book
-				.getCatalogID());
+		BeanCatalog currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
 		detail.setAuthor(book.getAuthor());
 		int rating=daoComment.getAverageRating(itemId);
 		detail.setAverageRating(rating);

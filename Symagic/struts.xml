@@ -112,9 +112,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="cart" class="cartEnter">
 			<result>/cart.jsp</result>
 		</action>
-		
+
 		<action name="favorite" class="detailOfFavorite">
-		  <result>/lib/favorite.jsp</result>
+			<result>/lib/favorite.jsp</result>
 		</action>
 
 		<!-- 商品项 -->
@@ -149,27 +149,26 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
-		 
+
 		<action name="order" class="orderEnter">
 			<result>order_confirm.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
-		
+
 		<action name="order_list" class="orderList">
 			<result>order_list.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
-		
+
 		<action name="order_detail" class="orderDetail">
 			<result>order_info.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
-		
+
 		<action name="order_submit" class="orderSubmit">
 			<result>order_success.jsp</result>
 			<result name="error">/error.jsp</result>
-		</action> 
-      	
+		</action>
 	</package>
 
 	<!-- 注册时用户名检测 -->
@@ -188,7 +187,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		namespace="/cart">
 		<action name="add_to_cart" class="addToCart">
 			<result type="json">
-				<param name="includeProperties">addResult,resultInfo</param>
+				<param name="includeProperties">addResult</param>
 			</result>
 			<result type="json" name="input">
 				<param name="includeProperties">addResult</param>
@@ -215,7 +214,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 	<!-- 用户收藏夹有关的action -->
-	<package name="favority-user-default" extends="symagic-user-default" namespace="/favorite">
+	<package name="favority-user-default" extends="symagic-user-default"
+		namespace="/favorite">
 		<action name="add_favorite" class="addToFavorite">
 			<result type="json">
 				<param name="includeProperties">addResult</param>
@@ -230,7 +230,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 	<!-- 用户中与商品项有关的小接口 -->
 
-	<package name="item-user-default" extends="symagic-user-default" namespace="/item">
+	<package name="item-user-default" extends="symagic-user-default"
+		namespace="/item">
 		<action name="comment" class="submitComment">
 			<result type="json">
 				<param name="includeProperties">submitResult</param>
@@ -242,7 +243,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 
 	</package>
-	
+
 	<!-- 用户信息相关 -->
 	<package name="info-user-default" extends="symagic-user-default"
 		namespace="/user">
@@ -257,7 +258,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 	</package>
-	
+
 	<!-- 地址相关 -->
 	<package name="address-user-default" extends="symagic-user-default"
 		namespace="/address">
@@ -268,7 +269,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="get_next_level" class="getNextLevel">
 			<result type="json">
-				<param name="includeProperties">nextLevelArray</param>
+				<param name="root">nextLevelArray</param>
 			</result>
 		</action>
 		<action name="delete_address" class="deleteAddress">
@@ -277,7 +278,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 	</package>
-	
+
 	<package name="order-user-default" extends="symagic-user-default"
 		namespace="/order">
 		<action name="delete_order" class="deleteOrder">
@@ -296,7 +297,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 	</package>
-	
+
 
 	<!-- 配置管理员的action -->
 	<package name="admin-default" extends="symagic-admin-default"
@@ -424,6 +425,24 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
+		<action name="catalog_edit" class="AdminEnterEditCatalog">
+			<result>
+				/admin/category_edit.jsp
+			</result>
+		</action>
+
+		<action name="catalog_edit_submit" class="AdminSubmitCatalogModify">
+			<result>
+				/admin/category_edit.jsp
+			</result>
+		</action>
+
+		<action name="catalog_add_submit" class="AdminAddCatalog">
+			<result>
+				/admin/category_edit.jsp
+			</result>
+		</action>
+
 	</package>
 
 	<!-- 配置管理员的item manage action -->
@@ -500,5 +519,4 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	</package>
 
 </struts>
-
 

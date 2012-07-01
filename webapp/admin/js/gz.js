@@ -573,7 +573,6 @@ function ajax_delete_order(id) {
 // 商品管理中删除一个商品
 function ajax_delete_tag(id) {
 	var result = confirm("该操作将会将商品移除，确定继续吗？");
-	alert(id);
 	if (result == true) {
 		Ajax({
 			url : 'item_manager/delete?itemID=' + id,
@@ -586,7 +585,6 @@ function ajax_delete_tag(id) {
 				 * t.innerHTML=e;
 				 * document.getElementById('cart').appendChild(t); t=null;
 				 */
-				alert(e);
 				var obj = JSON.parse(e);
 				if (obj.deleteResult == true) {
 					var tag = document.getElementById(id);

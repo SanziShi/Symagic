@@ -11,7 +11,7 @@
 	language="javascript"></script>
 <script src="js/gz.js" type="text/javascript" language="javascript"></script>
 <script src="js/jquery.js" type="text/javascript" language="javascript"></script>
-
+<script src="js/search.js" type="text/javascript" language="javascript"></script>
 </head>
 
 <body>
@@ -85,7 +85,7 @@
 						onclick="show_item_search(this);"></span>
 				</div>
 				<div id="item_search1" class="user_note_content hide">
-					<form action="item_manager" method="post">
+					<form action="item_manager" method="post" id="search_form">
 						<table>
 							<tr>
 								<th>书&nbsp;&nbsp;&nbsp;名：</th>
@@ -342,11 +342,36 @@
 								</td>
 								<th>商品折扣：</th>
 								<td><select name="discount" class="midselect">
-										<option value="0">所有折扣</option>
-										<option value="1">3折以下</option>
-										<option value="2">3-5折</option>
-										<option value="3">5-7折</option>
-										<option value="4">7折及以上</option>
+										<s:if test="%{discount==0}">
+											<option value="0" selected="selected">所有折扣</option>
+										</s:if>
+										<s:else>
+											<option value="0">所有折扣</option>
+										</s:else>
+										<s:if test="%{discount==1}">
+											<option value="1" selected="selected">3折以下</option>
+										</s:if>
+										<s:else>
+											<option value="1">3折以下</option>
+										</s:else>
+										<s:if test="%{discount==2}">
+											<option value="2" selected="selected">3-5折</option>
+										</s:if>
+										<s:else>
+											<option value="2">3-5折</option>
+										</s:else>
+										<s:if test="%{discount==3}">
+											<option value="3" selected="selected">5-7折</option>
+										</s:if>
+										<s:else>
+											<option value="3">5-7折</option>
+										</s:else>
+										<s:if test="%{discount==4}">
+											<option value="4" selected="selected">7折及以上</option>
+										</s:if>
+										<s:else>
+											<option value="4">7折及以上</option>
+										</s:else>
 								</select>
 								</td>
 							</tr>
@@ -354,9 +379,8 @@
 								<th></th>
 								<td id="button_right"><input type="submit" name="button2"
 									value="搜索" /> <!-- onClick="javascript:window.location.href='item_search_list.html'"-->
-
+									<input name="page" type="hidden" value="1" />
 								</td>
-
 							</tr>
 						</table>
 					</form>
@@ -388,8 +412,10 @@
 								</a>
 								</td>
 								<td width="77%" align="left" class="inputHeader"><span
-									class="red" id="item_font20"><s:property
-											value="#bookItems.name" /> </span></font><br /> <font id="item_font17">作者：<s:property
+									class="red" id="item_font20"><a
+										href="item_detail?itemID=<s:property value = '#bookItems.itemID'/>"><s:property
+												value="#bookItems.name" />
+									</a> </span><br /> <font id="item_font17">作者：<s:property
 											value="#bookItems.author" />&nbsp; &nbsp; </font><br /> <font
 									id="item_font17">出版社：<s:property
 											value="#bookItems.publisher" />&nbsp; &nbsp;出版时间：<s:property
@@ -417,6 +443,21 @@
 										type="button" value="删除" /> </a>&nbsp;&nbsp;</td>
 							</tr>
 						</s:iterator>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><s:if test="%{1==totalPage}"></s:if> <s:elseif
+									test="%{page==1}">
+									<a href="item_manager?page=${ page + 1 }">下一页</a>
+								</s:elseif> <s:elseif test="%{page==totalPage}">
+									<a href="item_manager?page=${ page - 1 }">上一页</a>
+								</s:elseif> <s:else>
+									<a href="item_manager?page=${ page - 1 }">上一页</a>
+									<a href="item_manager?page=${ page + 1 }">下一页</a>
+								</s:else></td>
+							<td>当前第<s:property value="page" />页，共<s:property
+									value="totalPage" />页</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -438,7 +479,7 @@
             <input type="button" value="修改"/>&nbsp;&nbsp;
             <input type="button" value="下架"/>&nbsp;&nbsp;
 		    <input type="button" value="删除"/>&nbsp;&nbsp;
-            </td>
+            </td>advSearchSubmit
           </tr>
            <tr>
             <td width="7%" rowspan="4" align="center"><span class="red">3</span></td>

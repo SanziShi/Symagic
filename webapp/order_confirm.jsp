@@ -61,31 +61,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-	<div id="banner"></div>
-  	<div id="main">
-		<div id="search2">
-			<div id="searchleft">
-				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
-			</div>
-			<form action="quick_search" method="post">
-			<div id="searchright2">
-			  <input type="text" name="keyword" id="textInput"/>
-			  <input type="submit" value="搜索" id="searchbutton" />
-			</div>
-			<div id="searchright1">
-			 <select name="catalogID" >
-			  <option value="0">所有类别</option>
-			  <s:iterator value="catalog" var='outer'>
-				<option value="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></option>
-				<s:iterator value="#outer.childCatalog" var="inner">
-				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
-				</s:iterator>
-			   </s:iterator>
-              </select> 
-              </div>
-		  	  </form>
-		</div>
     <form action="order_submit" method="post">
     <div id="order_container">
     	<div id="c-info">
@@ -103,31 +78,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<tbody>
                     	<tr>
                         	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
-                            <td><input class="txt" type="text"/></td>
+                            <td><input name="receiver" class="txt" type="text"/></td>
                         </tr>
                         <tr>
                         	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
                             <td>
-                            	<select><option value="">请选择</option></select>
-                                <select><option value="">请选择</option></select>
-                                <select><option value="">请选择</option></select>
+                            	<select onchange="get_district(this)" id="level1ID" name="level1ID">
+                                <s:iterator value="level1Districts" var='iter'>
+                                	<option value="<s:property value='#iter.ID'/>"><s:property value='#iter.name'/></option>
+                                </s:iterator>
+                                </select>
+                                <select id="level2ID" name="level2ID">
+                                	<option value="">请选择</option>
+                                </select>
+                                <select id="level3ID" name="level3ID">
+                                	<option value="">请选择</option>
+                                </select>
                             </td>
                         </tr>
                     	<tr>
                         	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
-                            <td><span id="consign_address"></span><input type="text" class="txt long"></td>
+                            <td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long"></td>
                         </tr>
                     	<tr>
                         	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            <td><input type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input type="text" class="txt"/></td>
+                            <td><input name="mobileNum" type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt"/></td>
                         </tr>
                     	<tr>
                         	<td valign="middle" align="right">邮箱地址：</td>
-                            <td>43234@qq.com</td>
+                            <td><s:property value='#session.userName'/></td>
                         </tr>
                     	<tr>
                         	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
-                            <td><input type="text" class="txt short"/></td>
+                            <td><input name="zipcode" type="text" class="txt short"/></td>
                         </tr>
                     </tbody>
                 </table>
@@ -175,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     		<td width="15%">可获积分</td>
                     	</tr>
                 		<!--商品列表迭代开始-->
-                        <s:iterator value="items" var='iter'>
+                        <s:iterator value="buyItems" var='iter'>
                     	<tr>
                     		<td><s:property value='#iter.itemID'/></td>
                         	<td><s:property value='#iter.name'/></td>
@@ -192,17 +175,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="ware">
         	<h1>结算</h1>
-        	<div class="total_price"><span id="pay">应付总额：<strong>￥200.00</strong>元</span></div>
+        	<div class="total_price"><span id="pay">应付总额：<strong>￥<s:property value='price'/></strong>元</span></div>
         	<div class="clear"></div>
         	<div class="order_confirm"></div>
         	<div class="clear"></div>
         </div>     
     </div>
-    </form>
-  	</div>
-  	<div id="footer">
-	  <span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
-	  <span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
+   </form>
+	<div id="footer">
+		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
+		<span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
 	</div>
 </div>
 

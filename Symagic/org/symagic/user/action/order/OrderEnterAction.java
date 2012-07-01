@@ -10,8 +10,10 @@ import net.sf.json.JSONSerializer;
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.service.AddressService;
 import org.symagic.common.utilty.presentation.bean.AddressDetailBean;
+import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
@@ -34,14 +36,16 @@ public class OrderEnterAction extends CatalogBase {
 
 	private boolean isValidate;
 
-	private String buyItems;
+	private List<ItemTinyBean> buyItems;
 
 	private AddressService addressService;
 
 	private DaoBook daoBook;
 
 	private List<ItemTinyBean> items;
-
+	
+	private List<DistrictBean> level1Districts;
+	
 	public List<AddressDetailBean> getAddressList() {
 		return addressList;
 	}
@@ -84,31 +88,39 @@ public class OrderEnterAction extends CatalogBase {
 
 	@Override
 	public String execute() throws Exception {
-		if(!isValidate)
+		if (!isValidate)
 			return ERROR;
-		JSON json = JSONSerializer.toJSON(items);
-		items = new ArrayList<ItemTinyBean>();
 		Float temp = 0.0f;
-		if(json.isArray()){
-			JSONArray jsonArray = (JSONArray)json;
-			for(int i = 0; i < jsonArray.size(); i ++){
-				Integer itemId = jsonArray.getInt(i);
-				BeanBook beanBook = daoBook.getDetail(itemId);
-				if(beanBook != null){
-					ItemTinyBean itemTinyBean = new ItemTinyBean();
-					itemTinyBean.setItemID(beanBook.getBookId());
-					itemTinyBean.setItemNumber(jsonArray.getInt(i));
-					itemTinyBean.setPrice(String.format("%.2f",(beanBook.getMarketPrice() * beanBook.getMarketPrice())));
-					itemTinyBean.setItemTotalPrice(String.format("%.2f",						
-							(beanBook.getMarketPrice() * beanBook.getMarketPrice() * itemTinyBean.getItemNumber())));
-					temp += beanBook.getMarketPrice() * beanBook.getMarketPrice() * itemTinyBean.getItemNumber();
-					items.add(itemTinyBean);
-				}
+		buyItems = new ArrayList<ItemTinyBean>();
+		for (int i = 0; i < items.size(); i++) {
+			Integer itemId = items.get(i).getItemID();
+			BeanBook beanBook = daoBook.getDetail(itemId);
+			if (beanBook != null) {
+				ItemTinyBean itemTinyBean = new ItemTinyBean();
+				itemTinyBean.setItemID(beanBook.getBookId());
+				itemTinyBean.setName(beanBook.getBookName());
+				itemTinyBean.setItemNumber(items.get(i).getItemNumber());
+				itemTinyBean
+						.setPrice(String.format("%.2f", (beanBook
+								.getMarketPrice() * beanBook.getDiscount())));
+				itemTinyBean
+						.setItemTotalPrice(String.format(
+								"%.2f",
+								(beanBook.getMarketPrice()
+										* beanBook.getDiscount() * itemTinyBean
+										.getItemNumber())));
+				itemTinyBean.setScore((int)(beanBook.getMarketPrice()
+						* beanBook.getDiscount() * itemTinyBean
+						.getItemNumber()));
+				temp += beanBook.getMarketPrice() * beanBook.getDiscount()
+						* itemTinyBean.getItemNumber();
+				buyItems.add(itemTinyBean);
 			}
-			price = String.format("%.2f", temp);
 		}
+		price = String.format("%.2f", temp);
 		userName = UserSessionUtilty.getUsername();
 		addressList = addressService.getAddressDetail(userName);
+		level1Districts = addressService.getDistricts(0);
 		payment = "货到付款";
 		deliverWay = "快递";
 		return super.execute();
@@ -124,11 +136,11 @@ public class OrderEnterAction extends CatalogBase {
 		super.validate();
 	}
 
-	public String getBuyItems() {
+	public List<ItemTinyBean> getBuyItems() {
 		return buyItems;
 	}
 
-	public void setBuyItems(String buyItems) {
+	public void setBuyItems(List<ItemTinyBean> buyItems) {
 		this.buyItems = buyItems;
 	}
 
@@ -155,5 +167,14 @@ public class OrderEnterAction extends CatalogBase {
 	public void setAddressService(AddressService addressService) {
 		this.addressService = addressService;
 	}
+
+	public List<DistrictBean> getLevel1Districts() {
+		return level1Districts;
+	}
+
+	public void setLevel1Districts(List<DistrictBean> level1Districts) {
+		this.level1Districts = level1Districts;
+	}
+
 
 }

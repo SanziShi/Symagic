@@ -7,6 +7,7 @@ import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.utilty.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionContext;
+import com.sun.faces.context.SessionMap;
 
 public class UserSessionUtilty extends SessionUtilty {
 
@@ -149,6 +150,27 @@ public class UserSessionUtilty extends SessionUtilty {
 	
 	public static Integer getTotalNumber(){
 		return (Integer)ActionContext.getContext().getSession().get("totalNumber");
+	}
+	
+	public static HashMap<Integer, Integer> getOrder(){
+		Map<String, Object> sessionMap = ActionContext.getContext().getSession();
+		
+		HashMap<Integer, Integer> order = (HashMap<Integer, Integer>)sessionMap.get("order");
+		if(order == null){
+			order = new HashMap<Integer, Integer>();
+			sessionMap.put("order", order);
+		}
+		return order;
+	}
+	
+	public static void setOrder(HashMap<Integer, Integer> order){
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		
+		if(session.get("order") != null){
+			HashMap<Integer, Integer> oldOrder = (HashMap<Integer, Integer>) session.get("order");
+			session.remove("order");
+			
+		}
 	}
 	
 	
