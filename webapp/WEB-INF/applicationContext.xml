@@ -349,6 +349,10 @@
 		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
+	
+	<bean id="forgetPasswordEnter" class="org.symagic.user.action.userinfo.ForgetPasswordEnterAction">
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
 
 	<bean id="updateNickname"
 		class="org.symagic.user.action.userinfo.UpdateUserNicknameAction"
@@ -406,6 +410,7 @@
 		scope="request">
 		<property name="addressService" ref="AddressService"></property>
 		<property name="daoBook" ref="DaoBook"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 	
 	<bean id="orderList" class="org.symagic.user.action.order.OrderListAction"
@@ -459,6 +464,7 @@
 
 	<bean id="OrderService" class="org.symagic.common.service.OrderService">
 		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="ItemService" class="org.symagic.common.service.ItemService">

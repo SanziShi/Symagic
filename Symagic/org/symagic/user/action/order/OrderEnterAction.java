@@ -84,29 +84,30 @@ public class OrderEnterAction extends CatalogBase {
 
 	@Override
 	public String execute() throws Exception {
-		if(!isValidate)
+		if (!isValidate)
 			return ERROR;
-		JSON json = JSONSerializer.toJSON(items);
-		items = new ArrayList<ItemTinyBean>();
 		Float temp = 0.0f;
-		if(json.isArray()){
-			JSONArray jsonArray = (JSONArray)json;
-			for(int i = 0; i < jsonArray.size(); i ++){
-				Integer itemId = jsonArray.getInt(i);
-				BeanBook beanBook = daoBook.getDetail(itemId);
-				if(beanBook != null){
-					ItemTinyBean itemTinyBean = new ItemTinyBean();
-					itemTinyBean.setItemID(beanBook.getBookId());
-					itemTinyBean.setItemNumber(jsonArray.getInt(i));
-					itemTinyBean.setPrice(String.format("%.2f",(beanBook.getMarketPrice() * beanBook.getMarketPrice())));
-					itemTinyBean.setItemTotalPrice(String.format("%.2f",						
-							(beanBook.getMarketPrice() * beanBook.getMarketPrice() * itemTinyBean.getItemNumber())));
-					temp += beanBook.getMarketPrice() * beanBook.getMarketPrice() * itemTinyBean.getItemNumber();
-					items.add(itemTinyBean);
-				}
+		for (int i = 0; i < items.size(); i++) {
+			Integer itemId = items.get(i).getItemID();
+			BeanBook beanBook = daoBook.getDetail(itemId);
+			if (beanBook != null) {
+				ItemTinyBean itemTinyBean = new ItemTinyBean();
+				itemTinyBean.setItemID(beanBook.getBookId());
+				itemTinyBean
+						.setPrice(String.format("%.2f", (beanBook
+								.getMarketPrice() * beanBook.getMarketPrice())));
+				itemTinyBean
+						.setItemTotalPrice(String.format(
+								"%.2f",
+								(beanBook.getMarketPrice()
+										* beanBook.getMarketPrice() * itemTinyBean
+										.getItemNumber())));
+				temp += beanBook.getMarketPrice() * beanBook.getMarketPrice()
+						* itemTinyBean.getItemNumber();
+				items.add(itemTinyBean);
 			}
-			price = String.format("%.2f", temp);
 		}
+		price = String.format("%.2f", temp);
 		userName = UserSessionUtilty.getUsername();
 		addressList = addressService.getAddressDetail(userName);
 		payment = "货到付款";
