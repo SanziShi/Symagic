@@ -505,3 +505,4 @@
 	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 
 </beans>
+

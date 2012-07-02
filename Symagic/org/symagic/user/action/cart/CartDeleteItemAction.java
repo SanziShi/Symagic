@@ -17,6 +17,8 @@ public class CartDeleteItemAction extends ActionSupport {
 	private static final long serialVersionUID = 531344796388813069L;
 	//传入
 	private Integer[]items;
+	
+
 	//配置项
 	private DaoCart daoCart;
 	//传出
@@ -29,6 +31,7 @@ public class CartDeleteItemAction extends ActionSupport {
 			deleteResult=false;
 			return SUCCESS;
 		}
+		
 		boolean result;
 		boolean login=UserSessionUtilty.isLogin();
 		StringBuilder builder=new StringBuilder();
@@ -44,14 +47,14 @@ public class CartDeleteItemAction extends ActionSupport {
 				   }
 			   }
 		   }
-		   if(!deleteResult){
+	   if(!deleteResult){
 			  builder.append("删除失败");
 			  resultInfo=builder.toString();
 		   }
 		   else{
 			   resultInfo="删除成功";
-		   }
-		
+	   }
+	
 		
 		return super.execute();
 	}

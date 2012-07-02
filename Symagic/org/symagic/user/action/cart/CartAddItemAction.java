@@ -1,5 +1,6 @@
 package org.symagic.user.action.cart;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.symagic.common.db.func.DaoBook;
@@ -20,8 +21,13 @@ public class CartAddItemAction extends ActionSupport {
 	//传入
    
    private ItemTinyBean[]items ;
-
-	
+  
+public String getResultInfo() {
+	return resultInfo;
+}
+public void setResultInfo(String resultInfo) {
+	this.resultInfo = resultInfo;
+}
 	//配置项
 	private DaoCart daoCart;//对于会员来说，更新到数据库中
     private DaoBook daoBook;
@@ -72,15 +78,19 @@ public class CartAddItemAction extends ActionSupport {
 			   return false;
 			 }
 		boolean addResult;
+		//首先通过其数量判断是否有这商品
+		 Integer  number=UserSessionUtilty.getCart().get(itemID);
+		 
 		 addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
-		//对于会员而言，后台数据库做同样的更新
-		    Integer  number=UserSessionUtilty.getCart().get(itemID);
+		
+		
+		     
 		    if(login){
 		    	if(number==null)
 		    		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
 		    	else
 		    		addResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber+number);
-		    	}
+		    }
 		    return addResult;
 	}
 	
