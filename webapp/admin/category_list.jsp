@@ -32,7 +32,7 @@
 				<li><a href="order_statistics">销售量统计</a></li>
 				<li><a href="user_level">会员管理</a></li>
 				<li><a href="" class="nouseful">&nbsp;</a></li>
-                <li><a href="" class="nouseful">&nbsp;</a></li>
+				<li><a href="" class="nouseful">&nbsp;</a></li>
 			</ul>
 		</div>
 		<div id="left">
@@ -57,55 +57,60 @@
 			<div id="mydouble">
 				<div id="mydoublehead1">
 					<strong>现有目录列表</strong>
-				</div>
-				<div id="doublecontent1">
-					<form action="" method="post" enctype="multipart/form-data">
+					<div id="doublecontent1">
 						<table id="xialabiao">
-                         <s:iterator value="catalog" var="outer">
-                         <div id="<s:property value='#outer.ID'/>">
-							<tr>
-								<td align="right" class="inputHeader"><label> <input style="display:none"
-										type="checkbox" name="category1" value="<s:property value='#outer.ID'/>" /> </label>
-								</td>
-								<td align="left" class="inputHeader"><img
-									src="image/plus.gif"  onclick="show('t0',10)"/>
-								</td>
-								<td width="94%" class="inputHeader"><a
-									href="catalog_edit?catalogID=<s:property value='#outer.ID'/>" class="menuLink"><s:property value="#outer.name"/>                                    </a>
-                                    <a href=""  onclick="ajax_catalog_delete_tag_level1(<s:property value='#outer.ID'/>)" 
-                                    style="float:right;margin-right:10px;">删除</a>
-                                    <a href="catalog_edit?catalogID=<s:property value='#outer.ID'/>"
-									style="float:right;margin-right:10px;">修改</a>
-								</td>
-							</tr>
-                            <s:iterator value="#outer.childCatalog" var="inner">
-                            <div id="<s:property value='#inner.ID'/>">
-							<tr id="t0" style="display:none">
-								<td colspan="3"><table width="100%" border="0"
-										cellspacing="0" cellpadding="0" class="inputTable">
-										<tr>
-											<td width="7%" align="right" class="inputContent"><!--<input
+							<s:iterator value="catalog" var="outer">
+								<div id="<s:property value='#outer.ID'/>">
+									<tr>
+										<td align="right" class="inputHeader"><label> <input
+												style="display:none" type="checkbox" name="category1"
+												value="<s:property value='#outer.ID'/>" /> </label>
+										</td>
+										<td align="left" class="inputHeader"><img
+											src="image/plus.gif" onclick="show('t0',10)" />
+										</td>
+										<td width="94%" class="inputHeader"><a
+											href="catalog_edit?catalogID=<s:property value='#outer.ID'/>"
+											class="menuLink"><s:property value="#outer.name" /> </a> <a
+											href=""
+											onclick="ajax_catalog_delete_tag_level1(<s:property value='#outer.ID'/>)"
+											style="float:right;margin-right:10px;">删除</a> <a
+											href="catalog_edit?catalogID=<s:property value='#outer.ID'/>"
+											style="float:right;margin-right:10px;">修改</a>
+										</td>
+									</tr>
+									<s:iterator value="#outer.childCatalog" var="inner">
+										<div id="<s:property value='#inner.ID'/>">
+											<tr id="t0" style="display:none">
+												<td colspan="3"></td>
+											</tr>
+								<tr>
+									<td width="7%" align="right" class="inputContent">
+										<!--<input
 												type="checkbox" name="category2" value="<s:property value='#inner.ID'/>" />-->
-											</td>
-											<td width="2%" align="right" class="inputContent">
-											</td>
-											<td width="92%" class="inputContent">
-                                            <a href="catalog_edit?catalogID=<s:property value='#inner.ID'/>" 
-                                                class="menuLink"><s:property value='#inner.name'/></a>
-                                            <a href="" onclick="ajax_catalog_delete_tag_level2(<s:property value='#inner.ID'/>)"
-												style="float:right;margin-right:10px;">删除</a>
-                                            <a href="catalog_edit?catalogID=<s:property value='#inner.ID'/>"
-												style="float:right;margin-right:10px;">修改</a>
-											</td>
-										</tr>
-                                     </div>   
-                                        </s:iterator>
-                                        </div>
-				                 </s:iterator>
-										
-									</table>
-								</td>
-							</tr>
+									</td>
+									<td width="2%" align="right" class="inputContent"></td>
+									<td width="92%" class="inputContent"><a
+										href="catalog_edit?catalogID=<s:property value='#inner.ID'/>"
+										class="menuLink"><s:property value='#inner.name' /> </a> <a
+										href=""
+										onclick="ajax_catalog_delete_tag_level2(<s:property value='#inner.ID'/>)"
+										style="float:right;margin-right:10px;">删除</a> <a
+										href="catalog_edit?catalogID=<s:property value='#inner.ID'/>"
+										style="float:right;margin-right:10px;">修改</a>
+									</td>
+								</tr>
+								</div>
+							</s:iterator>
+							</div>
+							</s:iterator>
+							
+
+
+
+
+
+
 							<tr>
 								<td align="center" class="inputHeader">&nbsp;</td>
 								<td align="center" class="inputHeader">&nbsp;</td>
@@ -118,10 +123,10 @@
 								</td>-->
 							</tr>
 						</table>
-                        </form>
+					</div>
 				</div>
 			</div>
-			
+
 			<div id="mydouble">
 				<div id="mydoublehead1">
 					<strong>添加目录</strong>
