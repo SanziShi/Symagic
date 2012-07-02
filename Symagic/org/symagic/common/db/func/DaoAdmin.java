@@ -17,7 +17,6 @@ public class DaoAdmin {
 	private PreparedStatement ps;
 	private Statement st;
 	private ResultSet rs;
-	private int count = 0;
 	
 	public boolean validateAdmin(String adminName, String pwd)
 	{

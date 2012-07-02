@@ -22,7 +22,7 @@ public class CatalogAddAction extends ActionSupport {
 	/**
 	 * 
 	 */
-	private Integer upID;// :父目录的ID(-1表示根目录）
+	private Integer upID;// :父目录的ID(0表示根目录）
 
 	private boolean validateResult;
 
@@ -72,14 +72,6 @@ public class CatalogAddAction extends ActionSupport {
 		this.catalogDesc = catalogDesc;
 	}
 
-	public Integer getUpID() {
-		return upID;
-	}
-
-	public void setUpID(Integer upID) {
-		this.upID = upID;
-	}
-
 	public boolean isValidateResult() {
 		return validateResult;
 	}
@@ -95,5 +87,14 @@ public class CatalogAddAction extends ActionSupport {
 	public void setDaoCatalog(DaoCatalog daoCatalog) {
 		this.daoCatalog = daoCatalog;
 	}
+
+	public Integer getUpID() {
+		return upID;
+	}
+
+	public void setUpID(Integer upID) {
+		this.upID = upID;
+	}
+
 
 }

@@ -488,7 +488,7 @@ function ajax_pass_order(id) {
 	}
 }
 
-//订单管理中设置订单为交易成功
+// 订单管理中设置订单为交易成功
 function ajax_success_order(id) {
 	var result = confirm("该操作将会将设置该订单为交易成功，确定继续吗？");
 	if (result == true) {
@@ -515,7 +515,7 @@ function ajax_success_order(id) {
 	}
 }
 
-//订单管理中设置订单为交易失败
+// 订单管理中设置订单为交易失败
 function ajax_fail_order(id) {
 	var result = confirm("该操作将会将设置该订单为交易失败，确定继续吗？");
 	if (result == true) {
@@ -764,3 +764,34 @@ function checkdelno(name) {
 }
 
 // 目录管理结束
+
+// 批量上架按钮提交
+function upsubmit(name) {
+	document.name.action = up;
+	document.name.submit();
+}
+
+function offsubmit(id) {
+
+	var a = document.getElementById(id);
+	
+	Ajax({
+		url : 'item_manager/off?' + str,
+		type : 'GET',
+		onSend : function() {
+		},
+		onSuccess : function() {
+			/*
+			 * var t=document.createElement('div'); t.id='cart_container';
+			 * t.innerHTML=e; document.getElementById('cart').appendChild(t);
+			 * t=null;
+			 */
+			var obj = JSON.parse(e);
+			if (obj.offResult == true) {
+				alert("下架成功！");
+			} else
+				alert("下架出错，请返回重新尝试！");
+		}
+	});
+
+}

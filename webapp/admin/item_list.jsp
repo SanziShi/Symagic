@@ -9,8 +9,8 @@
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
 <script src="js/checkform.js" type="text/javascript"
 	language="javascript"></script>
-<script src="js/gz.js" type="text/javascript" language="javascript"></script>
 <script src="js/jquery.js" type="text/javascript" language="javascript"></script>
+<script src="js/gz.js" type="text/javascript" language="javascript"></script>
 <script src="js/search.js" type="text/javascript" language="javascript"></script>
 </head>
 
@@ -391,7 +391,7 @@
 				</div>
 
 				<div id="doublecontent1">
-
+                    <form method="post" id="itemForm">
 					<table id="xialabiao">
 
 						<s:iterator value="items" var="bookItems" status="st">
@@ -400,7 +400,7 @@
 											value="#st.index" /> </span>
 								</td>
 								<td class="checkBoxWidth" align="center"><input
-									type="checkbox"
+									type="checkbox" name="itemID"
 									value="<s:property value = '#bookItems.itemID'/>" />
 								</td>
 								<td width="16%" rowspan="1" align="right" class="inputHeader">
@@ -409,7 +409,7 @@
 										src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value="#bookItems.picturePath"/>"
 										alt="<s:property value = '#bookItems.name'/>" id="img_format" />
 								</a></td>
-								<td width="77%" align="left" class="inputHeader"><span
+								<td width="77%" align="left" class="inputHeader"><font><span
 									class="red" id="item_font20"><s:property
 											value="#bookItems.name" /> </span></font><br /> <font id="item_font17">作者：<s:property
 											value="#bookItems.author" />&nbsp; &nbsp; </font><br /> <font
@@ -439,6 +439,16 @@
 							</tr>
 						</s:iterator>
 						<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><input type="button" name="off" onclick="offsubmit('itemForm')" value="批量下架"/>
+						<input type="button" name="up" onclick="upsubmit('itemForm')" value="批量上架"/> 
+						</td>
+						</tr>
+						<tr>
 							<td></td>
 							<td></td>
 							<td><s:if test="%{1!=totalPage}">
@@ -454,9 +464,10 @@
 									</s:else>
 								</s:if></td>
 							<td>当前第<s:property value="page" />页，共<s:property
-									value="totalPage" />页</td>
+									value="totalPage" />页，每页<s:property value="lines"/>条</td>
 						</tr>
 					</table>
+					</form>
 				</div>
 			</div>
 			<!--        <a href="item_list_refresh.html" style="display:none" onClick="javascript:if(window.confirm('确定删除？')) window.location.href='item_list_refresh.html';else return false;"><img src="../image/bt_delete.gif" alt="删除" width="37" height="19" border="0"></a>-->
@@ -516,7 +527,7 @@
 							<tr>
 								<th width="181">图书名称：</th>
 								<td width="390"><input type="text" class="inputttextlarge"
-									name="name" onFocus="nextfield='name'" maxlength="25" />
+									name="name" onfocus="nextfield='name'" maxlength="25" />
 								</td>
 
 								<td width="211"><span class="red">*必填项</span>
@@ -581,20 +592,23 @@ new DateSelector(sYear, sMonth ,sDay, dt);
 								<td><span class="red">*必填项</span>
 								</td>
 							</tr>
+							<tr>
 							<th>版次：</th>
 							<td><input type="text" name="edition" class="smallinputext"
 								value="" />
 							</td>
 							<td>#选填项</td>
 
+							
 							</tr>
-							</tr>
+							<tr>
 							<th>开本：</th>
 							<td><input type="text" name="size" class="smallinputext"
 								value="" />
 							</td>
 							<td>#选填项</td>
 
+							</tr>
 							<tr>
 								<th>页数：</th>
 								<td><input type="text" name="page" class="smallinputtext"
@@ -602,7 +616,7 @@ new DateSelector(sYear, sMonth ,sDay, dt);
 								<td>#选填项</td>
 							</tr>
 
-							</tr>
+						
 							<tr>
 								<th>装帧：</th>
 								<td><select name="binding">
@@ -630,6 +644,7 @@ new DateSelector(sYear, sMonth ,sDay, dt);
 								</td>
 								<td>#选填项</td>
 							</tr>
+							<tr>
 							<th>市场价：</th>
 							<td><input type="text" name="marketPrice"
 								class="smallinputext" value="" /></td>

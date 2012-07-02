@@ -1,5 +1,6 @@
 package org.symagic.user.action.cart;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.symagic.common.db.func.DaoBook;
@@ -18,29 +19,24 @@ public class CartAddItemAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = -8688962449531199326L;
 	//传入
-   private Integer itemID;//商品id号
-   private Integer itemNumber;//商品数量
-   private Integer[] i;
-	public Integer[] getI() {
-	return i;
+   
+   private ItemTinyBean[]items ;
+  
+public String getResultInfo() {
+	return resultInfo;
 }
-public void setI(Integer[] i) {
-	this.i = i;
+public void setResultInfo(String resultInfo) {
+	this.resultInfo = resultInfo;
 }
 	//配置项
 	private DaoCart daoCart;//对于会员来说，更新到数据库中
     private DaoBook daoBook;
 	//传出	
 	private Boolean addResult=false;//添加结果
+	private String resultInfo;//操作的结果信息
 	//内部
 	private Boolean validateResult=true;//对参数有效性的验证结果
-	private List<ItemTinyBean>items;
-	public List<ItemTinyBean> getItems() {
-		return items;
-	}
-	public void setItems(List<ItemTinyBean> items) {
-		this.items = items;
-	}
+
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -48,31 +44,60 @@ public void setI(Integer[] i) {
 			addResult=false;
 			return SUCCESS;
 		}
-		//itemID不存在于数据库中
-	   if(daoBook.getDetail(itemID)==null){
-		   addResult=false;
-		   return SUCCESS;
+		boolean login=UserSessionUtilty.isLogin();
+		boolean result;
+		addResult=true;
+		StringBuilder builder=new StringBuilder();
+	   for(int index=0;index<items.length;index++){
+		   result=addOneToCart(items[index].getItemID(),items[index].getItemNumber(),login);
+		   if(!result){
+			   addResult=false;
+			   if(builder.length()==0){
+				   builder.append("编号为"+items[index].getItemID());
+			   }  
+			   else{
+				   builder.append(","+items[index]);
+			   }
+		   }
 	   }
-	   
+	   if(!addResult){
+		  builder.append("添加到购物车失败");
+		  resultInfo=builder.toString();
+	   }
+	   else{
+		   resultInfo="成功添加到购物车";
+	   }
 		
-	    addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
-		Integer[]array=i;
 	   
-	    //对于会员而言，后台数据库做同样的更新
-	    Integer  number=UserSessionUtilty.getCart().get(itemID);
-	    if(UserSessionUtilty.isLogin()){
-	    	if(number==null)
-	    		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
-	    	else
-	    		addResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber+number);
-	    	}
 	   return SUCCESS;
 		
 	}
+	private boolean addOneToCart(Integer itemID,Integer itemNumber,boolean login){
+		//itemID不存在于数据库中
+		if(daoBook.getDetail(itemID)==null){
+			   return false;
+			 }
+		boolean addResult;
+		//首先通过其数量判断是否有这商品
+		 Integer  number=UserSessionUtilty.getCart().get(itemID);
+		 
+		 addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
+		
+		
+		     
+		    if(login){
+		    	if(number==null)
+		    		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
+		    	else
+		    		addResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber+number);
+		    }
+		    return addResult;
+	}
+	
 	@Override
 	public void validate() {
 		// TODO Auto-generated method stub
-		if(itemID==null||itemNumber==null||itemNumber<0){
+		if(items==null){
 			validateResult=false;
 		}
 		
@@ -89,18 +114,14 @@ public void setI(Integer[] i) {
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
 	}
-	public Integer getItemID() {
-		return itemID;
+	
+	public ItemTinyBean[] getItems() {
+		return items;
 	}
-	public void setItemID(Integer itemID) {
-		this.itemID = itemID;
+	public void setItems(ItemTinyBean[] items) {
+		this.items = items;
 	}
-	public Integer getItemNumber() {
-		return itemNumber;
-	}
-	public void setItemNumber(Integer itemNumber) {
-		this.itemNumber = itemNumber;
-	}
+	
 	public Boolean getAddResult() {
 		return addResult;
 	}

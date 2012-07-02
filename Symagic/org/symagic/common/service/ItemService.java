@@ -87,13 +87,17 @@ public class ItemService {
 	private void fillItemBean(BeanBook book, ItemBean item) {
 		item.setItemID(String.valueOf(book.getBookId()));
 		item.setName(book.getBookName());
-		item.setPrice(String.format("%.2f",MathUtilty.roundWithdigits(book.getMarketPrice() * book.getDiscount())));
+	   
 		item.setDiscount(String.format("%.2f",MathUtilty.roundWithdigits(book.getDiscount())));
 		item.setPicturePath(book.getPicture());
 		item.setPublishTime(book.getPublishDate());
 		item.setPublisher(book.getPublisher());
 		item.setAuthor(book.getAuthor());
-		item.setMarketPrice(String.format("%.2f",MathUtilty.roundWithdigits(book.getMarketPrice())));
+		float marketPrice=MathUtilty.roundWithdigits(book.getMarketPrice());
+		float price=MathUtilty.roundWithdigits(marketPrice*book.getDiscount());
+		item.setPrice(String.format("%.2f",price));
+		item.setMarketPrice(String.format("%.2f",marketPrice));
+	    item.setSavePrice(String.format("%.2f", MathUtilty.roundWithdigits(marketPrice-price)));
 		String status = book.getOffline();
 		if (status.trim().equals("下架")) {
 			item.setOffline(true);
@@ -206,13 +210,17 @@ public class ItemService {
 		BeanBook book = daoBook.getDetail(itemId);
 		if (book == null)
 			return false;
-		BeanCatalog currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
+		BeanCatalog currentCatalog=null;
+		if(book.getCatalogID()!=null){
+		 currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
+		 detail.setCatalogClassify(getCatalogName(currentCatalog));
+		}
 		detail.setAuthor(book.getAuthor());
-		detail.setAverageRating(daoComment.getAverageRating(itemId));
+		int rating=daoComment.getAverageRating(itemId);
+		detail.setAverageRating(rating);
 		detail.setBinding(book.getBinding());
 		detail.setBookDesc(book.getBookDesc());
 		detail.setBookName(book.getBookName());
-		detail.setCatalogClassify(getCatalogName(currentCatalog));
 		detail.setDiscout(String.format("%.2f",book.getDiscount()));
 		detail.setSize(book.getFolio());
 		detail.setInventory(book.getInventory());

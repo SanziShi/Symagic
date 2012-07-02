@@ -40,13 +40,15 @@ public class CatalogEditSubmitAction extends ActionSupport {
 		if( !validateResult ){
 			return ERROR;
 		}
+		BeanCatalog catalog = daoCatalog.getCatalogByID(catalogID);
 		
-		BeanCatalog catalog = new BeanCatalog();
+		if( catalog == null ) return ERROR;
+		
 		catalog.setCatalogID(catalogID);
 		catalog.setCatalogName(catalogName);
 		catalog.setCatalogDesc(catalogDesc);
 		catalog.setUpID(upID);
-		if( upID == -1 ){
+		if( upID == 0 ){
 			catalog.setLevel("1");
 		}
 		else{
@@ -59,7 +61,7 @@ public class CatalogEditSubmitAction extends ActionSupport {
 
 	@Override
 	public void validate() {
-		if( catalogID == null || catalogName == null || catalogDesc == null || upID == null ){
+		if( catalogID == null || catalogName == null || catalogDesc == null || upID == null || upID == catalogID ){
 			validateResult = false;
 		}
 		else{
