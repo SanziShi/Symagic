@@ -1,6 +1,7 @@
 package org.symagic.user.action.cart;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import org.symagic.common.db.func.DaoBook;
@@ -20,8 +21,14 @@ public class CartAddItemAction extends ActionSupport {
 	private static final long serialVersionUID = -8688962449531199326L;
 	//传入
    
-   private ItemTinyBean[]items ;
+   private List<ItemTinyBean>items ;
   
+public List<ItemTinyBean> getItems() {
+	return items;
+}
+public void setItems(List<ItemTinyBean> items) {
+	this.items = items;
+}
 public String getResultInfo() {
 	return resultInfo;
 }
@@ -48,15 +55,18 @@ public void setResultInfo(String resultInfo) {
 		boolean result;
 		addResult=true;
 		StringBuilder builder=new StringBuilder();
-	   for(int index=0;index<items.length;index++){
-		   result=addOneToCart(items[index].getItemID(),items[index].getItemNumber(),login);
+		Iterator<ItemTinyBean> index=items.iterator();
+		ItemTinyBean item;
+	  while(index.hasNext()){
+		  item=index.next();
+		   result=addOneToCart(item.getItemID(),item.getItemNumber(),login);
 		   if(!result){
 			   addResult=false;
 			   if(builder.length()==0){
-				   builder.append("编号为"+items[index].getItemID());
+				   builder.append("编号为"+item.getItemID());
 			   }  
 			   else{
-				   builder.append(","+items[index]);
+				   builder.append(","+item.getItemID());
 			   }
 		   }
 	   }
@@ -82,10 +92,7 @@ public void setResultInfo(String resultInfo) {
 		 Integer  number=UserSessionUtilty.getCart().get(itemID);
 		 
 		 addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
-		
-		
-		     
-		    if(login){
+		  if(login){
 		    	if(number==null)
 		    		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
 		    	else
@@ -115,12 +122,7 @@ public void setResultInfo(String resultInfo) {
 		this.daoBook = daoBook;
 	}
 	
-	public ItemTinyBean[] getItems() {
-		return items;
-	}
-	public void setItems(ItemTinyBean[] items) {
-		this.items = items;
-	}
+	
 	
 	public Boolean getAddResult() {
 		return addResult;

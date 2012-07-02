@@ -23,7 +23,7 @@ is_login=function(o)
 		onSuccess:function(e){var a=JSON.parse(e);if(a.userName)o.is();else o.no()}
 		})
 }
-/****添加商品至购物车***/
+/****添加单个商品至购物车***/
 function add_to_cart(id)
 {
 	var amount=document.getElementById('amount').value;
@@ -39,7 +39,24 @@ function add_to_cart(id)
 			}
 		})
 }
-
+/*****批量添加商品表单提交*****/
+function adds_to_cart(form_id)
+{
+	var num=document.getElementById('cart_num');
+	var f=document.getElementById(form_id);
+	f=$(f).serialize();
+	Ajax({
+		url:'cart/add_to_cart',
+		data:f,
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(r.addResult)alert('添加成功');
+				get_session({S:function(s){num.innerHTML=s.totalNumber}});
+			}
+		})
+	
+}
 /*****将商品移除出购物车******/
 function delete_from_cart(id)
 {
@@ -80,15 +97,19 @@ function delete_from_cart(id)
 function add_to_favorite(id)
 {
 	Ajax({
-		url:'favorite/add_favorite?itemID='+id,
-		onSuccess:function(e){var t=JSON.parse(e);if(e.addResult)alert('添加成功！');}
+		url:'favorite/add_favorite?items='+id,
+		onSuccess:function(e){
+			var t=JSON.parse(e);
+			if(e.addResult)alert('添加成功！');
+			else alert(a.resultInfo);
+			}
 		})
 }
 /******商品删除收藏夹*******/
 function delete_from_favorite(id)
 {
 	Ajax({
-		url:'favorite/delete_favorite?itemID='+id,
+		url:'favorite/delete_favorite?items='+id,
 		onSuccess:function(e){
 				var a=JSON.parse(e);
 				if(a.deleteResult)

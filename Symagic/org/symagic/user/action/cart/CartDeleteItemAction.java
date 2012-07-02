@@ -1,6 +1,8 @@
 package org.symagic.user.action.cart;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.symagic.common.db.func.DaoCart;
@@ -16,13 +18,17 @@ public class CartDeleteItemAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 531344796388813069L;
 	//传入
-	private Integer[]items;
+	private List<Integer>items;
 	
+
+	public void setItems(List<Integer> items) {
+		this.items = items;
+	}
 
 	//配置项
 	private DaoCart daoCart;
 	//传出
-	 private boolean deleteResult=false;
+	 private boolean deleteResult;
 	 private String resultInfo;
 	@Override
 	public String execute() throws Exception {
@@ -35,15 +41,17 @@ public class CartDeleteItemAction extends ActionSupport {
 		boolean result;
 		boolean login=UserSessionUtilty.isLogin();
 		StringBuilder builder=new StringBuilder();
-		 for(int index=0;index<items.length;index++){
-			   result=deleteOneFromCart(items[index],login);
+		Iterator<Integer> it=items.iterator();
+		deleteResult=true;
+		while(it.hasNext()){
+			   result=deleteOneFromCart(it.next(),login);
 			   if(!result){
 				   deleteResult=false;
 				   if(builder.length()==0){
-					   builder.append("编号为"+items[index]);
+					   builder.append("编号为"+it.next());
 				   }  
 				   else{
-					   builder.append(","+items[index]);
+					   builder.append(","+it.next());
 				   }
 			   }
 		   }
@@ -92,12 +100,9 @@ public void setDaoCart(DaoCart daoCart) {
 
 
 
-public Integer[] getItems() {
-	return items;
-}
 
-public void setItems(Integer[] items) {
-	this.items = items;
+public List<Integer> getItems() {
+	return items;
 }
 
 public String getResultInfo() {

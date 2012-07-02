@@ -2,6 +2,7 @@ package org.symagic.user.action.favority;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 import org.symagic.common.db.func.DaoFavorityFolder;
@@ -18,7 +19,7 @@ private static final long serialVersionUID = -6979940644982084061L;
 //配置
 private DaoFavorityFolder daoFavorityFolder;//对收藏夹的管理
 //传入
-private Integer[]items;//批量删除的id组合
+private List<Integer>items;//批量删除的id组合
 //传出
 private boolean deleteResult;//全部删除结果
 private String resultInfo;
@@ -27,21 +28,23 @@ public String execute() throws Exception {
 	// TODO Auto-generated method stub
 if(items==null||!UserSessionUtilty.isLogin()){
 	deleteResult=false;
+	resultInfo="未登录或无商品";
 	return SUCCESS;
 }	
 //数据库中删除
 StringBuilder builder=new StringBuilder();
 deleteResult=true;
 boolean result;
-for(Integer index=0;index<items.length;index++){
- result=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),items[index]);
+Iterator<Integer>index=items.iterator();
+while(index.hasNext()){
+ result=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),index.next());
  if(!result){
 	   deleteResult=false;
 	   if(builder.length()==0){
-		   builder.append("编号为"+items[index]);
+		   builder.append("编号为"+index.next());
 	   }  
 	   else{
-		   builder.append(","+items[index]);
+		   builder.append(","+index.next());
 	   }
    }
 }
@@ -75,15 +78,23 @@ public void setDaoFavorityFolder(DaoFavorityFolder daoFavorityFolder) {
 
 
 
-public Integer[] getItems() {
+
+
+
+
+public List<Integer> getItems() {
 	return items;
 }
 
 
 
-public void setItems(Integer[] items) {
+
+
+public void setItems(List<Integer> items) {
 	this.items = items;
 }
+
+
 
 
 
