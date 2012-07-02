@@ -263,16 +263,13 @@ public class ItemService {
 			float marketPrice = MathUtilty.roundWithdigits(book
 					.getMarketPrice());
 			float discount = MathUtilty.roundWithdigits(book.getDiscount());
-			float bookprice = MathUtilty
-					.roundWithdigits(marketPrice * discount);
-			float itemTotalPrice = MathUtilty.roundWithdigits(bookprice
-					* number);
+			float bookprice = MathUtilty.roundWithdigits(marketPrice * discount);
+			float itemTotalPrice = MathUtilty.roundWithdigits(bookprice* number);
 			item.setItemTotalPrice(String.format("%.2f",itemTotalPrice));
 			item.setMarketPrice(String.format("%.2f",marketPrice));
 			item.setName(book.getBookName());
 			item.setPrice(String.format("%.2f",bookprice));// 商城价
-			item.setSavePrice(String.format("%.2f",MathUtilty.roundWithdigits(number * marketPrice
-					* (1 - discount))));
+			item.setSavePrice(String.format("%.2f",MathUtilty.roundWithdigits(marketPrice-bookprice)));
 			item.setPicturePath(book.getPicture());
 			items.add(item);
 			totalPrice += itemTotalPrice;

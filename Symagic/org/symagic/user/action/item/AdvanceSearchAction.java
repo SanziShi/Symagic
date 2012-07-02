@@ -47,7 +47,7 @@ public class AdvanceSearchAction extends CatalogBase {
 	private int sign;// 搜索标志，1为高级搜索
      //传出
 	private Integer totalPage;
-    private List<ItemTinyBean> recommend;// 推荐商品
+    private List<String> searchDate;
 	private List<ItemBean> items;// 用于显示的商品列表
 
 	
@@ -91,6 +91,8 @@ public class AdvanceSearchAction extends CatalogBase {
 				totalPage = (searchNumber + lines - 1)/ lines;
 				// 装饰成前台所需的信息
 				itemService.decorateForItem(books, items);
+				
+				getYearForPage();
 		return super.execute();
 	}
 	
@@ -198,6 +200,16 @@ public class AdvanceSearchAction extends CatalogBase {
 		default:
 			break;
 		}
+	}
+	private void getYearForPage(){
+		searchDate=new ArrayList<String>();
+		GregorianCalendar calender = new GregorianCalendar();
+		int year = calender.get(Calendar.YEAR);
+		searchDate.add(year+"至今");
+		searchDate.add((year-1)+"~"+year);
+		searchDate.add((year-2)+"~"+(year-1));
+	    searchDate.add((year-3)+"~"+(year-2));
+	    searchDate.add((year-3)+"以前");
 	}
 
 	private void setYear(BookRequire require, Integer index) {
@@ -356,17 +368,8 @@ public class AdvanceSearchAction extends CatalogBase {
 
 	public void setItems(List<ItemBean> items) {
 		this.items = items;
-	}
-
-	public List<ItemTinyBean> getRecommend() {
-		return recommend;
-	}
-
-	public void setRecommend(List<ItemTinyBean> recommend) {
-		this.recommend = recommend;
-	}
-
-	public Integer getTotalPage() {
+	}  
+    public Integer getTotalPage() {
 		return totalPage;
 	}
 
@@ -410,6 +413,14 @@ public class AdvanceSearchAction extends CatalogBase {
 
 	public void setBinding(Integer binding) {
 		this.binding = binding;
+	}
+
+	public List<String> getSearchDate() {
+		return searchDate;
+	}
+
+	public void setSearchDate(List<String> searchDate) {
+		this.searchDate = searchDate;
 	}
 
 	public void setBooksize(Integer booksize) {

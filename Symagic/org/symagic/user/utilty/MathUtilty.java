@@ -5,8 +5,8 @@ import java.text.DecimalFormat;
 
 public class MathUtilty {
 public static float roundWithdigits(float value){
-	int base=(int) Math.pow(10, 1);
-	DecimalFormat format=new DecimalFormat("0.00");
+	int base=(int) Math.pow(10, 2);
+	
   	return  (float)(Math.round(value*base))/base;
 }
 

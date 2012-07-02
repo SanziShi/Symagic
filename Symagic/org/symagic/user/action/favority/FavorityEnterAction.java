@@ -37,7 +37,8 @@ public class FavorityEnterAction extends ActionSupport {
     @Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		if(page==null)return "error";
+		
+    	if(page==null)return "error";
 		//得到显示记录 后进行装饰成Items
 		List<BeanFavorityFolder> favorities=daoFavorityFolder.get(UserSessionUtilty.getUsername(), page, lines);
 		
