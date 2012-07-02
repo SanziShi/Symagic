@@ -5,6 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <%@taglib prefix="s" uri="/struts-tags"%>
 <div id="favorite-content">
+			<form id="favorite_form">
         		<div id="favorite-content-head">
                 	<div class="column checkbox">
                 		<input class="" type="checkbox"/>
@@ -16,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div>
                 <div id="favorite-content-body">
                 <!--收藏夹商品迭代-->
-                <s:iterator value="items" var="iter">
+                <s:iterator value="items" var="iter" status='st'>
                 	<div class="cell checkbox">
                 		<input class="" value="" type="checkbox"/>
                 	</div>
@@ -34,7 +35,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>   
                 <div id="favorite-content-bottom">
                 	<input type="checkbox" />全选&nbsp;&nbsp;
-                	<span onclick="add_to_cart()" class="fav-add-b"></span>
+                	<span onclick="adds_to_cart('favorite_form')" class="fav-add-b"></span>
                     <a href="">取消收藏</a>
                 </div>
+                </form>
         	</div>
