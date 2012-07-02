@@ -210,14 +210,17 @@ public class ItemService {
 		BeanBook book = daoBook.getDetail(itemId);
 		if (book == null)
 			return false;
-		BeanCatalog currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
+		BeanCatalog currentCatalog=null;
+		if(book.getCatalogID()!=null){
+		 currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
+		 detail.setCatalogClassify(getCatalogName(currentCatalog));
+		}
 		detail.setAuthor(book.getAuthor());
 		int rating=daoComment.getAverageRating(itemId);
 		detail.setAverageRating(rating);
 		detail.setBinding(book.getBinding());
 		detail.setBookDesc(book.getBookDesc());
 		detail.setBookName(book.getBookName());
-		detail.setCatalogClassify(getCatalogName(currentCatalog));
 		detail.setDiscout(String.format("%.2f",book.getDiscount()));
 		detail.setSize(book.getFolio());
 		detail.setInventory(book.getInventory());
