@@ -379,6 +379,7 @@
 		<property name="daoUserAddress" ref="DaoUserAddress"></property>
 		<property name="addressService" ref="AddressService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
 	</bean>
 
 	<bean id="editAddressEnter" class="org.symagic.user.action.address.AddressEditEnterAction"
@@ -484,7 +485,7 @@
 	</bean>
 
 	<bean id="RecommendService" class="org.symagic.common.service.RecommandService">
-		<property name="host" value="110.64.72.186:8080"></property>
+		<property name="host" value="110.64.72.180:8080"></property>
 		<property name="apikey" value="a344e9b3fa4dd2c010adf8f6ff5e4701"></property>
 		<property name="tenantid" value="symagic"></property>
 		<property name="onLine" value="false"></property>

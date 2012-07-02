@@ -41,8 +41,6 @@ public class DeleteAddressAction extends CatalogBase{
 	}
 	
 	public String execute() throws Exception{
-		super.execute();
-		
 		deleteResult = daoUserAddress.deleteAddress(addressID);
 		return SUCCESS;
 	}

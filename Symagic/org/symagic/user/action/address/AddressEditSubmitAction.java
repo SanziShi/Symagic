@@ -27,16 +27,16 @@ public class AddressEditSubmitAction extends AddressBase{
 	
 	private String resultInfo;
 
-	public DaoDistrict getDaoDistrict() {
-		return daoDistrict;
-	}
-
-	public Boolean getEditResult() {
+	public Boolean getSubmitResult() {
 		return submitResult;
 	}
 
-	public void setEditResult(Boolean editResult) {
-		this.submitResult = editResult;
+	public void setSubmitResult(Boolean submitResult) {
+		this.submitResult = submitResult;
+	}
+
+	public DaoDistrict getDaoDistrict() {
+		return daoDistrict;
 	}
 
 	public String getResultInfo() {
@@ -78,14 +78,8 @@ public class AddressEditSubmitAction extends AddressBase{
 	public String execute() throws Exception{
 		
 		BeanAddress address = new BeanAddress();
-		if(getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
-				|| getDistrictLevel3ID() == null || getAddressDetail() == null
-				|| getReceiverName() == null 
-				|| !(getMobileNum() != null || getPhoneNum() != null)){
-			submitResult = false;
-			resultInfo = "数据错误";
+		if(!submitResult)
 			return super.execute();
-		}
 		OrderService.Address addressDetail = new OrderService.Address();
 		addressDetail.districtDetail = getAddressDetail();
 		addressDetail.level1District = new DistrictBean();
@@ -109,6 +103,27 @@ public class AddressEditSubmitAction extends AddressBase{
 		submitResult = daoUserAddress.modifyAddress(address);
 		if(submitResult == false)
 			resultInfo = "服务器错误， 请重试";
+		else {
+			resultInfo = "修改成功";
+		}
 		return super.execute();
+	}
+	
+	public void validate(){
+		if(getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
+				|| getDistrictLevel3ID() == null || getAddressDetail() == null
+				|| getReceiverName() == null 
+				|| !(getMobileNum() != null || getPhoneNum() != null)){
+			submitResult = false;
+			resultInfo = "数据错误";
+		}
+		if(getMobileNum().matches("[0-9]*)")){
+			submitResult = false;
+			resultInfo = "手机号码错误";
+		}
+		if(getPhoneNum().matches("[0-9]*")){
+			submitResult = false;
+			resultInfo = "电话号码错误";
+		}
 	}
 }
