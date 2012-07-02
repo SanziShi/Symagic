@@ -64,7 +64,9 @@ function detect(e,id)
 			}
 		})
 }
-
+function save_address()
+{
+}
 function delete_address(id)
 {
 	Ajax({
@@ -78,6 +80,25 @@ function delete_address(id)
 					$(i).fadeOut(200);
 				}
 				else alert(a.resultInfo);
+			}
+		})
+}
+function use_score_change(e)
+{
+	var s=document.getElementById('score');
+	if(e.checked)s.style.display='inline-block';
+	else s.style.display='none';
+}
+function check_score(e)
+{
+	e.value=e.value.replace(/\D+/g,'');
+	if(e.value='')e.value=0;
+	else Ajax({
+		url:'order/check_score?score='+e.value,
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				
 			}
 		})
 }

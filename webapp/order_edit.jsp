@@ -64,7 +64,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form action="order_submit" method="post" id="order_submit">
     <div id="order_container">
     	<div id="c-info">
-        	<h1>收货人信息</h1>
+        	<h1>收货人信息<span id="order_id">订单号：<font color="#FF0000"><s:property value='orderID'/></font></span></h1>
+            <!--隐藏订单号传入input-->
+            <input style="display:none" name="orderID" value="<s:property value='orderID'/>">
+            <!---->
             <div id="c-input">
             	<div id="address_list">
                 	<div class="address_list_inner">
@@ -84,46 +87,72 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                 <div id="table_container">
             	<table id="order_address" width="100%" cellspacing="0" border="0">
-                	<tbody>
-                    	<tr>
-                        	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
-                            <td><input name="receiverName" class="txt" type="text"/></td>
-                        </tr>
-                        <tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
-                            <td>
-                            	<select onchange="get_district(this)" id="level1ID" name="districtLevel1ID">
-                                	<option value="s1">请选择</option>
-                                <s:iterator value="level1Districts" var='iter'>
-                                	<option value="<s:property value='#iter.ID'/>"><s:property value='#iter.name'/></option>
-                                </s:iterator>
-                                </select>
-                                <select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
-                                	<option value="s2">请选择</option>
-                                </select>
-                                <select id="level3ID" name="districtLevel3ID">
-                                	<option value="">请选择</option>
-                                </select>
-                            </td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
-                            <td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long"></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            <td><input name="mobileNum" type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt"/></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right">邮箱地址：</td>
-                            <td><s:property value='#session.userName'/></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
-                            <td><input name="zipcode" type="text" class="txt short"/></td>
-                        </tr>
-                    </tbody>
-                </table>
+                			<tbody>
+                    		<tr>
+                            	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
+                            	<td><input name="receiverName" class="txt" type="text" value="<s:property value='addressList.receiverName'/>"/></td>
+                            </tr>
+                        	<tr>
+                        	  	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
+                              	<td>
+                                <!--默认地址选项迭代--->
+                                	<select onchange="get_district(this)" id="level1ID" name="districtLevel1ID" >
+                                			<option value="s1" >请选择</option>
+                               				<s:iterator value="addressList.level1Districts" var='middle'>
+                                            	<s:if test='#middle.ID==addressList.level1DistrictDefaultID'>
+                                				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
+                                				</s:if>
+                                                <s:else>
+                                                <option value="<s:property value='#middle.ID'/>" ><s:property value='#middle.name'/></option>
+                                                </s:else>
+                                            </s:iterator>
+                                	</select>
+                                	<select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
+                                		<option value="s2">请选择</option>
+                                        <s:iterator value="addressList.level2Districts" var='middle'>
+                                            	<s:if test='#middle.ID==addressList.level2DistrictDefaultID'>
+                                				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
+                                				</s:if>
+                                                <s:else>
+                                                <option value="<s:property value='#middle.ID'/>" ><s:property value='#middle.name'/></option>
+                                                </s:else>
+                                            </s:iterator>
+                                	</select>
+                                	<select id="level3ID" name="districtLevel3ID">
+                                		<option value="">请选择</option>
+                                        <s:iterator value="addressList.level3Districts" var='middle'>
+                                            	<s:if test='#middle.ID==addressList.level3DistrictDefaultID'>
+                                				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
+                                				</s:if>
+                                                <s:else>
+                                                <option value="<s:property value='#middle.ID'/>" ><s:property value='#middle.name'/></option>
+                                                </s:else>
+                                            </s:iterator>
+                                	</select>
+                                <!---默认地址选项迭代结束--->
+                                </td>
+                            </tr>
+                    		<tr>
+                    		  	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
+                              	<td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long" value="<s:property value='addressList.addressDetail'/>"></td>
+                            </tr>
+                    		<tr>
+                            	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
+                            	<td><input name="mobileNum" type="text" class="txt" value="<s:property value='addressList.mobileNum'/>"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt" value="<s:property value='addressList.phoneNum'/>"></td>
+                            </tr>
+                    		<tr>
+                            	<td valign="middle" align="right">邮箱地址：</td><td><s:property value='#session.userName'/></td>
+                            </tr>
+                    		<tr>
+                            	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
+                            	<td><input name="zipcode" type="text" class="txt short" value="<s:property value='addressList.zipcode'/>"/></td>
+                            </tr>
+                            <tr>
+                                	<td></td>
+                                    <td><input onclick="save_address()" value="保存修改"/></td>
+                            </tr>
+                    		</tbody>
+                		</table>
                 </div>
                 <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
             </div>

@@ -9,16 +9,6 @@ function checkout()
 	a.submit();
 	//var q=$(a).serialize();
 }
-function tests(e)
-{
-	var a=$(a).serialize();
-	alert(a);
-	return false;
-}
-function checkbox_change(e)
-{
-	alert(e.id);
-}
 /*****从cart页面删除商品
 function delete_from_page(id)
 {
@@ -33,7 +23,6 @@ function delete_form_cart(f)
 	var request='';
 	var form=document.getElementById(f);
 	var k=$(form).serializeArray();
-	//alert(t.length);
 	for(var each in k)
 	{
 		if(k[each].name.indexOf('ID')>-1)
@@ -54,7 +43,30 @@ function delete_form_cart(f)
 			}
 		})
 }
-
+function add_to_favorite()
+{
+	var f=document.getElementById('checkout');
+	var request='';
+	var k=$(f).serializeArray();
+	for(var each in k)
+	{
+		if(k[each].name.indexOf('ID')>-1)
+		request=request+'&items='+k[each].value;
+	}
+	Ajax({
+		url:'favorite/add_favorite',
+		data:request,
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(a.deleteResult)
+				{
+					alert('添加成功!');
+				}
+				else alert(a.resultInfo);
+			}
+		})
+}
 
 
 

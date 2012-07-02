@@ -152,6 +152,10 @@
         </div>
         <div id="ware">
         	<h1>结算</h1>
+            <div id="use_score"><input type="checkbox" onclick="use_score_change(this)"/>使用积分：&nbsp;&nbsp;
+            	<input onblur="check_score(this)" id="score" name="score" class="short" value="0"/>&nbsp;&nbsp;
+                可用积分：&nbsp;&nbsp;<font color="red">20</font>
+            </div>
         	<div class="total_price"><span id="pay">应付总额：<strong>￥200.00</strong>元</span></div>
         	<div class="clear"></div>
         	<div class="order_confirm"></div>

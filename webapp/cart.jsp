@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@taglib prefix="s" uri="/struts-tags"%><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <s:iterator value="items" var='iter' status='st'>
                     <div class="each">
                     <div class="cell checkbox">
-                		<input onchange="checkbox_change(this)" checked="checked" name="items[<s:property value='#st.index'/>].itemID" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
+                		<input checked="checked" name="items[<s:property value='#st.index'/>].itemID" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-img">
@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div>
             	<div id="cart_table_bottom">
                 <a href="javascript:void(0);" onclick="delete_form_cart('checkout')">删除选中的商品</a>
-                &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="">添加至收藏夹</a>
+                &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="add_to_favorite()">添加至收藏夹</a>
                 <div id="total-price">总计:<span id="final-price">￥<s:property value='totalPrice'/></span></div>
             	</div>
         	</div>

@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@taglib prefix="s" uri="/struts-tags"%><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -165,9 +165,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>
 						<s:property value='#iter.totalPrice'/>
 					</td>
-					<td>
-						<s:property value='#iter.score'/>
-					</td>
+					<td><br />
+						
+					<br /></td>
           		  </tr>
                   </s:iterator>
 				 <!--订单迭代结束--> 

@@ -222,6 +222,7 @@ span.red
 {
 	width:100%;
 	margin:7px 0px 7px 0px;
+	margin-bottom:2px;
 	border-bottom: 1px solid #CCC;
 }
 .fliter font
@@ -514,7 +515,13 @@ span.close
 	width:100px;
 	cursor:pointer;
 	float:left;
-	
+}
+.add_to_cart1_none
+{
+	background:url(../image/add_to_cart.jpg) 0px -25px;
+	height:25px;
+	width:100px;
+	float:left;
 }
 #container{
 	position:relative;
