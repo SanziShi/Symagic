@@ -41,12 +41,36 @@ public class OrderSubmitAction extends OrderBase{
 	/*
 	 * 地址代码
 	 */
-	private Integer level1ID;
+	private Integer districtLevel1ID;
 	
-	private Integer Level2ID;
+	private Integer districtLevel2ID;
 	
-	private Integer level3ID;
+	private Integer districtLevel3ID;
 	
+	public Integer getDistrictLevel1ID() {
+		return districtLevel1ID;
+	}
+
+	public void setDistrictLevel1ID(Integer districtLevel1ID) {
+		this.districtLevel1ID = districtLevel1ID;
+	}
+
+	public Integer getDistrictLevel2ID() {
+		return districtLevel2ID;
+	}
+
+	public void setDistrictLevel2ID(Integer districtLevel2ID) {
+		this.districtLevel2ID = districtLevel2ID;
+	}
+
+	public Integer getDistrictLevel3ID() {
+		return districtLevel3ID;
+	}
+
+	public void setDistrictLevel3ID(Integer districtLevel3ID) {
+		this.districtLevel3ID = districtLevel3ID;
+	}
+
 	private String addressDetail;
 	
 	private DaoOrder daoOrder;
@@ -107,8 +131,8 @@ public class OrderSubmitAction extends OrderBase{
 		OrderService.Address address = new OrderService.Address();
 		address.districtDetail = this.addressDetail;
 		address.level1District = new DistrictBean();
-		address.level1District.setID(this.level1ID);
-		BeanDistrict level1 = daoDistrict.getDistrictById(level1ID);
+		address.level1District.setID(this.districtLevel1ID);
+		BeanDistrict level1 = daoDistrict.getDistrictById(districtLevel1ID);
 		if(level1 != null){
 			address.level1District.setName(level1.getName());
 			address.level1District.setID(level1.getId());
@@ -117,16 +141,16 @@ public class OrderSubmitAction extends OrderBase{
 			return ERROR;
 		}
 		address.level2District = new DistrictBean();
-		address.level2District.setID(this.Level2ID);
-		BeanDistrict level2 = daoDistrict.getDistrictById(Level2ID);
+		address.level2District.setID(this.districtLevel2ID);
+		BeanDistrict level2 = daoDistrict.getDistrictById(districtLevel2ID);
 		if(level2 != null)
 			address.level2District.setName(level2.getName());
 		else{
 			return ERROR;
 		}
 		address.level3District = new DistrictBean();
-		address.level3District.setID(this.level3ID);
-		BeanDistrict level3 = daoDistrict.getDistrictById(level3ID);
+		address.level3District.setID(this.districtLevel3ID);
+		BeanDistrict level3 = daoDistrict.getDistrictById(districtLevel3ID);
 		if(level3 != null)
 			address.level3District.setName(level3.getName());
 		else
@@ -205,7 +229,8 @@ public class OrderSubmitAction extends OrderBase{
 	}
 	
 	public void validate(){
-		if(score == null || getLevel1ID() == null || getLevel2ID() == null || getLevel3ID() == null
+		if(score == null || getDistrictLevel1ID() == null 
+				|| getDistrictLevel2ID() == null || getDistrictLevel3ID() == null
 				|| getMobileNum() == null || getPhoneNum() == null ||
 				getReceiverName() == null || getZipcode() == null){
 			isValidate = false;
@@ -215,38 +240,8 @@ public class OrderSubmitAction extends OrderBase{
 			isValidate = false;
 			return;
 		}
-		if(getZipcode() == null || getAddressDetail() == null || getLevel1ID() == null||
-				getLevel2ID() == null || getMobileNum() == null||
-				getPhoneNum() == null){
-			isValidate = false;
-			return;
-		}
 			
 		isValidate = true;
-	}
-
-	public Integer getLevel1ID() {
-		return level1ID;
-	}
-
-	public void setLevel1ID(Integer level1id) {
-		level1ID = level1id;
-	}
-
-	public Integer getLevel2ID() {
-		return Level2ID;
-	}
-
-	public void setLevel2ID(Integer level2id) {
-		Level2ID = level2id;
-	}
-
-	public Integer getLevel3ID() {
-		return level3ID;
-	}
-
-	public void setLevel3ID(Integer level3id) {
-		level3ID = level3id;
 	}
 
 	public DaoDistrict getDaoDistrict() {
