@@ -44,8 +44,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
-			<!-- <result name="error">/admin/admin_error.jsp</result> -->
-			<!-- <result name="input">/admin/admin_error.jsp</result> -->
+			<result name="error">/admin/admin_error.jsp</result>
+			<result name="input">/admin/admin_error.jsp</result>
 		</global-results>
 	</package>
 
@@ -149,10 +149,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
-		
+
 		<action name="address" class="addressLst">
-		 	<result>/lib/address.jsp</result>
-		 </action>
+			<result>/lib/address.jsp</result>
+		</action>
 
 		<action name="order" class="orderEnter">
 			<result>order_confirm.jsp</result>
