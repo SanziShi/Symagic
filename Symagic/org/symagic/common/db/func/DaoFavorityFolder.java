@@ -38,11 +38,20 @@ public class DaoFavorityFolder {
 		try {
 			BeanBook book = new BeanBook();
 			conn = ConnectionPool.getInstance().getConnection();
+			
+			ps	= conn.prepareStatement("select count(*) from favority_folder " +
+					" username=? and bookid=? ");
+			rs	= ps.executeQuery();
+			rs.next();
+			if (rs.getInt(1) != 0)
+				return false;
+				
 
 			ps = conn
 					.prepareStatement("insert into favority_folder (username, bookid)"
 							+ "values (?, ?)");
 
+			
 			ps.setString(1, username);
 			ps.setInt(2, bookID);
 

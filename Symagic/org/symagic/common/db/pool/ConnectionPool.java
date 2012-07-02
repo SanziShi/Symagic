@@ -14,7 +14,7 @@ public class ConnectionPool {
 
 	Stack<Connection> st = new Stack<Connection>(); // 创建一个堆栈，作为池子
 	private static ConnectionPool instance = new ConnectionPool(); // 单例模式
-	public int initialPoolSize = 5;			// 初始化连接池中连接实例的数量
+	public int initialPoolSize = 10;			// 初始化连接池中连接实例的数量
 	public String dbName = "bookshop";			// 连接的数据库名
 	public String userName = "root";			// 连接的用户名
 	public String userPasswd = "root";			// 连接的密码
