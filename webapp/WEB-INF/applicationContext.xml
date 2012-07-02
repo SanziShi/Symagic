@@ -65,16 +65,17 @@
 		scope="request">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
-		<property name="errorHeader" value="错了"></property>
-		<property name="errorSpecification" value="反正是错了"></property>
+		<property name="errorHeader" value="对应商品不存在"></property>
+		<property name="errorSpecification" value="您所请求的商品不存在"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction"
 		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="upload"></property>
-		<property name="errorHeader" value="错了"></property>
-		<property name="errorSpecification" value="反正是错了"></property>
+		<property name="errorHeader" value="对应商品不存在"></property>
+		<property name="errorSpecification" value="您所请求的商品不存在"></property>
 	</bean>
 
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction"
@@ -106,6 +107,7 @@
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.AdminItemQuickSearch"
@@ -121,6 +123,7 @@
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"
@@ -154,6 +157,7 @@
 		<property name="orderService" ref="OrderService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminEnterOrderEdit"
@@ -217,6 +221,7 @@
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">

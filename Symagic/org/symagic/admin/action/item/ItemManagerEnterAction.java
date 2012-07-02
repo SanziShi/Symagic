@@ -39,6 +39,10 @@ public class ItemManagerEnterAction extends CatalogBase {
 	private Integer booksize;// 书的大小
 	private Integer price;// 书的价格
 	private Integer discount;// 折扣
+	
+	private Integer searchStartYear;
+	private Integer searchEndYear;
+	private Integer searchYearRange;
 
 	// 配置项
 	private Integer lines;
@@ -51,6 +55,10 @@ public class ItemManagerEnterAction extends CatalogBase {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+		GregorianCalendar calendar = new GregorianCalendar();
+		searchEndYear = calendar.get(Calendar.YEAR);
+		searchStartYear = calendar.get(Calendar.YEAR) - searchYearRange;
+		
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
@@ -418,6 +426,30 @@ public class ItemManagerEnterAction extends CatalogBase {
 
 	public void setSign(int sign) {
 		this.sign = sign;
+	}
+
+	public Integer getSearchStartYear() {
+		return searchStartYear;
+	}
+
+	public void setSearchStartYear(Integer searchStartYear) {
+		this.searchStartYear = searchStartYear;
+	}
+
+	public Integer getSearchEndYear() {
+		return searchEndYear;
+	}
+
+	public void setSearchEndYear(Integer searchEndYear) {
+		this.searchEndYear = searchEndYear;
+	}
+
+	public Integer getSearchYearRange() {
+		return searchYearRange;
+	}
+
+	public void setSearchYearRange(Integer searchYearRange) {
+		this.searchYearRange = searchYearRange;
 	}
 
 }

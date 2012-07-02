@@ -132,7 +132,7 @@ var defaultYear = <s:property value="startTime.year" default="2007"/>;
 									var defaultDay = <s:property value="startTime.day" default="1"/>;
 									var dt = new Date(defaultYear,
 											defaultMonth, defaultDay);
-									new DateSelector(selYear, selMonth, selDay, dt);
+									new DateSelector(selYear, selMonth, selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>,dt);
 </script>
 								</tr>
 								<tr>
@@ -157,7 +157,7 @@ var defaultYear = <s:property value="endTime.year" default="2012"/>;
 									var defaultDay = <s:property value="endTime.day" default="31"/>;
 									var dt = new Date(defaultYear,
 											defaultMonth, defaultDay);
-									new DateSelector(selYear, selMonth, selDay, dt);
+									new DateSelector(selYear, selMonth, selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>,dt);
 </script>
 								</tr>
 								<tr>
