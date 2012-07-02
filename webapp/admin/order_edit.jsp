@@ -15,7 +15,7 @@
 	<div id="logalleft">
 		<div id="logalright">
 		<a href="" target="_parent">管理员 已登录|</a>
-	 	<a href="index.html" target="_parent">退出</a>
+	 	<a href="logout" target="_parent">退出</a>
 		</div>
 	</div>
 	<div id="globallink">
