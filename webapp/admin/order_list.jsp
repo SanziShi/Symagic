@@ -41,7 +41,7 @@
 			<div id="search2">
 				<div id="searchleft">
 					<img src="../image/ico_site.jpg" id="ico_site" /> 网站路径：<a
-						href="order_admin.html">订单管理</a>
+						href="order_list">订单管理</a>
 				</div>
 
 			</div>
