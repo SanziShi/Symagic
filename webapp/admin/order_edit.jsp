@@ -74,9 +74,19 @@
                 </td>
 			    <td>收货人地址</td>
             <td colspan="3">
-            <select id="level1"></select>
-            <select id="level2"></select>
-            <select id="level3"></select>
+           <select onchange="get_district(this)" id="level1ID" name="level1ID">
+                                	<option value="s1">请选择</option>
+                                <s:iterator value="level1Districts" var='iter'>
+                                	<option value="<s:property value='#iter.ID'/>"><s:property value='#iter.name'/></option>
+                                </s:iterator>
+                                </select>
+                                <select onchange="get_district(this)" id="level2ID" name="level2ID">
+                                	<option value="s2">请选择</option>
+                                </select>
+                                <select id="level3ID" name="level3ID">
+                                	<option value="">请选择</option>
+                                </select>
+                                <input type="text" value="<s:property value='addressDetail'/>"/>
             </td>	
 			</tr>
             
