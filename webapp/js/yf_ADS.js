@@ -51,11 +51,11 @@ function adds_to_cart(form_id)
 		onSuccess:function(e)
 			{
 				var a=JSON.parse(e);
-				if(r.addResult)alert('添加成功');
+				if(a.addResult)alert('添加成功');
 				get_session({S:function(s){num.innerHTML=s.totalNumber}});
 			}
 		})
-	
+	return false;
 }
 /*****将商品移除出购物车******/
 function delete_from_cart(id,p)

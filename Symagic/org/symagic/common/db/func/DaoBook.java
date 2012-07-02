@@ -885,4 +885,40 @@ public class DaoBook {
 		return count;
 	}
 
+	public List<Integer> getRandBooks(List<Integer> list, int num)
+	{
+		List<Integer> bookIDList	= null;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			String sql	= "select bookid from book where bookid not in (";
+			if (list.size() != 0) {
+				sql += list.get(0);
+				for (int i=1; i<list.size(); i++) {
+					sql += " , " + list.get(1);
+				}
+				sql += " )";
+			}
+			sql += " order by rand() limit " + num;
+			
+			st	= conn.createStatement();
+			rs	= st.executeQuery(sql);
+			bookIDList	= new ArrayList<Integer>();
+			while (rs.next()) {
+				 bookIDList.add(rs.getInt(1));
+			}
+			
+			return bookIDList;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return bookIDList;
+	}
 }
