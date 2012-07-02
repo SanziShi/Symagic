@@ -69,22 +69,33 @@ function show_address()
 		onSend:function(){document.getElementById('address_loading').style.display='block';},
 		onSuccess:function(e){
 			document.getElementById('address_loading').style.display='none';
-			document.getElementById('adress-container').innerHTML=e;
+			document.getElementById('address-container').innerHTML=e;
 			}
 		})
 }
+/*****获取下级目录函数*****/
 function get_district(d)
 {
+	var l2=document.getElementById('level2ID');
+	var l3=document.getElementById('level3ID');
 	var va=d.value;
 	if(va=='s1')
 	{
-		document.getElementById('level2ID').innerHTML='<option value="s2">请选择</option>';
-		document.getElementById('level3ID').innerHTML='<option value="">请选择</option>';
+		var tmp=document.createElement('option');
+		l2.innerHTML='';
+		tmp.value='s2';tmp.innerHTML='请选择';
+		l2.appendChild(tmp);
+		l3.innerHTML='';
+		tmp.value='';
+		l3.appendChild(tmp);
 		return false;
 	}
 	else if(va=='s2')
 	{
-		document.getElementById('level3ID').innerHTML='<option value="">请选择</option>';
+		var tmp=document.createElement('option');
+		tmp.value='';tmp.innerHTML='请选择';
+		l3.innerHTML='';
+		l3.appendChild(tmp);
 		return false;
 	}
 	else{
@@ -142,6 +153,7 @@ function add_address(f)
 /*****8*修改地址函数*****/
 /******dom完成加载执行函数*******/
 $().ready(function(e) {
+	if(document.getElementById('t1')){
     addListener(document.getElementById('t1'),"click",function(e){
 		stopDefault(e);
 		var y=getY(e);
@@ -150,4 +162,5 @@ $().ready(function(e) {
 		t.style.top=y-t.style.height+'px';
 		t.style.display='block';
 		});
+	}
 });

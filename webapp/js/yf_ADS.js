@@ -116,7 +116,7 @@ function delete_from_favorite(id)
 				if(a.deleteResult)
 				{
 					alert('删除收藏成功！');
-					location.reload();
+					show_favorite();
 				}
 			}
 		})
