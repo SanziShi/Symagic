@@ -73,8 +73,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <!--常用地址迭代开始-->
                         <s:iterator value='addressList' var="iter">
                         	<li id="normal_address<s:property value='#iter.ID'/>">
-                            	<input onchange="detect(normal_address<s:property value='#iter.ID'/>)" onselect="select_address(normal_address<s:property value='#iter.ID'/>)" type="radio" id="1" />
-                                <label for="1"><strong>收货人</strong>&nbsp;测试地址</label>
+                            	<input onchange="detect(normal_address<s:property value='#iter.ID'/>)" onselect="select_address(normal_address<s:property value='#iter.ID'/>)" type="radio" id="normal_address<s:property value='#iter.ID'/>" />
+                                <label for="normal_address<s:property value='#iter.ID'/>"><strong>收货人</strong>&nbsp;测试地址</label>
                                 <span class="delete"><a onclick="delete_address(<s:property value='#iter.ID'/>)" href="javascript:void(0)">删除地址</a></span>
                             </li>
                         </s:iterator>
