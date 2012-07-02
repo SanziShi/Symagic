@@ -150,7 +150,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>forget.jsp</result>
 		</action>
 		
-		<action name="address" class="addressLst">
+		<action name="address" class="addressList">
 		 	<result>/lib/address.jsp</result>
 		 </action>
 
@@ -170,7 +170,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="order_submit" class="orderSubmit">
-			<result>order_success.jsp</result>
+			<result>ok.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 	</package>
