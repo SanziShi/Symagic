@@ -117,7 +117,7 @@ public class AddressEditSubmitAction extends AddressBase{
 			submitResult = false;
 			resultInfo = "数据错误";
 		}
-		if(getMobileNum().matches("[0-9]*)")){
+		if(getMobileNum().matches("[0-9]*")){
 			submitResult = false;
 			resultInfo = "手机号码错误";
 		}
