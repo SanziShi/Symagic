@@ -27,6 +27,8 @@ public class AddressEnterAction extends CatalogBase {
 	private List<AddressDetailBean> addressList;
 	
 	private AddressService addressService;
+	
+	private List<DistrictBean> level1Districts;
 
 	public List<AddressDetailBean> getAddressList() {
 		return addressList;
@@ -46,6 +48,7 @@ public class AddressEnterAction extends CatalogBase {
 
 	public String execute() throws Exception{
 		addressList = addressService.getAddressDetail(UserSessionUtilty.getUsername());
+		level1Districts = addressService.getDistricts(0);
 		return super.execute();
 	}
 }

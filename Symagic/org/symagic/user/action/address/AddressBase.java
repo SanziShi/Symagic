@@ -16,11 +16,39 @@ public class AddressBase extends CatalogBase{
 	
 	private String addressDetail;
 	
-	private Integer districtLevel1;
+	private Integer districtLevel1ID;
 	
-	private Integer districtLevel2;
+	public Integer getDistrictLevel1ID() {
+		return districtLevel1ID;
+	}
+
+	public void setDistrictLevel1ID(Integer districtLevel1ID) {
+		this.districtLevel1ID = districtLevel1ID;
+	}
+
+	public Integer getDistrictLevel2ID() {
+		return districtLevel2ID;
+	}
+
+	public void setDistrictLevel2ID(Integer districtLevel2ID) {
+		this.districtLevel2ID = districtLevel2ID;
+	}
+
+	public Integer getDistrictLevel3ID() {
+		return districtLevel3ID;
+	}
+
+	public void setDistrictLevel3ID(Integer districtLevel3ID) {
+		this.districtLevel3ID = districtLevel3ID;
+	}
+
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
+	}
+
+	private Integer districtLevel2ID;
 	
-	private Integer districtLevel3;
+	private Integer districtLevel3ID;
 	
 	private String zipcode;
 	
@@ -39,34 +67,6 @@ public class AddressBase extends CatalogBase{
 
 	public String getAddressDetail() {
 		return addressDetail;
-	}
-
-	public void setAddressDetail(String addressDetail) {
-		this.addressDetail = addressDetail;
-	}
-
-	public Integer getDistrictLevel1() {
-		return districtLevel1;
-	}
-
-	public void setDistrictLevel1(Integer districtLevel1) {
-		this.districtLevel1 = districtLevel1;
-	}
-
-	public Integer getDistrictLevel2() {
-		return districtLevel2;
-	}
-
-	public void setDistrictLevel2(Integer districtLevel2) {
-		this.districtLevel2 = districtLevel2;
-	}
-
-	public Integer getDistrictLevel3() {
-		return districtLevel3;
-	}
-
-	public void setDistrictLevel3(Integer districtLevel3) {
-		this.districtLevel3 = districtLevel3;
 	}
 
 	public String getZipcode() {

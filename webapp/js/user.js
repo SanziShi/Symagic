@@ -73,6 +73,74 @@ function show_address()
 			}
 		})
 }
+function get_district(d)
+{
+	var va=d.value;
+	if(va=='s1')
+	{
+		document.getElementById('level2ID').innerHTML='<option value="s2">请选择</option>';
+		document.getElementById('level3ID').innerHTML='<option value="">请选择</option>';
+		return false;
+	}
+	else if(va=='s2')
+	{
+		document.getElementById('level3ID').innerHTML='<option value="">请选择</option>';
+		return false;
+	}
+	else{
+	Ajax({
+		url:'address/get_next_level?ID='+va,
+		onSuccess:function(e)
+			{
+				var dis=JSON.parse(e);
+				var l=dis.length;
+				var n=d.nextSibling.nextSibling;
+				if(d.id=='level1ID')
+				{
+					n.innerHTML='<option value="-2">请选择</option>';
+				}else n.innerHTML='<option value="">请选择</option>';
+				var t=document.createElement('select');
+				for(var g=0;g<l;++g)
+				{
+					var temp=document.createElement('option');
+					temp.value=dis[g].ID;
+					temp.innerHTML=dis[g].name;
+					n.appendChild(temp);
+				}
+			}
+		})
+	}
+}
+/**添加新地址表单提交函数***/
+function add_address(f)
+{
+	var form=$(f).serialize();
+	Ajax({
+		url:'submit_address',
+		data:form,
+		onSuccess:function(e)
+			{
+				var r=JSON.parse(e);
+				if(r.submitResult)
+				{
+					alert('添加成功');
+					Ajax({
+						url:'address',
+						onSuccess:function(e)
+							{
+								document.getElementById('address-container').innerHTML=e;
+							}
+						})
+				}
+				else
+				{
+					alert('添加失败！');
+				}
+			}
+		})
+}
+/*****8*修改地址函数*****/
+/******dom完成加载执行函数*******/
 $().ready(function(e) {
     addListener(document.getElementById('t1'),"click",function(e){
 		stopDefault(e);

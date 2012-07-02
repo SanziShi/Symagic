@@ -1,6 +1,7 @@
 package org.symagic.user.action.order;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import net.sf.json.JSON;
@@ -123,6 +124,11 @@ public class OrderEnterAction extends CatalogBase {
 		level1Districts = addressService.getDistricts(0);
 		payment = "货到付款";
 		deliverWay = "快递";
+		HashMap<Integer, Integer> orderHashMap = new HashMap<Integer, Integer>();
+		for(int i = 0; i < items.size(); i ++){
+			orderHashMap.put(items.get(i).getItemID(), items.get(i).getItemNumber());
+		}
+		UserSessionUtilty.setOrder(orderHashMap);
 		return super.execute();
 	}
 

@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<div class="address_list_inner">
                     	<b>常用地址：</b>
                     	<ul>
-                        	<li id=""><input type="radio" id="1" onclick=""/><label for="1"><strong>收货人</strong>&nbsp;测试地址</label><span class="delete"><a href="">删除地址</a></span></li>
+                        	<li id=""><input onclick="select_address(this)" type="radio" id="1" /><label for="1"><strong>收货人</strong>&nbsp;测试地址</label><span class="delete"><a href="">删除地址</a></span></li>
                         </ul>
                     </div>
                 </div>
@@ -84,12 +84,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
                             <td>
                             	<select onchange="get_district(this)" id="level1ID" name="level1ID">
+                                	<option value="s1">请选择</option>
                                 <s:iterator value="level1Districts" var='iter'>
                                 	<option value="<s:property value='#iter.ID'/>"><s:property value='#iter.name'/></option>
                                 </s:iterator>
                                 </select>
-                                <select id="level2ID" name="level2ID">
-                                	<option value="">请选择</option>
+                                <select onchange="get_district(this)" id="level2ID" name="level2ID">
+                                	<option value="s2">请选择</option>
                                 </select>
                                 <select id="level3ID" name="level3ID">
                                 	<option value="">请选择</option>

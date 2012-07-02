@@ -29,7 +29,7 @@ function add_to_cart(id)
 	var amount=document.getElementById('amount').value;
 	var num=document.getElementById('cart_num');
 	Ajax({
-		url:'cart/add_to_cart?'+'itemID='+id+'&itemNumber='+amount,
+		url:'cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber='+amount,
 		//data:'itemID='+id+'&itemNumber='+amount,
 		onSuccess:function(e){
 			var r=JSON.parse(e);
@@ -45,7 +45,7 @@ function delete_from_cart(id)
 {
 	Ajax({
 		url:'cart/delete',
-		data:'itemID='+id,
+		data:'items='+id,
 		onSuccess:function(e){
 			var result=JSON.parse(e);
 			if(result.deleteResult)
@@ -102,7 +102,7 @@ function delete_from_favorite(id)
 /********刷新验证码************/
 function change_captcha(e)
 {
-	e.src='captcha_get_captcha';
+	e.src='captcha_get_captcha?t='+Math.random();
 }
 /*****登出函数*******/
 function logout()
@@ -154,6 +154,13 @@ function load_login()
 /******异步调用注册框*****/
 function load_regist()
 {
+	var temp=document.getElementById('login_float');
+	if(temp)
+	{
+		temp.parentNode.removeChild(temp)
+		var o=document.getElementById('overlay');
+		o.parentNode.removeChild(o);
+	}
 	if(window.event)stopDefault();
 	var r=document.createElement('div');
 	r.id='regist_float';
@@ -180,7 +187,7 @@ function login(form)
 				if(a.loginResult)location.replace(location.href);
 				else 
 				{
-					document.getElementById('cap').src='captcha_get_captcha';
+					document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
 					alert('登录失败');
 				}
 				},
@@ -201,7 +208,7 @@ function regist(form)
 			{
 				location.replace(location.href);
 			}
-			else document.getElementById('cap').src='captcha_get_captcha';
+			else document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
 		}
 	})
 	return false;

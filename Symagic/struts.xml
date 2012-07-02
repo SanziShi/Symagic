@@ -149,6 +149,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
+		
+		<action name="address" class="addressLst">
+		 	<result>/lib/address.jsp</result>
+		 </action>
 
 		<action name="order" class="orderEnter">
 			<result>order_confirm.jsp</result>
@@ -265,6 +269,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="submit_address" class="addAddress">
 			<result type="json">
 				<param name="includeProperties">addResult</param>
+				<param name="includeProperties">resultInfo</param>
 			</result>
 		</action>
 		<action name="get_next_level" class="getNextLevel">
@@ -275,6 +280,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="delete_address" class="deleteAddress">
 			<result type="json">
 				<param name="includeproperties">deleteResult</param>
+				<param name="includeProperties">resultInfo</param>
+			</result>
+		</action>
+		<action name="address_edit_submit" class="addAddress">
+			<result type="json">
+				<param name="includeProperties">submitResult</param>
+				<param name="includeProperties">resultInfo</param>
 			</result>
 		</action>
 	</package>

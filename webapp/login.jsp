@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tr>
                  <td></td>
                  <td>
-                 <a href="pwd_find.html"><span class="red left_float">忘记密码？</span></a></td>
+                 <a href="forget_password"><span class="red left_float">忘记密码？</span></a></td>
                  <td></td>
                  </tr>
 				 <tr>
