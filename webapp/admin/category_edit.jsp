@@ -35,9 +35,9 @@
 		<div id="left">
 			<div id="catelog_admin_left">
 				<ul>
-					<li><a href="user_admin.html">查看目录</a>
+					<li><a href="catalog_manager">查看目录</a>
 					</li>
-					<li><a href="user_admin.html">添加和更改目录</a>
+					<li><a href="catalog_manager">添加目录</a>
 					</li>
 				</ul>
 			</div>

@@ -16,7 +16,10 @@
 	
 	
 	<div id="container">
-<!--	<div id="banner"></div>-->
+	<div id="logalleft">
+		<div id="logalright">
+		</div>
+	</div>
      <div id="error">
 <TABLE cellSpacing=0 width=600 align=center border=0 cepadding="0">
   <TBODY>
