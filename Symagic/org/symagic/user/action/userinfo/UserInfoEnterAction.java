@@ -84,9 +84,6 @@ public class UserInfoEnterAction extends CatalogBase{
 		if(user != null){
 			totalScore = user.getScore();
 		}
-		userName = "martin";
-		nickName = "king";
-		totalScore = 10000;
 		orderList = orderService.orderList(userName, 10, 1, null, null, 0).orders;
 		return super.execute();
 	}
