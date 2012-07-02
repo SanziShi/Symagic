@@ -17,9 +17,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	</div>
                 <div id="favorite-content-body">
                 <!--收藏夹商品迭代-->
-                <s:iterator value="items" var="iter" status='st'>
+                <s:iterator value="items" var="iter" status='st' >
                 	<div class="cell checkbox">
-                		<input class="" value="" type="checkbox"/>
+                		<input name="items[<s:property value='#st.index'/>].itemID" checked="checked" value="<s:property value='#iter.itemID'/>" type="checkbox" />
+                        <input style="display:none"  name="items[<s:property value='#st.index'/>].itemNumber" value="1" />
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-name-img"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"/></a></div><div class="p-name-n"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a>

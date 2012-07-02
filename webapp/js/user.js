@@ -19,7 +19,7 @@ function address_edit(e)
 	showOverlay();
 	document.getElementById('test').style.display='block';
 }
-function close_address(e)
+function close_address_edit(e)
 {
 	var p=e.parentNode.parentNode;
 	p.style.display='none';
