@@ -9,7 +9,7 @@ public class DaoDistrictTest extends TestCase{
 
 	
 	//初始化
-	DaoDistrict	dd	= new DaoDistrict();
+/*	DaoDistrict	dd	= new DaoDistrict();
     @Test
 	public void testGetDistrict(){
 		assertEquals(0,dd.getDistrict(null).size());
@@ -25,6 +25,6 @@ public class DaoDistrictTest extends TestCase{
 	@Test
 	public void testGetDistrict4(){
 		assertEquals(1,dd.getDistrict(45052).size());
-	}
+	}*/
 
 }

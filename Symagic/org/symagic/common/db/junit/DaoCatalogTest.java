@@ -11,7 +11,7 @@ public class DaoCatalogTest extends TestCase{
     //初始化
 	DaoCatalog dc = new DaoCatalog();
 	
-	@Test
+	/*@Test
 	public void testGetCatalog1(){
 		assertEquals(0,dc.getCatalog().size());
 	}
@@ -75,5 +75,5 @@ public class DaoCatalogTest extends TestCase{
 	@Test
 	public void testGetCatalogByID2(){
 		assertEquals(null,dc.getCatalogByID(123456));
-	}
+	}*/
 }

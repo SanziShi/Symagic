@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </li>
         <li><span>书籍分类：</span><s:property value='book.catalogClassify'/></li>
         <s:if test='book.offline'>
-            <li>该商品已下架，您可以收藏该商品！</li>
+            <li><font class="red">该商品已下架，您可以收藏该商品！</font></li>
             </s:if>
         </ul>
         </div>

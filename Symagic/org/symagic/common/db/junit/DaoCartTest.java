@@ -9,7 +9,7 @@ public class DaoCartTest extends TestCase{
 
 	//初始化
 	DaoCart dc	= new DaoCart();
-	@Test
+	/*@Test
 	public void testAddBook1(){
 		assertEquals(true,dc.addBook("641567179@qq.com", 1, 12));
 	}
@@ -84,5 +84,5 @@ public class DaoCartTest extends TestCase{
 	@Test
 	public void testClean2(){
 		assertEquals(false,dc.clean("12345@qq.com"));
-	}
+	}*/
 }

@@ -37,14 +37,15 @@ deleteResult=true;
 boolean result;
 Iterator<Integer>index=items.iterator();
 while(index.hasNext()){
- result=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),index.next());
+	Integer itemID=index.next();
+ result=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),itemID);
  if(!result){
 	   deleteResult=false;
 	   if(builder.length()==0){
-		   builder.append("编号为"+index.next());
+		   builder.append("编号为"+itemID);
 	   }  
 	   else{
-		   builder.append(","+index.next());
+		   builder.append(","+itemID);
 	   }
    }
 }

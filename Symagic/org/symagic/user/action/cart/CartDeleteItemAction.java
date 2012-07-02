@@ -44,14 +44,15 @@ public class CartDeleteItemAction extends ActionSupport {
 		Iterator<Integer> it=items.iterator();
 		deleteResult=true;
 		while(it.hasNext()){
-			   result=deleteOneFromCart(it.next(),login);
+			Integer itemID=it.next();
+			   result=deleteOneFromCart(itemID,login);
 			   if(!result){
 				   deleteResult=false;
 				   if(builder.length()==0){
-					   builder.append("编号为"+it.next());
+					   builder.append("编号为"+itemID);
 				   }  
 				   else{
-					   builder.append(","+it.next());
+					   builder.append(","+itemID);
 				   }
 			   }
 		   }

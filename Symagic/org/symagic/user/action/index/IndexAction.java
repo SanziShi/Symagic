@@ -27,7 +27,7 @@ private static final long serialVersionUID = 5685501467658534869L;
 //配置项
 private RecommandService recommendService; //访问推荐系统
 private ItemService itemService;//访问商品项
-
+private Integer recommendNumber=15;//推荐项
 
 //传出参数
 private String nickname;//昵称
@@ -43,17 +43,26 @@ private List<ItemTinyBean> hotBook;//热销书
 		nickname=UserSessionUtilty.getNickname();
 		
 		
-		//推荐商品的id
-	   // List<Integer> recommendIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), 10);
-	    //itemService.fillItem(recommendIds,recommendItem);
-	     
-	     //新书和热销书
+		//推荐商品
+		List<Integer> recommendIds;
+		recommendItem=new ArrayList<ItemTinyBean>();
+		if(UserSessionUtilty.isLogin()){
+	    recommendIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), recommendNumber);
+		}
+		else{
+			recommendIds=recommendService.mostViewedItems(recommendNumber);
+		}
+		if(recommendIds!=null)
+	    itemService.fillTinyItems(recommendIds,recommendItem);
+		
+	    hotBook=new ArrayList<ItemTinyBean>();
+	    List<Integer> hotBookIDs=recommendService.mostBoughtItems(recommendNumber);
+	     itemService.fillTinyItems(hotBookIDs, hotBook);
+	    
+	    //新书
 	   newBook=new ArrayList<ItemTinyBean>();
 	   itemService.getNewBook(newBook);
-	 
-	    
-		hotBook=new ArrayList<ItemTinyBean>();
-		return super.execute();
+	    return super.execute();
 	}
 	
 	
