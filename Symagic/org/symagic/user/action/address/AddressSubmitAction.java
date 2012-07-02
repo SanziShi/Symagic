@@ -7,21 +7,21 @@ import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
-public class AddressSubmitAction extends AddressBase{
-	
+public class AddressSubmitAction extends AddressBase {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2504916134181840602L;
 
 	private DaoUserAddress daoAddress;
-	
+
 	private DaoDistrict daoDistrict;
-	
+
 	private Boolean submitResult;
-	
+
 	private boolean isValidate;
-	
+
 	private String resultInfo;
 
 	public String getResultInfo() {
@@ -48,10 +48,18 @@ public class AddressSubmitAction extends AddressBase{
 		this.daoAddress = daoAddress;
 	}
 
-	public String execute() throws Exception{
-		
+	public Boolean getSubmitResult() {
+		return submitResult;
+	}
+
+	public void setSubmitResult(Boolean submitResult) {
+		this.submitResult = submitResult;
+	}
+
+	public String execute() throws Exception {
+
 		BeanAddress address = new BeanAddress();
-		if(!isValidate){
+		if (!isValidate) {
 			submitResult = isValidate;
 			return SUCCESS;
 		}
@@ -59,14 +67,17 @@ public class AddressSubmitAction extends AddressBase{
 		addressDetail.districtDetail = getAddressDetail();
 		addressDetail.level1District = new DistrictBean();
 		addressDetail.level1District.setID(getDistrictLevel1ID());
-		addressDetail.level1District.setName(daoDistrict.getDistrictById(getDistrictLevel1ID()).getName());
+		addressDetail.level1District.setName(daoDistrict.getDistrictById(
+				getDistrictLevel1ID()).getName());
 		addressDetail.level2District = new DistrictBean();
 		addressDetail.level2District.setID(getDistrictLevel2ID());
-		addressDetail.level2District.setName(daoDistrict.getDistrictById(getDistrictLevel2ID()).getName());
+		addressDetail.level2District.setName(daoDistrict.getDistrictById(
+				getDistrictLevel2ID()).getName());
 		addressDetail.level3District = new DistrictBean();
 		addressDetail.level3District.setID(getDistrictLevel3ID());
-		addressDetail.level3District.setName(daoDistrict.getDistrictById(getDistrictLevel3ID()).getName());
-		
+		addressDetail.level3District.setName(daoDistrict.getDistrictById(
+				getDistrictLevel3ID()).getName());
+
 		String strAddressDetail = OrderService.serializerAddress(addressDetail);
 		address.setAddrdetail(strAddressDetail);
 		address.setMobilenum(getMobileNum());
@@ -74,27 +85,39 @@ public class AddressSubmitAction extends AddressBase{
 		address.setReceivername(getReceiverName());
 		address.setUsername(UserSessionUtilty.getUsername());
 		address.setZipcode(getZipcode());
-		
+
 		submitResult = daoAddress.addAddress(address);
+		if (submitResult) {
+			resultInfo = "修改成功";
+		} else {
+			resultInfo = "修改失败";
+		}
 		return SUCCESS;
 	}
-	
-	public void validate(){
+
+	public void validate() {
 		isValidate = true;
-		if( getDistrictLevel1ID() == null || getDistrictLevel2ID() == null || getDistrictLevel3ID() == null ||
-				getAddressDetail() == null || getReceiverName() == null 
-				|| getMobileNum() == null || getPhoneNum() == null){
+		if (getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
+				|| getDistrictLevel3ID() == null || getAddressDetail() == null
+				|| getReceiverName() == null || getMobileNum() == null
+				|| getPhoneNum() == null) {
 			isValidate = false;
 			resultInfo = "用户名为空";
 		}
-		
-	}
 
-	public Boolean getSubmitResult() {
-		return submitResult;
-	}
+		if (!getMobileNum().matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")) {
+			submitResult = false;
+			resultInfo = "手机号码错误";
+			return;
+		}
+		if (!getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")) {
+			submitResult = false;
+			resultInfo = "电话号码错误";
+		}
+		if (!getZipcode().matches("^[1-9]\\d{5}")) {
+			submitResult = false;
+			resultInfo = "邮编错误";
+		}
 
-	public void setSubmitResult(Boolean submitResult) {
-		this.submitResult = submitResult;
 	}
 }

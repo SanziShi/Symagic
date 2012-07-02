@@ -133,25 +133,25 @@ function add_address(f)
 				if(r.submitResult)
 				{
 					alert('添加成功');
-					show_address();
-					/*Ajax({
+					Ajax({
 						url:'address',
 						onSuccess:function(e)
 							{
 								document.getElementById('address-container').innerHTML=e;
 							}
-						})*/
+					})
+					return false;
 				}
 				else
 				{
-					alert('添加失败！');
+					alert(r.resultInfo);
 				}
 			}
 		})
 		return false;
 }
 /******修改地址提交函数*****/
-function address_edit_submit(f)
+function address_edit_submit(f,id)
 {
 	Ajax({
 		url:'address/address_edit_submit',
@@ -162,6 +162,7 @@ function address_edit_submit(f)
 				if(a.submitResult)
 				{
 					alert('保存成功！');
+					close_address_edit(id);
 					show_address();
 				}
 				else alert(a.resultInfo);
@@ -172,7 +173,7 @@ function address_edit_submit(f)
 /****删除地址函数****/
 function delete_address(id)
 {
-	Ajax:({
+	Ajax({
 		url:'address/delete_address?addressID='+id,
 		onSuccess:function(e)
 			{
@@ -180,8 +181,10 @@ function delete_address(id)
 				if(a.deleteResult)
 				{
 					alert('删除成功！');
-					show_address();
+					var t='#address_tr'+id;
+					$(t).fadeOut(200);
 				}
+				else alert(a.resultInfo);
 			}
 		})
 }

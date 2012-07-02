@@ -350,10 +350,9 @@ if (!JSON) {
 	}
 }());
 
-/********刷新验证码************/
-function change_captcha(e, path)
-{
-	e.src= path + '/captcha_get_captcha?t='+Math.random();
+/** ******刷新验证码*********** */
+function change_captcha(e, path) {
+	e.src = path + '/captcha_get_captcha?t=' + Math.random();
 }
 
 // 异步调用函数
@@ -600,69 +599,67 @@ function ajax_delete_tag(id) {
 
 }
 
-// 商品下架
-function ajax_item_off(e, id) {
+// 商品操作
+function ajax_item_operation(e, id) {
 
-	var result = confirm("该操作将会将商品下架，确定继续吗？");
-	if (result == false)
-		return;
-	Ajax({
-		url : 'item_manager/off?itemID=' + id,
-		type : 'GET',
-		onSend : function() {
-		},
-		onSuccess : function() {
-			/*
-			 * var t=document.createElement('div'); t.id='cart_container';
-			 * t.innerHTML=e; document.getElementById('cart').appendChild(t);
-			 * t=null;
-			 */
-			set_value(e, id);
-			var obj = JSON.parse(e);
-			if (obj.offResult == true) {
-				var tag = document.getElementById(id);
-				tag.parentNode.removeChild(tag);
-				alert("下架成功！");
-			} else
-				alert("下架出错，请返回重新尝试！");
-		}
-	});
-
-}
-
-// 商品上架
-function ajax_item_up(e, id) {
-
-	var result = confirm("该操作将会将商品上架，确定继续吗？");
-	if (result == false)
-		return;
-	Ajax({
-		url : 'item_manager/up?itemID=' + id,
-		type : 'GET',
-		onSend : function() {
-		},
-		onSuccess : function() {
-			/*
-			 * var t=document.createElement('div'); t.id='cart_container';
-			 * t.innerHTML=e; document.getElementById('cart').appendChild(t);
-			 * t=null;
-			 */
-			set_value(e);
-			var obj = JSON.parse(e);
-			if (obj.upResult == true) {
-				var tag = document.getElementById(id);
-				tag.parentNode.removeChild(tag);
-				alert("商品上架成功！");
-			} else
-				alert("上架出错，请返回重新尝试！");
-		}
-	});
+	if (e.value == "下架") {
+		var result = confirm("该操作将会将商品下架，确定继续吗？");
+		if (result == false)
+			return;
+		Ajax({
+			url : 'item_manager/off?itemID=' + id,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function() {
+				/*
+				 * var t=document.createElement('div'); t.id='cart_container';
+				 * t.innerHTML=e;
+				 * document.getElementById('cart').appendChild(t); t=null;
+				 */
+				set_value(e, id);
+				var obj = JSON.parse(e);
+				if (obj.offResult == true) {
+					var tag = document.getElementById(id);
+					tag.parentNode.removeChild(tag);
+					alert("下架成功！");
+				} else
+					alert("下架出错，请返回重新尝试！");
+			}
+		});
+	}
+	else{
+		var result = confirm("该操作将会将商品上架，确定继续吗？");
+		if (result == false)
+			return;
+		Ajax({
+			url : 'item_manager/up?itemID=' + id,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function() {
+				/*
+				 * var t=document.createElement('div'); t.id='cart_container';
+				 * t.innerHTML=e; document.getElementById('cart').appendChild(t);
+				 * t=null;
+				 */
+				set_value(e);
+				var obj = JSON.parse(e);
+				if (obj.upResult == true) {
+					var tag = document.getElementById(id);
+					tag.parentNode.removeChild(tag);
+					alert("商品上架成功！");
+				} else
+					alert("上架出错，请返回重新尝试！");
+			}
+		});
+	}
 
 }
 
 
-/*目录管理中删除一个目录*/
-//删除二级目录
+/* 目录管理中删除一个目录 */
+// 删除二级目录
 function ajax_catalog_delete_tag_level2(id) {
 	var result = confirm("该操作将会将所选二级目录移除，确定继续吗？");
 	if (result == true) {
@@ -689,7 +686,7 @@ function ajax_catalog_delete_tag_level2(id) {
 	}
 }
 
-//删除一级目录
+// 删除一级目录
 function ajax_catalog_delete_tag_level2(id) {
 	var result = confirm("该操作将会将所选目录及其子目录移除，确定继续吗？");
 	if (result == true) {
@@ -716,8 +713,6 @@ function ajax_catalog_delete_tag_level2(id) {
 	}
 }
 
-
-
 function show_item_search(e) {
 	if (e.className == 'collapse') {
 		e.className = 'collapsed';
@@ -738,10 +733,8 @@ function expanse(e) {
 function set_value(e, id) {
 	if (e.value == "下架") {
 		e.value = "上架";
-		e.onclick = ajax_item_up(e, id);
 	} else {
 		e.value = "下架";
-		e.onclick = ajax_item_off(e, id);
 	}
 }
 
@@ -831,118 +824,82 @@ function upsubmit(name) {
 	document.name.submit();
 }
 
-//下架处理
-function offsubmit(id) {
 
-	var a = document.getElementById(id);
-	
+// 批量上架action处理
+function ajax_batch_up(form) {
+
+	var items = $(form).serialize();
 	Ajax({
-		url : 'item_manager/off?' + str,
-		type : 'GET',
-		onSend : function() {
+		url : 'item_manager/up',
+		data : items,
+		onSuccess : function(e) {
+			var a = JSON.parse(e);
+			if (a.upResult) {
+				alert("批量上架成功");
+				location.reload();
+			} else {
+				alert("批量上架失败，请重新尝试！");
+			}
 		},
-		onSuccess : function() {
-			/*
-			 * var t=document.createElement('div'); t.id='cart_container';
-			 * t.innerHTML=e; document.getElementById('cart').appendChild(t);
-			 * t=null;
-			 */
-			var obj = JSON.parse(e);
-			if (obj.offResult == true) {
-				alert("下架成功！");
-			} else
-				alert("下架出错，请返回重新尝试！");
+		onError : function() {
 		}
 	});
-
 }
 
-//批量上架action处理
-function ajax_batch_up(form)
-{   
-	
-	var items=$(form).serialize();
+// 批量下架action处理
+function ajax_batch_off(form) {
+
+	var items = $(form).serialize();
+	alert(items);
 	Ajax({
-		url:'up',
-		data:items,
-		onSuccess:function(e){
-				var a=JSON.parse(e);
-				if(a.upResult){
-					alert("批量上架成功");
-					location.reload();
-				}
-				else 
-				{
-					alert("批量上架失败，请重新尝试！");
-				}
-				},
-		onError:function(){}
+		url : 'item_manager/off',
+		data : items,
+		onSuccess : function(e) {
+			var a = JSON.parse(e);
+			if (a.offResult) {
+				alert("批量下架成功");
+				location.reload();
+			} else {
+				alert("批量下架失败，请重新尝试！");
+			}
+		},
+		onError : function() {
+		}
 	});
 }
 
-//批量下架action处理
-function ajax_batch_off(form)
-{   
-	
-	var items=$(form).serialize();
-	Ajax({
-		url:'off',
-		data:items,
-		onSuccess:function(e){
-				var a=JSON.parse(e);
-				if(a.offResult){
-					alert("批量下架成功");
-					location.reload();
-				}
-				else 
-				{
-					alert("批量下架失败，请重新尝试！");
-				}
-				},
-		onError:function(){}
-	});
-}
-
-//地址选择下拉相关
-function get_district(d)
-{
-	var va=d.value;
-	if(va=='s1')
-	{
-		document.getElementById('level2ID').innerHTML='<option value="s2">请选择</option>';
-		document.getElementById('level3ID').innerHTML='<option value="">请选择</option>';
+// 地址选择下拉相关
+function get_district(d) {
+	var va = d.value;
+	if (va == 's1') {
+		document.getElementById('level2ID').innerHTML = '<option value="s2">请选择</option>';
+		document.getElementById('level3ID').innerHTML = '<option value="">请选择</option>';
 		return false;
-	}
-	else if(va=='s2')
-	{
-		document.getElementById('level3ID').innerHTML='<option value="">请选择</option>';
+	} else if (va == 's2') {
+		document.getElementById('level3ID').innerHTML = '<option value="">请选择</option>';
 		return false;
-	}
-	else{
-	Ajax({
-		url:'address/get_next_level?ID='+va,
-		onSuccess:function(e)
-			{
-				var dis=JSON.parse(e);
-				var l=dis.length;
-				var n=d.nextSibling.nextSibling;
-				if(d.id=='level1ID')
-				{
-					n.innerHTML='<option value="-2">请选择</option>';
-				}else n.innerHTML='<option value="">请选择</option>';
-				var t=document.createElement('select');
-				for(var g=0;g<l;++g)
-				{
-					var temp=document.createElement('option');
-					temp.value=dis[g].ID;
-					temp.innerHTML=dis[g].name;
+	} else {
+		Ajax({
+			url : 'address/get_next_level?ID=' + va,
+			onSuccess : function(e) {
+				var dis = JSON.parse(e);
+				var l = dis.length;
+				var n = d.nextSibling.nextSibling;
+				if (d.id == 'level1ID') {
+					n.innerHTML = '<option value="-2">请选择</option>';
+				} else
+					n.innerHTML = '<option value="">请选择</option>';
+				var t = document.createElement('select');
+				for ( var g = 0; g < l; ++g) {
+					var temp = document.createElement('option');
+					temp.value = dis[g].ID;
+					temp.innerHTML = dis[g].name;
 					n.appendChild(temp);
 				}
 			}
 		})
 	}
 }
-function select_address(e)
-{
-	e.parentNode.className+=' selected';
+function select_address(e) {
+	e.parentNode.className += ' selected';
 }

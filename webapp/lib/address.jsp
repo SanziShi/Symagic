@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <s:iterator value='addressList' var="iter">
                 <div id="address<s:property value='#iter.ID'/>" class="address-edit">
                 <h2>修改地址<span class="close" onclick="close_address_edit('address<s:property value='#iter.ID'/>')"></span></h2>
-                	<form action="address/address_edit_submit" method="post" onsubmit="return address_edit_submit(this)">
+                	<form action="address/address_edit_submit" method="post" onsubmit="return address_edit_submit(this,address<s:property value='#iter.ID'/>)">
                     <input style="display:none" name="addressID" value="<s:property value='#iter.ID'/>">
                     <table width="100%" cellspacing="0" border="0">
                 			<tbody>
@@ -139,13 +139,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                              <tr class="tr"><td width="11%">收货人</td><td width="25%">所在地区</td><td width="30%" >详细地址</td><td width="8%">邮编</td><td width="13%">手机/电话</td><td width="13%">操作</td></tr>
                 			<!--地址迭代-->
                             <s:iterator value='addressList' var="iter">
-                    		<tr >
+                    		<tr id="address_tr<s:property value='#iter.ID'/>" >
                             	<td><s:property value='#iter.receiverName'/></td>
                             	<td><s:property value='#iter.addressSummary'/></td>
                             	<td class="detail"><s:property value='#iter.addressDetail'/></td>
                             	<td><s:property value='#iter.zipcode'/></td>
                             	<td class="detail"><s:property value='#iter.mobileNum'/><br/><s:property value='#iter.phoneNum'/></td>
-                            	<td><a href="javascript:void(0)" onclick="address_edit(<s:property value='#iter.ID'/>)">修改</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="delete_address(<s:property value='#iter.ID'/>)">删除</a></td>
+                            	<td>
+                                	<a href="javascript:void(0)" onclick="address_edit(<s:property value='#iter.ID'/>)">修改</a>
+                             		&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="delete_address(<s:property value='#iter.ID'/>)">删除</a>
+                                </td>
                             </tr>
                     		</s:iterator>
                             <!--地址迭代结束-->

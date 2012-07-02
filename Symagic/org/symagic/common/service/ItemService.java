@@ -32,8 +32,9 @@ public class ItemService {
 	private DaoComment daoComment;// 访问comment
 	private DaoBook daoBook;// 访问数据库中的书籍信息
 	private DaoCatalog daoCatalog;
-    private OrderService orderService;
-    private RecommandService recommendService;
+	private OrderService orderService;
+	private RecommandService recommendService;
+
 	/**
 	 * 
 	 * @param sign
@@ -41,7 +42,8 @@ public class ItemService {
 	 * @param require
 	 * @return List<BeanBook>
 	 */
-    //得到热销书
+
+	  //得到热销书
     public void getHotBook(Integer recommendNumber,List<ItemTinyBean>hotBook){
     	List<Integer> hotBookIDs=recommendService.mostBoughtItems(recommendNumber);
 	    if(hotBookIDs==null){
@@ -123,10 +125,10 @@ public class ItemService {
     }
     
     
-    /**
-	 * @param books为外部引用
-	 *            ，不能为null
-	 */
+  
+	
+
+	
 	public void getNewBook(List<ItemTinyBean> books) {
 		List<BeanBook> newBooks = daoBook.getLatestBook();
 		if (newBooks == null)
@@ -139,7 +141,7 @@ public class ItemService {
 			books.add(item);
 		}
 	}
-    
+
 	public List<BeanBook> search(int sign, BookRequire require) {
 		return daoBook.search(sign, require);
 	}
@@ -172,33 +174,35 @@ public class ItemService {
 
 	// 为推荐项填充信息
 	private void fillItemTinyBean(BeanBook book, ItemTinyBean item) {
-        
+
 		item.setItemID(book.getBookId());
 		item.setName(book.getBookName());
 		item.setPicturePath(book.getPicture());
 		float marketPrice = book.getMarketPrice();
 		float discount = book.getDiscount();
-		item.setPrice(String.format("%.2f", (MathUtilty.roundWithdigits(marketPrice * discount))));
+		item.setPrice(String.format("%.2f",
+				(MathUtilty.roundWithdigits(marketPrice * discount))));
 	}
-	
-
 
 	// 搜索显示出来的信息
 
 	private void fillItemBean(BeanBook book, ItemBean item) {
 		item.setItemID(String.valueOf(book.getBookId()));
 		item.setName(book.getBookName());
-	   
-		item.setDiscount(String.format("%.2f",MathUtilty.roundWithdigits(book.getDiscount())));
+
+		item.setDiscount(String.format("%.2f",
+				MathUtilty.roundWithdigits(book.getDiscount())));
 		item.setPicturePath(book.getPicture());
 		item.setPublishTime(book.getPublishDate());
 		item.setPublisher(book.getPublisher());
 		item.setAuthor(book.getAuthor());
-		float marketPrice=MathUtilty.roundWithdigits(book.getMarketPrice());
-		float price=MathUtilty.roundWithdigits(marketPrice*book.getDiscount());
-		item.setPrice(String.format("%.2f",price));
-		item.setMarketPrice(String.format("%.2f",marketPrice));
-	    item.setSavePrice(String.format("%.2f", MathUtilty.roundWithdigits(marketPrice-price)));
+		float marketPrice = MathUtilty.roundWithdigits(book.getMarketPrice());
+		float price = MathUtilty.roundWithdigits(marketPrice
+				* book.getDiscount());
+		item.setPrice(String.format("%.2f", price));
+		item.setMarketPrice(String.format("%.2f", marketPrice));
+		item.setSavePrice(String.format("%.2f",
+				MathUtilty.roundWithdigits(marketPrice - price)));
 		String status = book.getOffline();
 		if (status.trim().equals("下架")) {
 			item.setOffline(true);
@@ -214,12 +218,11 @@ public class ItemService {
 		fillItemBean(book, item);
 	}
 
-	
-
 	public void fillTinyItems(List<Integer> ids, List<ItemTinyBean> items) {
 		ItemTinyBean item;
 		BeanBook book;
-		if( ids == null ) return;
+		if (ids == null)
+			return;
 		for (Iterator<Integer> index = ids.iterator(); index.hasNext();) {
 			int id = index.next();
 			item = new ItemTinyBean();
@@ -263,13 +266,17 @@ public class ItemService {
 			float marketPrice = MathUtilty.roundWithdigits(book
 					.getMarketPrice());
 			float discount = MathUtilty.roundWithdigits(book.getDiscount());
+
 			float bookprice = MathUtilty.roundWithdigits(marketPrice * discount);
 			float itemTotalPrice = MathUtilty.roundWithdigits(bookprice* number);
 			item.setItemTotalPrice(String.format("%.2f",itemTotalPrice));
 			item.setMarketPrice(String.format("%.2f",marketPrice));
+
 			item.setName(book.getBookName());
+
 			item.setPrice(String.format("%.2f",bookprice));// 商城价
 			item.setSavePrice(String.format("%.2f",MathUtilty.roundWithdigits(marketPrice-bookprice)));
+
 			item.setPicturePath(book.getPicture());
 			items.add(item);
 			totalPrice += itemTotalPrice;
@@ -294,24 +301,24 @@ public class ItemService {
 		BeanBook book = daoBook.getDetail(itemId);
 		if (book == null)
 			return false;
-		BeanCatalog currentCatalog=null;
-		if(book.getCatalogID()!=null){
-		 currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
-		 detail.setCatalogClassify(getCatalogName(currentCatalog));
+		BeanCatalog currentCatalog = null;
+		if (book.getCatalogID() != null) {
+			currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
+			detail.setCatalogClassify(getCatalogName(currentCatalog));
 		}
 		detail.setAuthor(book.getAuthor());
-		int rating=daoComment.getAverageRating(itemId);
+		int rating = daoComment.getAverageRating(itemId);
 		detail.setAverageRating(rating);
 		detail.setBinding(book.getBinding());
 		detail.setBookDesc(book.getBookDesc());
 		detail.setBookName(book.getBookName());
-		detail.setDiscout(String.format("%.2f",book.getDiscount()));
+		detail.setDiscout(String.format("%.2f", book.getDiscount()));
 		detail.setSize(book.getFolio());
 		detail.setInventory(book.getInventory());
 		detail.setIsbn(book.getIsbn());
 		float marketPrice = MathUtilty.roundWithdigits(book.getMarketPrice());
 		float discount = MathUtilty.roundWithdigits(book.getDiscount());
-		detail.setMarketPrice(String.format("%.2f",marketPrice));
+		detail.setMarketPrice(String.format("%.2f", marketPrice));
 		if (book.getOffline().equals("下架")) {
 			detail.setOffline(true);
 		} else {
@@ -319,8 +326,9 @@ public class ItemService {
 		}
 		detail.setPage(book.getPage());
 		float price = MathUtilty.roundWithdigits(discount * marketPrice);
-		detail.setPrice(String.format("%.2f",price));
-		detail.setSavePrice(String.format("%.2f",MathUtilty.roundWithdigits(marketPrice - price)));
+		detail.setPrice(String.format("%.2f", price));
+		detail.setSavePrice(String.format("%.2f",
+				MathUtilty.roundWithdigits(marketPrice - price)));
 		detail.setPublishDate(book.getPublishDate());
 		detail.setPublisher(book.getPublisher());
 		detail.setVersion(book.getVersion());
@@ -354,7 +362,7 @@ public class ItemService {
 		detail.setParseCatalog(catalog);
 		// 是否可以评论，默认不能评论
 		detail.setCommentAble(false);
-		
+
 		// 是否已登录
 		if (UserSessionUtilty.getUsername() != null) {
 			// 购买记录
@@ -452,6 +460,5 @@ public class ItemService {
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
 	}
-	
 
 }

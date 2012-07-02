@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-    <form action="order_submit" method="post">
+    <form action="order_submit" method="post" id="order_submit">
     <div id="order_container">
     	<div id="c-info">
         	<h1>收货人信息</h1>
@@ -72,9 +72,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	<ul>
                         <!--常用地址迭代开始-->
                         <s:iterator value='addressList' var="iter">
-                        	<li id="normal_address<s:property value='#iter.ID'/>">
-                            	<input onchange="detect(normal_address<s:property value='#iter.ID'/>)" onselect="select_address(normal_address<s:property value='#iter.ID'/>)" type="radio" id="1" />
-                                <label for="1"><strong>收货人</strong>&nbsp;测试地址</label>
+                        	<li class="" id="normal_address<s:property value='#iter.ID'/>">
+                            	<input name="adressID" onclick="detect(this,<s:property value='#iter.ID'/>)"  type="radio" id="normal_a<s:property value='#iter.ID'/>" />
+                                <label for="normal_a<s:property value='#iter.ID'/>"><strong><s:property value='#iter.receiverName'/></strong>&nbsp;<s:property value='#iter.addressSummary'/><s:property value='#iter.addressDetail'/></label>
                                 <span class="delete"><a onclick="delete_address(<s:property value='#iter.ID'/>)" href="javascript:void(0)">删除地址</a></span>
                             </li>
                         </s:iterator>
@@ -82,7 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </ul>
                     </div>
                 </div>
-            	<table width="100%" cellspacing="0" border="0">
+                <div id="table_container">
+            	<table id="order_address" width="100%" cellspacing="0" border="0">
                 	<tbody>
                     	<tr>
                         	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
@@ -123,51 +124,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </tr>
                     </tbody>
                 </table>
-                <!---隐藏的地址修改table--->
-                <table style="display:none" width="100%" cellspacing="0" border="0">
-                	<tbody>
-                    	<tr>
-                        	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
-                            <td><input name="receiver" class="txt" type="text"/></td>
-                        </tr>
-                        <tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
-                            <td>
-                            	<select onchange="get_district(this)" id="level1ID" name="level1ID">
-                                	<option value="s1">请选择</option>
-                                <s:iterator value="level1Districts" var='iter'>
-                                	<option value="<s:property value='#iter.ID'/>"><s:property value='#iter.name'/></option>
-                                </s:iterator>
-                                </select>
-                                <select onchange="get_district(this)" id="level2ID" name="level2ID">
-                                	<option value="s2">请选择</option>
-                                </select>
-                                <select id="level3ID" name="level3ID">
-                                	<option value="">请选择</option>
-                                </select>
-                            </td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
-                            <td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long"></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            <td><input name="mobileNum" type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt"/></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right">邮箱地址：</td>
-                            <td><s:property value='#session.userName'/></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
-                            <td><input name="zipcode" type="text" class="txt short"/></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!--- 隐藏的地址修改table--->
-                
-                <span class="add-to-address">添加信息至地址簿</span><span>重置内容</span>
+                </div>
+                <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
             </div>
         </div>
         <div id="payment-c">
@@ -228,9 +186,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="ware">
         	<h1>结算</h1>
+            <input name="score" style="display:none" value="0">
         	<div class="total_price"><span id="pay">应付总额：<strong>￥<s:property value='price'/></strong>元</span></div>
         	<div class="clear"></div>
-        	<div class="order_confirm"></div>
+        	<div class="order_confirm" onclick="order_submit()"></div>
         	<div class="clear"></div>
         </div>     
     </div>

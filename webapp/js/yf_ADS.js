@@ -210,7 +210,7 @@ function login(form)
 				else 
 				{
 					document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
-					alert('登录失败');
+					alert(a.resultInfo);
 				}
 				},
 		onError:function(){}
@@ -230,7 +230,11 @@ function regist(form)
 			{
 				location.replace(location.href);
 			}
-			else document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
+			else 
+			{
+				document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
+				alert(r.resultInfo);
+			}
 		}
 	})
 	return false;
