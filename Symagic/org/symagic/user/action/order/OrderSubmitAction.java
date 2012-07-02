@@ -176,22 +176,23 @@ public class OrderSubmitAction extends OrderBase{
 			orderDetail.setMarketPrice(book.getMarketPrice());
 			order.getList().add(orderDetail);
 			totalPrice += book.getMarketPrice() - book.getDiscount();
-			String URL = baseURL + "itemDetail?itemID=" + book.getBookId();
+			String URL = baseURL + "/itemDetail?itemID=" + book.getBookId();
 			//通知推荐系统用户购买
 			for(int j = 0; j < items.get(i).getItemNumber(); j ++){
 				recommandService.buy(UserSessionUtilty.getSessionID(),
-						Integer.toString(items.get(j).getItemID()),
-						null, URL, UserSessionUtilty.getUsername());
+						Integer.toString(items.get(i).getItemID()),
+						"", URL, UserSessionUtilty.getUsername());
 			}
 			
 		}
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:MM:SS");
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
 		order.setOrderDate(sdf.format(date));
 		
 		order.setTotalprice(totalPrice);
 		BeanLevel level = daoLevel.judgeLevel(daoUser.getScore(username));
-		order.setScore((int)(totalPrice * level.getRate()));
+		if(level != null)
+			order.setScore((int)(totalPrice * level.getRate()));
 		order.setUsername(username);
 		order.setZipcode(getZipcode());
 		if(daoOrder.addOrder(order))
