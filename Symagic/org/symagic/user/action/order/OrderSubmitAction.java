@@ -174,7 +174,7 @@ public class OrderSubmitAction extends OrderBase{
 			orderDetail.setMarketPrice(book.getMarketPrice());
 			order.getList().add(orderDetail);
 			totalPrice += book.getMarketPrice() - book.getDiscount();
-			String URL = "/itemDetail?itemID=" + book.getBookId();
+			String URL = "itemDetail?itemID=" + book.getBookId();
 			//通知推荐系统用户购买
 			for(int j = 0; j < items.get(i).getItemNumber(); j ++){
 				recommandService.buy(UserSessionUtilty.getSessionID(),

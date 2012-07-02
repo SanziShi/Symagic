@@ -48,6 +48,14 @@ public class AddressSubmitAction extends AddressBase{
 		this.daoAddress = daoAddress;
 	}
 
+	public Boolean getSubmitResult() {
+		return submitResult;
+	}
+
+	public void setSubmitResult(Boolean submitResult) {
+		this.submitResult = submitResult;
+	}
+
 	public String execute() throws Exception{
 		
 		BeanAddress address = new BeanAddress();
@@ -76,6 +84,12 @@ public class AddressSubmitAction extends AddressBase{
 		address.setZipcode(getZipcode());
 		
 		submitResult = daoAddress.addAddress(address);
+		if(submitResult){
+			resultInfo = "修改成功";
+		}
+		else{
+			resultInfo = "修改失败";
+		}
 		return SUCCESS;
 	}
 	
@@ -88,13 +102,5 @@ public class AddressSubmitAction extends AddressBase{
 			resultInfo = "用户名为空";
 		}
 		
-	}
-
-	public Boolean getSubmitResult() {
-		return submitResult;
-	}
-
-	public void setSubmitResult(Boolean submitResult) {
-		this.submitResult = submitResult;
 	}
 }
