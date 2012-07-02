@@ -24,14 +24,22 @@
 		<a name="0"></a>
 		<div id="globallink">
 			<ul>
-				<li><a href="index">首页</a></li>
-				<li><a href="catalog_manager">目录管理</a></li>
-				<li><a href="item_manager">商品管理</a></li>
-				<li><a href="order_list">订单管理</a></li>
-				<li><a href="order_statistics">销售量统计</a></li>
-				<li><a href="user_level">会员管理</a></li>
-				<li><a href="" class="nouseful">&nbsp;</a></li>
-                <li><a href="" class="nouseful">&nbsp;</a></li>
+				<li><a href="index">首页</a>
+				</li>
+				<li><a href="catalog_manager">目录管理</a>
+				</li>
+				<li><a href="item_manager">商品管理</a>
+				</li>
+				<li><a href="order_list">订单管理</a>
+				</li>
+				<li><a href="order_statistics">销售量统计</a>
+				</li>
+				<li><a href="user_level">会员管理</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
 			</ul>
 		</div>
 		<!-- <div class="clear"></div>
@@ -62,44 +70,56 @@
 					<span>后台首页</span>
 				</h4>
 				<ul>
-					<li><a href="index">后台首页</a></li>
+					<li><a href="index">后台首页</a>
+					</li>
 
 				</ul>
 				<h4>
 					<span>销售管理</span>
 				</h4>
 				<ul>
-					<li><a href="order_statistics">查询销售情况</a></li>
-					<li><a href="order_statistics">销售量统计</a></li>
+					<li><a href="order_statistics">查询销售情况</a>
+					</li>
+					<li><a href="order_statistics">销售量统计</a>
+					</li>
 				</ul>
 				<h4>
 					<span>目录管理</span>
 				</h4>
 				<ul>
-					<li><a href="catalog_manager">查看商品目录</a></li>
-					<li><a href="catalog_edit">添加和更改商品目录</a></li>
+					<li><a href="catalog_manager">查看商品目录</a>
+					</li>
+					<li><a href="catalog_edit">添加和更改商品目录</a>
+					</li>
 				</ul>
 				<h4>
 					<span>商品管理</span>
 				</h4>
 				<ul>
-					<li><a href="item_manager">商品搜索</a></li>
-					<li><a href="item_manager">商品浏览</a></li>
-					<li><a href="item_manager">添加商品</a></li>
+					<li><a href="item_manager">商品搜索</a>
+					</li>
+					<li><a href="item_manager">商品浏览</a>
+					</li>
+					<li><a href="item_manager">添加商品</a>
+					</li>
 				</ul>
 				<h4>
 					<span>订单管理</span>
 				</h4>
 				<ul>
-					<li><a href="order_list">订单查询</a></li>
-					<li><a href="order_list">浏览订单</a></li>
+					<li><a href="order_list">订单查询</a>
+					</li>
+					<li><a href="order_list">浏览订单</a>
+					</li>
 				</ul>
 				<h4>
 					<span>会员管理</span>
 				</h4>
 				<ul>
-					<li><a href="user_list">查询会员</a></li>
-					<li><a href="user_level">查看和设置会员等级规定</a></li>
+					<li><a href="user_list">查询会员</a>
+					</li>
+					<li><a href="user_level">查看和设置会员等级规定</a>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -159,8 +179,7 @@
 								<td id="myfont" class="mywidth"><s:property
 										value="productNum" />个</td>
 							</tr>
-						</table>
-					</td>
+						</table></td>
 
 					<td class="mywidth">
 						<table width="100% " style="display:inline ">
@@ -187,8 +206,7 @@
 								<td id="myfont"><span class="redStrong"><s:property
 											value="finishOrderAmount" /> </span>个</td>
 							</tr>
-						</table>
-					</td>
+						</table></td>
 				</tr>
 			</table>
 			<!--      <table width="100%">
@@ -229,17 +247,17 @@
 
 								<th></th>
 
-								<th class="autoWidth">订单号</th>
+								<th width="10%" align="center">订单号</th>
 
-								<th class="autoWidth">用户名</th>
+								<th class="autoWidth" align="center">用户名</th>
 
-								<th>下单时间</th>
+								<th class="autoWidth" align="center">下单时间</th>
 
-								<th>订单状态</th>
+								<th class="autoWidth" align="center">订单状态</th>
 
 
 
-								<th>详情</th>
+								<th width="30%" align="center">详情</th>
 
 							</tr>
 
@@ -253,8 +271,7 @@
 								<tr id="<s:property value = '#orders.orderID'/>">
 
 									<td><input type="checkbox" name="orders"
-										value="<s:property value = '#orders.orderID'/>" />
-									</td>
+										value="<s:property value = '#orders.orderID'/>" /></td>
 
 									<td class="antoWidth"><s:property value="#orders.orderID" />
 									</td>
@@ -266,7 +283,8 @@
 									</td>
 
 									<td class="autoWidth"><s:property
-											value="#orders.orderStatus" /></td>
+											value="#orders.orderStatus" />
+									</td>
 									<td><s:if test="#orders.orderStatus=='已下单' ">
 											<input type="button" class="operation_btn" value="详情"
 												onclick="location='order_detail?orderID=<s:property value = '#orders.orderID'/>'" />&nbsp;
@@ -306,11 +324,9 @@
 												onclick="ajax_delete_order(
 												<s:property value = '#orders.orderID'/>)"
 												value="删除" />&nbsp;
-  </s:else>
-									</td>
-
-
+  </s:else></td>
 								</tr>
+								
 							</s:iterator>
 						</tbody>
 
@@ -319,13 +335,14 @@
 				</form>
 
 			</div>
-
-
-			<div id="footer">
-				<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
-					电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
-					Power by Symagic &nbsp;</span>
-			</div>
 		</div>
+
+
+		<div id="footer">
+			<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
+				电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
+				Power by Symagic &nbsp;</span>
+		</div>
+	</div>
 </body>
 </html>

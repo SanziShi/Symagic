@@ -36,7 +36,7 @@ td.mywidth{
 	width:100%;
 	font-size:13px;
 	margin:0px auto;
-	text-align:left;
+	text-align:center;
 	line-height:28px;
 	background:#FFF;
 	}
@@ -452,3 +452,6 @@ text-align: center;
 	line-height:28px;
 }
 <!--table格式控制--end>
+
+<!--水平虚线-->
+.hr0{ height:1px;border:none;border-top:1px dashed #0066CC;} 

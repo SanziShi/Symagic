@@ -173,6 +173,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>ok.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
+		
+		<action name="get_address_detail" class="addressDetail">
+			<result>/lib/address_detail.jsp</result>
+		</action>
 	</package>
 
 	<!-- 注册时用户名检测 -->
