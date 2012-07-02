@@ -44,8 +44,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
-			<!-- <result name="error">/admin/admin_error.jsp</result> -->
-			<!-- <result name="input">/admin/admin_error.jsp</result> -->
+			<result name="error">/admin/admin_error.jsp</result>
+			<result name="input">/admin/admin_error.jsp</result>
 		</global-results>
 	</package>
 
@@ -268,8 +268,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		namespace="/address">
 		<action name="submit_address" class="addAddress">
 			<result type="json">
-				<param name="includeProperties">addResult</param>
-				<param name="includeProperties">resultInfo</param>
+				<param name="includeProperties">submitResult, resultInfo</param>
 			</result>
 		</action>
 		<action name="get_next_level" class="getNextLevel">
@@ -283,7 +282,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">resultInfo</param>
 			</result>
 		</action>
-		<action name="address_edit_submit" class="addAddress">
+		<action name="address_edit_submit" class="editAddress">
 			<result type="json">
 				<param name="includeProperties">submitResult</param>
 				<param name="includeProperties">resultInfo</param>
@@ -323,7 +322,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="login" class="AdminLogin">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
-			<result name="success" type="redirect">
+				<result name="success" type="redirect">
 				${toURL}
 			</result>
 		</action>
@@ -451,14 +450,21 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="catalog_add_submit" class="AdminAddCatalog">
-			<result>
-				/admin/category_edit.jsp
+			<result type="redirectAction">
+				<param name="actionName">catalog_manager</param>
+				<param name="namespace">/admin</param>
 			</result>
 		</action>
 
 		<action name="catalog_manager" class="AdminEnterCatalogManager">
+			<result>
+				/admin/category_list.jsp
+			</result>
+		</action>
+
+		<action name="logout" class="AdminLogout">
 			<result type="redirectAction">
-				<param name="actionName">catalog_manager</param>
+				<param name="actionName">index</param>
 				<param name="namespace">/admin</param>
 			</result>
 		</action>

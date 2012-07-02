@@ -18,10 +18,9 @@ function address_edit(id)
 	showOverlay();
 	document.getElementById('address'+id).style.display='block';
 }
-function close_address_edit(e)
+function close_address_edit(id)
 {
-	var p=e.parentNode.parentNode;
-	p.style.display='none';
+	document.getElementById(id).style.display='none';
 	hideOverlay();
 }
 function nickname_c(e)
@@ -169,6 +168,22 @@ function address_edit_submit(f)
 			}
 		})
 	return false;
+}
+/****删除地址函数****/
+function delete_address(id)
+{
+	Ajax:({
+		url:'address/delete_address?addressID='+id,
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(a.deleteResult)
+				{
+					alert('删除成功！');
+					show_address();
+				}
+			}
+		})
 }
 /******dom完成加载执行函数*******/
 $().ready(function(e) {

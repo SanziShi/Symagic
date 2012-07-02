@@ -21,31 +21,23 @@
 		</div>
 		<div id="globallink">
 			<ul>
-				<li><a href="index.html">首页</a>
-				</li>
-				<li><a href="category_list.html">目录管理</a>
-				</li>
-				<li><a href="item_list.html">商品管理</a>
-				</li>
-				<li><a href="order_admin.html">订单管理</a>
-				</li>
-				<li><a href="salesdata_admin.html">销售量统计</a>
-				</li>
-				<li><a href="user_admin.html">会员管理</a>
-				</li>
-				<li><a href="comment_list.html">评论管理</a>
-				</li>
-				<li><a href="" class="nouseful">&nbsp;</a>
-				</li>
+				<li><a href="index">首页</a></li>
+				<li><a href="catalog_manager">目录管理</a></li>
+				<li><a href="item_manager">商品管理</a></li>
+				<li><a href="order_list">订单管理</a></li>
+				<li><a href="order_statistics">销售量统计</a></li>
+				<li><a href="user_level">会员管理</a></li>
+				<li><a href="" class="nouseful">&nbsp;</a></li>
+                <li><a href="" class="nouseful">&nbsp;</a></li>
 			</ul>
 		</div>
 
 		<div id="left">
 			<div id="catelog_admin_left">
 				<ul>
-					<li><a href="user_admin.html">查看目录</a>
+					<li><a href="catalog_manager">查看目录</a>
 					</li>
-					<li><a href="user_admin.html">添加和更改目录</a>
+					<li><a href="catalog_manager">添加目录</a>
 					</li>
 				</ul>
 			</div>

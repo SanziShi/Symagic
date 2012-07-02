@@ -45,12 +45,12 @@ public class AddressService {
 				continue;
 			AddressDetailBean address = new AddressDetailBean();
 			OrderService.Address orderAddress = OrderService.deserializerAddress(beanAddress.getAddrdetail());
-			address.setDefaultLevel1District(orderAddress.level1District.getID());
-			address.setDefaultLevel2District(orderAddress.level2District.getID());
-			address.setDefaultLevel3District(orderAddress.level3District.getID());
+			address.setLevel1DistrictDefaultID(orderAddress.level1District.getID());
+			address.setLevel2DistrictDefaultID(orderAddress.level2District.getID());
+			address.setLevel3DistrictDefaultID(orderAddress.level3District.getID());
 			List<BeanDistrict> districtLevel1List = daoDistrict.getDistrict(0);
 			List<BeanDistrict> districtLevel2List = daoDistrict.getDistrict(orderAddress.level1District.getID());
-			List<BeanDistrict> districtLevel3List = daoDistrict.getDistrict(orderAddress.level3District.getID());
+			List<BeanDistrict> districtLevel3List = daoDistrict.getDistrict(orderAddress.level2District.getID());
 			address.setLevel1Districts(new ArrayList<DistrictBean>());
 			address.setLevel2Districts(new ArrayList<DistrictBean>());
 			address.setLevel3Districts(new ArrayList<DistrictBean>());
@@ -58,8 +58,8 @@ public class AddressService {
 			if(districtLevel1List != null){
 				for(int j = 0; j < districtLevel1List.size(); j ++){
 					DistrictBean db1 = new DistrictBean();
-					db1.setID(districtLevel1List.get(i).getId());
-					db1.setName(districtLevel1List.get(i).getName());
+					db1.setID(districtLevel1List.get(j).getId());
+					db1.setName(districtLevel1List.get(j).getName());
 					address.getLevel1Districts().add(db1);
 				}
 			}
@@ -67,8 +67,8 @@ public class AddressService {
 			if(districtLevel2List != null){
 				for(int j = 0; j < districtLevel2List.size(); j ++){
 					DistrictBean db2 = new DistrictBean();
-					db2.setID(districtLevel2List.get(i).getId());
-					db2.setName(districtLevel2List.get(i).getName());
+					db2.setID(districtLevel2List.get(j).getId());
+					db2.setName(districtLevel2List.get(j).getName());
 					address.getLevel2Districts().add(db2);
 				}
 			}
@@ -76,8 +76,8 @@ public class AddressService {
 			if(districtLevel3List != null){
 				for(int j = 0; j < districtLevel3List.size(); j ++){
 					DistrictBean db3 = new DistrictBean();
-					db3.setID(districtLevel3List.get(i).getId());
-					db3.setName(districtLevel3List.get(i).getName());
+					db3.setID(districtLevel3List.get(j).getId());
+					db3.setName(districtLevel3List.get(j).getName());
 					address.getLevel3Districts().add(db3);
 				}
 			}

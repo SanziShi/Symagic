@@ -91,6 +91,8 @@ public class AddressEditSubmitAction extends AddressBase{
 		addressDetail.level1District = new DistrictBean();
 		addressDetail.level1District.setID(getDistrictLevel1ID());
 		addressDetail.level1District.setName(daoDistrict.getDistrictById(getDistrictLevel1ID()).getName());
+		addressDetail.level2District = new DistrictBean();
+		addressDetail.level3District = new DistrictBean();
 		addressDetail.level2District.setID(getDistrictLevel2ID());
 		addressDetail.level2District.setName(daoDistrict.getDistrictById(getDistrictLevel2ID()).getName());
 		addressDetail.level3District.setID(getDistrictLevel3ID());

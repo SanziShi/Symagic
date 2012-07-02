@@ -113,16 +113,20 @@ public class DaoUserAddress {
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
 			ps	= conn.prepareStatement("update user_addr set receivername=?, " +
-					"addrdetail=?, zipcode=?, phonenum=?, mobilenum=? where username=?");
+					"addrdetail=?, zipcode=?, phonenum=?, mobilenum=? where username=? and addrid=?");
 			ps.setString(1, addr.getReceivername());
 			ps.setString(2, addr.getAddrdetail());
 			ps.setString(3, addr.getZipcode());
 			ps.setString(4, addr.getPhonenum());
 			ps.setString(5, addr.getMobilenum());
 			ps.setString(6, addr.getUsername());
+			ps.setInt(7, addr.getAddrid());
 			
-			if (ps.executeUpdate() == 1) 
+			ps.execute();
+			
+			if (ps.executeUpdate() == 1)
 				return true;
+			
 			return false;
 		} catch (Exception e) {
 			try {
@@ -132,6 +136,7 @@ public class DaoUserAddress {
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
+			return false;
 		} finally {
 			try {
 				conn.commit();
@@ -141,7 +146,6 @@ public class DaoUserAddress {
 				e.printStackTrace();
 			}
 		}
-		return false;
 	}
 
 	/**

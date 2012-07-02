@@ -17,7 +17,6 @@ import java.util.Map.Entry;
 
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
@@ -32,6 +31,11 @@ public class RecommandService {
 	 * easyrec的注册的tenantID
 	 */
 	private String tenantid;
+	
+	/**
+	 * 标记推荐系统是否在线
+	 */
+	private Boolean onLine;
 
 	/**
 	 * 提交view操作,对于未登陆用户userName为null
@@ -45,6 +49,8 @@ public class RecommandService {
 	 */
 	public boolean view(String sessionID, String itemID,
 			String itemDescription, String itemURL, String userName) {
+		
+		if( !onLine ) return false;
 
 		String url = "http://" + host + "/easyrec-web/api/1.0/json/view";
 
@@ -67,7 +73,7 @@ public class RecommandService {
 			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 			if (object == null || object.containsKey("error"))
 				return false;
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -111,6 +117,7 @@ public class RecommandService {
 	 */
 	public boolean buy(String sessionID, String itemID, String itemDescription,
 			String itemURL, String userName) {
+		if( !onLine ) return false;
 		String url = "http://" + host + "/easyrec-web/api/1.0/json/buy";
 		Map<String, String> parameters = new HashMap<String, String>();
 
@@ -130,7 +137,7 @@ public class RecommandService {
 			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 			if (object == null || object.containsKey("error"))
 				return false;
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -150,6 +157,7 @@ public class RecommandService {
 	 */
 	public boolean rate(String sessionID, String rateValue, String itemID,
 			String itemDescription, String itemURL, String userName) {
+		if( !onLine ) return false;
 		String url = "http://" + host + "/easyrec-web/api/1.0/json/rate";
 
 		Map<String, String> parameters = new HashMap<String, String>();
@@ -170,7 +178,7 @@ public class RecommandService {
 			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 			if (object == null || object.containsKey("error"))
 				return false;
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -187,6 +195,7 @@ public class RecommandService {
 	 */
 	public List<Integer> otherUsersAlsoViewed(String itemID, String userName,
 			Integer requireNumber) {
+		if( !onLine ) return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -224,7 +233,7 @@ public class RecommandService {
 				JSONObject temp = (JSONObject) items;
 				result.add(temp.getInt("id"));
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -242,6 +251,7 @@ public class RecommandService {
 	 */
 	public List<Integer> otherUsersAlsoBought(String itemID, String userName,
 			Integer requireNumber) {
+		if( !onLine ) return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -278,7 +288,7 @@ public class RecommandService {
 				result.add(temp.getInt("id"));
 			}
 
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -295,6 +305,7 @@ public class RecommandService {
 	 */
 	public List<Integer> recommendationsForUser(String userName,
 			Integer requireNumber) {
+		if( !onLine ) return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -327,7 +338,7 @@ public class RecommandService {
 				JSONObject temp = (JSONObject) items;
 				result.add(temp.getInt("id"));
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -342,6 +353,7 @@ public class RecommandService {
 	 * @return
 	 */
 	public List<Integer> mostBoughtItems(Integer requireNumber) {
+		if( !onLine ) return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -375,7 +387,7 @@ public class RecommandService {
 				JSONObject temp = (JSONObject) items;
 				result.add(temp.getInt("id"));
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -390,6 +402,7 @@ public class RecommandService {
 	 * @return
 	 */
 	public List<Integer> mostViewedItems(Integer requireNumber) {
+		if( !onLine ) return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -420,7 +433,7 @@ public class RecommandService {
 				JSONObject temp = (JSONObject) items;
 				result.add(temp.getInt("id"));
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -489,6 +502,14 @@ public class RecommandService {
 
 		return result;
 
+	}
+
+	public Boolean getOnLine() {
+		return onLine;
+	}
+
+	public void setOnLine(Boolean onLine) {
+		this.onLine = onLine;
 	}
 
 }

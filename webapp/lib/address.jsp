@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!--修改地址迭代开始-->
                 <s:iterator value='addressList' var="iter">
                 <div id="address<s:property value='#iter.ID'/>" class="address-edit">
-                <h2>修改地址<span class="close" onclick="close_address_edit(address<s:property value='#iter.ID'/>)"></span></h2>
+                <h2>修改地址<span class="close" onclick="close_address_edit('address<s:property value='#iter.ID'/>')"></span></h2>
                 	<form action="address/address_edit_submit" method="post" onsubmit="return address_edit_submit(this)">
                     <input style="display:none" name="addressID" value="<s:property value='#iter.ID'/>">
                     <table width="100%" cellspacing="0" border="0">
@@ -24,15 +24,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	<select onchange="get_district(this)" id="level1ID" name="districtLevel1ID" >
                                 			<option value="s1" >请选择</option>
                                				<s:iterator value="#iter.level1Districts" var='middle'>
-                                			<option value="<s:property value='#middle.ID'/>" <s:if test="#middle.ID=='<s:property value='#iter.level1DistrictDefaultID'/'>">selected="selected" </s:if> ><s:property value='#middle.name'/></option>
-                                			</s:iterator>
-                                		</select>
-                                		<select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
-                                			<option value="s2">请选择</option>
-                                		</select>
-                                		<select id="level3ID" name="districtLevel3ID">
-                                			<option value="">请选择</option>
-                                		</select>
+                                            	<s:if test='#middle.ID==#iter.level1DistrictDefaultID'>
+                                				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
+                                				</s:if>
+                                                <s:else>
+                                                <option value="<s:property value='#middle.ID'/>" ><s:property value='#middle.name'/></option>
+                                                </s:else>
+                                            </s:iterator>
+                                	</select>
+                                	<select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
+                                		<option value="s2">请选择</option>
+                                        <s:iterator value="#iter.level2Districts" var='middle'>
+                                            	<s:if test='#middle.ID==#iter.level2DistrictDefaultID'>
+                                				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
+                                				</s:if>
+                                                <s:else>
+                                                <option value="<s:property value='#middle.ID'/>" ><s:property value='#middle.name'/></option>
+                                                </s:else>
+                                            </s:iterator>
+                                	</select>
+                                	<select id="level3ID" name="districtLevel3ID">
+                                		<option value="">请选择</option>
+                                        <s:iterator value="#iter.level3Districts" var='middle'>
+                                            	<s:if test='#middle.ID==#iter.level3DistrictDefaultID'>
+                                				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
+                                				</s:if>
+                                                <s:else>
+                                                <option value="<s:property value='#middle.ID'/>" ><s:property value='#middle.name'/></option>
+                                                </s:else>
+                                            </s:iterator>
+                                	</select>
                                 <!---默认地址选项迭代结束--->
                                 </td>
                             </tr>
@@ -124,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             	<td class="detail"><s:property value='#iter.addressDetail'/></td>
                             	<td><s:property value='#iter.zipcode'/></td>
                             	<td class="detail"><s:property value='#iter.mobileNum'/><br/><s:property value='#iter.phoneNum'/></td>
-                            	<td><a href="javascript:void(0)" onclick="address_edit(<s:property value='#iter.ID'/>)">修改</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="">删除</a></td>
+                            	<td><a href="javascript:void(0)" onclick="address_edit(<s:property value='#iter.ID'/>)">修改</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="delete_address(<s:property value='#iter.ID'/>)">删除</a></td>
                             </tr>
                     		</s:iterator>
                             <!--地址迭代结束-->
