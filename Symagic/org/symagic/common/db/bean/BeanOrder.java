@@ -95,8 +95,8 @@ public class BeanOrder {
 		Date date;
 		try {
 			date = sdf.parse(orderDate);
-			String tmp	= sdf.format(date);
-			this.orderDate	= date.toString();
+			//String tmp	= sdf.format(date);
+			this.orderDate	= sdf.format(date);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
