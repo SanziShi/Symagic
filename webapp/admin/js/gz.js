@@ -687,7 +687,7 @@ function ajax_catalog_delete_tag_level2(id) {
 }
 
 // 删除一级目录
-function ajax_catalog_delete_tag_level2(id) {
+function ajax_catalog_delete_tag_level1(id) {
 	var result = confirm("该操作将会将所选目录及其子目录移除，确定继续吗？");
 	if (result == true) {
 		Ajax({
