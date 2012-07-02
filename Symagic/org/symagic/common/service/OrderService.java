@@ -154,15 +154,15 @@ public class OrderService {
 		}
 
 		if (level2 != null) {
-			result.level1District = new DistrictBean();
-			result.level1District.setID(level2.getInt("id"));
-			result.level1District.setName(level2.getString("name"));
+			result.level2District = new DistrictBean();
+			result.level2District.setID(level2.getInt("id"));
+			result.level2District.setName(level2.getString("name"));
 		}
 
 		if (level3 != null) {
-			result.level1District = new DistrictBean();
-			result.level1District.setID(level3.getInt("id"));
-			result.level1District.setName(level3.getString("name"));
+			result.level3District = new DistrictBean();
+			result.level3District.setID(level3.getInt("id"));
+			result.level3District.setName(level3.getString("name"));
 		}
 
 		return result;
