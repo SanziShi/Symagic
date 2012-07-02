@@ -1,23 +1,22 @@
 package org.symagic.user.action.address;
 
+import java.io.UnsupportedEncodingException;
+
 import org.symagic.common.action.catalog.CatalogBase;
 
-public class AddressBase extends CatalogBase{
-	
-	
+public class AddressBase extends CatalogBase {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -654569210971834110L;
 
-
 	private String recieverName;
 
-	
 	private String addressDetail;
-	
+
 	private Integer districtLevel1ID;
-	
+
 	public Integer getDistrictLevel1ID() {
 		return districtLevel1ID;
 	}
@@ -47,15 +46,14 @@ public class AddressBase extends CatalogBase{
 	}
 
 	private Integer districtLevel2ID;
-	
-	private Integer districtLevel3ID;
-	
-	private String zipcode;
-	
-	private String phoneNum;
-	
-	private String mobileNum;
 
+	private Integer districtLevel3ID;
+
+	private String zipcode;
+
+	private String phoneNum;
+
+	private String mobileNum;
 
 	public String getRecieverName() {
 		return recieverName;

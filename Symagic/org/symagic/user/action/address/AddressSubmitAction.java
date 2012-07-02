@@ -19,6 +19,8 @@ public class AddressSubmitAction extends AddressBase{
 	private DaoDistrict daoDistrict;
 	
 	private Boolean submitResult;
+	
+	private boolean isValidate;
 
 	public DaoDistrict getDaoDistrict() {
 		return daoDistrict;
@@ -39,7 +41,10 @@ public class AddressSubmitAction extends AddressBase{
 	public String execute() throws Exception{
 		
 		BeanAddress address = new BeanAddress();
-		
+		if(!isValidate){
+			submitResult = isValidate;
+			return SUCCESS;
+		}
 		OrderService.Address addressDetail = new OrderService.Address();
 		addressDetail.districtDetail = getAddressDetail();
 		addressDetail.level1District = new DistrictBean();
@@ -58,8 +63,17 @@ public class AddressSubmitAction extends AddressBase{
 		address.setUsername(UserSessionUtilty.getUsername());
 		address.setZipcode(getZipcode());
 		
-		daoAddress.addAddress(address);
+		submitResult = daoAddress.addAddress(address);
 		return SUCCESS;
+	}
+	
+	public void validate(){
+		isValidate = true;
+		if( getDistrictLevel1ID() == null || getDistrictLevel2ID() == null || getDistrictLevel3ID() == null ||
+				getAddressDetail() == null || getRecieverName() == null 
+				|| getMobileNum() == null || getPhoneNum() == null)
+			isValidate = false;
+		
 	}
 
 	public Boolean getSubmitResult() {
