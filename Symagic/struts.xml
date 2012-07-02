@@ -386,8 +386,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="order_edit_submit" class="AdminSubmitOrderEdit">
-			<result>
-				/admin/order_info.jsp
+			<result type="redirectAction">
+				<param name="actionName">order_detail</param>
+				<param name="namespace">/admin</param>
 			</result>
 		</action>
 
