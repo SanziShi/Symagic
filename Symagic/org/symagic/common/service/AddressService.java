@@ -91,7 +91,8 @@ public class AddressService {
 			address.setMobileNum(beanAddress.getMobilenum());
 			address.setPhoneNum(beanAddress.getPhonenum());
 			address.setZipcode(beanAddress.getZipcode());
-			
+			address.setID(beanAddress.getAddrid());
+			addresses.add(address);
 		}
 		return addresses;
 	}

@@ -3,9 +3,11 @@ package org.symagic.common.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -367,7 +369,13 @@ public class RecommandService {
 						.entrySet().iterator();
 				while (iterator.hasNext()) {
 					Entry<String, String> entry = iterator.next();
-					getURL += entry.getKey() + "=" + entry.getValue();
+					try {
+						getURL += URLEncoder.encode(entry.getKey(),"UTF-8") + "=" + URLEncoder.encode(entry.getValue(),"UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						return null;
+					}
 					if (iterator.hasNext())
 						getURL += '&';
 				}
