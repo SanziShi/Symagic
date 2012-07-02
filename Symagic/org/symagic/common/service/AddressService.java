@@ -50,7 +50,7 @@ public class AddressService {
 			address.setLevel3DistrictDefaultID(orderAddress.level3District.getID());
 			List<BeanDistrict> districtLevel1List = daoDistrict.getDistrict(0);
 			List<BeanDistrict> districtLevel2List = daoDistrict.getDistrict(orderAddress.level1District.getID());
-			List<BeanDistrict> districtLevel3List = daoDistrict.getDistrict(orderAddress.level3District.getID());
+			List<BeanDistrict> districtLevel3List = daoDistrict.getDistrict(orderAddress.level2District.getID());
 			address.setLevel1Districts(new ArrayList<DistrictBean>());
 			address.setLevel2Districts(new ArrayList<DistrictBean>());
 			address.setLevel3Districts(new ArrayList<DistrictBean>());
