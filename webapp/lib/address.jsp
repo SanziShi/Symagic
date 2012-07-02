@@ -145,7 +145,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             	<td class="detail"><s:property value='#iter.addressDetail'/></td>
                             	<td><s:property value='#iter.zipcode'/></td>
                             	<td class="detail"><s:property value='#iter.mobileNum'/><br/><s:property value='#iter.phoneNum'/></td>
-                            	<td><a href="javascript:void(0)" onclick="address_edit(<s:property value='#iter.ID'/>)">修改</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="">删除</a></td>
+                            	<td><a href="javascript:void(0)" onclick="address_edit(<s:property value='#iter.ID'/>)">修改</a>&nbsp;|&nbsp;<a href="javascript:void(0)" onclick="delete_address(<s:property value='#iter.ID'/>)">删除</a></td>
                             </tr>
                     		</s:iterator>
                             <!--地址迭代结束-->
