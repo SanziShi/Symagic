@@ -866,7 +866,7 @@ function ajax_batch_off(form) {
 }
 
 // 地址选择下拉相关
-function get_district(d) {
+function get_district(d, path) {
 	var va = d.value;
 	if (va == 's1') {
 		document.getElementById('level2ID').innerHTML = '<option value="s2">请选择</option>';
@@ -877,7 +877,7 @@ function get_district(d) {
 		return false;
 	} else {
 		Ajax({
-			url : 'address/get_next_level?ID=' + va,
+			url : path + '/address/get_next_level?ID=' + va,
 			onSuccess : function(e) {
 				var dis = JSON.parse(e);
 				var l = dis.length;
