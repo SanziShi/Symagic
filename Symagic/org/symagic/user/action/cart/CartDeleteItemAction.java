@@ -28,7 +28,7 @@ public class CartDeleteItemAction extends ActionSupport {
 	//配置项
 	private DaoCart daoCart;
 	//传出
-	 private boolean deleteResult=false;
+	 private boolean deleteResult;
 	 private String resultInfo;
 	@Override
 	public String execute() throws Exception {
@@ -42,6 +42,7 @@ public class CartDeleteItemAction extends ActionSupport {
 		boolean login=UserSessionUtilty.isLogin();
 		StringBuilder builder=new StringBuilder();
 		Iterator<Integer> it=items.iterator();
+		deleteResult=true;
 		while(it.hasNext()){
 			   result=deleteOneFromCart(it.next(),login);
 			   if(!result){

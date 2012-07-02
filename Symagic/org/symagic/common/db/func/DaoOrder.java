@@ -247,10 +247,16 @@ public class DaoOrder {
 				
 			return false;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
 			try {
+				conn.commit();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -284,10 +290,16 @@ public class DaoOrder {
 				return true;
 			return false;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
 			try {
+				conn.commit();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -319,10 +331,16 @@ public class DaoOrder {
 				return true;
 			return false;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
 			try {
+				conn.commit();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

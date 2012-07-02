@@ -77,6 +77,7 @@ public class ConnectionPool {
 		
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		Connection connection = DriverManager.getConnection(url, userName, userPasswd);
+		connection.setAutoCommit(false);		// 设置事务不自动提交
 		ConnectionProxy handler = new ConnectionProxy(connection);		// 创建代理类
 		
 		Connection proxy = (Connection) Proxy.newProxyInstance( // 创建代理

@@ -55,8 +55,21 @@ public class DaoUser {
 				return true;		// 如果给定的密码和从数据库中得到的密码相同，返回true
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}
@@ -86,6 +99,13 @@ public class DaoUser {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}
@@ -148,8 +168,21 @@ public class DaoUser {
 			conn.close();
 			return true;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return false;
 	}
@@ -178,8 +211,21 @@ public class DaoUser {
 			conn.close();
 			return false;	// 更新失败，返回false
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return true;
 	}
@@ -207,6 +253,13 @@ public class DaoUser {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return 0;
 	}
@@ -245,8 +298,21 @@ public class DaoUser {
 			conn.close();
 			return false;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return true;
 	}
@@ -450,10 +516,16 @@ public class DaoUser {
 				return true;
 			return false;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
 			try {
+				conn.commit();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -485,10 +557,16 @@ public class DaoUser {
 				return true;
 			return false;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
 			try {
+				conn.commit();
 				conn.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

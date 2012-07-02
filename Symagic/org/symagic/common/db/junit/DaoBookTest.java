@@ -29,7 +29,7 @@ public class DaoBookTest extends TestCase{
 		book1.setDiscount(0.5f);
 		book1.setFolio("16");
 		book1.setInventory(20);
-		book1.setIsbn("123456789");
+		book1.setIsbn("1234567891");
 		book1.setMarketPrice(49.21f);
 		book1.setOffline("在架");
 		book1.setPage(400);
