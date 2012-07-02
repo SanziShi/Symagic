@@ -25,13 +25,13 @@
 		<div id="globallink">
 			<ul>
 				<li><a href="index">首页</a></li>
-				<li><a href="category_list.html">目录管理</a></li>
+				<li><a href="catalog_manager">目录管理</a></li>
 				<li><a href="item_manager">商品管理</a></li>
 				<li><a href="order_list">订单管理</a></li>
 				<li><a href="order_statistics">销售量统计</a></li>
-				<li><a href="user_admin.html">会员管理</a></li>
-				<li><a href="comment_list.html">评论管理</a></li>
+				<li><a href="user_level">会员管理</a></li>
 				<li><a href="" class="nouseful">&nbsp;</a></li>
+                <li><a href="" class="nouseful">&nbsp;</a></li>
 			</ul>
 		</div>
 		<!-- <div class="clear"></div>
@@ -62,44 +62,44 @@
 					<span>后台首页</span>
 				</h4>
 				<ul>
-					<li><a href="index.jsp">后台首页</a></li>
+					<li><a href="index">后台首页</a></li>
 
 				</ul>
 				<h4>
 					<span>销售管理</span>
 				</h4>
 				<ul>
-					<li><a href="salesdata_admin.html">查询销售情况</a></li>
-					<li><a href="salesdata_list.html">销售量统计</a></li>
+					<li><a href="order_statistics">查询销售情况</a></li>
+					<li><a href="order_statistics">销售量统计</a></li>
 				</ul>
 				<h4>
 					<span>目录管理</span>
 				</h4>
 				<ul>
-					<li><a href="category_list.html">编辑商品目录</a></li>
-					<li><a href="category_list.html">添加商品目录</a></li>
+					<li><a href="catalog_manager">查看商品目录</a></li>
+					<li><a href="catalog_edit">添加和更改商品目录</a></li>
 				</ul>
 				<h4>
 					<span>商品管理</span>
 				</h4>
 				<ul>
-					<li><a href="item_list.html">添加商品</a></li>
-					<li><a href="item_list.html">修改商品信息</a></li>
-					<li><a href="item_search.html">商品搜索</a></li>
+					<li><a href="item_manager">商品搜索</a></li>
+					<li><a href="item_manager">商品浏览</a></li>
+					<li><a href="item_manager">添加商品</a></li>
 				</ul>
 				<h4>
 					<span>订单管理</span>
 				</h4>
 				<ul>
-					<li><a href="order_list">订单审核</a></li>
-					<li><a href="order_admin.html">查询订单</a></li>
+					<li><a href="order_list">订单查询</a></li>
+					<li><a href="order_list">浏览订单</a></li>
 				</ul>
 				<h4>
 					<span>会员管理</span>
 				</h4>
 				<ul>
-					<li><a href="user_admin.html">查询会员</a></li>
-					<li><a href="user_admin.html">设置会员等级规定</a></li>
+					<li><a href="user_list">查询会员</a></li>
+					<li><a href="user_level">查看和设置会员等级规定</a></li>
 				</ul>
 			</div>
 		</div>
