@@ -48,7 +48,15 @@ public class AddressEnterAction extends CatalogBase {
 
 	public String execute() throws Exception{
 		addressList = addressService.getAddressDetail(UserSessionUtilty.getUsername());
-		level1Districts = addressService.getDistricts(0);
+		setLevel1Districts(addressService.getDistricts(0));
 		return super.execute();
+	}
+
+	public List<DistrictBean> getLevel1Districts() {
+		return level1Districts;
+	}
+
+	public void setLevel1Districts(List<DistrictBean> level1Districts) {
+		this.level1Districts = level1Districts;
 	}
 }
