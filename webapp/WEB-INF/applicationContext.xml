@@ -377,6 +377,7 @@
 	<bean id="editAddress" class="org.symagic.user.action.address.AddressEditSubmitAction"
 		scope="request">
 		<property name="daoUserAddress" ref="DaoUserAddress"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
 		<property name="addressService" ref="AddressService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
