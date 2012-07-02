@@ -462,7 +462,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
-		<action name="loginout" class="AdminLogout">
+		<action name="logout" class="AdminLogout">
 			<result type="redirectAction">
 				<param name="actionName">index</param>
 				<param name="namespace">/admin</param>

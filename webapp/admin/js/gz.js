@@ -351,9 +351,9 @@ if (!JSON) {
 }());
 
 /********刷新验证码************/
-function change_captcha(e)
+function change_captcha(e, path)
 {
-	e.src='captcha_get_captcha?t='+Math.random();
+	e.src= path + '/captcha_get_captcha?t='+Math.random();
 }
 
 // 异步调用函数
