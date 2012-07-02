@@ -110,7 +110,7 @@
 								<td class="commentr1color">发表时间：</td>
 								<td class="commentr1color"><s:property value="#comments.commentDate"/></td>
 								<td class="commentr1color">打分：</td>
-								<td class="commentr1color"><img src="../image/<s:property value='#comments.rating'/>star.JPG"
+								<td class="commentr1color"><img src="image/<s:property value='#comments.rating'/>star.JPG"
 									alt="喜欢" /></td>
 							</tr>
 							<tr>
@@ -120,6 +120,24 @@
 								<td><a href="">删除</a></td>
 							</tr>
 						</s:iterator>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><s:if test="%{1!=totalPage}">
+									<s:elseif test="%{page==1}">
+										<a href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
+									</s:elseif>
+									<s:elseif test="%{page==totalPage}">
+										<a href="item_detail?itemID=<s:property value="itemID"/>&page=${ page - 1 }">上一页</a>
+									</s:elseif>
+									<s:else>
+										<a href="item_detail?itemID=<s:property value="itemID"/>&page=${ page - 1 }">上一页</a>
+										<a href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
+									</s:else>
+								</s:if></td>
+							<td>当前第<s:property value="page" />页，共<s:property
+									value="totalPage" />页，每页<s:property value="lines"/>条</td>
+						</tr>
 					</table>
 				</div>
 			</div>

@@ -1,5 +1,7 @@
 package org.symagic.admin.action.item;
 
+import java.util.List;
+
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 
@@ -12,35 +14,32 @@ public class ItemOffAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = -7886694657160867924L;
 
-	private Integer itemID;// 商品ID
+	private List<Integer> itemID;// 商品ID
 	private Boolean offResult;
 	private DaoBook daoBook;
 
 	@Override
 	public String execute() throws Exception {
+		offResult = false;
 		if (itemID != null) {
-			BeanBook book = daoBook.getDetail(itemID);
-			if( book == null ) return super.execute();
-			if( book.getOffline().equals("下架") ){
-				offResult = false;
-				return SUCCESS;
+			for (Integer id : itemID) {
+				if( id == null ) return super.execute();
+				BeanBook book = daoBook.getDetail(id);
+				if (book == null)
+					return super.execute();
+				if (book.getOffline().equals("下架")) {
+					return super.execute();
+				}
+				book.setOffline("下架");
+				if (!daoBook.modifyBook(book))
+					return super.execute();
 			}
-			book.setOffline("下架");
-			if( !daoBook.modifyBook(book) ) return super.execute();
 			offResult = true;
-		} else {
-			offResult = false;
 		}
 		return super.execute();
 	}
 
-	public Integer getItemID() {
-		return itemID;
-	}
 
-	public void setItemID(Integer itemID) {
-		this.itemID = itemID;
-	}
 
 	public Boolean getOffResult() {
 		return offResult;
@@ -56,6 +55,18 @@ public class ItemOffAction extends ActionSupport {
 
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
+	}
+
+
+
+	public List<Integer> getItemID() {
+		return itemID;
+	}
+
+
+
+	public void setItemID(List<Integer> itemID) {
+		this.itemID = itemID;
 	}
 
 }

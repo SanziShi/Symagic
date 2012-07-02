@@ -21,6 +21,8 @@ public class AdminItemDetailAction extends CatalogBase {
 	private ItemDetailBean book;// 书籍详细信息
 	private ItemService itemService;// 访问服务层
 	private List<BeanComment> commentList;// 评论列表
+	
+	private Integer page;
 
 	private String errorHeader;
 	private String errorSpecification;
@@ -44,6 +46,8 @@ public class AdminItemDetailAction extends CatalogBase {
 		if (!validateResult) {
 			return INPUT;
 		}
+		
+		if( page == null ) page = 1;
 
 		book = new ItemDetailBean();
 		if (!itemService.fillDetailBean(itemID, book)) {
@@ -54,7 +58,7 @@ public class AdminItemDetailAction extends CatalogBase {
 		int commentNumber = itemService.getCommentNumber(itemID);
 		if (commentNumber != -1)
 			totalPage = (commentNumber + lines - 1) / lines;
-		commentList = itemService.getCommentWithPage(itemID, 1, lines);
+		commentList = itemService.getCommentWithPage(itemID, page, lines);
 
 		return super.execute();
 
@@ -122,6 +126,14 @@ public class AdminItemDetailAction extends CatalogBase {
 
 	public void setErrorSpecification(String errorSpecification) {
 		this.errorSpecification = errorSpecification;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
 	}
 
 }
