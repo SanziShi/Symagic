@@ -3,12 +3,11 @@ package org.symagic.user.action.order;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.struts2.ServletActionContext;
 import org.symagic.common.db.bean.BeanBook;
@@ -55,8 +54,6 @@ public class OrderSubmitAction extends OrderBase{
 	private DaoDistrict daoDistrict;
 	
 	private RecommandService recommandService;
-
-	private String items;
 	
 	private DaoBook daoBook;
 	
@@ -122,14 +119,6 @@ public class OrderSubmitAction extends OrderBase{
 		this.daoOrder = order;
 	}
 	
-	public String getItems(){
-		return items;
-	}
-	
-	public void setItems(String items){
-		this.items = items;
-	}
-	
 	@Override
 	public String execute() throws Exception{ 
 		String username = UserSessionUtilty.getUsername();
@@ -177,19 +166,20 @@ public class OrderSubmitAction extends OrderBase{
 		
 		
 		String baseURL = ServletActionContext.getServletContext().getContextPath();
-		JSON json = JSONSerializer.toJSON(items);
+
 		List<ItemTinyBean> items = new ArrayList<ItemTinyBean>();
-		if(json.isArray()){
-			JSONArray jsonArray = (JSONArray)json;
-			for(int i = 0; i < jsonArray.size(); i ++){
-				JSONObject object = (JSONObject) jsonArray.get(i);
-				ItemTinyBean item = (ItemTinyBean) JSONObject.toBean(object, ItemTinyBean.class);
-				items.add(item);
-				if(daoBook.getInventory(item.getItemID()) < item.getItemNumber())
-					return ERROR;
-			
-			}
+		HashMap<Integer, Integer> orders = UserSessionUtilty.getOrder();
+		Iterator<Entry<Integer, Integer>> ordersIterator = orders.entrySet().iterator();
+		while(ordersIterator.hasNext()){
+			Map.Entry<Integer, Integer> itemMap = ordersIterator.next();
+			ItemTinyBean itemTinyBean = new ItemTinyBean();
+			itemTinyBean.setItemID(itemMap.getKey());
+			itemTinyBean.setItemNumber(itemMap.getValue());
+			if(daoBook.getInventory(itemTinyBean.getItemID()) < itemTinyBean.getItemNumber())
+				return ERROR;
+			items.add(itemTinyBean);
 		}
+
 		float totalPrice = 0;
 		
 		for(int i = 0; i < items.size(); i ++){
@@ -240,7 +230,7 @@ public class OrderSubmitAction extends OrderBase{
 			isValidate = false;
 			return;
 		}
-		if(getZipcode() == null || getAddressDetail() == null || getItems() == null || getLevel1Id() == null||
+		if(getZipcode() == null || getAddressDetail() == null || getLevel1Id() == null||
 				getLevel2Id() == null || getLevel3Id() == null || getMobileNum() == null||
 				getPhoneNum() == null){
 			isValidate = false;

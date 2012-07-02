@@ -43,12 +43,12 @@ public class AddressSubmitAction extends AddressBase{
 		OrderService.Address addressDetail = new OrderService.Address();
 		addressDetail.districtDetail = getAddressDetail();
 		addressDetail.level1District = new DistrictBean();
-		addressDetail.level1District.setID(getDistrictLevel1());
-		addressDetail.level1District.setName(daoDistrict.getDistrictById(getDistrictLevel1()).getName());
-		addressDetail.level2District.setID(getDistrictLevel2());
-		addressDetail.level2District.setName(daoDistrict.getDistrictById(getDistrictLevel2()).getName());
-		addressDetail.level3District.setID(getDistrictLevel3());
-		addressDetail.level3District.setName(daoDistrict.getDistrictById(getDistrictLevel3()).getName());
+		addressDetail.level1District.setID(getDistrictLevel1ID());
+		addressDetail.level1District.setName(daoDistrict.getDistrictById(getDistrictLevel1ID()).getName());
+		addressDetail.level2District.setID(getDistrictLevel2ID());
+		addressDetail.level2District.setName(daoDistrict.getDistrictById(getDistrictLevel2ID()).getName());
+		addressDetail.level3District.setID(getDistrictLevel3ID());
+		addressDetail.level3District.setName(daoDistrict.getDistrictById(getDistrictLevel3ID()).getName());
 		
 		String strAddressDetail = OrderService.serializerAddress(addressDetail);
 		address.setAddrdetail(strAddressDetail);
