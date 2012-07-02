@@ -892,74 +892,104 @@ values("236497339@qq.com","缪云彬",
 -- 插入book_order
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2014-03-23","1","0","0","641567179@qq.com","时钰森",
+values ("2012-03-23 09:34:20","1","0","0","641567179@qq.com","时钰森",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
-        "510000",null,"15018713530",115.8, 58);
+        "510000",null,"15018713530",148.8, 74);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2011-05-03","2","0","0","641567179@qq.com","时钰森",
+values ("2012-01-03 15:10:00","2","0","0","641567179@qq.com","时钰森",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15018713530",14.4, 7);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2011-05-24","3","0","0","544921965@qq.com","刘光宗",
+values ("2012-02-24 12:10:56","3","0","0","544921965@qq.com","刘光宗",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",629.3, 315);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2011-07-01","0","0","0","544921965@qq.com","刘光宗",
+values ("2011-07-01 21:59:59","0","0","0","544921965@qq.com","刘光宗",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",26, 13);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-01","1","0","0","236497339@qq.com","缪云彬",
+values ("2012-01-01 17:12:23","1","0","0","236497339@qq.com","缪云彬",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
-        "510000",null,"15920551434",30.2, 15);
+        "510000",null,"15920551434",52.8, 26);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-07","0","0","0","236497339@qq.com","缪云彬",
+values ("2012-01-07 18:45:12","0","0","0","236497339@qq.com","缪云彬",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",15.0, 8);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-02-15","3","0","0","236497339@qq.com","缪云彬",
+values ("2012-02-15 06:08:09","3","0","0","236497339@qq.com","缪云彬",
          '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",12.6, 6);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-03-15","2","0","0","544921965@qq.com","刘光宗",
+values ("2012-03-15 01:00:00","2","0","0","544921965@qq.com","刘光宗",
 '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",45.6, 22);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-06-15","3","0","0","236497339@qq.com","缪云彬",
+values ("2012-06-15 23:23:16","3","0","0","236497339@qq.com","缪云彬",
 '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",24.0, 12);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-03-23","2","0","0","641567179@qq.com","时钰森",
+values ("2012-03-23 14:56:20","2","0","0","641567179@qq.com","时钰森",
 '{"level1":{"id":12,"name":"安徽省"},"level2":{"id":198,"name":"巢湖市"},
         "level3":{"id":2305,"name":"庐江县"},"detail":"庐城镇"}',
         "510000",null,"15018713530",68.0, 34);
-        
+insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
+values ("2012-03-24 09:36:20","2","0","0","1292740870@qq.com","郝靖",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
+        "510000",null,"15018712345",18.6, 13);
+insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
+values ("2012-01-24 19:36:20","2","0","0","236497339@qq.com","缪云彬",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
+        "510000",null,"15920551434",18.6, 9);
+insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
+values ("2012-04-22 09:36:20","2","0","0","641567179@qq.com","时钰森",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
+        "510000",null,"15018713530",18.6, 9);
+insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
+values ("2012-01-10 09:36:20","2","0","0","544921965@qq.com","刘光宗",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
+        "510000",null,"15920551404",18.6, 9);
+insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
+                      USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
+values ("2012-02-25 21:24:20","2","0","0","549047626@qq.com","张盛川",
+        '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
+        "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
+        "510000",null,"15018713567",18.6, 20);
+
 -- 插入order_detail
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
     values(1,1,9787538296846,"曾国藩和他的湘军",32.80,0.69,2);
@@ -969,6 +999,9 @@ insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUN
 
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
     values(1,30,9787101059328,"金刚经 心经 坛经",16.00,0.63,3);
+    
+insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
+    values(1,11,9787549500444,"古犹太教",50.00,0.66,1);    
     
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
     values(2,25,9787507528039,"世界地理全知道（超值白金版）",29.80,0.5,1);
@@ -987,6 +1020,9 @@ insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUN
     
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
     values(5,30,9787101059328,"金刚经 心经 坛经",16.00,0.63,3);
+    
+insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
+    values(5,1,9787538296846,"曾国藩和他的湘军",32.80,0.69,1);
     
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
     values(6,4,9787539936680,"那些回不去的年少时光：终场",23.80,0.63,1);
@@ -1008,6 +1044,21 @@ insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUN
     
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
     values(10,27,9787546400839,"陈式太极拳简易24式",22.80,0.48,2);
+
+
+insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
+    values(11,57,9787507419887,"秘密 The Secret",32.00,0.58,1); 
+insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
+    values(12,57,9787507419887,"秘密 The Secret",32.00,0.58,1); 
+insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
+    values(13,57,9787507419887,"秘密 The Secret",32.00,0.58,1); 
+insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
+    values(14,57,9787507419887,"秘密 The Secret",32.00,0.58,1); 
+insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
+    values(15,57,9787507419887,"秘密 The Secret",32.00,0.58,1); 
+
+    
+
     
 -- 插入favority_folder
 insert into favority_folder(username,bookID)
@@ -1035,41 +1086,41 @@ insert into score_level(name,lowlimit,uplimit,rate)
 
 -- 插入comment
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("641567179@qq.com",1,"晚上11点下单，早上8点就送到了。书还塑封了，不错","5","2012-01-06");
+      values ("641567179@qq.com",1,"晚上11点下单，早上8点就送到了。书还塑封了，不错","5","2012-04-06 12:28:36");
 
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("544921965@qq.com",2,"早就听说好看了，果然受益匪浅","4","2012-03-06");
+      values ("544921965@qq.com",2,"早就听说好看了，果然受益匪浅","4","2012-03-06 15:17:30");
       
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("544921965@qq.com",3,"还没看完，感觉不错","5","2012-04-06");
+      values ("544921965@qq.com",3,"还没看完，感觉不错","5","2012-04-06 21:10:14");
       
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("641567179@qq.com",10,"斯里兰卡的作者，写了几个哲学流派，从外国人的眼里看我们中国哲学，也是蛮有意思的。","3","2012-06-27");
+      values ("544921965@qq.com",10,"斯里兰卡的作者，写了几个哲学流派，从外国人的眼里看我们中国哲学，也是蛮有意思的。","3","2012-06-27 13:12:56");
       
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("641567179@qq.com",11,"马克思韦伯的著作围绕于社会学的宗教和政治研究领域上，也对经济学领域作出极大的贡献。有余英时先生作序，更值得信赖！","4","2012-06-27");
+      values ("641567179@qq.com",11,"马克思韦伯的著作围绕于社会学的宗教和政治研究领域上，也对经济学领域作出极大的贡献。有余英时先生作序，更值得信赖！","4","2012-06-27 09:12:34");
       
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("544921965@qq.com",11,"非常满意 本套书很不错","4","2012-04-06");
+      values ("544921965@qq.com",11,"非常满意 本套书很不错","4","2012-04-06 23:23:12");
       
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("236497339@qq.com",1,"收益匪浅","5","2012-04-06");
+      values ("544921965@qq.com",1,"收益匪浅","5","2012-06-01 12:45:56");
       
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("1292740870@qq.com",1,"我很喜欢","5","2012-06-06");
+      values ("236497339@qq.com",1,"我很喜欢","5","2012-06-06 20:45:34");
       
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("1292740870@qq.com",57,"我非常震惊这样一本风靡世界的伟大作品在国内居然没有得到足够的重视与尊重","5","2010-06-06");
+      values ("1292740870@qq.com",57,"我非常震惊这样一本风靡世界的伟大作品在国内居然没有得到足够的重视与尊重","5","2012-06-15 15:56:23");
 
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("236497339@qq.com",57,"我本人真的是很喜欢《秘密》这本书，要不我不会买这本书，并且每天都翻上几页","5","2010-03-06");
+      values ("236497339@qq.com",57,"我本人真的是很喜欢《秘密》这本书，要不我不会买这本书，并且每天都翻上几页","5","2012-06-17 09:09:09");
 
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("641567179@qq.com",57,"从综合的角度,这是一本很有立意的书,说理的方式很独特 ","5","2011-03-06");
+      values ("641567179@qq.com",57,"从综合的角度,这是一本很有立意的书,说理的方式很独特 ","5","2012-05-06 17:34:23");
 
 insert into comment(username,bookID,content,rating,commentdate)
-      values ("544921965@qq.com",57,"这本书告诉我们一个道理，你首先要清楚地知道自己想要什么，这听起来很简单，但真正有多少人明白这个道理呢","5","2012-06-06");
+      values ("544921965@qq.com",57,"这本书告诉我们一个道理，你首先要清楚地知道自己想要什么，这听起来很简单，但真正有多少人明白这个道理呢","5","2012-06-30 18:23:35");
 
 insert into comment(username,bookID,content,rating,commentdate)
       values ("549047626@qq.com",57,"这本书比拿破仑希尔和《积极预言的力量》好在哪呢？我真没看出来。为什么会这么受欢迎？我看了3遍还是没看出新东西。是不是翻译的不好啊？",
-      "1","2012-06-06");
+      "1","2012-06-28 23:59:59");

@@ -22,7 +22,7 @@
 		<div id="search2">
 			<div id="searchleft">
 				<img src="../image/ico_site.jpg"  id="ico_site"/>
-				网站路径：</a>&gt;&gt;<a href="">管理员登录</a>
+				网站路径：</a>&gt;&gt;<a href="login">管理员登录</a>
 			</div>
 		</div>
 		<div id="sendnote">

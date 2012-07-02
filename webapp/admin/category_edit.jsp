@@ -15,7 +15,7 @@
 	<div id="container">
 		<div id="logalleft">
 			<div id="logalright">
-				<a href="" target="_parent">管理员 已登录|</a> <a href="index.html"
+				<a href="" target="_parent">管理员 已登录|</a> <a href="logout"
 					target="_parent">退出</a>
 			</div>
 		</div>
@@ -118,51 +118,7 @@
 				</div>
 			</div>
 
-			<div id="mydouble">
-				<div id="mydoublehead1">
-					<strong>添加目录</strong>
-				</div>
-				<div id="doublecontent2">
-					<form action="catalog_add_submit" method="post">
-						<table id="catalog_itemsearch">
-							<tr>
-								<th class="itemsearchth">目录名：</th>
-								<td class="itemsearchtd1"><input type="text"
-									class="inputtext" name="catalogName"
-									onfocus="nextfield='password'" /></td>
-								<td class="itemsearchtd2"><span class="red">*&nbsp;必填项</span>
-								</td>
-							</tr>
-							<tr>
-								<th class="itemsearchth">父目录：</th>
-								<td class="itemsearchtd1"><select name="upID">
-										<option value="0" selected="selected">根目录</option>
-										<s:iterator value="catalog" var="outer">
-											<option value="<s:property value='#outer.id'/>">
-												<s:property value="#outer.name" />
-											</option>
-										</s:iterator>
-								</select></td>
-								<td class="itemsearchtd2">&nbsp;</td>
-							</tr>
-							<tr>
-								<th class="itemsearchth"><span class="inputHeader">目录描述：</span>
-								</th>
-								<td class="itemsearchtd1"><textarea name="catalogDesc"
-										class="textAreaStyle"></textarea></td>
-								<td class="itemsearchtd2">&nbsp;</td>
-
-							</tr>
-							<tr>
-								<th></th>
-								<td><input type="submit" name="button2" value="添加"
-									onclick="checkcategoryform()" /> &nbsp;<input type="reset"
-									name="button1" value="重填" onclick="clear()" /></td>
-							</tr>
-						</table>
-					</form>
-				</div>
-			</div>
+			
 		</div>
 
 
