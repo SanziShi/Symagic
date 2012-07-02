@@ -823,6 +823,7 @@ text-decoration:none;
 	background-color: #FFF;
 	overflow:hidden;
 	border:1px solid #DDD;
+	border-width:0 1px 0 1px;
 }
 .user_note .head
 {

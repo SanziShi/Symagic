@@ -28,7 +28,7 @@ public class FavorityAddAction extends ActionSupport {
 	}
 	//传出
 	private boolean addResult;//添加是否成功
-	 private String resultInfo;
+	private String resultInfo;
 	@Override
 		public String execute() throws Exception {
 			// TODO Auto-generated method stub
@@ -42,19 +42,20 @@ public class FavorityAddAction extends ActionSupport {
 			boolean result;
 			Iterator<Integer> it=items.iterator();
 			while(it.hasNext()){
-			 result=daoFavorityFolder.add(UserSessionUtilty.getUsername(),it.next());
+				Integer itemID=it.next();
+			 result=daoFavorityFolder.add(UserSessionUtilty.getUsername(),itemID);
 			 if(!result){
 				   addResult=false;
 				   if(builder.length()==0){
-					   builder.append("编号为"+it.next());
+					   builder.append("编号为"+itemID);
 				   }  
 				   else{
-					   builder.append(","+it.next());
+					   builder.append(","+itemID);
 				   }
 			   }
 			}
 			 if(!addResult){
-				  builder.append("添加到收藏夹失败");
+				  builder.append("已存在收藏夹中");
 				  resultInfo=builder.toString();
 			   }
 			   else{

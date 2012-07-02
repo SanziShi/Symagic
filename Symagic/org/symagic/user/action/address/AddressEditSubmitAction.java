@@ -80,7 +80,7 @@ public class AddressEditSubmitAction extends AddressBase{
 		BeanAddress address = new BeanAddress();
 		if(getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
 				|| getDistrictLevel3ID() == null || getAddressDetail() == null
-				|| getRecieverName() == null 
+				|| getReceiverName() == null 
 				|| !(getMobileNum() != null || getPhoneNum() != null)){
 			submitResult = false;
 			resultInfo = "数据错误";
@@ -100,7 +100,7 @@ public class AddressEditSubmitAction extends AddressBase{
 		address.setAddrdetail(strAddressDetail);
 		address.setMobilenum(getMobileNum());
 		address.setPhonenum(getPhoneNum());
-		address.setReceivername(getRecieverName());
+		address.setReceivername(getReceiverName());
 		address.setUsername(UserSessionUtilty.getUsername());
 		address.setZipcode(getZipcode());
 		address.setAddrid(addressID);
