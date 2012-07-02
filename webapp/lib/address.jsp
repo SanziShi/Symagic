@@ -9,7 +9,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <s:iterator value='addressList' var="iter">
                 <div id="address<s:property value='#iter.ID'/>" class="address-edit">
                 <h2>修改地址<span class="close" onclick="close_address_edit(address<s:property value='#iter.ID'/>)"></span></h2>
-                	<table width="100%" cellspacing="0" border="0">
+                	<form action="address/address_edit_submit" method="post" onsubmit="return address_edit_submit(this)">
+                    <input style="display:none" name="addressID" value="<s:property value='#iter.ID'/>">
+                    <table width="100%" cellspacing="0" border="0">
                 			<tbody>
                     		<tr>
                             	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
@@ -49,8 +51,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
                             	<td><input name="zipcode" type="text" class="txt short" value="<s:property value='#iter.zipcode'/>"/></td>
                             </tr>
+                            <tr>
+                                	<td></td>
+                                    <td><input type="submit" value="保存修改"/></td>
+                            </tr>
                     		</tbody>
                 		</table>
+                   </form>
                   </div>
                   </s:iterator>
                   <!--修改地址迭代结束-->
