@@ -28,6 +28,7 @@ public String execute() throws Exception {
 	// TODO Auto-generated method stub
 if(items==null||!UserSessionUtilty.isLogin()){
 	deleteResult=false;
+	resultInfo="未登录或无商品";
 	return SUCCESS;
 }	
 //数据库中删除
