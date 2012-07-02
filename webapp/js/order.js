@@ -46,20 +46,34 @@ function get_district(d)
 		})
 	}
 }
-function detect(id)
+function detect(e,id)
 {
-	var a=document.getElementById(id);
-	if(!a.checked)a.className='';
-	alert(document.getElementById(id).checked);
+	var idname='normal_address'+id;
+	iddiv=document.getElementById(idname);
+	iddiv.className+=' selected';
+	var father=iddiv.parentNode.childNodes;
+	for(var i in father)
+	{
+		if(father[i].id!=idname)father[i].className='';
+	}
+	Ajax({
+		url:'order/get_address_detail&adressID='+id,
+		onSuccess:function(e)
+			{
+				document.getElementById('order_address').innerHTML=e;
+			}
+		})
 }
 function select_address(id)
 {
-	document.getElementById(id).className+=' selected';
-	e.parentNode.className+=' selected';
+	alert(id);
+	
+	//document.getElementById(id).className+=' selected';
+	//e.parentNode.className+=' selected';
 }
 function delete_address(id)
 {
-	Ajax:({
+	Ajax({
 		url:'address/delete_address?addressID='+id,
 		onSuccess:function(e)
 			{
@@ -67,7 +81,7 @@ function delete_address(id)
 				if(a.deleteResult)
 				{
 					var i='#normal_address'+id;
-					$(i).fadeOut(10);
+					$(i).fadeOut(200);
 				}
 				else alert(a.resultInfo);
 			}

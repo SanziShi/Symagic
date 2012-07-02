@@ -25,6 +25,11 @@
 {
 	color:#87B4C9;
 }
+.address_list_inner li
+{
+	margin-right: 5px;
+	border:1px #F8FBFC solid;
+}
 .address_list_inner li.selected
 {
 	color: #F8AA27;
@@ -46,7 +51,6 @@
 {
 	float:right;
 	color: gray;
-	margin-right:10px;
 	text-decoration:none;
 }
 input.txt {
