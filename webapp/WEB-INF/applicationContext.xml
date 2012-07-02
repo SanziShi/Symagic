@@ -224,6 +224,9 @@
 		<property name="daoLevel" ref="DaoLevel"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
+	
+	<bean id="AdminLogout" class="org.symagic.admin.action.login.AdminLogoutAction">
+	</bean>
 
 	<!-- 用户的action bean -->
 

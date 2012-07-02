@@ -459,7 +459,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="catalog_manager" class="AdminEnterCatalogManager">
 			<result>
-			/admin/category_list.jsp
+				/admin/category_list.jsp
+			</result>
+		</action>
+
+		<action name="loginout" class="AdminLogout">
+			<result type="redirectAction">
+				<param name="actionName">index</param>
+				<param name="namespace">/admin</param>
 			</result>
 		</action>
 
