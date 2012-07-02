@@ -193,5 +193,12 @@ public class UserSessionUtilty extends SessionUtilty {
 		ActionContext.getContext().getSession().clear();
 		ActionContext.getContext().getSession().put("totalNumber", 0);
 	}
+	
+	public static void clearCart(){
+		Map<String, Object> sessionMap = ActionContext.getContext().getSession();
+		
+		if(sessionMap.get("cart") != null)
+			sessionMap.remove("cart");
+	}
 
 }

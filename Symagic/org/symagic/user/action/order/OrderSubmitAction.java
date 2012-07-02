@@ -196,6 +196,7 @@ public class OrderSubmitAction extends OrderBase{
 		orderID = daoOrder.addOrder(order);
 		if(orderID > 0){
 			UserSessionUtilty.removeOrder();
+			UserSessionUtilty.clearCart();
 			return SUCCESS;
 		}
 		else {
@@ -204,6 +205,12 @@ public class OrderSubmitAction extends OrderBase{
 	}
 	
 	public void validate(){
+		if(score == null || getLevel1ID() == null || getLevel2ID() == null || getLevel3ID() == null
+				|| getMobileNum() == null || getPhoneNum() == null ||
+				getReceiverName() == null || getZipcode() == null){
+			isValidate = false;
+			return;
+		}
 		if(daoUser.getScore(UserSessionUtilty.getUsername()) < score){
 			isValidate = false;
 			return;
