@@ -633,7 +633,7 @@ public class DaoBook {
 
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn
-					.prepareStatement("select * from book order by bookid desc limit 10");
+					.prepareStatement("select * from book order by bookid desc limit 15");
 			rs = ps.executeQuery();
 			list = new ArrayList<BeanBook>();
 			while (rs.next()) {
@@ -890,9 +890,9 @@ public class DaoBook {
 		List<Integer> bookIDList	= null;
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			String sql	= "select bookid from book where bookid not in (";
+			String sql	= "select bookid from book ";
 			if (list.size() != 0) {
-				sql += list.get(0);
+				sql +=" where bookid not in ( "+list.get(0);
 				for (int i=1; i<list.size(); i++) {
 					sql += " , " + list.get(1);
 				}

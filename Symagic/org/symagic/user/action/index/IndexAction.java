@@ -25,9 +25,9 @@ public class IndexAction extends CatalogBase{
 private static final long serialVersionUID = 5685501467658534869L;
 
 //配置项
-private RecommandService recommendService; //访问推荐系统
+
 private ItemService itemService;//访问商品项
-private Integer recommendNumber=15;//推荐项
+private Integer recommendNumber;
 
 //传出参数
 private String nickname;//昵称
@@ -44,20 +44,12 @@ private List<ItemTinyBean> hotBook;//热销书
 		
 		
 		//推荐商品
-		List<Integer> recommendIds;
+		
 		recommendItem=new ArrayList<ItemTinyBean>();
-		if(UserSessionUtilty.isLogin()){
-	    recommendIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), recommendNumber);
-		}
-		else{
-			recommendIds=recommendService.mostViewedItems(recommendNumber);
-		}
-		if(recommendIds!=null)
-	    itemService.fillTinyItems(recommendIds,recommendItem);
+		itemService.getRecommendBook(recommendNumber, UserSessionUtilty.isLogin(), recommendItem);
 		
 	    hotBook=new ArrayList<ItemTinyBean>();
-	    List<Integer> hotBookIDs=recommendService.mostBoughtItems(recommendNumber);
-	     itemService.fillTinyItems(hotBookIDs, hotBook);
+	    itemService.getHotBook(recommendNumber, hotBook);
 	    
 	    //新书
 	   newBook=new ArrayList<ItemTinyBean>();
@@ -78,15 +70,7 @@ private List<ItemTinyBean> hotBook;//热销书
 
 	
 
-	public RecommandService getRecommendService() {
-		return recommendService;
-	}
-
-
-	public void setRecommendService(RecommandService recommendService) {
-		this.recommendService = recommendService;
-	}
-
+	
 
 	
 
@@ -123,6 +107,16 @@ private List<ItemTinyBean> hotBook;//热销书
 
 	public void setNewBook(List<ItemTinyBean> newBook) {
 		this.newBook = newBook;
+	}
+
+
+	public Integer getRecommendNumber() {
+		return recommendNumber;
+	}
+
+
+	public void setRecommendNumber(Integer recommendNumber) {
+		this.recommendNumber = recommendNumber;
 	}
 
 

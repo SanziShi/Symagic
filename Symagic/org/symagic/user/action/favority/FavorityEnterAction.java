@@ -29,6 +29,7 @@ public class FavorityEnterAction extends ActionSupport {
 	private DaoFavorityFolder daoFavorityFolder;
 	private ItemService itemService;
 	private Integer lines;//一页显示 的条数
+	private Integer recommendNumber;
 	//传出
 	private List<ItemBean> items;//显示收藏夹中的东西
 	private List<ItemTinyBean> recommend;
@@ -54,11 +55,9 @@ public class FavorityEnterAction extends ActionSupport {
 		totalPage=(items.size()+lines-1)/lines;
 		
 		//得到推荐商品 recommned;
-		/**
-		 * test,待修改为真正的推荐系统
-		 */
+		
 		recommend=new ArrayList<ItemTinyBean>();
-		itemService.getNewBook(recommend);
+		itemService.getRecommendBook(recommendNumber, UserSessionUtilty.isLogin(), recommend);
 		 
 		return super.execute();
 	}
@@ -113,6 +112,16 @@ public class FavorityEnterAction extends ActionSupport {
 
 	public void setTotalPage(Integer totalPage) {
 		this.totalPage = totalPage;
+	}
+
+
+	public Integer getRecommendNumber() {
+		return recommendNumber;
+	}
+
+
+	public void setRecommendNumber(Integer recommendNumber) {
+		this.recommendNumber = recommendNumber;
 	}
 	
 	

@@ -229,9 +229,10 @@
 
 
 	<bean id="indexClass" class="org.symagic.user.action.index.IndexAction">
-		<property name="recommendService" ref="RecommendService"></property>
+		
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
+		<property name="recommendNumber" value="10"></property>
 	</bean>
 
 	<bean id="getSessionInfo" class="org.symagic.user.action.login.GetSessionInfoAction"></bean>
@@ -292,16 +293,17 @@
 		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
+		<property name="recommendNumber" value="5"></property>
 	</bean>
 
 	<!-- 关于商品的bean -->
 	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction"
 		scope="request">
 		<property name="itemService" ref="ItemService"></property>
-		<property name="recommendService" ref="RecommendService"></property>
+		
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
-		<property name="recommendNumber" value="15"></property>
+		
 		<property name="errorHeader" value="没有相应 的商品"></property>
 		<property name="errorSpecification" value="symagic商城目前没有符合此类商品"></property>
 		<property name="sign" value="1"></property>
@@ -311,10 +313,10 @@
 		scope="request">
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
-		<property name="recommendService" ref="RecommendService"></property>
+		
 		<property name="errorHeader" value="出现异常"></property>
 		<property name="errorSpecification" value="可能 是由于输入的数据有误造成的"></property>
-		<property name="recommendNumber" value="15"></property>
+		
 		<property name="sign" value="0"></property>
 		<property name="lines" value="15"></property>
 	</bean>
@@ -326,7 +328,7 @@
 		<property name="lines" value="15"></property>
 		<property name="errorHeader" value="没有相应 的商品"></property>
 		<property name="errorSpecification" value="symagic商城目前没有此类商品"></property>
-		<property name="recommendService" ref="RecommendService"></property>
+		<property name="recommendNumber" value="7"></property>
 	</bean>
 
 	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction"
@@ -472,6 +474,7 @@
 		<property name="daoComment" ref="DaoComment"></property>
 		<property name="daoCatalog" ref="DaoCatalog"></property>
 	    <property name="orderService" ref="OrderService"></property>
+	    <property name="recommendService" ref="RecommendService"></property>
 	</bean>
 
 	<bean id="AddressService" class="org.symagic.common.service.AddressService">

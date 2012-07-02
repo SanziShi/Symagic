@@ -2,6 +2,9 @@ package org.symagic.user.action.item;
 
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.service.ItemService;
+import org.symagic.common.utilty.presentation.bean.ItemBean;
+import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -34,9 +37,14 @@ public class SubmitCommentAction extends ActionSupport {
 	    BeanComment comment=new BeanComment();
 		comment.setBookID(itemID);
 		comment.setContent(content);
-		comment.setRating(rating+"");//?string
+		comment.setRating(rating+"");
 		comment.setUsername(UserSessionUtilty.getUsername());
 		submitResult=itemService.addItemComment(comment);
+		ItemDetailBean book=new ItemDetailBean();
+		
+		itemService.fillDetailBean(itemID, book);
+		//为推荐系统提供信息
+		itemService.commentFromRecomend(rating, itemID,book.getBookDesc());
        return super.execute();
 	}
 

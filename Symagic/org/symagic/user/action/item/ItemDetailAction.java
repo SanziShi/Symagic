@@ -24,7 +24,8 @@ public class ItemDetailAction extends CatalogBase {
 	private String errorHeader;
 	private String errorSpecification ;
 	private ItemService itemService;// 访问服务层
-	private RecommandService recommendService;
+	
+	private Integer recommendNumber;
 	//传出
 	private ItemDetailBean book;// 书籍详细信息
 	private Integer totalPage;// 评论有多少页
@@ -53,15 +54,13 @@ public class ItemDetailAction extends CatalogBase {
 		totalPage = (commentNumber + lines - 1) / lines;
 		//显示第一页的评论显示
 		commentList = itemService.getCommentWithPage(itemID,1, lines);
-		/*
-		 * test
-		 */
+		
+		//推荐
 		recommendView = new ArrayList<ItemTinyBean>();
 		recommendBought = new ArrayList<ItemTinyBean>();
-		List<Integer> recommendIds = recommendService.otherUsersAlsoViewed(itemID.toString(), UserSessionUtilty.getUsername(), null);
-		itemService.fillTinyItems(recommendIds,recommendView);
-		itemService.getNewBook(recommendBought);
-		recommendService.view(UserSessionUtilty.getSessionID(), String.valueOf(itemID),book.getBookDesc(), "item_detail?itemID="+itemID, UserSessionUtilty.getUsername());
+		itemService.getBoughtFromItem(recommendNumber, itemID, recommendBought);
+		itemService.getViewFromItem(recommendNumber, itemID, recommendView);
+		itemService.viewForRecommend(itemID, book.getBookDesc());
 		return super.execute();
 	}
 
@@ -105,13 +104,7 @@ public class ItemDetailAction extends CatalogBase {
 		this.itemService = itemService;
 	}
 
-	public RecommandService getRecommendService() {
-		return recommendService;
-	}
-
-	public void setRecommendService(RecommandService recommendService) {
-		this.recommendService = recommendService;
-	}
+	
 
 	public List<BeanComment> getCommentList() {
 		return commentList;
@@ -153,6 +146,14 @@ public class ItemDetailAction extends CatalogBase {
 
 	public void setErrorSpecification(String errorSpecification) {
 		this.errorSpecification = errorSpecification;
+	}
+
+	public Integer getRecommendNumber() {
+		return recommendNumber;
+	}
+
+	public void setRecommendNumber(Integer recommendNumber) {
+		this.recommendNumber = recommendNumber;
 	}
 
 	

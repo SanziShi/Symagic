@@ -39,11 +39,11 @@ public class AdvanceSearchAction extends CatalogBase {
     private Integer discount;// 折扣
    // 配置项
 	private Integer lines;
-	private Integer recommendNumber;
+	
 	private String errorHeader;
 	private String errorSpecification;
 	private ItemService itemService;// 访问书本的业务层
-	private RecommandService recommendService;// 推荐系统
+	
 	private int sign;// 搜索标志，1为高级搜索
      //传出
 	private Integer totalPage;
@@ -80,20 +80,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		require.setPage(page);
 		
 
-//		List<Integer> bookIds;
-		
-		// 推荐商品
-		/**
-		 * 
-		 */
-//		if (UserSessionUtilty.isLogin()) {
-//			bookIds = recommendService.recommendationsForUser(
-//					UserSessionUtilty.getUsername(), recommendNumber);
-//		} else {
-//			bookIds = recommendService.mostViewedItems(recommendNumber);
-//		}
-//		
-//		itemService.fillItem(bookIds, recommend);
+
 
 		      // 搜索符合条件的商品
 				List<BeanBook> books = itemService.search(sign, require);
@@ -361,13 +348,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		this.itemService = itemService;
 	}
 
-	public RecommandService getRecommendService() {
-		return recommendService;
-	}
-
-	public void setRecommendService(RecommandService recommendService) {
-		this.recommendService = recommendService;
-	}
+	
 
 	public List<ItemBean> getItems() {
 		return items;
@@ -401,13 +382,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		this.lines = lines;
 	}
 
-	public Integer getRecommendNumber() {
-		return recommendNumber;
-	}
-
-	public void setRecommendNumber(Integer recommendNumber) {
-		this.recommendNumber = recommendNumber;
-	}
+	
 
 	public Integer getCatalogID() {
 		return catalogID;

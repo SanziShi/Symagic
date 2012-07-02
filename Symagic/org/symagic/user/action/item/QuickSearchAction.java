@@ -32,11 +32,11 @@ private static final long serialVersionUID = 8991605145652333401L;
  
 	
  //配置项(加上catalogService)
- private  Integer recommendNumber;
+ 
  private String errorHeader;
  private String errorSpecification;
  private ItemService itemService;//访问书本的业务层
- private RecommandService recommendService;//推荐系统
+
  private Integer sign;//搜索标志，0为快速搜索
  private  Integer lines;
  private  DaoCatalog daoCatalog;
@@ -111,13 +111,7 @@ private List<ItemBean>items;//用于显示的商品列表
 			this.itemService = itemService;
 		}
 
-		public RecommandService getRecommendService() {
-			return recommendService;
-		}
-
-		public void setRecommendService(RecommandService recommendService) {
-			this.recommendService = recommendService;
-		}
+	
 
 		public String getKeyword() {
 			return keyword;
@@ -209,13 +203,7 @@ private List<ItemBean>items;//用于显示的商品列表
 			this.lines = lines;
 		}
 
-		public Integer getRecommendNumber() {
-			return recommendNumber;
-		}
-
-		public void setRecommendNumber(Integer recommendNumber) {
-			this.recommendNumber = recommendNumber;
-		}
+	
 
 		public DaoCatalog getDaoCatalog() {
 			return daoCatalog;
