@@ -66,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             	<td><input name="mobileNum" type="text" class="txt" value="<s:property value='#iter.mobileNum'/>"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt" value="<s:property value='#iter.phoneNum'/>"></td>
                             </tr>
                     		<tr>
-                            	<td valign="middle" align="right">邮箱地址：</td><td><s:property value='#session.userName'/></td>
+                            	<td valign="middle" align="right">邮箱地址：</td><td><s:property value='#session.userName'/><s:property value='#iter.level1DistrictDefaultID'/'><s:property value='#iter.level2DistrictDefaultID'/'><s:property value='#iter.level3DistrictDefaultID'/'></td>
                             </tr>
                     		<tr>
                             	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
