@@ -186,6 +186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="ware">
         	<h1>结算</h1>
+            <input name="score" style="display:none" value="0">
         	<div class="total_price"><span id="pay">应付总额：<strong>￥<s:property value='price'/></strong>元</span></div>
         	<div class="clear"></div>
         	<div class="order_confirm" onclick="order_submit()"></div>
