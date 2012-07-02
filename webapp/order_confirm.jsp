@@ -78,6 +78,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<tbody>
                     	<tr>
                         	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
+                            <td><input name="receiverName" class="txt" type="text"/></td>
+                        </tr>
+                        <tr>
+                        	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
+                            <td>
+                            	<select onchange="get_district(this)" id="level1ID" name="level1ID">
+                                	<option value="s1">请选择</option>
+                                <s:iterator value="level1Districts" var='iter'>
+                                	<option value="<s:property value='#iter.ID'/>"><s:property value='#iter.name'/></option>
+                                </s:iterator>
+                                </select>
+                                <select onchange="get_district(this)" id="level2ID" name="level2ID">
+                                	<option value="s2">请选择</option>
+                                </select>
+                                <select id="level3ID" name="level3ID">
+                                	<option value="">请选择</option>
+                                </select>
+                            </td>
+                        </tr>
+                    	<tr>
+                        	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
+                            <td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long"></td>
+                        </tr>
+                    	<tr>
+                        	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
+                            <td><input name="mobileNum" type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt"/></td>
+                        </tr>
+                    	<tr>
+                        	<td valign="middle" align="right">邮箱地址：</td>
+                            <td><s:property value='#session.userName'/></td>
+                        </tr>
+                    	<tr>
+                        	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
+                            <td><input name="zipcode" type="text" class="txt short"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!---隐藏的地址修改table--->
+                <table style="display:none" width="100%" cellspacing="0" border="0">
+                	<tbody>
+                    	<tr>
+                        	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
                             <td><input name="receiver" class="txt" type="text"/></td>
                         </tr>
                         <tr>
@@ -115,6 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </tr>
                     </tbody>
                 </table>
+                <!--- 隐藏的地址修改table--->
                 <span class="add-to-address">添加信息至地址簿</span><span>重置内容</span>
             </div>
         </div>
