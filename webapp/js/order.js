@@ -57,20 +57,14 @@ function detect(e,id)
 		if(father[i].id!=idname)father[i].className='';
 	}
 	Ajax({
-		url:'order/get_address_detail&adressID='+id,
+		url:'order/get_address_detail?addressID='+id,
 		onSuccess:function(e)
 			{
-				document.getElementById('order_address').innerHTML=e;
+				document.getElementById('table_container').innerHTML=e;
 			}
 		})
 }
-function select_address(id)
-{
-	alert(id);
-	
-	//document.getElementById(id).className+=' selected';
-	//e.parentNode.className+=' selected';
-}
+
 function delete_address(id)
 {
 	Ajax({
@@ -87,7 +81,10 @@ function delete_address(id)
 			}
 		})
 }
-
+function order_submit()
+{
+	document.getElementById('order_submit').submit();
+}
 
 
 
