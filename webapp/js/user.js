@@ -18,10 +18,9 @@ function address_edit(id)
 	showOverlay();
 	document.getElementById('address'+id).style.display='block';
 }
-function close_address_edit(e)
+function close_address_edit(id)
 {
-	var p=e.parentNode.parentNode;
-	p.style.display='none';
+	document.getElementById(id).style.display='none';
 	hideOverlay();
 }
 function nickname_c(e)
