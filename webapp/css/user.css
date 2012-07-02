@@ -167,6 +167,7 @@ input.txt {
 #address-content-body
 {
 	border-bottom: #B7D2DF solid 2px;
+	padding-bottom:15px;
 }
 #address-content-head h2,#address-bottom h2,.address-edit h2
 {
@@ -196,6 +197,10 @@ input.txt {
 	min-height:40px;
 	line-height:40px;
 	border-bottom:1px solid #B7D2DF;
+}
+#address-bottom
+{
+	padding-bottom:15px;
 }
 .tr td
 {
