@@ -101,6 +101,7 @@ public class ItemService {
     	//用浏览最多补足
     	if(recommend.size()<recommendNumber){
     		mostView=recommendService.mostViewedItems(recommendNumber);
+    		if(mostView!=null){
     	    Iterator<Integer>index=mostView.iterator();
     	    while(index.hasNext()){
     	    	if(recommend.size()>=recommendNumber)break;
@@ -109,6 +110,7 @@ public class ItemService {
     	    		recommend.add(itemID);
     	    	}
     	    }
+    		}
     	}
     	//用随机组成
     	    random=daoBook.getRandBooks(recommend, recommendNumber-recommend.size());
