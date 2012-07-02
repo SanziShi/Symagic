@@ -64,6 +64,30 @@ public class RecommandService {
 		return true;
 	}
 
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public String getApikey() {
+		return apikey;
+	}
+
+	public void setApikey(String apikey) {
+		this.apikey = apikey;
+	}
+
+	public String getTenantid() {
+		return tenantid;
+	}
+
+	public void setTenantid(String tenantid) {
+		this.tenantid = tenantid;
+	}
+
 	/**
 	 * 提交buy操作,对于未登陆用户userName为null
 	 * 

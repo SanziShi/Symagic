@@ -6,8 +6,10 @@ import java.util.List;
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.service.ItemService;
+import org.symagic.common.service.RecommandService;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
+import org.symagic.user.utilty.UserSessionUtilty;
 
 public class ItemDetailAction extends CatalogBase {
 
@@ -22,6 +24,7 @@ public class ItemDetailAction extends CatalogBase {
 	private String errorHeader;
 	private String errorSpecification ;
 	private ItemService itemService;// 访问服务层
+	private RecommandService recommendService;
 	//传出
 	private ItemDetailBean book;// 书籍详细信息
 	private Integer totalPage;// 评论有多少页
@@ -57,6 +60,7 @@ public class ItemDetailAction extends CatalogBase {
 		recommendBought = new ArrayList<ItemTinyBean>();
 		itemService.getNewBook(recommendView);
 		itemService.getNewBook(recommendBought);
+		recommendService.view(UserSessionUtilty.getSessionID(), String.valueOf(itemID), book.getBookDesc(), "item_detail?itemID="+itemID, UserSessionUtilty.getUsername());
 		return super.execute();
 	}
 
