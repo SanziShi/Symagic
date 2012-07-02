@@ -45,9 +45,9 @@ public class AddressService {
 				continue;
 			AddressDetailBean address = new AddressDetailBean();
 			OrderService.Address orderAddress = OrderService.deserializerAddress(beanAddress.getAddrdetail());
-			address.setDefaultLevel1District(orderAddress.level1District.getID());
-			address.setDefaultLevel2District(orderAddress.level2District.getID());
-			address.setDefaultLevel3District(orderAddress.level3District.getID());
+			address.setLevel1DistrictDefaultID(orderAddress.level1District.getID());
+			address.setLevel2DistrictDefaultID(orderAddress.level2District.getID());
+			address.setLevel3DistrictDefaultID(orderAddress.level3District.getID());
 			List<BeanDistrict> districtLevel1List = daoDistrict.getDistrict(0);
 			List<BeanDistrict> districtLevel2List = daoDistrict.getDistrict(orderAddress.level1District.getID());
 			List<BeanDistrict> districtLevel3List = daoDistrict.getDistrict(orderAddress.level3District.getID());
@@ -58,8 +58,8 @@ public class AddressService {
 			if(districtLevel1List != null){
 				for(int j = 0; j < districtLevel1List.size(); j ++){
 					DistrictBean db1 = new DistrictBean();
-					db1.setID(districtLevel1List.get(i).getId());
-					db1.setName(districtLevel1List.get(i).getName());
+					db1.setID(districtLevel1List.get(j).getId());
+					db1.setName(districtLevel1List.get(j).getName());
 					address.getLevel1Districts().add(db1);
 				}
 			}

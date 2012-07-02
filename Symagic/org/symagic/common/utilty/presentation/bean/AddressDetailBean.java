@@ -10,11 +10,11 @@ public class AddressDetailBean {
 	
 	private List<DistrictBean> level3Districts;
 	
-	private Integer defaultLevel1District;
+	private Integer level1DistrictDefaultID;
 	
-	private Integer defaultLevel2District;
+	private Integer level2DistrictDefaultID;
 	
-	private Integer defaultLevel3District;
+	private Integer level3DistrictDefaultID;
 	
 	private String AddressDetail;
 	
@@ -62,28 +62,29 @@ public class AddressDetailBean {
 		this.level3Districts = level3Districts;
 	}
 
-	public Integer getDefaultLevel1District() {
-		return defaultLevel1District;
+	
+	public Integer getLevel1DistrictDefaultID() {
+		return level1DistrictDefaultID;
 	}
 
-	public void setDefaultLevel1District(Integer defaultLevel1District) {
-		this.defaultLevel1District = defaultLevel1District;
+	public void setLevel1DistrictDefaultID(Integer level1DistrictDefaultID) {
+		this.level1DistrictDefaultID = level1DistrictDefaultID;
 	}
 
-	public Integer getDefaultLevel2District() {
-		return defaultLevel2District;
+	public Integer getLevel2DistrictDefaultID() {
+		return level2DistrictDefaultID;
 	}
 
-	public void setDefaultLevel2District(Integer defaultLevel2District) {
-		this.defaultLevel2District = defaultLevel2District;
+	public void setLevel2DistrictDefaultID(Integer level2DistrictDefaultID) {
+		this.level2DistrictDefaultID = level2DistrictDefaultID;
 	}
 
-	public Integer getDefaultLevel3District() {
-		return defaultLevel3District;
+	public Integer getLevel3DistrictDefaultID() {
+		return level3DistrictDefaultID;
 	}
 
-	public void setDefaultLevel3District(Integer defaultLevel3District) {
-		this.defaultLevel3District = defaultLevel3District;
+	public void setLevel3DistrictDefaultID(Integer level3DistrictDefaultID) {
+		this.level3DistrictDefaultID = level3DistrictDefaultID;
 	}
 
 	public String getAddressDetail() {
