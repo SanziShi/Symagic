@@ -1,15 +1,9 @@
 package org.symagic.user.action.address;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.symagic.common.action.catalog.CatalogBase;
-import org.symagic.common.db.bean.BeanAddress;
-import org.symagic.common.db.bean.BeanDistrict;
-import org.symagic.common.db.func.DaoDistrict;
-import org.symagic.common.db.func.DaoUserAddress;
 import org.symagic.common.service.AddressService;
-import org.symagic.common.utilty.presentation.bean.AddressBean;
 import org.symagic.common.utilty.presentation.bean.AddressDetailBean;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.user.utilty.UserSessionUtilty;
