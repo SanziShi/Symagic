@@ -19,17 +19,17 @@
 		</div>
 	</div>
 	<div id="globallink">
-		<ul>
-			<li><a href="index.html">首页</a></li>
-                        <li><a href="category_list.html">目录管理</a></li>
-			<li><a href="item_list.html">商品管理</a></li>
-			<li><a href="order_admin.html">订单管理</a></li>
-			<li><a href="salesdata_admin.html">销售量统计</a></li>
-			<li><a href="user_admin.html">会员管理</a></li>
-			<li><a href="comment_list.html">评论管理</a></li>
-			<li><a href="" class="nouseful">&nbsp;</a></li>
-		</ul>
-	</div>
+			<ul>
+				<li><a href="index">首页</a></li>
+				<li><a href="catalog_manager">目录管理</a></li>
+				<li><a href="item_manager">商品管理</a></li>
+				<li><a href="order_list">订单管理</a></li>
+				<li><a href="order_statistics">销售量统计</a></li>
+				<li><a href="user_level">会员管理</a></li>
+				<li><a href="" class="nouseful">&nbsp;</a></li>
+                <li><a href="" class="nouseful">&nbsp;</a></li>
+			</ul>
+		</div>
 <!--	<div id="banner"></div>-->
 	<div id="main">
 		<div id="search2">
@@ -50,9 +50,9 @@
 					<td>订单号</td>
 					<td><input type="text" id="inputGray" readonly="readonly" value="<s:property value='orderID'/>" /></td>
             		<td>用户名</td>
-					<td><s:property value="userName"/>edsfgdsgdfeeertertewgdf</td>
+					<td><s:property value="userName"/></td>
 					<td>下单时间</td>
-					<td><s:property value="orderTime"/>sdfadsfdsfdsfdsaf</td>
+					<td><s:property value="orderTime"/></td>
          		 </tr>
 		  		 <tr>
            			<td>订单金额</td>

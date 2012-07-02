@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BC2商城</title>
+<title>Symagic网上书城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
 <link href="css/home.css" rel="stylesheet" type="text/css" />
@@ -25,22 +25,14 @@
 		</div>
 		<div id="globallink">
 			<ul>
-				<li><a href="index.html">首页</a>
-				</li>
-				<li><a href="category_list.html">目录管理</a>
-				</li>
-				<li><a href="item_list.html">商品管理</a>
-				</li>
-				<li><a href="order_admin.html">订单管理</a>
-				</li>
-				<li><a href="salesdata_admin.html">销售量统计</a>
-				</li>
-				<li><a href="user_admin.html">会员管理</a>
-				</li>
-				<li><a href="comment_list.html">评论管理</a>
-				</li>
-				<li><a href="" class="nouseful">&nbsp;</a>
-				</li>
+				<li><a href="index">首页</a></li>
+				<li><a href="catalog_manager">目录管理</a></li>
+				<li><a href="item_manager">商品管理</a></li>
+				<li><a href="order_list">订单管理</a></li>
+				<li><a href="order_statistics">销售量统计</a></li>
+				<li><a href="user_level">会员管理</a></li>
+				<li><a href="" class="nouseful">&nbsp;</a></li>
+                <li><a href="" class="nouseful">&nbsp;</a></li>
 			</ul>
 		</div>
 
@@ -49,7 +41,7 @@
 				<ul>
 					<li><a href="user_list">查询会员</a>
 					</li>
-					<li><a href="user_score_rate_submit">设置会员等级规定</a>
+					<li><a href="user_level">设置会员等级规定</a>
 					</li>
 				</ul>
 			</div>
@@ -60,7 +52,7 @@
 			<div id="search1">
 				<div id="mysearchleft">
 					<img src="image/ico_site.jpg" id="ico_site" /> 网站路径： <a
-						href="index.jsp">会员管理</a>&gt;&gt;设置会员级别
+						href="user_level">会员管理</a>&gt;&gt;设置会员级别
 				</div>
 				<div id="searchright">
 					<form action="quick_search">

@@ -53,7 +53,7 @@
 						<input name="captchaValue" />
 					</td>
 					<td>
-					 <img  src="captcha_get_captcha" onclick="change_captcha(this)"/>	
+					 <img  src="<s:property value="#request.get('javax.servlet.forward.context_path')"/>/captcha_get_captcha" onclick="change_captcha(this, <s:property value="#request.get('javax.servlet.forward.context_path')"/>);"/>	
 					</td>
           		 </tr>
 				

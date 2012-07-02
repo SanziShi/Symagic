@@ -17,7 +17,6 @@ import java.util.Map.Entry;
 
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
@@ -67,7 +66,7 @@ public class RecommandService {
 			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 			if (object == null || object.containsKey("error"))
 				return false;
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -130,7 +129,7 @@ public class RecommandService {
 			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 			if (object == null || object.containsKey("error"))
 				return false;
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -170,7 +169,7 @@ public class RecommandService {
 			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 			if (object == null || object.containsKey("error"))
 				return false;
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
@@ -224,7 +223,7 @@ public class RecommandService {
 				JSONObject temp = (JSONObject) items;
 				result.add(temp.getInt("id"));
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -278,7 +277,7 @@ public class RecommandService {
 				result.add(temp.getInt("id"));
 			}
 
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -327,7 +326,7 @@ public class RecommandService {
 				JSONObject temp = (JSONObject) items;
 				result.add(temp.getInt("id"));
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -375,7 +374,7 @@ public class RecommandService {
 				JSONObject temp = (JSONObject) items;
 				result.add(temp.getInt("id"));
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -420,7 +419,7 @@ public class RecommandService {
 				JSONObject temp = (JSONObject) items;
 				result.add(temp.getInt("id"));
 			}
-		} catch (JSONException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
