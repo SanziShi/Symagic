@@ -100,8 +100,8 @@ function add_to_favorite(id)
 		url:'favorite/add_favorite?items='+id,
 		onSuccess:function(e){
 			var t=JSON.parse(e);
-			if(e.addResult)alert('添加成功！');
-			else alert(a.resultInfo);
+			if(t.addResult)alert('添加成功！');
+			else alert(t.resultInfo);
 			}
 		})
 }

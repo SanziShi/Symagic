@@ -513,6 +513,7 @@ span.close
 	height:25px;
 	width:100px;
 	cursor:pointer;
+	float:left;
 	
 }
 #container{
