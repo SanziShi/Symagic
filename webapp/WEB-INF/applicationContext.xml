@@ -420,7 +420,8 @@
 	<bean id="orderDetail" class="org.symagic.user.action.order.OrderDetailAction"
 		scope="request">
 		<property name="orderService" ref="OrderService"></property>
-		<property name="daoOrder" ref="DaoOrder"></property>	
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="catalogService" ref="CatalogService"></property>	
 	</bean>
 	
 	<bean id="orderSubmit" class="org.symagic.user.action.order.OrderSubmitAction"

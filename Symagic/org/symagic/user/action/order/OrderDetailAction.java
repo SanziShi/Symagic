@@ -22,7 +22,7 @@ public class OrderDetailAction extends OrderBase {
 
 	private String receiverAddres;
 
-	private String orderId;
+	private String orderID;
 
 	private String orderStatus;
 
@@ -64,12 +64,12 @@ public class OrderDetailAction extends OrderBase {
 		this.receiverAddres = receiverAddres;
 	}
 
-	public String getOrderId() {
-		return orderId;
+	public String getOrderID() {
+		return orderID;
 	}
 
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
+	public void setOrderID(String orderId) {
+		this.orderID = orderId;
 	}
 
 	public String getOrderStatus() {
@@ -101,20 +101,26 @@ public class OrderDetailAction extends OrderBase {
 	}
 
 	public String execute() throws Exception {
-		BeanOrder order = daoOrder.getOrderDetail(Integer.parseInt(orderId));
+		BeanOrder order = daoOrder.getOrderDetail(Integer.parseInt(orderID));
 		if (order == null)
 			return ERROR;
 		if (order.getDeliveryWay() == "0")
 			setDeliverWay("送货上门");
 		OrderService.Address address = OrderService.deserializerAddress(order
 				.getAddrDetail());
-		String receiverAddres = address.level1District.getName()
-				+ address.level2District.getName()
-				+ address.level3District.getName() + address.districtDetail;
+		String receiverAddres =  new String();
+		if(address.level1District.getName() != null)
+			receiverAddres += address.level1District.getName();
+		if(address.level2District.getName() != null)
+			receiverAddres += address.level2District.getName();
+		if(address.level3District.getName() != null)
+			receiverAddres += address.level3District.getName();
+		if(address.districtDetail != null)
+			receiverAddres += address.districtDetail;
 		setReceiverAddres(receiverAddres);
 		setMobileNum(order.getMobilenum());
 		setOrderTime(order.getOrderDate());
-		setOrderId(Integer.toString(order.getOrderId()));
+		setOrderID(Integer.toString(order.getOrderId()));
 		int state = Integer.parseInt(order.getOrderState());
 		switch (state) {
 		case 0:
