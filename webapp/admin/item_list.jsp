@@ -391,7 +391,7 @@
 				</div>
 
 				<div id="doublecontent1">
-                    <form method="post" id="itemForm">
+                    <form method="post" id="itemForm" onsubmit="false">
 					<table id="xialabiao">
 
 						<s:iterator value="items" var="bookItems" status="st">
@@ -444,8 +444,8 @@
 						<td></td>
 						<td></td>
 						<td></td>
-						<td><input type="button" name="off" onclick="offsubmit('itemForm')" value="批量下架"/>
-						<input type="button" name="up" onclick="upsubmit('itemForm')" value="批量上架"/> 
+						<td><input type="button" name="off" onclick="ajax_batch_off('itemForm')" value="批量下架"/>
+						<input type="button" name="up" onclick="ajax_batch_up('itemForm')" value="批量上架"/> 
 						</td>
 						</tr>
 						<tr>

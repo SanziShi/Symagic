@@ -58,7 +58,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <h2>新增收货地址</h2>
                     </div>
                     <div id="address-content-body">
-                    	<table width="100%" cellspacing="0" border="0">
+                    	<form action="submit_address" onsubmit="return add_address(this)">
+                        <table width="100%" cellspacing="0" border="0">
                 			<tbody>
                     		<tr>
                             	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
@@ -82,22 +83,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </td>
                             </tr>
                     		<tr>
-                    		  	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
-                              	<td><span id="consign_address"></span><input type="text" class="txt long"></td>
-                            </tr>
-                    		<tr>
-                            	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            	<td><input type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input type="text" class="txt"></td>
-                            </tr>
-                    		<tr>
-                            	<td valign="middle" align="right">邮箱地址：</td><td>43234@qq.com</td>
-                            </tr>
-                    		<tr>
-                            	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
-                            	<td><input type="text" class="txt short"/></td>
-                            </tr>
+                    		  		<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
+                                    <td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long"></td>
+                                </tr>
+                    			<tr>
+                                	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
+                                    <td><input name="mobileNum" type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt"></td>
+                                </tr>
+                    			<tr>
+                                	<td valign="middle" align="right">邮箱地址：</td><td><s:property value='#session.userName'/></td></tr>
+                    			<tr>
+                                	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
+                                    <td><input name="zipcode" type="text" class="txt short"/></td></tr>
+                    			<tr>
+                                	<td></td>
+                                    <td><input type="submit" value="添加至地址簿"/></td>
+                                </tr>
                     		</tbody>
                 		</table>
+                    </form>
                     </div>
                     <div id="address-bottom">
                     <h2>已保存地址</h2>

@@ -58,7 +58,7 @@ function adds_to_cart(form_id)
 	
 }
 /*****将商品移除出购物车******/
-function delete_from_cart(id)
+function delete_from_cart(id,p)
 {
 	Ajax({
 		url:'cart/delete',
@@ -67,6 +67,7 @@ function delete_from_cart(id)
 			var result=JSON.parse(e);
 			if(result.deleteResult)
 			{
+				if(p=='p'){location.reload();return false;}
 				get_session({S:function(l)
 					{
 						document.getElementById('cart_num').innerHTML=l.totalNumber;
@@ -100,8 +101,8 @@ function add_to_favorite(id)
 		url:'favorite/add_favorite?items='+id,
 		onSuccess:function(e){
 			var t=JSON.parse(e);
-			if(e.addResult)alert('添加成功！');
-			else alert(a.resultInfo);
+			if(t.addResult)alert('添加成功！');
+			else alert(t.resultInfo);
 			}
 		})
 }
@@ -115,7 +116,7 @@ function delete_from_favorite(id)
 				if(a.deleteResult)
 				{
 					alert('删除收藏成功！');
-					location.reload();
+					show_favorite();
 				}
 			}
 		})

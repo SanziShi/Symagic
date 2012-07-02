@@ -110,17 +110,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.marketPrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
                     <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
-        				<input name="items[<s:property value='#st.index'/>].itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>"  onkeyup="amount_modify(this)">
+        				<input name="items[<s:property value='#st.index'/>].itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>" id="<s:property value='#iter.itemID'/>amount" onkeyup="amount_modify(this)">
         				<a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
         				</span></div>
          			<div class="cell total">￥<span id="<s:property value='#iter.itemID'/>total_price"><s:property value='#iter.itemTotalPrice'/></span></div>
-                    <div class="cell action"><a onclick="add_to_favorite(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="delete_from_page(<s:property value='#iter.itemID'/>)">删除</a></div>
+                    <div class="cell action"><a onclick="add_to_favorite(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="delete_from_cart(<s:property value='#iter.itemID'/>,'p')">删除</a></div>
                     </div>
                     </s:iterator>
                     <!--购物车迭代--end-->
             	</div>
             	<div id="cart_table_bottom">
-                <a href="javascript:void(0);">删除选中的商品</a>
+                <a href="javascript:void(0);" onclick="delete_form_cart('checkout')">删除选中的商品</a>
+                &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="">添加至收藏夹</a>
                 <div id="total-price">总计:<span id="final-price">￥<s:property value='totalPrice'/></span></div>
             	</div>
         	</div>
