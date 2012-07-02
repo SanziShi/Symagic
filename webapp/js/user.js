@@ -127,7 +127,7 @@ function add_address(f)
 {
 	var form=$(f).serialize();
 	Ajax({
-		url:'submit_address',
+		url:'address/submit_address',
 		data:form,
 		onSuccess:function(e)
 			{
@@ -135,13 +135,14 @@ function add_address(f)
 				if(r.submitResult)
 				{
 					alert('添加成功');
-					Ajax({
+					show_address();
+					/*Ajax({
 						url:'address',
 						onSuccess:function(e)
 							{
 								document.getElementById('address-container').innerHTML=e;
 							}
-						})
+						})*/
 				}
 				else
 				{
