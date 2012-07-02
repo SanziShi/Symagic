@@ -133,18 +133,18 @@ function add_address(f)
 				if(r.submitResult)
 				{
 					alert('添加成功');
-					show_address();
-					/*Ajax({
+					Ajax({
 						url:'address',
 						onSuccess:function(e)
 							{
 								document.getElementById('address-container').innerHTML=e;
 							}
-						})*/
+					})
+					return false;
 				}
 				else
 				{
-					alert('添加失败！');
+					alert(r.resultInfo);
 				}
 			}
 		})
@@ -181,7 +181,8 @@ function delete_address(id)
 				if(a.deleteResult)
 				{
 					alert('删除成功！');
-					show_address();
+					var t='#address_tr'+id;
+					$(t).fadeOut(200);
 				}
 				else alert(a.resultInfo);
 			}

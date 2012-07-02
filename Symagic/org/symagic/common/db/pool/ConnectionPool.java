@@ -28,6 +28,8 @@ public class ConnectionPool {
 	private ConnectionPool() {
 		String path = this.getClass().getClassLoader().getResource("jdbc.json").getPath();
 		
+//		String path	= "jdbc.json";
+		
 		String sets=Util.readFile(path);
 		try {
 			java.util.HashMap<String, String> map = (java.util.HashMap<String, String>) JSONUtil.deserialize(sets);

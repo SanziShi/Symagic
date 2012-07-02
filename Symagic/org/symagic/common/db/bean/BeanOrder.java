@@ -1,6 +1,9 @@
 package org.symagic.common.db.bean;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BeanOrder {
@@ -87,7 +90,21 @@ public class BeanOrder {
 		return orderDate;
 	}
 	public void setOrderDate(String orderDate) {
-		this.orderDate = orderDate;
+		String formatStr =	"yyyy-MM-dd HH:mm:ss";
+		SimpleDateFormat sdf = new SimpleDateFormat(formatStr);
+		Date date;
+		try {
+			date = sdf.parse(orderDate);
+			//String tmp	= sdf.format(date);
+			this.orderDate	= sdf.format(date);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		//this.orderDate = orderDate;
 	}
 	public String getOrderState() {
 		return orderState;
