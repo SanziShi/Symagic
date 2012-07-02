@@ -27,6 +27,16 @@ public class AddressDetailBean {
 	private String zipcode;
 	
 	private String receiverName;
+	
+	private Integer ID;
+
+	public Integer getID() {
+		return ID;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
+	}
 
 	public List<DistrictBean> getLevel1Districts() {
 		return level1Districts;

@@ -3,12 +3,11 @@ package org.symagic.user.action.order;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
-
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.apache.struts2.ServletActionContext;
 import org.symagic.common.db.bean.BeanBook;
@@ -42,11 +41,11 @@ public class OrderSubmitAction extends OrderBase{
 	/*
 	 * 地址代码
 	 */
-	private Integer level1Id;
+	private Integer level1ID;
 	
-	private Integer level2Id;
+	private Integer Level2ID;
 	
-	private Integer level3Id;
+	private Integer level3ID;
 	
 	private String addressDetail;
 	
@@ -55,8 +54,6 @@ public class OrderSubmitAction extends OrderBase{
 	private DaoDistrict daoDistrict;
 	
 	private RecommandService recommandService;
-
-	private String items;
 	
 	private DaoBook daoBook;
 	
@@ -82,30 +79,6 @@ public class OrderSubmitAction extends OrderBase{
 		this.score = score;
 	}
 
-	public Integer getLevel1Id() {
-		return level1Id;
-	}
-
-	public void setLevel1Id(Integer level1Id) {
-		this.level1Id = level1Id;
-	}
-
-	public Integer getLevel2Id() {
-		return level2Id;
-	}
-
-	public void setLevel2Id(Integer level2Id) {
-		this.level2Id = level2Id;
-	}
-
-	public Integer getLevel3Id() {
-		return level3Id;
-	}
-
-	public void setLevel3Id(Integer level3Id) {
-		this.level3Id = level3Id;
-	}
-
 	public String getAddressDetail() {
 		return addressDetail;
 	}
@@ -122,14 +95,6 @@ public class OrderSubmitAction extends OrderBase{
 		this.daoOrder = order;
 	}
 	
-	public String getItems(){
-		return items;
-	}
-	
-	public void setItems(String items){
-		this.items = items;
-	}
-	
 	@Override
 	public String execute() throws Exception{ 
 		String username = UserSessionUtilty.getUsername();
@@ -140,8 +105,8 @@ public class OrderSubmitAction extends OrderBase{
 		OrderService.Address address = new OrderService.Address();
 		address.districtDetail = this.addressDetail;
 		address.level1District = new DistrictBean();
-		address.level1District.setID(this.level1Id);
-		BeanDistrict level1 = daoDistrict.getDistrictById(level1Id);
+		address.level1District.setID(this.level1ID);
+		BeanDistrict level1 = daoDistrict.getDistrictById(level1ID);
 		if(level1 != null){
 			address.level1District.setName(level1.getName());
 			address.level1District.setID(level1.getId());
@@ -150,16 +115,16 @@ public class OrderSubmitAction extends OrderBase{
 			return ERROR;
 		}
 		address.level2District = new DistrictBean();
-		address.level2District.setID(this.level2Id);
-		BeanDistrict level2 = daoDistrict.getDistrictById(level2Id);
+		address.level2District.setID(this.Level2ID);
+		BeanDistrict level2 = daoDistrict.getDistrictById(Level2ID);
 		if(level2 != null)
 			address.level2District.setName(level2.getName());
 		else{
 			return ERROR;
 		}
 		address.level3District = new DistrictBean();
-		address.level3District.setID(this.level3Id);
-		BeanDistrict level3 = daoDistrict.getDistrictById(level3Id);
+		address.level3District.setID(this.level3ID);
+		BeanDistrict level3 = daoDistrict.getDistrictById(level3ID);
 		if(level3 != null)
 			address.level3District.setName(level3.getName());
 		else
@@ -177,19 +142,20 @@ public class OrderSubmitAction extends OrderBase{
 		
 		
 		String baseURL = ServletActionContext.getServletContext().getContextPath();
-		JSON json = JSONSerializer.toJSON(items);
+
 		List<ItemTinyBean> items = new ArrayList<ItemTinyBean>();
-		if(json.isArray()){
-			JSONArray jsonArray = (JSONArray)json;
-			for(int i = 0; i < jsonArray.size(); i ++){
-				JSONObject object = (JSONObject) jsonArray.get(i);
-				ItemTinyBean item = (ItemTinyBean) JSONObject.toBean(object, ItemTinyBean.class);
-				items.add(item);
-				if(daoBook.getInventory(item.getItemID()) < item.getItemNumber())
-					return ERROR;
-			
-			}
+		HashMap<Integer, Integer> orders = UserSessionUtilty.getOrder();
+		Iterator<Entry<Integer, Integer>> ordersIterator = orders.entrySet().iterator();
+		while(ordersIterator.hasNext()){
+			Map.Entry<Integer, Integer> itemMap = ordersIterator.next();
+			ItemTinyBean itemTinyBean = new ItemTinyBean();
+			itemTinyBean.setItemID(itemMap.getKey());
+			itemTinyBean.setItemNumber(itemMap.getValue());
+			if(daoBook.getInventory(itemTinyBean.getItemID()) < itemTinyBean.getItemNumber())
+				return ERROR;
+			items.add(itemTinyBean);
 		}
+
 		float totalPrice = 0;
 		
 		for(int i = 0; i < items.size(); i ++){
@@ -240,14 +206,38 @@ public class OrderSubmitAction extends OrderBase{
 			isValidate = false;
 			return;
 		}
-		if(getZipcode() == null || getAddressDetail() == null || getItems() == null || getLevel1Id() == null||
-				getLevel2Id() == null || getLevel3Id() == null || getMobileNum() == null||
+		if(getZipcode() == null || getAddressDetail() == null || getLevel1ID() == null||
+				getLevel2ID() == null || getMobileNum() == null||
 				getPhoneNum() == null){
 			isValidate = false;
 			return;
 		}
 			
 		isValidate = true;
+	}
+
+	public Integer getLevel1ID() {
+		return level1ID;
+	}
+
+	public void setLevel1ID(Integer level1id) {
+		level1ID = level1id;
+	}
+
+	public Integer getLevel2ID() {
+		return Level2ID;
+	}
+
+	public void setLevel2ID(Integer level2id) {
+		Level2ID = level2id;
+	}
+
+	public Integer getLevel3ID() {
+		return level3ID;
+	}
+
+	public void setLevel3ID(Integer level3id) {
+		level3ID = level3id;
 	}
 
 	public DaoDistrict getDaoDistrict() {

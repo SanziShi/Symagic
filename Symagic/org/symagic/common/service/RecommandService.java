@@ -3,9 +3,11 @@ package org.symagic.common.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,12 +58,38 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
+		
+		if( reponse == null ) return false;
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 		if (object == null || object.containsKey("error"))
 			return false;
 
 		return true;
+	}
+
+	public String getHost() {
+		return host;
+	}
+
+	public void setHost(String host) {
+		this.host = host;
+	}
+
+	public String getApikey() {
+		return apikey;
+	}
+
+	public void setApikey(String apikey) {
+		this.apikey = apikey;
+	}
+
+	public String getTenantid() {
+		return tenantid;
+	}
+
+	public void setTenantid(String tenantid) {
+		this.tenantid = tenantid;
 	}
 
 	/**
@@ -89,6 +117,7 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
+		if( reponse == null ) return false;
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 		if (object == null || object.containsKey("error"))
 			return false;
@@ -123,6 +152,7 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
+		if( reponse == null ) return false;
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 		if (object == null || object.containsKey("error"))
 			return false;
@@ -155,6 +185,7 @@ public class RecommandService {
 		parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
+		if( reponse == null ) return null;
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
@@ -195,7 +226,7 @@ public class RecommandService {
 		parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
-
+		if( reponse == null ) return null;
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
 		if (object == null)
@@ -234,7 +265,7 @@ public class RecommandService {
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-
+		if( reponse == null ) return null;
 		if (object == null)
 			return null;
 
@@ -266,7 +297,7 @@ public class RecommandService {
 		parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
-
+		if( reponse == null ) return null;
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
 		if (object == null)
@@ -338,7 +369,13 @@ public class RecommandService {
 						.entrySet().iterator();
 				while (iterator.hasNext()) {
 					Entry<String, String> entry = iterator.next();
-					getURL += entry.getKey() + "=" + entry.getValue();
+					try {
+						getURL += URLEncoder.encode(entry.getKey(),"UTF-8") + "=" + URLEncoder.encode(entry.getValue(),"UTF-8");
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+						return null;
+					}
 					if (iterator.hasNext())
 						getURL += '&';
 				}

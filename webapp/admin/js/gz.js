@@ -771,6 +771,7 @@ function upsubmit(name) {
 	document.name.submit();
 }
 
+//下架处理
 function offsubmit(id) {
 
 	var a = document.getElementById(id);
@@ -794,4 +795,50 @@ function offsubmit(id) {
 		}
 	});
 
+}
+
+//批量上架action处理
+function ajax_batch_up(form)
+{   
+	
+	var items=$(form).serialize();
+	Ajax({
+		url:'up',
+		data:items,
+		onSuccess:function(e){
+				var a=JSON.parse(e);
+				if(a.upResult){
+					alert("批量上架成功");
+					location.reload();
+				}
+				else 
+				{
+					alert("批量上架失败，请重新尝试！");
+				}
+				},
+		onError:function(){}
+	});
+}
+
+//批量下架action处理
+function ajax_batch_off(form)
+{   
+	
+	var items=$(form).serialize();
+	Ajax({
+		url:'off',
+		data:items,
+		onSuccess:function(e){
+				var a=JSON.parse(e);
+				if(a.offResult){
+					alert("批量下架成功");
+					location.reload();
+				}
+				else 
+				{
+					alert("批量上架失败，请重新尝试！");
+				}
+				},
+		onError:function(){}
+	});
 }

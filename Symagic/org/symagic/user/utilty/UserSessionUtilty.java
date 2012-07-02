@@ -1,13 +1,11 @@
 package org.symagic.user.utilty;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-
-import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.utilty.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionContext;
-import com.sun.faces.context.SessionMap;
 
 public class UserSessionUtilty extends SessionUtilty {
 
@@ -167,10 +165,16 @@ public class UserSessionUtilty extends SessionUtilty {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		
 		if(session.get("order") != null){
-			HashMap<Integer, Integer> oldOrder = (HashMap<Integer, Integer>) session.get("order");
-			session.remove("order");
-			
+			session.remove("order");			
 		}
+		session.put("order", order);
+	}
+	
+	public static void removeOrder(){
+		Map<String, Object> sessionMap = ActionContext.getContext().getSession();
+		
+		if(sessionMap.get("order") != null)
+			sessionMap.remove("order");
 	}
 	
 	
