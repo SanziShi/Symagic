@@ -350,8 +350,10 @@ if (!JSON) {
 	}
 }());
 
-function change_captcha(e) {
-	e.src = 'captcha_get_captcha';
+/********刷新验证码************/
+function change_captcha(e)
+{
+	e.src='captcha_get_captcha?t='+Math.random();
 }
 
 // 异步调用函数
@@ -658,6 +660,64 @@ function ajax_item_up(e, id) {
 
 }
 
+
+/*目录管理中删除一个目录*/
+//删除二级目录
+function ajax_catalog_delete_tag_level2(id) {
+	var result = confirm("该操作将会将所选二级目录移除，确定继续吗？");
+	if (result == true) {
+		Ajax({
+			url : 'catalog_manager/delete?itemID=' + id,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function(e) {
+				/*
+				 * var t=document.createElement('div'); t.id='cart_container';
+				 * t.innerHTML=e;
+				 * document.getElementById('cart').appendChild(t); t=null;
+				 */
+				var obj = JSON.parse(e);
+				if (obj.deleteResult == true) {
+					var tag = document.getElementById(id);
+					tag.parentNode.removeChild(tag);
+					alert("删除二级目录成功！");
+				} else
+					alert("删除二级目录出错，请返回重新尝试！");
+			}
+		});
+	}
+}
+
+//删除一级目录
+function ajax_catalog_delete_tag_level2(id) {
+	var result = confirm("该操作将会将所选目录及其子目录移除，确定继续吗？");
+	if (result == true) {
+		Ajax({
+			url : 'catalog_manager/delete?itemID=' + id,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function(e) {
+				/*
+				 * var t=document.createElement('div'); t.id='cart_container';
+				 * t.innerHTML=e;
+				 * document.getElementById('cart').appendChild(t); t=null;
+				 */
+				var obj = JSON.parse(e);
+				if (obj.deleteResult == true) {
+					var tag = document.getElementById(id);
+					tag.parentNode.removeChild(tag);
+					alert("删除一级目录成功！");
+				} else
+					alert("删除一级目录出错，请返回重新尝试！");
+			}
+		});
+	}
+}
+
+
+
 function show_item_search(e) {
 	if (e.className == 'collapse') {
 		e.className = 'collapsed';
@@ -836,7 +896,7 @@ function ajax_batch_off(form)
 				}
 				else 
 				{
-					alert("批量上架失败，请重新尝试！");
+					alert("批量下架失败，请重新尝试！");
 				}
 				},
 		onError:function(){}
