@@ -29,7 +29,7 @@ function add_to_cart(id)
 	var amount=document.getElementById('amount').value;
 	var num=document.getElementById('cart_num');
 	Ajax({
-		url:'cart/add_to_cart?'+'itemID='+id+'&itemNumber='+amount,
+		url:'cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber='+amount,
 		//data:'itemID='+id+'&itemNumber='+amount,
 		onSuccess:function(e){
 			var r=JSON.parse(e);
@@ -45,7 +45,7 @@ function delete_from_cart(id)
 {
 	Ajax({
 		url:'cart/delete',
-		data:'itemID='+id,
+		data:'items='+id,
 		onSuccess:function(e){
 			var result=JSON.parse(e);
 			if(result.deleteResult)
