@@ -50,9 +50,9 @@
 					<td>订单号</td>
 					<td><input type="text" id="inputGray" readonly="readonly" value="<s:property value='orderID'/>" /></td>
             		<td>用户名</td>
-					<td><s:property value="userName"/>edsfgdsgdfeeertertewgdf</td>
+					<td><s:property value="userName"/></td>
 					<td>下单时间</td>
-					<td><s:property value="orderTime"/>sdfadsfdsfdsfdsaf</td>
+					<td><s:property value="orderTime"/></td>
          		 </tr>
 		  		 <tr>
            			<td>订单金额</td>

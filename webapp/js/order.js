@@ -46,9 +46,29 @@ function get_district(d)
 		})
 	}
 }
-function select_address(e)
+function detect(id)
 {
+	alert(document.getElementById('normal_address'+id));
+}
+function select_address(id)
+{
+	document.getElementById(id).className+=' selected';
 	e.parentNode.className+=' selected';
+}
+function delete_address(id)
+{
+	Ajax:({
+		url:'address/delete_address?addressID='+id,
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(a.deleteResult)
+				{
+					var i='#normal_address'+id;
+					$(i).fadeOut(10);
+				}
+			}
+		})
 }
 
 

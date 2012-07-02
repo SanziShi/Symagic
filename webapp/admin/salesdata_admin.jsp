@@ -36,7 +36,7 @@
 		<div id="main">
 			<div id="search2">
 				<div id="searchleft">
-					<img src="../image/ico_site.jpg" id="ico_site" /> 网站路径：<a href="">销售量统计</a>
+					<img src="../image/ico_site.jpg" id="ico_site" /> 网站路径：<a href="order_statistics">销售量统计</a>
 				</div>
 			</div>
 			<div class="user_note">

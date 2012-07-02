@@ -40,9 +40,9 @@
 
 
 				<ul>
-					<li><a href="user_admin.html">查询会员</a>
+					<li><a href="user_list">查询会员</a>
 					</li>
-					<li><a href="user_admin.html">设置会员等级规定</a>
+					<li><a href="user_level">设置会员等级规定</a>
 					</li>
 				</ul>
 			</div>
@@ -54,7 +54,7 @@
 			<div id="search1">
 				<div id="mysearchleft">
 					<img src="image/ico_site.jpg" id="ico_site" /> 网站路径： <a
-						href="index.jsp">会员管理</a>&gt;&gt;查询会员
+						href="user_level">会员管理</a>&gt;&gt;查询会员
 				</div>
 				<div id="searchright">
 					<form action="quick_search">

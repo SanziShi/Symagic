@@ -227,6 +227,14 @@
 	
 	<bean id="AdminLogout" class="org.symagic.admin.action.login.AdminLogoutAction">
 	</bean>
+	
+	<bean id="OrderSuccessInterface" class="org.symagic.admin.action.order.OrderSuccessInterface">
+	<property name="daoAdmin" ref="DaoAdmin"></property>
+	</bean>
+	
+	<bean id="OrderFailInterface" class="org.symagic.admin.action.order.OrderFailInterface">
+	<property name="daoAdmin" ref="DaoAdmin"></property>
+	</bean>
 
 	<!-- 用户的action bean -->
 
