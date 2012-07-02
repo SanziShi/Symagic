@@ -61,6 +61,8 @@ public class OrderSubmitAction extends OrderBase{
 	
 	private DaoLevel daoLevel;
 	
+	private Integer orderID;
+	
 	public DaoLevel getDaoLevel() {
 		return daoLevel;
 	}
@@ -179,14 +181,14 @@ public class OrderSubmitAction extends OrderBase{
 			String URL = baseURL + "/itemDetail?itemID=" + book.getBookId();
 			//通知推荐系统用户购买
 			for(int j = 0; j < items.get(i).getItemNumber(); j ++){
-				recommandService.buy(UserSessionUtilty.getSessionID(),
-						Integer.toString(items.get(i).getItemID()),
-						"", URL, UserSessionUtilty.getUsername());
+				//recommandService.buy(UserSessionUtilty.getSessionID(),
+						//Integer.toString(items.get(i).getItemID()),
+						//"", URL, UserSessionUtilty.getUsername());
 			}
 			
 		}
 		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		order.setOrderDate(sdf.format(date));
 		
 		order.setTotalprice(totalPrice);
@@ -195,8 +197,12 @@ public class OrderSubmitAction extends OrderBase{
 			order.setScore((int)(totalPrice * level.getRate()));
 		order.setUsername(username);
 		order.setZipcode(getZipcode());
-		if(daoOrder.addOrder(order))
+		if(daoOrder.addOrder(order)){
+			List<BeanOrder> orders2 = daoOrder.getLatestOrders();
+			orderID = 10;
+			UserSessionUtilty.removeOrder();
 			return SUCCESS;
+		}
 		else {
 			return ERROR;
 		}
@@ -271,6 +277,14 @@ public class OrderSubmitAction extends OrderBase{
 
 	public void setDaoUser(DaoUser daoUser) {
 		this.daoUser = daoUser;
+	}
+
+	public Integer getOrderID() {
+		return orderID;
+	}
+
+	public void setOrderID(Integer orderID) {
+		this.orderID = orderID;
 	}
 	
 }

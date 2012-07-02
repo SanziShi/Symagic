@@ -187,9 +187,9 @@ public class DaoOrder {
 	 * 对给定用户添加订单
 	 * @param username	指定添加订单用户
 	 * @param order	存储订单详细信息的BeanOrder对象
-	 * @return	true 添加成功	false 添加失败
+	 * @return	-1 添加成功	>=0 添加失败
 	 */
-	public boolean addOrder(BeanOrder order)
+	public int addOrder(BeanOrder order)
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
@@ -242,10 +242,10 @@ public class DaoOrder {
 					ps.setFloat(7, list.get(i).getDiscount());
 					ps.execute();
 				}
-				return true;
+				return orderid;
 			}
 				
-			return false;
+			return -1;
 		} catch (Exception e) {
 			try {
 				conn.rollback();
@@ -263,7 +263,7 @@ public class DaoOrder {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return -1;
 	}
 	
 	/**
