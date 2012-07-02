@@ -48,7 +48,9 @@ function get_district(d)
 }
 function detect(id)
 {
-	alert(document.getElementById('normal_address'+id));
+	var a=document.getElementById(id);
+	if(!a.checked)a.className='';
+	alert(document.getElementById(id).checked);
 }
 function select_address(id)
 {
@@ -67,6 +69,7 @@ function delete_address(id)
 					var i='#normal_address'+id;
 					$(i).fadeOut(10);
 				}
+				else alert(a.resultInfo);
 			}
 		})
 }

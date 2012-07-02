@@ -278,14 +278,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="delete_address" class="deleteAddress">
 			<result type="json">
-				<param name="includeproperties">deleteResult</param>
-				<param name="includeProperties">resultInfo</param>
+				<param name="includeproperties">deleteResult, resultInfo</param>
 			</result>
 		</action>
 		<action name="address_edit_submit" class="editAddress">
 			<result type="json">
-				<param name="includeProperties">submitResult</param>
-				<param name="includeProperties">resultInfo</param>
+				<param name="includeProperties">submitResult, resultInfo</param>
 			</result>
 		</action>
 	</package>
