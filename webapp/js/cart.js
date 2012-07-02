@@ -30,21 +30,27 @@ function delete_from_page(id)
 *******/
 function delete_form_cart(f)
 {
+	var request='';
 	var form=document.getElementById(f);
-	var k=form.getElementsByTagName('input');
-	var l=k.length;
-	for(var i=0;i<l;++i)
+	var k=$(form).serializeArray();
+	//alert(t.length);
+	for(var each in k)
 	{
-		alert(k[i].id);
+		if(k[each].name.indexOf('ID')>-1)
+		request=request+'&items='+k[each].value;
 	}
-	return false;
 	Ajax({
 		url:'cart/delete',
-		data:d,
+		data:request,
 		onSuccess:function(e)
 			{
 				var a=JSON.parse(e);
-				if(a.deleteResult)alert('删除成功~');
+				if(a.deleteResult)
+				{
+					alert('删除成功!');
+					location.reload();
+				}
+				else alert(a.resultInfo);
 			}
 		})
 }

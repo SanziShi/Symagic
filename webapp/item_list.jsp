@@ -245,7 +245,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<div class="p-info"><div class="mark-price">定　　价：<del>￥<s:property value='#iter.marketPrice'/></del>
     </div>商城价：<strong>￥<s:property value='#iter.price'/></strong><span>（<s:property value='#iter.discount'/>折）</span>
     </div>
-   <div class="btns"><div class="add_to_cart1" onclick="add_to_cart(<s:property value='#iter.itemID'/>)">&nbsp;&nbsp;<a href="javascript:void(0)" onclick="add_to_favorite(<s:property value='#iter.itemID'/>)"></a></div>
+   <div class="btns"><div class="add_to_cart1" onclick="add_to_cart(<s:property value='#iter.itemID'/>)">&nbsp;&nbsp;<div style=" float:left"><a href="javascript:void(0)" onclick="add_to_favorite(<s:property value='#iter.itemID'/>)"></a></div></div>
    </div>
    </div>
    </div>
