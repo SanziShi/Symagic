@@ -17,8 +17,6 @@ public class OrderBase extends CatalogBase{
 	
 	private String zipcode;
 	
-	private Double price;
-	
 	private String orderTime;
 	
 	private String mobileNum;
@@ -47,14 +45,6 @@ public class OrderBase extends CatalogBase{
 
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
 	}
 
 	public String getOrderTime() {
