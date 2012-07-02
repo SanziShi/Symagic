@@ -494,6 +494,7 @@
 	  <property name="host" value="110.64.72.186:8080"></property>
 	  <property name="apikey" value="a344e9b3fa4dd2c010adf8f6ff5e4701"></property>
 	  <property name="tenantid" value="symagic"></property>
+	  <property name="onLine" value="false"></property>
 	</bean>
 
 	<!-- 配置验证码生成及检查 -->
