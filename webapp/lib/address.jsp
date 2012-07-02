@@ -63,7 +63,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 			<tbody>
                     		<tr>
                             	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
-                            	<td><input class="txt" type="text"/></td>
+                            	<td><input name="receiverName" class="txt" type="text"/></td>
                             </tr>
                         	<tr>
                         	  	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
