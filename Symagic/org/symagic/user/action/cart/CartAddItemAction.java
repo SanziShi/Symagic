@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoCart;
 import org.symagic.common.service.ItemService;
@@ -83,16 +84,19 @@ public void setResultInfo(String resultInfo) {
 		
 	}
 	private boolean addOneToCart(Integer itemID,Integer itemNumber,boolean login){
-		//itemID不存在于数据库中
-		if(daoBook.getDetail(itemID)==null){
+		//首先通过其数量判断是否有这商品
+		 Integer  number=UserSessionUtilty.getCart().get(itemID);
+		//itemID不存在于数据库中或者是库存不足
+		BeanBook book=daoBook.getDetail(itemID);
+		int compare=(number==null?0:number);
+		if(book==null||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>1000){
 			   return false;
 			 }
 		boolean addResult;
-		//首先通过其数量判断是否有这商品
-		 Integer  number=UserSessionUtilty.getCart().get(itemID);
-		 
+		
+		
 		 addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
-		  if(login){
+		  if(addResult&&login){
 		    	if(number==null)
 		    		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
 		    	else

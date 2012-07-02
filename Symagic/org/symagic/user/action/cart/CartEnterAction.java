@@ -15,7 +15,7 @@ public class CartEnterAction extends CatalogBase {
 	private Float totalPrice;
 	private ItemService itemService;
 	private ArrayList<ItemTinyBean>items;
-	private ArrayList<ItemTinyBean>recommendItems;
+
 	private Integer totalNumber;//购物车商品数量
 
 	
@@ -26,12 +26,7 @@ public class CartEnterAction extends CatalogBase {
 	 items=new ArrayList<ItemTinyBean>();
 	 totalPrice=itemService.fillItemFromCart(items);
 	 totalNumber=UserSessionUtilty.getTotalNumber();
-	 //推荐商品
-	 /*
-	  *test 
-	  */
-	  recommendItems=new ArrayList<ItemTinyBean>();
-	  itemService.getNewBook(recommendItems);
+	
 	 return super.execute();
 	}
 
@@ -53,13 +48,7 @@ public ArrayList<ItemTinyBean> getItems() {
 public void setItems(ArrayList<ItemTinyBean> items) {
 	this.items = items;
 }
-public ArrayList<ItemTinyBean> getRecommendItems() {
-	return recommendItems;
-}
 
-public void setRecommendItems(ArrayList<ItemTinyBean> recommendItems) {
-	this.recommendItems = recommendItems;
-}
 public Integer getTotalNumber() {
 	return totalNumber;
 }

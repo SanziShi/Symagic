@@ -42,113 +42,93 @@ public class ItemService {
 	 * @param require
 	 * @return List<BeanBook>
 	 */
-	// 得到热销书
-	public void getHotBook(Integer recommendNumber, List<ItemTinyBean> hotBook) {
-		List<Integer> hotBookIDs = recommendService
-				.mostBoughtItems(recommendNumber);
-		if (hotBookIDs == null) {
-			hotBookIDs = new ArrayList<Integer>();
-		}
-		// 随机
-		List<Integer> random = daoBook.getRandBooks(hotBookIDs, recommendNumber
-				- hotBookIDs.size());
-		if (random != null) {
-			hotBookIDs.addAll(random);
-		}
-		fillTinyItems(hotBookIDs, hotBook);
 
-	}
+	  //得到热销书
+    public void getHotBook(Integer recommendNumber,List<ItemTinyBean>hotBook){
+    	List<Integer> hotBookIDs=recommendService.mostBoughtItems(recommendNumber);
+	    if(hotBookIDs==null){
+    	hotBookIDs=new ArrayList<Integer>();
+       }
+	    //随机
+    	List<Integer> random=daoBook.getRandBooks(hotBookIDs, recommendNumber-hotBookIDs.size());
+ 		if(random!=null){
+ 			hotBookIDs.addAll(random);
+ 		}
+    	fillTinyItems(hotBookIDs,hotBook);
+	    
+    }
+    public void getViewFromItem(Integer recommendNumber,Integer itemID,List<ItemTinyBean>viewItem){
+    	List<Integer> viewIDs = recommendService.otherUsersAlsoViewed(itemID.toString(), UserSessionUtilty.getUsername(), recommendNumber);
+    	if(viewIDs==null){
+    		viewIDs=new ArrayList<Integer>();
+    	}
+    	//随机
+    	List<Integer> random=daoBook.getRandBooks(viewIDs, recommendNumber-viewIDs.size());
+ 		if(random!=null){
+ 			viewIDs.addAll(random);
+ 		}
+    	fillTinyItems(viewIDs,viewItem);
+        
+    }
+    public void commentFromRecomend(Integer rate,Integer itemID ,String desc){
+    	recommendService.rate(UserSessionUtilty.getSessionID(), String.valueOf(rate), String.valueOf(itemID), desc, "item_detail?itemID="+itemID, UserSessionUtilty.getUsername());
+    }
+    public void viewForRecommend(Integer itemID,String desc){
+    	recommendService.view(UserSessionUtilty.getSessionID(), String.valueOf(itemID),desc, "item_detail?itemID="+itemID, UserSessionUtilty.getUsername());	
+    }
+    public void getBoughtFromItem(Integer recommendNumber,Integer itemID,List<ItemTinyBean>boughtItem){
+    	List<Integer> boughtIDs = recommendService.otherUsersAlsoBought(itemID.toString(), UserSessionUtilty.getUsername(), recommendNumber);
+    	if(boughtIDs==null){
+    		boughtIDs=new ArrayList<Integer>();
+    	}
+    	List<Integer> random=daoBook.getRandBooks(boughtIDs, recommendNumber-boughtIDs.size());
+ 		//随机
+    	if(random!=null){
+ 			boughtIDs.addAll(random);
+ 		}
+    	fillTinyItems(boughtIDs,boughtItem);
+       }
+    
+    //得到推荐项,如果登录,根据用户推荐 ,数量不足,用浏览最多补足,再不足,随机补足
+    public void getRecommendBook(Integer recommendNumber,Boolean login,List<ItemTinyBean>recommendItem){
+    	List<Integer> recommend=new ArrayList<Integer>();
+    	List<Integer> mostView=null;
+    	List<Integer> random=null;
+    	if(login){
+    	    recommend=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), recommendNumber);
+    	}
+    	if(recommend==null){
+    		recommend=new ArrayList<Integer>();
+    	}
+    	//用浏览最多补足
+    	if(recommend.size()<recommendNumber){
+    		mostView=recommendService.mostViewedItems(recommendNumber);
+    		if(mostView!=null){
+    	    Iterator<Integer>index=mostView.iterator();
+    	    while(index.hasNext()){
+    	    	if(recommend.size()>=recommendNumber)break;
+    	    	Integer itemID=index.next();
+    	    	if(!recommend.contains(itemID)){
+    	    		recommend.add(itemID);
+    	    	}
+    	    }
+    		}
+    	}
+    	//用随机组成
+    	    random=daoBook.getRandBooks(recommend, recommendNumber-recommend.size());
+    		if(random!=null){
+    			recommend.addAll(random);
+    		}
+    	   
+    		
+    	    fillTinyItems(recommend,recommendItem);
+    }
+    
+    
+  
+	
 
-	public void getViewFromItem(Integer recommendNumber, Integer itemID,
-			List<ItemTinyBean> viewItem) {
-		List<Integer> viewIDs = recommendService.otherUsersAlsoViewed(
-				itemID.toString(), UserSessionUtilty.getUsername(),
-				recommendNumber);
-		if (viewIDs == null) {
-			viewIDs = new ArrayList<Integer>();
-		}
-		// 随机
-		List<Integer> random = daoBook.getRandBooks(viewIDs, recommendNumber
-				- viewIDs.size());
-		if (random != null) {
-			viewIDs.addAll(random);
-		}
-		fillTinyItems(viewIDs, viewItem);
-
-	}
-
-	public void commentFromRecomend(Integer rate, Integer itemID, String desc) {
-		recommendService
-				.rate(UserSessionUtilty.getSessionID(), String.valueOf(rate),
-						String.valueOf(itemID), desc, "item_detail?itemID="
-								+ itemID, UserSessionUtilty.getUsername());
-	}
-
-	public void viewForRecommend(Integer itemID, String desc) {
-		recommendService.view(UserSessionUtilty.getSessionID(),
-				String.valueOf(itemID), desc, "item_detail?itemID=" + itemID,
-				UserSessionUtilty.getUsername());
-	}
-
-	public void getBoughtFromItem(Integer recommendNumber, Integer itemID,
-			List<ItemTinyBean> boughtItem) {
-		List<Integer> boughtIDs = recommendService.otherUsersAlsoBought(
-				itemID.toString(), UserSessionUtilty.getUsername(),
-				recommendNumber);
-		if (boughtIDs == null) {
-			boughtIDs = new ArrayList<Integer>();
-		}
-		List<Integer> random = daoBook.getRandBooks(boughtIDs, recommendNumber
-				- boughtIDs.size());
-		// 随机
-		if (random != null) {
-			boughtIDs.addAll(random);
-		}
-		fillTinyItems(boughtIDs, boughtItem);
-	}
-
-	// 得到推荐项,如果登录,根据用户推荐 ,数量不足,用浏览最多补足,再不足,随机补足
-	public void getRecommendBook(Integer recommendNumber, Boolean login,
-			List<ItemTinyBean> recommendItem) {
-		List<Integer> recommend = new ArrayList<Integer>();
-		List<Integer> mostView = null;
-		List<Integer> random = null;
-		if (login) {
-			recommend = recommendService.recommendationsForUser(
-					UserSessionUtilty.getUsername(), recommendNumber);
-		}
-		if (recommend == null) {
-			recommend = new ArrayList<Integer>();
-		}
-		// 用浏览最多补足
-		if (recommend.size() < recommendNumber) {
-			mostView = recommendService.mostViewedItems(recommendNumber);
-			if (mostView != null) {
-				Iterator<Integer> index = mostView.iterator();
-				while (index.hasNext()) {
-					if (recommend.size() >= recommendNumber)
-						break;
-					Integer itemID = index.next();
-					if (!recommend.contains(itemID)) {
-						recommend.add(itemID);
-					}
-				}
-			}
-		}
-		// 用随机组成
-		random = daoBook.getRandBooks(recommend,
-				recommendNumber - recommend.size());
-		if (random != null) {
-			recommend.addAll(random);
-		}
-
-		fillTinyItems(recommend, recommendItem);
-	}
-
-	/**
-	 * @param books为外部引用
-	 *            ，不能为null
-	 */
+	
 	public void getNewBook(List<ItemTinyBean> books) {
 		List<BeanBook> newBooks = daoBook.getLatestBook();
 		if (newBooks == null)
@@ -286,18 +266,17 @@ public class ItemService {
 			float marketPrice = MathUtilty.roundWithdigits(book
 					.getMarketPrice());
 			float discount = MathUtilty.roundWithdigits(book.getDiscount());
-			float bookprice = MathUtilty
-					.roundWithdigits(marketPrice * discount);
-			float itemTotalPrice = MathUtilty.roundWithdigits(bookprice
-					* number);
-			item.setItemTotalPrice(String.format("%.2f", itemTotalPrice));
-			item.setMarketPrice(String.format("%.2f", marketPrice));
+
+			float bookprice = MathUtilty.roundWithdigits(marketPrice * discount);
+			float itemTotalPrice = MathUtilty.roundWithdigits(bookprice* number);
+			item.setItemTotalPrice(String.format("%.2f",itemTotalPrice));
+			item.setMarketPrice(String.format("%.2f",marketPrice));
+
 			item.setName(book.getBookName());
-			item.setPrice(String.format("%.2f", bookprice));// 商城价
-			item.setSavePrice(String.format(
-					"%.2f",
-					MathUtilty.roundWithdigits(number * marketPrice
-							* (1 - discount))));
+
+			item.setPrice(String.format("%.2f",bookprice));// 商城价
+			item.setSavePrice(String.format("%.2f",MathUtilty.roundWithdigits(marketPrice-bookprice)));
+
 			item.setPicturePath(book.getPicture());
 			items.add(item);
 			totalPrice += itemTotalPrice;

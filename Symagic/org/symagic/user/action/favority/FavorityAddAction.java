@@ -35,6 +35,7 @@ public class FavorityAddAction extends ActionSupport {
 		 //商品不能为空且用户已登录
 			if(items==null||!UserSessionUtilty.isLogin()){
 				addResult=false;
+				resultInfo="未登录 或商品不存在";
 				return SUCCESS;
 			}
 			StringBuilder builder=new StringBuilder();

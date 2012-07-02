@@ -33,8 +33,9 @@ public class CartDeleteItemAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		if(items==null){
+		if(items==null||UserSessionUtilty.getCart().size()==0){
 			deleteResult=false;
+			resultInfo="请选择商品或购物车为空";
 			return SUCCESS;
 		}
 		
@@ -78,7 +79,7 @@ private boolean deleteOneFromCart(Integer itemID,boolean login){
 			//在session中将对应商品从cart中删除
 			deleteResult=UserSessionUtilty.deleteFromCart(itemID);
 			//对于会员，保持数据库中cart的数据与session一致性
-			if(login){
+			if(deleteResult&&login){
 			deleteResult=daoCart.deleteBook(UserSessionUtilty.getUsername(), itemID);
 			}
 		return deleteResult;

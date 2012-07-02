@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-    <form action="order_submit" method="post">
+    <form action="order_submit" method="post" id="order_submit">
     <div id="order_container">
     	<div id="c-info">
         	<h1>收货人信息</h1>
@@ -82,6 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </ul>
                     </div>
                 </div>
+                <div id="table_container">
             	<table id="order_address" width="100%" cellspacing="0" border="0">
                 	<tbody>
                     	<tr>
@@ -123,6 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </tr>
                     </tbody>
                 </table>
+                </div>
                 <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
             </div>
         </div>
@@ -184,9 +186,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="ware">
         	<h1>结算</h1>
+            <input name="score" style="display:none" value="0">
         	<div class="total_price"><span id="pay">应付总额：<strong>￥<s:property value='price'/></strong>元</span></div>
         	<div class="clear"></div>
-        	<div class="order_confirm"></div>
+        	<div class="order_confirm" onclick="order_submit()"></div>
         	<div class="clear"></div>
         </div>     
     </div>

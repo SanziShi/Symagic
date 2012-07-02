@@ -82,7 +82,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="login" class="loginClass">
 			<result type="json">
-				<param name="includeProperties">loginResult,toURL</param>
+				<param name="includeProperties">loginResult,toURL,resultInfo</param>
 			</result>
 		</action>
 
@@ -100,7 +100,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="regist" class="registerClass">
 			<result type="json">
-				<param name="includeProperties">toURL,registerResult</param>
+				<param name="includeProperties">toURL,registerResult,resultInfo</param>
 			</result>
 		</action>
 
