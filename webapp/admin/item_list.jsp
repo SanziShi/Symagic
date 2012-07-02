@@ -93,7 +93,7 @@
 						onclick="show_item_search(this);"></span>
 				</div>
 				<div id="item_search1" class="user_note_content hide">
-					<form action="item_manager" method="post" id="search_form">
+					<form action="item_manager?page=1" method="post" id="search_form">
 						<table>
 							<tr>
 								<th>书&nbsp;&nbsp;&nbsp;名：</th>
