@@ -21,6 +21,16 @@ public class AddressSubmitAction extends AddressBase{
 	private Boolean submitResult;
 	
 	private boolean isValidate;
+	
+	private String resultInfo;
+
+	public String getResultInfo() {
+		return resultInfo;
+	}
+
+	public void setResultInfo(String resultInfo) {
+		this.resultInfo = resultInfo;
+	}
 
 	public DaoDistrict getDaoDistrict() {
 		return daoDistrict;
@@ -73,8 +83,10 @@ public class AddressSubmitAction extends AddressBase{
 		isValidate = true;
 		if( getDistrictLevel1ID() == null || getDistrictLevel2ID() == null || getDistrictLevel3ID() == null ||
 				getAddressDetail() == null || getReceiverName() == null 
-				|| getMobileNum() == null || getPhoneNum() == null)
+				|| getMobileNum() == null || getPhoneNum() == null){
 			isValidate = false;
+			resultInfo = "用户名为空";
+		}
 		
 	}
 

@@ -268,8 +268,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		namespace="/address">
 		<action name="submit_address" class="addAddress">
 			<result type="json">
-				<param name="includeProperties">submitResult</param>
-				<param name="includeProperties">resultInfo</param>
+				<param name="includeProperties">submitResult, resultInfo</param>
 			</result>
 		</action>
 		<action name="get_next_level" class="getNextLevel">
