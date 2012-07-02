@@ -149,10 +149,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
-		
+
 		<action name="address" class="addressList">
-		 	<result>/lib/address.jsp</result>
-		 </action>
+			<result>/lib/address.jsp</result>
+		</action>
 
 		<action name="order" class="orderEnter">
 			<result>order_confirm.jsp</result>
@@ -444,14 +444,22 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="catalog_edit_submit" class="AdminSubmitCatalogModify">
-			<result>
-				/admin/category_edit.jsp
+			<result type="redirectAction">
+				<param name="actionName">catalog_manager</param>
+				<param name="namespace">/admin</param>
 			</result>
 		</action>
 
 		<action name="catalog_add_submit" class="AdminAddCatalog">
 			<result>
 				/admin/category_edit.jsp
+			</result>
+		</action>
+
+		<action name="catalog_manager" class="AdminEnterCatalogManager">
+			<result type="redirectAction">
+				<param name="actionName">catalog_manager</param>
+				<param name="namespace">/admin</param>
 			</result>
 		</action>
 

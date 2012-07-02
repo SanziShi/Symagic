@@ -85,8 +85,7 @@ public class AddressService {
 			address.setAddressDetail(orderAddress.districtDetail);
 			address.setAddressSummary(orderAddress.level1District.getName()
 					+ orderAddress.level2District.getName()
-					+ orderAddress.level3District.getName()
-					+ orderAddress.districtDetail);
+					+ orderAddress.level3District.getName());
 			address.setReceiverName(beanAddress.getReceivername());
 			address.setMobileNum(beanAddress.getMobilenum());
 			address.setPhoneNum(beanAddress.getPhonenum());

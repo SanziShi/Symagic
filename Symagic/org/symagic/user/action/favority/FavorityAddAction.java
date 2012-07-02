@@ -28,7 +28,7 @@ public class FavorityAddAction extends ActionSupport {
 	}
 	//传出
 	private boolean addResult;//添加是否成功
-	 private String resultInfo;
+	private String resultInfo;
 	@Override
 		public String execute() throws Exception {
 			// TODO Auto-generated method stub
@@ -55,7 +55,7 @@ public class FavorityAddAction extends ActionSupport {
 			   }
 			}
 			 if(!addResult){
-				  builder.append("添加到收藏夹失败");
+				  builder.append("已存在收藏夹中");
 				  resultInfo=builder.toString();
 			   }
 			   else{

@@ -40,7 +40,9 @@ public class DaoFavorityFolder {
 			conn = ConnectionPool.getInstance().getConnection();
 			
 			ps	= conn.prepareStatement("select count(*) from favority_folder " +
-					" username=? and bookid=? ");
+					"where username=? and bookid=? ");
+			ps.setString(1, username);
+			ps.setInt(2, bookID);
 			rs	= ps.executeQuery();
 			rs.next();
 			if (rs.getInt(1) != 0)

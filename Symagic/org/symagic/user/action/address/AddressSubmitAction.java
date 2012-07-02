@@ -19,6 +19,8 @@ public class AddressSubmitAction extends AddressBase{
 	private DaoDistrict daoDistrict;
 	
 	private Boolean submitResult;
+	
+	private boolean isValidate;
 
 	public DaoDistrict getDaoDistrict() {
 		return daoDistrict;
@@ -39,14 +41,19 @@ public class AddressSubmitAction extends AddressBase{
 	public String execute() throws Exception{
 		
 		BeanAddress address = new BeanAddress();
-		
+		if(!isValidate){
+			submitResult = isValidate;
+			return SUCCESS;
+		}
 		OrderService.Address addressDetail = new OrderService.Address();
 		addressDetail.districtDetail = getAddressDetail();
 		addressDetail.level1District = new DistrictBean();
 		addressDetail.level1District.setID(getDistrictLevel1ID());
 		addressDetail.level1District.setName(daoDistrict.getDistrictById(getDistrictLevel1ID()).getName());
+		addressDetail.level2District = new DistrictBean();
 		addressDetail.level2District.setID(getDistrictLevel2ID());
 		addressDetail.level2District.setName(daoDistrict.getDistrictById(getDistrictLevel2ID()).getName());
+		addressDetail.level3District = new DistrictBean();
 		addressDetail.level3District.setID(getDistrictLevel3ID());
 		addressDetail.level3District.setName(daoDistrict.getDistrictById(getDistrictLevel3ID()).getName());
 		
@@ -54,12 +61,21 @@ public class AddressSubmitAction extends AddressBase{
 		address.setAddrdetail(strAddressDetail);
 		address.setMobilenum(getMobileNum());
 		address.setPhonenum(getPhoneNum());
-		address.setReceivername(getRecieverName());
+		address.setReceivername(getReceiverName());
 		address.setUsername(UserSessionUtilty.getUsername());
 		address.setZipcode(getZipcode());
 		
-		daoAddress.addAddress(address);
+		submitResult = daoAddress.addAddress(address);
 		return SUCCESS;
+	}
+	
+	public void validate(){
+		isValidate = true;
+		if( getDistrictLevel1ID() == null || getDistrictLevel2ID() == null || getDistrictLevel3ID() == null ||
+				getAddressDetail() == null || getReceiverName() == null 
+				|| getMobileNum() == null || getPhoneNum() == null)
+			isValidate = false;
+		
 	}
 
 	public Boolean getSubmitResult() {
