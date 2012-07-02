@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <h2>新增收货地址</h2>
                     </div>
                     <div id="address-content-body">
-                    	<form action="submit_address" onsubmit="return add_address(this)">
+                    	<form action="submit_address" onsubmit="return add_address(this)" method="post">
                         <table width="100%" cellspacing="0" border="0">
                 			<tbody>
                     		<tr>

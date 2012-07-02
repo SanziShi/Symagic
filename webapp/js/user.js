@@ -150,6 +150,7 @@ function add_address(f)
 				}
 			}
 		})
+		return false;
 }
 /*****8*修改地址函数*****/
 /******dom完成加载执行函数*******/
