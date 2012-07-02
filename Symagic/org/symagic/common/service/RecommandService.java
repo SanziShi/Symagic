@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import net.sf.json.JSON;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
@@ -58,12 +60,17 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
-		
-		if( reponse == null ) return false;
+		try {
+			if (reponse == null)
+				return false;
 
-		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		if (object == null || object.containsKey("error"))
+			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+			if (object == null || object.containsKey("error"))
+				return false;
+		} catch (JSONException e) {
+			e.printStackTrace();
 			return false;
+		}
 
 		return true;
 	}
@@ -117,11 +124,16 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
-		if( reponse == null ) return false;
-		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		if (object == null || object.containsKey("error"))
+		try {
+			if (reponse == null)
+				return false;
+			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+			if (object == null || object.containsKey("error"))
+				return false;
+		} catch (JSONException e) {
+			e.printStackTrace();
 			return false;
-
+		}
 		return true;
 	}
 
@@ -152,14 +164,18 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
-		if( reponse == null ) return false;
-		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		if (object == null || object.containsKey("error"))
+		try {
+			if (reponse == null)
+				return false;
+			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+			if (object == null || object.containsKey("error"))
+				return false;
+		} catch (JSONException e) {
+			e.printStackTrace();
 			return false;
-
+		}
 		return true;
 	}
-	
 
 	/**
 	 * 根据当前用户浏览的商品获得推荐的商品项,,对于未登陆用户userName为null
@@ -169,7 +185,7 @@ public class RecommandService {
 	 * @param requireNumber
 	 * @return
 	 */
-	public List<Integer> otherUsersAlsoBiewed(String itemID, String userName,
+	public List<Integer> otherUsersAlsoViewed(String itemID, String userName,
 			Integer requireNumber) {
 		List<Integer> result = new ArrayList<Integer>();
 
@@ -182,21 +198,35 @@ public class RecommandService {
 		parameters.put("itemid", itemID);
 		if (userName != null)
 			parameters.put("userid", userName);
-		parameters.put("numberOfResults", requireNumber.toString());
+		if (requireNumber != null)
+			parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
-		if( reponse == null ) return null;
-
-		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-
-		if (object == null)
+		if (reponse == null)
 			return null;
 
-		JSONObject recommended = object.getJSONObject("recommendeditems");
-		JSONArray items = recommended.getJSONArray("item");
-		for (int i = 0; i < items.size(); i++) {
-			JSONObject temp = (JSONObject) items.get(i);
-			result.add(temp.getInt("id"));
+		try {
+
+			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+
+			if (object == null)
+				return null;
+
+			JSONObject recommended = object.getJSONObject("recommendeditems");
+			JSON items = (JSON) recommended.get("item");
+			if (items.isArray()) {
+				JSONArray list = (JSONArray) items;
+				for (int i = 0; i < list.size(); i++) {
+					JSONObject temp = (JSONObject) list.get(i);
+					result.add(temp.getInt("id"));
+				}
+			} else {
+				JSONObject temp = (JSONObject) items;
+				result.add(temp.getInt("id"));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
 		}
 
 		return result;
@@ -223,20 +253,34 @@ public class RecommandService {
 		parameters.put("itemid", itemID);
 		if (userName != null)
 			parameters.put("userid", userName);
-		parameters.put("numberOfResults", requireNumber.toString());
+		if (requireNumber != null)
+			parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
-		if( reponse == null ) return null;
-		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-
-		if (object == null)
+		if (reponse == null)
 			return null;
+		try {
+			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
-		JSONObject recommended = object.getJSONObject("recommendeditems");
-		JSONArray items = recommended.getJSONArray("item");
-		for (int i = 0; i < items.size(); i++) {
-			JSONObject temp = (JSONObject) items.get(i);
-			result.add(temp.getInt("id"));
+			if (object == null)
+				return null;
+
+			JSONObject recommended = object.getJSONObject("recommendeditems");
+			JSON items = (JSON) recommended.get("item");
+			if (items.isArray()) {
+				JSONArray list = (JSONArray) items;
+				for (int i = 0; i < list.size(); i++) {
+					JSONObject temp = (JSONObject) list.get(i);
+					result.add(temp.getInt("id"));
+				}
+			} else {
+				JSONObject temp = (JSONObject) items;
+				result.add(temp.getInt("id"));
+			}
+
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
 		}
 
 		return result;
@@ -260,20 +304,32 @@ public class RecommandService {
 		parameters.put("apikey", apikey);
 		parameters.put("tenantid", tenantid);
 		parameters.put("userid", userName);
-		parameters.put("numberOfResults", requireNumber.toString());
+		if (requireNumber != null)
+			parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
+		try {
+			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+			if (reponse == null)
+				return null;
+			if (object == null)
+				return null;
 
-		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-		if( reponse == null ) return null;
-		if (object == null)
+			JSONObject recommended = object.getJSONObject("recommendeditems");
+			JSON items = (JSON) recommended.get("item");
+			if (items.isArray()) {
+				JSONArray list = (JSONArray) items;
+				for (int i = 0; i < list.size(); i++) {
+					JSONObject temp = (JSONObject) list.get(i);
+					result.add(temp.getInt("id"));
+				}
+			} else {
+				JSONObject temp = (JSONObject) items;
+				result.add(temp.getInt("id"));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
 			return null;
-
-		JSONObject recommended = object.getJSONObject("recommendeditems");
-		JSONArray items = recommended.getJSONArray("item");
-		for (int i = 0; i < items.size(); i++) {
-			JSONObject temp = (JSONObject) items.get(i);
-			result.add(temp.getInt("id"));
 		}
 
 		return result;
@@ -294,25 +350,39 @@ public class RecommandService {
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("apikey", apikey);
 		parameters.put("tenantid", tenantid);
-		parameters.put("numberOfResults", requireNumber.toString());
+		if (requireNumber != null)
+			parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
-		if( reponse == null ) return null;
-		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-
-		if (object == null)
+		if (reponse == null)
 			return null;
+		try {
+			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
-		JSONObject recommended = object.getJSONObject("recommendeditems");
-		JSONArray items = recommended.getJSONArray("item");
-		for (int i = 0; i < items.size(); i++) {
-			JSONObject temp = (JSONObject) items.get(i);
-			result.add(temp.getInt("id"));
+			if (object == null)
+				return null;
+
+			JSONObject recommended = object.getJSONObject("recommendeditems");
+
+			JSON items = (JSON) recommended.get("item");
+			if (items.isArray()) {
+				JSONArray list = (JSONArray) items;
+				for (int i = 0; i < list.size(); i++) {
+					JSONObject temp = (JSONObject) list.get(i);
+					result.add(temp.getInt("id"));
+				}
+			} else {
+				JSONObject temp = (JSONObject) items;
+				result.add(temp.getInt("id"));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
 		}
 
 		return result;
 	}
-	
+
 	/**
 	 * 获取浏览最多的商品
 	 * 
@@ -328,20 +398,31 @@ public class RecommandService {
 		Map<String, String> parameters = new HashMap<String, String>();
 		parameters.put("apikey", apikey);
 		parameters.put("tenantid", tenantid);
-		parameters.put("numberOfResults", requireNumber.toString());
+		if (requireNumber != null)
+			parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
+		try {
+			JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
-		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
+			if (object == null)
+				return null;
 
-		if (object == null)
+			JSONObject recommended = object.getJSONObject("recommendeditems");
+			JSON items = (JSON) recommended.get("item");
+			if (items.isArray()) {
+				JSONArray list = (JSONArray) items;
+				for (int i = 0; i < list.size(); i++) {
+					JSONObject temp = (JSONObject) list.get(i);
+					result.add(temp.getInt("id"));
+				}
+			} else {
+				JSONObject temp = (JSONObject) items;
+				result.add(temp.getInt("id"));
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
 			return null;
-
-		JSONObject recommended = object.getJSONObject("recommendeditems");
-		JSONArray items = recommended.getJSONArray("item");
-		for (int i = 0; i < items.size(); i++) {
-			JSONObject temp = (JSONObject) items.get(i);
-			result.add(temp.getInt("id"));
 		}
 
 		return result;
@@ -370,7 +451,9 @@ public class RecommandService {
 				while (iterator.hasNext()) {
 					Entry<String, String> entry = iterator.next();
 					try {
-						getURL += URLEncoder.encode(entry.getKey(),"UTF-8") + "=" + URLEncoder.encode(entry.getValue(),"UTF-8");
+						getURL += URLEncoder.encode(entry.getKey(), "UTF-8")
+								+ "="
+								+ URLEncoder.encode(entry.getValue(), "UTF-8");
 					} catch (UnsupportedEncodingException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -383,8 +466,10 @@ public class RecommandService {
 
 			try {
 				URLConnection conn = (new URL(getURL)).openConnection();
+				conn.setConnectTimeout(5000);
+				conn.setRequestProperty("Charset", "UTF-8");
 				BufferedReader reader = new BufferedReader(
-						new InputStreamReader(conn.getInputStream()));
+						new InputStreamReader(conn.getInputStream(), "UTF-8"));
 				StringBuffer stringBuffer = new StringBuffer();
 				String line;
 				while ((line = reader.readLine()) != null) {

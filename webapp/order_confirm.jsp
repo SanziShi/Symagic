@@ -83,16 +83,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <tr>
                         	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
                             <td>
-                            	<select onchange="get_district(this)" id="level1ID" name="level1ID">
+                            	<select onchange="get_district(this)" id="level1ID" name="districtLevel1ID">
                                 	<option value="s1">请选择</option>
                                 <s:iterator value="level1Districts" var='iter'>
                                 	<option value="<s:property value='#iter.ID'/>"><s:property value='#iter.name'/></option>
                                 </s:iterator>
                                 </select>
-                                <select onchange="get_district(this)" id="level2ID" name="level2ID">
+                                <select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
                                 	<option value="s2">请选择</option>
                                 </select>
-                                <select id="level3ID" name="level3ID">
+                                <select id="level3ID" name="districtLevel3ID">
                                 	<option value="">请选择</option>
                                 </select>
                             </td>
@@ -158,6 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </tbody>
                 </table>
                 <!--- 隐藏的地址修改table--->
+                
                 <span class="add-to-address">添加信息至地址簿</span><span>重置内容</span>
             </div>
         </div>

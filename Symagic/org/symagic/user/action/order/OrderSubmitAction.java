@@ -140,10 +140,6 @@ public class OrderSubmitAction extends OrderBase{
 		order.setPayment("0");
 		
 		order.setList(new ArrayList<BeanOrderDetail>());
-		
-		
-		
-		String baseURL = ServletActionContext.getServletContext().getContextPath();
 
 		List<ItemTinyBean> items = new ArrayList<ItemTinyBean>();
 		HashMap<Integer, Integer> orders = UserSessionUtilty.getOrder();
@@ -178,12 +174,12 @@ public class OrderSubmitAction extends OrderBase{
 			orderDetail.setMarketPrice(book.getMarketPrice());
 			order.getList().add(orderDetail);
 			totalPrice += book.getMarketPrice() - book.getDiscount();
-			String URL = baseURL + "/itemDetail?itemID=" + book.getBookId();
+			String URL = "/itemDetail?itemID=" + book.getBookId();
 			//通知推荐系统用户购买
 			for(int j = 0; j < items.get(i).getItemNumber(); j ++){
-				//recommandService.buy(UserSessionUtilty.getSessionID(),
-						//Integer.toString(items.get(i).getItemID()),
-						//"", URL, UserSessionUtilty.getUsername());
+				recommandService.buy(UserSessionUtilty.getSessionID(),
+						Integer.toString(items.get(i).getItemID()),
+						book.getBookDesc(), URL, UserSessionUtilty.getUsername());
 			}
 			
 		}
@@ -197,9 +193,8 @@ public class OrderSubmitAction extends OrderBase{
 			order.setScore((int)(totalPrice * level.getRate()));
 		order.setUsername(username);
 		order.setZipcode(getZipcode());
-		if(daoOrder.addOrder(order)){
-			List<BeanOrder> orders2 = daoOrder.getLatestOrders();
-			orderID = 10;
+		orderID = daoOrder.addOrder(order);
+		if(orderID > 0){
 			UserSessionUtilty.removeOrder();
 			return SUCCESS;
 		}

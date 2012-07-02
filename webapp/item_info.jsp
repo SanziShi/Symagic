@@ -129,7 +129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </li>
         <li><span>书籍分类：</span><s:property value='book.catalogClassify'/></li>
         <s:if test='book.offline'>
-            <li>该商品已下架，您可以收藏该商品！</li>
+            <li><font class="red">该商品已下架，您可以收藏该商品！</font></li>
             </s:if>
         </ul>
         </div>
@@ -183,13 +183,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="comment">
         <div class="banner"><li>用户评价</li></div>
+        
         <!--用户评价迭代-->
         <s:iterator value="commentList" var='iter'>
         	<div class="comment_item">
         		<div class="buyer">
         		<span class="buyer_name"><s:property value='#iter.userName'/>测试用户</span>
         		<span class="star"><span class="sa<s:property value='#iter.rating'/>"></span></span>
-        		<span class="date-comment"><s:property value='#iter.commentDate'/></span>
+        		&nbsp;&nbsp;（<s:property value='#iter.rating'/>）分
+                <span class="date-comment"><s:property value='#iter.commentDate'/></span>
         		</div>
         		<div class="comment-content"><s:property value='#iter.content'/></div>
         	</div>

@@ -12,7 +12,7 @@ public class DaoAddressTest extends TestCase{
 	//初始化
 	DaoUserAddress da	= new DaoUserAddress();
 	
-	@Test
+	/*@Test
 	public void testAddAddress1(){
 		BeanAddress	ba	= new BeanAddress();
 		ba.setUsername("641567179@qq.com");
@@ -87,7 +87,7 @@ public class DaoAddressTest extends TestCase{
 	@Test
 	public void testDeleteAddress2(){
 		assertEquals(false,da.deleteAddress(0));
-	}
+	}*/
 	
 
 }

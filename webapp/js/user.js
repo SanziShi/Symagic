@@ -13,11 +13,10 @@ function show_user_con(num)
 	//if(!document.getElementById(x).style||document.getElementById(x).style.display!='block')
 	$('#'+num).slideDown(250);
 }
-function address_edit(e)
+function address_edit(id)
 {
-	alert(e.event);
 	showOverlay();
-	document.getElementById('test').style.display='block';
+	document.getElementById('address'+id).style.display='block';
 }
 function close_address_edit(e)
 {
@@ -127,7 +126,7 @@ function add_address(f)
 {
 	var form=$(f).serialize();
 	Ajax({
-		url:'submit_address',
+		url:'address/submit_address',
 		data:form,
 		onSuccess:function(e)
 			{
@@ -135,13 +134,14 @@ function add_address(f)
 				if(r.submitResult)
 				{
 					alert('添加成功');
-					Ajax({
+					show_address();
+					/*Ajax({
 						url:'address',
 						onSuccess:function(e)
 							{
 								document.getElementById('address-container').innerHTML=e;
 							}
-						})
+						})*/
 				}
 				else
 				{
@@ -149,8 +149,27 @@ function add_address(f)
 				}
 			}
 		})
+		return false;
 }
-/*****8*修改地址函数*****/
+/******修改地址提交函数*****/
+function address_edit_submit(f)
+{
+	Ajax({
+		url:'address/address_edit_submit',
+		data:$(f).serialize(),
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(a.submitResult)
+				{
+					alert('保存成功！');
+					show_address();
+				}
+				else alert(a.resultInfo);
+			}
+		})
+	return false;
+}
 /******dom完成加载执行函数*******/
 $().ready(function(e) {
 	if(document.getElementById('t1')){

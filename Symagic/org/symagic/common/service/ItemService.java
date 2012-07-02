@@ -133,6 +133,7 @@ public class ItemService {
 	public void fillTinyItems(List<Integer> ids, List<ItemTinyBean> items) {
 		ItemTinyBean item;
 		BeanBook book;
+		if( ids == null ) return;
 		for (Iterator<Integer> index = ids.iterator(); index.hasNext();) {
 			int id = index.next();
 			item = new ItemTinyBean();

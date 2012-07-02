@@ -16,6 +16,7 @@ import sun.security.krb5.internal.crypto.dk.ArcFourCrypto;
 public class DaoBookTest extends TestCase{
 
 	//初始化
+<<<<<<< HEAD
 	DaoBook db  = new DaoBook();
 
 
@@ -57,6 +58,34 @@ public class DaoBookTest extends TestCase{
 		assertEquals(1, db.getRandBooks(list, 3).get(0).intValue());
 	}
 	/*
+=======
+	DaoBook db  = new DaoBook();
+	/*@Test
+	public void testAddBook1(){
+		BeanBook book1 = new BeanBook();
+		//设置book1的参数
+		book1.setAuthor("yusen");
+		book1.setBinding("精装");
+		book1.setBookDesc("good");
+		book1.setBookName("what is that?????");
+		book1.setDiscount(0.5f);
+		book1.setFolio("16");
+		book1.setInventory(20);
+		book1.setIsbn("1234567891");
+		book1.setMarketPrice(49.21f);
+		book1.setOffline("在架");
+		book1.setPage(400);
+		book1.setPicture("picture3.jpg");
+		book1.setPublisher("public department");
+		book1.setPublishDate("2009-03-27");
+		book1.setVersion(5);
+		book1.setCatalogID(2);
+		
+		//断言判断
+		assertEquals(39,db.addBook(book1));
+		}
+	
+>>>>>>> branch 'development' of ssh://git@222.201.132.24:8080/~/symagic.git
 	@Test
 	public void testAddBook2(){
 		BeanBook book2 = new BeanBook();  //book2采用默认值
@@ -116,9 +145,9 @@ public class DaoBookTest extends TestCase{
 	@Test
 	public void testGetCommentNumber2(){
 		assertEquals(-1,db.getCommnetNumber(1234));
-	}*/
+	}
 	
-	/*@Test
+	@Test
 	public void testModifyBook()
 	{
 		BeanBook book = new BeanBook();
@@ -157,20 +186,20 @@ public class DaoBookTest extends TestCase{
 		DaoBook	db	= new DaoBook();
 		assertEquals("计算机组成", db.getLatestBook().get(0).getBookName());
 	}
-	*/
 	
-//	public void testSearch()
-//	{
-//		DaoBook	db	= new DaoBook();
-//		BookRequire req	= new BookRequire();
-//		req.setPage(1);
-//		req.setLines(10);
-////		req.setYear("2012");
-//		req.setItemName("");
-//		assertEquals(1, db.search(1, req).get(0).getBookId());
-//	}
 	
-/*	@Test
+	public void testSearch()
+	{
+		DaoBook	db	= new DaoBook();
+		BookRequire req	= new BookRequire();
+		req.setPage(1);
+		req.setLines(10);
+    	req.setYear("2012");
+		req.setItemName("");
+		assertEquals(1, db.search(1, req).get(0).getBookId());
+	}
+	
+	@Test
 	public void testGetProductNum1(){
 		assertEquals(0,db.getProductNum());
 	}
@@ -183,9 +212,9 @@ public class DaoBookTest extends TestCase{
 	@Test 
 	public void testGetLatestBook2(){
 		assertEquals(1,db.getLatestBook().size());
-	}*/
+	}
 
-/*	@Test
+	@Test
 	public void testModifyBook1(){
 		BeanBook book = new BeanBook();
 		book.setBookId(29);
@@ -232,9 +261,9 @@ public class DaoBookTest extends TestCase{
 	@Test
 	public void testDeleteBook2(){
 		assertEquals(false,db.deleteBook(50));
-	}*/
+	}
 	
-/*	@Test
+	@Test
 	public void testSearch1(){
 		BookRequire br = new BookRequire();
 		br.setAuthor("张云,韩洪泉");
@@ -350,8 +379,8 @@ public class DaoBookTest extends TestCase{
 		br.setLines(3);
 		
 		assertEquals(0,db.search(1, br).size());
-	}*/
-/*	@Test
+	}
+	@Test
 	public void testSearch9(){
 		BookRequire br = new BookRequire();
 		br.setPublisher("digvijdfj");
@@ -359,9 +388,9 @@ public class DaoBookTest extends TestCase{
 		br.setLines(3);
 		
 		assertEquals(0,db.search(0, br).size());
-	}*/
+	}
 	
-/*	@Test 
+	@Test 
 	public void testGetSearchRowNumber1(){
 		BookRequire br = new BookRequire();
 		br.setAuthor("张云,韩洪泉");
@@ -401,8 +430,8 @@ public class DaoBookTest extends TestCase{
 		br.setLines(3);
 		
 		assertEquals(1,db.getSearchRowNumber(1, br));
-	}*/
-/*	@Test 
+	}
+	@Test 
 	public void testGetSearchRowNumber4(){
 		BookRequire br = new BookRequire();
 		
@@ -432,83 +461,83 @@ public class DaoBookTest extends TestCase{
 		br.setLines(3);
 		
 		assertEquals(0,db.getSearchRowNumber(1, br));
+	}
+	
+	@Test
+	public void testGetBookStatistics(){
+		BookStatisticsRequire req = new BookStatisticsRequire();
+		req.setLines(3);
+		req.setPage(1);
+		
+		assertEquals(3,db.getBookStatistics(req).size());
+	}
+	@Test
+	public void testGetBookStatistics2(){
+		BookStatisticsRequire req = new BookStatisticsRequire();
+		req.setLines(3);
+		req.setPage(1);
+		req.setLowlimit(1000);
+		
+		assertEquals(0,db.getBookStatistics(req).size());
+	}
+	@Test
+	public void testGetBookStatistics3(){
+		BookStatisticsRequire req = new BookStatisticsRequire();
+		req.setLines(3);
+		req.setPage(1);
+		req.setCatalogid(12);
+		
+		assertEquals(1,db.getBookStatistics(req).size());
+	}
+	@Test
+	public void testGetBookStatistics4(){
+		BookStatisticsRequire req = new BookStatisticsRequire();
+		req.setLines(3);
+		req.setPage(1);
+		req.setLowlimit(1000);
+		req.setCatalogid(12);
+		
+		assertEquals(0,db.getBookStatistics(req).size());
+	}
+	@Test
+	public void testGetBookStatistics5(){
+		BookStatisticsRequire req = new BookStatisticsRequire();
+		req.setLines(3);
+		req.setPage(1);
+		req.setCatalogid(12);
+		req.setStartTime("2011-01-01");
+		
+		assertEquals(1,db.getBookStatistics(req).size());
+	}
+	@Test
+	public void testGetBookStatistics6(){
+		BookStatisticsRequire req = new BookStatisticsRequire();
+		req.setLines(3);
+		req.setPage(1);
+		req.setCatalogid(12);
+		req.setStartTime("2013-01-01");
+		
+		assertEquals(0,db.getBookStatistics(req).size());
+	}
+	@Test
+	public void testGetBookStatistics7(){
+		BookStatisticsRequire req = new BookStatisticsRequire();
+		req.setLines(3);
+		req.setPage(1);
+		req.setCatalogid(120);
+		
+		assertEquals(0,db.getBookStatistics(req).size());
+	}
+	
+	@Test
+	public void testSearch()
+	{
+		DaoBook	db	= new DaoBook();
+		BookRequire	req	= new BookRequire();
+		req.setPage(1);
+		req.setLines(10);
+		req.setCatalogID(1);
+		assertEquals(1, db.search(1, req).get(0).getBookId());
 	}*/
-	
-//	@Test
-//	public void testGetBookStatistics(){
-//		BookStatisticsRequire req = new BookStatisticsRequire();
-//		req.setLines(3);
-//		req.setPage(1);
-//		
-//		assertEquals(3,db.getBookStatistics(req).size());
-//	}
-//	@Test
-//	public void testGetBookStatistics2(){
-//		BookStatisticsRequire req = new BookStatisticsRequire();
-//		req.setLines(3);
-//		req.setPage(1);
-//		req.setLowlimit(1000);
-//		
-//		assertEquals(0,db.getBookStatistics(req).size());
-//	}
-//	@Test
-//	public void testGetBookStatistics3(){
-//		BookStatisticsRequire req = new BookStatisticsRequire();
-//		req.setLines(3);
-//		req.setPage(1);
-//		req.setCatalogid(12);
-//		
-//		assertEquals(1,db.getBookStatistics(req).size());
-//	}
-//	@Test
-//	public void testGetBookStatistics4(){
-//		BookStatisticsRequire req = new BookStatisticsRequire();
-//		req.setLines(3);
-//		req.setPage(1);
-//		req.setLowlimit(1000);
-//		req.setCatalogid(12);
-//		
-//		assertEquals(0,db.getBookStatistics(req).size());
-//	}
-//	@Test
-//	public void testGetBookStatistics5(){
-//		BookStatisticsRequire req = new BookStatisticsRequire();
-//		req.setLines(3);
-//		req.setPage(1);
-//		req.setCatalogid(12);
-//		req.setStartTime("2011-01-01");
-//		
-//		assertEquals(1,db.getBookStatistics(req).size());
-//	}
-//	@Test
-//	public void testGetBookStatistics6(){
-//		BookStatisticsRequire req = new BookStatisticsRequire();
-//		req.setLines(3);
-//		req.setPage(1);
-//		req.setCatalogid(12);
-//		req.setStartTime("2013-01-01");
-//		
-//		assertEquals(0,db.getBookStatistics(req).size());
-//	}
-//	@Test
-//	public void testGetBookStatistics7(){
-//		BookStatisticsRequire req = new BookStatisticsRequire();
-//		req.setLines(3);
-//		req.setPage(1);
-//		req.setCatalogid(120);
-//		
-//		assertEquals(0,db.getBookStatistics(req).size());
-//	}
-	
-//	@Test
-//	public void testSearch()
-//	{
-//		DaoBook	db	= new DaoBook();
-//		BookRequire	req	= new BookRequire();
-//		req.setPage(1);
-//		req.setLines(10);
-//		req.setCatalogID(1);
-//		assertEquals(1, db.search(1, req).get(0).getBookId());
-//	}
  
 }
