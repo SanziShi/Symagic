@@ -58,9 +58,10 @@ public class ItemDetailAction extends CatalogBase {
 		 */
 		recommendView = new ArrayList<ItemTinyBean>();
 		recommendBought = new ArrayList<ItemTinyBean>();
-		itemService.getNewBook(recommendView);
+		List<Integer> recommendIds = recommendService.otherUsersAlsoViewed(itemID.toString(), UserSessionUtilty.getUsername(), null);
+		itemService.fillTinyItems(recommendIds,recommendView);
 		itemService.getNewBook(recommendBought);
-		recommendService.view(UserSessionUtilty.getSessionID(), String.valueOf(itemID), book.getBookDesc(), "item_detail?itemID="+itemID, UserSessionUtilty.getUsername());
+		recommendService.view(UserSessionUtilty.getSessionID(), String.valueOf(itemID),book.getBookDesc(), "item_detail?itemID="+itemID, UserSessionUtilty.getUsername());
 		return super.execute();
 	}
 
