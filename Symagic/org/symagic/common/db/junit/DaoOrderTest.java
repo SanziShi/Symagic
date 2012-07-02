@@ -13,12 +13,12 @@ public class DaoOrderTest extends TestCase{
 	//初始化
 	DaoOrder order	= new DaoOrder();
 	
-	@Test
+/*	@Test
 	public void testGetOrderDetail1(){
 		assertEquals("641567179@qq.com",order.getOrderDetail(1).getUsername());
 	}
 	
-	/*
+	
 	@Test
 	public void testGetOrderDetail2(){
 		assertEquals(0,order.getOrderDetail(100).getList().size());
@@ -62,8 +62,8 @@ public class DaoOrderTest extends TestCase{
         bo.setTotalprice(110f);
         
 		assertEquals(true,order.addOrder(bo));
-	}*/	
-/*	@Test
+	}	
+	@Test
 	public void testAddOrder3(){
 		BeanOrder bo= new BeanOrder();
 		BeanOrderDetail bod = new BeanOrderDetail();
@@ -88,18 +88,18 @@ public class DaoOrderTest extends TestCase{
         bo.getList().add(bod);
         
 		assertEquals(true,order.addOrder(bo));
-	}*/
+	}
 	
-/*	@Test
+	@Test
 	public void testDeleteOrder1(){
 		assertEquals(true,order.deleteOrder(26));
-	}*/
-/*	@Test
+	}
+	@Test
 	public void testDeleteOrder2(){
 		assertEquals(false,order.deleteOrder(25));
-	}*/
+	}
 	
-/*	@Test
+	@Test
 	public void testGetTotalSaleAmount1(){
 		assertEquals(-1,order.getTotalSaleAmount());
 	}
@@ -122,8 +122,8 @@ public class DaoOrderTest extends TestCase{
 	@Test
 	public void testGetLatestOrders1(){
 		assertEquals(0,order.getLatestOrders().size());
-	}*/
-/*	@Test
+	}
+	@Test
 	public void testGetTotalSaleAmount2(){
 		assertEquals(55,order.getTotalSaleAmount());
 	}
@@ -155,9 +155,9 @@ public class DaoOrderTest extends TestCase{
 	@Test
 	public void testGetItemOrders2(){
 		assertEquals(2,order.getItemOrders(1, 1, 3).size());
-	}*/
+	}
 	
-/*	@Test
+	@Test
 	public void testSearch1(){
 		OrderRequire or = new OrderRequire();
 		or.setLines(3);
@@ -187,37 +187,37 @@ public class DaoOrderTest extends TestCase{
 		or.setOrderState("0");
 		
 		assertEquals(3,order.search(or, null).size());
-	}*/
+	}
 	
-//	@Test
-//	public void testGetRowNumber1(){
-//		OrderRequire or = new OrderRequire();
-//		or.setLines(3);
-//		or.setPage(1);
-//		or.setStartTime("2010-01-01");
-//		or.setEndTime("2012-06-28");
-//		or.setOrderState("2");
-//		
-//		assertEquals(2,order.getRowNumber(or, "641567179@qq.com"));
-//	}
-//	@Test
-//	public void testGetRowNumber2(){
-//		OrderRequire or = new OrderRequire();
-//		or.setLines(3);
-//		or.setPage(1);
-//		or.setStartTime("2012-09-09");
-//		
-//		assertEquals(-1,order.getRowNumber(or, null));
-//	}
-//	@Test
-//	public void testGetRowNumber3(){
-//		OrderRequire or = new OrderRequire();
-//		or.setLines(3);
-//		or.setPage(1);
-//		or.setStartTime("2010-01-01");
-//		or.setEndTime("2012-06-28");
-//		or.setOrderState("0");
-//		
-//		assertEquals(4,order.getRowNumber(or, null));
-//	}
+	@Test
+	public void testGetRowNumber1(){
+		OrderRequire or = new OrderRequire();
+		or.setLines(3);
+		or.setPage(1);
+		or.setStartTime("2010-01-01");
+		or.setEndTime("2012-06-28");
+		or.setOrderState("2");
+		
+		assertEquals(2,order.getRowNumber(or, "641567179@qq.com"));
+	}
+	@Test
+	public void testGetRowNumber2(){
+		OrderRequire or = new OrderRequire();
+		or.setLines(3);
+		or.setPage(1);
+		or.setStartTime("2012-09-09");
+		
+		assertEquals(-1,order.getRowNumber(or, null));
+	}
+	@Test
+	public void testGetRowNumber3(){
+		OrderRequire or = new OrderRequire();
+		or.setLines(3);
+		or.setPage(1);
+		or.setStartTime("2010-01-01");
+		or.setEndTime("2012-06-28");
+		or.setOrderState("0");
+		
+		assertEquals(4,order.getRowNumber(or, null));
+	}*/
 }
