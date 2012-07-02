@@ -56,6 +56,8 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
+		
+		if( reponse == null ) return false;
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 		if (object == null || object.containsKey("error"))
@@ -113,6 +115,7 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
+		if( reponse == null ) return false;
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 		if (object == null || object.containsKey("error"))
 			return false;
@@ -147,6 +150,7 @@ public class RecommandService {
 			parameters.put("userid", userName);
 
 		String reponse = this.sendGetRequest(url, parameters);
+		if( reponse == null ) return false;
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 		if (object == null || object.containsKey("error"))
 			return false;
@@ -179,6 +183,7 @@ public class RecommandService {
 		parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
+		if( reponse == null ) return null;
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
@@ -219,7 +224,7 @@ public class RecommandService {
 		parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
-
+		if( reponse == null ) return null;
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
 		if (object == null)
@@ -258,7 +263,7 @@ public class RecommandService {
 		String reponse = this.sendGetRequest(url, parameters);
 
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
-
+		if( reponse == null ) return null;
 		if (object == null)
 			return null;
 
@@ -290,7 +295,7 @@ public class RecommandService {
 		parameters.put("numberOfResults", requireNumber.toString());
 
 		String reponse = this.sendGetRequest(url, parameters);
-
+		if( reponse == null ) return null;
 		JSONObject object = (JSONObject) JSONSerializer.toJSON(reponse);
 
 		if (object == null)

@@ -104,6 +104,14 @@ public class ItemDetailAction extends CatalogBase {
 		this.itemService = itemService;
 	}
 
+	public RecommandService getRecommendService() {
+		return recommendService;
+	}
+
+	public void setRecommendService(RecommandService recommendService) {
+		this.recommendService = recommendService;
+	}
+
 	public List<BeanComment> getCommentList() {
 		return commentList;
 	}
