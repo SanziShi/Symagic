@@ -24,7 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	<select onchange="get_district(this)" id="level1ID" name="districtLevel1ID" >
                                 			<option value="s1" >请选择</option>
                                				<s:iterator value="#iter.level1Districts" var='middle'>
-                                            	<s:if test="#middle.ID=='<s:property value='#iter.level1DistrictDefaultID'/'>">
+                                            	<s:if test="#middle.ID=='<s:property value='#iter.level1DistrictDefaultID'/>">
                                 				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
                                 				</s:if>
                                                 <s:else>
@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	<select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
                                 		<option value="s2">请选择</option>
                                         <s:iterator value="#iter.level2Districts" var='middle'>
-                                            	<s:if test="#middle.ID=='<s:property value='#iter.level2DistrictDefaultID'/'>">
+                                            	<s:if test="#middle.ID=='<s:property value='#iter.level2DistrictDefaultID'/>">
                                 				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
                                 				</s:if>
                                                 <s:else>
@@ -46,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	<select id="level3ID" name="districtLevel3ID">
                                 		<option value="">请选择</option>
                                         <s:iterator value="#iter.level3Districts" var='middle'>
-                                            	<s:if test="#middle.ID=='<s:property value='#iter.level3DistrictDefaultID'/'>">
+                                            	<s:if test="#middle.ID=='<s:property value='#iter.level3DistrictDefaultID'/>">
                                 				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
                                 				</s:if>
                                                 <s:else>
@@ -66,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             	<td><input name="mobileNum" type="text" class="txt" value="<s:property value='#iter.mobileNum'/>"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt" value="<s:property value='#iter.phoneNum'/>"></td>
                             </tr>
                     		<tr>
-                            	<td valign="middle" align="right">邮箱地址：</td><td><s:property value='#session.userName'/><s:property value='#iter.level1DistrictDefaultID'/'><s:property value='#iter.level2DistrictDefaultID'/'><s:property value='#iter.level3DistrictDefaultID'/'></td>
+                            	<td valign="middle" align="right">邮箱地址：</td><td><s:property value='#session.userName'/><s:property value='#iter.level1DistrictDefaultID'/><s:property value='#iter.level2DistrictDefaultID'/><s:property value='#iter.level3DistrictDefaultID'/></td>
                             </tr>
                     		<tr>
                             	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
