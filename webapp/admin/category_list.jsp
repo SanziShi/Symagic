@@ -77,7 +77,7 @@
                         <tr>
                         <td width="5%"></td>
                         <td width="35%">
-                        <img src="image/plus.gif" onclick="click_show(<s:property value='#outer.ID'/>)" />
+                        <img src="image/plus.gif" onclick="click_show(<s:property value='#outer.name'/>)" />
                         <s:property value="#outer.name" /></td>
                         <td width="45%"></td>
                         <td >&nbsp;&nbsp;&nbsp;&nbsp;<a href="" onclick="ajax_catalog_delete_tag_level1(<s:property value='#outer.ID'/>)">删除</a> &nbsp;
@@ -86,7 +86,7 @@
                         </tr>
                         <!--子目录迭代开始-->
                         <s:iterator value="#outer.childCatalog" var="inner" status="st">
-                        <div style="display:none" id="'#st.index'i">
+                        <div style="display:none" id="'#st.index'i" class=<s:property value="#outer.name" />>
                         
                         <!--  <div id="<s:property value='#inner.ID'/>"> -->
                         <tr>
