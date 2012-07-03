@@ -308,8 +308,7 @@
 	</bean>
 
 	<!-- 关于商品的bean -->
-	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction"
-		scope="request">
+	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction">
 		<property name="itemService" ref="ItemService"></property>
 
 		<property name="catalogService" ref="CatalogService"></property>
@@ -320,8 +319,8 @@
 		<property name="sign" value="1"></property>
 	</bean>
 
-	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction"
-		scope="request">
+	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction">
+		
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
 
@@ -497,7 +496,6 @@
 	<bean id="UserService" class="org.symagic.common.service.UserService">
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="daoCart" ref="DaoCart"></property>
-		<property name="beanUser" ref="BeanUser"></property>
 	</bean>
 
 	<bean id="CatalogService" class="org.symagic.common.service.CatalogService">
@@ -550,8 +548,6 @@
 	<bean id="DaoLevel" class="org.symagic.common.db.func.DaoLevel" />
 	<bean id="DaoComment" class="org.symagic.common.db.func.DaoComment"></bean>
 	<bean id="DaoUserAddress" class="org.symagic.common.db.func.DaoUserAddress"></bean>
-	<!-- 数据层实体bean -->
-	<bean id="BeanUser" class="org.symagic.common.db.bean.BeanUser"></bean>
 
 </beans>
 

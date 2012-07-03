@@ -42,7 +42,7 @@ private static final long serialVersionUID = 8991605145652333401L;
 
 //传出
 private Integer totalPage;
-
+private String actionURL;
 private List<ItemBean>items;//用于显示的商品列表
 	
 	@Override
@@ -68,6 +68,7 @@ private List<ItemBean>items;//用于显示的商品列表
 		     
 		    //装饰成前台所需的信息
 			itemService.decorateForItem(books, items);
+			actionURL="quick_search";
 		   return super.execute();
 		}
 	 
@@ -176,6 +177,18 @@ private List<ItemBean>items;//用于显示的商品列表
 
 		public void setLines(Integer lines) {
 			this.lines = lines;
+		}
+
+
+
+		public String getActionURL() {
+			return actionURL;
+		}
+
+
+
+		public void setActionURL(String actionURL) {
+			this.actionURL = actionURL;
 		}
 
 	

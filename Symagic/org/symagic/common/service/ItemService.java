@@ -159,11 +159,11 @@ public class ItemService {
 		}
 	}
 
-	public List<BeanBook> search(int sign, BookRequire require) {
+	public List<BeanBook> search(Integer sign, BookRequire require) {
 		return daoBook.search(sign, require);
 	}
 
-	public int getSearchNum(int sign, BookRequire require) {
+	public Integer getSearchNum(int sign, BookRequire require) {
 		return daoBook.getSearchRowNumber(sign, require);
 	}
 
@@ -255,7 +255,7 @@ public class ItemService {
 	 * 将购物车的信息进行填充
 	 * 
 	 * @param items不能为null
-	 * @return 商品总数量
+	 * @return 商品总价格
 	 */
 	public float fillItemFromCart(ArrayList<ItemTinyBean> items) {
 		if (items == null)
@@ -318,7 +318,7 @@ public class ItemService {
 	}
 
 	// 得到商品详情
-	public boolean fillDetailBean(int itemId, ItemDetailBean detail) {
+	public boolean fillDetailBean(Integer itemId, ItemDetailBean detail) {
 		BeanBook book = daoBook.getDetail(itemId);
 		if (book == null)
 			return false;
@@ -407,7 +407,7 @@ if (currentCatalog != null) {
 		return false;
 	}
 
-	// 得到目录的描述
+	// 得到目录的字符串表示
 	private String getCatalogName(BeanCatalog catalog) {
 		if (catalog == null)
 			return "";
@@ -421,12 +421,12 @@ if (currentCatalog != null) {
 	}
 
 	// 商品评论总数
-	public int getCommentNumber(int itemId) {
+	public Integer getCommentNumber(Integer itemId) {
 		return daoComment.getCommnetNumber(itemId);
 	}
 
 	// 得到商品评论
-	public List<BeanComment> getCommentWithPage(int itemId, int page, int lines) {
+	public List<BeanComment> getCommentWithPage(Integer itemId, Integer page, Integer lines) {
 		return daoComment.getComment(itemId, page, lines);
 	}
 
@@ -436,7 +436,7 @@ if (currentCatalog != null) {
 	 * @param bookId
 	 * @return
 	 */
-	public int getAverage(int bookId) {
+	public int getAverage(Integer bookId) {
 		// daoComment.getAverageRating();
 		return daoComment.getAverageRating(bookId);
 	}
@@ -450,7 +450,7 @@ if (currentCatalog != null) {
 			return false;
 	}
 
-	// 根据id的集合填充相应的信息到tinyitems中
+	
 
 	public DaoBook getDaoBook() {
 		return daoBook;
