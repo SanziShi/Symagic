@@ -69,9 +69,7 @@ private List<ItemBean>items;//用于显示的商品列表
 		     
 		    //装饰成前台所需的信息
 			itemService.decorateForItem(books, items);
-		
-			
-		 return super.execute();
+		   return super.execute();
 		}
 	 
 	

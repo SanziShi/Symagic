@@ -283,6 +283,7 @@
 	<bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction"
 		scope="request">
 		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 	<bean id="deleteFromFavority" class="org.symagic.user.action.favority.FavorityDeleteAction"
 		scope="request">
@@ -339,6 +340,11 @@
 		<property name="errorSpecification" value="没有相应 的评论"></property>
 
 	</bean>
+	<bean id="submitComment" class="org.symagic.user.action.item.SubmitCommentAction">
+	 <property name="itemService" ref="ItemService"></property>
+	</bean>
+	
+<!-- 用户相关 -->
 
 	<bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction">
 		<property name="daoUser" ref="DaoUser"></property>
@@ -351,8 +357,7 @@
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 
-	<bean id="forgetPasswordEnter"
-		class="org.symagic.user.action.userinfo.ForgetPasswordEnterAction">
+	<bean id="forgetPasswordEnter" class="org.symagic.user.action.userinfo.ForgetPasswordEnterAction">
 		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 

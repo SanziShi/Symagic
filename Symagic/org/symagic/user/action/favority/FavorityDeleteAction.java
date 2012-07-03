@@ -38,6 +38,10 @@ boolean result;
 Iterator<Integer>index=items.iterator();
 while(index.hasNext()){
 	Integer itemID=index.next();
+	if(itemID==null){
+		deleteResult=false;
+		continue;
+	}
  result=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),itemID);
  if(!result){
 	   deleteResult=false;
@@ -50,7 +54,7 @@ while(index.hasNext()){
    }
 }
  if(!deleteResult){
-	  builder.append("删除失败");
+	  builder.append("删除失败,可能没有在收藏夹中");
 	  resultInfo=builder.toString();
    }
    else{

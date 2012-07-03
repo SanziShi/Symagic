@@ -46,6 +46,10 @@ public class CartDeleteItemAction extends ActionSupport {
 		deleteResult=true;
 		while(it.hasNext()){
 			Integer itemID=it.next();
+			if(itemID==null){
+				deleteResult=false;
+				continue;
+			}
 			   result=deleteOneFromCart(itemID,login);
 			   if(!result){
 				   deleteResult=false;

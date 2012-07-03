@@ -27,7 +27,7 @@ public class SubmitCommentAction extends ActionSupport {
 	 private ItemService itemService;//访问商品项
 	 //传出
 	 private Boolean submitResult=false;//评论是否成功
-	
+	 private String resultInfo;
 @Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
@@ -40,10 +40,16 @@ public class SubmitCommentAction extends ActionSupport {
 		comment.setRating(rating+"");
 		comment.setUsername(UserSessionUtilty.getUsername());
 		submitResult=itemService.addItemComment(comment);
+		 if(!submitResult){
+			 resultInfo="评论未能提交";
+			 return SUCCESS;
+		 }
+		 else{
+			 resultInfo="评论提交成功";
+		 }
+		//得到书箱描述信息，为推荐系统提供信息，得到后期的推荐
 		ItemDetailBean book=new ItemDetailBean();
-		
 		itemService.fillDetailBean(itemID, book);
-		//为推荐系统提供信息
 		itemService.commentFromRecomend(rating, itemID,book.getBookDesc());
        return super.execute();
 	}
@@ -86,6 +92,14 @@ public Boolean getSubmitResult() {
 
 public void setSubmitResult(Boolean submitResult) {
 	this.submitResult = submitResult;
+}
+
+public String getResultInfo() {
+	return resultInfo;
+}
+
+public void setResultInfo(String resultInfo) {
+	this.resultInfo = resultInfo;
 }
  
 
