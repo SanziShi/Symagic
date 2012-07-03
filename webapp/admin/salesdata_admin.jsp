@@ -29,14 +29,15 @@
 				<li><a href="order_statistics">销售量统计</a></li>
 				<li><a href="user_level">会员管理</a></li>
 				<li><a href="" class="nouseful">&nbsp;</a></li>
-                <li><a href="" class="nouseful">&nbsp;</a></li>
+				<li><a href="" class="nouseful">&nbsp;</a></li>
 			</ul>
 		</div>
 		<!--	<div id="banner"></div>-->
 		<div id="main">
 			<div id="search2">
 				<div id="searchleft">
-					<img src="../image/ico_site.jpg" id="ico_site" /> 网站路径：<a href="order_statistics">销售量统计</a>
+					<img src="../image/ico_site.jpg" id="ico_site" /> 网站路径：<a
+						href="order_statistics">销售量统计</a>
 				</div>
 			</div>
 			<div class="user_note">
@@ -49,7 +50,7 @@
 				</div>
 				<div id="item_search1" class="user_note_content hide">
 					<div id="sendnotecontent">
-						<form action="order_statistics" method="post"
+						<form action="order_statistics?page=1" method="post"
 							enctype="multipart/form-data" name="form1">
 							<table id="tradequery">
 
@@ -74,8 +75,17 @@
 										// 新建一个DateSelector类的实例，将三个select对象传进去
 										//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 										// 也可以试试下边的代码
-										var dt = new Date(2012, 0, 1);
-										new DateSelector(selYear, selMonth, selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>,
+										var defaultYear = <s:property value="startTime.year" default="2007" />;
+										var defaultMonth = <s:property value="startTime.month" default="1"/> - 1;
+										var defaultDay = <s:property value="startTime.day" default="1"/>;
+										var dt = new Date(defaultYear,
+												defaultMonth, defaultDay);
+										new DateSelector(
+												selYear,
+												selMonth,
+												selDay,
+												<s:property value="searchStartYear"/>,
+												<s:property value="searchEndYear"/>,
 												dt);
 									</script>
 								</tr>
@@ -99,8 +109,17 @@
 										// 新建一个DateSelector类的实例，将三个select对象传进去
 										//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 										// 也可以试试下边的代码
-										var dt = new Date(2012, 0, 1);
-										new DateSelector(selYear, selMonth, selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>,
+										var defaultYear = <s:property value="endTime.year" default="2012"/>;
+										var defaultMonth = <s:property value="endTime.month" default="12"/> - 1;
+										var defaultDay = <s:property value="endTime.day" default="31"/>;
+										var dt = new Date(defaultYear,
+												defaultMonth, defaultDay);
+										new DateSelector(
+												selYear,
+												selMonth,
+												selDay,
+												<s:property value="searchStartYear"/>,
+												<s:property value="searchEndYear"/>,
 												dt);
 									</script>
 								</tr>
@@ -109,21 +128,39 @@
 									<td><select name="catalogID">
 											<option value="0">所有类别</option>
 											<s:iterator value="catalog" var='outer'>
-												<option value="<s:property value='#outer.ID'/>">
-													<s:property value='#outer.name' />
-												</option>
-												<s:iterator value="#outer.childCatalog" var="inner">
-													<option value="<s:property value='#inner.ID'/>">
-														&nbsp;&nbsp;&nbsp;
-														<s:property value='#inner.name' />
+												<s:if test="%{catalogID==#outer.ID}">
+													<option value="<s:property value='#outer.ID'/>"
+														selected="selected">
+														<s:property value='#outer.name' />
 													</option>
+												</s:if>
+												<s:else>
+													<option value="<s:property value='#outer.ID'/>">
+														<s:property value='#outer.name' />
+													</option>
+												</s:else>
+												<s:iterator value="#outer.childCatalog" var="inner">
+													<s:if test="%{catalogID==#inner.ID}">
+														<option value="<s:property value='#inner.ID'/>"
+															selected="selected">
+															&nbsp;&nbsp;&nbsp;
+															<s:property value='#inner.name' />
+														</option>
+													</s:if>
+													<s:else>
+														<option value="<s:property value='#inner.ID'/>">
+															&nbsp;&nbsp;&nbsp;
+															<s:property value='#inner.name' />
+														</option>
+													</s:else>
 												</s:iterator>
 											</s:iterator>
 									</select></td>
 								</tr>
 								<tr>
 									<th>销售下限：</th>
-									<td><input type="text" name="limit" /></td>
+									<td><input type="text" name="limit"
+										value="<s:property value="limit"/>" /></td>
 								</tr>
 								<tr>
 									<th></th>
@@ -145,8 +182,7 @@
 								<td></td>
 								<td>该类别总销售额：</td>
 								<td><span class="red">￥<s:property
-											value="totalSalesRevenue" />
-								</span>
+											value="totalSalesRevenue" /> </span>
 								</td>
 							</tr>
 						</table>
@@ -167,8 +203,7 @@
 										</td>
 										<td><a
 											href="item_detail?itemID=<s:property value = '#item.itemID'/>"><s:property
-													value="#item.itemName" />
-										</a>
+													value="#item.itemName" /> </a>
 										</td>
 										<td><s:property value="#item.sales" />
 										</td>
@@ -179,6 +214,21 @@
 									</tr>
 								</s:iterator>
 							</tbody>
+							<tr>
+								<td></td>
+								<td></td>
+								<td><s:if test="%{totalPage==1||totalPage==0}"></s:if> <s:elseif
+										test="%{page==1}">
+										<a href="order_statistics?page=${ page + 1 }">下一页</a>
+									</s:elseif> <s:elseif test="%{page==totalPage}">
+										<a href="order_statistics?page=${ page - 1 }">上一页</a>
+									</s:elseif> <s:else>
+										<a href="order_statistics?page=${ page - 1 }">上一页</a>
+										<a href="order_statistics?page=${ page + 1 }">下一页</a>
+									</s:else></td>
+								<td>当前第<s:property value="page" />页，共<s:property
+										value="totalPage" />页，每页<s:property value="lines" />条</td>
+							</tr>
 						</table>
 
 					</div>

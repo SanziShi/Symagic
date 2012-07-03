@@ -129,8 +129,7 @@
 		<property name="searchYearRange" value="5"></property>
 	</bean>
 
-	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction"
-		scope="request">
+	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>

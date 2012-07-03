@@ -28,6 +28,8 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 	public String execute() throws Exception {
 
 		String result = super.execute();
+		
+		if( !result.equals("success") ) return ERROR;
 
 		if (order == null || order.getOrderState().equals("2")
 				|| order.getOrderState().equals("3"))
