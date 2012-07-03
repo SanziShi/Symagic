@@ -439,6 +439,7 @@
 	<bean id="orderList" class="org.symagic.user.action.order.OrderListAction"
 		scope="request">
 		<property name="orderService" ref="OrderService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
 	<bean id="orderDetail" class="org.symagic.user.action.order.OrderDetailAction"
@@ -476,6 +477,7 @@
 		scope="request">
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoDistrict" ref="DaoDistrict"></property>
 	</bean>
 
 	<bean id="checkScore" class="org.symagic.user.action.order.OrderCheckScoreAction"
