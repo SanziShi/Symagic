@@ -3,6 +3,7 @@ package org.symagic.common.db.func;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.symagic.common.db.pool.ConnectionPool;
@@ -41,9 +42,54 @@ public class DaoAdmin {
 			conn.close();
 			return false;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
+		} finally {
+			try {
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		return true;
+	}
+	
+	public boolean updatePasswrod(String adminName, String oldPwd, String newPwd)
+	{
+		if (!this.validateAdmin(adminName, oldPwd))
+			return false;
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("update admin set password=?");
+			ps.setString(1, Util.getMD5(newPwd.getBytes()));
+			if (ps.executeUpdate()==1)
+				return true;
+			return false;
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.commit();
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return false;
 	}
 }

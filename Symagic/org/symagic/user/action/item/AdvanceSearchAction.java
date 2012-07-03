@@ -48,7 +48,7 @@ public class AdvanceSearchAction extends CatalogBase {
 	private Integer totalPage;
     private List<String> searchDate;
 	private List<ItemBean> items;// 用于显示的商品列表
-
+    private String actionURL;
 	
 
 	
@@ -59,11 +59,11 @@ public class AdvanceSearchAction extends CatalogBase {
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
 		if(!isEmpty(name))
-		require.setItemName(name);
+		require.setItemName(name.trim());
 		if(!isEmpty(publisher))
-		require.setPublisher(publisher);
+		require.setPublisher(publisher.trim());
 		if(!isEmpty(author))
-			require.setAuthor(author);
+			require.setAuthor(author.trim());
 		setCatalog(require,catalogID);
 		setYear(require, publishTime);
 		setPageNumber(require, searchPage);
@@ -90,8 +90,8 @@ public class AdvanceSearchAction extends CatalogBase {
 				totalPage = (searchNumber + lines - 1)/ lines;
 				// 装饰成前台所需的信息
 				itemService.decorateForItem(books, items);
-				
 				getYearForPage();
+				actionURL="item_list";
 		return super.execute();
 	}
 	
@@ -124,7 +124,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		   break;
 		case 4:
 		   require.setLowDiscount(0.7F);
-		   require.setLowDiscount(1.0F);
+		   require.setUpDiscount(1.0F);
 		   break;
 		}
 	}
@@ -293,6 +293,16 @@ public class AdvanceSearchAction extends CatalogBase {
 
 	public void setEdition(int edition) {
 		this.edition = edition;
+	}
+
+	
+
+	public String getActionURL() {
+		return actionURL;
+	}
+
+	public void setActionURL(String actionURL) {
+		this.actionURL = actionURL;
 	}
 
 	public int getSearchPage() {

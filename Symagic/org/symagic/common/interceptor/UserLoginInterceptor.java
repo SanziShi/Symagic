@@ -2,8 +2,8 @@ package org.symagic.common.interceptor;
 
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -70,7 +70,7 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 					if (itr.hasNext())
 						url += '&';
 				}
-			}
+			} 
 
 			invocation.getInvocationContext().getValueStack().getContext()
 					.put("toURL", url.substring(contextPath.length()));
