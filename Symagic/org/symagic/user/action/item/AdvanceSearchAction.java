@@ -59,11 +59,11 @@ public class AdvanceSearchAction extends CatalogBase {
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
 		if(!isEmpty(name))
-		require.setItemName(name);
+		require.setItemName(name.trim());
 		if(!isEmpty(publisher))
-		require.setPublisher(publisher);
+		require.setPublisher(publisher.trim());
 		if(!isEmpty(author))
-			require.setAuthor(author);
+			require.setAuthor(author.trim());
 		setCatalog(require,catalogID);
 		setYear(require, publishTime);
 		setPageNumber(require, searchPage);
@@ -124,7 +124,7 @@ public class AdvanceSearchAction extends CatalogBase {
 		   break;
 		case 4:
 		   require.setLowDiscount(0.7F);
-		   require.setLowDiscount(1.0F);
+		   require.setUpDiscount(1.0F);
 		   break;
 		}
 	}
