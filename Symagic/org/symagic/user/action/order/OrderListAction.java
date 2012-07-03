@@ -93,9 +93,13 @@ public class OrderListAction extends CatalogBase{
 	public String execute() throws Exception{
 		orderList = new ArrayList<OrderBean>();
 		String username = UserSessionUtilty.getUsername();
+		if(username == null)
+			return ERROR;
 		Calendar calender = Calendar.getInstance();
 		Date end = calender.getTime();
 		int amount = -1;
+		if(time == null)
+			time = 0;
 		switch(time){
 		case 0:
 			amount = 0;
@@ -116,6 +120,14 @@ public class OrderListAction extends CatalogBase{
 		//为了让修订后orderList工作
 		OrderListResult result = orderService.orderList(username, ITEM_PER_PAGE, page, start, end, orderStatus);
 		orderList = result.orders;
+		for(int i = 0; i < orderList.size(); i ++){
+			if(orderList.get(i).getOrderStatus() == "0")
+				orderList.get(i).setEditable(true);
+			else {
+				orderList.get(i).setEditable(false);
+			}
+		}
+		
 		totalPage = result.totalPage;
 		currentPage = page;
 		return super.execute();

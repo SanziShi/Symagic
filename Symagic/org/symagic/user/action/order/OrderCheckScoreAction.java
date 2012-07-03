@@ -28,6 +28,8 @@ public class OrderCheckScoreAction extends CatalogBase{
 	
 	private DaoBook daoBook;
 	
+	private String resultInfo;
+	
 	public DaoBook getDaoBook() {
 		return daoBook;
 	}
@@ -55,8 +57,14 @@ public class OrderCheckScoreAction extends CatalogBase{
 				BeanBook book = daoBook.getDetail(item.getKey());
 				price += book.getMarketPrice() * book.getDiscount() * item.getValue();
 			}
-			if(checkResult)
-				price -= score * 0.1;
+			if(checkResult){
+				if(price - score * 0.1 < 0.0f){
+					checkResult = false;
+					resultInfo = "订单金额不能小于零";
+				}
+				else
+					price -= score * 0.1f;
+			}
 			setPrice(String.format("%.2f", price));
 		}
 		return SUCCESS;
@@ -92,5 +100,13 @@ public class OrderCheckScoreAction extends CatalogBase{
 
 	public void setPrice(String totalPrice) {
 		this.price = totalPrice;
+	}
+
+	public String getResultInfo() {
+		return resultInfo;
+	}
+
+	public void setResultInfo(String resultInfo) {
+		this.resultInfo = resultInfo;
 	}
 }
