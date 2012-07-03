@@ -91,14 +91,22 @@ function use_score_change(e)
 }
 function check_score(e)
 {
+	alert(e.value);
 	e.value=e.value.replace(/\D+/g,'');
-	if(e.value='')e.value=0;
+	if(e.value=='')e.value=0;
 	else Ajax({
 		url:'order/check_score?score='+e.value,
-		onSuccess:function(e)
+		onSuccess:function(t)
 			{
-				var a=JSON.parse(e);
-				
+				var a=JSON.parse(t);
+				if(a.checkResult)
+				{
+					document.getElementById('total_price').innerHTML=a.price;
+				}
+				else 
+				{
+					Stip('score').show({p: 'top',content:'您的积分不够，请重新选择',time:3000,kind:"error"});
+				}
 			}
 		})
 }

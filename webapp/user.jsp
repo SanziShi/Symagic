@@ -90,13 +90,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="user_left">
         	<dl>
         		<dt>我的商城</dt>
-        		<div onclick="show_user_con('1')">
-        		  <dd>基本信息</dd></div>
+        		<div onclick="show_user_con('1')"><dd>基本信息</dd></div>
+                <div onclick="show_user_con('2')"><dd>修改密码</dd></div>
+        		<div onclick="show_user_con('3')"><dd>修改昵称</dd></div>
         		<div onclick="show_favorite()"><dd>我的收藏</dd></div>
         		<div onclick="show_address()"><dd>收货地址</dd></div>
-        		<div onclick="show_user_con('2')"><dd>修改密码</dd></div>
-        		<div onclick="show_user_con('3')"><dd>修改昵称</dd></div>
-        		<div onclick="show_user_con('4')"><dd>积分查询</dd></div>
+        		<div onclick="show_user_con('4')"><dd>我的订单</dd></div>
         		<br/>
         		<dt></dt>
         	</dl>
@@ -140,16 +139,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<p><span><input type="button" onclick="nickname_c(this)" value="确定修改"/></span></p>
         	</div>
         </div>
-        <div id="4" class="user_note hide">
-        <div class="head">积分详情</div>
+        <div id="4" class="user_note ">
+        <div class="head">我的订单</div>
         <div class="user_note_content">
-        	<table>
+        	<table id="myorder">
 				<thead>
 					<tr>
 						<th>订单号</th>
 						<th>下单时间</th>
 						<th>订单金额</th>
 						<th>获得积分</th>
+                        <th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -157,7 +157,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <s:iterator value="orderList" var='iter'>
 				  <tr>
             		<td>
-						<a href="order_info.html"><s:property value='#iter.orderID'/></a>
+						<a href="order_info?orderID=<s:property value='#iter.orderID'/>"><s:property value='#iter.orderID'/></a>
 					</td>
 					<td>
 						<s:property value='#iter.orderTime'/>
@@ -165,9 +165,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>
 						<s:property value='#iter.totalPrice'/>
 					</td>
-					<td><br />
-						
-					<br /></td>
+					<td><s:property value='#iter.score'/></td>
+                    <td>
+                    <s:if test="#iter.editable">
+                   		<a href="order_edit?orderID=<s:property value='#iter.orderID'/>">修改</a>&nbsp;&nbsp;
+                    	<a href="javascript:void(0)" onclick="cancel_order(<s:property value='#iter.orderID'/>)">取消</a>
+                    </s:if>
+                    <s:else>
+                    	<a href="order_info?orderID=<s:property value='#iter.orderID'/>">查看订单</a>
+                    </s:else>
+                    </td>
           		  </tr>
                   </s:iterator>
 				 <!--订单迭代结束--> 
