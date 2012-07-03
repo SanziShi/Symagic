@@ -657,7 +657,7 @@ function ajax_item_operation(e, id) {
 
 /* 目录管理中删除一个目录 */
 // 删除二级目录
-function ajax_catalog_delete_tag_level2(id) {
+function ajax_catalog_delete_tag_level2(id,divid) {
 	var result = confirm("该操作将会将所选二级目录移除，确定继续吗？");
 	if (result == true) {
 		Ajax({
@@ -673,7 +673,7 @@ function ajax_catalog_delete_tag_level2(id) {
 				 */
 				var obj = JSON.parse(e);
 				if (obj.deleteResult == true) {
-					var tag = document.getElementById(id);
+					var tag = document.getElementById(divid);
 					tag.parentNode.removeChild(tag);
 					alert("删除二级目录成功！");
 				} else
