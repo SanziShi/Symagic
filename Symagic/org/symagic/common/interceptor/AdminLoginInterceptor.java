@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.StrutsStatics;
 import org.symagic.admin.utilty.AdminSessionUtilty;
+import org.symagic.common.utilty.session.SessionUtilty;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.MethodFilterInterceptor;
@@ -71,6 +72,12 @@ public class AdminLoginInterceptor extends MethodFilterInterceptor {
 					if (itr.hasNext())
 						url += '&';
 				}
+			}
+			else if( request.getMethod().equals("POST") ){
+				Map<String, String[]> parameter = request.getParameterMap();
+				
+				SessionUtilty.setInterceptedFormData(parameter);
+				
 			}
 
 			invocation.getInvocationContext().getValueStack().getContext()

@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.StrutsStatics;
+import org.symagic.common.utilty.session.SessionUtilty;
 import org.symagic.user.utilty.UserSessionUtilty;
 
 import com.opensymphony.xwork2.ActionInvocation;
@@ -70,6 +71,11 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 					if (itr.hasNext())
 						url += '&';
 				}
+			} else if (request.getMethod().equals("POST")) {
+				Map<String, String[]> parameter = request.getParameterMap();
+
+				SessionUtilty.setInterceptedFormData(parameter);
+
 			}
 
 			invocation.getInvocationContext().getValueStack().getContext()
