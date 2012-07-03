@@ -20,7 +20,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
-public class RecommandService {
+public class RecommendService {
 
 	private String host = "localhost:8080";
 	/**
