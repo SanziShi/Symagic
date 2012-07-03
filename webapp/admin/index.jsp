@@ -17,7 +17,7 @@
 	<div id="container">
 		<div id="logalleft">
 			<div id="logalright">
-				<a href="" target="_parent">管理员 已登录|</a> <a href="logout"
+				<a href="" target="_parent">管理员 <s:property value="#session.userName"/>已登录|</a> <a href="logout"
 					target="_parent">退出</a>
 			</div>
 		</div>

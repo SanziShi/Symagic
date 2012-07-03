@@ -902,3 +902,15 @@ function get_district(d, path) {
 function select_address(e) {
 	e.parentNode.className += ' selected';
 }
+
+//管理员密码重置提交
+function pass_submit()
+{
+	var a=document.getElementById('pass_before').value;
+	var b=document.getElementById('pass_new').value;
+	var c=document.getElementById('pass_confirm').value;
+	Ajax({
+		url:'admin/update_password?password='+a+'&newPassword='+b+'&newPasswordConfirm='+c,
+		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');location.reload();}
+		})
+}
