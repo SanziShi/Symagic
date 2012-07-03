@@ -234,6 +234,9 @@ public class OrderSubmitAction extends OrderBase {
 					return ERROR;
 				}
 			}
+			if(!daoCart.deleteBook(UserSessionUtilty.getUsername(), order.getList().get(i).getBookId())){
+				return ERROR;
+			}
 		}
 		orderID = daoOrder.addOrder(order);
 		if (orderID > 0) {
@@ -242,8 +245,6 @@ public class OrderSubmitAction extends OrderBase {
 					daoUser.getScore(UserSessionUtilty.getUsername()) - score,
 					UserSessionUtilty.getUsername());
 			for (int i = 0; i < order.getList().size(); i++) {
-				daoCart.deleteBook(getUserName(), order.getList().get(i)
-						.getBookId());
 				UserSessionUtilty.deleteFromCart(order.getList().get(i)
 						.getBookId());
 			}
