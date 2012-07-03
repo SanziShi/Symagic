@@ -113,6 +113,15 @@ public class ItemTinyBean {
 	
 	private Integer score;
 	
+	private Boolean offline;
+
+	public Boolean getOffline() {
+		return offline;
+	}
+	public void setOffline(Boolean offline) {
+		this.offline = offline;
+	}
+	
 	
 
 }

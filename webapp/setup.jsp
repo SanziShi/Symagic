@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <p>Symagic安装</p>
   <form action="setup" method="post">
   <table>
   <tr>

@@ -102,6 +102,7 @@
 						<th>商品编号</th>
 						<th>商品名称</th>
 						<th>商城价</th>
+						<th>在架状态</th>
 						<th>数量</th>
                         <th>商品小计</th>
 					</tr>
@@ -115,6 +116,14 @@
                     </a><s:property value = "#itemArray.name"/>
                     </td>
 					<td>￥<s:property value = "#itemArray.price"/></td>
+					<td>
+					<s:if test="%{#itemArray.offline}">
+					下架
+					</s:if>
+					<s:else>
+					在架
+					</s:else>
+					</td>
 					<td> 
                    <s:property value="itemNumber"/>
                     </td>

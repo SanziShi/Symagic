@@ -43,6 +43,8 @@ public class ItemDeleteAction extends ActionSupport implements
 			BeanBook book = daoBook.getDetail(itemID);
 			if (book == null)
 				return super.execute();
+			
+			
 
 			String fileFolder = context.getRealPath("/" + shopImageFileFolder);
 			File destFile = new File(fileFolder, book.getPicture().substring(

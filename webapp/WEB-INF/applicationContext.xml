@@ -46,6 +46,7 @@
 		scope="request">
 		<property name="orderService" ref="OrderService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<!-- 管理员的action bean -->
@@ -199,6 +200,7 @@
 	<bean id="AdminDeleteOrder" class="org.symagic.admin.action.order.AdminDeleteOrderAction"
 		scope="request">
 		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="AdminSuccessOrder" class="org.symagic.admin.action.order.AdminSuccessOrderAction"
