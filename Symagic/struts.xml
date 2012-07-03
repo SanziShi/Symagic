@@ -12,19 +12,30 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<interceptors>
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
 			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
-			<interceptor name="formDataRecoverInterceptor" class="FormDataRecoverInterceptor"></interceptor>
+			<interceptor name="setupInterceptor" class="SetupInterceptor"></interceptor>
 
 			<interceptor-stack name="userLoginInterceptorStack">
+				<interceptor-ref name="setupInterceptor"></interceptor-ref>
 				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
-				<interceptor-ref name="formDataRecoverInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
+
+			<interceptor-stack name="userDefaultStack">
+				<interceptor-ref name="setupInterceptor"></interceptor-ref>
+				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+
 		</interceptors>
+
+		<default-interceptor-ref name="userDefaultStack"></default-interceptor-ref>
+
 
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/login.jsp</result>
+			<result name="setup">/setup.jsp</result>
 		</global-results>
 
 	</package>
@@ -35,13 +46,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<interceptors>
 			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
 			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
-			<interceptor name="formDataRecoverInterceptor" class="FormDataRecoverInterceptor"></interceptor>
-			
+			<interceptor name="setupInterceptor" class="SetupInterceptor"></interceptor>
 
 			<interceptor-stack name="adminLoginInterceptorStack">
+				<interceptor-ref name="setupInterceptor"></interceptor-ref>
 				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
-				<interceptor-ref name="formDataRecoverInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 
@@ -53,6 +63,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
+			<result name="setup">/setup.jsp</result>
 			<result name="error">/admin/admin_error.jsp</result>
 			<result name="input">/admin/admin_error.jsp</result>
 		</global-results>
@@ -77,8 +88,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
-	</package>
+		<action name="setup" class="SetupAction">
+			<result type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="error">/setup.jsp</result>
+			<result name="input">/setup.jsp</result>
+		</action>
 
+	</package>
 
 	<!-- 配置用户的action -->
 
@@ -593,5 +611,3 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	</package>
 
 </struts>
-
-
