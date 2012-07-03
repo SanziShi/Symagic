@@ -125,6 +125,7 @@ public class OrderDetailAction extends OrderBase {
 		addressList.setLevel3Districts(new ArrayList<DistrictBean>());
 		addressList.getLevel1Districts().add(address.level1District);
 		addressList.getLevel2Districts().add(address.level2District);
+		addressList.setAddressDetail(orderAddress.districtDetail);
 		addressList.setMobileNum(order.getMobilenum());
 		addressList.setPhoneNum(order.getPhonenum());
 		addressList.setZipcode(order.getZipcode());
@@ -161,9 +162,7 @@ public class OrderDetailAction extends OrderBase {
 			item.setName(orderList.get(i).getBookName());
 			item.setPrice(String.format("%.2f", orderList.get(i)
 					.getMarketPrice() * orderList.get(i).getDiscount()));
-			item.setItemTotalPrice(String.format("%.2f", orderList.get(i)
-					.getMarketPrice()
-					* orderList.get(i).getDiscount()
+			item.setItemTotalPrice(String.format("%.2f", orderList.get(i).getDiscount()
 					* orderList.get(i).getMarketPrice()
 					* orderList.get(i).getAmount()));
 			totalPrice += orderList.get(i).getDiscount()* orderList.get(i).getMarketPrice()

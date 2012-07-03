@@ -496,7 +496,6 @@ span.close
 	background:#FFFFFF url(../image/leftbotton.jpg) no-repeat;
 	margin:1px 1px 0px 0px;	
 }
-
 #category{
 	background:url(../image/category.jpg) no-repeat;
 	padding:55px 0px 15px 0px;
@@ -521,13 +520,19 @@ span.close
 strong{
 	color: #C03;
 }
+#category a,#category a:visited
+{
+	color:#000000;
+	font-family:"Microsoft YaHei";
+}
 
-#category ul li a:link, #category ul li a:visited{
+/*#category ul li a:link, #category ul li a:visited{
 	color:#000000;
 	text-decoration:none;
-}
-#category ul li a:hover{
-	color:#666666;
+}*/
+#category a:hover{
+	color: #F00;
+	font-family:"Microsoft YaHei";
 }
 
 #main{

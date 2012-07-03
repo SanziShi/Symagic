@@ -118,12 +118,13 @@ public class OrderListAction extends CatalogBase{
 		calender.add(Calendar.MONTH, amount);
 		Date start = calender.getTime();
 		//为了让修订后orderList工作
-		page = 0;
+		if(page == null || page == 0)
+			page = 1;
 		
-		OrderListResult result = orderService.orderList(username, ITEM_PER_PAGE, page, start, end, orderStatus);
+		OrderListResult result = orderService.orderList(username, ITEM_PER_PAGE, 1, start, end, orderStatus);
 		orderList = result.orders;
 		for(int i = 0; i < orderList.size(); i ++){
-			if(orderList.get(i).getOrderStatus() == "0")
+			if(orderList.get(i).getOrderStatus().equals("已下单"))
 				orderList.get(i).setEditable(true);
 			else {
 				orderList.get(i).setEditable(false);

@@ -85,6 +85,13 @@ public class UserInfoEnterAction extends CatalogBase{
 			totalScore = user.getScore();
 		}
 		orderList = orderService.orderList(userName, 10, 1, null, null, 0).orders;
+		for(int i = 0; i < orderList.size(); i ++){
+			if(orderList.get(i).getOrderStatus().equals("已下单"))
+				orderList.get(i).setEditable(true);
+			else {
+				orderList.get(i).setEditable(false);
+			}
+		}
 		return super.execute();
 	}
 }

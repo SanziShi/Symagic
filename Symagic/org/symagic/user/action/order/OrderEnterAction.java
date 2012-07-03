@@ -95,6 +95,8 @@ public class OrderEnterAction extends CatalogBase {
 		buyItems = new ArrayList<ItemTinyBean>();
 		for (int i = 0; i < items.size(); i++) {
 			Integer itemId = items.get(i).getItemID();
+			if(itemId == null)
+				continue;
 			BeanBook beanBook = daoBook.getDetail(itemId);
 			if (beanBook != null) {
 				ItemTinyBean itemTinyBean = new ItemTinyBean();

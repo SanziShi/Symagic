@@ -76,4 +76,11 @@ public class DaoCatalogTest extends TestCase{
 	public void testGetCatalogByID2(){
 		assertEquals(null,dc.getCatalogByID(123456));
 	}*/
+	
+	@Test
+	public void testDelete()
+	{
+		DaoCatalog	dc	= new DaoCatalog();
+		assertEquals(true, dc.deleteCatalog(2));
+	}
 }

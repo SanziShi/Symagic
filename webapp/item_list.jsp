@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/item.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
+<script type="text/javascript" src="js/item_list.js"></script>
 </head>
 <body>
 <div id="container">
@@ -90,9 +91,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <dl>
         <!--左边迭代--->
         <s:iterator value="catalog" var='outer'>
-        <div title="<s:property value='#outer.desc'/>" id="<s:property value='#outer.ID'/>"><dt ><s:property value='#outer.name'/></dt></div>
+        <div title="<s:property value='#outer.desc'/>" id="<s:property value='#outer.ID'/>">
+        	<dt onclick="click_left_b(<s:property value='#outer.ID'/>)" ><s:property value='#outer.name'/></dt>
+        </div>
         	<s:iterator value="#outer.childCatalog" var="inner">
-        	<div title="<s:property value='#inner.desc'/>" id="<s:property value='#inner.ID'/>"><dd><s:property value='#inner.name'/></dd></div>
+        	<div title="<s:property value='#inner.desc'/>" id="<s:property value='#inner.ID'/>">
+            	<dd onclick="click_left_b(<s:property value='#inner.ID'/>)"><s:property value='#inner.name'/></dd>
+            </div>
         	</s:iterator>
         </s:iterator>
         <!--左边迭代结束--->
@@ -140,11 +145,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             		<td>
 						<select name="publishTime" class="midselect">
               				<option value="0">不论时间</option>
-                            <option value="1">2012至今</option>
-             				<option value="2">2011~2012</option>
-              				<option value="3">2010~2011</option>
-              				<option value="4">2009~2010</option>
-			  				<option value="5">2009之前</option>
+                            <s:iterator value='searchDate' var='iter' status='st'>
+                            <option value="<s:property value="#st.index+1"/>"><s:property value='#iter'/></option>
+             				</s:iterator>
             			</select>
 					</td> 
           		 </tr>
@@ -164,7 +167,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             		<td>
 						<select name="edition" class="midselect">
               				<option value="0">全部版次</option>
-                            <s:iterator value='searchDate'>
              				<option value="1">第一版</option>
               				<option value="2">第二版</option>
               				<option value="3">第三版</option>

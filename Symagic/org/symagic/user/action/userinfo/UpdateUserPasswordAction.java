@@ -22,6 +22,8 @@ public class UpdateUserPasswordAction extends CatalogBase{
 	private Boolean updateResult;
 	
 	private DaoUser daoUser;
+	
+	private String resultInfo;
 
 	public String getUserName() {
 		return userName;
@@ -60,8 +62,24 @@ public class UpdateUserPasswordAction extends CatalogBase{
 	}
 	
 	public String execute() throws Exception{
-		if(newPassword.equals(newPasswordConfirm))
+		if(newPassword.equals(newPasswordConfirm)){
+			if(newPassword.getBytes().length < 6){
+				updateResult = false;
+				resultInfo = "密码过短";
+				return SUCCESS;
+			}
+			if(newPassword.getBytes().length > 20){
+				updateResult = false;
+				resultInfo = "密码过长";
+				return SUCCESS;
+			}
+			if(newPassword.trim().equals(password.trim())){
+				updateResult = false;
+				resultInfo = "与原密码相同";
+				return SUCCESS;
+			}
 			updateResult = daoUser.updatePassword(UserSessionUtilty.getUsername(), newPasswordConfirm, password);
+		}
 		else {
 			updateResult = false;
 		}
@@ -82,5 +100,13 @@ public class UpdateUserPasswordAction extends CatalogBase{
 
 	public void setDaoUser(DaoUser daoUser) {
 		this.daoUser = daoUser;
+	}
+
+	public String getResultInfo() {
+		return resultInfo;
+	}
+
+	public void setResultInfo(String resultInfo) {
+		this.resultInfo = resultInfo;
 	}
 }

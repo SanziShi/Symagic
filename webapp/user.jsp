@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<p><span><input type="button" onclick="nickname_c(this)" value="确定修改"/></span></p>
         	</div>
         </div>
-        <div id="4" class="user_note ">
+        <div id="4" class="user_note hide">
         <div class="head">我的订单</div>
         <div class="user_note_content">
         	<table id="myorder">
@@ -148,6 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<th>订单号</th>
 						<th>下单时间</th>
 						<th>订单金额</th>
+                        <th>订单状态</th>
 						<th>获得积分</th>
                         <th>操作</th>
 					</tr>
@@ -155,9 +156,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<tbody>
                 <!--订单迭代开始-->
                 <s:iterator value="orderList" var='iter'>
-				  <tr>
+				  <tr id="order_list<s:property value='#iter.orderID'/>">
             		<td>
-						<a href="order_info?orderID=<s:property value='#iter.orderID'/>"><s:property value='#iter.orderID'/></a>
+						<a href="order_detail?orderID=<s:property value='#iter.orderID'/>"><s:property value='#iter.orderID'/></a>
 					</td>
 					<td>
 						<s:property value='#iter.orderTime'/>
@@ -165,6 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td>
 						<s:property value='#iter.totalPrice'/>
 					</td>
+                    <td><s:property value='#iter.orderStatus'/></td>
 					<td><s:property value='#iter.score'/></td>
                     <td>
                     <s:if test="#iter.editable">
@@ -172,7 +174,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	<a href="javascript:void(0)" onclick="cancel_order(<s:property value='#iter.orderID'/>)">取消</a>
                     </s:if>
                     <s:else>
-                    	<a href="order_info?orderID=<s:property value='#iter.orderID'/>">查看订单</a>
+                    	<a href="order_detail?orderID=<s:property value='#iter.orderID'/>">查看订单</a>
                     </s:else>
                     </td>
           		  </tr>
