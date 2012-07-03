@@ -1,10 +1,12 @@
 // JavaScript Document
 
 //下拉日期选择
-function DateSelector(selYear, selMonth, selDay) {
+function DateSelector(selYear, selMonth, selDay, MinYear, MaxYear) {
 	this.selYear = selYear;
 	this.selMonth = selMonth;
 	this.selDay = selDay;
+	this.MaxYear = MaxYear;
+	this.MinYear = MinYear;
 	this.selYear.Group = this;
 	this.selMonth.Group = this;
 	// 给年份、月份下拉菜单添加处理onchange事件的函数
@@ -18,11 +20,11 @@ function DateSelector(selYear, selMonth, selDay) {
 		this.selMonth.addEventListener("change", DateSelector.Onchange, false);
 	}
 
-	if (arguments.length == 4) // 如果传入参数个数为4，最后一个参数必须为Date对象
-		this.InitSelector(arguments[3].getFullYear(),
-				arguments[3].getMonth() + 1, arguments[3].getDate());
-	else if (arguments.length == 6) // 如果传入参数个数为6，最后三个参数必须为初始的年月日数值
-		this.InitSelector(arguments[3], arguments[4], arguments[5]);
+	if (arguments.length == 6) // 如果传入参数个数为4，最后一个参数必须为Date对象
+		this.InitSelector(arguments[5].getFullYear(),
+				arguments[5].getMonth() + 1, arguments[5].getDate());
+	else if (arguments.length == 8) // 如果传入参数个数为6，最后三个参数必须为初始的年月日数值
+		this.InitSelector(arguments[5], arguments[6], arguments[7]);
 	else // 默认使用当前日期
 	{
 		var dt = new Date();
@@ -30,11 +32,6 @@ function DateSelector(selYear, selMonth, selDay) {
 	}
 }
 
-// 增加一个最小年份的属性
-DateSelector.prototype.MinYear = 2007;
-
-// 增加一个最大年份的属性
-DateSelector.prototype.MaxYear = (new Date()).getFullYear();
 
 // 初始化年份
 DateSelector.prototype.InitYearSelect = function() {
@@ -869,7 +866,7 @@ function ajax_batch_off(form) {
 }
 
 // 地址选择下拉相关
-function get_district(d) {
+function get_district(d, path) {
 	var va = d.value;
 	if (va == 's1') {
 		document.getElementById('level2ID').innerHTML = '<option value="s2">请选择</option>';
@@ -880,7 +877,7 @@ function get_district(d) {
 		return false;
 	} else {
 		Ajax({
-			url : 'address/get_next_level?ID=' + va,
+			url : path + '/address/get_next_level?ID=' + va,
 			onSuccess : function(e) {
 				var dis = JSON.parse(e);
 				var l = dis.length;

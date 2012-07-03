@@ -3,11 +3,6 @@ package org.symagic.admin.action.order;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
-
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanDistrict;
 import org.symagic.common.db.bean.BeanOrder;
@@ -18,6 +13,8 @@ import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.service.MailService;
 import org.symagic.common.service.OrderService;
 import org.symagic.common.service.OrderService.Address;
+import org.symagic.common.utilty.presentation.bean.DistrictBean;
+import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -37,7 +34,7 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 	private String zipcode;// :邮政编码；
 	private String phoneNumber;// ：电话号码；
 	private String mobileNumber;// :手机号码;
-	private String items;// :json_array(id:商品ID;value:商品数量）)
+	private List<ItemTinyBean> items;
 
 	private boolean validateResult;
 
@@ -60,17 +57,21 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 			return ERROR;
 		// 编码地址
 		OrderService.Address address = new Address();
+		address.level1District = new DistrictBean();
+
 		address.districtDetail = addressDetail;
 		address.level1District.setID(level1ID);
 		BeanDistrict district = daoDistrict.getDistrictById(level1ID);
 		address.level1District.setName(district.getName());
-		address.level2District.setID(level2ID);
 		if (level2ID != null) {
+			address.level2District = new DistrictBean();
+			address.level2District.setID(level2ID);
 			district = daoDistrict.getDistrictById(level2ID);
 			address.level2District.setName(district.getName());
 		}
-		address.level3District.setID(level3ID);
 		if (level3ID != null) {
+			address.level3District = new DistrictBean();
+			address.level3District.setID(level3ID);
 			district = daoDistrict.getDistrictById(level3ID);
 			address.level3District.setName(district.getName());
 		}
@@ -84,30 +85,25 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		List<BeanOrderDetail> itemList = new ArrayList<BeanOrderDetail>();
 
 		// 解析JSON数组
-		JSON json = JSONSerializer.toJSON(items);
-		if (json.isArray()) {
-			JSONArray array = (JSONArray) json;
-			for (int i = 0; i < array.size(); i++) {
-				JSONObject item = array.getJSONObject(i);
-				BeanBook book = daoBook.getDetail(item.getInt("id"));
-				if (book != null) {
-					BeanOrderDetail orderDetail = new BeanOrderDetail();
-					orderDetail.setAmount(item.getInt("number"));
-					orderDetail.setBookId(book.getBookId());
-					orderDetail.setBookName(book.getBookName());
-					orderDetail.setDiscount(book.getDiscount());
-					orderDetail.setIsbn(book.getIsbn());
-					orderDetail.setMarketPrice(book.getMarketPrice());
-					orderDetail.setOrderId(orderID);
-					itemList.add(orderDetail);
-				}
-
+		for (int i = 0; i < items.size(); i++) {
+			BeanBook book = daoBook.getDetail(items.get(i).getItemID());
+			if (book != null) {
+				BeanOrderDetail orderDetail = new BeanOrderDetail();
+				orderDetail.setAmount(items.get(i).getItemNumber());
+				orderDetail.setBookId(book.getBookId());
+				orderDetail.setBookName(book.getBookName());
+				orderDetail.setDiscount(book.getDiscount());
+				orderDetail.setIsbn(book.getIsbn());
+				orderDetail.setMarketPrice(book.getMarketPrice());
+				orderDetail.setOrderId(orderID);
+				itemList.add(orderDetail);
 			}
-			order.setList(itemList);
+
 		}
-		
+		order.setList(itemList);
+
 		daoOrder.updateOrder(order);
-		
+
 		MailService.sendOrder(order);
 
 		return super.execute();
@@ -116,11 +112,23 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 	@Override
 	public void validate() {
 
-		if (orderID == null || receiver == null || level1ID == null
-				|| addressDetail == null || zipcode == null
+		if (orderID == null || receiver == null || receiver.length() == 0
+				|| level1ID == null || addressDetail == null
+				|| addressDetail.length() == 0 || zipcode == null
 				|| (phoneNumber == null && mobileNumber == null)
 				|| items == null)
 			validateResult = false;
+		else {
+			if (phoneNumber == null || phoneNumber.length() == 0) {
+				if (mobileNumber == null || mobileNumber.length() == 0) {
+					validateResult = false;
+				} else {
+					validateResult = true;
+				}
+			} else {
+				validateResult = true;
+			}
+		}
 
 		super.validate();
 	}
@@ -197,14 +205,6 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public String getItems() {
-		return items;
-	}
-
-	public void setItems(String items) {
-		this.items = items;
-	}
-
 	public boolean isValidateResult() {
 		return validateResult;
 	}
@@ -235,6 +235,14 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 
 	public void setDaoBook(DaoBook daoBook) {
 		this.daoBook = daoBook;
+	}
+
+	public List<ItemTinyBean> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemTinyBean> items) {
+		this.items = items;
 	}
 
 }
