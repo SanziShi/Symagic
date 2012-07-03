@@ -131,7 +131,7 @@
 								<td class="itemsearchtd1"><select name="upID">
 										<option value="0" selected="selected">根目录</option>
 										<s:iterator value="catalog" var="outer">
-											<option value="<s:property value='#outer.id'/>">
+											<option value="<s:property value='#outer.ID'/>">
 												<s:property value="#outer.name" />
 											</option>
 										</s:iterator>
