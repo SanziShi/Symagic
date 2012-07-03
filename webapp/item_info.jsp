@@ -191,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		<span class="buyer_name"><s:property value='#iter.userName'/></span>
         		<span class="star"><span class="sa<s:property value='#iter.rating'/>"></span></span>
         		&nbsp;&nbsp;（<s:property value='#iter.rating'/>）分
-                <span class="date-comment"><s:property value='#iter.commentDate'/></span>
+                <span class="date-comment"><s:property value='#iter.date'/></span>
         		</div>
         		<div class="comment-content"><s:property value='#iter.content'/></div>
         	</div>

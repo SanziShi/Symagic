@@ -169,7 +169,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <s:else>
                         	<a href="<s:property value='actionURL'/>?page=1"><s:property value='totalPage'/></a>		
                         </s:else>
-                	
                 	<span id="dot">...</span>
                     <s:iterator begin="page-1" end="page+1"  status='st'>
                     	<s:if test="page==#st.index+1">

@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<form id="favorite_form">
         		<div id="favorite-content-head">
                 	<div class="column checkbox">
-                		<input class="" type="checkbox"/>
+                		<input checked="checked" c="2" type="checkbox" onclick="check_box_all_change(2,this)"/>
                 	</div>
                     <div class="column p-name">商品信息</div>
                     <div class="column p-price">商城价</div>
@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!--收藏夹商品迭代-->
                 <s:iterator value="items" var="iter" status='st' >
                 	<div class="cell checkbox">
-                		<input name="items[<s:property value='#st.index'/>].itemID" checked="checked" value="<s:property value='#iter.itemID'/>" type="checkbox" />
+                		<input c="2" name="items[<s:property value='#st.index'/>].itemID" checked="checked" value="<s:property value='#iter.itemID'/>" type="checkbox" />
                         <input style="display:none"  name="items[<s:property value='#st.index'/>].itemNumber" value="1" />
                 	</div>
                     <div class="cell p-name">
@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <!--收藏夹商品迭代-->
                 </div>   
                 <div id="favorite-content-bottom">
-                	<input type="checkbox" />全选&nbsp;&nbsp;
+                	<input type="checkbox" checked="checked" c="2" onclick="check_box_all_change(2,this)" />全选&nbsp;&nbsp;
                 	<span onclick="adds_to_cart('favorite_form')" class="fav-add-b"></span>
                     <a href="javascript:void(0)" onclick="delete_favorites()">取消收藏</a>
                 </div>

@@ -87,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div id="cart_table">
         		<div id="cart_table_head">
                 	<div class="column checkbox">
-                		<input checked="checked" type="checkbox"/>
+                		<input c="1" checked="checked" onclick="check_box_all_change(1,this)" type="checkbox"/>
                 	</div>
                     <div class="column p-name">商品信息</div>
                     <div class="column p-price">商城价</div>
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <s:iterator value="items" var='iter' status='st'>
                     <div class="each">
                     <div class="cell checkbox">
-                		<input checked="checked" name="items[<s:property value='#st.index'/>].itemID" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
+                		<input c="1" checked="checked" name="items[<s:property value='#st.index'/>].itemID" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-img">
@@ -120,6 +120,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <!--购物车迭代--end-->
             	</div>
             	<div id="cart_table_bottom">
+                <input c="1" checked="checked" onclick="check_box_all_change(1,this)" type="checkbox"/>
+                全选&nbsp;&nbsp;
                 <a href="javascript:void(0);" onclick="delete_form_cart('checkout')">删除选中的商品</a>
                 &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="add_to_favorite()">添加至收藏夹</a>
                 <div id="total-price">总计:<span id="final-price">￥<s:property value='totalPrice'/></span></div>

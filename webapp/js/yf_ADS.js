@@ -162,7 +162,8 @@ function forget(f)
 			if(r.submitResult)
 			{
 				alert('密码已发至您邮箱，请注意查收')
-				location.replace(location.href);
+				location.href='';
+				//location.replace(location.href);
 			}
 			else alert('邮箱不存在或安全问题错误！！')
 		}
@@ -175,15 +176,19 @@ function load_login()
 	if(window.event)stopDefault();
 	var l=document.createElement('div');
 	l.id='login_float';
-	showOverlay();
-	Ajax({
-		url:GLOBAL.lib+'login.html',
-		type:'GET',
-		onSuccess:function(e){
-			l.innerHTML=e;
-			document.body.appendChild(l);
-			$(l).fadeIn('fast');
-			}
+	get_session({S:function(j){
+		Ajax({
+			url:GLOBAL.lib+'login.html',
+			type:'GET',
+			onSuccess:function(e){
+				l.innerHTML=e;
+				document.body.appendChild(l);
+				showOverlay();
+				$(l).fadeIn('fast');
+				if(j.loginErrorTimes>=3)document.getElementById('login_error_captcha').style.display='table-row';
+				}
+			})
+		}
 	})
 }
 /******异步调用注册框*****/
@@ -221,9 +226,12 @@ function login(form)
 				var a=JSON.parse(e);
 				if(a.loginResult)location.replace(location.href);
 				else 
-				{
-					document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
+				{	
+					try{
+						document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
+					}catch(err){};
 					alert(a.resultInfo);
+					return ture;
 				}
 				},
 		onError:function(){}
@@ -321,6 +329,18 @@ function show_item_search(e)
 	{
 		e.className='collapse';
 		$('#item_search1').slideUp(70);
+	}
+}
+function check_box_all_change(c,e)
+{
+	alert('test');
+	var inputs = document.getElementsByTagName("input");
+	for(var i in inputs)
+	{
+  		if(inputs[i].type=='checkbox')
+		{
+			if(inputs[i].getAttribute('c')==c)inputs[i].checked=e.checked
+		}
 	}
 }
 get_session=function(o)
