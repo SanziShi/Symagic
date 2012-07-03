@@ -227,6 +227,8 @@
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="searchYearRange" value="5"></property>
 	</bean>
+	
+	<bean class="org.symagic.admin.action.login.AdminLogoutAction"></bean>
 
 	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
@@ -465,6 +467,7 @@
 	<bean id="checkScore" class="org.symagic.user.action.order.OrderCheckScoreAction"
 		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="orderAddAddress" class="org.symagic.user.action.order.OrderAddAddressAction"
