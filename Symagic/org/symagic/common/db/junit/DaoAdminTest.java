@@ -11,13 +11,19 @@ public class DaoAdminTest extends TestCase{
 	//初始化
 	DaoAdmin da	= new DaoAdmin();
 	
-	@Test
-	public void testValidateAdmin(){
-		assertEquals(true,da.validateAdmin("sanzi", "123456"));
-	}
+//	@Test
+//	public void testValidateAdmin(){
+//		assertEquals(true,da.validateAdmin("sanzi", "123456"));
+//	}
 //	@Test
 //	public void testValidateAdmin2(){
 //		assertEquals(false,da.validateAdmin("shi", "234556"));
 //	}
+	
+	@Test
+	public void testModifyPassword()
+	{
+		assertEquals(true, da.updatePasswrod("admin", "123456", "12345"));
+	}
 
 }
