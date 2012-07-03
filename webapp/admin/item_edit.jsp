@@ -23,14 +23,22 @@
 		</div>
 		<div id="globallink">
 			<ul>
-				<li><a href="index">首页</a></li>
-				<li><a href="catalog_manager">目录管理</a></li>
-				<li><a href="item_manager">商品管理</a></li>
-				<li><a href="order_list">订单管理</a></li>
-				<li><a href="order_statistics">销售量统计</a></li>
-				<li><a href="user_level">会员管理</a></li>
-				<li><a href="" class="nouseful">&nbsp;</a></li>
-                <li><a href="" class="nouseful">&nbsp;</a></li>
+				<li><a href="index">首页</a>
+				</li>
+				<li><a href="catalog_manager">目录管理</a>
+				</li>
+				<li><a href="item_manager">商品管理</a>
+				</li>
+				<li><a href="order_list">订单管理</a>
+				</li>
+				<li><a href="order_statistics">销售量统计</a>
+				</li>
+				<li><a href="user_level">会员管理</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
 			</ul>
 		</div>
 		<!--	<div id="banner"></div>-->
@@ -47,44 +55,52 @@
 					<strong>编辑商品</strong>
 				</div>
 				<div id="sendnotecontent">
-					<form action="item_modify_submit" method="post" enctype="multipart/form-data">
+					<form action="item_modify_submit" method="post"
+						enctype="multipart/form-data">
 						<table id="tradequery">
 							<tr>
 								<th width="181" id="tr_align">图书名称：</th>
 
 								<td width="390"><input type="text" class="inputttextlarge"
 									name="name" value="<s:property value='book.bookName'/>"
-									onfocus="nextfield='name'" /></td>
+									onfocus="nextfield='name'" />
+								</td>
 
-								<td width="211"><span class="red">*必填项</span></td>
+								<td width="211"><span class="red">*必填项</span>
+								</td>
 							</tr>
 							<tr>
 								<th id="tr_align">商品描述：</th>
 								<td><textarea name="description" class="textAreaStyle">
 										<s:property value="book.bookDesc" />
-									</textarea></td>
+									</textarea>
+								</td>
 								<td></td>
 							</tr>
 							<tr>
-								<th id="tr_align"><span class="inputHeader">商品图片：</span></th>
+								<th id="tr_align"><span class="inputHeader">商品图片：</span>
+								</th>
 								<td><img id="img_format"
 									src="<s:property value="#request.get('javax.servlet.forward.context_path')"/><s:property value='book.picturePath'/>" />
-									<input type="file" name="picture" />
-								</td>
+									<input type="file" name="picture" /></td>
 								<td></td>
 							</tr>
 							<tr>
 								<th id="tr_align">作者：</th>
 								<td><input type="text" name="author"
-									value="<s:property value='book.author'/>" /></td>
-								<td><span class="red">*必填项</span></td>
+									value="<s:property value='book.author'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
 							</tr>
 
 							<tr>
 								<th id="tr_align">出版社：</th>
 								<td><input type="text" name="publisher"
-									value="<s:property value='book.publisher'/>" /></td>
-								<td><span class="red">*必填项</span></td>
+									value="<s:property value='book.publisher'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
 							</tr>
 
 
@@ -137,35 +153,62 @@
 									var defaultDay = <s:property value="book.parseTime.day" />;
 									var dt = new Date(defaultYear,
 											defaultMonth, defaultDay);
-									new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>, dt);
+									new DateSelector(
+											selYear,
+											selMonth,
+											selDay,
+											<s:property value="searchStartYear"/>,
+											<s:property value="searchEndYear"/>,
+											dt);
 								</script>
 								<td>#选填项</td>
 							</tr>
 							<tr>
 								<th id="tr_align">ISBN：</th>
 								<td><input type="text" name="ISBN"
-									value="<s:property value='book.isbn'/>" /></td>
-								<td><span class="red">*必填项</span></td>
+									value="<s:property value='book.isbn'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
 							</tr>
 							<tr>
 								<th id="tr_align">页数：</th>
 								<td><input type="text" name="page" class="smallinputext"
-									value="<s:property value='book.page'/>" /></td>
+									value="<s:property value='book.page'/>" />
+								</td>
 								<td>#选填项</td>
 
 							</tr>
 							<tr>
 								<th id="tr_align">版次：</th>
 								<td><input type="text" name="edition" class="smallinputext"
-									value="<s:property value='book.version'/>" /></td>
+									value="<s:property value='book.version'/>" />
+								</td>
 								<td>#选填项</td>
 
 							</tr>
 							<tr>
 								<th id="tr_align">开本：</th>
-								<td><input type="text" name="size" class="smallinputext"
-									value="<s:property value='book.size'/>" />
-								</td>
+								<td><select name="size">
+										<s:if test="%{book.size==8}">
+											<option value="8" selected="selected">8开</option>
+										</s:if>
+										<s:else>
+											<option value="8">8开</option>
+										</s:else>
+										<s:if test="%{book.size==16}">
+											<option value="16" selected="selected">16开</option>
+										</s:if>
+										<s:else>
+											<option value="16">16开</option>
+										</s:else>
+										<s:if test="%{book.size==32}">
+											<option value="32" selected="selected">32开</option>
+										</s:if>
+										<s:else>
+											<option value="32">32开</option>
+										</s:else>
+								</select></td>
 								<td>#选填项</td>
 							</tr>
 							<tr>
@@ -180,8 +223,10 @@
 										<s:else>
 											<option>精装</option>
 										</s:else>
-								</select></td>
-								<td><span class="red">*必填项</span></td>
+								</select>
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
 							</tr>
 							<tr>
 								<th id="tr_align">分类标签：</th>
@@ -206,30 +251,35 @@
 												</s:else>
 											</s:iterator>
 										</s:iterator>
-								</select>
-								</td>
+								</select></td>
 								<td>#选填项</td>
 							</tr>
 							<tr>
 								<th id="tr_align">市场价：</th>
 								<td><input type="text" name="marketPrice"
 									class="smallinputext"
-									value="<s:property value='book.marketPrice'/>" /></td>
-								<td><span class="red">*必填项</span></td>
+									value="<s:property value='book.marketPrice'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
 							</tr>
 							<tr>
 								<th id="tr_align">折扣：</th>
 								<td><input type="text" name="discount"
 									class="smallinputext"
-									value="<s:property value='book.discout'/>" /></td>
-								<td><span class="red">*必填项</span></td>
+									value="<s:property value='book.discout'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
 							</tr>
 							<tr>
 								<th id="tr_align">库存量：</th>
 								<td><input type="text" name="inventory"
 									class="smallinputext"
-									value="<s:property value='book.inventory'/>" /></td>
-								<td><span class="red">*必填项</span></td>
+									value="<s:property value='book.inventory'/>" />
+								</td>
+								<td><span class="red">*必填项</span>
+								</td>
 							</tr>
 
 							<tr>
@@ -237,10 +287,10 @@
 								<td><input type="submit" name="button2" value="提交修改"
 									onclick="checkitemform()" /> <input type="button"
 									name="button22" value="返回"
-									onclick="javascript:window.location.href='item_list.jsp'" />
-								</td>
+									onclick="javascript:window.location.href='item_list.jsp'" /></td>
 								<td><input type="hidden" name="itemID"
-									value="<s:property value="itemID"/>" /></td>
+									value="<s:property value="itemID"/>" />
+								</td>
 							</tr>
 						</table>
 					</form>

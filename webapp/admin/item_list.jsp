@@ -598,8 +598,11 @@ new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/
 							</tr>
 							<tr>
 								<th>页数：</th>
-								<td><input type="text" name="page" class="smallinputtext"
-									value="" />
+								<td><select name="size">
+								<option value="8">8开</option>
+								<option value="16">16开</option>
+								<option value="32">32开</option>
+								</select>
 								</td>
 								<td>#选填项</td>
 							</tr>
