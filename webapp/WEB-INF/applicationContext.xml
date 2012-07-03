@@ -70,7 +70,7 @@
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="errorHeader" value="对应商品不存在"></property>
-		<property name="errorSpecification" value="您所请求的商品不存在"></property>
+		<property name="errorSpecification" value="您所请求的商品不存在，请返回检查"></property>
 		<property name="searchYearRange" value="5"></property>
 	</bean>
 
@@ -78,8 +78,8 @@
 		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="upload"></property>
-		<property name="errorHeader" value="对应商品不存在"></property>
-		<property name="errorSpecification" value="您所请求的商品不存在"></property>
+		<property name="errorHeader" value="输入信息有误"></property>
+		<property name="errorSpecification" value="输入信息有误，请返回检查"></property>
 	</bean>
 
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction"
@@ -461,6 +461,20 @@
 
 	<bean id="orderDelete" class="org.symagic.user.action.order.OrderDeleteOrderAction"
 		scope="request">
+		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
+	
+	<bean id="orderEdit" class="org.symagic.user.action.order.OrderEditOrderAction"
+		scope="request">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="addressService" ref="AddressService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+	
+	<bean id="orderEditSubmit" class="org.symagic.user.action.order.OrderEditOrderSubmitAction"
+		scope="request">
+		<property name="catalogService" ref="CatalogService"></property>
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 

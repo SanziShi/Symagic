@@ -137,7 +137,7 @@
 									var defaultDay = <s:property value="book.parseTime.day" />;
 									var dt = new Date(defaultYear,
 											defaultMonth, defaultDay);
-									new DateSelector(selYear, selYear ,selYear, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>, dt);
+									new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>, dt);
 								</script>
 								<td>#选填项</td>
 							</tr>
