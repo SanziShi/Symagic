@@ -68,6 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">
+            	<input style="display:none" name="page" value="1">
 			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>

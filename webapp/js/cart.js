@@ -9,15 +9,6 @@ function checkout()
 	a.submit();
 	//var q=$(a).serialize();
 }
-/*****从cart页面删除商品
-function delete_from_page(id)
-{
-	Ajax({
-		url:'cart/delete?items='+id,
-		onSuccess:function(e){var a=JSON.parse(e);if(a.deleteResult)location.reload()}
-		})
-}
-*******/
 function delete_form_cart(f)
 {
 	var request='';
@@ -67,6 +58,93 @@ function add_to_favorite()
 			}
 		})
 }
+/******点击购物车页面+按钮函数******/
+function add(id)
+{
+	var num=document.getElementById('cart_num');
+	var a=document.getElementById(id+'amount');
+	var u='cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber=1';
+	Ajax({
+		url:u,
+		onSuccess:function(r)
+			{
+				var d=JSON.parse(r);
+				if(d.addResult)
+				{
+					a.value++;
+					a.setAttribute('default',a.value);
+					get_session({S:function(s)
+						{
+							num.innerHTML=s.totalNumber
+						}
+					});
+				}
+				else alert('商品数量修改失败！')
+			}
+			
+		})
+}
+/******点击购物车页面-按钮函数******/
+function reduce(id)
+{
+	var num=document.getElementById('cart_num');
+	var a=document.getElementById(id+'amount');
+	var u='cart/update?itemID='+id+'&itemNumber='+(a.value-1);
+	Ajax({
+		url:u,
+		onSuccess:function(r)
+			{
+				var d=JSON.parse(r);
+				if(d.updateResult)
+				{
+					a.value--;
+					a.setAttribute('default',a.value);
+					get_session({S:function(s)
+						{
+							num.innerHTML=s.totalNumber
+						}
+					});
+				}
+				else alert('商品数量修改失败！')
+			}
+			
+		})
+}
+function check_item_num(id,e)
+{
+	if(e.value==0)
+	{
+		if(confirm('确认将该商品从购物车中删除？'))
+		{
+			delete_from_cart(id,'p');
+		}
+		else e.value=e.getAttribute('default');
+	}
+	else
+	{
+		var u='cart/update?itemID='+id+'&itemNumber='+e.value;
+		Ajax({
+		url:u,
+		onSuccess:function(r)
+			{
+				var d=JSON.parse(r);
+				if(d.updateResult)
+				{
+					a.setAttribute('default',a.value);
+					get_session({S:function(s)
+						{
+							num.innerHTML=s.totalNumber
+						}
+					});
+				}
+				else alert('商品数量修改失败！')
+			}
+			
+		})
+	}
+}
+
+
 
 
 

@@ -64,6 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				网站路径：<a href="index">首页</a>&gt;&gt;<a href="#">购物车</a>			</div>
 			<form action="quick_search" >
 			<div id="searchright2">
+            	<input style="display:none" name="page" value="1">
 			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
@@ -108,11 +109,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                       <div class="p-name-de"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a></div>
                     </div>
-                    <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.marketPrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
-                    <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
-        				<input name="items[<s:property value='#st.index'/>].itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>" id="<s:property value='#iter.itemID'/>amount" onkeyup="amount_modify(this)">
-        				<a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
-        				</span></div>
+                    <div class="cell p-price p-price-p">
+                    	<del>￥<span><s:property value='#iter.marketPrice'/></span></del>
+                        <br>￥<span><s:property value='#iter.price'/></span>
+                        <br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font>
+                    </div>
+                    <div class="cell quantity">
+                    	<span>
+                        	<a class="reduce" onclick="reduce(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">-</a>
+        					<input default="<s:property value='#iter.itemNumber'/>" onblur="check_item_num(<s:property value='#iter.itemID'/>,this)" name="items[<s:property value='#st.index'/>].itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>" id="<s:property value='#iter.itemID'/>amount" onkeyup="amount_modify(this)">
+        					<a class="reduce" onclick="add(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">+</a>
+        				</span>
+                    </div>
          			<div class="cell total">￥<span id="<s:property value='#iter.itemID'/>total_price"><s:property value='#iter.itemTotalPrice'/></span></div>
                     <div class="cell action"><a onclick="add_to_favorite(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="delete_from_cart(<s:property value='#iter.itemID'/>,'p')">删除</a></div>
                     </div>

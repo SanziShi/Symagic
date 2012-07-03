@@ -211,6 +211,7 @@ function address_edit_submit(f,id)
 }
 function cancel_order(id)
 {
+	if(!confirm('确认取消该订单？'))return false;
 	var getid='#order_list'+id;
 	Ajax({
 		url:'order/cancel_order?orderID='+id,
@@ -219,7 +220,7 @@ function cancel_order(id)
 				var a=JSON.parse(e);
 				if(a.cancelResult)
 				{
-					alert('删除成功！');
+					alert('订单已取消！');
 					$(getid).fadeOut(300);
 				}
 				else alert(a.resultInfo);

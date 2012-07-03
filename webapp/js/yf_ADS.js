@@ -11,9 +11,10 @@ function test(e)
 	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 	
 }
-function forget_submit()
+function quick_search(id,url)
 {
-	
+	write_cookie('left_banner_list',id);
+	location.href=url;
 }
 /****检查用户是否注册****/
 is_login=function(o)
@@ -45,10 +46,18 @@ function add_to_cart(id)
 		url:u,
 		//data:'itemID='+id+'&itemNumber='+amount,
 		onSuccess:function(e){
-			var r=JSON.parse(e);
-			if(r.addResult)if(confirm('商品添加成功，是否进入购物车结算？')){location.href='cart';}
-			else get_session({S:function(s){num.innerHTML=s.totalNumber}});
-			//Ajax({url:'get_session_info',onSuccess:function(q){var res=JSON.parse(q);cart_num.innerHTML=res.totalNumber}})
+				var r=JSON.parse(e);
+				if(r.addResult)
+				{
+					get_session({S:function(s)
+						{
+							num.innerHTML=s.totalNumber
+						}
+					});
+					alert('商品添加成功,可在购物车中查看详情');
+				}
+				else
+				alert(r.resultInfo);				
 			}
 		})
 }
@@ -64,7 +73,7 @@ function adds_to_cart(form_id)
 		onSuccess:function(e)
 			{
 				var a=JSON.parse(e);
-				if(a.addResult)alert('添加成功');
+				if(a.addResult)alert('添加成功！可在购物车中查看详情');
 				get_session({S:function(s){num.innerHTML=s.totalNumber}});
 			}
 		})
@@ -80,7 +89,10 @@ function delete_from_cart(id,p)
 			var result=JSON.parse(e);
 			if(result.deleteResult)
 			{
-				if(p=='p'){location.reload();return false;}
+				if(p=='p'){
+					location.reload();
+					return false;
+					}
 				get_session({S:function(l)
 					{
 						document.getElementById('cart_num').innerHTML=l.totalNumber;
@@ -101,8 +113,10 @@ function delete_from_cart(id,p)
 						}
 					}
 				});
-				//var r=document.getElementById("ct"+id);
-				//r.parentNode.removeChild(r);
+			}
+			else
+			{
+				alert(result.resultInfo);
 			}
 		}
 	})
@@ -114,7 +128,7 @@ function add_to_favorite(id)
 		url:'favorite/add_favorite?items='+id,
 		onSuccess:function(e){
 			var t=JSON.parse(e);
-			if(t.addResult)alert('添加成功！');
+			if(t.addResult)alert('收藏成功！');
 			else alert(t.resultInfo);
 			}
 		})
