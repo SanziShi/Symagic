@@ -25,24 +25,30 @@
 		</div>
 		<div id="globallink">
 			<ul>
-				<li><a href="index">首页</a></li>
-				<li><a href="catalog_manager">目录管理</a></li>
-				<li><a href="item_manager">商品管理</a></li>
-				<li><a href="order_list">订单管理</a></li>
-				<li><a href="order_statistics">销售量统计</a></li>
-				<li><a href="user_level">会员管理</a></li>
-				<li><a href="" class="nouseful">&nbsp;</a></li>
-                <li><a href="" class="nouseful">&nbsp;</a></li>
+				<li><a href="index">首页</a>
+				</li>
+				<li><a href="catalog_manager">目录管理</a>
+				</li>
+				<li><a href="item_manager">商品管理</a>
+				</li>
+				<li><a href="order_list">订单管理</a>
+				</li>
+				<li><a href="order_statistics">销售量统计</a>
+				</li>
+				<li><a href="user_level">会员管理</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
 			</ul>
 		</div>
 
 		<div id="left_user_admin">
 			<div id="admin_user_left">
 				<ul>
-					<li><a href="user_list">查询会员</a>
-					</li>
-					<li><a href="user_level">设置会员等级规定</a>
-					</li>
+					<li><a href="user_list">查询会员</a></li>
+					<li><a href="user_level">设置会员等级规定</a></li>
 				</ul>
 			</div>
 		</div>
@@ -94,11 +100,9 @@
 								<td align="center" class="inputHeader"><s:property
 										value="#levelInfo.levelName" />&nbsp;&nbsp;</td>
 								<td align="center" class="inputContent"><s:property
-										value="#levelInfo.low" />
-								</td>
+										value="#levelInfo.low" /></td>
 								<td align="center" class="inputContent"><s:property
-										value="#levelInfo.scoreRate" />
-								</td>
+										value="#levelInfo.scoreRate" /></td>
 								<td align="center" class="inputContent">&nbsp;</td>
 							</tr>
 						</s:iterator>
@@ -126,23 +130,20 @@
 											</option>
 										</s:iterator>
 										<!--会员等级迭代结束-->
-								</select>
-								</td>
+								</select></td>
 								<td colspan="2" align="center" class="inputContent"><font
-									color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</font>
-								</td>
+									color="#CC0000">&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;</font></td>
 								<td width="8%" align="center" class="inputContent">&nbsp;</td>
 							</tr>
 							<tr>
-								<td class="inputHeader"><label></label>
-								</td>
+								<td class="inputHeader"><label></label></td>
 								<td align="center" class="inputHeader">积分下限：</td>
 								<td align="left" class="inputContent"><input type="text"
 									class="inputtext" name="low" onfocus="nextfield='credit'"
-									maxlength="25" /></td>
-								<td colspan="2" align="left" class="inputContent"><font
-									color="#CC0000">当积分大于相应等级的积分下限时，会员将自动升级</font>
+									maxlength="25" />
 								</td>
+								<td colspan="2" align="left" class="inputContent"><font
+									color="#CC0000">当积分大于相应等级的积分下限时，会员将自动升级</font></td>
 								<td align="center" class="inputContent">&nbsp;</td>
 							</tr>
 							<tr>
@@ -151,17 +152,15 @@
 								<td align="left" class="inputContent"><input type="text"
 									size="6" name="scoreRate" onfocus="nextfield='ratio'" /> %</td>
 								<td colspan="2" align="left" class="inputContent"><font
-									color="#CC0000">会员购买物品时获得的积分占购买金额的比例</font>
-								</td>
+									color="#CC0000">会员购买物品时获得的积分占购买金额的比例</font></td>
 								<td align="center" class="inputContent">&nbsp;</td>
 							</tr>
 							<tr>
 								<td colspan="2" class="inputHeader">&nbsp;</td>
 								<td colspan="3" align="left" class="inputContent"><input
 									type="submit" class="bt2" name="button22" value="提交"
-									onclick="checkusersetform()" />&nbsp; &nbsp;<input type="reset"
-									class="bt2" name="button12" value="重填" />
-								</td>
+									onclick="checkusersetform()" />&nbsp; &nbsp;<input
+									type="reset" class="bt2" name="button12" value="重填" /></td>
 								<td align="center" class="inputContent">&nbsp;</td>
 							</tr>
 
@@ -175,12 +174,12 @@
 
 
 
-	</div>
-	<div id="footer">
-		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
-			电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
-			Power by Symagic &nbsp;</span>
-	</div>
+
+		<div id="footer">
+			<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
+				电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
+				Power by Symagic &nbsp;</span>
+		</div>
 	</div>
 </body>
 </html>

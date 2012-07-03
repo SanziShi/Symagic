@@ -596,6 +596,29 @@ function ajax_delete_tag(id) {
 
 }
 
+//删除评论
+function ajax_delete_comment(username,itemid){
+	var result = confirm("确定删除该评论？");
+	if (result == true) {
+		Ajax({
+			url : 'comment/delete?userName=' + username + '&itemID=' + itemid,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function(e) {
+				var obj = JSON.parse(e);
+				if (obj.deleteResult == true) {
+					var tag = document.getElementById(username);
+					tag.parentNode.removeChild(tag);
+					alert("删除评论成功！");
+				} else
+					alert("删除评论出错，请返回重新尝试！");
+			}
+		});
+	}
+
+}
+
 // 商品操作
 function ajax_item_operation(e, id) {
 
@@ -901,4 +924,16 @@ function get_district(d, path) {
 }
 function select_address(e) {
 	e.parentNode.className += ' selected';
+}
+
+//管理员密码重置提交
+function pass_submit()
+{
+	var a=document.getElementById('pass_before').value;
+	var b=document.getElementById('pass_new').value;
+	var c=document.getElementById('pass_confirm').value;
+	Ajax({
+		url:'admin/update_password?password='+a+'&newPassword='+b+'&newPasswordConfirm='+c,
+		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');location.reload();}
+		})
 }
