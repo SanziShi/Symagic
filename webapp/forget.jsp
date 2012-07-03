@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <tr>
 					<td class="itemsearchtd2"></td>
                  <td>
-					<input  align="middle" type="Button" name="button2" value="提交" onClick="checkpwdform()">
+					<input  align="middle"  type="submit" name="button2" value="提交" >
 						&nbsp;<input align="middle" type="Reset" name="button1" value="重填" onClick="clear()">
 						&nbsp;
                         </td>

@@ -11,7 +11,10 @@ function test(e)
 	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 	
 }
-
+function forget_submit()
+{
+	
+}
 /****检查用户是否注册****/
 is_login=function(o)
 {
