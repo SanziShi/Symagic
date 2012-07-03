@@ -61,7 +61,7 @@ public class CatalogEditSubmitAction extends ActionSupport {
 
 	@Override
 	public void validate() {
-		if( catalogID == null || catalogName == null || catalogDesc == null || upID == null || upID == catalogID ){
+		if( catalogID == null || catalogName == null || catalogName.length() == 0 || catalogDesc == null || catalogDesc.length() == 0 ||  upID == null || upID == catalogID ){
 			validateResult = false;
 		}
 		else{

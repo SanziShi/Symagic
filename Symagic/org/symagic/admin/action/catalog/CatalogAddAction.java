@@ -50,7 +50,7 @@ public class CatalogAddAction extends ActionSupport {
 
 	@Override
 	public void validate() {
-		if (catalogName == null || catalogDesc == null || upID == null)
+		if (catalogName == null || catalogName.length() == 0 || catalogDesc == null || catalogDesc.length() == 0 || upID == null)
 			validateResult = false;
 		else
 			validateResult = true;
