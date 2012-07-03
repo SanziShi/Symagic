@@ -56,6 +56,8 @@ public class OrderBean {
 	
 	private String userName;
 	
+	private Boolean editable;
+	
 
 	public String getOrderStatus() {
 		return orderStatus;
@@ -98,5 +100,11 @@ public class OrderBean {
 	}
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
+	}
+	public Boolean getEditable() {
+		return editable;
+	}
+	public void setEditable(Boolean editable) {
+		this.editable = editable;
 	}
 }

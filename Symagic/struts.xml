@@ -155,10 +155,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="address" class="addressList">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>/lib/address.jsp</result>
 		</action>
 
 		<action name="order" class="orderEnter">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>order_confirm.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
@@ -169,11 +171,13 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="order_detail" class="orderDetail">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>order_info.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 
 		<action name="order_submit" class="orderSubmit">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>ok.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
@@ -181,6 +185,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="get_address_detail" class="addressDetail">
 			<result>/lib/address_detail.jsp</result>
 		</action>
+		
+		<action name="order_edit" class="orderEdit">
+			<result>order_edit.jsp</result>
+		</action>
+		
 	</package>
 
 	<!-- 注册时用户名检测 -->
@@ -305,12 +314,17 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="check_score" class="checkScore">
 			<result type="json">
-				<param name="includeProperties">checkResult,score</param>
+				<param name="includeProperties">checkResult,price,resultInfo</param>
 			</result>
 		</action>
 		<action name="add_address" class="addAddress">
 			<result type="json">
 				<param name="include Properties">addResult</param>
+			</result>
+		</action>
+		<action name="edit_order_submit" class="orderEditSubmit">
+			<result type="json">
+				<param name="includeProperties">submitResult,resultInfo</param>
 			</result>
 		</action>
 	</package>
