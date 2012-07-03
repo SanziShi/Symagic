@@ -227,6 +227,8 @@
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="searchYearRange" value="5"></property>
 	</bean>
+	
+	<bean class="org.symagic.admin.action.login.AdminLogoutAction"></bean>
 
 	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
