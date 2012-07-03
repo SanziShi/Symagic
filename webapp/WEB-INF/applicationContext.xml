@@ -228,7 +228,7 @@
 		<property name="searchYearRange" value="5"></property>
 	</bean>
 	
-	<bean class="org.symagic.admin.action.login.AdminLogoutAction"></bean>
+	<bean name="AdminLogout" class="org.symagic.admin.action.login.AdminLogoutAction"></bean>
 
 	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
@@ -464,19 +464,19 @@
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 	
-	<bean id="orderEdit" class="org.symagic.user.action.order.OrderEditOrderAction"
+	<!--  <bean id="orderEdit" class="org.symagic.user.action.order.OrderEditOrderAction"
 		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="daoOrder" ref="DaoOrder"></property>
 		<property name="addressService" ref="AddressService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
-	</bean>
+	</bean>-->
 	
-	<bean id="orderEditSubmit" class="org.symagic.user.action.order.OrderEditOrderSubmitAction"
+	<!--  <bean id="orderEditSubmit" class="org.symagic.user.action.order.OrderEditOrderSubmitAction"
 		scope="request">
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="daoOrder" ref="DaoOrder"></property>
-	</bean>
+	</bean> -->
 
 	<bean id="checkScore" class="org.symagic.user.action.order.OrderCheckScoreAction"
 		scope="request">
