@@ -171,6 +171,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="order_list" class="orderList">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>order_list.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
@@ -189,10 +190,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="get_address_detail" class="addressDetail">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>/lib/address_detail.jsp</result>
 		</action>
 		
 		<action name="order_edit" class="orderEdit">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>order_edit.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
@@ -276,13 +279,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="info-user-default" extends="symagic-user-default"
 		namespace="/user">
 		<action name="update_password" class="updatePassword">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
-				<param name="includeProperties">updateResult</param>
+				<param name="includeProperties">updateResult,resultInfo</param>
 			</result>
 		</action>
 		<action name="update_nickname" class="updateNickname">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
-				<param name="includeProperties">updateResult</param>
+				<param name="includeProperties">updateResult,resultInfo</param>
 			</result>
 		</action>
 	</package>
@@ -291,21 +296,25 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="address-user-default" extends="symagic-user-default"
 		namespace="/address">
 		<action name="submit_address" class="addAddress">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">submitResult, resultInfo</param>
 			</result>
 		</action>
 		<action name="get_next_level" class="getNextLevel">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="root">nextLevelArray</param>
 			</result>
 		</action>
 		<action name="delete_address" class="deleteAddress">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeproperties">deleteResult, resultInfo</param>
 			</result>
 		</action>
 		<action name="address_edit_submit" class="editAddress">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">submitResult, resultInfo</param>
 			</result>
@@ -315,26 +324,31 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="order-user-default" extends="symagic-user-default"
 		namespace="/order">
 		<action name="delete_order" class="deleteOrder">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">deleteResult</param>
 			</result>
 		</action>
 		<action name="check_score" class="checkScore">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">checkResult,price,resultInfo</param>
 			</result>
 		</action>
 		<action name="add_address" class="addAddress">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="include Properties">addResult</param>
 			</result>
 		</action>
 		<action name="order_edit_submit" class="orderEditSubmit">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">submitResult,resultInfo</param>
 			</result>
 		</action>
 		<action name="cancel_order" class="cancelOrder">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">cancelResult,resultInfo</param>
 			</result>

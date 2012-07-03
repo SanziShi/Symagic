@@ -97,29 +97,55 @@ public class AddressSubmitAction extends AddressBase {
 
 	public void validate() {
 		isValidate = true;
+		clearErrorsAndMessages();
+		if(getDistrictLevel1ID() == null || 
+				getDistrictLevel2ID() == null || 
+				getDistrictLevel2ID() == null){
+			isValidate = false;
+			submitResult = false;
+			resultInfo = "地址为空";
+			return;
+		}
 		if (getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
 				|| getDistrictLevel3ID() == null || getAddressDetail() == null
 				|| getReceiverName() == null || getMobileNum() == null
 				|| getPhoneNum() == null) {
 			isValidate = false;
-			isValidate = false;
-			resultInfo = "用户名为空";
-		}
-
-		if (!getMobileNum().matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")) {
 			submitResult = false;
-			resultInfo = "手机号码错误";
+			resultInfo = "用户名为空";
 			return;
 		}
-		if (!getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")) {
-			isValidate = false;
-			submitResult = false;
-			resultInfo = "电话号码错误";
+		
+		if(getMobileNum() == null || getMobileNum().isEmpty() ||
+				!getMobileNum().matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")){
+			if(getPhoneNum() == null || getPhoneNum().isEmpty()
+					|| !getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")){
+				submitResult = false;
+				resultInfo = "请输入正确的手机号或电话号码";
+				isValidate = false;
+				return;
+			}
 		}
+		
 		if (!getZipcode().matches("^[1-9]\\d{5}")) {
 			isValidate = false;
 			submitResult = false;
 			resultInfo = "邮编错误";
+			return;
+		}
+		
+		if(getAddressDetail() == null || getAddressDetail().isEmpty()){
+			isValidate = false;
+			submitResult = false;
+			resultInfo = "填写地址详情";
+			return;
+		}
+		
+		if(getReceiverName() == null || getReceiverName().isEmpty()){
+			isValidate = false;
+			submitResult = false;
+			resultInfo = "请填写收件人";
+			return;
 		}
 
 	}

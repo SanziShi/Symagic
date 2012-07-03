@@ -6,6 +6,7 @@ import java.util.List;
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.service.AddressService;
 import org.symagic.common.service.OrderService;
@@ -157,19 +158,20 @@ public class OrderEditOrderAction extends OrderBase {
 		if (!order.getOrderState().equals("0")) {
 			return ERROR;
 		}
-		if (order.getDeliveryWay() == "0")
+		if (order.getDeliveryWay().equals("0"))
 			setDeliverWay("送货上门");
 		addressList = addressService.getAddressDetail(userName);
 		OrderService.Address address = OrderService.deserializerAddress(order
 				.getAddrDetail());
 
 		defaultAddressList = new AddressDetailBean();
-		defaultAddressList.setLevel1Districts(new ArrayList<DistrictBean>());
-		defaultAddressList.setLevel2Districts(new ArrayList<DistrictBean>());
-		defaultAddressList.setLevel3Districts(new ArrayList<DistrictBean>());
-		defaultAddressList.getLevel1Districts().add(address.level1District);
-		defaultAddressList.getLevel2Districts().add(address.level2District);
-		defaultAddressList.getLevel3Districts().add(address.level1District);
+		defaultAddressList.setLevel1Districts(addressService.getDistricts(0));
+		defaultAddressList.setLevel2Districts(addressService.getDistricts(address.level1District.getID()));
+		defaultAddressList.setLevel3Districts(addressService.getDistricts(address.level2District.getID()));
+		defaultAddressList.setLevel1DistrictDefaultID(address.level1District.getID());
+		defaultAddressList.setLevel2DistrictDefaultID(address.level2District.getID());
+		defaultAddressList.setLevel3DistrictDefaultID(address.level3District.getID());
+		
 		defaultAddressList.setAddressDetail(address.districtDetail);
 		defaultAddressList.setMobileNum(order.getMobilenum());
 		defaultAddressList.setPhoneNum(order.getPhonenum());
