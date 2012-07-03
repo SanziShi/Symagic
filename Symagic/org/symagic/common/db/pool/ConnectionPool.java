@@ -3,6 +3,7 @@ package org.symagic.common.db.pool;
 import java.lang.reflect.Proxy;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Stack;
 
 import net.sf.json.JSONObject;
@@ -73,17 +74,34 @@ public class ConnectionPool {
 		instance.st.push(conn);
 	}
 
-	private Connection createConnection() throws Exception { // 以mysql为例　创建数据库连接
+	private Connection createConnection()   { // 以mysql为例　创建数据库连接
 
 		String url = "jdbc:mysql://" + server + ":" + port +  "/" + dbName + "?useUnicode=true&characterEncoding=utf8";
+		Connection proxy	= null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			Connection connection = DriverManager.getConnection(url, userName, userPasswd);
+			connection.setAutoCommit(false);		// 设置事务不自动提交
+			
+			ConnectionProxy handler = new ConnectionProxy(connection);		// 创建代理类
+			
+			 proxy = (Connection) Proxy.newProxyInstance( // 创建代理
+					connection.getClass().getClassLoader(), new Class[]{Connection.class}, handler);
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		Connection connection = DriverManager.getConnection(url, userName, userPasswd);
-		connection.setAutoCommit(false);		// 设置事务不自动提交
-		ConnectionProxy handler = new ConnectionProxy(connection);		// 创建代理类
 		
-		Connection proxy = (Connection) Proxy.newProxyInstance( // 创建代理
-				connection.getClass().getClassLoader(), new Class[]{Connection.class}, handler);
 		return proxy;
 	}
 	

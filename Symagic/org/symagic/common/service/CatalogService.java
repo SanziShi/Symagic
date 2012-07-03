@@ -20,8 +20,9 @@ public class CatalogService {
 		List<CatalogBean> catalog = new ArrayList<CatalogBean>();
 
 		List<BeanCatalog> daoCatalogList = daoCatalog.getCatalog();
-		
-		if( daoCatalogList == null ) return null;
+
+		if (daoCatalogList == null)
+			return null;
 
 		Map<Integer, CatalogBean> topLevelCatalogMap = new HashMap<Integer, CatalogBean>();
 
@@ -49,22 +50,22 @@ public class CatalogService {
 			}
 
 		}
-		
-		
 
 		Iterator<Entry<Integer, CatalogBean>> iterator = backupList.entrySet()
 				.iterator();
 		while (iterator.hasNext()) {
 			Entry<Integer, CatalogBean> entry = iterator.next();
 			CatalogBean upBean = topLevelCatalogMap.get(entry.getKey());
-			if (upBean.getChildCatalog() == null) {
-				upBean.setChildCatalog(new ArrayList<CatalogBean>());
+			if (upBean != null) {
+				if (upBean.getChildCatalog() == null) {
+					upBean.setChildCatalog(new ArrayList<CatalogBean>());
+				}
+				upBean.getChildCatalog().add(entry.getValue());
 			}
-			upBean.getChildCatalog().add(entry.getValue());
 		}
-		
+
 		iterator = topLevelCatalogMap.entrySet().iterator();
-		while(iterator.hasNext()){
+		while (iterator.hasNext()) {
 			Entry<Integer, CatalogBean> entry = iterator.next();
 			catalog.add(entry.getValue());
 		}
