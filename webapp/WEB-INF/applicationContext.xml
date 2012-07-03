@@ -102,6 +102,7 @@
 		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="upload"></property>
+		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
 	<bean id="AdminViewItemDetail" class="org.symagic.admin.action.item.AdminItemDetailAction">

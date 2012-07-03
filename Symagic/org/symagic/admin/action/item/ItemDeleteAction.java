@@ -135,4 +135,12 @@ public class ItemDeleteAction extends ActionSupport implements
 		this.shopImageFileFolder = shopImageFileFolder;
 	}
 
+	public DaoOrder getDaoOrder() {
+		return daoOrder;
+	}
+
+	public void setDaoOrder(DaoOrder daoOrder) {
+		this.daoOrder = daoOrder;
+	}
+
 }
