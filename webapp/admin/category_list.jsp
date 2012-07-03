@@ -80,7 +80,7 @@
                         <img src="image/plus.gif" onclick="click_show('<s:property value='#outer.name'/>',6);" />
                         <s:property value="#outer.name" /></td>
                         <td width="45%"></td>
-                        <td >&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="ajax_catalog_delete_tag_level1(<s:property value='#outer.ID'/>,<s:property value='#outer.name'/>)">删除</a> &nbsp;
+                        <td >&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="ajax_catalog_delete_tag_level1(<s:property value='#outer.ID'/>,'<s:property value='#outer.name'/>')">删除</a> &nbsp;
                         <a href="catalog_edit?catalogID=<s:property value='#outer.ID'/>"
 												>修改</a></td>
                         </tr>
@@ -91,7 +91,7 @@
                         <td width="5%"></td>
                          <td >&nbsp;&nbsp;&nbsp;&nbsp;<s:property value='#inner.name' /></td>
                         <td width="35%"></td>
-                        <td><a href="javascript:void(0)" onclick="ajax_catalog_delete_tag_level2(<s:property value='#inner.ID'/>,<s:property value='#outer.name'/><s:property value='#st.index'/>);">删除</a> &nbsp;
+                        <td><a href="javascript:void(0)" onclick="ajax_catalog_delete_tag_level2(<s:property value='#inner.ID'/>,'<s:property value='#outer.name'/>'+'<s:property value='#st.index'/>');">删除</a> &nbsp;
                         <a href="catalog_edit?catalogID=<s:property value='#inner.ID'/>">修改</a></td>
                         </tr>
 
@@ -140,7 +140,7 @@
 								<th class="itemsearchth"><span class="inputHeader">目录描述：</span>
 								</th>
 								<td class="itemsearchtd1"><textarea name="catalogDesc"
-										class="textAreaStyle"></textarea></td>
+										class="textAreaStyle">c</textarea></td>
 								<td class="itemsearchtd2">&nbsp;</td>
 
 							</tr>
