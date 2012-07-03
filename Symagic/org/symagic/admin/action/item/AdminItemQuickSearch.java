@@ -19,7 +19,7 @@ public class AdminItemQuickSearch extends CatalogBase {
 	private static final long serialVersionUID = 7196520080355742015L;
 	// 传入参数
 	private String keyword; // 关键字
-	private Integer catalogID; // 目录
+	private Integer qcatalogID; // 目录
 	private Integer page = 1;// 分页显示
 
 	private String errorHeader;
@@ -58,7 +58,7 @@ public class AdminItemQuickSearch extends CatalogBase {
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件,两个条件 都为空时，返回所有商品
 		BookRequire require = new BookRequire();
-		setCatalog(require, catalogID);
+		setCatalog(require, qcatalogID);
 		if (keyword != null && !keyword.trim().equals("")) {
 			keyword = keyword.trim();
 			require.setAuthor(keyword);
@@ -150,13 +150,7 @@ public class AdminItemQuickSearch extends CatalogBase {
 		this.items = items;
 	}
 
-	public Integer getCatalogID() {
-		return catalogID;
-	}
-
-	public void setCatalogID(Integer catalogID) {
-		this.catalogID = catalogID;
-	}
+	
 
 	public Integer getSign() {
 		return sign;
@@ -212,6 +206,14 @@ public class AdminItemQuickSearch extends CatalogBase {
 
 	public void setSearchDate(List<String> searchDate) {
 		this.searchDate = searchDate;
+	}
+
+	public Integer getQcatalogID() {
+		return qcatalogID;
+	}
+
+	public void setQcatalogID(Integer qcatalogID) {
+		this.qcatalogID = qcatalogID;
 	}
 
 }

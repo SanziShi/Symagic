@@ -64,7 +64,7 @@
 				</div>
 				<div id="searchright">
 					<form action="quick_search?page=1" method="post">
-						<select name="catalogID">
+						<select name="qcatalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>
 								<option value="<s:property value='#outer.ID'/>">
