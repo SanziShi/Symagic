@@ -77,9 +77,7 @@ public class CartAddItemAction extends ActionSupport {
 	   else{
 		   resultInfo="成功添加到购物车";
 	   }
-		
-	   
-	   return SUCCESS;
+		 return SUCCESS;
 		
 	}
 	private boolean addOneToCart(Integer itemID,Integer itemNumber,boolean login){

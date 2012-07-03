@@ -88,7 +88,6 @@ private void accordCart(){
 		   Integer sessionNumber=lastingItems.get(item.getBookID());
 		   if(sessionNumber==null){
 			   lastingItems.put(item.getBookID(), item.getAmount());
-			  
 			  }
 		   else{
 			   lastingItems.put(item.getBookID(), item.getAmount()+sessionNumber);
@@ -109,7 +108,7 @@ private void accordCart(){
 		 for(Iterator key =itemIdSet.iterator();key.hasNext();){
 			 int id=(Integer)key.next();
 			 int number=lastingItems.get(id);
-			 //如果历史中当前包含这个，则修改数量
+			 //如果历史中当前包含这个，则修改数量,不包含则加新记录
 			 if(historyId.contains(id)){
 				 daoCart.modifyBook(UserSessionUtilty.getUsername(), id, number);
 			 }
