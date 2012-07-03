@@ -10,6 +10,7 @@
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <link href="css/home.css" rel="stylesheet" type="text/css" />
 
+<script language="javascript" src="js/jquery.js"></script>
 <script language="javascript" src="js/gz.js"></script>
 <script language="javascript" src="js/checkform.js"></script>
 <script language="javascript" src="js/catalog.js"></script>
