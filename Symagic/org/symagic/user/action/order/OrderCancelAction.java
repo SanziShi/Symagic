@@ -23,25 +23,36 @@ public class OrderCancelAction extends ActionSupport {
 	private DaoOrder daoOrder;
 	
 	private Boolean cancelResult;
+	
+	private String resultInfo;
 
 	@Override
 	public String execute() throws Exception {
 		
 		cancelResult = false;
 		
-		if( orderID == null ) return super.execute();
+		if( orderID == null ) 
+		{
+			resultInfo = "订单号错误";
+			return super.execute();
+		}
 		
 		BeanOrder order = daoOrder.getOrderDetail(orderID);
 		
-		if( order == null ) return super.execute();
+		if( order == null )
+		{
+			resultInfo = "订单号错误";
+			return super.execute();
+		}
 		
-		if( !order.getOrderState().equals("0") ) return super.execute();
+		if( !order.getOrderState().equals("0") ){
+			resultInfo = "订单已不允许修改";
+			return super.execute();
+		}
 		
 		order.setOrderState("3");
 		
 		if( !daoOrder.updateOrder(order) ) return super.execute();
-		
-		MailService.sendFailOrder(order);
 		
 		cancelResult = true;
 		
@@ -70,6 +81,14 @@ public class OrderCancelAction extends ActionSupport {
 
 	public void setCancelResult(Boolean cancelResult) {
 		this.cancelResult = cancelResult;
+	}
+
+	public String getResultInfo() {
+		return resultInfo;
+	}
+
+	public void setResultInfo(String resultInfo) {
+		this.resultInfo = resultInfo;
 	}
 	
 	

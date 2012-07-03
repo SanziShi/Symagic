@@ -329,6 +329,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">submitResult,resultInfo</param>
 			</result>
 		</action>
+		<action name="cancel_order" class="cancelOrder">
+			<result type="json">
+				<param name="includeProperties">cancelResult,resultInfo</param>
+			</result>
+		</action>
 	</package>
 
 
