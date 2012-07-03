@@ -90,7 +90,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div id="ok_icon"></div>
             <div id="ok_content"><h2>订单提交成功，请保持联系方式通畅！</h2></div>
         	<div class="clear"></div>
-            <div id="info">您的订单号：<font color="#FF0000"><s:property value='orderID'/></font>&nbsp;&nbsp;<font size="-3"><a href="order_info?orderID=<s:property value='orderID'/>">查看订单详情</a></font></div>
+            <div id="info">您的订单号：<font color="#FF0000"><s:property value='orderID'/></font>&nbsp;&nbsp;<font size="-3"><a href="order_detail?orderID=<s:property value='orderID'/>">查看订单详情</a></font></div>
         </div>
          <div class="clear"></div>   
         </div>

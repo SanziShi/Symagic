@@ -30,12 +30,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="top">
     <div class="top_right">
     <ul>
+    <s:if test="#session.nickname!=null">
+    <li><s:property value="#session.nickname"/>！&nbsp;&nbsp;欢迎回到Symagic！</li>
+    <li id="logout_top" onclick="logout();"><a>安全退出</a></li>
+    </s:if>
+    <s:else>
     <li>欢迎来到Symagic！</li>
-    <s:property value="#session.username"/><s:property value="#session.nickname"/>
     <li id="login_top" onclick="load_login();"><a>登录</a></li>
     <li id="regist_top" onclick="load_regist();"><a>免费注册</a></li>
-    <li class="division">|</li><li id="mymall"><a href="user.html"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
-    <li id="cart_top"><a id="cart_a" href="cart.html">
+    </s:else>
+    <li class="division">|</li><li id="mymall"><a href="user"><span id="mymall_icon"></span>我的商城</a></li><li class="division">|</li>
+    <li id="cart_top"><a id="cart_a" href="cart">
     <span id="cart_icon"></span>购物车 <strong id="cart_num"><s:property value='#session.totalNumber'/></strong> 件</a>
     </li>
     </ul>
@@ -64,10 +69,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       width=100 border=0> 
     <TD>
     <TD><!--------System Return Begin------------>
-      <H1><s:property value="errorHeader"/></H1>
-      错误信息：<s:property value="errorSpecification"/> 
+      <H1>
+      <s:if test="errorHeader">
+      	<s:property value="errorHeader"/>
+      </s:if>
+      <s:else>
+      出错啦~~
+      </s:else>
+      </H1>
+      错误信息：
+      <s:if test="errorSpecification">
+      	<s:property value="errorSpecification"/> 
+      </s:if>
+      <s:else>
+      您请求的页面非法或已被删除！！
+      </s:else>
       <HR noShade SIZE=0>
-
       <P>☉ 请尝试以下操作：</P>
       <UL>
         <LI>确保浏览器的地址栏中显示的网站地址的拼写和格式正确无误。 

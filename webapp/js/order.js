@@ -114,6 +114,28 @@ function order_submit()
 {
 	document.getElementById('order_submit').submit();
 }
+function order_edit_confirm()
+{
+	var id=document.getElementById('orderID').value;
+	var f=document.getElementById('order_edit_submit');
+	Ajax({
+		url:'order/order_edit_submit',
+		data:$(f).serialize(),
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(a.submitResult)
+				{
+					alert('修改成功！');
+					location.href='order_detail?orderID='+id;
+				}
+				else 
+				{
+					alert(a.resultInfo);
+				}
+			}
+		})
+}
 
 
 
