@@ -467,6 +467,7 @@
 	<bean id="checkScore" class="org.symagic.user.action.order.OrderCheckScoreAction"
 		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="orderAddAddress" class="org.symagic.user.action.order.OrderAddAddressAction"
