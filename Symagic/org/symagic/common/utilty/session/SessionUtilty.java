@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
+
 /**
  * 
  * @author hao
@@ -21,7 +23,7 @@ public class SessionUtilty {
 	}
 	
 	public static void setInterceptedFormData( Map<String, String[]> data ){
-		ServletActionContext.getRequest().getSession().setAttribute("formData", data);
+		ActionContext.getContext().getSession().put("formData", data);
 	}
 	
 	@SuppressWarnings("unchecked")
