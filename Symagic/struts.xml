@@ -13,12 +13,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
 			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
 			<interceptor name="setupInterceptor" class="SetupInterceptor"></interceptor>
+			<interceptor name="formRecoverInterceptor" class="org.symagic.common.interceptor.FormRecoverInterceptor"></interceptor>
 
 			<interceptor-stack name="userLoginInterceptorStack">
 				<interceptor-ref name="setupInterceptor"></interceptor-ref>
 				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="formRecoverInterceptor"></interceptor-ref>
 			</interceptor-stack>
 
 			<interceptor-stack name="userDefaultStack">
