@@ -240,7 +240,7 @@ public class DaoBook {
 					book.setInventory(rs.getInt("inventory"));
 					book.setIsbn(rs.getString("isbn"));
 					book.setMarketPrice(rs.getFloat("marketprice"));
-					book.setOffline(rs.getString("offline"));
+					book.setOffline(rs.getString("folio"));
 					book.setPage(rs.getInt("page"));
 					book.setPicture(rs.getString("picture"));
 					book.setPublisher(rs.getString("publisher"));
@@ -287,7 +287,7 @@ public class DaoBook {
 					+ req.getItemName() + "%' " + " or "
 					+ " t1.publisher like " + " '%" + req.getPublisher()
 					+ "%' )";
-			if (req.getCatalogIDList() != null) {
+			if (req.getCatalogIDList() != null&&req.getCatalogIDList().size()>0) {
 				idList	= req.getCatalogIDList();
 				sql += " and " + " t2.catalogid  in (" + idList.get(0);
 				for (int i=1; i<idList.size(); i++)

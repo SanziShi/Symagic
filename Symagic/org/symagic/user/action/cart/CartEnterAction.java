@@ -12,8 +12,11 @@ public class CartEnterAction extends CatalogBase {
 	 * 
 	 */
 	private static final long serialVersionUID = 2966695836419045173L;
-	private Float totalPrice;
+	//配置项
 	private ItemService itemService;
+	//传出
+	private Float totalPrice;
+	
 	private ArrayList<ItemTinyBean>items;
 
 	private Integer totalNumber;//购物车商品数量

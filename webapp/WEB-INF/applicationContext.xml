@@ -505,6 +505,10 @@
 		<property name="orderService" ref="OrderService"></property>
 	</bean>
 
+
+<bean id="catalogBase" class="org.symagic.common.action.catalog.CatalogBase">
+<property name="catalogService" ref="CatalogService"></property>
+</bean>
 	<!-- service bean -->
 	<bean id="UserService" class="org.symagic.common.service.UserService">
 		<property name="daoUser" ref="DaoUser"></property>
