@@ -119,7 +119,7 @@ public class DaoOrder {
 				if (rs.getString("mobilenum") != null)
 					order.setMobilenum(rs.getString("mobilenum"));
 				if (rs.getString("phonenum") != null)
-					order.setMobilenum(rs.getString("phonenum"));
+					order.setPhonenum(rs.getString("phonenum"));
 				order.setOrderDate(rs.getString("orderdate"));
 				order.setOrderId(rs.getInt("orderid"));
 				order.setOrderState(rs.getString("orderstate"));

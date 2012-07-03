@@ -19,24 +19,24 @@ public class DaoOrderTest extends TestCase{
 //	}
 //	
 //	
-//	@Test
-//	public void testGetOrderDetail2(){
-//		assertEquals(0,order.getOrderDetail(100).getList().size());
-//	}
+	@Test
+	public void testGetOrderDetail2(){
+		assertEquals("123",order.getOrderDetail(16).getPhonenum());
+	}
 //	
 //	@Test
 //	public void testAddOrder(){
 //		BeanOrder bo= new BeanOrder();
 //		BeanOrderDetail bod = new BeanOrderDetail();
 //		
-//		bo.setUsername(null);
 //		bo.setAddrDetail("guanghou");
-//		bo.setOrderDate("2012-03-02");
+//		bo.setOrderDate("2012-03-02 12:30:30");
 //		bo.setReceiverName("shisanzi");
 //		bo.setMobilenum("15018713530");
+//		bo.setPhonenum("123");
 //        bo.setZipcode("125000");
 //        bo.setTotalprice(110f);
-//        
+//        bo.setUsername("1037942090@qq.com");
 //        bod.setBookId(1);
 //        bod.setAmount(10);
 //        bod.setBookName("曾国藩和他的湘军");
@@ -157,17 +157,17 @@ public class DaoOrderTest extends TestCase{
 //		assertEquals(2,order.getItemOrders(1, 1, 3).size());
 //	}
 //	
-	@Test
-	public void testSearch1(){
-		OrderRequire or = new OrderRequire();
-		or.setLines(3);
-		or.setPage(1);
-		or.setStartTime("2010-01-01");
-		or.setEndTime("2012-06-28");
-		or.setOrderState("2");
-		
-		assertEquals(2,order.search(or, "641567179@qq.com").size());
-	}
+//	@Test
+//	public void testSearch1(){
+//		OrderRequire or = new OrderRequire();
+//		or.setLines(3);
+//		or.setPage(1);
+//		or.setStartTime("2010-01-01");
+//		or.setEndTime("2012-06-28");
+//		or.setOrderState("2");
+//		
+//		assertEquals(2,order.search(or, "641567179@qq.com").size());
+//	}
 //	@Test
 //	public void testSearch2(){
 //		OrderRequire or = new OrderRequire();
