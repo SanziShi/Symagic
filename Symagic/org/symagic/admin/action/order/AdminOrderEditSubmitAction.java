@@ -84,6 +84,8 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		order.setMobilenum(mobileNumber);
 
 		List<BeanOrderDetail> itemList = new ArrayList<BeanOrderDetail>();
+		
+		List<BeanOrderDetail> oldItems = order.getList();
 
 		// 解析JSON数组
 		for (int i = 0; i < items.size(); i++) {
@@ -91,6 +93,12 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 			if (book != null) {
 				BeanOrderDetail orderDetail = new BeanOrderDetail();
 				orderDetail.setAmount(items.get(i).getItemNumber());
+				for( BeanOrderDetail detail : oldItems ){
+					if( detail.getBookId() == book.getBookId() ){
+						book.setInventory(book.getInventory() + detail.getAmount() - orderDetail.getAmount() );
+						if( !daoBook.modifyBook(book) ) return ERROR;
+					}
+				}
 				orderDetail.setBookId(book.getBookId());
 				orderDetail.setBookName(book.getBookName());
 				orderDetail.setDiscount(book.getDiscount());
@@ -103,7 +111,7 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		}
 		order.setList(itemList);
 
-		daoOrder.updateOrder(order);
+		if( !daoOrder.updateOrder(order) ) return ERROR;
 
 		MailService.sendOrder(order);
 
