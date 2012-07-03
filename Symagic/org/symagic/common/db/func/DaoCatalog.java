@@ -186,16 +186,30 @@ public class DaoCatalog {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			// 删除book_catalog_detail中有关bookid的
-			ps	= conn.prepareStatement("delete from book_catalog_detail where catalogid=?");
+			ps	= conn.prepareStatement("select catalogid from book_catalog " +
+					" where upid=?");
 			ps.setInt(1, catalogID);
-			ps.execute();
+			rs	= ps.executeQuery();
 			
-			ps	= conn.prepareStatement("delete from book_catalog where catalogid=?");
-			ps.setInt(1, catalogID);
-			ps.execute();
+			// 删除book_catalog_detail中记录
+			String sql	= "delete from book_catalog_detail where catalogid in ( "
+				+ catalogID;
+			while (rs.next())
+				sql += "," + rs.getInt(1);
+			sql += ")";
+			st	= conn.createStatement();
+			st.execute(sql);
 			
-			if (ps.getUpdateCount() == 1) 
+			// 删除book_catalog中记录
+			sql = "delete from book_catalog where catalogid in ("
+				+ catalogID;
+			rs.beforeFirst();
+			while (rs.next())
+				sql += "," + rs.getInt(1);
+			sql += ")";
+			st.execute(sql);
+			
+			if (st.getUpdateCount() >= 1) 
 				return true;
 			return false;
 			
