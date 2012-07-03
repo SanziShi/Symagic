@@ -32,7 +32,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 配置登录拦截器 -->
 		<interceptors>
 			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
-			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
+			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>		
 
 			<interceptor-stack name="adminLoginInterceptorStack">
 				<interceptor-ref name="injectionInterceptor"></interceptor-ref>

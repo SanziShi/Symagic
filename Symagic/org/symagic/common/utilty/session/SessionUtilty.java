@@ -18,4 +18,5 @@ public class SessionUtilty {
 		return ServletActionContext.getRequest().getSession().getId();
 	}
 	
+	
 }
