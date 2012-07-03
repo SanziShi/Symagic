@@ -98,21 +98,12 @@ public class AddressSubmitAction extends AddressBase {
 	public void validate() {
 		isValidate = true;
 		clearErrorsAndMessages();
-		if(getDistrictLevel1ID() == null || 
-				getDistrictLevel2ID() == null || 
-				getDistrictLevel2ID() == null){
+		if(getDistrictLevel1ID() == null || getDistrictLevel1ID() <= 0 ||
+				getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0 ||
+				getDistrictLevel3ID() == null || getDistrictLevel3ID() <= 0){
 			isValidate = false;
 			submitResult = false;
 			resultInfo = "地址为空";
-			return;
-		}
-		if (getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
-				|| getDistrictLevel3ID() == null || getAddressDetail() == null
-				|| getReceiverName() == null || getMobileNum() == null
-				|| getPhoneNum() == null) {
-			isValidate = false;
-			submitResult = false;
-			resultInfo = "用户名为空";
 			return;
 		}
 		
