@@ -7,6 +7,7 @@ import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.OrderRequire;
+import org.symagic.common.db.pool.ConnectionPool;
 
 public class DaoOrderTest extends TestCase{
 		
@@ -19,10 +20,11 @@ public class DaoOrderTest extends TestCase{
 //	}
 //	
 //	
-	@Test
-	public void testGetOrderDetail2(){
-		assertEquals("123",order.getOrderDetail(16).getPhonenum());
-	}
+//	@Test
+//	public void testGetOrderDetail2(){
+//		ConnectionPool.init();
+//		assertEquals("123",order.getOrderDetail(16).getPhonenum());
+//	}
 //	
 //	@Test
 //	public void testAddOrder(){
