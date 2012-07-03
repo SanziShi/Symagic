@@ -99,7 +99,7 @@
 								<td>
 								<input type="submit" value="查询" />
 								<input type="hidden" value="0" name="userLevel"/>
-								<input type="hidden" value="<s:property value="searchStartYear"/> " name="startTime.year"/>
+								<input type="hidden" value="<s:property value="searchStartYear"/>" name="startTime.year"/>
 								<input type="hidden" value="1" name="startTime.month"/>
 								<input type="hidden" value="1" name="startTime.day"/>
 								<input type="hidden" value="<s:property value="searchEndYear"/>" name="endTime.year"/>
@@ -257,7 +257,7 @@
 						<tr>
 							<td></td>
 							<td></td>
-							<td><s:if test="%{totalPage==1}"></s:if> <s:elseif
+							<td><s:if test="%{totalPage==1||totalPage==0}"></s:if> <s:elseif
 									test="%{page==1}">
 									<a
 										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
