@@ -3,6 +3,7 @@ package org.symagic.admin.action.order;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.symagic.admin.utilty.AdminUtility;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanDistrict;
 import org.symagic.common.db.bean.BeanOrder;
@@ -112,22 +113,17 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 	@Override
 	public void validate() {
 
-		if (orderID == null || receiver == null || receiver.length() == 0
-				|| level1ID == null || addressDetail == null
-				|| addressDetail.length() == 0 || zipcode == null
-				|| (phoneNumber == null && mobileNumber == null)
-				|| items == null)
+		if (orderID == null
+				|| AdminUtility.isEmpty(receiver)
+				|| level1ID == null
+				|| AdminUtility.isEmpty(addressDetail)
+				|| AdminUtility.isEmpty(zipcode)
+				|| (AdminUtility.isEmpty(phoneNumber) && AdminUtility
+						.isEmpty(mobileNumber)) || items == null)
 			validateResult = false;
 		else {
-			if (phoneNumber == null || phoneNumber.length() == 0) {
-				if (mobileNumber == null || mobileNumber.length() == 0) {
-					validateResult = false;
-				} else {
-					validateResult = true;
-				}
-			} else {
-				validateResult = true;
-			}
+
+			validateResult = true;
 		}
 
 		super.validate();

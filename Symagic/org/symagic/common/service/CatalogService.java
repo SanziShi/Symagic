@@ -30,7 +30,7 @@ public class CatalogService {
 		for (BeanCatalog beanCatalog : daoCatalogList) {
 			CatalogBean bean = new CatalogBean();
 			bean.setID(beanCatalog.getCatalogID());
-			bean.setDescription(beanCatalog.getCatalogDesc());
+			bean.setDesc(beanCatalog.getCatalogDesc());
 			bean.setName(beanCatalog.getCatalogName());
 
 			if (beanCatalog.getLevel().equals("1")) {

@@ -16,6 +16,7 @@ import org.symagic.common.db.bean.BeanLevel;
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoCart;
 import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.db.func.DaoLevel;
 import org.symagic.common.db.func.DaoOrder;
@@ -86,6 +87,8 @@ public class OrderSubmitAction extends OrderBase{
 	private DaoLevel daoLevel;
 	
 	private Integer orderID;
+	
+	private DaoCart daoCart;
 	
 	public DaoLevel getDaoLevel() {
 		return daoLevel;
@@ -211,7 +214,7 @@ public class OrderSubmitAction extends OrderBase{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		order.setOrderDate(sdf.format(date));
 		
-		order.setTotalprice(totalPrice);
+		order.setTotalprice(totalPrice - score * 0.1f);
 		BeanLevel level = daoLevel.judgeLevel(daoUser.getScore(username));
 		if(level != null)
 			order.setScore((int)(totalPrice * level.getRate()));
@@ -220,7 +223,12 @@ public class OrderSubmitAction extends OrderBase{
 		orderID = daoOrder.addOrder(order);
 		if(orderID > 0){
 			UserSessionUtilty.removeOrder();
-			UserSessionUtilty.clearCart();
+			daoUser.updateScore(daoUser.getScore(UserSessionUtilty.getUsername()) - score,
+					UserSessionUtilty.getUsername());
+			for(int i = 0; i < order.getList().size(); i ++){
+				daoCart.deleteBook(getUserName(), order.getList().get(i).getBookId());
+				UserSessionUtilty.deleteFromCart(order.getList().get(i).getBookId());
+			}
 			return SUCCESS;
 		}
 		else {
@@ -229,7 +237,9 @@ public class OrderSubmitAction extends OrderBase{
 	}
 	
 	public void validate(){
-		if(score == null || getDistrictLevel1ID() == null 
+		if(score == null)
+			score = 0;
+		if(getDistrictLevel1ID() == null 
 				|| getDistrictLevel2ID() == null || getDistrictLevel3ID() == null
 				|| getMobileNum() == null || getPhoneNum() == null ||
 				getReceiverName() == null || getZipcode() == null){
@@ -282,6 +292,14 @@ public class OrderSubmitAction extends OrderBase{
 
 	public void setOrderID(Integer orderID) {
 		this.orderID = orderID;
+	}
+
+	public DaoCart getDaoCart() {
+		return daoCart;
+	}
+
+	public void setDaoCart(DaoCart daoCart) {
+		this.daoCart = daoCart;
 	}
 	
 }
