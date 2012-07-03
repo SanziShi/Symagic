@@ -142,8 +142,8 @@
 								<th class="itemsearchth"><span class="inputHeader">目录描述：</span>
 								</th>
 								<td class="itemsearchtd1"><textarea name="catalogDesc"
-										class="textAreaStyle">c</textarea></td>
-								<td class="itemsearchtd2">&nbsp;</td>
+										class="textAreaStyle"></textarea></td>
+								<td class="itemsearchtd2"><span class="red">*&nbsp;必填项</span>
 
 							</tr>
 							<tr>

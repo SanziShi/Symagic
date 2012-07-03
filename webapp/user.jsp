@@ -158,7 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <s:iterator value="orderList" var='iter'>
 				  <tr id="order_list<s:property value='#iter.orderID'/>">
             		<td>
-						<a href="order_info?orderID=<s:property value='#iter.orderID'/>"><s:property value='#iter.orderID'/></a>
+						<a href="order_detail?orderID=<s:property value='#iter.orderID'/>"><s:property value='#iter.orderID'/></a>
 					</td>
 					<td>
 						<s:property value='#iter.orderTime'/>
