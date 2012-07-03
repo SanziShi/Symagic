@@ -825,7 +825,8 @@ function upsubmit(name) {
 // 批量上架action处理
 function ajax_batch_up(form) {
 
-	var items = $(form).serialize();
+	var t = '#' + from;
+	var items = $(t).serialize();
 	Ajax({
 		url : 'item_manager/up',
 		data : items,
@@ -846,7 +847,8 @@ function ajax_batch_up(form) {
 // 批量下架action处理
 function ajax_batch_off(form) {
 
-	var items = $(form).serialize();
+	var t = '#' + from;
+	var items = $(t).serialize();
 	alert(items);
 	Ajax({
 		url : 'item_manager/off',
