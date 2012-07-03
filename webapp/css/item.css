@@ -35,7 +35,7 @@
 	float:left;
 	line-height:27px;
 	font-size: 14px;
-	
+	font-family:"Microsoft YaHei";
 }
 #item_left dl
 {
@@ -47,7 +47,7 @@
 	padding:10px 0 0 10px;
 	cursor: default;
 }
-#item_left dd
+#item_left dd,#item_left dt
 {
 	cursor: pointer;
 }
@@ -58,6 +58,10 @@
 #item_left div:hover
 {
 	background: #FFF;
+}
+#item_left div.selected
+{
+	background: #FFFCEB;
 }
 #item_container
 {

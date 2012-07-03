@@ -14,6 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="css/item.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
+<script type="text/javascript" src="js/item_list.js"></script>
 </head>
 <body>
 <div id="container">
@@ -90,9 +91,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <dl>
         <!--左边迭代--->
         <s:iterator value="catalog" var='outer'>
-        <div title="<s:property value='#outer.desc'/>" id="<s:property value='#outer.ID'/>"><dt ><s:property value='#outer.name'/></dt></div>
+        <div title="<s:property value='#outer.desc'/>" id="<s:property value='#outer.ID'/>">
+        	<dt onclick="click_left_b(<s:property value='#outer.ID'/>)" ><s:property value='#outer.name'/></dt>
+        </div>
         	<s:iterator value="#outer.childCatalog" var="inner">
-        	<div title="<s:property value='#inner.desc'/>" id="<s:property value='#inner.ID'/>"><dd><s:property value='#inner.name'/></dd></div>
+        	<div title="<s:property value='#inner.desc'/>" id="<s:property value='#inner.ID'/>">
+            	<dd onclick="click_left_b(<s:property value='#inner.ID'/>)"><s:property value='#inner.name'/></dd>
+            </div>
         	</s:iterator>
         </s:iterator>
         <!--左边迭代结束--->
@@ -141,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<select name="publishTime" class="midselect">
               				<option value="0">不论时间</option>
                             <s:iterator value='searchDate' var='iter' status='st'>
-                            <option value="<s:property value='#st+1'/>"><s:property value='#iter'/></option>
+                            <option value="<s:property value="#st.index+1"/>"><s:property value='#iter'/></option>
              				</s:iterator>
             			</select>
 					</td> 

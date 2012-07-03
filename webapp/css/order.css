@@ -148,6 +148,15 @@ input.txt {
 	font:"order_id";
 	margin-right:20px;
 }
+.order_edit_confirm
+{
+	background:url(../image/order_edit_confirm.gif);
+	width:150px;
+	height:43px;
+	float:right;
+	margin-right:30px;
+	cursor:pointer;
+}
 
 
 

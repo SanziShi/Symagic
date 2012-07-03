@@ -172,7 +172,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     	<a href="javascript:void(0)" onclick="cancel_order(<s:property value='#iter.orderID'/>)">取消</a>
                     </s:if>
                     <s:else>
-                    	<a href="order_info?orderID=<s:property value='#iter.orderID'/>">查看订单</a>
+                    	<a href="order_detail?orderID=<s:property value='#iter.orderID'/>">查看订单</a>
                     </s:else>
                     </td>
           		  </tr>
