@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ActionContext;
 public class UserService {
 	//配置项
 	private DaoUser daoUser; //用于访问用户数据
-	private BeanUser beanUser; //记录用户信息
+	
 	private DaoCart daoCart;//用于访问数据库中的购物车
     //用户名是否存在
 	public boolean isUsernameUnique(String username){
@@ -27,6 +27,7 @@ public class UserService {
     }
 	
 public boolean register(String name,String nickname,String password,String question,String answer){
+	BeanUser beanUser=new BeanUser();
 	beanUser.setUsername(name);
 	beanUser.setAnswer(answer);
 	beanUser.setNickname(nickname);
@@ -43,8 +44,8 @@ public boolean register(String name,String nickname,String password,String quest
 		 if(cart!=null){
 			//将cart的每项记录保存到数据库中
 			 Set<Integer> itemIdSet=cart.keySet();
-			 for(Iterator key =itemIdSet.iterator();key.hasNext();){
-				 int id=(Integer)key.next();
+			 for(Iterator<Integer> key =itemIdSet.iterator();key.hasNext();){
+				 int id=key.next();
 				 int number=cart.get(id);
 				 daoCart.addBook(name, id, number);
 			 }
@@ -135,12 +136,7 @@ public DaoUser getDaoUser() {
 public void setDaoUser(DaoUser daoUser) {
 	this.daoUser = daoUser;
 }
-public BeanUser getBeanUser() {
-	return beanUser;
-}
-public void setBeanUser(BeanUser beanUser) {
-	this.beanUser = beanUser;
-}
+
 public DaoCart getDaoCart() {
 	return daoCart;
 }
