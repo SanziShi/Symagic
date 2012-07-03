@@ -78,7 +78,7 @@ public class ItemService {
 
 	}
 
-	public void commentFromRecomend(Integer rate, Integer itemID, String desc) {
+	public void commentForRecomend(Integer rate, Integer itemID, String desc) {
 		recommendService
 				.rate(UserSessionUtilty.getSessionID(), String.valueOf(rate),
 						String.valueOf(itemID), desc, "item_detail?itemID="

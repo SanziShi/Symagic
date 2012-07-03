@@ -1,8 +1,6 @@
 package org.symagic.admin.action.catalog;
 
-import net.sf.json.JSON;
-import net.sf.json.JSONArray;
-import net.sf.json.JSONSerializer;
+import java.util.List;
 
 import org.symagic.common.db.func.DaoCatalog;
 
@@ -15,7 +13,7 @@ public class CatalogDeleteAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = -2227925653961764991L;
 	
-	private String catalogIDList;
+	private List<Integer> catalogIDList;
 	
 	private Boolean deleteResult;
 	
@@ -28,16 +26,8 @@ public class CatalogDeleteAction extends ActionSupport {
 		
 		if( catalogIDList != null ){
 			
-			JSON json = JSONSerializer.toJSON(catalogIDList);
-			if( !json.isArray() ){
-				deleteResult = false;
-				return super.execute();
-			}
-			
-			JSONArray array = (JSONArray) json;
-			
-			for( int i = 0; i < array.size(); i++ ){
-				if( !daoCatalog.deleteCatalog(array.getInt(i)) )
+			for( int i = 0; i < catalogIDList.size(); i++ ){
+				if( !daoCatalog.deleteCatalog(catalogIDList.get(i)) )
 					return super.execute();
 			}
 			
@@ -47,13 +37,19 @@ public class CatalogDeleteAction extends ActionSupport {
 		return super.execute();
 	}
 
-	public String getCatalogIDList() {
+	
+
+	public List<Integer> getCatalogIDList() {
 		return catalogIDList;
 	}
 
-	public void setCatalogIDList(String catalogIDList) {
+
+
+	public void setCatalogIDList(List<Integer> catalogIDList) {
 		this.catalogIDList = catalogIDList;
 	}
+
+
 
 	public Boolean getDeleteResult() {
 		return deleteResult;

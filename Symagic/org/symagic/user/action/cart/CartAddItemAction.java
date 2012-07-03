@@ -90,6 +90,7 @@ public class CartAddItemAction extends ActionSupport {
 		//通过其数量判断是否有这商品
 		 Integer  number=UserSessionUtilty.getCart().get(itemID);
 		int compare=(number==null?0:number);
+		//itemID不存在于数据库中或者是库存不足
 		if(book==null||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>1000){
 			   return false;
 			 }
@@ -100,10 +101,6 @@ public class CartAddItemAction extends ActionSupport {
 		    	else
 		    		addResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber+number);
 		    }
-		
-		//itemID不存在于数据库中或者是库存不足
-		
-		
 		
 		if(addResult){
 		addResult=UserSessionUtilty.addToCart(itemID, itemNumber);

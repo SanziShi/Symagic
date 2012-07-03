@@ -253,7 +253,7 @@ var defaultYear = <s:property value="endTime.year" default="2012"/>;
 							<tr>
 								<td></td>
 								<td></td>
-								<td><s:if test="%{1==totalPage}"></s:if> <s:elseif
+								<td><s:if test="%{totalPage==1||totalPage==0}"></s:if> <s:elseif
 										test="%{page==1}">
 										<a href="order_list?page=${ page + 1 }">下一页</a>
 									</s:elseif> <s:elseif test="%{page==totalPage}">
