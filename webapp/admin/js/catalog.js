@@ -1,8 +1,8 @@
 // JavaScript Document
 function click_show(id){
 	var t;
-	t = document.getElementByName(id);
-	for (i = 0; i < id.length; i++) {
+	t = document.getElementsByName(id);
+	for (i = 0; i < t.length; i++) {
 		if (t[i].style.display == "") {
 		t[i].style.display = "none";
 	} else {
