@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BC2商城</title>
+<title>Symagic网上书城</title>
 <link href="css/home.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
@@ -48,11 +48,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul>
 			<li><a href="index">首页</a></li>
 			<li><a href="item_list">商品列表</a></li>
-			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="address.html">地址簿</a></li>
-			<li><a href="tradequery.html">交易查询</a></li>
-			<li><a href="send_notes.html">送货说明</a></li>
-            <li><a class="nouseful">&nbsp;</a></li>
+			<li><a href="send_notes.jsp">购物指引</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+                        <li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
@@ -108,17 +108,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div>
 		<div id="new">
 			<ul>
-		 		<!--迭代开始-->
+		 	<!--迭代开始-->
             <s:iterator value='hotBook' var='iter'>
-				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>">
-                <br>
-                <div class="inputHeader"><s:property value='#iter.name'/></div>
-	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
-         		</a>
+				<li>
+                	<a href="item_detail?itemID=<s:property value='#iter.itemID'/>">
+                    <img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"/>
+                	<br/>
+                	<div class="inputHeader"><s:property value='#iter.name'/></div>
+	     			<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
+         			</a>
          		</li>
          	</s:iterator>
             <!--迭代结束-->
-			<br>&nbsp;
+            </ul>
+			<br/>&nbsp;
 		</div>
 		<div id="life">
 			<ul>
