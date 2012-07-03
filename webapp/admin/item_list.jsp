@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Symagic网上书城</title>
+<title>Symagic网上书城 </title>
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
 <script src="js/checkform.js" type="text/javascript"
@@ -16,13 +16,14 @@
 
 <body>
 	<div id="container">
+	<a name="0"></a>
 		<div id="logalleft">
 			<div id="logalright">
 				<a href="" target="_parent">管理员 已登录|</a> <a href="logout"
 					target="_parent">退出</a>
 			</div>
 		</div>
-		<a name="0"></a>
+		
 		<div id="globallink">
 			<ul>
 				<li><a href="index">首页</a>
@@ -54,7 +55,7 @@
 				</div>
 
 				<div id="" style="float:right">
-					<form action="quick_search?page=1" method="post">
+					<form action="quick_search" method="post">
 						<select name="catalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>
@@ -73,8 +74,8 @@
 					</form>
 				</div>
 				<div class="user_note" id="myfont">
-					<a href="#1"><img src="image/add_product.png" /> </a> <a href="#2"><img
-						src="image/item_list.png" /> </a> <a href="#3"><img
+					<a href="#C1"><img src="image/add_product.png" /> </a> <a href="#C2"><img
+						src="image/item_list.png" /> </a> <a href="#C3"><img
 						onclick="expanse(document.getElementById('search_banner'));"
 						src="image/item_search.png" /> </a>
 				</div>
@@ -154,34 +155,34 @@
 											<option value="0">不论时间</option>
 										</s:else>
 										<s:if test="%{publishTime==1}">
-											<option value="1" selected="selected"><s:property value="searchDate[0]"/></option>
+											<option value="1" selected="selected">今年</option>
 										</s:if>
 										<s:else>
-											<option value="1"><s:property value="searchDate[0]"/></option>
+											<option value="1">今年</option>
 										</s:else>
 										<s:if test="%{publishTime==2}">
-											<option value="2" selected="selected"><s:property value="searchDate[1]"/></option>
+											<option value="2" selected="selected">去年</option>
 										</s:if>
 										<s:else>
-											<option value="2"><s:property value="searchDate[1]"/></option>
+											<option value="2">去年</option>
 										</s:else>
 										<s:if test="%{publishTime==3}">
-											<option value="3" selected="selected"><s:property value="searchDate[2]"/></option>
+											<option value="3" selected="selected">2年前</option>
 										</s:if>
 										<s:else>
-											<option value="3"><s:property value="searchDate[2]"/></option>
+											<option value="3">2年前</option>
 										</s:else>
 										<s:if test="%{publishTime==4}">
-											<option value="4" selected="selected"><s:property value="searchDate[3]"/></option>
+											<option value="4" selected="selected">3年前</option>
 										</s:if>
 										<s:else>
-											<option value="4"><s:property value="searchDate[3]"/></option>
+											<option value="4">3年前</option>
 										</s:else>
 										<s:if test="%{publishTime==5}">
-											<option value="5" selected="selected"><s:property value="searchDate[4]"/></option>
+											<option value="5" selected="selected">3年以上</option>
 										</s:if>
 										<s:else>
-											<option value="5"><s:property value="searchDate[4]"/></option>
+											<option value="5">3年以上</option>
 										</s:else>
 								</select>
 								</td>
@@ -514,7 +515,7 @@
 
 
 			<div id="double2">
-				<a name="1"></a>
+				
 				<div id="doublehead2">
 					<strong>添加商品</strong> <a id="header_right" href="#0"><input
 						type="button" value="返回顶部" /> </a>
@@ -583,23 +584,16 @@ new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/
 							</tr>
 							<tr>
 								<th>版次：</th>
-								<td><select name="edition">
-								<option value="1">第一版</option>
-								<option value="2">第二版</option>
-								<option value="3">第三版</option>
-								<option value="4">第四版</option>
-								</select></td>
-								<td>#选填项</td>
+								<td><input type="text" name="edition" class="smallinputext"
+									value="" /></td>
+								<td>#选填项<a name="C1"></a></td>
 
 
 							</tr>
 							<tr>
 								<th>开本：</th>
-								<td><select name="size">
-								<option value="8">8开</option>
-								<option value="16">16开</option>
-								<option value="32">32开</option>
-								</select></td>
+								<td><input type="text" name="size" class="smallinputext"
+									value="" /></td>
 								<td>#选填项</td>
 
 							</tr>
