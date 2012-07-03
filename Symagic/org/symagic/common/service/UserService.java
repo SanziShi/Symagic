@@ -14,6 +14,8 @@ import org.symagic.common.db.func.DaoCart;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.user.utilty.UserSessionUtilty;
 
+import com.opensymphony.xwork2.ActionContext;
+
 public class UserService {
 	//配置项
 	private DaoUser daoUser; //用于访问用户数据
@@ -64,7 +66,8 @@ public boolean login(String username,String password){
 	if(loginResult){
 	BeanUser user=daoUser.getUser(username);
 	UserSessionUtilty.logLogin(username,user.getNickname());
-		
+	
+	//同步数据库和session
 		accordCart();
 	}
 	//登录失败，增加失败次数
@@ -75,45 +78,55 @@ public boolean login(String username,String password){
 }
 //数据库与session中关于购物车的信息保持 一致
 private void accordCart(){
-	  //会员数据库中已有关于购物车的信息
+	 //会员数据库中已有关于购物车的信息
 	   List<BeanCart> historyItems=daoCart.getBooks(UserSessionUtilty.getUsername());
+	   Set<Integer> historyKey=new HashSet<Integer>();
 	    //会员未登录前加商品到购物车中
 	   HashMap<Integer,Integer> lastingItems=UserSessionUtilty.getCart();
+	  //将session和数据库的信息进行整合
+	   HashMap<Integer,Integer> allItems=new HashMap<Integer,Integer>();
+	    //首先将session中加入 
+	   allItems.putAll(lastingItems);
 	   BeanCart item;
-	   //更新session中购物车的信息,将历史记录中当前session的购物车没有的项加入到session购物车中，session中则将数量相加
+	   //将数据库中的信息进行整合
 	   for(Iterator<BeanCart> index=historyItems.iterator();index.hasNext();){
 		   item=index.next();
-		   //增加总数量
-		   UserSessionUtilty.addTotalNumber(item.getAmount());
-		   Integer sessionNumber=lastingItems.get(item.getBookID());
-		   if(sessionNumber==null){
-			   lastingItems.put(item.getBookID(), item.getAmount());
-			  
+		   Integer number=allItems.get(item.getBookID());
+		   //如果allItems没有此商品，则将数据库中的信息进入。如果有，则更改数量 
+		   if(number==null){
+			   allItems.put(item.getBookID(), item.getAmount());
 			  }
 		   else{
-			   lastingItems.put(item.getBookID(), item.getAmount()+sessionNumber);
+			   allItems.put(item.getBookID(), item.getAmount()+number);
 		   }
+		   historyKey.add(item.getBookID());
 	   }
-	   
-	   
-	   //更新数据库中购物车中的信息，遍历session中的购物车（此时已是合并后的结果），加入新项，对于已有id的项，更新数量
-	   Set<Integer> historyId=new HashSet();
-	   BeanCart historyItem;
-	   for(int index=0;index<historyItems.size();index++){
-		  historyItem=historyItems.get(index);
-		  historyId.add(historyItem.getBookID());
-	   }
-	   Set<Integer> itemIdSet=lastingItems.keySet();
-		 for(Iterator key =itemIdSet.iterator();key.hasNext();){
-			 int id=(Integer)key.next();
-			 int number=lastingItems.get(id);
-			 if(historyId.contains(id)){
-				 daoCart.modifyBook(UserSessionUtilty.getUsername(), id, number);
+   //同步session和数据库中购物的信息
+	  
+	    
+	 
+	     Set<Integer> allKeys=allItems.keySet(); //当前session中的数据
+	     int totalNumber=0;
+	     boolean result;//数据库操作的结果
+		 for(Iterator<Integer> key =allKeys.iterator();key.hasNext();){
+			 int id=key.next();
+			 int number=allItems.get(id);
+			 result=true;
+			 //如果历史中当前包含这个，则修改数量,不包含则加新记录
+			 if(historyKey.contains(id)){
+				 result=daoCart.modifyBook(UserSessionUtilty.getUsername(), id, number);
 			 }
 			 else{
-				 daoCart.addBook(UserSessionUtilty.getUsername(), id, number);
+				 result=daoCart.addBook(UserSessionUtilty.getUsername(), id, number);
+			 }
+			 
+			 if(result){
+
+				 lastingItems.put(id, number);
+				 totalNumber+=number;
 			 }
 		 }
+		  ActionContext.getContext().getSession().put("totalNumber", totalNumber);
 }
 
 public DaoUser getDaoUser() {

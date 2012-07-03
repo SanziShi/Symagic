@@ -33,7 +33,7 @@ public class ItemService {
 	private DaoBook daoBook;// 访问数据库中的书籍信息
 	private DaoCatalog daoCatalog;
 	private OrderService orderService;
-	private RecommandService recommendService;
+	private RecommendService recommendService;
 
 	/**
 	 * 
@@ -78,7 +78,7 @@ public class ItemService {
 
 	}
 
-	public void commentFromRecomend(Integer rate, Integer itemID, String desc) {
+	public void commentForRecomend(Integer rate, Integer itemID, String desc) {
 		recommendService
 				.rate(UserSessionUtilty.getSessionID(), String.valueOf(rate),
 						String.valueOf(itemID), desc, "item_detail?itemID="
@@ -481,11 +481,11 @@ if (currentCatalog != null) {
 		return orderService;
 	}
 
-	public RecommandService getRecommendService() {
+	public RecommendService getRecommendService() {
 		return recommendService;
 	}
 
-	public void setRecommendService(RecommandService recommendService) {
+	public void setRecommendService(RecommendService recommendService) {
 		this.recommendService = recommendService;
 	}
 

@@ -9,7 +9,7 @@ import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.service.ItemService;
-import org.symagic.common.service.RecommandService;
+import org.symagic.common.service.RecommendService;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
