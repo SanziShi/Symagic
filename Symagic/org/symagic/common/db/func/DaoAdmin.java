@@ -18,6 +18,12 @@ public class DaoAdmin {
 	private Statement st;
 	private ResultSet rs;
 	
+	/**
+	 * 验证管理员
+	 * @param adminName	管理员名
+	 * @param pwd	管理员密码
+	 * @return	true 系统存在指定管理员	false 系统不存在指定管理员
+	 */
 	public boolean validateAdmin(String adminName, String pwd)
 	{
 		try {
