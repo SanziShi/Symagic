@@ -137,7 +137,7 @@
 									var defaultDay = <s:property value="book.parseTime.day" />;
 									var dt = new Date(defaultYear,
 											defaultMonth, defaultDay);
-									new DateSelector(sYear, sMonth, sDay, dt);
+									new DateSelector(selYear, selYear ,selYear, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>, dt);
 								</script>
 								<td>#选填项</td>
 							</tr>
@@ -323,7 +323,7 @@
 			 	  <td>
 				 <input type="Button" name="button2" value="提交" onClick="checkitemform()">
 				 	<input type="Reset" name="button1" value="重填" onClick="clear()">
-				 <input type="Button" name="button22" value="返回" onClick="javascript:window.location.href='item_list.html'">				  </td> 
+				 <input type="Button" name="button22"sDay value="返回" onClick="javascript:window.location.href='item_list.html'">				  </td> 
 				  <td></td>
 				  </tr>
         </table>

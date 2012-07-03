@@ -39,10 +39,10 @@ private static final long serialVersionUID = 8991605145652333401L;
 
  private Integer sign;//搜索标志，0为快速搜索
  private  Integer lines;
- private  DaoCatalog daoCatalog;
+
 //传出
 private Integer totalPage;
-private List<ItemTinyBean>recommend;//推荐商品
+
 private List<ItemBean>items;//用于显示的商品列表
 	
 	@Override
@@ -69,25 +69,7 @@ private List<ItemBean>items;//用于显示的商品列表
 		     
 		    //装饰成前台所需的信息
 			itemService.decorateForItem(books, items);
-			List<Integer> bookIds;
-			/**
-			 * 处于test状态，待修改
-			 */
-			//推荐商品
-			if(UserSessionUtilty.isLogin()){
-			//未完成 
-//				bookIds=recommendService.recommendationsForUser(UserSessionUtilty.getUsername(), recommendNumber);
-			}
-			else{
-				   recommend=new ArrayList<ItemTinyBean>();
-				   itemService.getNewBook(recommend);
-				 
-//				bookIds=recommendService.mostViewedItems(recommendNumber);
-			}
-//			itemService.fillItem(bookIds, recommend);
-			 recommend=new ArrayList<ItemTinyBean>();
-			  itemService.getNewBook(recommend);
-		 return super.execute();
+		   return super.execute();
 		}
 	 
 	
@@ -155,13 +137,7 @@ private List<ItemBean>items;//用于显示的商品列表
 			this.totalPage = totalPage;
 		}
 
-		public List<ItemTinyBean> getRecommend() {
-			return recommend;
-		}
-
-		public void setRecommend(List<ItemTinyBean> recommend) {
-			this.recommend = recommend;
-		}
+		
 
 		public List<ItemBean> getItems() {
 			return items;
@@ -205,12 +181,5 @@ private List<ItemBean>items;//用于显示的商品列表
 
 	
 
-		public DaoCatalog getDaoCatalog() {
-			return daoCatalog;
-		}
-
-		public void setDaoCatalog(DaoCatalog daoCatalog) {
-			this.daoCatalog = daoCatalog;
-		}
 	
 }

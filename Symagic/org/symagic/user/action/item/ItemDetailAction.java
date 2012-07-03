@@ -54,8 +54,7 @@ public class ItemDetailAction extends CatalogBase {
 		totalPage = (commentNumber + lines - 1) / lines;
 		//显示第一页的评论显示
 		commentList = itemService.getCommentWithPage(itemID,1, lines);
-		
-		//推荐
+        //推荐
 		recommendView = new ArrayList<ItemTinyBean>();
 		recommendBought = new ArrayList<ItemTinyBean>();
 		itemService.getBoughtFromItem(recommendNumber, itemID, recommendBought);

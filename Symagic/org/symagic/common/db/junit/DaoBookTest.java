@@ -15,48 +15,46 @@ import sun.security.krb5.internal.crypto.dk.ArcFourCrypto;
 
 public class DaoBookTest extends TestCase{
 
-	//初始化
-<<<<<<< HEAD
-	DaoBook db  = new DaoBook();
-
+ 
+	DaoBook	db	= new DaoBook();
 
 
 	
 
-//	@Test
-//	public void testAddBook1(){
-//		BeanBook book1 = new BeanBook();
-//		//设置book1的参数
-//		book1.setAuthor("yusen");
-//		book1.setBinding("精装");
-//		book1.setBookDesc("good");
-//		book1.setBookName("what is that?????");
-//		book1.setDiscount(0.5f);
-//		book1.setFolio("16");
-//		book1.setInventory(20);
-//		book1.setIsbn("1234567891");
-//		book1.setMarketPrice(49.21f);
-//		book1.setOffline("在架");
-//		book1.setPage(400);
-//		book1.setPicture("picture3.jpg");
-//		book1.setPublisher("public department");
-//		book1.setPublishDate("2009-03-27");
-//		book1.setVersion(5);
-//		book1.setCatalogID(2);
-//		
-//		//断言判断
-//		assertEquals(39,db.addBook(book1));
-//		}
-	
 	@Test
-	public void testGetRandBooks()
-	{
-		DaoBook	db	= new DaoBook();
-		ArrayList<Integer>	list	= new ArrayList<Integer>();
-		list.add(20);
-		list.add(28);
-		assertEquals(1, db.getRandBooks(list, 3).get(0).intValue());
-	}
+	public void testAddBook1(){
+		BeanBook book1 = new BeanBook();
+		//设置book1的参数
+		book1.setAuthor("yusen");
+		book1.setBinding("精装");
+		book1.setBookDesc("good");
+		book1.setBookName("what is that?????");
+		book1.setDiscount(0.5f);
+		book1.setFolio("16");
+		book1.setInventory(20);
+		book1.setIsbn("1234567891");
+		book1.setMarketPrice(49.21f);
+		book1.setOffline("在架");
+		book1.setPage(400);
+		book1.setPicture("picture3.jpg");
+		book1.setPublisher("public department");
+		book1.setPublishDate("2009-03-27");
+		book1.setVersion(5);
+		book1.setCatalogID(2);
+		
+		//断言判断
+		assertEquals(39,db.addBook(book1));
+		}
+	
+//	@Test
+//	public void testGetRandBooks()
+//	{
+//		DaoBook	db	= new DaoBook();
+//		ArrayList<Integer>	list	= new ArrayList<Integer>();
+//		list.add(20);
+//		list.add(28);
+//		assertEquals(1, db.getRandBooks(list, 3).get(0).intValue());
+//	}
 	/*
 =======
 	DaoBook db  = new DaoBook();

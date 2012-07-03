@@ -24,14 +24,22 @@
 		</div>
 		<div id="globallink">
 			<ul>
-				<li><a href="index">首页</a></li>
-				<li><a href="catalog_manager">目录管理</a></li>
-				<li><a href="item_manager">商品管理</a></li>
-				<li><a href="order_list">订单管理</a></li>
-				<li><a href="order_statistics">销售量统计</a></li>
-				<li><a href="user_level">会员管理</a></li>
-				<li><a href="" class="nouseful">&nbsp;</a></li>
-                <li><a href="" class="nouseful">&nbsp;</a></li>
+				<li><a href="index">首页</a>
+				</li>
+				<li><a href="catalog_manager">目录管理</a>
+				</li>
+				<li><a href="item_manager">商品管理</a>
+				</li>
+				<li><a href="order_list">订单管理</a>
+				</li>
+				<li><a href="order_statistics">销售量统计</a>
+				</li>
+				<li><a href="user_level">会员管理</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
 			</ul>
 		</div>
 
@@ -40,10 +48,8 @@
 
 
 				<ul>
-					<li><a href="user_list">查询会员</a>
-					</li>
-					<li><a href="user_level">设置会员等级规定</a>
-					</li>
+					<li><a href="user_list">查询会员</a></li>
+					<li><a href="user_level">设置会员等级规定</a></li>
 				</ul>
 			</div>
 		</div>
@@ -81,16 +87,24 @@
 					<strong>精确查询</strong>
 				</div>
 				<div id="doublecontent2">
-					<form action="user_list" method="post">
+					<form action="user_list?page=1" method="post">
 						<table width="100%">
 							<tr>
 								<td width="3%" class="inputHeader">&nbsp;</td>
 								<td width="16%" class="inputHeader">用户名：</td>
 								<td width="39%" class="inputContent"><input type="text"
-									name="userName" onFocus="nextfield='password'" value=""
-									size="15">
+									name="userName" onfocus="nextfield='password'"
+									value="<s:property value='userName'/>" size="15" />
 								</td>
-								<td><input type="submit" value="查询" />
+								<td>
+								<input type="submit" value="查询" />
+								<input type="hidden" value="0" name="userLevel"/>
+								<input type="hidden" value="2007" name="startTime.year"/>
+								<input type="hidden" value="1" name="startTime.month"/>
+								<input type="hidden" value="1" name="startTime.day"/>
+								<input type="hidden" value="2012" name="endTime.year"/>
+								<input type="hidden" value="12" name="endTime.month"/>
+								<input type="hidden" value="31" name="endTime.day"/>
 								</td>
 							</tr>
 						</table>
@@ -102,7 +116,7 @@
 					<strong>条件查询</strong>
 				</div>
 				<div id="doublecontent2">
-					<form action="user_list" method="post">
+					<form action="user_list?page=1" method="post">
 						<table width="100%">
 							<tr>
 								<td width="42%" class="inputContent">&nbsp;</td>
@@ -114,16 +128,28 @@
 								<td width="3%" class="inputHeader">&nbsp;</td>
 								<td class="inputHeader">会员级别：</td>
 								<td class="inputContent"><select name="userLevel">
-										<option value="0">所有会员</option>
+										<s:if test="%{userLevel==0}">
+											<option value="0" selected="selected">所有会员</option>
+										</s:if>
+										<s:else>
+											<option value="0">所有会员</option>
+										</s:else>
 										<!--会员等级迭代开始-->
 										<s:iterator value="levelList" var="level">
-											<option value="<s:property value='#level.levelID'/>">
-												<s:property value='#level.levelName' />
-											</option>
+											<s:if test="%{userLevel==#level.levelID}">
+												<option value="<s:property value='#level.levelID'/>"
+													selected="selected">
+													<s:property value='#level.levelName' />
+												</option>
+											</s:if>
+											<s:else>
+												<option value="<s:property value='#level.levelID'/>">
+													<s:property value='#level.levelName' />
+												</option>
+											</s:else>
 										</s:iterator>
 										<!--会员等级迭代结束-->
-								</select>
-								</td>
+								</select></td>
 								<td class="inputContent">&nbsp;</td>
 							</tr>
 							<tr>
@@ -148,8 +174,13 @@
 									// 新建一个DateSelector类的实例，将三个select对象传进去
 									//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 									// 也可以试试下边的代码
-									var dt = new Date(2012, 0, 1);
-									new DateSelector(sYear, sMonth, sDay, dt);
+									var defaultYear = <s:property value="startTime.year" default="2007"/>;
+									var defaultMonth = <s:property value="startTime.month" default="1"/> - 1;
+									var defaultDay = <s:property value="startTime.day" default="1"/>;
+									var dt = new Date(defaultYear,
+											defaultMonth, defaultDay);
+									new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>,
+											dt);
 								</script>
 								</td>
 								<td class="inputContent">&nbsp;</td>
@@ -176,15 +207,19 @@
 									// 新建一个DateSelector类的实例，将三个select对象传进去
 									//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 									// 也可以试试下边的代码
-									var dt = new Date(2012, 0, 1);
-									new DateSelector(eYear, eMonth, eDay, dt);
+									var defaultYear = <s:property value="endTime.year" default="2012"/>;
+									var defaultMonth = <s:property value="endTime.month" default="12"/> - 1;
+									var defaultDay = <s:property value="endTime.day" default="31"/>;
+									var dt = new Date(defaultYear,
+											defaultMonth, defaultDay);
+									new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>,
+											dt);
 								</script>
 								</td>
 								<td width="40%" class="inputContent"><input type="submit"
 									class="bt2" name="button222" value="查询"
-									onClick="javascript:window.location.href='user_list.html'"/>&nbsp;&nbsp;
-										&nbsp; 
-								</td>
+									onClick="javascript:window.location.href='user_list.html'" />&nbsp;&nbsp;
+									&nbsp;</td>
 							</tr>
 						</table>
 					</form>
@@ -210,18 +245,34 @@
 							<!--会员迭代开始-->
 							<s:iterator value="userList" var="user">
 								<tr>
-									<td><s:property value="#user.userName" />
-									</td>
-									<td><s:property value="#user.levelName" />
-									</td>
-									<td><s:property value="#user.score" />
-									</td>
-									<td><s:property value="#user.registerDate" />
-									</td>
+									<td><s:property value="#user.userName" /></td>
+									<td><s:property value="#user.levelName" /></td>
+									<td><s:property value="#user.score" /></td>
+									<td><s:property value="#user.registerDate" /></td>
 								</tr>
 							</s:iterator>
 							<!--会员迭代结束-->
 						</tbody>
+						<tr>
+							<td></td>
+							<td></td>
+							<td><s:if test="%{totalPage==1}"></s:if> <s:elseif
+									test="%{page==1}">
+									<a
+										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
+								</s:elseif> <s:elseif test="%{page==totalPage}">
+									<a
+										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page - 1 }">上一页</a>
+								</s:elseif> <s:else>
+									<a
+										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page - 1 }">上一页</a>
+									<a
+										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
+								</s:else>
+							</td>
+							<td>当前第<s:property value="page" />页，共<s:property
+									value="totalPage" />页，每页<s:property value="lines" />条</td>
+						</tr>
 					</table>
 				</div>
 			</div>

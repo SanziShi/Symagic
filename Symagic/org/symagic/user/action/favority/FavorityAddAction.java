@@ -3,6 +3,7 @@ package org.symagic.user.action.favority;
 import java.util.Iterator;
 import java.util.List;
 
+import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoFavorityFolder;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
@@ -17,6 +18,7 @@ public class FavorityAddAction extends ActionSupport {
 	private static final long serialVersionUID = 8679639043977363919L;
 	//配置
 	private DaoFavorityFolder daoFavorityFolder;//对收藏夹的管理
+	private DaoBook daoBook;
 	//传入
 	private List<Integer>items;
 	
@@ -35,6 +37,7 @@ public class FavorityAddAction extends ActionSupport {
 		 //商品不能为空且用户已登录
 			if(items==null||!UserSessionUtilty.isLogin()){
 				addResult=false;
+				resultInfo="未登录 或商品不存在";
 				return SUCCESS;
 			}
 			StringBuilder builder=new StringBuilder();
@@ -42,8 +45,17 @@ public class FavorityAddAction extends ActionSupport {
 			boolean result;
 			Iterator<Integer> it=items.iterator();
 			while(it.hasNext()){
-				Integer itemID=it.next();
+			Integer itemID=it.next();
+			if(itemID==null){
+				addResult=false;
+				continue;
+			}
+			if(daoBook.getDetail(itemID)==null){
+				result=false;
+			}
+			else{
 			 result=daoFavorityFolder.add(UserSessionUtilty.getUsername(),itemID);
+			 }
 			 if(!result){
 				   addResult=false;
 				   if(builder.length()==0){
@@ -55,7 +67,7 @@ public class FavorityAddAction extends ActionSupport {
 			   }
 			}
 			 if(!addResult){
-				  builder.append("已存在收藏夹中");
+				  builder.append("未能添加到收藏夹");
 				  resultInfo=builder.toString();
 			   }
 			   else{
@@ -84,6 +96,14 @@ public class FavorityAddAction extends ActionSupport {
 	public void setResultInfo(String resultInfo) {
 		this.resultInfo = resultInfo;
 	}
+	public DaoBook getDaoBook() {
+		return daoBook;
+	}
+	public void setDaoBook(DaoBook daoBook) {
+		this.daoBook = daoBook;
+	}
+	
+	
 	
  
 }

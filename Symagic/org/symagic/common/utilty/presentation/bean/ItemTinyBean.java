@@ -15,7 +15,7 @@ public class ItemTinyBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private int itemID;
+	private Integer itemID;
 	private String marketPrice;
 	
 	public String getMarketPrice() {
@@ -24,10 +24,11 @@ public class ItemTinyBean {
 	public void setMarketPrice(String marketPrice) {
 		this.marketPrice = marketPrice;
 	}
-	public int getItemID() {
+	
+	public Integer getItemID() {
 		return itemID;
 	}
-	public void setItemID(int itemID) {
+	public void setItemID(Integer itemID) {
 		this.itemID = itemID;
 	}
 	public String getSavePrice() {
@@ -60,10 +61,11 @@ public class ItemTinyBean {
 	public void setPicturePath(String picturePath) {
 		this.picturePath = picturePath;
 	}
-	public int getItemNumber() {
+	
+	public Integer getItemNumber() {
 		return itemNumber;
 	}
-	public void setItemNumber(int itemNumber) {
+	public void setItemNumber(Integer itemNumber) {
 		this.itemNumber = itemNumber;
 	}
 	public Integer getScore() {
@@ -107,7 +109,7 @@ public class ItemTinyBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private int itemNumber;
+	private Integer itemNumber;
 	
 	private Integer score;
 	

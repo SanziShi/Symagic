@@ -2,6 +2,7 @@ package org.symagic.admin.action.user;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -36,9 +37,17 @@ public class UserListAction extends CatalogBase {
 	private DaoLevel daoLevel;
 	
 	private List<LevelBean> levelList;
+	
+	private Integer searchStartYear;
+	private Integer searchEndYear;
+	private Integer searchYearRange;
 
 	@Override
 	public String execute() throws Exception {
+		
+		GregorianCalendar calendar = new GregorianCalendar();
+		searchEndYear = calendar.get(Calendar.YEAR);
+		searchStartYear = calendar.get(Calendar.YEAR) - searchYearRange;
 		
 		List<BeanLevel> levels = daoLevel.getAll();
 
@@ -192,6 +201,30 @@ public class UserListAction extends CatalogBase {
 
 	public void setLevelList(List<LevelBean> levelList) {
 		this.levelList = levelList;
+	}
+
+	public Integer getSearchStartYear() {
+		return searchStartYear;
+	}
+
+	public void setSearchStartYear(Integer searchStartYear) {
+		this.searchStartYear = searchStartYear;
+	}
+
+	public Integer getSearchEndYear() {
+		return searchEndYear;
+	}
+
+	public void setSearchEndYear(Integer searchEndYear) {
+		this.searchEndYear = searchEndYear;
+	}
+
+	public Integer getSearchYearRange() {
+		return searchYearRange;
+	}
+
+	public void setSearchYearRange(Integer searchYearRange) {
+		this.searchYearRange = searchYearRange;
 	}
 
 }

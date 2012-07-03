@@ -581,8 +581,8 @@ var selDay = window.document.getElementById("sDay");
 // 新建一个DateSelector类的实例，将三个select对象传进去
 //new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 // 也可以试试下边的代码
-var dt = new Date(2012, 0, 1);
-new DateSelector(sYear, sMonth ,sDay, dt);
+var dt = new Date(<s:property value="searchEndYear"/>, 0, 1);
+new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>, dt);
 </script>
 								<td>#选填项</td>
 							</tr>

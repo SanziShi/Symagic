@@ -75,7 +75,7 @@
 										//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 										// 也可以试试下边的代码
 										var dt = new Date(2012, 0, 1);
-										new DateSelector(sYear, sMonth, sDay,
+										new DateSelector(selYear, selMonth, selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>,
 												dt);
 									</script>
 								</tr>
@@ -100,7 +100,7 @@
 										//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 										// 也可以试试下边的代码
 										var dt = new Date(2012, 0, 1);
-										new DateSelector(eYear, eMonth, eDay,
+										new DateSelector(selYear, selMonth, selDay, <s:property value="searchStartYear"/> , <s:property value="searchEndYear"/>,
 												dt);
 									</script>
 								</tr>
