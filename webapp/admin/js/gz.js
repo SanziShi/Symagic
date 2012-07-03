@@ -596,6 +596,29 @@ function ajax_delete_tag(id) {
 
 }
 
+//删除评论
+function ajax_delete_comment(username,itemid){
+	var result = confirm("确定删除该评论？");
+	if (result == true) {
+		Ajax({
+			url : 'comment/delete?userName=' + username + '&itemID=' + itemid,
+			type : 'GET',
+			onSend : function() {
+			},
+			onSuccess : function(e) {
+				var obj = JSON.parse(e);
+				if (obj.deleteResult == true) {
+					var tag = document.getElementById(username);
+					tag.parentNode.removeChild(tag);
+					alert("删除评论成功！");
+				} else
+					alert("删除评论出错，请返回重新尝试！");
+			}
+		});
+	}
+
+}
+
 // 商品操作
 function ajax_item_operation(e, id) {
 

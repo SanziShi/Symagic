@@ -7,6 +7,11 @@
 <title>Symagic网上书城</title>
 <link href="../css/frame.css" rel="stylesheet" type="text/css" />
 <link href="../css/gz.css" rel="stylesheet" type="text/css" />
+
+<script language="javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/gz.js"></script>
+<script language="javascript" src="js/checkform.js"></script>
+<script language="javascript" src="js/catalog.js"></script>
 </head>
 
 <body>
@@ -100,6 +105,7 @@
 				<div id="sendnotecontent">
 					<table id="creditquery">
 						<s:iterator value="commentList" var="comments">
+						<div id="<s:property value='#coments.username'/>">
 							<tr>
 								<td class="commentr1color">会员：</td>
 								<td class="commentr1color"><s:property
@@ -120,9 +126,10 @@
 								<td colspan="4" class="commentr2color"><span class="red"><s:property
 											value="#comments.content" />
 								</span></td>
-								<td><a href="">删除</a>
+								<td><a href="javascript:void(0)" onclick="ajax_delete_comment('<s:property value="#coments.username"/>','<s:property value="itemID"/>');">删除</a>
 								</td>
 							</tr>
+							</div>
 						</s:iterator>
 						<tr>
 							<td></td>
