@@ -25,10 +25,6 @@
 	<!-- 注入拦截器配置 -->
 	<bean id="InjectionInterceptor" class="org.symagic.common.interceptor.InjectionInterceptor">
 	</bean>
-	
-	<!-- 表单数据恢复拦截器 -->
-	<bean id="FormDataRecoverInterceptor" class="org.symagic.common.interceptor.FormDataRecoverIntercepter">
-	</bean>
 
 
 	<bean id="checkCaptcha" class="org.symagic.common.action.captcha.CheckCaptchaAction"
