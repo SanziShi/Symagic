@@ -486,6 +486,11 @@
 		<property name="daoOrder" ref="DaoOrder"></property>
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 	</bean>
+	
+	<bean id="itemCheckInventory" class="org.symagic.user.action.order.ItemCheckinventoryAction"
+		scope="request">
+		<property name="daoBook" ref="DaoBook"></property>
+	</bean>
 
 	<bean id="checkScore" class="org.symagic.user.action.order.OrderCheckScoreAction"
 		scope="request">

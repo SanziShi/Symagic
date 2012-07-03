@@ -371,6 +371,11 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">cancelResult,resultInfo</param>
 			</result>
 		</action>
+		<action name="check_item" class="itemCheckInventory">
+			<result type="json">
+				<param name="includeProperties">checkResult</param>
+			</result>
+		</action>
 	</package>
 
 
