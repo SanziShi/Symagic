@@ -17,7 +17,7 @@
 	<div id="container">
 		<div id="logalleft">
 			<div id="logalright">
-				<a href="" target="_parent">管理员 <s:property value="#session.userName"/>已登录|</a> <a href="logout"
+				<a href="" target="_parent">管理员 已登录|</a> <a href="logout"
 					target="_parent">退出</a>
 			</div>
 		</div>
@@ -87,9 +87,9 @@
 					<span>目录管理</span>
 				</h4>
 				<ul>
-					<li><a href="catalog_manager">查看商品目录</a>
+					<li><a href="catalog_manager">查看和修改目录</a>
 					</li>
-					<li><a href="catalog_edit">添加和更改商品目录</a>
+					<li><a href="catalog_manager">添加目录</a>
 					</li>
 				</ul>
 				<h4>
@@ -130,8 +130,8 @@
 						href="index.jsp">后台</a>
 				</div>
 				<div id="searchright">
-					<form action="quick_search" method="post">
-						<select name="catalogID">
+					<form action="quick_search?page=1" method="post">
+						<select name="qcatalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>
 								<option value="<s:property value='#outer.ID'/>">

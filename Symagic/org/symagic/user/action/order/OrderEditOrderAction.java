@@ -153,7 +153,7 @@ public class OrderEditOrderAction extends OrderBase {
 		userName = UserSessionUtilty.getUsername();
 		if (userName == null)
 			return ERROR;
-		if (order == null)
+		if (order == null || order.getUsername() == null || !order.getUsername().equals(userName))
 			return ERROR;
 		if (!order.getOrderState().equals("0")) {
 			return ERROR;

@@ -55,7 +55,7 @@ public class UpdateUserNicknameAction extends CatalogBase{
 			return SUCCESS;
 		}
 		if(nickname.getBytes().length < 4){
-			resultInfo = "昵称过短";
+			resultInfo = "昵称过短，应大于4个英文字符或2个中文字符";
 			updateResult = false;
 			return SUCCESS;
 		}

@@ -10,7 +10,6 @@ import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBookStatistics;
 import org.symagic.common.db.func.BookStatisticsRequire;
 import org.symagic.common.db.func.DaoBook;
-import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.utilty.presentation.bean.StatisticBean;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
 
@@ -22,7 +21,6 @@ public class AdminItemStatisticsAction extends CatalogBase {
 	private static final long serialVersionUID = -7238512637976603546L;
 
 	private DaoBook daoBook;
-	private DaoOrder daoOrder;
 
 	private TimeBean startTime;// :开始索引时间(year:年，month:月;day:日）;
 	private TimeBean endTime;// :结束索引时间（year：年，month:月，day:日);
@@ -82,7 +80,7 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		List<BeanBookStatistics> statistics = daoBook
 				.getBookStatistics(require);
 		
-		totalSalesRevenue = String.format("%.2f",daoOrder.getTotalSalesRevenue());
+		Float revenue = 0f;
 
 		if (statistics != null) {
 
@@ -95,6 +93,7 @@ public class AdminItemStatisticsAction extends CatalogBase {
 				bean.setSales(statistic.getTotalSaleAmount());
 				bean.setTotalPrice(String.format("%.2f",statistic.getTotalSaleRevenue()));
 				bean.setPrice(String.format("%.2f",statistic.getTotalSaleRevenue() / bean.getSales()));
+				revenue += statistic.getTotalSaleRevenue();
 				items.add(bean);
 			}
 
@@ -105,6 +104,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 			}
 
 		}
+		
+		totalSalesRevenue = String.format("%.2f",revenue);
 
 		return super.execute();
 	}
@@ -205,13 +206,6 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		this.searchYearRange = searchYearRange;
 	}
 
-	public DaoOrder getDaoOrder() {
-		return daoOrder;
-	}
-
-	public void setDaoOrder(DaoOrder daoOrder) {
-		this.daoOrder = daoOrder;
-	}
 
 	public String getTotalSalesRevenue() {
 		return totalSalesRevenue;

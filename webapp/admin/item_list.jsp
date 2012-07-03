@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Symagic网上书城</title>
+<title>Symagic网上书城 </title>
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
 <script src="js/checkform.js" type="text/javascript"
@@ -16,13 +16,14 @@
 
 <body>
 	<div id="container">
+	<a name="0"></a>
 		<div id="logalleft">
 			<div id="logalright">
 				<a href="" target="_parent">管理员 已登录|</a> <a href="logout"
 					target="_parent">退出</a>
 			</div>
 		</div>
-		<a name="0"></a>
+		
 		<div id="globallink">
 			<ul>
 				<li><a href="index">首页</a>
@@ -54,18 +55,39 @@
 				</div>
 
 				<div id="" style="float:right">
-					<form action="quick_search" method="post">
-						<select name="catalogID">
-							<option value="0">所有类别</option>
+					<form action="quick_search?page=1" method="post">
+						<select name="qcatalogID">
+							<s:if test="%{qcatalogID==0}">
+								<option value="0" selected="selected">所有类别</option>
+							</s:if>
+							<s:else>
+								<option value="0">所有类别</option>
+							</s:else>
 							<s:iterator value="catalog" var='outer'>
-								<option value="<s:property value='#outer.ID'/>">
-									<s:property value='#outer.name' />
-								</option>
-								<s:iterator value="#outer.childCatalog" var="inner">
-									<option value="<s:property value='#inner.ID'/>">
-										&nbsp;&nbsp;&nbsp;
-										<s:property value='#inner.name' />
+								<s:if test="%{qcatalogID==#outer.ID}">
+									<option value="<s:property value='#outer.ID'/>"
+										selected="selected">
+										<s:property value='#outer.name' />
 									</option>
+								</s:if>
+								<s:else>
+									<option value="<s:property value='#outer.ID'/>">
+										<s:property value='#outer.name' />
+									</option>
+								</s:else>
+								<s:iterator value="#outer.childCatalog" var="inner">
+									<s:if test="%{qcatalogID==#inner.ID}">
+										<option value="<s:property value='#inner.ID'/>" selected="selected">
+											&nbsp;&nbsp;&nbsp;
+											<s:property value='#inner.name' />
+										</option>
+									</s:if>
+									<s:else>
+										<option value="<s:property value='#inner.ID'/>">
+											&nbsp;&nbsp;&nbsp;
+											<s:property value='#inner.name' />
+										</option>
+									</s:else>
 								</s:iterator>
 							</s:iterator>
 						</select> <input type="text" name="keyword" id="keyword" class="gray"
@@ -73,8 +95,8 @@
 					</form>
 				</div>
 				<div class="user_note" id="myfont">
-					<a href="#1"><img src="image/add_product.png" /> </a> <a href="#2"><img
-						src="image/item_list.png" /> </a> <a href="#3"><img
+					<a href="#C1"><img src="image/add_product.png" /> </a> <a href="#C2"><img
+						src="image/item_list.png" /> </a> <a href="#C3"><img
 						onclick="expanse(document.getElementById('search_banner'));"
 						src="image/item_search.png" /> </a>
 				</div>
@@ -154,34 +176,54 @@
 											<option value="0">不论时间</option>
 										</s:else>
 										<s:if test="%{publishTime==1}">
-											<option value="1" selected="selected">今年</option>
+											<option value="1" selected="selected">
+												<s:property value="searchDate[0]" />
+											</option>
 										</s:if>
 										<s:else>
-											<option value="1">今年</option>
+											<option value="1">
+												<s:property value="searchDate[0]" />
+											</option>
 										</s:else>
 										<s:if test="%{publishTime==2}">
-											<option value="2" selected="selected">去年</option>
+											<option value="2" selected="selected">
+												<s:property value="searchDate[1]" />
+											</option>
 										</s:if>
 										<s:else>
-											<option value="2">去年</option>
+											<option value="2">
+												<s:property value="searchDate[1]" />
+											</option>
 										</s:else>
 										<s:if test="%{publishTime==3}">
-											<option value="3" selected="selected">2年前</option>
+											<option value="3" selected="selected">
+												<s:property value="searchDate[2]" />
+											</option>
 										</s:if>
 										<s:else>
-											<option value="3">2年前</option>
+											<option value="3">
+												<s:property value="searchDate[2]" />
+											</option>
 										</s:else>
 										<s:if test="%{publishTime==4}">
-											<option value="4" selected="selected">3年前</option>
+											<option value="4" selected="selected">
+												<s:property value="searchDate[3]" />
+											</option>
 										</s:if>
 										<s:else>
-											<option value="4">3年前</option>
+											<option value="4">
+												<s:property value="searchDate[3]" />
+											</option>
 										</s:else>
 										<s:if test="%{publishTime==5}">
-											<option value="5" selected="selected">3年以上</option>
+											<option value="5" selected="selected">
+												<s:property value="searchDate[4]" />
+											</option>
 										</s:if>
 										<s:else>
-											<option value="5">3年以上</option>
+											<option value="5">
+												<s:property value="searchDate[4]" />
+											</option>
 										</s:else>
 								</select>
 								</td>
@@ -449,17 +491,7 @@
 											type="button" value="删除" /> </a>&nbsp;&nbsp;</td>
 								</tr>
 							</s:iterator>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><input type="button" name="off"
-									onclick="ajax_batch_off('itemForm')" value="批量下架" /> <input
-									type="button" name="up" onclick="ajax_batch_up('itemForm')"
-									value="批量上架" /></td>
-							</tr>
+							
 							<tr>
 								<td></td>
 								<td></td>
@@ -524,7 +556,7 @@
 
 
 			<div id="double2">
-				<a name="1"></a>
+				
 				<div id="doublehead2">
 					<strong>添加商品</strong> <a id="header_right" href="#0"><input
 						type="button" value="返回顶部" /> </a>
@@ -593,16 +625,25 @@ new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/
 							</tr>
 							<tr>
 								<th>版次：</th>
-								<td><input type="text" name="edition" class="smallinputext"
-									value="" /></td>
+								<td><select name="edition">
+										<option value="1">第一版</option>
+										<option value="2">第二版</option>
+										<option value="3">第三版</option>
+										<option value="4">第四版</option>
+								</select>
+								</td>
 								<td>#选填项</td>
 
 
 							</tr>
 							<tr>
 								<th>开本：</th>
-								<td><input type="text" name="size" class="smallinputext"
-									value="" /></td>
+								<td><select name="size">
+										<option value="8">8开</option>
+										<option value="16">16开</option>
+										<option value="32">32开</option>
+								</select>
+								</td>
 								<td>#选填项</td>
 
 							</tr>
