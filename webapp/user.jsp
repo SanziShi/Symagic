@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BC2商城</title>
+<title>Symagic网上书城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
 <link href="css/user.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -53,11 +53,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul>
 			<li><a href="index">首页</a></li>
 			<li><a href="item_list">商品列表</a></li>
-			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="address.html">地址簿</a></li>
-			<li><a href="tradequery.html">交易查询</a></li>
-			<li><a href="send_notes.html">送货说明</a></li>
-            <li><a class="nouseful">&nbsp;</a></li>
+			<li><a href="send_notes.jsp">购物指引</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+                        <li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
