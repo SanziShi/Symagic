@@ -22,7 +22,7 @@ public class OrderCheckScoreAction extends CatalogBase{
 	
 	private Boolean checkResult;
 	
-	private String totalPrice;
+	private String price;
 	
 	private DaoUser daoUser;
 	
@@ -38,6 +38,10 @@ public class OrderCheckScoreAction extends CatalogBase{
 
 	public String execute() throws Exception{
 		BeanUser user = daoUser.getUser(UserSessionUtilty.getUsername());
+		if(score == null){
+			checkResult = false;
+			return SUCCESS;
+		}
 		if(user == null)
 			checkResult = false;
 		else{
@@ -53,7 +57,7 @@ public class OrderCheckScoreAction extends CatalogBase{
 			}
 			if(checkResult)
 				price -= score * 0.1;
-			setTotalPrice(String.format("%.2f", price));
+			setPrice(String.format("%.2f", price));
 		}
 		return SUCCESS;
 	}
@@ -82,11 +86,11 @@ public class OrderCheckScoreAction extends CatalogBase{
 		this.daoUser = daoUser;
 	}
 
-	public String getTotalPrice() {
-		return totalPrice;
+	public String getPrice() {
+		return price;
 	}
 
-	public void setTotalPrice(String totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setPrice(String totalPrice) {
+		this.price = totalPrice;
 	}
 }
