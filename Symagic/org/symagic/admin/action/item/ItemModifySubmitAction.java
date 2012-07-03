@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.util.ServletContextAware;
+import org.symagic.admin.utilty.AdminUtility;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
@@ -133,9 +134,11 @@ public class ItemModifySubmitAction extends ActionSupport implements
 	public void validate() {
 
 		// 处理商品类别以外其他都不能为空
-		if (ISBN == null || name == null || author == null || publisher == null
-				|| binding == null || marketPrice == null || discount == null
-				|| inventory == null || description == null) {
+		if (AdminUtility.isEmpty(ISBN) || AdminUtility.isEmpty(name) || AdminUtility.isEmpty(author) || AdminUtility.isEmpty(publisher)
+				|| AdminUtility.isEmpty(binding) || marketPrice == null || discount == null
+				|| inventory == null || AdminUtility.isEmpty(description)) {
+			errorHeader = "输入不正确";
+			errorSpecification = "您的输入不正确";
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;

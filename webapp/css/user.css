@@ -212,7 +212,19 @@ td.detail
 {
 	line-height:20px;
 }
-
+#myorder
+{
+	text-align: center;
+background: #FFFCEB;
+border-collapse: collapse;
+border: 1px solid #B7D2DF;
+}
+#myorder tr th
+{
+	height: 27px;
+line-height: 27px;
+background: url(../image/bg_gallery.jpg) #CCC repeat-x 0 -111px;
+}
 
 
 

@@ -22,7 +22,7 @@ import org.symagic.common.db.func.DaoLevel;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.service.OrderService;
-import org.symagic.common.service.RecommandService;
+import org.symagic.common.service.RecommendService;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
@@ -78,7 +78,7 @@ public class OrderSubmitAction extends OrderBase{
 	
 	private DaoDistrict daoDistrict;
 	
-	private RecommandService recommandService;
+	private RecommendService recommandService;
 	
 	private DaoBook daoBook;
 	
@@ -214,7 +214,7 @@ public class OrderSubmitAction extends OrderBase{
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		order.setOrderDate(sdf.format(date));
 		
-		order.setTotalprice(totalPrice);
+		order.setTotalprice(totalPrice - score * 0.1f);
 		BeanLevel level = daoLevel.judgeLevel(daoUser.getScore(username));
 		if(level != null)
 			order.setScore((int)(totalPrice * level.getRate()));
@@ -223,9 +223,11 @@ public class OrderSubmitAction extends OrderBase{
 		orderID = daoOrder.addOrder(order);
 		if(orderID > 0){
 			UserSessionUtilty.removeOrder();
-			UserSessionUtilty.clearCart();
+			daoUser.updateScore(daoUser.getScore(UserSessionUtilty.getUsername()) - score,
+					UserSessionUtilty.getUsername());
 			for(int i = 0; i < order.getList().size(); i ++){
 				daoCart.deleteBook(getUserName(), order.getList().get(i).getBookId());
+				UserSessionUtilty.deleteFromCart(order.getList().get(i).getBookId());
 			}
 			return SUCCESS;
 		}
@@ -235,7 +237,9 @@ public class OrderSubmitAction extends OrderBase{
 	}
 	
 	public void validate(){
-		if(score == null || getDistrictLevel1ID() == null 
+		if(score == null)
+			score = 0;
+		if(getDistrictLevel1ID() == null 
 				|| getDistrictLevel2ID() == null || getDistrictLevel3ID() == null
 				|| getMobileNum() == null || getPhoneNum() == null ||
 				getReceiverName() == null || getZipcode() == null){
@@ -266,11 +270,11 @@ public class OrderSubmitAction extends OrderBase{
 		this.daoBook = daoBook;
 	}
 
-	public RecommandService getRecommandService() {
+	public RecommendService getRecommandService() {
 		return recommandService;
 	}
 
-	public void setRecommandService(RecommandService recommandService) {
+	public void setRecommandService(RecommendService recommandService) {
 		this.recommandService = recommandService;
 	}
 

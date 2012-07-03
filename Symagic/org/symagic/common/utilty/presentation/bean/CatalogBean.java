@@ -29,7 +29,7 @@ public class CatalogBean {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML 至 Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private String description;
+	private String desc;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -50,11 +50,12 @@ public class CatalogBean {
 		this.name = name;
 	}
 	
-	public String getDescription() {
-		return description;
+	
+	public String getDesc() {
+		return desc;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 	public Integer getID() {
 		return ID;

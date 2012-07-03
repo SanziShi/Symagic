@@ -50,7 +50,7 @@ public class SubmitCommentAction extends ActionSupport {
 		//得到书箱描述信息，为推荐系统提供信息，得到后期的推荐
 		ItemDetailBean book=new ItemDetailBean();
 		itemService.fillDetailBean(itemID, book);
-		itemService.commentFromRecomend(rating, itemID,book.getBookDesc());
+		itemService.commentForRecomend(rating, itemID,book.getBookDesc());
        return super.execute();
 	}
 

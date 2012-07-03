@@ -32,7 +32,7 @@ public class DaoBookTest extends TestCase{
 		book1.setDiscount(0.5f);
 		book1.setFolio("16");
 		book1.setInventory(20);
-		book1.setIsbn("1234567891");
+		book1.setIsbn("12345678910");
 		book1.setMarketPrice(49.21f);
 		book1.setOffline("在架");
 		book1.setPage(400);
@@ -40,7 +40,7 @@ public class DaoBookTest extends TestCase{
 		book1.setPublisher("public department");
 		book1.setPublishDate("2009-03-27");
 		book1.setVersion(5);
-		book1.setCatalogID(2);
+		//book1.setCatalogID(2);
 		
 		//断言判断
 		assertEquals(39,db.addBook(book1));

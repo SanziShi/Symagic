@@ -11,7 +11,7 @@ import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.BookRequire;
 
 import org.symagic.common.service.ItemService;
-import org.symagic.common.service.RecommandService;
+import org.symagic.common.service.RecommendService;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.user.utilty.UserSessionUtilty;
@@ -39,7 +39,6 @@ public class AdvanceSearchAction extends CatalogBase {
     private Integer discount;// 折扣
    // 配置项
 	private Integer lines;
-	
 	private String errorHeader;
 	private String errorSpecification;
 	private ItemService itemService;// 访问书本的业务层
@@ -151,11 +150,11 @@ public class AdvanceSearchAction extends CatalogBase {
 			return;
 		switch (index) {
 		case 1:
-			require.setFolio("32");
+			require.setFolio("32");break;
 		case 2:
-			require.setFolio("16");
+			require.setFolio("16");break;
 		case 3:
-			require.setFolio("8");
+			require.setFolio("8");break;
 		}
 	}
 

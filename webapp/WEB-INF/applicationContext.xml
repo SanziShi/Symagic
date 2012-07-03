@@ -70,7 +70,7 @@
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="errorHeader" value="对应商品不存在"></property>
-		<property name="errorSpecification" value="您所请求的商品不存在"></property>
+		<property name="errorSpecification" value="您所请求的商品不存在，请返回检查"></property>
 		<property name="searchYearRange" value="5"></property>
 	</bean>
 
@@ -78,8 +78,8 @@
 		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="upload"></property>
-		<property name="errorHeader" value="对应商品不存在"></property>
-		<property name="errorSpecification" value="您所请求的商品不存在"></property>
+		<property name="errorHeader" value="输入信息有误"></property>
+		<property name="errorSpecification" value="输入信息有误，请返回检查"></property>
 	</bean>
 
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction"
@@ -227,6 +227,8 @@
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="searchYearRange" value="5"></property>
 	</bean>
+	
+	<bean class="org.symagic.admin.action.login.AdminLogoutAction"></bean>
 
 	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
@@ -461,10 +463,25 @@
 		scope="request">
 		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
+	
+	<bean id="orderEdit" class="org.symagic.user.action.order.OrderEditOrderAction"
+		scope="request">
+		<property name="daoBook" ref="DaoBook"></property>
+		<property name="daoOrder" ref="DaoOrder"></property>
+		<property name="addressService" ref="AddressService"></property>
+		<property name="catalogService" ref="CatalogService"></property>
+	</bean>
+	
+	<bean id="orderEditSubmit" class="org.symagic.user.action.order.OrderEditOrderSubmitAction"
+		scope="request">
+		<property name="catalogService" ref="CatalogService"></property>
+		<property name="daoOrder" ref="DaoOrder"></property>
+	</bean>
 
 	<bean id="checkScore" class="org.symagic.user.action.order.OrderCheckScoreAction"
 		scope="request">
 		<property name="daoUser" ref="DaoUser"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="orderAddAddress" class="org.symagic.user.action.order.OrderAddAddressAction"
@@ -503,7 +520,7 @@
 		<property name="daoUserAddress" ref="DaoUserAddress"></property>
 	</bean>
 
-	<bean id="RecommendService" class="org.symagic.common.service.RecommandService">
+	<bean id="RecommendService" class="org.symagic.common.service.RecommendService">
 		<property name="host" value="110.64.72.180:8080"></property>
 		<property name="apikey" value="a344e9b3fa4dd2c010adf8f6ff5e4701"></property>
 		<property name="tenantid" value="symagic"></property>

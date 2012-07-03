@@ -99,10 +99,10 @@
 								<td>
 								<input type="submit" value="查询" />
 								<input type="hidden" value="0" name="userLevel"/>
-								<input type="hidden" value="2007" name="startTime.year"/>
+								<input type="hidden" value="<s:property value="searchStartYear"/>" name="startTime.year"/>
 								<input type="hidden" value="1" name="startTime.month"/>
 								<input type="hidden" value="1" name="startTime.day"/>
-								<input type="hidden" value="2012" name="endTime.year"/>
+								<input type="hidden" value="<s:property value="searchEndYear"/>" name="endTime.year"/>
 								<input type="hidden" value="12" name="endTime.month"/>
 								<input type="hidden" value="31" name="endTime.day"/>
 								</td>
@@ -174,7 +174,7 @@
 									// 新建一个DateSelector类的实例，将三个select对象传进去
 									//new DateSelector(selYear, selMonth ,selDay, 2004, 2, 29);
 									// 也可以试试下边的代码
-									var defaultYear = <s:property value="startTime.year" default="2007"/>;
+									var defaultYear = <s:property value="startTime.year" default="2007" />;
 									var defaultMonth = <s:property value="startTime.month" default="1"/> - 1;
 									var defaultDay = <s:property value="startTime.day" default="1"/>;
 									var dt = new Date(defaultYear,
@@ -219,7 +219,8 @@
 								<td width="40%" class="inputContent"><input type="submit"
 									class="bt2" name="button222" value="查询"
 									onClick="javascript:window.location.href='user_list.html'" />&nbsp;&nbsp;
-									&nbsp;</td>
+									&nbsp;
+									<input type="hidden" name="userName" value=""/></td>
 							</tr>
 						</table>
 					</form>
@@ -256,7 +257,7 @@
 						<tr>
 							<td></td>
 							<td></td>
-							<td><s:if test="%{totalPage==1}"></s:if> <s:elseif
+							<td><s:if test="%{totalPage==1||totalPage==0}"></s:if> <s:elseif
 									test="%{page==1}">
 									<a
 										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>

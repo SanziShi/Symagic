@@ -684,7 +684,7 @@ function ajax_catalog_delete_tag_level2(id,divid) {
 }
 
 // 删除一级目录
-function ajax_catalog_delete_tag_level1(id) {
+function ajax_catalog_delete_tag_level1(id,divid) {
 	var result = confirm("该操作将会将所选目录及其子目录移除，确定继续吗？");
 	if (result == true) {
 		Ajax({
@@ -700,7 +700,7 @@ function ajax_catalog_delete_tag_level1(id) {
 				 */
 				var obj = JSON.parse(e);
 				if (obj.deleteResult == true) {
-					var tag = document.getElementById(id);
+					var tag = document.getElementById(divid);
 					tag.parentNode.removeChild(tag);
 					alert("删除一级目录成功！");
 				} else

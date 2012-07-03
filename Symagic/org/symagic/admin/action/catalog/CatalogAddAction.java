@@ -1,5 +1,6 @@
 package org.symagic.admin.action.catalog;
 
+import org.symagic.admin.utilty.AdminUtility;
 import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.func.DaoCatalog;
 
@@ -50,7 +51,7 @@ public class CatalogAddAction extends ActionSupport {
 
 	@Override
 	public void validate() {
-		if (catalogName == null || catalogName.length() == 0 || catalogDesc == null || catalogDesc.length() == 0 || upID == null)
+		if ( AdminUtility.isEmpty(catalogName) || AdminUtility.isEmpty(catalogDesc) || upID == null)
 			validateResult = false;
 		else
 			validateResult = true;

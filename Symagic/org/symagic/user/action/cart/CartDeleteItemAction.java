@@ -75,17 +75,19 @@ public class CartDeleteItemAction extends ActionSupport {
 
 private boolean deleteOneFromCart(Integer itemID,boolean login){
 	//购物车没有此商品
-	boolean deleteResult;
+	boolean deleteResult=true;
 			if(UserSessionUtilty.getCart().get(itemID)==null){
 				deleteResult=false;
 				return deleteResult;
 			}
+			if(login){
+				deleteResult=daoCart.deleteBook(UserSessionUtilty.getUsername(), itemID);
+				}
 			//在session中将对应商品从cart中删除
-			deleteResult=UserSessionUtilty.deleteFromCart(itemID);
+			if(deleteResult)   
+			  deleteResult=UserSessionUtilty.deleteFromCart(itemID);
 			//对于会员，保持数据库中cart的数据与session一致性
-			if(deleteResult&&login){
-			deleteResult=daoCart.deleteBook(UserSessionUtilty.getUsername(), itemID);
-			}
+			
 		return deleteResult;
 }
 public boolean isDeleteResult() {

@@ -80,6 +80,7 @@
 								<td>开本：<s:property value="book.size" /></td>
 								<td>装帧：<s:property value="book.binding" /></td>
 								<td>页数：<s:property value="book.page" /></td>
+								<td>在架状态：<s:if test="%{book.offline}">下架</s:if><s:else>在架</s:else></td>
 							</tr>
 
 							<tr style="display:none">
@@ -126,7 +127,7 @@
 						<tr>
 							<td></td>
 							<td></td>
-							<td><s:if test="%{totalPage==1}"></s:if> <s:elseif
+							<td><s:if test="%{totalPage==1||totalPage==0}"></s:if> <s:elseif
 									test="%{page==1}">
 									<a
 										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>

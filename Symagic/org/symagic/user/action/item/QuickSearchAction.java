@@ -9,7 +9,7 @@ import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.func.BookRequire;
 import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.service.ItemService;
-import org.symagic.common.service.RecommandService;
+import org.symagic.common.service.RecommendService;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
@@ -51,7 +51,6 @@ private List<ItemBean>items;//用于显示的商品列表
 		 items=new ArrayList<ItemBean>();
 			//设置搜索的条件,两个条件 都为空时，返回所有商品
 		   BookRequire require=new BookRequire();
-		   
 		   setCatalog(require,catalogID);
 		   if(keyword!=null&&!keyword.trim().equals("")){
 		   require.setAuthor(keyword);

@@ -11,8 +11,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 配置登陆用的拦截器 -->
 		<interceptors>
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
+			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
 
 			<interceptor-stack name="userLoginInterceptorStack">
+				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
@@ -30,9 +32,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 配置登录拦截器 -->
 		<interceptors>
 			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
-             <interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
-			
+			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
+
 			<interceptor-stack name="adminLoginInterceptorStack">
+				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
@@ -152,10 +155,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="address" class="addressList">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>/lib/address.jsp</result>
 		</action>
 
 		<action name="order" class="orderEnter">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>order_confirm.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
@@ -166,18 +171,25 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="order_detail" class="orderDetail">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>order_info.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
 
 		<action name="order_submit" class="orderSubmit">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>ok.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
-		
+
 		<action name="get_address_detail" class="addressDetail">
 			<result>/lib/address_detail.jsp</result>
 		</action>
+		
+		<action name="order_edit" class="orderEdit">
+			<result>order_edit.jsp</result>
+		</action>
+		
 	</package>
 
 	<!-- 注册时用户名检测 -->
@@ -302,12 +314,17 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="check_score" class="checkScore">
 			<result type="json">
-				<param name="includeProperties">checkResult,score</param>
+				<param name="includeProperties">checkResult,price,resultInfo</param>
 			</result>
 		</action>
 		<action name="add_address" class="addAddress">
 			<result type="json">
 				<param name="include Properties">addResult</param>
+			</result>
+		</action>
+		<action name="edit_order_submit" class="orderEditSubmit">
+			<result type="json">
+				<param name="includeProperties">submitResult,resultInfo</param>
 			</result>
 		</action>
 	</package>
@@ -324,6 +341,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="login" class="AdminLogin">
+			<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirect">
 				${toURL}

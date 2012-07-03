@@ -1,6 +1,7 @@
 package org.symagic.admin.action.login;
 
 import org.symagic.admin.utilty.AdminSessionUtilty;
+import org.symagic.admin.utilty.AdminUtility;
 import org.symagic.common.db.func.DaoAdmin;
 import org.symagic.common.utilty.captcha.Captcha;
 
@@ -52,7 +53,7 @@ public class AdminLoginAction extends ActionSupport {
 
 		validateResult = true;
 
-		if (userName == null || password == null || captchaValue == null
+		if (AdminUtility.isEmpty(userName) || AdminUtility.isEmpty(password) || AdminUtility.isEmpty(captchaValue)
 				|| password.length() > 20)
 			validateResult = false;
 

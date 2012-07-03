@@ -191,10 +191,10 @@
 								<th>页数范围：</th>
 								<td><select name="searchPage" class="midselect">
 										<s:if test="%{searchPage==0}">
-											<option value="0" selected="selected">不限版次</option>
+											<option value="0" selected="selected">不限页数</option>
 										</s:if>
 										<s:else>
-											<option value="0">不限版次</option>
+											<option value="0">不限页数</option>
 										</s:else>
 										<s:if test="%{searchPage==1}">
 											<option value="1" selected="selected">0-200</option>
@@ -408,7 +408,7 @@
 							<s:iterator value="items" var="bookItems" status="st">
 								<tr id="<s:property value = '#bookItems.itemID'/>">
 									<td width="7%" rowspan="1" align="center"><span
-										class="red"><s:property value="#st.index" /> </span></td>
+										class="red"><s:property value="#st.index + 1" /> </span></td>
 									<td class="checkBoxWidth" align="center"><input
 										type="checkbox" name="itemID"
 										value="<s:property value = '#bookItems.itemID'/>" /></td>
@@ -463,7 +463,7 @@
 							<tr>
 								<td></td>
 								<td></td>
-								<td><s:if test="%{totalPage==1}"></s:if> <s:elseif
+								<td><s:if test="%{totalPage==1||totalPage==0}"></s:if> <s:elseif
 										test="%{page==1}">
 										<a href="item_manager?page=${ page + 1 }">下一页</a>
 									</s:elseif> <s:elseif test="%{page==totalPage}">
