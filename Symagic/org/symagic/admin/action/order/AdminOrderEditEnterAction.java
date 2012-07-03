@@ -22,6 +22,7 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 	private Integer selectedLevel1DistrictID;
 	private Integer selectedLevel2DistrictID;
 	private Integer selectedLevel3DistrictID;
+	private String addressDetail;
 
 	@Override
 	public String execute() throws Exception {
@@ -54,6 +55,8 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 
 		if (this.address.level3District != null)
 			selectedLevel3DistrictID = address.level3District.getID();
+		
+		addressDetail = this.address.districtDetail;
 
 		return result;
 
@@ -124,6 +127,14 @@ public class AdminOrderEditEnterAction extends OrderDetailAction {
 
 	public void setSelectedLevel3DistrictID(Integer selectedLevel3DistrictID) {
 		this.selectedLevel3DistrictID = selectedLevel3DistrictID;
+	}
+
+	public String getAddressDetail() {
+		return addressDetail;
+	}
+
+	public void setAddressDetail(String addressDetail) {
+		this.addressDetail = addressDetail;
 	}
 
 }
