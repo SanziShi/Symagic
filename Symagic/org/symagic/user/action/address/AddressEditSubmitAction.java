@@ -116,9 +116,10 @@ public class AddressEditSubmitAction extends AddressBase{
 	
 	public void validate(){
 		clearErrorsAndMessages();
-		if(getDistrictLevel1ID() == null || 
-				getDistrictLevel2ID() == null || 
-				getDistrictLevel2ID() == null){
+		submitResult = true;
+		if(getDistrictLevel1ID() == null || getDistrictLevel1ID() <= 0 ||
+				getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0 ||
+				getDistrictLevel3ID() == null || getDistrictLevel3ID() <= 0){
 			submitResult = false;
 			resultInfo = "地址为空";
 			return;
