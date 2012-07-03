@@ -112,10 +112,12 @@ public class OrderDetailAction extends CatalogBase {
 					(1 - detail.getDiscount()) * detail.getMarketPrice()
 							* detail.getAmount()));
 			BeanBook book = daoBook.getDetail(detail.getBookId());
-			if (book.getOffline().equals("下架"))
-				itemBean.setOffline(true);
-			else
-				itemBean.setOffline(false);
+			if (book != null) {
+				if (book.getOffline().equals("下架"))
+					itemBean.setOffline(true);
+				else
+					itemBean.setOffline(false);
+			}
 			items.add(itemBean);
 		}
 

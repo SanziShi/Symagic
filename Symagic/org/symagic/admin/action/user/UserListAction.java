@@ -35,20 +35,20 @@ public class UserListAction extends CatalogBase {
 
 	private DaoUser daoUser;
 	private DaoLevel daoLevel;
-	
+
 	private List<LevelBean> levelList;
-	
+
 	private Integer searchStartYear;
 	private Integer searchEndYear;
 	private Integer searchYearRange;
 
 	@Override
 	public String execute() throws Exception {
-		
+
 		GregorianCalendar calendar = new GregorianCalendar();
 		searchEndYear = calendar.get(Calendar.YEAR);
 		searchStartYear = calendar.get(Calendar.YEAR) - searchYearRange;
-		
+
 		List<BeanLevel> levels = daoLevel.getAll();
 
 		levelList = new ArrayList<LevelBean>();
@@ -75,7 +75,7 @@ public class UserListAction extends CatalogBase {
 			startCalendar = new GregorianCalendar(startTime.getYear(),
 					startTime.getMonth(), startTime.getDay());
 			userRequire.setStartTime(formater.format(startCalendar.getTime()));
-		} 
+		}
 		if (endTime != null) {
 			GregorianCalendar endCalendar = new GregorianCalendar(
 					endTime.getYear(), endTime.getMonth(), endTime.getDay());
@@ -106,7 +106,8 @@ public class UserListAction extends CatalogBase {
 				bean.setUserName(user.getUsername());
 				bean.setRegisterDate(user.getRegistedate());
 				BeanLevel level = daoLevel.judgeLevel(user.getScore());
-				bean.setLevelName(level.getName());
+				if (level != null)
+					bean.setLevelName(level.getName());
 				bean.setScore(Integer.toString(user.getScore()));
 				userList.add(bean);
 			}
