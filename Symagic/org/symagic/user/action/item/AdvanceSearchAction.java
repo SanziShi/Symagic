@@ -150,11 +150,11 @@ public class AdvanceSearchAction extends CatalogBase {
 			return;
 		switch (index) {
 		case 1:
-			require.setFolio("32");
+			require.setFolio("32");break;
 		case 2:
-			require.setFolio("16");
+			require.setFolio("16");break;
 		case 3:
-			require.setFolio("8");
+			require.setFolio("8");break;
 		}
 	}
 
