@@ -48,7 +48,7 @@ public class AdvanceSearchAction extends CatalogBase {
 	private Integer totalPage;
     private List<String> searchDate;
 	private List<ItemBean> items;// 用于显示的商品列表
-
+    private String actionURL;
 	
 
 	
@@ -90,8 +90,8 @@ public class AdvanceSearchAction extends CatalogBase {
 				totalPage = (searchNumber + lines - 1)/ lines;
 				// 装饰成前台所需的信息
 				itemService.decorateForItem(books, items);
-				
 				getYearForPage();
+				actionURL="item_list";
 		return super.execute();
 	}
 	
@@ -293,6 +293,16 @@ public class AdvanceSearchAction extends CatalogBase {
 
 	public void setEdition(int edition) {
 		this.edition = edition;
+	}
+
+	
+
+	public String getActionURL() {
+		return actionURL;
+	}
+
+	public void setActionURL(String actionURL) {
+		this.actionURL = actionURL;
 	}
 
 	public int getSearchPage() {

@@ -308,8 +308,7 @@
 	</bean>
 
 	<!-- 关于商品的bean -->
-	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction"
-		scope="request">
+	<bean id="advanceSearch" class="org.symagic.user.action.item.AdvanceSearchAction">
 		<property name="itemService" ref="ItemService"></property>
 
 		<property name="catalogService" ref="CatalogService"></property>
@@ -320,8 +319,8 @@
 		<property name="sign" value="1"></property>
 	</bean>
 
-	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction"
-		scope="request">
+	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction">
+		
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>
 

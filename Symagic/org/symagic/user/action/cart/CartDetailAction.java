@@ -26,8 +26,9 @@ public class CartDetailAction extends ActionSupport {
 	private static final long serialVersionUID = -9126493268779714120L;
 
 	
+//配置项
 private  ItemService itemService;//访问商品信息
-
+//传出
 private ArrayList<ItemTinyBean>items;//购物车中每项商品
 private Integer totalNumber;//购物车中的商品数量
 private Float totalPrice;//购物车中商品的总价
