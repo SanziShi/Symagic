@@ -188,7 +188,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <s:iterator value="commentList" var='iter'>
         	<div class="comment_item">
         		<div class="buyer">
-        		<span class="buyer_name"><s:property value='#iter.userName'/>测试用户</span>
+        		<span class="buyer_name"><s:property value='#iter.userName'/></span>
         		<span class="star"><span class="sa<s:property value='#iter.rating'/>"></span></span>
         		&nbsp;&nbsp;（<s:property value='#iter.rating'/>）分
                 <span class="date-comment"><s:property value='#iter.commentDate'/></span>

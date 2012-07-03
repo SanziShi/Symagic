@@ -87,11 +87,14 @@ function use_score_change(e)
 {
 	var s=document.getElementById('score');
 	if(e.checked)s.style.display='inline-block';
-	else s.style.display='none';
+	else 
+	{
+		s.style.display='none';
+		s.value=0;
+	}
 }
 function check_score(e)
 {
-	alert(e.value);
 	e.value=e.value.replace(/\D+/g,'');
 	if(e.value=='')e.value=0;
 	else Ajax({
@@ -112,7 +115,24 @@ function check_score(e)
 }
 function order_submit()
 {
-	document.getElementById('order_submit').submit();
+	var t=document.getElementById('score').value;
+	if(t==0)document.getElementById('order_submit').submit();
+	else Ajax({
+		url:'order/check_score?score='+e.value,
+		onSuccess:function(t)
+			{
+				var a=JSON.parse(t);
+				if(a.checkResult)
+				{
+					document.getElementById('total_price').innerHTML=a.price;
+					document.getElementById('order_submit').submit();
+				}
+				else 
+				{
+					Stip('score').show({p: 'top',content:'您的积分不够，请重新选择',time:3000,kind:"error"});
+				}
+			}
+		})
 }
 function order_edit_confirm()
 {

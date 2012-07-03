@@ -116,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	<a href="<s:property value='actionURL'/>?page=<s:property value='page-1'/>">上一页</a>
                 </s:else>
                 <!--页面数字迭代与判断逻辑-->
-                <s:if test='totalPage<6'>
+                <s:if test='totalPage<=6'>
                 	<s:iterator begin="1" end="totalPage"  status='st'>  
                 		<s:if test="page==#st.index+1">
                         	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
@@ -126,34 +126,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </s:else> 
                 	</s:iterator>
                 </s:if>
-                <s:elseif test='totalPage==6'>
-                	
-                </s:elseif>
-                <s:elseif test='totalPage>6'>
-                	<s:iterator begin="1" end="totalPage"  status='st'>
+                <!---->
+                <s:if test="page>6">
+                <s:if test="page<=4">
+                	<s:iterator begin="1" end="page"  status='st'>
                     	<s:if test="page==#st.index+1">
                         	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
-                        </s:if> 
-                        <s:elseif test="page!=totalPage&&page!=1">
-                        	<s:if test="page<3">
-                            	<s:if test="#st.index<4">
-                                	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>
-                                </s:if>
-                    			<span id="dot">...</span>
-                            </s:if> 
-                            <s:if test="page+2>totalPage">
-                            	<s:if test="#st.index<4">
-                            	<span id="dot">...</span>
-                            </s:if> 
-                            <s:else>
-                            	
-                            </s:else> 
-                        </s:elseif>
-                        <s:else >
-                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
+                        </s:else>
+                    </s:iterator>
+                    <span id="dot">...</span>
+                    <s:if test="page==totalPage">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='totalPage'/>"><s:property value='totalPage'/></a>		
+                        </s:else>
+                </s:if>
+                <s:elseif test="page+3>=totalPage">
+                 		<s:if test="page==1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=1"><s:property value='totalPage'/></a>		
+                        </s:else>
+                    <span id="dot">...</span>
+                	<s:iterator begin="totalPage-3" end="totalPage"  status='st'>
+                    	<s:if test="page==#st.index+1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
                         </s:else>
                     </s:iterator>
                 </s:elseif>
+                <s:else>
+                	<s:if test="page==1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=1"><s:property value='totalPage'/></a>		
+                        </s:else>
+                	
+                	<span id="dot">...</span>
+                    <s:iterator begin="page-1" end="page+1"  status='st'>
+                    	<s:if test="page==#st.index+1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
+                        </s:else>
+                    </s:iterator>
+                    <span id="dot">...</span>
+                    <s:if test="page==totalPage">
+                        <a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
+                    </s:if>
+                    <s:else>
+                        <a href="<s:property value='actionURL'/>?page=<s:property value='totalPage'/>"><s:property value='totalPage'/></a>		
+                    </s:else>
+                </s:else>
+                </s:if>	
+                <!---->
                 <!--页面数字迭代与判断逻辑结束-->
                 <s:if test="page==totalPage">
                 	<span class="none">下一页</span>
@@ -161,7 +196,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <s:else>
                 	<a href="<s:property value='actionURL'/>?page=<s:property value='page+1'/>">下一页</a>
                 </s:else>
-                	
                 </div>
                 <!--分页结束-->
                 <span title="展开或者收缩" class="collapse" onclick="show_item_search(this);"></span>

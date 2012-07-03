@@ -138,6 +138,7 @@ function add_address(f)
 						onSuccess:function(e)
 							{
 								document.getElementById('address-container').innerHTML=e;
+								return false;
 							}
 					})
 					return false;
