@@ -106,15 +106,6 @@ public class AddressSubmitAction extends AddressBase {
 			resultInfo = "地址为空";
 			return;
 		}
-		if (getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
-				|| getDistrictLevel3ID() == null || getAddressDetail() == null
-				|| getReceiverName() == null || getMobileNum() == null
-				|| getPhoneNum() == null) {
-			isValidate = false;
-			submitResult = false;
-			resultInfo = "用户名为空";
-			return;
-		}
 		
 		if(getMobileNum() == null || getMobileNum().isEmpty() ||
 				!getMobileNum().matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")){

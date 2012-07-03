@@ -115,31 +115,41 @@ public class AddressEditSubmitAction extends AddressBase{
 	}
 	
 	public void validate(){
-		submitResult = true;
-		if(getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
-				|| getDistrictLevel3ID() == null || getAddressDetail() == null
-				|| getReceiverName() == null 
-				|| !(getMobileNum() != null || getPhoneNum() != null)){
+		clearErrorsAndMessages();
+		if(getDistrictLevel1ID() == null || 
+				getDistrictLevel2ID() == null || 
+				getDistrictLevel2ID() == null){
 			submitResult = false;
-			resultInfo = "数据错误";
-		}
-		if(!getMobileNum().matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")){
-			submitResult = false;
-			resultInfo = "手机号码错误";
+			resultInfo = "地址为空";
 			return;
 		}
-		if(!getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")){
-			submitResult = false;
-			resultInfo = "电话号码错误";
+		
+		if(getMobileNum() == null || getMobileNum().isEmpty() ||
+				!getMobileNum().matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")){
+			if(getPhoneNum() == null || getPhoneNum().isEmpty()
+					|| !getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")){
+				submitResult = false;
+				resultInfo = "请输入正确的手机号或电话号码";
+				return;
+			}
 		}
-		if(!getZipcode().matches("^[1-9]\\d{5}")){
+		
+		if (!getZipcode().matches("^[1-9]\\d{5}")) {
 			submitResult = false;
 			resultInfo = "邮编错误";
+			return;
+		}
+		
+		if(getAddressDetail() == null || getAddressDetail().isEmpty()){
+			submitResult = false;
+			resultInfo = "填写地址详情";
+			return;
+		}
+		
+		if(getReceiverName() == null || getReceiverName().isEmpty()){
+			submitResult = false;
+			resultInfo = "请填写收件人";
+			return;
 		}
 	}
-	
-	private  boolean startCheck(String reg,String string)  
-    {  
-		return Pattern.compile(reg).matcher(string).find();
-    }
 }
