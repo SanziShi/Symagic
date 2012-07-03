@@ -124,12 +124,7 @@ public class ItemService {
     	    fillTinyItems(recommend,recommendItem);
     }
     
-    
-  
-	
-
-	
-	public void getNewBook(List<ItemTinyBean> books) {
+    public void getNewBook(List<ItemTinyBean> books) {
 		List<BeanBook> newBooks = daoBook.getLatestBook();
 		if (newBooks == null)
 			return;
@@ -180,8 +175,7 @@ public class ItemService {
 		item.setPicturePath(book.getPicture());
 		float marketPrice = book.getMarketPrice();
 		float discount = book.getDiscount();
-		item.setPrice(String.format("%.2f",
-				(MathUtilty.roundWithdigits(marketPrice * discount))));
+		item.setPrice(String.format("%.2f",(MathUtilty.roundWithdigits(marketPrice * discount))));
 	}
 
 	// 搜索显示出来的信息
@@ -215,6 +209,7 @@ public class ItemService {
 
 	public void fillItemBean(Integer itemID, ItemBean item) {
 		BeanBook book = daoBook.getDetail(itemID);
+		if(book!=null)
 		fillItemBean(book, item);
 	}
 
@@ -361,22 +356,27 @@ public class ItemService {
 		catalog.setChildCatalog(null);
 		detail.setParseCatalog(catalog);
 		// 是否可以评论，默认不能评论
-		detail.setCommentAble(false);
+		detail.setCommentAble(isCommentAble(book.getBookId()));
 
-		// 是否已登录
-		if (UserSessionUtilty.getUsername() != null) {
-			// 购买记录
-			int purchaseRecord = orderService.orderNumber(
-					UserSessionUtilty.getUsername(), book.getBookId());
-			// 已评论数量
-			int commentNumber = daoComment.getNumByID(
-					UserSessionUtilty.getUsername(), book.getBookId());
-			if (purchaseRecord > commentNumber) {
-				detail.setCommentAble(true);
-			}
-		}
+		
 
 		return true;
+	}
+	//是否能够评论
+	private boolean isCommentAble(Integer itemID){
+		// 是否已登录
+				if (UserSessionUtilty.getUsername() != null) {
+					// 购买记录
+					int purchaseRecord = orderService.orderNumber(
+							UserSessionUtilty.getUsername(),itemID);
+					// 已评论数量
+					int commentNumber = daoComment.getNumByID(
+							UserSessionUtilty.getUsername(), itemID);
+					if (purchaseRecord > commentNumber) {
+						return true;
+					}
+				}
+				return false;
 	}
 
 	// 得到目录的描述
@@ -415,7 +415,11 @@ public class ItemService {
 
 	// 增加用户对商品的评论
 	public boolean addItemComment(BeanComment comment) {
+		//是否能评论
+		if(isCommentAble(comment.getBookID()))
 		return daoComment.publishComment(comment);
+		else
+			return false;
 	}
 
 	// 根据id的集合填充相应的信息到tinyitems中

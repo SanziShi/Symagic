@@ -16,6 +16,7 @@ import org.symagic.common.db.bean.BeanLevel;
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoCart;
 import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.db.func.DaoLevel;
 import org.symagic.common.db.func.DaoOrder;
@@ -86,6 +87,8 @@ public class OrderSubmitAction extends OrderBase{
 	private DaoLevel daoLevel;
 	
 	private Integer orderID;
+	
+	private DaoCart daoCart;
 	
 	public DaoLevel getDaoLevel() {
 		return daoLevel;
@@ -221,6 +224,9 @@ public class OrderSubmitAction extends OrderBase{
 		if(orderID > 0){
 			UserSessionUtilty.removeOrder();
 			UserSessionUtilty.clearCart();
+			for(int i = 0; i < order.getList().size(); i ++){
+				daoCart.deleteBook(getUserName(), order.getList().get(i).getBookId());
+			}
 			return SUCCESS;
 		}
 		else {
@@ -282,6 +288,14 @@ public class OrderSubmitAction extends OrderBase{
 
 	public void setOrderID(Integer orderID) {
 		this.orderID = orderID;
+	}
+
+	public DaoCart getDaoCart() {
+		return daoCart;
+	}
+
+	public void setDaoCart(DaoCart daoCart) {
+		this.daoCart = daoCart;
 	}
 	
 }

@@ -101,6 +101,8 @@ public class OrderDetailAction extends OrderBase {
 	}
 
 	public String execute() throws Exception {
+		if(orderID == null || orderID.isEmpty())
+			return ERROR;
 		BeanOrder order = daoOrder.getOrderDetail(Integer.parseInt(orderID));
 		if (order == null)
 			return ERROR;

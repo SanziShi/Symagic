@@ -26,10 +26,19 @@ is_login=function(o)
 /****添加单个商品至购物车***/
 function add_to_cart(id)
 {
-	var amount=document.getElementById('amount').value;
+	var u='';
 	var num=document.getElementById('cart_num');
+	var t=document.getElementById('amount');
+	if(t)
+	{
+		u='cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber='+t.value;
+	}
+	else
+	{
+		u='cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber=1';
+	}
 	Ajax({
-		url:'cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber='+amount,
+		url:u,
 		//data:'itemID='+id+'&itemNumber='+amount,
 		onSuccess:function(e){
 			var r=JSON.parse(e);
@@ -458,7 +467,7 @@ Ajax=function (option){
 
 }
 
-//覆盖层
+/******显示覆盖层**********/
 function showOverlay()
 {
 	var overlay=document.createElement('div');
@@ -467,7 +476,7 @@ function showOverlay()
 	$(overlay).fadeIn('fast');
 }	
 
-
+/******隐藏覆盖层**********/
 function hideOverlay()
 {
 	$('#overlay').fadeOut('fast',function(){$('#overlay').remove()});

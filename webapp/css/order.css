@@ -133,3 +133,22 @@ input.txt {
 {
 	width:60px;
 }
+#use_score
+{
+	float:left;
+	margin-left:20px;
+}
+#score
+{
+	display:none;
+}
+#order_id
+{
+	float:right;
+	font:"order_id";
+	margin-right:20px;
+}
+
+
+
+

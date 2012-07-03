@@ -21,6 +21,10 @@
 			</set>
 		</property>
 	</bean>
+	
+	<!-- 注入拦截器配置 -->
+	<bean id="InjectionInterceptor" class="org.symagic.common.interceptor.InjectionInterceptor">
+	</bean>
 
 
 	<bean id="checkCaptcha" class="org.symagic.common.action.captcha.CheckCaptchaAction"
@@ -65,16 +69,17 @@
 		scope="request">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
-		<property name="errorHeader" value="错了"></property>
-		<property name="errorSpecification" value="反正是错了"></property>
+		<property name="errorHeader" value="对应商品不存在"></property>
+		<property name="errorSpecification" value="您所请求的商品不存在"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminModifyItemSubmit" class="org.symagic.admin.action.item.ItemModifySubmitAction"
 		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="shopImageFileFolder" value="upload"></property>
-		<property name="errorHeader" value="错了"></property>
-		<property name="errorSpecification" value="反正是错了"></property>
+		<property name="errorHeader" value="对应商品不存在"></property>
+		<property name="errorSpecification" value="您所请求的商品不存在"></property>
 	</bean>
 
 	<bean id="AdminOfflineItem" class="org.symagic.admin.action.item.ItemOffAction"
@@ -106,6 +111,7 @@
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.AdminItemQuickSearch"
@@ -121,6 +127,7 @@
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"
@@ -154,6 +161,7 @@
 		<property name="orderService" ref="OrderService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminEnterOrderEdit"
@@ -212,12 +220,12 @@
 		<property name="daoComment" ref="DaoComment"></property>
 	</bean>
 
-	<bean id="AdminListUser" class="org.symagic.admin.action.user.UserListAction"
-		scope="request">
+	<bean id="AdminListUser" class="org.symagic.admin.action.user.UserListAction">
 		<property name="daoLevel" ref="DaoLevel"></property>
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
 	<bean id="AdminLevelManager" class="org.symagic.admin.action.level.UserLevelManagerAction">
@@ -283,6 +291,7 @@
 	<bean id="addToFavorite" class="org.symagic.user.action.favority.FavorityAddAction"
 		scope="request">
 		<property name="daoFavorityFolder" ref="DaoFavorityFolder"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 	<bean id="deleteFromFavority" class="org.symagic.user.action.favority.FavorityDeleteAction"
 		scope="request">
@@ -339,6 +348,11 @@
 		<property name="errorSpecification" value="没有相应 的评论"></property>
 
 	</bean>
+	<bean id="submitComment" class="org.symagic.user.action.item.SubmitCommentAction">
+	 <property name="itemService" ref="ItemService"></property>
+	</bean>
+	
+<!-- 用户相关 -->
 
 	<bean id="enterUserInfo" class="org.symagic.user.action.userinfo.UserInfoEnterAction">
 		<property name="daoUser" ref="DaoUser"></property>
@@ -351,8 +365,7 @@
 		<property name="daoUser" ref="DaoUser"></property>
 	</bean>
 
-	<bean id="forgetPasswordEnter"
-		class="org.symagic.user.action.userinfo.ForgetPasswordEnterAction">
+	<bean id="forgetPasswordEnter" class="org.symagic.user.action.userinfo.ForgetPasswordEnterAction">
 		<property name="catalogService" ref="CatalogService"></property>
 	</bean>
 
@@ -441,6 +454,7 @@
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="daoLevel" ref="DaoLevel"></property>
+		<property name="daoCart" ref="DaoCart"></property>
 	</bean>
 
 	<bean id="orderDelete" class="org.symagic.user.action.order.OrderDeleteOrderAction"

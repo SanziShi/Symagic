@@ -188,6 +188,37 @@ function delete_address(id)
 			}
 		})
 }
+/******批量删除收藏夹*****/
+function delete_favorites()
+{
+	var request='';
+	var f=document.getElementById('favorite_form');
+	var k=$(f).serializeArray();
+	for(var each in k)
+	{
+		if(k[each].name.indexOf('ID')>-1)
+		request=request+'&items='+k[each].value;
+	}
+	Ajax({
+		url:'favorite/delete_favorite',
+		data:request,
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(a.deleteResult)
+				{
+					alert('删除成功！');
+					Ajax({
+						url:'favorite',
+						onSuccess:function(e){
+						document.getElementById('favorite_loading').style.display='none';
+						document.getElementById('favorite-container').innerHTML=e;
+						}
+						})
+				}
+			}
+		})
+}
 /******dom完成加载执行函数*******/
 $().ready(function(e) {
 	if(document.getElementById('t1')){

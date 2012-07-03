@@ -61,71 +61,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-    <form action="order_submit" method="post" id="order_submit">
+    
     <div id="order_container">
     	<div id="c-info">
-        	<h1>收货人信息</h1>
+        	<h1>收货人信息<span id="order_id">订单号：<font color="#FF0000"><s:property value='orderID'/></font></span></h1>
+            <!--隐藏订单号传入input-->
+            <input style="display:none" name="orderID" value="<s:property value='orderID'/>">
+            <!---->
             <div id="c-input">
-            	<div id="address_list">
-                	<div class="address_list_inner">
-                    	<b>常用地址：</b>
-                    	<ul>
-                        <!--常用地址迭代开始-->
-                        <s:iterator value='addressList' var="iter">
-                        	<li class="" id="normal_address<s:property value='#iter.ID'/>">
-                            	<input name="adressID" onclick="detect(this,<s:property value='#iter.ID'/>)"  type="radio" id="normal_a<s:property value='#iter.ID'/>" />
-                                <label for="normal_a<s:property value='#iter.ID'/>"><strong><s:property value='#iter.receiverName'/></strong>&nbsp;<s:property value='#iter.addressSummary'/><s:property value='#iter.addressDetail'/></label>
-                                <span class="delete"><a onclick="delete_address(<s:property value='#iter.ID'/>)" href="javascript:void(0)">删除地址</a></span>
-                            </li>
-                        </s:iterator>
-                        <!--常用地址迭代结束-->
-                        </ul>
-                    </div>
-                </div>
                 <div id="table_container">
             	<table id="order_address" width="100%" cellspacing="0" border="0">
-                	<tbody>
-                    	<tr>
-                        	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
-                            <td><input name="receiverName" class="txt" type="text"/></td>
-                        </tr>
-                        <tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
-                            <td>
-                            	<select onchange="get_district(this)" id="level1ID" name="districtLevel1ID">
-                                	<option value="s1">请选择</option>
-                                <s:iterator value="level1Districts" var='iter'>
-                                	<option value="<s:property value='#iter.ID'/>"><s:property value='#iter.name'/></option>
-                                </s:iterator>
-                                </select>
-                                <select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
-                                	<option value="s2">请选择</option>
-                                </select>
-                                <select id="level3ID" name="districtLevel3ID">
-                                	<option value="">请选择</option>
-                                </select>
-                            </td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
-                            <td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long"></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            <td><input name="mobileNum" type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt"/></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right">邮箱地址：</td>
-                            <td><s:property value='#session.userName'/></td>
-                        </tr>
-                    	<tr>
-                        	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
-                            <td><input name="zipcode" type="text" class="txt short"/></td>
-                        </tr>
-                    </tbody>
-                </table>
+                			<tbody>
+                    		<tr>
+                            	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
+                            	<td>&nbsp;&nbsp;<s:property value='addressList.receiverName'/></td>
+                            </tr>
+                        	<tr>
+                        	  	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
+                              	<td>&nbsp;&nbsp;<s:property value='addressList.addressSummary'/></td>
+                            </tr>
+                    		<tr>
+                    		  	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
+                              	<td>&nbsp;&nbsp;<s:property value='addressList.addressSummary'/></td>
+                            </tr>
+                    		<tr>
+                            	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
+                            	<td>&nbsp;&nbsp;<s:property value='addressList.mobileNum'/>&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<s:property value='addressList.phoneNum'/></td>
+                            </tr>
+                    		<tr>
+                            	<td valign="middle" align="right">邮箱地址：</td><td>&nbsp;&nbsp;<s:property value='#session.userName'/></td>
+                            </tr>
+                    		<tr>
+                            	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
+                            	<td>&nbsp;&nbsp;<s:property value='addressList.zipcode'/></td>
+                            </tr>
+                            
+                    		</tbody>
+                		</table>
                 </div>
-                <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
             </div>
         </div>
         <div id="payment-c">
@@ -137,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <td></td>
                         </tr>
                     	<tr>
-                        	<td><input type="radio" checked="checked">货到付款</input></td>
+                        	<td>货到付款</td>
                             <td class="comment">送货上门后付款，使用现金</td>
                         </tr>
                     </tbody>
@@ -149,7 +122,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<td></td>
                         </tr>
                     	<tr>
-                        	<td><input type="radio" checked="checked">快递</input></td>
+                        	<td>快递</td>
                             <td class="comment">使用默认的快递方式，快捷省事</td>
                         </tr>
                     </tbody>
@@ -186,17 +159,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="ware">
         	<h1>结算</h1>
-            <div id="use_score"><input type="checkbox" onclick="use_score_change(this)"/>使用积分：&nbsp;&nbsp;
-            	<input onblur="check_score(this)" id="score" name="score" class="short" value="0"/>&nbsp;&nbsp;
-                可用积分：&nbsp;&nbsp;<font color="red"><s:property value='score'/></font>
+            <div id="use_score">&nbsp;使用积分：&nbsp;&nbsp;
+            	<s:property value='score'/></font>
             </div>
         	<div class="total_price"><span id="pay">应付总额：<strong>￥</strong><strong id="total_price"><s:property value='price'/></strong>元</span></div>
         	<div class="clear"></div>
-        	<div class="order_confirm" onclick="order_submit()"></div>
-        	<div class="clear"></div>
         </div>     
     </div>
-   </form>
 	<div id="footer">
 		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
 		<span id="footerright"> B2C商城  Power by IBM &nbsp;</span>

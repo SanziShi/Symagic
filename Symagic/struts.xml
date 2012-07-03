@@ -30,7 +30,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 配置登录拦截器 -->
 		<interceptors>
 			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
-
+             <interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
+			
 			<interceptor-stack name="adminLoginInterceptorStack">
 				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -198,7 +199,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">addResult,resultInfo</param>
 			</result>
 			<result type="json" name="input">
-				<param name="includeProperties">addResult</param>
+				<param name="includeProperties">addResult,resultInfo</param>
 			</result>
 		</action>
 		<action name="delete" class="deleteFromCart">
@@ -206,16 +207,16 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">deleteResult,resultInfo</param>
 			</result>
 			<result type="json" name="input">
-				<param name="includeProperties">deleteResult</param>
+				<param name="includeProperties">deleteResult,resultInfo</param>
 			</result>
 		</action>
 
 		<action name="update" class="updateCart">
 			<result type="json">
-				<param name="includeProperties">updateResult</param>
+				<param name="includeProperties">updateResult,resultInfo</param>
 			</result>
 			<result type="json" name="input">
-				<param name="includeProperties">updateResult</param>
+				<param name="includeProperties">updateResult,resultInfo</param>
 			</result>
 		</action>
 	</package>
@@ -242,10 +243,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		namespace="/item">
 		<action name="comment" class="submitComment">
 			<result type="json">
-				<param name="includeProperties">submitResult</param>
+				<param name="includeProperties">submitResult,resultInfo</param>
 			</result>
 			<result name="input" type="json">
-				<param name="includeProperties">submitResult</param>
+				<param name="includeProperties">submitResult,resultInfo</param>
 			</result>
 		</action>
 
@@ -301,7 +302,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="check_score" class="checkScore">
 			<result type="json">
-				<param name="includeProperties">checkResult</param>
+				<param name="includeProperties">checkResult,score</param>
 			</result>
 		</action>
 		<action name="add_address" class="addAddress">
@@ -324,7 +325,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 
 		<action name="login" class="AdminLogin">
 			<interceptor-ref name="defaultStack"></interceptor-ref>
-				<result name="success" type="redirect">
+			<result name="success" type="redirect">
 				${toURL}
 			</result>
 		</action>
@@ -386,8 +387,9 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="order_edit_submit" class="AdminSubmitOrderEdit">
-			<result>
-				/admin/order_info.jsp
+			<result type="redirectAction">
+				<param name="actionName">order_detail</param>
+				<param name="namespace">/admin</param>
 			</result>
 		</action>
 
@@ -547,4 +549,5 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	</package>
 
 </struts>
+
 

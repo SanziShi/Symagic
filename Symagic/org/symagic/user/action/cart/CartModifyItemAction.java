@@ -21,6 +21,7 @@ private DaoCart daoCart;//访问数据库中会员购物车信息
 //传出
 
 private boolean updateResult=false;//修改是否成功
+private String resultInfo;
 //内部
 private boolean validateResult=true;
 @Override
@@ -34,21 +35,29 @@ public void validate() {
 @Override
 public String execute() throws Exception {
 	// TODO Auto-generated method stub
+	//数据不符合要求
 	 if(validateResult==false){
 		 updateResult=false;
-		 return "success";
+		 resultInfo="请输入有效数据";
+		 return SUCCESS;
 	 }
+	 //购物车中没有此商品
 	 if(UserSessionUtilty.getCart().get(itemID)==null){
 		 updateResult=false;
-		 return "success";
+		 resultInfo="购物车中没有此商品";
+		 return SUCCESS;
 	 }
 	updateResult=UserSessionUtilty.modifyFromCart(itemID, itemNumber);
-		
+		if(!updateResult){
+			resultInfo="修改失败";
+			return "success";
+		}
 	//会员登录更新到数据库中
 		if(UserSessionUtilty.isLogin()){
 			
 			updateResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
 		}
+		resultInfo="修改成功";
 	 
 	return super.execute();
 }
@@ -77,4 +86,11 @@ public Integer getItemID() {
 public void setItemID(Integer itemID) {
 	this.itemID = itemID;
 }
+public String getResultInfo() {
+	return resultInfo;
+}
+public void setResultInfo(String resultInfo) {
+	this.resultInfo = resultInfo;
+}
+
 }

@@ -1,5 +1,6 @@
 package org.symagic.admin.action.order;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -31,8 +32,16 @@ public class AdminOrderListAction extends CatalogBase {
 	private Integer lines;
 	
 	
+	private Integer searchStartYear;
+	private Integer searchEndYear;
+	private Integer searchYearRange;
+	
 	@Override
 	public String execute() throws Exception {
+		
+		GregorianCalendar calendar = new GregorianCalendar();
+		searchEndYear = calendar.get(Calendar.YEAR);
+		searchStartYear = calendar.get(Calendar.YEAR) - searchYearRange;
 		
 		GregorianCalendar startCalendar = null;
 		GregorianCalendar endCalendar = null;
@@ -151,6 +160,36 @@ public class AdminOrderListAction extends CatalogBase {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+
+	public Integer getSearchStartYear() {
+		return searchStartYear;
+	}
+
+
+	public void setSearchStartYear(Integer searchStartYear) {
+		this.searchStartYear = searchStartYear;
+	}
+
+
+	public Integer getSearchEndYear() {
+		return searchEndYear;
+	}
+
+
+	public void setSearchEndYear(Integer searchEndYear) {
+		this.searchEndYear = searchEndYear;
+	}
+
+
+	public Integer getSearchYearRange() {
+		return searchYearRange;
+	}
+
+
+	public void setSearchYearRange(Integer searchYearRange) {
+		this.searchYearRange = searchYearRange;
 	}
 	
 }

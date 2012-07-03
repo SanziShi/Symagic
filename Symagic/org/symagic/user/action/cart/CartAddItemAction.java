@@ -24,21 +24,10 @@ public class CartAddItemAction extends ActionSupport {
    
    private List<ItemTinyBean>items ;
   
-public List<ItemTinyBean> getItems() {
-	return items;
-}
-public void setItems(List<ItemTinyBean> items) {
-	this.items = items;
-}
-public String getResultInfo() {
-	return resultInfo;
-}
-public void setResultInfo(String resultInfo) {
-	this.resultInfo = resultInfo;
-}
+
 	//配置项
 	private DaoCart daoCart;//对于会员来说，更新到数据库中
-    private DaoBook daoBook;
+    private DaoBook daoBook;//
 	//传出	
 	private Boolean addResult=false;//添加结果
 	private String resultInfo;//操作的结果信息
@@ -53,14 +42,24 @@ public void setResultInfo(String resultInfo) {
 			return SUCCESS;
 		}
 		boolean login=UserSessionUtilty.isLogin();
-		boolean result;
+		boolean result=true;
 		addResult=true;
 		StringBuilder builder=new StringBuilder();
 		Iterator<ItemTinyBean> index=items.iterator();
 		ItemTinyBean item;
 	  while(index.hasNext()){
 		  item=index.next();
+		  //数据不符合规则，忽略掉
+		  if(item==null||item.getItemID()==null||item.getItemNumber()==null){
+			 addResult=false;
+			  continue;
+		  }
+		  if(daoBook.getDetail(item.getItemID())==null){
+			  result=false;
+		  }
+		  else{
 		   result=addOneToCart(item.getItemID(),item.getItemNumber(),login);
+		   }
 		   if(!result){
 			   addResult=false;
 			   if(builder.length()==0){
@@ -72,7 +71,7 @@ public void setResultInfo(String resultInfo) {
 		   }
 	   }
 	   if(!addResult){
-		  builder.append("添加到购物车失败");
+		  builder.append("未能添加到购物车");
 		  resultInfo=builder.toString();
 	   }
 	   else{
@@ -84,10 +83,16 @@ public void setResultInfo(String resultInfo) {
 		
 	}
 	private boolean addOneToCart(Integer itemID,Integer itemNumber,boolean login){
-		//首先通过其数量判断是否有这商品
+		//首先判断商品是否下架
+		BeanBook book=daoBook.getDetail(itemID);
+		if(book.getOffline().trim().equals("下架"))
+		{
+			return false;
+		}
+			//通过其数量判断是否有这商品
 		 Integer  number=UserSessionUtilty.getCart().get(itemID);
 		//itemID不存在于数据库中或者是库存不足
-		BeanBook book=daoBook.getDetail(itemID);
+		
 		int compare=(number==null?0:number);
 		if(book==null||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>1000){
 			   return false;
@@ -141,6 +146,17 @@ public void setResultInfo(String resultInfo) {
 		this.validateResult = validateResult;
 	}
 
-	
+	public List<ItemTinyBean> getItems() {
+		return items;
+	}
+	public void setItems(List<ItemTinyBean> items) {
+		this.items = items;
+	}
+	public String getResultInfo() {
+		return resultInfo;
+	}
+	public void setResultInfo(String resultInfo) {
+		this.resultInfo = resultInfo;
+	}
 
 }

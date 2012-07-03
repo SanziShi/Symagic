@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="">商品搜索</a>
+				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="">商品列表</a>
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">
@@ -90,10 +90,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <dl>
         <!--左边迭代--->
         <s:iterator value="catalog" var='outer'>
-        <dt id="<s:property value='#outer.ID'/>"><s:property value='#outer.name'/></dt>
-        <s:iterator value="#outer.childCatalog" var="inner">
-        <div id="<s:property value='#inner.ID'/>"><dd><s:property value='#inner.name'/></dd></div>
-        </s:iterator>
+        <div title="<s:property value='#outer.desc'/>" id="<s:property value='#outer.ID'/>"><dt ><s:property value='#outer.name'/></dt></div>
+        	<s:iterator value="#outer.childCatalog" var="inner">
+        	<div title="<s:property value='#inner.desc'/>" id="<s:property value='#inner.ID'/>"><dd><s:property value='#inner.name'/></dd></div>
+        	</s:iterator>
         </s:iterator>
         <!--左边迭代结束--->
         <br/>
@@ -101,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </dl>
         </div>
         <div  class="user_note">
-			<div class="fliter"><font>商品搜索</font><span class="collapse" onclick="show_item_search(this);"></span></div>
+			<div class="fliter"><font style="margin-bottom:2px;">高级搜索</font><span title="展开或者收缩" class="collapse" onclick="show_item_search(this);"></span></div>
 			<div id="item_search1" class="user_note_content hide">
 				<form action="item_list" method="post">
                 <table>
@@ -220,7 +220,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 	<td><input type="submit"  value="搜索" onClick="">
 				 </tr>
         </table>	
-		</form>		
+		</form>	
+        <div class="fliter"></div>	
 			</div>
 		</div>
  <div class="user_note">
@@ -249,7 +250,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>商城价：<strong>￥<s:property value='#iter.price'/></strong><span>（<s:property value='#iter.discount'/>折）</span>
     </div>
    <div class="btns">
+   <s:if test='!#iter.offline'>
    		<div class="add_to_cart1" onclick="add_to_cart(<s:property value='#iter.itemID'/>)"></div>
+   </s:if>
+   <s:else>
+  		<div class="add_to_cart1_none" ></div>
+   </s:else>
         <div style=" float:left">&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="add_to_favorite(<s:property value='#iter.itemID'/>)">添加至收藏夹</a></div>
    </div>
    </div>

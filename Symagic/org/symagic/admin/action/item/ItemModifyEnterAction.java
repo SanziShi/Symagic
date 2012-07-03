@@ -1,5 +1,8 @@
 package org.symagic.admin.action.item;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.service.ItemService;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
@@ -18,6 +21,10 @@ public class ItemModifyEnterAction extends CatalogBase {
 	
 	private String errorHeader;
 	private String errorSpecification;
+	
+	private Integer searchStartYear;
+	private Integer searchEndYear;
+	private Integer searchYearRange;
 	
 	public Integer getItemID() {
 		return itemID;
@@ -69,6 +76,10 @@ public class ItemModifyEnterAction extends CatalogBase {
 		
 		if( !validateResult ) return ERROR;
 		
+		GregorianCalendar calendar = new GregorianCalendar();
+		searchEndYear = calendar.get(Calendar.YEAR);
+		searchStartYear = calendar.get(Calendar.YEAR) - searchYearRange;
+		
 		book = new ItemDetailBean();
 		if( !itemService.fillDetailBean(itemID, book) )
 			return ERROR;
@@ -92,6 +103,30 @@ public class ItemModifyEnterAction extends CatalogBase {
 
 	public void setErrorSpecification(String errorSpecification) {
 		this.errorSpecification = errorSpecification;
+	}
+
+	public Integer getSearchStartYear() {
+		return searchStartYear;
+	}
+
+	public void setSearchStartYear(Integer searchStartYear) {
+		this.searchStartYear = searchStartYear;
+	}
+
+	public Integer getSearchEndYear() {
+		return searchEndYear;
+	}
+
+	public void setSearchEndYear(Integer searchEndYear) {
+		this.searchEndYear = searchEndYear;
+	}
+
+	public Integer getSearchYearRange() {
+		return searchYearRange;
+	}
+
+	public void setSearchYearRange(Integer searchYearRange) {
+		this.searchYearRange = searchYearRange;
 	}
 
 

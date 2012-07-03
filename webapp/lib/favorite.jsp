@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div id="favorite-content-bottom">
                 	<input type="checkbox" />全选&nbsp;&nbsp;
                 	<span onclick="adds_to_cart('favorite_form')" class="fav-add-b"></span>
-                    <a href="">取消收藏</a>
+                    <a href="javascript:void(0)" onclick="delete_favorites()">取消收藏</a>
                 </div>
                 </form>
         	</div>

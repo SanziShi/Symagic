@@ -27,6 +27,11 @@ public class LoginAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
+		if(UserSessionUtilty.isLogin()){
+			resultInfo="已登录";
+			loginResult=false;
+			return SUCCESS;
+		}
 		if(!validateResult){
 			loginResult=false;
 			return SUCCESS;

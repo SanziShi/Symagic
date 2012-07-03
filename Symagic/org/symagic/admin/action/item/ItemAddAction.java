@@ -178,7 +178,7 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		book.setDiscount(discount);
 		book.setInventory(inventory);
 		book.setBookDesc(description);
-		if (bookClassify != null)
+		if (bookClassify != null && bookClassify != 0 )
 			book.setCatalogID(bookClassify);
 		book.setOffline("在架");
 
@@ -192,9 +192,9 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 	public void validate() {
 
 		// 处理商品类别以外其他都不能为空
-		if (ISBN == null || name == null || author == null || publisher == null
-				|| binding == null || marketPrice == null || discount == null
-				|| inventory == null || description == null) {
+		if (ISBN == null || ISBN.length() == 0 || name == null || name.length() == 0 || author == null || author.length() == 0 || publisher == null || publisher.length() == 0 ||
+				binding == null || binding.length() == 0 || marketPrice == null || discount == null
+				|| inventory == null || description == null || description.length() == 0 ) {
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;
