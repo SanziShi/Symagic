@@ -490,7 +490,7 @@
 		<property name="daoDistrict" ref="DaoDistrict"></property>
 	</bean>
 	
-	<bean id="itemCheckInventory" class="org.symagic.user.action.order.ItemCheckinventoryAction"
+	<bean id="itemCheckInventory" class="org.symagic.user.action.order.ItemCheckInventoryAction"
 		scope="request">
 		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
