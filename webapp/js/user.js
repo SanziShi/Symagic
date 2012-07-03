@@ -170,6 +170,23 @@ function address_edit_submit(f,id)
 		})
 	return false;
 }
+function cancel_order(id)
+{
+	var getid='#order_list'+id;
+	Ajax({
+		url:'order/cancel_order?orderID='+id,
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(a.cancelResult)
+				{
+					alert('删除成功！');
+					$(getid).fadeOut(300);
+				}
+				else alert(a.resultInfo);
+			}
+		})
+}
 /****删除地址函数****/
 function delete_address(id)
 {

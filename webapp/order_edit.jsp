@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <!--常用地址迭代开始-->
                         <s:iterator value='addressList' var="iter">
                         	<li class="" id="normal_address<s:property value='#iter.ID'/>">
-                            	<input name="adressID" onclick="detect(this,<s:property value='#iter.ID'/>)"  type="radio" id="normal_a<s:property value='#iter.ID'/>" />
+                            	<input name="adressID" onclick="detect_edit(this,<s:property value='#iter.ID'/>)"  type="radio" id="normal_a<s:property value='#iter.ID'/>" />
                                 <label for="normal_a<s:property value='#iter.ID'/>"><strong><s:property value='#iter.receiverName'/></strong>&nbsp;<s:property value='#iter.addressSummary'/><s:property value='#iter.addressDetail'/></label>
                                 <span class="delete"><a onclick="delete_address(<s:property value='#iter.ID'/>)" href="javascript:void(0)">删除地址</a></span>
                             </li>
@@ -85,6 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </ul>
                     </div>
                 </div>
+                <div id="table_container">
                 <!--默认送货人信息迭代-->
                 <table id="order_address" width="100%" cellspacing="0" border="0">
                 			<tbody>
@@ -157,6 +158,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     		</tbody>
                 		</table>
                 <!--默认送货详情迭代结束-->
+                </div>
                 <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
             </div>
         </div>
