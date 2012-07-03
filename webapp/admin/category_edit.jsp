@@ -104,7 +104,7 @@
 										class="textAreaStyle">
 										<s:property value="catalogDesc" />
                 </textarea></td>
-								<td class="itemsearchtd2">&nbsp;</td>
+								<td class="itemsearchtd2"><span class="red">*&nbsp;必填项</span>
 
 							</tr>
 							<tr>

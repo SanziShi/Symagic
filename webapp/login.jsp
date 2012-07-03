@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BC2商城</title>
+<title>Symagic网上书城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
@@ -51,11 +51,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul>
 			<li><a href="index">首页</a></li>
 			<li><a href="item_list">商品列表</a></li>
-			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="address.html">地址簿</a></li>
-			<li><a href="tradequery.html">交易查询</a></li>
-			<li><a href="send_notes.html">送货说明</a></li>
-            <li><a class="nouseful">&nbsp;</a></li>
+			<li><a href="send_notes">购物指引</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+                        <li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
+				网站路径：<a href="index">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">
@@ -135,9 +135,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
   </div>
   <div id="footer">
-	  <span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
-	  <span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
-	</div>
+				<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
+					电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
+					Power by Symagic &nbsp;</span>
+			</div>
 </div>
 
 </body>

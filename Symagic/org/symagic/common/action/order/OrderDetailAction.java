@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.symagic.common.action.catalog.CatalogBase;
+import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
+import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 
@@ -31,6 +33,7 @@ public class OrderDetailAction extends CatalogBase {
 	private List<ItemTinyBean> items;
 
 	private OrderService orderService;
+	private DaoBook daoBook;
 
 	/**
 	 * 提供其子类访问数据库获取的原始数据
@@ -45,8 +48,8 @@ public class OrderDetailAction extends CatalogBase {
 		order = orderService.orderDetail(orderID);
 		userName = order.getUsername();
 		orderTime = order.getOrderDate();
-		price = String.format("%.2f",order.getTotalprice());
-		switch( Integer.parseInt(order.getPayment() ) ){
+		price = String.format("%.2f", order.getTotalprice());
+		switch (Integer.parseInt(order.getPayment())) {
 		case 0:
 			payment = "货到付款";
 			break;
@@ -97,13 +100,24 @@ public class OrderDetailAction extends CatalogBase {
 			ItemTinyBean itemBean = new ItemTinyBean();
 			itemBean.setItemID(detail.getBookId());
 			itemBean.setItemNumber(detail.getAmount());
-			itemBean.setItemTotalPrice(String.format("%.2f",detail.getMarketPrice()
-					* detail.getAmount() * detail.getDiscount()));
+			itemBean.setItemTotalPrice(String.format(
+					"%.2f",
+					detail.getMarketPrice() * detail.getAmount()
+							* detail.getDiscount()));
 			itemBean.setName(detail.getBookName());
 			itemBean.setPicturePath(null);
-			itemBean.setPrice(String.format("%.2f", detail.getMarketPrice() * detail.getDiscount()));
-			itemBean.setSavePrice(String.format("%.2f",(1 - detail.getDiscount())
-					* detail.getMarketPrice() * detail.getAmount()));
+			itemBean.setPrice(String.format("%.2f", detail.getMarketPrice()
+					* detail.getDiscount()));
+			itemBean.setSavePrice(String.format("%.2f",
+					(1 - detail.getDiscount()) * detail.getMarketPrice()
+							* detail.getAmount()));
+			BeanBook book = daoBook.getDetail(detail.getBookId());
+			if (book != null) {
+				if (book.getOffline().equals("下架"))
+					itemBean.setOffline(true);
+				else
+					itemBean.setOffline(false);
+			}
 			items.add(itemBean);
 		}
 
@@ -220,6 +234,14 @@ public class OrderDetailAction extends CatalogBase {
 
 	public void setOrderService(OrderService orderService) {
 		this.orderService = orderService;
+	}
+
+	public DaoBook getDaoBook() {
+		return daoBook;
+	}
+
+	public void setDaoBook(DaoBook daoBook) {
+		this.daoBook = daoBook;
 	}
 
 }

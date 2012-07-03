@@ -12,19 +12,30 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<interceptors>
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
 			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
-			<interceptor name="formDataRecoverInterceptor" class="FormDataRecoverInterceptor"></interceptor>
+			<interceptor name="setupInterceptor" class="SetupInterceptor"></interceptor>
 
 			<interceptor-stack name="userLoginInterceptorStack">
+				<interceptor-ref name="setupInterceptor"></interceptor-ref>
 				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
-				<interceptor-ref name="formDataRecoverInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
+
+			<interceptor-stack name="userDefaultStack">
+				<interceptor-ref name="setupInterceptor"></interceptor-ref>
+				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+
 		</interceptors>
+
+		<default-interceptor-ref name="userDefaultStack"></default-interceptor-ref>
+
 
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/login.jsp</result>
+			<result name="setup">/setup.jsp</result>
 		</global-results>
 
 	</package>
@@ -35,13 +46,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<interceptors>
 			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
 			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
-			<interceptor name="formDataRecoverInterceptor" class="FormDataRecoverInterceptor"></interceptor>
-			
+			<interceptor name="setupInterceptor" class="SetupInterceptor"></interceptor>
 
 			<interceptor-stack name="adminLoginInterceptorStack">
+				<interceptor-ref name="setupInterceptor"></interceptor-ref>
 				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
-				<interceptor-ref name="formDataRecoverInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
 
@@ -53,6 +63,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
+			<result name="setup">/setup.jsp</result>
 			<result name="error">/admin/admin_error.jsp</result>
 			<result name="input">/admin/admin_error.jsp</result>
 		</global-results>
@@ -77,14 +88,24 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			</result>
 		</action>
 
-	</package>
+		<action name="setup" class="SetupAction">
+			<result type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="error">/setup.jsp</result>
+			<result name="input">/setup.jsp</result>
+		</action>
 
+	</package>
 
 	<!-- 配置用户的action -->
 
 	<!-- 默认命名空间 -->
 
 	<package name="user-default" extends="symagic-user-default">
+		<action name="send_notes" class="catalogBase">
+		  <result>/send_notes.jsp</result>
+		</action>
 		<action name="index" class="indexClass">
 			<result>/index.jsp</result>
 		</action>
@@ -171,6 +192,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="order_list" class="orderList">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>order_list.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
@@ -189,10 +211,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="get_address_detail" class="addressDetail">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>/lib/address_detail.jsp</result>
 		</action>
 		
 		<action name="order_edit" class="orderEdit">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>order_edit.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
@@ -276,13 +300,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="info-user-default" extends="symagic-user-default"
 		namespace="/user">
 		<action name="update_password" class="updatePassword">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
-				<param name="includeProperties">updateResult</param>
+				<param name="includeProperties">updateResult,resultInfo</param>
 			</result>
 		</action>
 		<action name="update_nickname" class="updateNickname">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
-				<param name="includeProperties">updateResult</param>
+				<param name="includeProperties">updateResult,resultInfo</param>
 			</result>
 		</action>
 	</package>
@@ -291,21 +317,25 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="address-user-default" extends="symagic-user-default"
 		namespace="/address">
 		<action name="submit_address" class="addAddress">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">submitResult, resultInfo</param>
 			</result>
 		</action>
 		<action name="get_next_level" class="getNextLevel">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="root">nextLevelArray</param>
 			</result>
 		</action>
 		<action name="delete_address" class="deleteAddress">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeproperties">deleteResult, resultInfo</param>
 			</result>
 		</action>
 		<action name="address_edit_submit" class="editAddress">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">submitResult, resultInfo</param>
 			</result>
@@ -315,28 +345,38 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	<package name="order-user-default" extends="symagic-user-default"
 		namespace="/order">
 		<action name="delete_order" class="deleteOrder">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">deleteResult</param>
 			</result>
 		</action>
 		<action name="check_score" class="checkScore">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">checkResult,price,resultInfo</param>
 			</result>
 		</action>
 		<action name="add_address" class="addAddress">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="include Properties">addResult</param>
 			</result>
 		</action>
 		<action name="order_edit_submit" class="orderEditSubmit">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">submitResult,resultInfo</param>
 			</result>
 		</action>
 		<action name="cancel_order" class="cancelOrder">
+			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result type="json">
 				<param name="includeProperties">cancelResult,resultInfo</param>
+			</result>
+		</action>
+		<action name="check_item" class="itemCheckInventory">
+			<result type="json">
+				<param name="includeProperties">checkResult</param>
 			</result>
 		</action>
 	</package>
@@ -579,5 +619,3 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 	</package>
 
 </struts>
-
-

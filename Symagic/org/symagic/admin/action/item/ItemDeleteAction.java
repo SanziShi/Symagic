@@ -1,13 +1,18 @@
 package org.symagic.admin.action.item;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.util.ServletContextAware;
 import org.symagic.common.db.bean.BeanBook;
+import org.symagic.common.db.bean.BeanOrder;
+import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoOrder;
+import org.symagic.common.db.func.OrderRequire;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -23,6 +28,7 @@ public class ItemDeleteAction extends ActionSupport implements
 	private Boolean deleteResult;
 
 	private DaoBook daoBook;
+	private DaoOrder daoOrder;
 
 	/**
 	 * 用于存放上传的图片
@@ -43,6 +49,37 @@ public class ItemDeleteAction extends ActionSupport implements
 			BeanBook book = daoBook.getDetail(itemID);
 			if (book == null)
 				return super.execute();
+
+			// 处理已下单状态的订单
+			OrderRequire require = new OrderRequire();
+
+			require.setOrderState("0");
+
+			List<BeanOrder> orders = daoOrder.search(require, null);
+
+			if (orders != null) {
+				for (BeanOrder order : orders) {
+					List<BeanOrderDetail> lists = order.getList();
+					for (BeanOrderDetail detail : lists) {
+						if (detail.getBookId() == itemID)
+							return ERROR;
+					}
+				}
+			}
+
+			require.setOrderState("1");
+
+			orders = daoOrder.search(require, null);
+
+			if (orders != null) {
+				for (BeanOrder order : orders) {
+					List<BeanOrderDetail> lists = order.getList();
+					for (BeanOrderDetail detail : lists) {
+						if (detail.getBookId() == itemID)
+							return ERROR;
+					}
+				}
+			}
 
 			String fileFolder = context.getRealPath("/" + shopImageFileFolder);
 			File destFile = new File(fileFolder, book.getPicture().substring(
@@ -96,6 +133,14 @@ public class ItemDeleteAction extends ActionSupport implements
 
 	public void setShopImageFileFolder(String shopImageFileFolder) {
 		this.shopImageFileFolder = shopImageFileFolder;
+	}
+
+	public DaoOrder getDaoOrder() {
+		return daoOrder;
+	}
+
+	public void setDaoOrder(DaoOrder daoOrder) {
+		this.daoOrder = daoOrder;
 	}
 
 }

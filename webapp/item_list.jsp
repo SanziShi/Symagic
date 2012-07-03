@@ -8,8 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<title>BC2商城</title>
+<title>Symagic网上书城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
 <link href="css/item.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -52,20 +51,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul>
 			<li><a href="index">首页</a></li>
 			<li><a href="item_list">商品列表</a></li>
-			<li><a href="favorite.html">收藏夹</a></li>
-			<li><a href="address.html">地址簿</a></li>
-			<li><a href="tradequery.html">交易查询</a></li>
-			<li><a href="send_notes.html">送货说明</a></li>
-            <li><a class="nouseful">&nbsp;</a></li>
+			<li><a href="send_notes">购物指引</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+                        <li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
+			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-	<!--<div id="banner"></div>-->
+	
 	<div id="main">
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href="">商品列表</a>
+				网站路径：<a href="index">首页</a>&gt;&gt;<a href="">商品列表</a>
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">
@@ -106,7 +105,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </dl>
         </div>
         <div  class="user_note">
-			<div class="fliter"><font style="margin-bottom:2px;">高级搜索</font><span title="展开或者收缩" class="collapse" onclick="show_item_search(this);"></span></div>
+			<div class="fliter1">
+            	<font style="margin-bottom:2px;">高级搜索</font>
+                <!--分页开始-->
+                <div id="page_container">
+                <s:if test="page==1">
+                	<span class="none" >上一页</span>
+                </s:if>
+                <s:else>
+                	<a href="<s:property value='actionURL'/>?page=<s:property value='page-1'/>">上一页</a>
+                </s:else>
+                <!--页面数字迭代与判断逻辑-->
+                <s:if test='totalPage<6'>
+                	<s:iterator begin="1" end="totalPage"  status='st'>  
+                		<s:if test="page==#st.index+1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
+                        </s:if> 
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>
+                        </s:else> 
+                	</s:iterator>
+                </s:if>
+                <s:elseif test='totalPage==6'>
+                	
+                </s:elseif>
+                <s:elseif test='totalPage>6'>
+                	<s:iterator begin="1" end="totalPage"  status='st'>
+                    	<s:if test="page==#st.index+1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
+                        </s:if> 
+                        <s:elseif test="page!=totalPage&&page!=1">
+                        	<s:if test="page<3">
+                            	<s:if test="#st.index<4">
+                                	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>
+                                </s:if>
+                    			<span id="dot">...</span>
+                            </s:if> 
+                            <s:if test="page+2>totalPage">
+                            	<s:if test="#st.index<4">
+                            	<span id="dot">...</span>
+                            </s:if> 
+                            <s:else>
+                            	
+                            </s:else> 
+                        </s:elseif>
+                        <s:else >
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>
+                        </s:else>
+                    </s:iterator>
+                </s:elseif>
+                <!--页面数字迭代与判断逻辑结束-->
+                <s:if test="page==totalPage">
+                	<span class="none">下一页</span>
+                </s:if>
+                <s:else>
+                	<a href="<s:property value='actionURL'/>?page=<s:property value='page+1'/>">下一页</a>
+                </s:else>
+                	
+                </div>
+                <!--分页结束-->
+                <span title="展开或者收缩" class="collapse" onclick="show_item_search(this);"></span>
+            </div>
 			<div id="item_search1" class="user_note_content hide">
 				<form action="item_list" method="post">
                 <table>
@@ -196,7 +255,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           		 </tr>
 				 <tr>
 					
-				 <th>价&nbsp;&nbsp;&nbsp;格：</th>
+				 <th>市&nbsp;场&nbsp;格：</th>
             		<td>
 						<select name="price" class="midselect">
               				<option value="0">任意价格</option>
@@ -269,9 +328,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  </div>
  
  <div id="footer">
-	  <span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
-	  <span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
-	</div>
+				<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
+					电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
+					Power by Symagic &nbsp;</span>
+			</div>
 </div>
 
 </body>

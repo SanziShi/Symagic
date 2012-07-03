@@ -1,17 +1,22 @@
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Symagic网上书城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css"/>
-<link href="css/ok.css" rel="stylesheet" type="text/css"/>
+<link href="css/item.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/yf_ADS.js"></script>
+<script type="text/javascript" src="js/item_list.js"></script>
 </head>
-
 <body>
 <div id="container">
-	
 <div id="cart">
 	<span id="cart_loading"></span>
 	<div id="cart_none">您的购物车中还没有商品，请选购！</div>
@@ -54,12 +59,11 @@
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-	<div id="banner"></div>
-  <div id="main">
+	<div id="main">
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
+				网站路径：<a href="index">首页</a>&gt;&gt;<a href="send_notes">购物指引</a>
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">
@@ -74,28 +78,32 @@
 				<s:iterator value="#outer.childCatalog" var="inner">
 				<option value="<s:property value='#inner.ID'/>">&nbsp;&nbsp;&nbsp;<s:property value='#inner.name'/></option>
 				</s:iterator>
-			   </s:iterator>
+				</s:iterator>
               </select> 
               </div>
 		  </form>
 		</div>
-        <div id="ok">
-        <div id="ok-container">
-        	<div id="ok_icon"></div>
-            <div id="ok_content"><h2>订单提交成功，请保持联系方式通畅！</h2></div>
-        	<div class="clear"></div>
-            <div id="info">您的订单号：<font color="#FF0000">23524623462346</font>&nbsp;&nbsp;<font size="-3"><a href="javascript:void(0)">查看订单详情</a></font></div>
-        </div>
-         <div class="clear"></div>   
-        </div>
-  </div>
-  <div id="footer">
-				<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
-					电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
-					Power by Symagic &nbsp;</span>
+		
+		<div id="sendnote">
+			<div id="sendnotehead"><strong>购物指引</strong></div>
+			<div id="sendnotecontent">
+			<ul>
+			<li>1.系统将会根据您的送货地址来收取送货费：本地5元，外地10元；</li>
+			<li>2.会员可以使用积分代替现金，系统会将您在结帐时输入的积分数来换算成现金；</li>
+			<li>3.对于本地会员，当购买金额大于29元时，将免收送货费；对于外地会员，当购买金额大于59元时，将免收送货费；</li>
+			<li>4.货到付款支付方式支持两种服务：现金支付、POS机刷卡支付
+			<li>&nbsp;&nbsp;现金支付：货物送到订单指定的收货地址后，由收货人支付货款给送货人员</li>
+            <li>&nbsp;&nbsp;POS机刷卡支付：货物送到订单指定的收货地址后，由收货人刷卡支付订单金额</li>
+			<li>5.最终订单金额将由 商品商城价格 + 送货费 - 积分代现金  计算得出。</li>
+			</ul>
 			</div>
+		</div>
+		
+	<div id="footer">
+		<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：Symagics@gmail.com </span>
+		<span id="footerright"> Symagic网上书城  Power by Symagic &nbsp;</span>
+	</div>
 </div>
 
 </body>
 </html>
-

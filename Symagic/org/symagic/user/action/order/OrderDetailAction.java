@@ -165,10 +165,9 @@ public class OrderDetailAction extends OrderBase {
 			item.setItemTotalPrice(String.format("%.2f", orderList.get(i).getDiscount()
 					* orderList.get(i).getMarketPrice()
 					* orderList.get(i).getAmount()));
-			totalPrice += orderList.get(i).getDiscount()* orderList.get(i).getMarketPrice()
-					*orderList.get(i).getAmount();
 			buyItems.add(item);
 		}
+		totalPrice = order.getTotalprice();
 		price = String.format("%.2f", totalPrice);
 		return super.execute();
 	}

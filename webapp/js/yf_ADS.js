@@ -43,8 +43,8 @@ function add_to_cart(id)
 		//data:'itemID='+id+'&itemNumber='+amount,
 		onSuccess:function(e){
 			var r=JSON.parse(e);
-			if(r.addResult)alert('添加成功');
-			get_session({S:function(s){num.innerHTML=s.totalNumber}});
+			if(r.addResult)if(confirm('商品添加成功，是否进入购物车结算？')){location.href='cart';}
+			else get_session({S:function(s){num.innerHTML=s.totalNumber}});
 			//Ajax({url:'get_session_info',onSuccess:function(q){var res=JSON.parse(q);cart_num.innerHTML=res.totalNumber}})
 			}
 		})

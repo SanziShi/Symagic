@@ -61,7 +61,7 @@ function add_to_favorite()
 				var a=JSON.parse(e);
 				if(a.deleteResult)
 				{
-					alert('添加成功!');
+					alert('添加成功!请进入我的商城查看收藏商品');
 				}
 				else alert(a.resultInfo);
 			}
