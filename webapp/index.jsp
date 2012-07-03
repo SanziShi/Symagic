@@ -108,17 +108,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    </div>
 		<div id="new">
 			<ul>
-		 		<!--迭代开始-->
+		 	<!--迭代开始-->
             <s:iterator value='hotBook' var='iter'>
-				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>">
-                <br>
-                <div class="inputHeader"><s:property value='#iter.name'/></div>
-	     		<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
-         		</a>
+				<li>
+                	<a href="item_detail?itemID=<s:property value='#iter.itemID'/>">
+                    <img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"/>
+                	<br/>
+                	<div class="inputHeader"><s:property value='#iter.name'/></div>
+	     			<div class="price">商城价：<strong>￥<s:property value='#iter.price'/></strong></div>
+         			</a>
          		</li>
          	</s:iterator>
             <!--迭代结束-->
-			<br>&nbsp;
+            </ul>
+			<br/>&nbsp;
 		</div>
 		<div id="life">
 			<ul>
