@@ -374,14 +374,16 @@ public class ItemService {
 		detail.setParseTime(parseTime);
 
 		// 设置当前选中的ID
-		if (currentCatalog != null) {
-			CatalogBean catalog = new CatalogBean();
-			catalog.setID(currentCatalog.getCatalogID());
-			catalog.setDescription(currentCatalog.getCatalogDesc());
-			catalog.setName(currentCatalog.getCatalogName());
-			catalog.setChildCatalog(null);
-			detail.setParseCatalog(catalog);
-		}
+
+if (currentCatalog != null) {
+		CatalogBean catalog = new CatalogBean();
+
+		catalog.setID(currentCatalog.getCatalogID());
+		catalog.setDesc(currentCatalog.getCatalogDesc());
+		catalog.setName(currentCatalog.getCatalogName());
+		catalog.setChildCatalog(null);
+		detail.setParseCatalog(catalog);
+}
 		// 是否可以评论，默认不能评论
 		detail.setCommentAble(isCommentAble(book.getBookId()));
 

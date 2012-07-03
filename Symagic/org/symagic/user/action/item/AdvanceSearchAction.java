@@ -39,7 +39,6 @@ public class AdvanceSearchAction extends CatalogBase {
     private Integer discount;// 折扣
    // 配置项
 	private Integer lines;
-	
 	private String errorHeader;
 	private String errorSpecification;
 	private ItemService itemService;// 访问书本的业务层
