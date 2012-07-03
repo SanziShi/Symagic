@@ -89,24 +89,27 @@ public class CartAddItemAction extends ActionSupport {
 		{
 			return false;
 		}
-			//通过其数量判断是否有这商品
+		//通过其数量判断是否有这商品
 		 Integer  number=UserSessionUtilty.getCart().get(itemID);
-		//itemID不存在于数据库中或者是库存不足
-		
 		int compare=(number==null?0:number);
 		if(book==null||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>1000){
 			   return false;
 			 }
-		boolean addResult;
-		
-		
-		 addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
-		  if(addResult&&login){
+		boolean addResult=true;
+		 if(login){
 		    	if(number==null)
 		    		addResult=daoCart.addBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
 		    	else
 		    		addResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber+number);
 		    }
+		
+		//itemID不存在于数据库中或者是库存不足
+		
+		
+		
+		if(addResult){
+		addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
+		}
 		    return addResult;
 	}
 	

@@ -22,7 +22,7 @@ import org.symagic.common.db.func.DaoLevel;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.service.OrderService;
-import org.symagic.common.service.RecommandService;
+import org.symagic.common.service.RecommendService;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
@@ -78,7 +78,7 @@ public class OrderSubmitAction extends OrderBase{
 	
 	private DaoDistrict daoDistrict;
 	
-	private RecommandService recommandService;
+	private RecommendService recommandService;
 	
 	private DaoBook daoBook;
 	
@@ -270,11 +270,11 @@ public class OrderSubmitAction extends OrderBase{
 		this.daoBook = daoBook;
 	}
 
-	public RecommandService getRecommandService() {
+	public RecommendService getRecommandService() {
 		return recommandService;
 	}
 
-	public void setRecommandService(RecommandService recommandService) {
+	public void setRecommandService(RecommendService recommandService) {
 		this.recommandService = recommandService;
 	}
 

@@ -85,12 +85,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </ul>
                     </div>
                 </div>
-                <div id="table_container">
-            	<table id="order_address" width="100%" cellspacing="0" border="0">
+                <!--默认送货人信息迭代-->
+                <table id="order_address" width="100%" cellspacing="0" border="0">
                 			<tbody>
                     		<tr>
                             	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
-                            	<td><input name="receiverName" class="txt" type="text" value="<s:property value='addressList.receiverName'/>"/></td>
+                            	<td><input name="receiverName" class="txt" type="text" value="<s:property value='defaultAddressList.receiverName'/>"/></td>
                             </tr>
                         	<tr>
                         	  	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
@@ -98,8 +98,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <!--默认地址选项迭代--->
                                 	<select onchange="get_district(this)" id="level1ID" name="districtLevel1ID" >
                                 			<option value="s1" >请选择</option>
-                               				<s:iterator value="addressList.level1Districts" var='middle'>
-                                            	<s:if test='#middle.ID==addressList.level1DistrictDefaultID'>
+                               				<s:iterator value="defaultAddressList.level1Districts" var='middle'>
+                                            	<s:if test='#middle.ID==defaultAddressList.level1DistrictDefaultID'>
                                 				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
                                 				</s:if>
                                                 <s:else>
@@ -109,8 +109,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	</select>
                                 	<select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
                                 		<option value="s2">请选择</option>
-                                        <s:iterator value="addressList.level2Districts" var='middle'>
-                                            	<s:if test='#middle.ID==addressList.level2DistrictDefaultID'>
+                                        <s:iterator value="defaultAddressList.level2Districts" var='middle'>
+                                            	<s:if test='#middle.ID==defaultAddressList.level2DistrictDefaultID'>
                                 				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
                                 				</s:if>
                                                 <s:else>
@@ -120,8 +120,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	</select>
                                 	<select id="level3ID" name="districtLevel3ID">
                                 		<option value="">请选择</option>
-                                        <s:iterator value="addressList.level3Districts" var='middle'>
-                                            	<s:if test='#middle.ID==addressList.level3DistrictDefaultID'>
+                                        <s:iterator value="defaultAddressList.level3Districts" var='middle'>
+                                            	<s:if test='#middle.ID==defaultAddressList.level3DistrictDefaultID'>
                                 				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
                                 				</s:if>
                                                 <s:else>
@@ -134,26 +134,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </tr>
                     		<tr>
                     		  	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
-                              	<td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long" value="<s:property value='addressList.addressDetail'/>"></td>
+                              	<td><span id="consign_address"></span><input name="addressDetail" type="text" class="txt long" value="<s:property value='defaultAddressList.addressDetail'/>"></td>
                             </tr>
                     		<tr>
                             	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            	<td><input name="mobileNum" type="text" class="txt" value="<s:property value='addressList.mobileNum'/>"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt" value="<s:property value='addressList.phoneNum'/>"></td>
+                            	<td><input name="mobileNum" type="text" class="txt" value="<s:property value='defaultAddressList.mobileNum'/>"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt" value="<s:property value='defaultAddressList.phoneNum'/>"></td>
                             </tr>
                     		<tr>
                             	<td valign="middle" align="right">邮箱地址：</td><td><s:property value='#session.userName'/></td>
                             </tr>
                     		<tr>
                             	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
-                            	<td><input name="zipcode" type="text" class="txt short" value="<s:property value='addressList.zipcode'/>"/></td>
+                            	<td><input name="zipcode" type="text" class="txt short" value="<s:property value='defaultAddressList.zipcode'/>"/></td>
                             </tr>
                             <tr>
                                 	<td></td>
-                                    <td><input onclick="save_address()" value="保存修改"/></td>
+                                    <td><input type="submit" value="保存修改"/></td>
                             </tr>
                     		</tbody>
                 		</table>
-                </div>
+                <!--默认送货详情迭代结束-->
                 <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
             </div>
         </div>
@@ -217,7 +217,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<h1>结算</h1>
             <div id="use_score"><input type="checkbox" onclick="use_score_change(this)"/>使用积分：&nbsp;&nbsp;
             	<input onblur="check_score(this)" id="score" name="score" class="short" value="0"/>&nbsp;&nbsp;
-                可用积分：&nbsp;&nbsp;<font color="red"><s:property value='score'/></font>
+                可用积分：&nbsp;&nbsp;<font color="red"><s:property value='useTotalScore'/></font>
             </div>
         	<div class="total_price"><span id="pay">应付总额：<strong>￥</strong><strong id="total_price"><s:property value='price'/></strong>元</span></div>
         	<div class="clear"></div>

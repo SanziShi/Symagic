@@ -164,6 +164,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             		<td>
 						<select name="edition" class="midselect">
               				<option value="0">全部版次</option>
+                            <s:iterator value='searchDate'>
              				<option value="1">第一版</option>
               				<option value="2">第二版</option>
               				<option value="3">第三版</option>
