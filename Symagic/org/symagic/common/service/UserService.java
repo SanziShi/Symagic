@@ -104,9 +104,9 @@ private void accordCart(){
    //同步session和数据库中购物的信息
 	  
 	    
-	   ActionContext.getContext().getSession().put("totalNumber", 0);
+	 
 	     Set<Integer> allKeys=allItems.keySet(); //当前session中的数据
-	     
+	     int totalNumber=0;
 	     boolean result;//数据库操作的结果
 		 for(Iterator<Integer> key =allKeys.iterator();key.hasNext();){
 			 int id=key.next();
@@ -123,9 +123,10 @@ private void accordCart(){
 			 if(result){
 
 				 lastingItems.put(id, number);
-				 UserSessionUtilty.addTotalNumber(number);
+				 totalNumber+=number;
 			 }
 		 }
+		  ActionContext.getContext().getSession().put("totalNumber", totalNumber);
 }
 
 public DaoUser getDaoUser() {
