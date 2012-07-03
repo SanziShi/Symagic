@@ -10,6 +10,7 @@ import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBookStatistics;
 import org.symagic.common.db.func.BookStatisticsRequire;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.utilty.presentation.bean.StatisticBean;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
 
@@ -21,6 +22,7 @@ public class AdminItemStatisticsAction extends CatalogBase {
 	private static final long serialVersionUID = -7238512637976603546L;
 
 	private DaoBook daoBook;
+	private DaoOrder daoOrder;
 
 	private TimeBean startTime;// :开始索引时间(year:年，month:月;day:日）;
 	private TimeBean endTime;// :结束索引时间（year：年，month:月，day:日);
@@ -36,6 +38,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 	private Integer searchStartYear;
 	private Integer searchEndYear;
 	private Integer searchYearRange;
+	
+	private String totalSalesRevenue;
 
 	@Override
 	public String execute() throws Exception {
@@ -77,6 +81,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		} 
 		List<BeanBookStatistics> statistics = daoBook
 				.getBookStatistics(require);
+		
+		totalSalesRevenue = String.format("%.2f",daoOrder.getTotalSalesRevenue());
 
 		if (statistics != null) {
 
@@ -197,6 +203,22 @@ public class AdminItemStatisticsAction extends CatalogBase {
 
 	public void setSearchYearRange(Integer searchYearRange) {
 		this.searchYearRange = searchYearRange;
+	}
+
+	public DaoOrder getDaoOrder() {
+		return daoOrder;
+	}
+
+	public void setDaoOrder(DaoOrder daoOrder) {
+		this.daoOrder = daoOrder;
+	}
+
+	public String getTotalSalesRevenue() {
+		return totalSalesRevenue;
+	}
+
+	public void setTotalSalesRevenue(String totalSalesRevenue) {
+		this.totalSalesRevenue = totalSalesRevenue;
 	}
 
 }
