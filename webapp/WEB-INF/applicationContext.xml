@@ -454,6 +454,7 @@
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="daoLevel" ref="DaoLevel"></property>
+		<property name="daoCart" ref="DaoCart"></property>
 	</bean>
 
 	<bean id="orderDelete" class="org.symagic.user.action.order.OrderDeleteOrderAction"

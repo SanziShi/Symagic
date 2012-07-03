@@ -302,7 +302,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 		<action name="check_score" class="checkScore">
 			<result type="json">
-				<param name="includeProperties">checkResult</param>
+				<param name="includeProperties">checkResult,score</param>
 			</result>
 		</action>
 		<action name="add_address" class="addAddress">
