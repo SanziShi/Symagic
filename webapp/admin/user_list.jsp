@@ -63,7 +63,7 @@
 						href="user_level">会员管理</a>&gt;&gt;查询会员
 				</div>
 				<div id="searchright">
-					<form action="quick_search">
+					<form action="quick_search?page=1" method="post">
 						<select name="catalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>

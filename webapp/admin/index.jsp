@@ -130,7 +130,7 @@
 						href="index.jsp">后台</a>
 				</div>
 				<div id="searchright">
-					<form action="quick_search" method="post">
+					<form action="quick_search?page=1" method="post">
 						<select name="catalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>

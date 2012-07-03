@@ -54,7 +54,7 @@
 				</div>
 
 				<div id="" style="float:right">
-					<form action="quick_search" method="post">
+					<form action="quick_search?page=1" method="post">
 						<select name="catalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>
@@ -154,34 +154,34 @@
 											<option value="0">不论时间</option>
 										</s:else>
 										<s:if test="%{publishTime==1}">
-											<option value="1" selected="selected">今年</option>
+											<option value="1" selected="selected"><s:property value="searchDate[0]"/></option>
 										</s:if>
 										<s:else>
-											<option value="1">今年</option>
+											<option value="1"><s:property value="searchDate[0]"/></option>
 										</s:else>
 										<s:if test="%{publishTime==2}">
-											<option value="2" selected="selected">去年</option>
+											<option value="2" selected="selected"><s:property value="searchDate[1]"/></option>
 										</s:if>
 										<s:else>
-											<option value="2">去年</option>
+											<option value="2"><s:property value="searchDate[1]"/></option>
 										</s:else>
 										<s:if test="%{publishTime==3}">
-											<option value="3" selected="selected">2年前</option>
+											<option value="3" selected="selected"><s:property value="searchDate[2]"/></option>
 										</s:if>
 										<s:else>
-											<option value="3">2年前</option>
+											<option value="3"><s:property value="searchDate[2]"/></option>
 										</s:else>
 										<s:if test="%{publishTime==4}">
-											<option value="4" selected="selected">3年前</option>
+											<option value="4" selected="selected"><s:property value="searchDate[3]"/></option>
 										</s:if>
 										<s:else>
-											<option value="4">3年前</option>
+											<option value="4"><s:property value="searchDate[3]"/></option>
 										</s:else>
 										<s:if test="%{publishTime==5}">
-											<option value="5" selected="selected">3年以上</option>
+											<option value="5" selected="selected"><s:property value="searchDate[4]"/></option>
 										</s:if>
 										<s:else>
-											<option value="5">3年以上</option>
+											<option value="5"><s:property value="searchDate[4]"/></option>
 										</s:else>
 								</select>
 								</td>
@@ -583,26 +583,30 @@ new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/
 							</tr>
 							<tr>
 								<th>版次：</th>
-								<td><input type="text" name="edition" class="smallinputext"
-									value="" /></td>
+								<td><select name="edition">
+								<option value="1">第一版</option>
+								<option value="2">第二版</option>
+								<option value="3">第三版</option>
+								<option value="4">第四版</option>
+								</select></td>
 								<td>#选填项</td>
 
 
 							</tr>
 							<tr>
 								<th>开本：</th>
-								<td><input type="text" name="size" class="smallinputext"
-									value="" /></td>
+								<td><select name="size">
+								<option value="8">8开</option>
+								<option value="16">16开</option>
+								<option value="32">32开</option>
+								</select></td>
 								<td>#选填项</td>
 
 							</tr>
 							<tr>
 								<th>页数：</th>
-								<td><select name="size">
-								<option value="8">8开</option>
-								<option value="16">16开</option>
-								<option value="32">32开</option>
-								</select>
+								<td><input type="text" name="page" class="smallinputtext"
+									value="" />
 								</td>
 								<td>#选填项</td>
 							</tr>
