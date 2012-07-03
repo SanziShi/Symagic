@@ -80,23 +80,23 @@
                         <img src="image/plus.gif" onclick="click_show(<s:property value='#outer.ID'/>)" />
                         <s:property value="#outer.name" /></td>
                         <td width="45%"></td>
-                        <td >&nbsp;&nbsp;&nbsp;&nbsp;<a href="" onclick="ajax_catalog_delete_tag_level1(<s:property value='#outer.ID'/>);">删除</a> &nbsp;
+                        <td >&nbsp;&nbsp;&nbsp;&nbsp;<a href="" onclick="ajax_catalog_delete_tag_level1(<s:property value='#outer.ID'/>)">删除</a> &nbsp;
                         <a href="catalog_edit?catalogID=<s:property value='#outer.ID'/>"
 												>修改</a></td>
                         </tr>
                         <!--子目录迭代开始-->
-                        <s:iterator value="#outer.childCatalog" var="inner">
-                        <div style="display:none" name="<s:property value='#outer.ID'/>">
+                        <s:iterator value="#outer.childCatalog" var="inner" status="st">
+                        <div style="display:none" id="'#st.index'i">
                         
-                        <div id="<s:property value='#inner.ID'/>">
+                        <!--  <div id="<s:property value='#inner.ID'/>"> -->
                         <tr>
                         <td width="5%"></td>
                          <td >&nbsp;&nbsp;&nbsp;&nbsp;<s:property value='#inner.name' /></td>
                         <td width="35%"></td>
-                        <td><a href="" onclick="ajax_catalog_delete_tag_level2(<s:property value='#inner.ID'/>)">删除</a> &nbsp;
+                        <td><a href="" onclick="ajax_catalog_delete_tag_level2(<s:property value='#inner.ID'/>,'#st.index'i);">删除</a> &nbsp;
                         <a href="catalog_edit?catalogID=<s:property value='#inner.ID'/>">修改</a></td>
                         </tr>
-                        </div>
+                        <!-- </div> -->
                         
                         </div>
                         </s:iterator>	
@@ -104,7 +104,7 @@
                         </div>
                         </s:iterator>	
                         <!--父目录迭代结束-->
-                       
+                        
                         </table>
                         
 					
