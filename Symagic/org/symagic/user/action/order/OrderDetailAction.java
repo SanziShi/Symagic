@@ -7,6 +7,8 @@ import org.symagic.common.db.bean.BeanOrder;
 import org.symagic.common.db.bean.BeanOrderDetail;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.service.OrderService;
+import org.symagic.common.utilty.presentation.bean.AddressDetailBean;
+import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 
 public class OrderDetailAction extends OrderBase {
@@ -19,8 +21,8 @@ public class OrderDetailAction extends OrderBase {
 	private String deliverWay;
 
 	private String payment;
-
-	private String receiverAddres;
+	
+	private AddressDetailBean addressList;
 
 	private String orderID;
 
@@ -29,15 +31,19 @@ public class OrderDetailAction extends OrderBase {
 	private OrderService orderService;
 
 	private DaoOrder daoOrder;
+	
+	private Integer score;
+	
+	private String price;
 
-	private List<ItemTinyBean> items;
+	private List<ItemTinyBean> buyItems;
 
-	public List<ItemTinyBean> getItems() {
-		return items;
+	public List<ItemTinyBean> getBuyItems() {
+		return buyItems;
 	}
 
-	public void setItems(List<ItemTinyBean> items) {
-		this.items = items;
+	public void setBuyItems(List<ItemTinyBean> buyItems) {
+		this.buyItems = buyItems;
 	}
 
 	public String getDeliverWay() {
@@ -54,14 +60,6 @@ public class OrderDetailAction extends OrderBase {
 
 	public void setPayment(String payment) {
 		this.payment = payment;
-	}
-
-	public String getReceiverAddres() {
-		return receiverAddres;
-	}
-
-	public void setReceiverAddres(String receiverAddres) {
-		this.receiverAddres = receiverAddres;
 	}
 
 	public String getOrderID() {
@@ -119,9 +117,21 @@ public class OrderDetailAction extends OrderBase {
 			receiverAddres += address.level3District.getName();
 		if(address.districtDetail != null)
 			receiverAddres += address.districtDetail;
-		setReceiverAddres(receiverAddres);
-		setMobileNum(order.getMobilenum());
-		setOrderTime(order.getOrderDate());
+
+		addressList = new AddressDetailBean();
+		OrderService.Address orderAddress = OrderService.deserializerAddress(order.getAddrDetail());
+		addressList.setLevel1Districts(new ArrayList<DistrictBean>());
+		addressList.setLevel2Districts(new ArrayList<DistrictBean>());
+		addressList.setLevel3Districts(new ArrayList<DistrictBean>());
+		addressList.getLevel1Districts().add(address.level1District);
+		addressList.getLevel2Districts().add(address.level2District);
+		addressList.setMobileNum(order.getMobilenum());
+		addressList.setPhoneNum(order.getPhonenum());
+		addressList.setZipcode(order.getZipcode());
+		addressList.setAddressSummary(receiverAddres);
+		addressList.setReceiverName(order.getReceiverName());
+		
+		setScore(order.getScore());
 		setOrderID(Integer.toString(order.getOrderId()));
 		int state = Integer.parseInt(order.getOrderState());
 		switch (state) {
@@ -142,8 +152,9 @@ public class OrderDetailAction extends OrderBase {
 			setPayment("货到付款");
 		setPhoneNum(order.getPhonenum());
 		setReceiverName(order.getReceiverName());
-		items = new ArrayList<ItemTinyBean>();
+		buyItems = new ArrayList<ItemTinyBean>();
 		List<BeanOrderDetail> orderList = order.getList();
+		float totalPrice = 0;
 		for (int i = 0; i < orderList.size(); i++) {
 			ItemTinyBean item = new ItemTinyBean();
 			item.setItemNumber(orderList.get(i).getAmount());
@@ -155,8 +166,35 @@ public class OrderDetailAction extends OrderBase {
 					* orderList.get(i).getDiscount()
 					* orderList.get(i).getMarketPrice()
 					* orderList.get(i).getAmount()));
-			items.add(item);
+			totalPrice += orderList.get(i).getDiscount()* orderList.get(i).getMarketPrice()
+					*orderList.get(i).getAmount();
+			buyItems.add(item);
 		}
+		price = String.format("%.2f", totalPrice);
 		return super.execute();
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+	public AddressDetailBean getAddressList() {
+		return addressList;
+	}
+
+	public void setAddressList(AddressDetailBean addressList) {
+		this.addressList = addressList;
 	}
 }
