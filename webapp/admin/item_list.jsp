@@ -449,17 +449,7 @@
 											type="button" value="删除" /> </a>&nbsp;&nbsp;</td>
 								</tr>
 							</s:iterator>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td><input type="button" name="off"
-									onclick="ajax_batch_off('itemForm')" value="批量下架" /> <input
-									type="button" name="up" onclick="ajax_batch_up('itemForm')"
-									value="批量上架" /></td>
-							</tr>
+							
 							<tr>
 								<td></td>
 								<td></td>
