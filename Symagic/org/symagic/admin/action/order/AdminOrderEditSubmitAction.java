@@ -90,7 +90,7 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		// 解析JSON数组
 		for (int i = 0; i < items.size(); i++) {
 			BeanBook book = daoBook.getDetail(items.get(i).getItemID());
-			if (book != null) {
+			if (book != null && items.get(i).getItemNumber() != 0) {
 				BeanOrderDetail orderDetail = new BeanOrderDetail();
 				orderDetail.setAmount(items.get(i).getItemNumber());
 				for( BeanOrderDetail detail : oldItems ){
