@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a href="favorite.html">收藏夹</a></li>
 			<li><a href="address.html">地址簿</a></li>
 			<li><a href="tradequery.html">交易查询</a></li>
-			<li><a href="send_notes.jsp">购物指引</a></li>
+			<li><a href="send_notes">购物指引</a></li>
             <li><a href="credit_query.html">积分查询</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>

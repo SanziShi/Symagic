@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul>
 			<li><a href="index">首页</a></li>
 			<li><a href="item_list">商品列表</a></li>
-			<li><a href="send_notes.jsp">购物指引</a></li>
+			<li><a href="send_notes">购物指引</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
                         <li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index.html">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
+				网站路径：<a href="index">首页</a>&gt;&gt;<a href=""> 忘记密码</strong></a>
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">
@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <tr>
 				 <th class="itemsearchth"><font color="red">*</font>安全回答：</th>
             		<td class="itemsearchtd1">
-					<input type="Password" name="securityAnswer" class="inputtext"/>
+					<input type="text" name="securityAnswer" class="inputtext"/>
 					<td class="itemsearchtd2">
 						</td>
           		 </tr>
@@ -142,9 +142,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
   </div>
   <div id="footer">
-	  <span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 | 电子邮件：admin@163.com </span>
-	  <span id="footerright"> B2C商城  Power by IBM &nbsp;</span>
-	</div>
+				<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |
+					电子邮件：Symagics@gmail.com </span> <span id="footerright"> Symagic网上书城
+					Power by Symagic &nbsp;</span>
+			</div>
 </div>
 
 </body>
