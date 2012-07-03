@@ -54,7 +54,9 @@ public class CartAddItemAction extends ActionSupport {
 			 addResult=false;
 			  continue;
 		  }
-		  if(daoBook.getDetail(item.getItemID())==null){
+		  //商品是否存在
+		  BeanBook book=daoBook.getDetail(item.getItemID());
+		  if(book==null||book.getOffline().trim().equals("下架")){
 			  result=false;
 		  }
 		  else{
@@ -64,7 +66,7 @@ public class CartAddItemAction extends ActionSupport {
 			   addResult=false;
 			   if(builder.length()==0){
 				   builder.append("编号为"+item.getItemID());
-			   }  
+			   }
 			   else{
 				   builder.append(","+item.getItemID());
 			   }

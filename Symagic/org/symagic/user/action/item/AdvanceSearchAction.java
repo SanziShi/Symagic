@@ -23,9 +23,8 @@ public class AdvanceSearchAction extends CatalogBase {
 	 */
 	private static final long serialVersionUID = -3732461805669850866L;
 
-	
-	//传入
-	private Integer page=1;// 分页显示
+	// 传入
+	private Integer page = 1;// 分页显示
 	private String author;// 作者
 	private String name;// 书本名字
 	private String publisher;// 出版社
@@ -36,99 +35,102 @@ public class AdvanceSearchAction extends CatalogBase {
 	private Integer binding;// 装帧
 	private Integer booksize;// 书的大小
 	private Integer price;// 书的价格
-    private Integer discount;// 折扣
-   // 配置项
+	private Integer discount;// 折扣
+	// 配置项
 	private Integer lines;
 	private String errorHeader;
 	private String errorSpecification;
 	private ItemService itemService;// 访问书本的业务层
-	
-	private int sign;// 搜索标志，1为高级搜索
-     //传出
-	private Integer totalPage;
-    private List<String> searchDate;
-	private List<ItemBean> items;// 用于显示的商品列表
-    private String actionURL;
-	
 
-	
+	private int sign;// 搜索标志，1为高级搜索
+	// 传出
+	private Integer totalPage;
+	private List<String> searchDate;
+	private List<ItemBean> items;// 用于显示的商品列表
+	private String actionURL;
+
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		items = new ArrayList<ItemBean>();
 		// 设置搜索的条件
 		BookRequire require = new BookRequire();
-		if(!isEmpty(name))
-		require.setItemName(name.trim());
-		if(!isEmpty(publisher))
-		require.setPublisher(publisher.trim());
-		if(!isEmpty(author))
+		if (!isEmpty(name))
+			require.setItemName(name.trim());
+		if (!isEmpty(publisher))
+			require.setPublisher(publisher.trim());
+		if (!isEmpty(author))
 			require.setAuthor(author.trim());
-		setCatalog(require,catalogID);
+		setCatalog(require, catalogID);
 		setYear(require, publishTime);
 		setPageNumber(require, searchPage);
 		setBinding(require, binding);
 		setBookSize(require, booksize);
 		setPrice(require, price);
-	  
-		setVersion(require,edition);
-		
-		setDiscount(require,discount);
-		
-        require.setLines(lines);
+
+		setVersion(require, edition);
+
+		setDiscount(require, discount);
+
+		require.setLines(lines);
 		require.setPage(page);
-		
 
+		// 搜索符合条件的商品
+		List<BeanBook> books = itemService.search(sign, require);
 
-
-		      // 搜索符合条件的商品
-				List<BeanBook> books = itemService.search(sign, require);
-			
-				if(books==null)return "error";
-				int searchNumber=itemService.getSearchNum(sign, require);
-				if(searchNumber==-1)return "error";
-				totalPage = (searchNumber + lines - 1)/ lines;
-				// 装饰成前台所需的信息
-				itemService.decorateForItem(books, items);
-				getYearForPage();
-				actionURL="item_list";
+		if (books == null)
+			return "error";
+		int searchNumber = itemService.getSearchNum(sign, require);
+		if (searchNumber == -1)
+			return "error";
+		totalPage = (searchNumber + lines - 1) / lines;
+		// 装饰成前台所需的信息
+		itemService.decorateForItem(books, items);
+		getYearForPage();
+		actionURL = "item_list";
 		return super.execute();
 	}
-	
-	private void setCatalog(BookRequire require,Integer catalogID ){
-		if(catalogID==null||catalogID==0)return;
+
+	private void setCatalog(BookRequire require, Integer catalogID) {
+		if (catalogID == null || catalogID == 0)
+			return;
 		require.setCatalogIDList(itemService.getCatalogList(catalogID));
 	}
-	
-	private boolean isEmpty(String content){
-		return content==null||content.trim().equals("");
+
+	private boolean isEmpty(String content) {
+		return content == null || content.trim().equals("");
 	}
-	
-	
-	private void setVersion(BookRequire require,Integer index){
-		if(index==null||index==0)return;
+
+	private void setVersion(BookRequire require, Integer index) {
+		if (index == null || index == 0)
+			return;
 		else
-		require.setVersion(index);
+			require.setVersion(index);
 	}
-	private void setDiscount(BookRequire require,Integer index){
-		if(index==null||index==0)return;
-		switch(index){
-		case 1:require.setUpDiscount(0.3F);
-			   require.setLowDiscount(0.1F);
-			   break;
-		case 2:require.setUpDiscount(0.5F);
-		   require.setLowDiscount(0.3F);
-		   break;
-		case 3:require.setUpDiscount(0.7F);
-		   require.setLowDiscount(0.5F);
-		   break;
+
+	private void setDiscount(BookRequire require, Integer index) {
+		if (index == null || index == 0)
+			return;
+		switch (index) {
+		case 1:
+			require.setUpDiscount(0.3F);
+			require.setLowDiscount(0.1F);
+			break;
+		case 2:
+			require.setUpDiscount(0.5F);
+			require.setLowDiscount(0.3F);
+			break;
+		case 3:
+			require.setUpDiscount(0.7F);
+			require.setLowDiscount(0.5F);
+			break;
 		case 4:
-		   require.setLowDiscount(0.7F);
-		   require.setUpDiscount(1.0F);
-		   break;
+			require.setLowDiscount(0.7F);
+			require.setUpDiscount(1.0F);
+			break;
 		}
 	}
-	
+
 	public String getErrorHeader() {
 		return errorHeader;
 	}
@@ -150,11 +152,14 @@ public class AdvanceSearchAction extends CatalogBase {
 			return;
 		switch (index) {
 		case 1:
-			require.setFolio("32");break;
+			require.setFolio("32");
+			break;
 		case 2:
-			require.setFolio("16");break;
+			require.setFolio("16");
+			break;
 		case 3:
-			require.setFolio("8");break;
+			require.setFolio("8");
+			break;
 		}
 	}
 
@@ -200,15 +205,16 @@ public class AdvanceSearchAction extends CatalogBase {
 			break;
 		}
 	}
-	private void getYearForPage(){
-		searchDate=new ArrayList<String>();
+
+	private void getYearForPage() {
+		searchDate = new ArrayList<String>();
 		GregorianCalendar calender = new GregorianCalendar();
 		int year = calender.get(Calendar.YEAR);
-		searchDate.add(year+"至今");
-		searchDate.add((year-1)+"~"+year);
-		searchDate.add((year-2)+"~"+(year-1));
-	    searchDate.add((year-3)+"~"+(year-2));
-	    searchDate.add((year-3)+"以前");
+		searchDate.add(year + "至今");
+		searchDate.add((year - 1) + "~" + year);
+		searchDate.add((year - 2) + "~" + (year - 1));
+		searchDate.add((year - 3) + "~" + (year - 2));
+		searchDate.add((year - 3) + "以前");
 	}
 
 	private void setYear(BookRequire require, Integer index) {
@@ -295,8 +301,6 @@ public class AdvanceSearchAction extends CatalogBase {
 		this.edition = edition;
 	}
 
-	
-
 	public String getActionURL() {
 		return actionURL;
 	}
@@ -369,16 +373,15 @@ public class AdvanceSearchAction extends CatalogBase {
 		this.itemService = itemService;
 	}
 
-	
-
 	public List<ItemBean> getItems() {
 		return items;
 	}
 
 	public void setItems(List<ItemBean> items) {
 		this.items = items;
-	}  
-    public Integer getTotalPage() {
+	}
+
+	public Integer getTotalPage() {
 		return totalPage;
 	}
 
@@ -393,8 +396,6 @@ public class AdvanceSearchAction extends CatalogBase {
 	public void setLines(Integer lines) {
 		this.lines = lines;
 	}
-
-	
 
 	public Integer getCatalogID() {
 		return catalogID;

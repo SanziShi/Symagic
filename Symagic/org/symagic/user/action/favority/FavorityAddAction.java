@@ -50,6 +50,7 @@ public class FavorityAddAction extends ActionSupport {
 				addResult=false;
 				continue;
 			}
+			//商品是否存在
 			if(daoBook.getDetail(itemID)==null){
 				result=false;
 			}

@@ -194,8 +194,8 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 
 		// 处理商品类别以外其他都不能为空
 		if (AdminUtility.isEmpty(ISBN) || AdminUtility.isEmpty(name) || AdminUtility.isEmpty(author) || AdminUtility.isEmpty(publisher) ||
-				AdminUtility.isEmpty(binding) || marketPrice == null || discount == null
-				|| inventory == null || AdminUtility.isEmpty(description) ) {
+				AdminUtility.isEmpty(binding) || marketPrice == null || marketPrice < 0 || discount == null || discount < 0
+				|| inventory == null || inventory < 0 || AdminUtility.isEmpty(description) ) {
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;
