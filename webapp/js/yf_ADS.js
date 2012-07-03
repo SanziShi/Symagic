@@ -11,6 +11,7 @@ function test(e)
 	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 	
 }
+
 /****检查用户是否注册****/
 is_login=function(o)
 {
@@ -576,6 +577,39 @@ function getY(e)
 	return e.pageY||e.clientY+document.body.scrollTop;
 }
 
+// Example:
+// writeCookie("myCookie", "my name", 24);
+// Stores the string "my name" in the cookie "myCookie" which expires after 24 hours.
+function write_cookie(name, value, hours)
+{
+  hours=hours||168;
+  var expire = "";
+  if(hours != null)
+  {
+    expire = new Date((new Date()).getTime() + hours * 3600000);
+    expire = "; expires=" + expire.toGMTString();
+  }
+  document.cookie = name + "=" + escape(value) + expire;
+}
+// Example:
+// alert( readCookie("myCookie") );
+function read_cookie(name)
+{
+  var cookieValue = "";
+  var search = name + "=";
+  if(document.cookie.length > 0)
+  { 
+    offset = document.cookie.indexOf(search);
+    if (offset != -1)
+    { 
+      offset += search.length;
+      end = document.cookie.indexOf(";", offset);
+      if (end == -1) end = document.cookie.length;
+      cookieValue = unescape(document.cookie.substring(offset, end))
+    }
+  }
+  return cookieValue;
+}
 
 /**************
 气泡提示源码

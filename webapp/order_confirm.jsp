@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </tr>
                     	<tr>
                         	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            <td><input name="mobileNum" type="text" class="txt"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt"/></td>
+                            <td><input name="mobileNum" type="text" class="txt"/>&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt"/></td>
                         </tr>
                     	<tr>
                         	<td valign="middle" align="right">邮箱地址：</td>

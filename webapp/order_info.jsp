@@ -73,26 +73,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             	<table id="order_address" width="100%" cellspacing="0" border="0">
                 			<tbody>
                     		<tr>
-                            	<td width="80" valign="middle" align="right"><font color="red">*</font>收货人姓名：</td>
+                            	<td width="80" valign="middle" align="right">收货人姓名：</td>
                             	<td>&nbsp;&nbsp;<s:property value='addressList.receiverName'/></td>
                             </tr>
                         	<tr>
-                        	  	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
+                        	  	<td valign="middle" align="right">所在地区：</td>
                               	<td>&nbsp;&nbsp;<s:property value='addressList.addressSummary'/></td>
                             </tr>
                     		<tr>
-                    		  	<td valign="middle" align="right"><font color="red">*</font>详细地址：</td>
+                    		  	<td valign="middle" align="right">详细地址：</td>
                               	<td>&nbsp;&nbsp;<s:property value='addressList.addressSummary'/></td>
                             </tr>
                     		<tr>
-                            	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            	<td>&nbsp;&nbsp;<s:property value='addressList.mobileNum'/>&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<s:property value='addressList.phoneNum'/></td>
+                            	<td valign="middle" align="right">手机号码：</td>
+                            	<td>&nbsp;&nbsp;<s:property value='addressList.mobileNum'/></td>
+                            </tr>
+                            <tr>
+                            	<td valign="middle" align="right">固定电话：</td>
+                            	<td>&nbsp;&nbsp;<s:property value='addressList.phoneNum'/></td>
                             </tr>
                     		<tr>
                             	<td valign="middle" align="right">邮箱地址：</td><td>&nbsp;&nbsp;<s:property value='#session.userName'/></td>
                             </tr>
                     		<tr>
-                            	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
+                            	<td valign="middle" align="right">邮政编码：</td>
                             	<td>&nbsp;&nbsp;<s:property value='addressList.zipcode'/></td>
                             </tr>
                             

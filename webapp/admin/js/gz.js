@@ -661,7 +661,7 @@ function ajax_catalog_delete_tag_level2(id,divid) {
 	var result = confirm("该操作将会将所选二级目录移除，确定继续吗？");
 	if (result == true) {
 		Ajax({
-			url : 'catalog_manager/delete?itemID=' + id,
+			url : 'catalog_manager/delete?catalogIDList=' + id,
 			type : 'GET',
 			onSend : function() {
 			},
@@ -688,7 +688,7 @@ function ajax_catalog_delete_tag_level1(id,divid) {
 	var result = confirm("该操作将会将所选目录及其子目录移除，确定继续吗？");
 	if (result == true) {
 		Ajax({
-			url : 'catalog_manager/delete?itemID=' + id,
+			url : 'catalog_manager/delete?catalogIDList=' + id,
 			type : 'GET',
 			onSend : function() {
 			},

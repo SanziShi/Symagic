@@ -61,12 +61,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-    <form action="order_submit" method="post" id="order_submit">
+    <form action="order/order_edit_submit" method="post" id="order_edit_submit">
     <div id="order_container">
     	<div id="c-info">
         	<h1>收货人信息<span id="order_id">订单号：<font color="#FF0000"><s:property value='orderID'/></font></span></h1>
             <!--隐藏订单号传入input-->
-            <input style="display:none" name="orderID" value="<s:property value='orderID'/>">
+            <input style="display:none" id="orderID" name="orderID" value="<s:property value='orderID'/>">
             <!---->
             <div id="c-input">
             	<div id="address_list">
@@ -76,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <!--常用地址迭代开始-->
                         <s:iterator value='addressList' var="iter">
                         	<li class="" id="normal_address<s:property value='#iter.ID'/>">
-                            	<input name="adressID" onclick="detect(this,<s:property value='#iter.ID'/>)"  type="radio" id="normal_a<s:property value='#iter.ID'/>" />
+                            	<input name="adressID" onclick="detect_edit(this,<s:property value='#iter.ID'/>)"  type="radio" id="normal_a<s:property value='#iter.ID'/>" />
                                 <label for="normal_a<s:property value='#iter.ID'/>"><strong><s:property value='#iter.receiverName'/></strong>&nbsp;<s:property value='#iter.addressSummary'/><s:property value='#iter.addressDetail'/></label>
                                 <span class="delete"><a onclick="delete_address(<s:property value='#iter.ID'/>)" href="javascript:void(0)">删除地址</a></span>
                             </li>
@@ -85,6 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </ul>
                     </div>
                 </div>
+                <div id="table_container">
                 <!--默认送货人信息迭代-->
                 <table id="order_address" width="100%" cellspacing="0" border="0">
                 			<tbody>
@@ -138,7 +139,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </tr>
                     		<tr>
                             	<td valign="middle" align="right"><font color="red">*</font>手机号码：</td>
-                            	<td><input name="mobileNum" type="text" class="txt" value="<s:property value='defaultAddressList.mobileNum'/>"/>或者&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：<input name="phoneNum" type="text" class="txt" value="<s:property value='defaultAddressList.phoneNum'/>"></td>
+                            	<td>
+                                	<input name="mobileNum" type="text" class="txt" value="<s:property value='defaultAddressList.mobileNum'/>"/>&nbsp;&nbsp;或&nbsp;&nbsp;固定电话：
+                                	<input name="phoneNum" type="text" class="txt" value="<s:property value='defaultAddressList.phoneNum'/>">
+                                </td>
                             </tr>
                     		<tr>
                             	<td valign="middle" align="right">邮箱地址：</td><td><s:property value='#session.userName'/></td>
@@ -149,11 +153,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </tr>
                             <tr>
                                 	<td></td>
-                                    <td><input type="submit" value="保存修改"/></td>
+                                    <td><input type="button"value="保存修改"/></td>
                             </tr>
                     		</tbody>
                 		</table>
                 <!--默认送货详情迭代结束-->
+                </div>
                 <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
             </div>
         </div>
@@ -215,13 +220,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div id="ware">
         	<h1>结算</h1>
-            <div id="use_score"><input type="checkbox" onclick="use_score_change(this)"/>使用积分：&nbsp;&nbsp;
-            	<input onblur="check_score(this)" id="score" name="score" class="short" value="0"/>&nbsp;&nbsp;
-                可用积分：&nbsp;&nbsp;<font color="red"><s:property value='useTotalScore'/></font>
+             <div id="use_score">&nbsp;使用积分：&nbsp;&nbsp;
+            	<s:property value='score'/></font>
             </div>
         	<div class="total_price"><span id="pay">应付总额：<strong>￥</strong><strong id="total_price"><s:property value='price'/></strong>元</span></div>
         	<div class="clear"></div>
-        	<div class="order_confirm" onclick="order_submit()"></div>
+        	<div class="order_edit_confirm" onclick="order_edit_confirm()"></div>
         	<div class="clear"></div>
         </div>     
     </div>

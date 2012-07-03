@@ -180,6 +180,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
 			<result>ok.jsp</result>
 			<result name="error">/error.jsp</result>
+			<result name="input">/error.jsp</result>
 		</action>
 
 		<action name="get_address_detail" class="addressDetail">
@@ -188,6 +189,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		
 		<action name="order_edit" class="orderEdit">
 			<result>order_edit.jsp</result>
+			<result name="error">/error.jsp</result>
 		</action>
 		
 	</package>
@@ -322,9 +324,14 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="include Properties">addResult</param>
 			</result>
 		</action>
-		<action name="edit_order_submit" class="orderEditSubmit">
+		<action name="order_edit_submit" class="orderEditSubmit">
 			<result type="json">
 				<param name="includeProperties">submitResult,resultInfo</param>
+			</result>
+		</action>
+		<action name="cancel_order" class="cancelOrder">
+			<result type="json">
+				<param name="includeProperties">cancelResult,resultInfo</param>
 			</result>
 		</action>
 	</package>
