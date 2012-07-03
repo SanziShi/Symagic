@@ -88,7 +88,6 @@ private void accordCart(){
 		   Integer sessionNumber=lastingItems.get(item.getBookID());
 		   if(sessionNumber==null){
 			   lastingItems.put(item.getBookID(), item.getAmount());
-			  
 			  }
 		   else{
 			   lastingItems.put(item.getBookID(), item.getAmount()+sessionNumber);
@@ -97,16 +96,19 @@ private void accordCart(){
 	   
 	   
 	   //更新数据库中购物车中的信息，遍历session中的购物车（此时已是合并后的结果），加入新项，对于已有id的项，更新数量
+	   //历史中的记录
 	   Set<Integer> historyId=new HashSet();
 	   BeanCart historyItem;
 	   for(int index=0;index<historyItems.size();index++){
 		  historyItem=historyItems.get(index);
 		  historyId.add(historyItem.getBookID());
 	   }
+	   //当前session中的数据
 	   Set<Integer> itemIdSet=lastingItems.keySet();
 		 for(Iterator key =itemIdSet.iterator();key.hasNext();){
 			 int id=(Integer)key.next();
 			 int number=lastingItems.get(id);
+			 //如果历史中当前包含这个，则修改数量,不包含则加新记录
 			 if(historyId.contains(id)){
 				 daoCart.modifyBook(UserSessionUtilty.getUsername(), id, number);
 			 }

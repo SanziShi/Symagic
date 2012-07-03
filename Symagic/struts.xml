@@ -11,8 +11,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 配置登陆用的拦截器 -->
 		<interceptors>
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
+			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
 
 			<interceptor-stack name="userLoginInterceptorStack">
+				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="userLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
@@ -30,9 +32,10 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 配置登录拦截器 -->
 		<interceptors>
 			<interceptor name="adminLoginInterceptor" class="AdminLoginInterceptor"></interceptor>
-             <interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
-			
+			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
+
 			<interceptor-stack name="adminLoginInterceptorStack">
+				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 				<interceptor-ref name="adminLoginInterceptor"></interceptor-ref>
 				<interceptor-ref name="defaultStack"></interceptor-ref>
 			</interceptor-stack>
@@ -45,8 +48,8 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<!-- 用于错误处理的result -->
 		<global-results>
 			<result name="enforceLogin">/admin/login.jsp</result>
-			<!-- <result name="error">/admin/admin_error.jsp</result> -->
-			<!--  <result name="input">/admin/admin_error.jsp</result> -->
+			<result name="error">/admin/admin_error.jsp</result>
+			<result name="input">/admin/admin_error.jsp</result>
 		</global-results>
 	</package>
 
@@ -178,7 +181,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result>ok.jsp</result>
 			<result name="error">/error.jsp</result>
 		</action>
-		
+
 		<action name="get_address_detail" class="addressDetail">
 			<result>/lib/address_detail.jsp</result>
 		</action>
@@ -338,6 +341,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		</action>
 
 		<action name="login" class="AdminLogin">
+			<interceptor-ref name="injectionInterceptor"></interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result name="success" type="redirect">
 				${toURL}

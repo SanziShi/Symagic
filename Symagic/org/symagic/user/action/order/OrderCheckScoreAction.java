@@ -40,10 +40,6 @@ public class OrderCheckScoreAction extends CatalogBase{
 
 	public String execute() throws Exception{
 		BeanUser user = daoUser.getUser(UserSessionUtilty.getUsername());
-		if(score == null){
-			checkResult = false;
-			return SUCCESS;
-		}
 		if(user == null)
 			checkResult = false;
 		else{

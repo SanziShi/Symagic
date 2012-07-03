@@ -44,9 +44,9 @@ public class OrderEnterAction extends CatalogBase {
 	private DaoBook daoBook;
 
 	private List<ItemTinyBean> items;
-
+	
 	private List<DistrictBean> level1Districts;
-
+	
 	public List<AddressDetailBean> getAddressList() {
 		return addressList;
 	}
@@ -94,32 +94,28 @@ public class OrderEnterAction extends CatalogBase {
 		Float temp = 0.0f;
 		buyItems = new ArrayList<ItemTinyBean>();
 		for (int i = 0; i < items.size(); i++) {
-			if (items.get(i).getItemID() != null) {
-				Integer itemId = items.get(i).getItemID();
-				BeanBook beanBook = daoBook.getDetail(itemId);
-				if (beanBook != null) {
-					ItemTinyBean itemTinyBean = new ItemTinyBean();
-					itemTinyBean.setItemID(beanBook.getBookId());
-					itemTinyBean.setName(beanBook.getBookName());
-					if (items.get(i).getItemNumber() != null)
-						itemTinyBean
-								.setItemNumber(items.get(i).getItemNumber());
-					itemTinyBean
-							.setPrice(String.format("%.2f", (beanBook
-									.getMarketPrice() * beanBook.getDiscount())));
-					itemTinyBean
-							.setItemTotalPrice(String.format(
-									"%.2f",
-									(beanBook.getMarketPrice()
-											* beanBook.getDiscount() * itemTinyBean
-											.getItemNumber())));
-					itemTinyBean.setScore((int) (beanBook.getMarketPrice()
-							* beanBook.getDiscount() * itemTinyBean
-							.getItemNumber()));
-					temp += beanBook.getMarketPrice() * beanBook.getDiscount()
-							* itemTinyBean.getItemNumber();
-					buyItems.add(itemTinyBean);
-				}
+			Integer itemId = items.get(i).getItemID();
+			BeanBook beanBook = daoBook.getDetail(itemId);
+			if (beanBook != null) {
+				ItemTinyBean itemTinyBean = new ItemTinyBean();
+				itemTinyBean.setItemID(beanBook.getBookId());
+				itemTinyBean.setName(beanBook.getBookName());
+				itemTinyBean.setItemNumber(items.get(i).getItemNumber());
+				itemTinyBean
+						.setPrice(String.format("%.2f", (beanBook
+								.getMarketPrice() * beanBook.getDiscount())));
+				itemTinyBean
+						.setItemTotalPrice(String.format(
+								"%.2f",
+								(beanBook.getMarketPrice()
+										* beanBook.getDiscount() * itemTinyBean
+										.getItemNumber())));
+				itemTinyBean.setScore((int)(beanBook.getMarketPrice()
+						* beanBook.getDiscount() * itemTinyBean
+						.getItemNumber()));
+				temp += beanBook.getMarketPrice() * beanBook.getDiscount()
+						* itemTinyBean.getItemNumber();
+				buyItems.add(itemTinyBean);
 			}
 		}
 		price = String.format("%.2f", temp);
@@ -129,12 +125,8 @@ public class OrderEnterAction extends CatalogBase {
 		payment = "货到付款";
 		deliverWay = "快递";
 		HashMap<Integer, Integer> orderHashMap = new HashMap<Integer, Integer>();
-		for (int i = 0; i < items.size(); i++) {
-			if (items.get(i).getItemID() != null
-					&& items.get(i).getItemNumber() != null) {
-				orderHashMap.put(items.get(i).getItemID(), items.get(i)
-						.getItemNumber());
-			}
+		for(int i = 0; i < items.size(); i ++){
+			orderHashMap.put(items.get(i).getItemID(), items.get(i).getItemNumber());
 		}
 		UserSessionUtilty.setOrder(orderHashMap);
 		return super.execute();
@@ -189,5 +181,6 @@ public class OrderEnterAction extends CatalogBase {
 	public void setLevel1Districts(List<DistrictBean> level1Districts) {
 		this.level1Districts = level1Districts;
 	}
+
 
 }

@@ -137,6 +137,8 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		if (AdminUtility.isEmpty(ISBN) || AdminUtility.isEmpty(name) || AdminUtility.isEmpty(author) || AdminUtility.isEmpty(publisher)
 				|| AdminUtility.isEmpty(binding) || marketPrice == null || discount == null
 				|| inventory == null || AdminUtility.isEmpty(description)) {
+			errorHeader = "输入不正确";
+			errorSpecification = "您的输入不正确";
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;

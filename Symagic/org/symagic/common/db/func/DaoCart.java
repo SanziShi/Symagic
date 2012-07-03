@@ -42,7 +42,6 @@ public class DaoCart {
 			ps.setString(1, username);
 			ps.setInt(2, bookID);
 			ps.setInt(3, bookNumber);
-			
 			ps.execute();
 			
 			if (ps.getUpdateCount() == 1) {
