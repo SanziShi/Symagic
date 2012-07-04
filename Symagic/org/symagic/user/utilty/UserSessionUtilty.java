@@ -131,7 +131,7 @@ public class UserSessionUtilty extends SessionUtilty {
 		int value=cart.get(id);
 		cart.put(id, number);
 		//改变session中的总数量
-		UserSessionUtilty.addTotalNumber(value-number);
+		UserSessionUtilty.addTotalNumber(number-value);
 		return true;
 	}
 	
