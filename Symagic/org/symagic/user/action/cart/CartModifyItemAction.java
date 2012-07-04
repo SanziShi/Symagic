@@ -20,7 +20,7 @@ public class CartModifyItemAction extends ActionSupport {
 private DaoCart daoCart;//访问数据库中会员购物车信息
 //传出
 
-private boolean updateResult=false;//修改是否成功
+private boolean updateResult=true;//修改是否成功
 private String resultInfo;
 //内部
 private boolean validateResult=true;
@@ -47,16 +47,20 @@ public String execute() throws Exception {
 		 resultInfo="购物车中没有此商品";
 		 return SUCCESS;
 	 }
-	updateResult=UserSessionUtilty.modifyFromCart(itemID, itemNumber);
+	 
+	//会员登录更新到数据库中
+			if(UserSessionUtilty.isLogin()){
+				
+				updateResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
+			}
+			
+		if(updateResult)
+	        updateResult=UserSessionUtilty.modifyFromCart(itemID, itemNumber);
 		if(!updateResult){
 			resultInfo="修改失败";
 			return "success";
 		}
-	//会员登录更新到数据库中
-		if(UserSessionUtilty.isLogin()){
-			
-			updateResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
-		}
+	
 		resultInfo="修改成功";
 	 
 	return super.execute();

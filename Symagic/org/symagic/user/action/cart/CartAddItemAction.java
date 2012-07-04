@@ -89,7 +89,7 @@ public class CartAddItemAction extends ActionSupport {
 		 Integer  number=UserSessionUtilty.getCart().get(itemID);
 		int compare=(number==null?0:number);
 		//itemID不存在于数据库中或者是库存不足
-		if(book==null||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>999){
+		if(book==null||itemNumber<=0||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>999){
 			info.append("书名为"+book.getBookName()+"添加数量非法\n");   
 			return false;
 			 }
