@@ -53,11 +53,11 @@ public class CartDeleteItemAction extends ActionSupport {
 			  }
 			 
 		   }
-	   if(!deleteResult){
+	   if(deleteResult){
 			 
 			 
 			   resultInfo="删除成功";
-	   }
+			   }
 	   else{
 		   resultInfo=builder.toString();
 	   }
@@ -69,6 +69,7 @@ public class CartDeleteItemAction extends ActionSupport {
 private boolean deleteOneFromCart(Integer itemID,boolean login,StringBuilder info){
 	//购物车没有此商品
 	boolean deleteResult=true;
+	//商品不存在
 			if(UserSessionUtilty.getCart().get(itemID)==null){
 				deleteResult=false;
 				info.append("编号为"+itemID+"不存在购物车中\n");
