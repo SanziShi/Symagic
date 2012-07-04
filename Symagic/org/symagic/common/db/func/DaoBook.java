@@ -774,7 +774,7 @@ public class DaoBook {
 					+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
 		
 			for (int i=0; i<req.getCatalogidList().size(); i++) {
-				sql += " , " + req.getCatalogidList().get(0);
+				sql += " , " + req.getCatalogidList().get(i);
 			}
 			
 			sql		+= ") order by bookid asc ";
