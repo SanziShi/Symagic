@@ -34,32 +34,50 @@ function add_to_cart(id)
 	var u='';
 	var num=document.getElementById('cart_num');
 	var t=document.getElementById('amount');
+	var temp;
 	if(t)
 	{
 		u='cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber='+t.value;
+		temp=t.value;
 	}
 	else
 	{
 		u='cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber=1';
+		temp=1;
 	}
 	Ajax({
-		url:u,
-		//data:'itemID='+id+'&itemNumber='+amount,
-		onSuccess:function(e){
-				var r=JSON.parse(e);
-				if(r.addResult)
+			url:'order/check_item?itemID='+id+'&itemNum='+e.value,
+			onSuccess:function(checkr)
 				{
-					get_session({S:function(s)
-						{
-							num.innerHTML=s.totalNumber
-						}
-					});
-					alert('商品添加成功,可在购物车中查看详情');
+					var che=JSON.parse(checkr);
+					if(che.checkResult)
+					{
+						Ajax({
+							url:u,
+							//data:'itemID='+id+'&itemNumber='+amount,
+							onSuccess:function(e){
+									var r=JSON.parse(e);
+									if(r.addResult)
+									{
+										get_session({S:function(s)
+											{
+												num.innerHTML=s.totalNumber
+											}
+										});
+										alert('商品添加成功,可在购物车中查看详情');
+									}
+									else
+									alert(r.resultInfo);				
+								}
+							})
+					}
+					else
+					{
+						alert('抱歉，库存不够，您可以先收藏该商品');
+					}
 				}
-				else
-				alert(r.resultInfo);				
-			}
 		})
+	
 }
 /*****批量添加商品表单提交*****/
 function adds_to_cart(form_id)
