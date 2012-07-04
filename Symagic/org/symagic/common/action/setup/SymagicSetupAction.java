@@ -32,11 +32,11 @@ public class SymagicSetupAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		JSONObject jdbcObject = new JSONObject();
-		jdbcObject.put("dbname", databaseName);
-		jdbcObject.put("username", databaseUser);
-		jdbcObject.put("password", databasePassword);
-		jdbcObject.put("server", databaseHost);
-		jdbcObject.put("port", databasePost);
+		jdbcObject.put("dbname", databaseName.trim());
+		jdbcObject.put("username", databaseUser.trim());
+		jdbcObject.put("password", databasePassword.trim());
+		jdbcObject.put("server", databaseHost.trim());
+		jdbcObject.put("port", databasePost.trim());
 		
 		JSONObject recommendObject = new JSONObject();
 		recommendObject.put("host", recommendHost);
