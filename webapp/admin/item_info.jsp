@@ -39,7 +39,7 @@
 			<div id="search2">
 				<div id="searchleft">
 					<img src="image/ico_site.jpg" id="ico_site" /> 网站路径：<a
-						href="index.html">首页</a>&gt;&gt;<a href="#">商品详细信息</a>
+						href="index">首页</a>&gt;&gt;<a href="#">商品详细信息</a>
 				</div>
 			</div>
 			<div id="sendnote">

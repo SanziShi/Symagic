@@ -1,6 +1,7 @@
 function amount_modify(e)
 {
 	e.value=e.value.replace(/\D+/g,'');
+	if(e.value=='')e.value=0;
 }
 /*****进入下单页面*******/
 function checkout()
@@ -34,7 +35,7 @@ function delete_form_cart(f)
 			}
 		})
 }
-function add_to_favorite()
+function add_to_favorites()
 {
 	var f=document.getElementById('checkout');
 	var request='';
@@ -65,24 +66,39 @@ function add(id)
 	var a=document.getElementById(id+'amount');
 	var u='cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber=1';
 	Ajax({
-		url:u,
-		onSuccess:function(r)
-			{
-				var d=JSON.parse(r);
-				if(d.addResult)
+			url:'order/check_item?itemID='+id+'&itemNum='+(a.value+1),
+			onSuccess:function(checkr)
 				{
-					a.value++;
-					a.setAttribute('default',a.value);
-					get_session({S:function(s)
-						{
-							num.innerHTML=s.totalNumber
-						}
-					});
+					var che=JSON.parse(checkr);
+					if(che.checkResult)
+					{
+						Ajax({
+							url:u,
+							onSuccess:function(r)
+								{
+									var d=JSON.parse(r);
+									if(d.addResult)
+									{
+										a.value++;
+										a.setAttribute('default',a.value);
+										get_session({S:function(s)
+											{
+												num.innerHTML=s.totalNumber
+											}
+										});
+									}
+									else alert('商品数量修改失败！')
+								}
+							})
+					}
+					else
+					{
+						alert('抱歉，库存不够，您可以先收藏该商品');
+						a.value=a.getAttribute('default');
+					}
 				}
-				else alert('商品数量修改失败！')
-			}
-			
 		})
+	
 }
 /******点击购物车页面-按钮函数******/
 function reduce(id)
@@ -91,27 +107,43 @@ function reduce(id)
 	var a=document.getElementById(id+'amount');
 	var u='cart/update?itemID='+id+'&itemNumber='+(a.value-1);
 	Ajax({
-		url:u,
-		onSuccess:function(r)
-			{
-				var d=JSON.parse(r);
-				if(d.updateResult)
+			url:'order/check_item?itemID='+id+'&itemNum='+(a.value-1),
+			onSuccess:function(checkr)
 				{
-					a.value--;
-					a.setAttribute('default',a.value);
-					get_session({S:function(s)
-						{
-							num.innerHTML=s.totalNumber
-						}
-					});
+					var che=JSON.parse(checkr);
+					if(che.checkResult)
+					{
+						Ajax({
+							url:u,
+							onSuccess:function(r)
+								{
+									var d=JSON.parse(r);
+									if(d.updateResult)
+									{
+										a.value--;
+										a.setAttribute('default',a.value);
+										get_session({S:function(s)
+											{
+												num.innerHTML=s.totalNumber
+											}
+										});
+									}
+									else alert('商品数量修改失败！')
+								}
+							})
+					}
+					else
+					{
+						alert('抱歉，库存不够，您可以先收藏该商品');
+						a.value=a.getAttribute('default');
+					}
 				}
-				else alert('商品数量修改失败！')
-			}
-			
 		})
+	
 }
 function check_item_num(id,e)
 {
+	var num=document.getElementById('cart_num');
 	if(e.value==0)
 	{
 		if(confirm('确认将该商品从购物车中删除？'))
@@ -122,24 +154,38 @@ function check_item_num(id,e)
 	}
 	else
 	{
-		var u='cart/update?itemID='+id+'&itemNumber='+e.value;
 		Ajax({
-		url:u,
-		onSuccess:function(r)
-			{
-				var d=JSON.parse(r);
-				if(d.updateResult)
+			url:'order/check_item?itemID='+id+'&itemNum='+e.value,
+			onSuccess:function(checkr)
 				{
-					a.setAttribute('default',a.value);
-					get_session({S:function(s)
-						{
-							num.innerHTML=s.totalNumber
-						}
-					});
+					var che=JSON.parse(checkr);
+					if(che.checkResult)
+					{
+						var u='cart/update?itemID='+id+'&itemNumber='+e.value;
+						Ajax({
+						url:u,
+						onSuccess:function(r)
+							{
+								var d=JSON.parse(r);
+								if(d.updateResult)
+								{
+									e.setAttribute('default',e.value);
+									get_session({S:function(s)
+										{
+										num.innerHTML=s.totalNumber;
+										}
+									});
+								}
+								else alert('商品数量修改失败！')
+							}
+						})
+					}
+					else
+					{
+						alert('抱歉，库存不够，您可以先收藏该商品');
+						e.value=e.getAttribute('default');
+					}
 				}
-				else alert('商品数量修改失败！')
-			}
-			
 		})
 	}
 }

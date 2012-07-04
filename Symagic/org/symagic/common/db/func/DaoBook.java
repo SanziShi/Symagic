@@ -735,7 +735,7 @@ public class DaoBook {
 
 	public List<BeanBookStatistics> getBookStatistics(BookStatisticsRequire req) {
 		boolean haveCatalogID = true;
-		if (req.getCatalogid() == null)
+		if (req.getCatalogidList() == null  || req.getCatalogidList().size() == 0)
 			haveCatalogID = false;
 
 		List<BeanBookStatistics> list = null;
@@ -769,10 +769,15 @@ public class DaoBook {
 					+ "' "
 					+ " group by bookid "
 					+ " having sum(amount) > ? "
-					+ "order by bookid asc limit ?, ?) "
+					+ "order by bookid asc) "
 					+ " as t1, book_catalog_detail as t2 "
-					+ " where t1.bookid=t2.bookid and t2.catalogid=? "
-					+ " order by bookid asc ";
+					+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
+		
+			for (int i=0; i<req.getCatalogidList().size(); i++) {
+				sql += " , " + req.getCatalogidList().get(i);
+			}
+			
+			sql		+= ") order by bookid asc  limit ?, ?";
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn.prepareStatement(sql);
@@ -780,8 +785,8 @@ public class DaoBook {
 			ps.setInt(2, (req.getPage() - 1) * req.getLines());
 			ps.setInt(3, req.getLines());
 
-			if (haveCatalogID)
-				ps.setInt(4, req.getCatalogid());
+//			if (haveCatalogID)
+//				ps.setInt(4, req.getCatalogid());
 
 			rs = ps.executeQuery();
 			list = new ArrayList<BeanBookStatistics>();
@@ -819,7 +824,7 @@ public class DaoBook {
 	public int getStatisticsNum(BookStatisticsRequire req) {
 		int count = -1;
 		boolean haveCatalogID = true;
-		if (req.getCatalogid() == null)
+		if (req.getCatalogidList() == null  || req.getCatalogidList().size() == 0)
 			haveCatalogID = false;
 
 		String sql = "";
@@ -839,23 +844,26 @@ public class DaoBook {
 					+ "order by bookid asc  limit ?, ?";
 		else
 			sql = "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid "
-					+ "from ("
-					+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
-					+ " from book_order, order_detail "
-					+ " where book_order.orderid=order_detail.orderid and orderdate >  "
-					+ " '"
-					+ req.getStartTime()
-					+ "' "
-					+ " and orderdate < "
-					+ " '"
-					+ req.getEndTime()
-					+ "' "
-					+ " group by bookid "
-					+ " having sum(amount) > ? "
-					+ "order by bookid asc limit ?, ?) "
-					+ " as t1, book_catalog_detail as t2 "
-					+ " where t1.bookid=t2.bookid and t2.catalogid=? "
-					+ " order by bookid asc ";
+				+ "from ("
+				+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
+				+ " from book_order, order_detail "
+				+ " where book_order.orderid=order_detail.orderid and orderdate >  "
+				+ " '"
+				+ req.getStartTime()
+				+ "' "
+				+ " and orderdate < "
+				+ " '"
+				+ req.getEndTime()
+				+ "' "
+				+ " group by bookid "
+				+ " having sum(amount) > ? "
+				+ "order by bookid asc limit ?, ?) "
+				+ " as t1, book_catalog_detail as t2 "
+				+ " where t1.bookid=t2.bookid and t2.catalogid in (0, ";
+	
+		for (int i=0; i<req.getCatalogidList().size(); i++) {
+			sql += " , " + req.getCatalogidList().get(0);
+		}
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn.prepareStatement(sql);
@@ -863,8 +871,8 @@ public class DaoBook {
 			ps.setInt(2, (req.getPage() - 1) * req.getLines());
 			ps.setInt(3, req.getLines());
 
-			if (haveCatalogID)
-				ps.setInt(4, req.getCatalogid());
+//			if (haveCatalogID)
+//				ps.setInt(4, req.getCatalogid());
 
 			rs = ps.executeQuery();
 			while (rs.next()) {
