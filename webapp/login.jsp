@@ -88,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="sendnote">
 			<div id="sendnotehead"><strong><font color="#FFFFFF">您未登录，请先登录</font></strong></div>
 			<div id="sendnotecontent">
-			<form action="login" method="post" enctype="multipart/form-data" name="form1" onsubmit="return login(this);">
+			<form action="login" method="post" enctype="multipart/form-data" name="form1" onsubmit="return login(this,'p');">
 				<table id="itemsearch">
 				   <tr>
 					<th width="30%" style="text-align:right">用户名：</th>
@@ -125,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  </tr>
 				 <tr>
 				 <th></th>
-				 	<td><input type="submit" value="登陆" onClick="">
+				 	<td><input type="submit" value="登陆" >
 						
 						&nbsp;<input type="Button"  value="注册" onClick="clear_notice();load_regist();">
 					

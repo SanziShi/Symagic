@@ -46,7 +46,7 @@ function add_to_cart(id)
 		temp=1;
 	}
 	Ajax({
-			url:'order/check_item?itemID='+id+'&itemNum='+t.value,
+			url:'order/check_item?itemID='+id+'&itemNum='+temp,
 			onSuccess:function(checkr)
 				{
 					var che=JSON.parse(checkr);
@@ -248,7 +248,7 @@ function load_regist()
 	})
 }
 /****登录表单提交**********/
-function login(form)
+function login(form,op)
 {
 	var login_form=$(form).serialize();
 	Ajax({
@@ -263,6 +263,7 @@ function login(form)
 						document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
 					}catch(err){};
 					alert(a.resultInfo);
+					if(op=='p')location.reload();
 					return ture;
 				}
 				},
