@@ -201,14 +201,15 @@ public class OrderEditOrderAction extends OrderBase {
 					orderList.get(i).getDiscount()
 					* orderList.get(i).getMarketPrice()
 					* orderList.get(i).getAmount()));
+			item.setItemID(orderList.get(i).getBookId());
 			totalPrice += orderList.get(i).getDiscount()
 					* orderList.get(i).getMarketPrice()
 					* orderList.get(i).getAmount();
 			item.setScore((int) (orderList.get(i).getDiscount() * orderList.get(i).getAmount() * orderList.get(i).getMarketPrice()));
 			buyItems.add(item);
 		}
-		totalPrice -= score * 0.1f;
-		price = String.format("%.2f", totalPrice);
+		price = String.format("%.2f", order.getTotalprice());
+		setScore((int) ((totalPrice - order.getTotalprice()) * 10));
 		return super.execute();
 	}
 

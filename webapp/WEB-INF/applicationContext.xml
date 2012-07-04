@@ -362,6 +362,7 @@
 		<property name="daoUser" ref="DaoUser"></property>
 		<property name="orderService" ref="OrderService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
 	<bean id="forgetPassword" class="org.symagic.user.action.userinfo.ForgetPasswordAction"

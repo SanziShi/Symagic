@@ -52,6 +52,8 @@ public class OrderEnterAction extends CatalogBase {
 	private List<ItemTinyBean> items;
 
 	private List<DistrictBean> level1Districts;
+	
+	private Integer score;
 
 	public List<AddressDetailBean> getAddressList() {
 		return addressList;
@@ -239,6 +241,14 @@ public class OrderEnterAction extends CatalogBase {
 
 	public void setLevel1Districts(List<DistrictBean> level1Districts) {
 		this.level1Districts = level1Districts;
+	}
+
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
 	}
 
 }
