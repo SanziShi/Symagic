@@ -34,7 +34,7 @@ public class AdminItemDetailAction extends CatalogBase {
 
 		validateResult = true;
 
-		if (itemID == null)
+		if (itemID == null || itemID == 0)
 			validateResult = false;
 
 		super.validate();
