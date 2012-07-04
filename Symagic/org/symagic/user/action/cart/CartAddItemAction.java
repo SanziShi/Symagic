@@ -102,8 +102,8 @@ public class CartAddItemAction extends ActionSupport {
 		 
 		
 		if(addResult){
-		addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
-		}
+		   addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
+		  }
 		else{
 			info.append("书名为"+book.getBookName()+"添加到购物车中失败\n");
 		}
