@@ -125,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </tbody>
                 </table>
                 </div>
-                <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
+                <span class="add-to-address"><a href="javascript:void(0)" onclick="save_address('table_container')">新增该地址至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
             </div>
         </div>
         <div id="payment-c">

@@ -64,8 +64,25 @@ function detect(e,id)
 			}
 		})
 }
-function save_address()
+function save_address(id)
 {
+	var f=document.getElementById(id).innerHTML;
+	var temp=document.createElement('form');
+	temp.innerHTML=f;
+	var form_data=$(temp).serialize();
+	Ajax({
+		url:'address/submit_address',
+		data:form_data,
+		onSuccess:function(re)
+			{
+				var a=JSON.parse(re);
+				if(a.submitResult)
+				{
+					alert('新增地址成功');
+					location.reload();
+				}
+			}
+		})
 }
 function delete_address(id)
 {
