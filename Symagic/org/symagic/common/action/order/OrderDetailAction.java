@@ -44,8 +44,11 @@ public class OrderDetailAction extends CatalogBase {
 
 	@Override
 	public String execute() throws Exception {
+		
+		if( orderID == null ) return ERROR;
 
 		order = orderService.orderDetail(orderID);
+		if( order == null ) return ERROR;
 		userName = order.getUsername();
 		orderTime = order.getOrderDate();
 		price = String.format("%.2f", order.getTotalprice());

@@ -49,17 +49,17 @@ public class DaoCatalogTest extends TestCase{
 //		assertEquals(2,dc.getCatalog().size());
 //	}
 //	
-	@Test
-	public void testModifyCatalog1(){
-		BeanCatalog bc = new BeanCatalog();
-		bc.setCatalogName("人文社会");
-		bc.setCatalogDesc("wuyi");
-		bc.setLevel("2");
-		bc.setUpID(0);
-		bc.setCatalogID(3);
-		
-		assertEquals(true,dc.modifyCatalog(bc));
-	}
+//	@Test
+//	public void testModifyCatalog1(){
+//		BeanCatalog bc = new BeanCatalog();
+//		bc.setCatalogName("人文社会");
+//		bc.setCatalogDesc("wuyi");
+//		bc.setLevel("2");
+//		bc.setUpID(0);
+//		bc.setCatalogID(3);
+//		
+//		assertEquals(true,dc.modifyCatalog(bc));
+//	}
 //	@Test
 //	public void testModifyCatalog2(){
 //		BeanCatalog bc = new BeanCatalog();

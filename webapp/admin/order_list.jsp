@@ -26,14 +26,22 @@
 		</div>
 		<div id="globallink">
 			<ul>
-				<li><a href="index">首页</a></li>
-				<li><a href="catalog_manager">目录管理</a></li>
-				<li><a href="item_manager">商品管理</a></li>
-				<li><a href="order_list">订单管理</a></li>
-				<li><a href="order_statistics">销售量统计</a></li>
-				<li><a href="user_level">会员管理</a></li>
-				<li><a href="" class="nouseful">&nbsp;</a></li>
-                <li><a href="" class="nouseful">&nbsp;</a></li>
+				<li><a href="index">首页</a>
+				</li>
+				<li><a href="catalog_manager">目录管理</a>
+				</li>
+				<li><a href="item_manager">商品管理</a>
+				</li>
+				<li><a href="order_list">订单管理</a>
+				</li>
+				<li><a href="order_statistics">销售量统计</a>
+				</li>
+				<li><a href="user_level">会员管理</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
+				<li><a href="" class="nouseful">&nbsp;</a>
+				</li>
 			</ul>
 		</div>
 		<!--	<div id="banner"></div>-->
@@ -48,7 +56,7 @@
 			<!--        <div id="sendnote">-->
 			<div class="user_note">
 				<div id="sendnotehead">
-					<strong>订单查询</strong>
+					<strong>订单精确查询</strong>
 				</div>
 				<div class="fliter">
 					<span id="search_banner" class="collapse"
@@ -61,10 +69,26 @@
 								<tr>
 									<th>订&nbsp;&nbsp;单&nbsp;&nbsp;号：</th>
 									<td><input type="text" class="inputtext" name="orderID"
-										maxlength="25" /></td>
+										maxlength="25" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="提交" />
+									</td>
+									
 								</tr>
 							</table>
 						</form>
+					</div>
+				</div>
+			</div>
+
+			<div class="user_note">
+				<div id="sendnotehead">
+					<strong>订单条件查询</strong>
+				</div>
+				<div class="fliter">
+					<span id="search_banner" class="collapse"
+						onclick="show_item_search2(this);"></span>
+				</div>
+				<div id="item_search2" class="user_note_content hide">
+					<div id="sendnotecontent">
 						<form action="order_list" method="post"
 							enctype="multipart/form-data" name="form1">
 							<table id="tradequery">
@@ -72,7 +96,8 @@
 								<tr>
 									<th>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</th>
 									<td><input type="text" class="inputtext" name="userName"
-										maxlength="25" /></td>
+										maxlength="25" />
+									</td>
 								</tr>
 								<tr>
 									<th>订单状态：&nbsp;</th>
@@ -107,8 +132,7 @@
 											<s:else>
 												<option value="4">交易失败</option>
 											</s:else>
-									</select>
-									</td>
+									</select></td>
 								</tr>
 								<tr>
 									<th>起始时间：&nbsp;</th>
@@ -164,8 +188,7 @@ var defaultYear = <s:property value="endTime.year" default="2012"/>;
 									<th></th>
 									<td><input type="submit" name="button22" value="查询" /> <input
 										type="reset" class="bt2" name="button2" value="重填" /> <input
-										type="hidden" name="page" value="1" />
-									</td>
+										type="hidden" name="page" value="1" /></td>
 								</tr>
 							</table>
 						</form>
@@ -194,11 +217,16 @@ var defaultYear = <s:property value="endTime.year" default="2012"/>;
 							<s:iterator value="orderList" var="orders">
 								<tr id="<s:property value = '#orders.orderID'/>">
 									<td><input type="checkbox" name="ordersn"
-										value="<s:property value = '#orders.orderID'/>" /></td>
-									<td><s:property value="#orders.orderID" /></td>
-									<td><s:property value="#orders.userName" /></td>
-									<td><s:property value="#orders.orderTime" /></td>
-									<td><s:property value="#orders.orderStatus" /></td>
+										value="<s:property value = '#orders.orderID'/>" />
+									</td>
+									<td><s:property value="#orders.orderID" />
+									</td>
+									<td><s:property value="#orders.userName" />
+									</td>
+									<td><s:property value="#orders.orderTime" />
+									</td>
+									<td><s:property value="#orders.orderStatus" />
+									</td>
 
 									<td><s:if test="#orders.orderStatus=='已下单' ">
 											<input type="button" class="operation_btn" value="详情"
@@ -239,7 +267,8 @@ var defaultYear = <s:property value="endTime.year" default="2012"/>;
 												onclick="ajax_delete_order(
 												<s:property value = '#orders.orderID'/>)"
 												value="删除" />&nbsp;
-  </s:else></td>
+  </s:else>
+									</td>
 								</tr>
 							</s:iterator>
 							<!--订单迭代结束-->
@@ -261,10 +290,9 @@ var defaultYear = <s:property value="endTime.year" default="2012"/>;
 									</s:elseif> <s:else>
 										<a href="order_list?page=${ page - 1 }">上一页</a>
 										<a href="order_list?page=${ page + 1 }">下一页</a>
-									</s:else>
-								</td>
+									</s:else></td>
 								<td>当前第<s:property value="page" />页，共<s:property
-										value="totalPage" />页，每页<s:property value="lines"/>条</td>
+										value="totalPage" />页，每页<s:property value="lines" />条</td>
 							</tr>
 						</tbody>
 					</table>

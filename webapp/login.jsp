@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-	<div id="banner"></div>
+	
   <div id="main">
 		<div id="search2">
 			<div id="searchleft">
@@ -68,6 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">
+            	<input style="display:none" name="page" value="1">
 			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
@@ -87,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="sendnote">
 			<div id="sendnotehead"><strong><font color="#FFFFFF">您未登录，请先登录</font></strong></div>
 			<div id="sendnotecontent">
-			<form action="" method="post" enctype="multipart/form-data" name="form1" onsubmit="return login(this);">
+			<form action="login" method="post" enctype="multipart/form-data" name="form1" onsubmit="return login(this);">
 				<table id="itemsearch">
 				   <tr>
 					<th width="30%" style="text-align:right">用户名：</th>
@@ -105,7 +106,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</td>
 					<td class="itemsearchtd2"></td>
                      </tr>
-          		 <tr class="">
+                <s:if test="#session.loginErrorTimes>=3">
+          		 <tr  class="">
 				 <th style="text-align:right">验证码：</th>
             		<td class="itemsearchtd1">
 						<input type="text" name="captchaValue" class="inputtext"/>
@@ -114,7 +116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 <img id="cap" src="captcha_get_captcha" onclick="change_captcha(this)"/>
 					</td>
           		 </tr>
-				
+				</s:if>
 				<tr>
                  <td></td>
                  <td>

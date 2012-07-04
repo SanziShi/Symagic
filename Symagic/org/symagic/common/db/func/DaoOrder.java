@@ -119,7 +119,7 @@ public class DaoOrder {
 				if (rs.getString("mobilenum") != null)
 					order.setMobilenum(rs.getString("mobilenum"));
 				if (rs.getString("phonenum") != null)
-					order.setMobilenum(rs.getString("phonenum"));
+					order.setPhonenum(rs.getString("phonenum"));
 				order.setOrderDate(rs.getString("orderdate"));
 				order.setOrderId(rs.getInt("orderid"));
 				order.setOrderState(rs.getString("orderstate"));
@@ -275,6 +275,8 @@ public class DaoOrder {
 	{
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
+			
+			// 更新book_order
 			ps	= conn.prepareStatement("update book_order set orderstate=?," +
 					"receivername=?, addrdetail=?, " +
 					"zipcode=?, phonenum=?," +
@@ -286,7 +288,34 @@ public class DaoOrder {
 			ps.setString(5, order.getPhonenum());
 			ps.setString(6, order.getMobilenum());
 			ps.setInt(7, order.getOrderId());
-			if (ps.executeUpdate() == 1)
+			
+			if (ps.executeUpdate() != 1)
+				return false;
+			
+			// 删除旧订单项
+			ps	= conn.prepareStatement("delete from order_detail where orderid=?");
+			ps.setInt(1, order.getOrderId());
+			ps.execute();
+			
+			// 插入新订单项
+			List<BeanOrderDetail> list	= order.getList();
+			ps	= conn.prepareStatement("insert into order_detail " +
+					"(bookid, isbn, " +
+					" bookname, marketprice," +
+					" amount, orderid, discount) values" +
+					"(?, ?, ?, ?, ?, ?, ?)");
+			for (int i=0; i < list.size(); i++) {
+				ps.setInt(1, list.get(i).getBookId());
+				ps.setString(2, list.get(i).getIsbn());
+				ps.setString(3, list.get(i).getBookName());
+				ps.setFloat(4, list.get(i).getMarketPrice());
+				ps.setInt(5, list.get(i).getAmount());
+				ps.setInt(6, list.get(i).getOrderId());
+				ps.setFloat(7, list.get(i).getDiscount());
+				ps.execute();
+			}
+			
+			if (ps.getUpdateCount() >= 1)
 				return true;
 			return false;
 		} catch (Exception e) {

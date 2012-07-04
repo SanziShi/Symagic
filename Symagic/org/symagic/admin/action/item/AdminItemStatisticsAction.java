@@ -36,6 +36,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 	private Integer searchStartYear;
 	private Integer searchEndYear;
 	private Integer searchYearRange;
+	
+	private String totalSalesRevenue;
 
 	@Override
 	public String execute() throws Exception {
@@ -77,6 +79,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		} 
 		List<BeanBookStatistics> statistics = daoBook
 				.getBookStatistics(require);
+		
+		Float revenue = 0f;
 
 		if (statistics != null) {
 
@@ -89,6 +93,7 @@ public class AdminItemStatisticsAction extends CatalogBase {
 				bean.setSales(statistic.getTotalSaleAmount());
 				bean.setTotalPrice(String.format("%.2f",statistic.getTotalSaleRevenue()));
 				bean.setPrice(String.format("%.2f",statistic.getTotalSaleRevenue() / bean.getSales()));
+				revenue += statistic.getTotalSaleRevenue();
 				items.add(bean);
 			}
 
@@ -99,6 +104,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 			}
 
 		}
+		
+		totalSalesRevenue = String.format("%.2f",revenue);
 
 		return super.execute();
 	}
@@ -197,6 +204,15 @@ public class AdminItemStatisticsAction extends CatalogBase {
 
 	public void setSearchYearRange(Integer searchYearRange) {
 		this.searchYearRange = searchYearRange;
+	}
+
+
+	public String getTotalSalesRevenue() {
+		return totalSalesRevenue;
+	}
+
+	public void setTotalSalesRevenue(String totalSalesRevenue) {
+		this.totalSalesRevenue = totalSalesRevenue;
 	}
 
 }

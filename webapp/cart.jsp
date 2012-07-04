@@ -64,6 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				网站路径：<a href="index">首页</a>&gt;&gt;<a href="#">购物车</a>			</div>
 			<form action="quick_search" >
 			<div id="searchright2">
+            	<input style="display:none" name="page" value="1">
 			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
@@ -87,7 +88,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div id="cart_table">
         		<div id="cart_table_head">
                 	<div class="column checkbox">
-                		<input checked="checked" type="checkbox"/>
+                		<input c="1" checked="checked" onclick="check_box_all_change(1,this)" type="checkbox"/>
                 	</div>
                     <div class="column p-name">商品信息</div>
                     <div class="column p-price">商城价</div>
@@ -100,7 +101,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                      <s:iterator value="items" var='iter' status='st'>
                     <div class="each">
                     <div class="cell checkbox">
-                		<input checked="checked" name="items[<s:property value='#st.index'/>].itemID" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
+                		<input c="1" checked="checked" name="items[<s:property value='#st.index'/>].itemID" type="checkbox" id="<s:property value='#iter.itemID'/>" value="<s:property value='#iter.itemID'/>" />
                 	</div>
                     <div class="cell p-name">
                     	<div class="p-img">
@@ -108,11 +109,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                       <div class="p-name-de"><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a></div>
                     </div>
-                    <div class="cell p-price p-price-p"><del>￥<span><s:property value='#iter.marketPrice'/></span></del><br>￥<span><s:property value='#iter.price'/></span><br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font></div>
-                    <div class="cell quantity"><span><a class="reduce" onclick="reduce()" href="javascript:void(0)">-</a>
-        				<input name="items[<s:property value='#st.index'/>].itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>" id="<s:property value='#iter.itemID'/>amount" onkeyup="amount_modify(this)">
-        				<a class="reduce" onclick="add()" href="javascript:void(0)">+</a>
-        				</span></div>
+                    <div class="cell p-price p-price-p">
+                    	<del>￥<span><s:property value='#iter.marketPrice'/></span></del>
+                        <br>￥<span><s:property value='#iter.price'/></span>
+                        <br><font class="red">为您节省：<span>￥<s:property value='#iter.savePrice'/></span></font>
+                    </div>
+                    <div class="cell quantity">
+                    	<span>
+                        	<a class="reduce" onclick="reduce(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">-</a>
+        					<input default="<s:property value='#iter.itemNumber'/>" onblur="check_item_num(<s:property value='#iter.itemID'/>,this)" name="items[<s:property value='#st.index'/>].itemNumber" type="text" value="<s:property value='#iter.itemNumber'/>" id="<s:property value='#iter.itemID'/>amount" onkeyup="amount_modify(this)">
+        					<a class="reduce" onclick="add(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">+</a>
+        				</span>
+                    </div>
          			<div class="cell total">￥<span id="<s:property value='#iter.itemID'/>total_price"><s:property value='#iter.itemTotalPrice'/></span></div>
                     <div class="cell action"><a onclick="add_to_favorite(<s:property value='#iter.itemID'/>)" href="javascript:void(0)">收藏</a>&nbsp;&nbsp;<a href="javascript:void(0)" onclick="delete_from_cart(<s:property value='#iter.itemID'/>,'p')">删除</a></div>
                     </div>
@@ -120,6 +128,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <!--购物车迭代--end-->
             	</div>
             	<div id="cart_table_bottom">
+                <input c="1" checked="checked" onclick="check_box_all_change(1,this)" type="checkbox"/>
+                全选&nbsp;&nbsp;
                 <a href="javascript:void(0);" onclick="delete_form_cart('checkout')">删除选中的商品</a>
                 &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="add_to_favorite()">添加至收藏夹</a>
                 <div id="total-price">总计:<span id="final-price">￥<s:property value='totalPrice'/></span></div>

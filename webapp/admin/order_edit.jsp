@@ -154,13 +154,13 @@
 								<td>收货人手机</td>
 								<td><s:if test="orderStatus!='交易成功'||'交易失败'">
 										<input type="text" name="mobileNumber"
-											value="<s:property value='mobileNumber'/>" />
+											value="<s:property value='receiverMobile'/>" />
 									</s:if> <s:else>
 										<s:property value="mobileNumber" />
 									</s:else></td>
 								<td>收货人电话</td>
 								<td><s:if test="orderStatus!='交易成功'||'交易失败'">
-										<input type="text" value="<s:property value='phoneNumber'/>"
+										<input type="text" value="<s:property value='receiverPhone'/>"
 											name="phoneNumber" />
 									</s:if> <s:else>
 										<s:property value="phoneNumber" />

@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <s:iterator value='addressList' var="iter">
                 <div id="address<s:property value='#iter.ID'/>" class="address-edit">
                 <h2>修改地址<span class="close" onclick="close_address_edit('address<s:property value='#iter.ID'/>')"></span></h2>
-                	<form action="address/address_edit_submit" method="post" onsubmit="return address_edit_submit(this,address<s:property value='#iter.ID'/>)">
+                	<form action="address/address_edit_submit" method="post" onsubmit="return address_edit_submit(this,'address<s:property value='#iter.ID'/>')">
                     <input style="display:none" name="addressID" value="<s:property value='#iter.ID'/>">
                     <table width="100%" cellspacing="0" border="0">
                 			<tbody>

@@ -11,7 +11,11 @@ function test(e)
 	var a=Stip(e);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 	
 }
-
+function quick_search(id,url)
+{
+	write_cookie('left_banner_list',id);
+	location.href=url;
+}
 /****检查用户是否注册****/
 is_login=function(o)
 {
@@ -42,10 +46,18 @@ function add_to_cart(id)
 		url:u,
 		//data:'itemID='+id+'&itemNumber='+amount,
 		onSuccess:function(e){
-			var r=JSON.parse(e);
-			if(r.addResult)if(confirm('商品添加成功，是否进入购物车结算？')){location.href='cart';}
-			else get_session({S:function(s){num.innerHTML=s.totalNumber}});
-			//Ajax({url:'get_session_info',onSuccess:function(q){var res=JSON.parse(q);cart_num.innerHTML=res.totalNumber}})
+				var r=JSON.parse(e);
+				if(r.addResult)
+				{
+					get_session({S:function(s)
+						{
+							num.innerHTML=s.totalNumber
+						}
+					});
+					alert('商品添加成功,可在购物车中查看详情');
+				}
+				else
+				alert(r.resultInfo);				
 			}
 		})
 }
@@ -61,7 +73,7 @@ function adds_to_cart(form_id)
 		onSuccess:function(e)
 			{
 				var a=JSON.parse(e);
-				if(a.addResult)alert('添加成功');
+				if(a.addResult)alert('添加成功！可在购物车中查看详情');
 				get_session({S:function(s){num.innerHTML=s.totalNumber}});
 			}
 		})
@@ -77,7 +89,10 @@ function delete_from_cart(id,p)
 			var result=JSON.parse(e);
 			if(result.deleteResult)
 			{
-				if(p=='p'){location.reload();return false;}
+				if(p=='p'){
+					location.reload();
+					return false;
+					}
 				get_session({S:function(l)
 					{
 						document.getElementById('cart_num').innerHTML=l.totalNumber;
@@ -98,8 +113,10 @@ function delete_from_cart(id,p)
 						}
 					}
 				});
-				//var r=document.getElementById("ct"+id);
-				//r.parentNode.removeChild(r);
+			}
+			else
+			{
+				alert(result.resultInfo);
 			}
 		}
 	})
@@ -111,7 +128,7 @@ function add_to_favorite(id)
 		url:'favorite/add_favorite?items='+id,
 		onSuccess:function(e){
 			var t=JSON.parse(e);
-			if(t.addResult)alert('添加成功！');
+			if(t.addResult)alert('收藏成功！');
 			else alert(t.resultInfo);
 			}
 		})
@@ -159,7 +176,8 @@ function forget(f)
 			if(r.submitResult)
 			{
 				alert('密码已发至您邮箱，请注意查收')
-				location.replace(location.href);
+				location.href='';
+				//location.replace(location.href);
 			}
 			else alert('邮箱不存在或安全问题错误！！')
 		}
@@ -172,15 +190,19 @@ function load_login()
 	if(window.event)stopDefault();
 	var l=document.createElement('div');
 	l.id='login_float';
-	showOverlay();
-	Ajax({
-		url:GLOBAL.lib+'login.html',
-		type:'GET',
-		onSuccess:function(e){
-			l.innerHTML=e;
-			document.body.appendChild(l);
-			$(l).fadeIn('fast');
-			}
+	get_session({S:function(j){
+		Ajax({
+			url:GLOBAL.lib+'login.html',
+			type:'GET',
+			onSuccess:function(e){
+				l.innerHTML=e;
+				document.body.appendChild(l);
+				showOverlay();
+				$(l).fadeIn('fast');
+				if(j.loginErrorTimes>=3)document.getElementById('login_error_captcha').style.display='table-row';
+				}
+			})
+		}
 	})
 }
 /******异步调用注册框*****/
@@ -218,9 +240,12 @@ function login(form)
 				var a=JSON.parse(e);
 				if(a.loginResult)location.replace(location.href);
 				else 
-				{
-					document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
+				{	
+					try{
+						document.getElementById('cap').src='captcha_get_captcha?t='+Math.random();
+					}catch(err){};
 					alert(a.resultInfo);
+					return ture;
 				}
 				},
 		onError:function(){}
@@ -318,6 +343,18 @@ function show_item_search(e)
 	{
 		e.className='collapse';
 		$('#item_search1').slideUp(70);
+	}
+}
+function check_box_all_change(c,e)
+{
+	alert('test');
+	var inputs = document.getElementsByTagName("input");
+	for(var i in inputs)
+	{
+  		if(inputs[i].type=='checkbox')
+		{
+			if(inputs[i].getAttribute('c')==c)inputs[i].checked=e.checked
+		}
 	}
 }
 get_session=function(o)

@@ -69,6 +69,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">
+            	<input style="display:none" name="page" value="1">
 			  <input type="text" name="keyword" id="textInput"/>
 			  <input type="submit" value="搜索" id="searchbutton" />
 			</div>
@@ -131,7 +132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <tr>
 					<td class="itemsearchtd2"></td>
                  <td>
-					<input  align="middle" type="Button" name="button2" value="提交" onClick="checkpwdform()">
+					<input  align="middle"  type="submit" name="button2" value="提交" >
 						&nbsp;<input align="middle" type="Reset" name="button1" value="重填" onClick="clear()">
 						&nbsp;
                         </td>
