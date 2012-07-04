@@ -735,7 +735,7 @@ public class DaoBook {
 
 	public List<BeanBookStatistics> getBookStatistics(BookStatisticsRequire req) {
 		boolean haveCatalogID = true;
-		if (req.getCatalogidList().size() == 0  || req.getCatalogidList() == null)
+		if (req.getCatalogidList() == null  || req.getCatalogidList().size() == 0)
 			haveCatalogID = false;
 
 		List<BeanBookStatistics> list = null;
@@ -824,7 +824,7 @@ public class DaoBook {
 	public int getStatisticsNum(BookStatisticsRequire req) {
 		int count = -1;
 		boolean haveCatalogID = true;
-		if (req.getCatalogidList().size() == 0  || req.getCatalogidList() == null)
+		if (req.getCatalogidList() == null  || req.getCatalogidList().size() == 0)
 			haveCatalogID = false;
 
 		String sql = "";
