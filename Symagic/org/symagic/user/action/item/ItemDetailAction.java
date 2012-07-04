@@ -44,6 +44,7 @@ public class ItemDetailAction extends CatalogBase {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		//商品项为空返回error
+		
 		if(itemID==null)return "error";
 		book = new ItemDetailBean();
 		//无此商品
