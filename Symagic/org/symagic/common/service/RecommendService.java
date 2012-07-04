@@ -25,20 +25,20 @@ import org.symagic.common.db.func.Util;
 
 public class RecommendService {
 
-	private static String host = null;
+	private String host = null;
 	/**
 	 * easyrec的API KEY
 	 */
-	private static String apikey = null;
+	private String apikey = null;
 	/**
 	 * easyrec的注册的tenantID
 	 */
-	private static String tenantid = null;
+	private String tenantid = null;
 
 	/**
 	 * 标记推荐系统是否在线
 	 */
-	private static Boolean onLine = null;
+	private Boolean onLine = null;
 
 	/**
 	 * 提交view操作,对于未登陆用户userName为null
@@ -90,7 +90,7 @@ public class RecommendService {
 	}
 
 	public void setHost(String host) {
-		RecommendService.host = host;
+		this.host = host;
 	}
 
 	public String getApikey() {
@@ -98,7 +98,7 @@ public class RecommendService {
 	}
 
 	public void setApikey(String apikey) {
-		RecommendService.apikey = apikey;
+		this.apikey = apikey;
 	}
 
 	public String getTenantid() {
@@ -106,7 +106,7 @@ public class RecommendService {
 	}
 
 	public void setTenantid(String tenantid) {
-		RecommendService.tenantid = tenantid;
+		this.tenantid = tenantid;
 	}
 
 	/**
@@ -520,23 +520,21 @@ public class RecommendService {
 	}
 
 	public void setOnLine(Boolean onLine) {
-		RecommendService.onLine = onLine;
+		this.onLine = onLine;
 	}
 
-	public static void init() {
-		if (host == null || apikey == null || tenantid == null
-				|| onLine == null) {
+	public void init() {
+		if (onLine == null) {
 			try {
 				String path = FileUtils.getUserDirectoryPath() + "/recommend.json";
 				String sets = Util.readFile(path);
 				JSONObject object = (JSONObject)JSONSerializer.toJSON(sets);
+				onLine = object.getBoolean("onLine");
 				host = object.getString("host");
 				apikey = object.getString("apikey");
 				tenantid = object.getString("tenantid");
-				onLine = object.getBoolean("onLine");
 				
 			} catch (Exception e) {
-				e.printStackTrace();
 			}
 		}
 

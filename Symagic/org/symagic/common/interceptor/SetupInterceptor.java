@@ -15,6 +15,8 @@ public class SetupInterceptor extends AbstractInterceptor {
 	 * 
 	 */
 	private static final long serialVersionUID = -7001095834871787989L;
+	
+	private RecommendService recommedService;
 
 	@Override
 	public String intercept(ActionInvocation arg0) throws Exception {
@@ -26,9 +28,17 @@ public class SetupInterceptor extends AbstractInterceptor {
 		if( !jdbcConf.exists() || !recommendConf.exists() ) return "setup";
 		
 		ConnectionPool.init();
-		RecommendService.init();
+		recommedService.init();
 		
 		return arg0.invoke();
+	}
+
+	public RecommendService getRecommedService() {
+		return recommedService;
+	}
+
+	public void setRecommedService(RecommendService recommedService) {
+		this.recommedService = recommedService;
 	}
 
 }
