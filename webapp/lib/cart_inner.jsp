@@ -18,5 +18,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </s:iterator>
             </ul>
         </div>
-<div id="cart_button">共&nbsp;<strong id="cart_total_num"><s:property value='totalNumber'/></strong>&nbsp;件商品&nbsp;&nbsp;&nbsp;共计&nbsp;<strong>￥<s:property value='totalPrice'/></strong><br>
+<div id="cart_button">共&nbsp;<strong id="cart_total_num"><s:property value='totalNumber'/></strong>&nbsp;件商品&nbsp;&nbsp;&nbsp;共计&nbsp;<strong>￥<s:property value='totalPrice'/></strong>
+<br/>
 <a href="cart">去购物车结算</a><div class="clear"></div></div>
