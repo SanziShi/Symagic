@@ -1,5 +1,7 @@
 package org.symagic.common.db.func;
 
+import java.util.List;
+
 public class BookStatisticsRequire {
 	/**
 	 * 起始时间 yyyy-MM-dd
@@ -20,7 +22,7 @@ public class BookStatisticsRequire {
 	/**
 	 * 目录ID
 	 */
-	private Integer	catalogid	= null;
+	private List<Integer> catalogidList	= null;
 	
 	/**
 	 * 指明第几页
@@ -51,12 +53,6 @@ public class BookStatisticsRequire {
 	public void setLowlimit(Integer lowlimit) {
 		this.lowlimit = lowlimit;
 	}
-	public Integer getCatalogid() {
-		return catalogid;
-	}
-	public void setCatalogid(Integer catalogid) {
-		this.catalogid = catalogid;
-	}
 	public int getPage() {
 		return page;
 	}
@@ -68,6 +64,12 @@ public class BookStatisticsRequire {
 	}
 	public void setLines(int lines) {
 		this.lines = lines;
+	}
+	public List<Integer> getCatalogidList() {
+		return catalogidList;
+	}
+	public void setCatalogidList(List<Integer> catalogidList) {
+		this.catalogidList = catalogidList;
 	}
 	
 	
