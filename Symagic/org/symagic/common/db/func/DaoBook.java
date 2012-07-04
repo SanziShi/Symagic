@@ -735,7 +735,7 @@ public class DaoBook {
 
 	public List<BeanBookStatistics> getBookStatistics(BookStatisticsRequire req) {
 		boolean haveCatalogID = true;
-		if (req.getCatalogidList().size() == 0  || req.getCatalogidList() == null)
+		if (req.getCatalogidList() == null  || req.getCatalogidList().size() == 0)
 			haveCatalogID = false;
 
 		List<BeanBookStatistics> list = null;
@@ -769,15 +769,15 @@ public class DaoBook {
 					+ "' "
 					+ " group by bookid "
 					+ " having sum(amount) > ? "
-					+ "order by bookid asc limit ?, ?) "
+					+ "order by bookid asc) "
 					+ " as t1, book_catalog_detail as t2 "
 					+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
 		
 			for (int i=0; i<req.getCatalogidList().size(); i++) {
-				sql += " , " + req.getCatalogidList().get(0);
+				sql += " , " + req.getCatalogidList().get(i);
 			}
 			
-			sql		+= ") order by bookid asc ";
+			sql		+= ") order by bookid asc  limit ?, ?";
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn.prepareStatement(sql);
@@ -824,7 +824,7 @@ public class DaoBook {
 	public int getStatisticsNum(BookStatisticsRequire req) {
 		int count = -1;
 		boolean haveCatalogID = true;
-		if (req.getCatalogidList().size() == 0  || req.getCatalogidList() == null)
+		if (req.getCatalogidList() == null  || req.getCatalogidList().size() == 0)
 			haveCatalogID = false;
 
 		String sql = "";

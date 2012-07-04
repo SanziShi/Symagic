@@ -134,6 +134,7 @@
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="searchYearRange" value="5"></property>
+		<property name="itemService" ref="ItemService"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"

@@ -516,11 +516,15 @@ public class DaoBookTest extends TestCase{
 	public void testGetBookStatistics7(){
 		ConnectionPool.init();
 		BookStatisticsRequire req = new BookStatisticsRequire();
-		req.setLines(3);
+		req.setLines(20);
 		req.setPage(1);
 		ArrayList<Integer> list	= new ArrayList<Integer>();
-		list.add(1);
-		list.add(8);
+		list.add(10);
+		list.add(11);
+		list.add(12);
+		list.add(13);
+		list.add(14);
+		//list.add(8);
 	
 		req.setCatalogidList(list);
 		req.setPage(1);

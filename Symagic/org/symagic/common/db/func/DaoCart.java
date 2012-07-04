@@ -138,7 +138,7 @@ public class DaoCart {
 			ps.setInt(3, bookID);
 			
 			
-			if (ps.executeUpdate() >= 1) {
+			if (ps.executeUpdate() >= 0) {
 				return true;
 			}
 			return false;
