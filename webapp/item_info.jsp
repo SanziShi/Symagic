@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </s:iterator>
         <!--用户评价迭代-->
         <!--添加品论开始-->
-        <s:if test='commentAble'>
+        <s:if test='book.commentAble'>
         <div class="comment_item">
         <form action="item/comment" method="post" onsubmit="return comment_submit(this)">
         		<div class="buyer">
