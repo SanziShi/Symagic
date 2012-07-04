@@ -26,11 +26,16 @@ private String resultInfo;
 @Override
 public String execute() throws Exception {
 	// TODO Auto-generated method stub
-if(items==null||!UserSessionUtilty.isLogin()){
+if(!UserSessionUtilty.isLogin()){
 	deleteResult=false;
-	resultInfo="未登录或无商品";
+	resultInfo="请登录后再对收藏夹进行操作";
 	return SUCCESS;
-}	
+}
+if(items==null){
+	deleteResult=false;
+	resultInfo="输入数据非法";
+	return SUCCESS;
+}
 //数据库中删除
 StringBuilder builder=new StringBuilder();
 deleteResult=true;
@@ -38,10 +43,7 @@ boolean result;
 Iterator<Integer>index=items.iterator();
 while(index.hasNext()){
 	Integer itemID=index.next();
-	if(itemID==null){
-		deleteResult=false;
-		continue;
-	}
+	
  result=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),itemID);
  if(!result){
 	   deleteResult=false;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.service.ItemService;
+import org.symagic.common.utilty.presentation.bean.CommentBean;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -21,7 +22,7 @@ public class BrowseCommentAction extends ActionSupport {
 	private String errorHeader;
 	private String errorSpecification;
 	//传出
-	private List<BeanComment> commentList;
+	private List<CommentBean> commentList;
 
 	
 
@@ -31,7 +32,7 @@ public class BrowseCommentAction extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		if(page==null||itemID==null)return "error";
-		commentList=itemService.getCommentWithPage(itemID, page, lines);
+		commentList=itemService.getComments(itemID, page, lines);
 		if(commentList==null)return "error";
 		return super.execute();
 	}
@@ -52,11 +53,13 @@ public class BrowseCommentAction extends ActionSupport {
 		this.itemID = itemID;
 	}
 
-	public List<BeanComment> getCommentList() {
+	
+
+	public List<CommentBean> getCommentList() {
 		return commentList;
 	}
 
-	public void setCommentList(List<BeanComment> commentList) {
+	public void setCommentList(List<CommentBean> commentList) {
 		this.commentList = commentList;
 	}
 

@@ -46,47 +46,45 @@ public class CartDeleteItemAction extends ActionSupport {
 		deleteResult=true;
 		while(it.hasNext()){
 			Integer itemID=it.next();
-			if(itemID==null){
-				deleteResult=false;
-				continue;
-			}
-			   result=deleteOneFromCart(itemID,login);
-			   if(!result){
-				   deleteResult=false;
-				   if(builder.length()==0){
-					   builder.append("编号为"+itemID);
-				   }  
-				   else{
-					   builder.append(","+itemID);
-				   }
-			   }
+			
+			  result=deleteOneFromCart(itemID,login,builder);
+			  if(!result){
+				  deleteResult=false;
+			  }
+			 
 		   }
 	   if(!deleteResult){
-			  builder.append("删除失败");
-			  resultInfo=builder.toString();
-		   }
-		   else{
+			 
+			 
 			   resultInfo="删除成功";
+	   }
+	   else{
+		   resultInfo=builder.toString();
 	   }
 	
 		
 		return super.execute();
 	}
 
-private boolean deleteOneFromCart(Integer itemID,boolean login){
+private boolean deleteOneFromCart(Integer itemID,boolean login,StringBuilder info){
 	//购物车没有此商品
 	boolean deleteResult=true;
 			if(UserSessionUtilty.getCart().get(itemID)==null){
 				deleteResult=false;
+				info.append("编号为"+itemID+"不存在购物车中\n");
 				return deleteResult;
 			}
+			//对于会员，保持数据库中cart的数据与session一致性
 			if(login){
 				deleteResult=daoCart.deleteBook(UserSessionUtilty.getUsername(), itemID);
 				}
 			//在session中将对应商品从cart中删除
 			if(deleteResult)   
 			  deleteResult=UserSessionUtilty.deleteFromCart(itemID);
-			//对于会员，保持数据库中cart的数据与session一致性
+			else{
+				info.append("编号为"+itemID+"从数据库中删除失败造成操作失败\n");
+			}
+			
 			
 		return deleteResult;
 }

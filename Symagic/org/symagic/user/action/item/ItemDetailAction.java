@@ -7,6 +7,7 @@ import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanComment;
 import org.symagic.common.service.ItemService;
 import org.symagic.common.service.RecommendService;
+import org.symagic.common.utilty.presentation.bean.CommentBean;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
@@ -29,7 +30,7 @@ public class ItemDetailAction extends CatalogBase {
 	//传出
 	private ItemDetailBean book;// 书籍详细信息
 	private Integer totalPage;// 评论有多少页
-	private List<BeanComment> commentList;// 评论列表
+	private List<CommentBean> commentList;// 评论列表
 	private ArrayList<ItemTinyBean> recommendView;
 	private ArrayList<ItemTinyBean> recommendBought;
 
@@ -53,7 +54,7 @@ public class ItemDetailAction extends CatalogBase {
 		if(commentNumber==-1)return "error";
 		totalPage = (commentNumber + lines - 1) / lines;
 		//显示第一页的评论显示
-		commentList = itemService.getCommentWithPage(itemID,1, lines);
+		commentList = itemService.getComments(itemID,1, lines);
         //推荐
 		recommendView = new ArrayList<ItemTinyBean>();
 		recommendBought = new ArrayList<ItemTinyBean>();
@@ -105,11 +106,13 @@ public class ItemDetailAction extends CatalogBase {
 
 	
 
-	public List<BeanComment> getCommentList() {
+	
+
+	public List<CommentBean> getCommentList() {
 		return commentList;
 	}
 
-	public void setCommentList(List<BeanComment> commentList) {
+	public void setCommentList(List<CommentBean> commentList) {
 		this.commentList = commentList;
 	}
 
