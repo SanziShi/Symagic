@@ -52,8 +52,7 @@ public class CartAddItemAction extends ActionSupport {
 		  item=index.next();
 		  //数据不符合规则，忽略掉
 		  if(item==null||item.getItemID()==null||item.getItemNumber()==null){
-			 addResult=false;
-			 builder.append("数据不符合要求\n");
+			
 			  continue;
 		  }
 		 
