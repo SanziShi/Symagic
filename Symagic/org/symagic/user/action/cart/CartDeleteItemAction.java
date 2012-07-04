@@ -54,16 +54,12 @@ public class CartDeleteItemAction extends ActionSupport {
 			 
 		   }
 	   if(deleteResult){
-			 
-			 
-			   resultInfo="删除成功";
+			 resultInfo="删除成功";
 			   }
 	   else{
 		   resultInfo=builder.toString();
 	   }
-	
-		
-		return super.execute();
+	   return super.execute();
 	}
 
 private boolean deleteOneFromCart(Integer itemID,boolean login,StringBuilder info){
@@ -85,8 +81,6 @@ private boolean deleteOneFromCart(Integer itemID,boolean login,StringBuilder inf
 			else{
 				info.append("编号为"+itemID+"用户名"+UserSessionUtilty.getUsername()+"数据库删除失败\n");
 			}
-			
-			
 		return deleteResult;
 }
 public boolean isDeleteResult() {
