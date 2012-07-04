@@ -202,7 +202,7 @@ public class OrderSubmitAction extends OrderBase {
 			orderDetail.setIsbn(book.getIsbn());
 			orderDetail.setMarketPrice(book.getMarketPrice());
 			order.getList().add(orderDetail);
-			totalPrice += book.getMarketPrice() - book.getDiscount();
+			totalPrice += book.getMarketPrice() * book.getDiscount() * items.get(i).getItemNumber();
 			String URL = "itemDetail?itemID=" + book.getBookId();
 			// 通知推荐系统用户购买
 			for (int j = 0; j < items.get(i).getItemNumber(); j++) {
