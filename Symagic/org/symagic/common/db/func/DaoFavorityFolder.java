@@ -142,10 +142,10 @@ public class DaoFavorityFolder {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn
 					.prepareStatement("select * from favority_folder where username=? "
-							+ "order by favorityid asc limit ?, ?");
+							+ "order by favorityid asc ");
 			ps.setString(1, username);
-			ps.setInt(2, (page - 1) * lines);
-			ps.setInt(3, lines);
+//			ps.setInt(2, (page - 1) * lines);
+//			ps.setInt(3, lines);
 			rs = ps.executeQuery();
 			list = new ArrayList<BeanFavorityFolder>();
 
