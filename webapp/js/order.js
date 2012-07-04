@@ -173,7 +173,13 @@ function order_edit_confirm()
 			}
 		})
 }
-
+function clear_address(id)
+{
+	var tid='#'+id;
+	$(tid+' input').each(function(i) {
+        this.value='';
+    });
+}
 
 
 

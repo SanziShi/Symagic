@@ -50,7 +50,6 @@ function pass_submit()
 	var b=document.getElementById('pass_new').value;
 	var c=document.getElementById('pass_confirm').value;
 	if(a.length<6||a.length>20||b.length<6||b.length>20||b.length<6||b.length>20)alert('密码长度非法！');
-	return false;
 	if(b!=c)
 	{
 		alert('两次输入密码不同！');

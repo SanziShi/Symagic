@@ -45,7 +45,7 @@ public class OrderDetailAction extends CatalogBase {
 	@Override
 	public String execute() throws Exception {
 		
-		if( orderID == null ) return ERROR;
+		if( orderID == null || orderID == 0) return ERROR;
 
 		order = orderService.orderDetail(orderID);
 		if( order == null ) return ERROR;

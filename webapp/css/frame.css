@@ -323,7 +323,7 @@ span.red
 	font-size:12px;
 	cursor:pointer;
 }
-#page_container a.selected,#page_container_d a:selected
+#page_container a.selected,#page_container_d a.selected
 {
 	border: #FFF 1px solid;
 }

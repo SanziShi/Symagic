@@ -11,6 +11,7 @@
 <script language="javascript" src="js/checkform.js"></script>
 <script language="javascript" src="js/gz.js"></script>
 <script src="js/jquery.js" type="text/javascript" language="javascript"></script>
+<script src="js/cart.js" type="text/javascript" language="javascript"></script>
 
 
 
@@ -69,7 +70,7 @@
 								<tr>
 									<th>订&nbsp;&nbsp;单&nbsp;&nbsp;号：</th>
 									<td><input type="text" class="inputtext" name="orderID"
-										maxlength="25" />&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="提交" />
+										maxlength="25" onkeyup="amount_modify(this)"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="提交" />
 									</td>
 									
 								</tr>
@@ -96,7 +97,7 @@
 								<tr>
 									<th>用&nbsp;&nbsp;户&nbsp;&nbsp;名：</th>
 									<td><input type="text" class="inputtext" name="userName"
-										maxlength="25" />
+										maxlength="25" value="<s:property value='userName'/>" />
 									</td>
 								</tr>
 								<tr>
@@ -205,7 +206,7 @@ var defaultYear = <s:property value="endTime.year" default="2012"/>;
 							<tr>
 								<th></th>
 								<th>订单号</th>
-								<th>客户号</th>
+								<th>用户名</th>
 								<th>下单时间</th>
 								<th>订单状态</th>
 
