@@ -131,7 +131,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <input c="1" checked="checked" onclick="check_box_all_change(1,this)" type="checkbox"/>
                 全选&nbsp;&nbsp;
                 <a href="javascript:void(0);" onclick="delete_form_cart('checkout')">删除选中的商品</a>
-                &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="add_to_favorite()">添加至收藏夹</a>
+                &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" onclick="add_to_favorites()">添加至收藏夹</a>
                 <div id="total-price">总计:<span id="final-price">￥<s:property value='totalPrice'/></span></div>
             	</div>
         	</div>

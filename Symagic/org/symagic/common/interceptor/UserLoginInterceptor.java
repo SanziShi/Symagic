@@ -82,16 +82,11 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 						.iterator();
 				while (itr.hasNext()) {
 					Entry<String, String[]> entry = itr.next();
-					if( entry.getValue().length > 1 ){
-						JSONArray array = new JSONArray();
-						for (String value : entry.getValue()) {
-							array.add(value);
-						}
-						object.put(entry.getKey(), array);
+					JSONArray array = new JSONArray();
+					for (String value : entry.getValue()) {
+						array.add(value);
 					}
-					else{
-						object.put(entry.getKey(), entry.getValue()[0]);
-					}
+					object.put(entry.getKey(), array);
 				}
 				
 				request.getSession().setAttribute("savedForm",
