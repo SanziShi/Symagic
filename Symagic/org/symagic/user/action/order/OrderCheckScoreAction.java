@@ -44,7 +44,7 @@ public class OrderCheckScoreAction extends CatalogBase{
 			checkResult = false;
 		else{
 			int totalScore = user.getScore();
-			checkResult = totalScore > score;
+			checkResult = totalScore >= score;
 			float price = 0;
 			HashMap<Integer, Integer> order = UserSessionUtilty.getOrder();
 			Iterator<Entry<Integer, Integer>> iterator = order.entrySet().iterator();
