@@ -264,6 +264,10 @@ function login(form,op)
 					}catch(err){};
 					alert(a.resultInfo);
 					if(op=='p')location.reload();
+					else
+					{
+						get_session({S:function(b){if(b.loginErrorTimes>=3)document.getElementById('login_error_captcha').style.diaplay='table-cell'}})
+					}
 					return ture;
 				}
 				},
@@ -551,7 +555,7 @@ function onblur_check(elem,default_text)
 			case '邮箱地址':var a=Stip(elem);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
 			elem.setAttribute('msg_num',a.id);
 				break;
-			case '由中文、英文、数字及“_”组成':var a=Stip(elem);a.show({content:"昵称长为度5-20位字符",kind:'error'});
+			case '由中文、英文、数字及“_”组成':var a=Stip(elem);a.show({content:"昵称长为度4-20位字符",kind:'error'});
 			elem.setAttribute('msg_num',a.id);
 				break;
 		}
