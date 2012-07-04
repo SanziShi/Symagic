@@ -103,7 +103,7 @@ public class OrderDetailAction extends OrderBase {
 		if(orderID == null || orderID.isEmpty())
 			return ERROR;
 		BeanOrder order = daoOrder.getOrderDetail(Integer.parseInt(orderID));
-		if (order == null || order.getUsername() == null || order.getUsername().equals(UserSessionUtilty.getUsername()))
+		if (order == null || order.getUsername() == null || !order.getUsername().equals(UserSessionUtilty.getUsername()))
 			return ERROR;
 		if (order.getDeliveryWay() == "0")
 			setDeliverWay("送货上门");
