@@ -52,11 +52,7 @@ public class FavorityAddAction extends ActionSupport {
 			Iterator<Integer> it=items.iterator();
 			while(it.hasNext()){
 			Integer itemID=it.next();
-			if(itemID==null){
-				addResult=false;
-				builder.append("编号为"+itemID+"不存在\n");
-				continue;
-			}
+			
 			//商品是否存在
 			BeanBook book=daoBook.getDetail(itemID);
 			if(book==null){

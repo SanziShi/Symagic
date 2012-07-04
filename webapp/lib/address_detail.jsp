@@ -67,10 +67,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
                             	<td><input name="zipcode" type="text" class="txt short" value="<s:property value='addressList.zipcode'/>"/></td>
                             </tr>
-                            <tr>
+                            <!---<tr>
                                 	<td></td>
                                     <td><input type="submit" value="保存修改"/></td>
-                            </tr>
+                            </tr>--->
                     		</tbody>
                 		</table>
                 <!--- 订单的地址修改table--->
