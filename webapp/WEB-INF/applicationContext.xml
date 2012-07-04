@@ -134,6 +134,8 @@
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="searchYearRange" value="5"></property>
+
+		<property name="itemService" ref="ItemService"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"
@@ -340,24 +342,16 @@
 		<property name="lines" value="15"></property>
 	</bean>
 
-	<bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction"
-		scope="request">
+	<bean id="itemDetail" class="org.symagic.user.action.item.ItemDetailAction">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="lines" value="15"></property>
-		<property name="errorHeader" value="没有相应 的商品"></property>
+         <property name="errorHeader" value="没有相应 的商品"></property>
 		<property name="errorSpecification" value="symagic商城目前没有此类商品"></property>
 		<property name="recommendNumber" value="7"></property>
 	</bean>
 
-	<bean id="browseComment" class="org.symagic.user.action.item.BrowseCommentAction"
-		scope="request">
-		<property name="itemService" ref="ItemService"></property>
-		<property name="lines" value="15"></property>
-		<property name="errorHeader" value="检索信息有误"></property>
-		<property name="errorSpecification" value="没有相应 的评论"></property>
-
-	</bean>
+	
 	<bean id="submitComment" class="org.symagic.user.action.item.SubmitCommentAction">
 	 <property name="itemService" ref="ItemService"></property>
 	</bean>
