@@ -88,7 +88,7 @@ public class DaoCart {
 			
 			ps.execute();
 			
-			if (ps.getUpdateCount() == 1) {
+			if (ps.getUpdateCount() >= 1) {
 				return true;
 			}
 			

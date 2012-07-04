@@ -52,8 +52,7 @@ public class CartAddItemAction extends ActionSupport {
 		  item=index.next();
 		  //数据不符合规则，忽略掉
 		  if(item==null||item.getItemID()==null||item.getItemNumber()==null){
-			 addResult=false;
-			 builder.append("数据不符合要求\n");
+			
 			  continue;
 		  }
 		 
@@ -103,8 +102,8 @@ public class CartAddItemAction extends ActionSupport {
 		 
 		
 		if(addResult){
-		addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
-		}
+		   addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
+		  }
 		else{
 			info.append("书名为"+book.getBookName()+"添加到购物车中失败\n");
 		}
