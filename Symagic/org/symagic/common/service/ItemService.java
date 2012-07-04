@@ -392,9 +392,9 @@ if (currentCatalog != null) {
 	}
 
 	// 是否能够评论
-	private boolean isCommentAble(Integer itemID) {
+	public boolean isCommentAble(Integer itemID) {
 		// 是否已登录
-		if (UserSessionUtilty.getUsername() != null) {
+		if (UserSessionUtilty.isLogin()) {
 			// 购买记录
 			int purchaseRecord = orderService.orderNumber(
 					UserSessionUtilty.getUsername(), itemID);

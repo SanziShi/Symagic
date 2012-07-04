@@ -67,15 +67,15 @@ public class FavorityAddAction extends ActionSupport {
 				   addResult=false;
 				   builder.append("书籍《"+book.getBookName()+"》已存在于收藏夹中\n");
 			 }
+			 else{
+				 builder.append("书籍"+book.getBookName()+"添加成功\n");
+			 }
 		   }
 			
-			 if(!addResult){
+			
 				  
 				  resultInfo=builder.toString();
-			   }
-			   else{
-				   resultInfo="成功添加到收藏夹";
-			   }
+			 
 			return super.execute();
 		}
 	public DaoFavorityFolder getDaoFavorityFolder() {

@@ -47,21 +47,16 @@ while(index.hasNext()){
  result=daoFavorityFolder.delete(UserSessionUtilty.getUsername(),itemID);
  if(!result){
 	   deleteResult=false;
-	   if(builder.length()==0){
-		   builder.append("编号为"+itemID);
-	   }  
-	   else{
-		   builder.append(","+itemID);
-	   }
-   }
-}
- if(!deleteResult){
-	  builder.append("删除失败,可能没有在收藏夹中");
+	   builder.append("编号为"+itemID+"删除失败，可能没有在收藏夹中\n");
+	  }
+ else{
+	 builder.append("编号为"+itemID+"删除成功\n");
+      }
+  }
+
+ 
 	  resultInfo=builder.toString();
-   }
-   else{
-	   resultInfo="成功删除";
-   }
+  
 return super.execute();
 }
 

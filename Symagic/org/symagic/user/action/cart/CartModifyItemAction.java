@@ -49,9 +49,8 @@ public String execute() throws Exception {
 	 }
 	 
 	//会员登录更新到数据库中
-			if(UserSessionUtilty.isLogin()){
-				
-				updateResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
+	     if(UserSessionUtilty.isLogin()){
+			updateResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber);
 			}
 			
 		if(updateResult)
@@ -61,7 +60,7 @@ public String execute() throws Exception {
 			return "success";
 		}
 	
-		resultInfo="修改成功";
+	  resultInfo="修改成功";
 	 
 	return super.execute();
 }
