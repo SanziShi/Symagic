@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BC2商城</title>
+<title>Symagic网上书城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
 <script language="javascript" src="js/checkform.js"></script>
@@ -46,8 +46,7 @@
 			<div id="search2">
 				<div id="searchleft">
 					<img src="../image/ico_site.jpg" id="ico_site" /> 网站路径：<a
-						href="category_list.html">商品管理</a>&gt;&gt;<a href="item_list.html">商品列表</a>&gt;&gt;<a
-						href="">商品编辑</a>
+						href="item_manager">商品管理</a>&gt;&gt;<a href="item_manager">商品列表</a>&gt;&gt;商品编辑
 				</div>
 			</div>
 			<div id="sendnote">
