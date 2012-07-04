@@ -269,6 +269,12 @@ span.red
 	right:40px;
 	margin-top:-20px;
 }
+#page_container_d
+{
+	position:absolute;
+	height:22px;
+	right:10px;
+}
 #dot
 {
 	border: none;
@@ -282,7 +288,7 @@ span.red
 	overflow: hidden;
 	font-size:12px;
 }
-#page_container span.none
+#page_container span.none,#page_container_d span.none
 {
 	color: #CCC;
 	cursor: default;
@@ -300,7 +306,7 @@ span.red
 	border-radius: 5px;
 	font-size:12px;
 }
-#page_container a,#page_container a:hover
+#page_container a,#page_container a:hover,#page_container_d a,#page_container_d a:hover
 {
 	float: left;
 	height: 20px;
@@ -317,11 +323,11 @@ span.red
 	font-size:12px;
 	cursor:pointer;
 }
-#page_container a.selected
+#page_container a.selected,#page_container_d a:selected
 {
 	border: #FFF 1px solid;
 }
-#page_container a:hover,#page_container a.selected:hover
+#page_container a:hover,#page_container a.selected:hover,#page_container_d a:hover,#page_container_d a.selected:hover
 {
 	background:#005AA0;
 	color: #FFF;

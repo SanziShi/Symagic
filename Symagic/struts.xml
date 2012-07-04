@@ -13,7 +13,6 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<interceptor name="userLoginInterceptor" class="UserLoginInterceptor"></interceptor>
 			<interceptor name="injectionInterceptor" class="InjectionInterceptor"></interceptor>
 			<interceptor name="setupInterceptor" class="SetupInterceptor"></interceptor>
-
 			<interceptor-stack name="userLoginInterceptorStack">
 				<interceptor-ref name="setupInterceptor"></interceptor-ref>
 				<interceptor-ref name="injectionInterceptor"></interceptor-ref>
@@ -165,11 +164,7 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 			<result name="input">/error.jsp</result>
 
 		</action>
-		<action name="comment" class="browseComment">
-			<result>/lib/comment_inner.jsp</result>
-			<result name="input">/error.jsp</result>
-			<result name="error">/error.jsp</result>
-		</action>
+		
 
 		<action name="user" class="enterUserInfo">
 			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>

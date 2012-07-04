@@ -51,7 +51,7 @@
 			<div id="search2">
 				<div id="searchleft">
 					<img src="../image/ico_site.jpg" id="ico_site" /> 网站路径：<a
-						href="category_list.html">商品管理</a>&gt;
+						href="item_manager">商品管理</a>&gt;
 				</div>
 
 				<div id="" style="float:right">
@@ -590,7 +590,7 @@
 							</tr>
 
 							<tr>
-								<th>出版社：</th>
+								<th>出版社：<a name="C1"></a></th>
 								<td><input type="text" name="publisher" value="" /></td>
 								<td><span class="red">*必填项</span></td>
 							</tr>

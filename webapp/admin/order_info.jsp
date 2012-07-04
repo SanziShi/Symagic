@@ -88,9 +88,9 @@
 								<td><s:property value="zipcode" /></td>
 
 								<td>收货人手机</td>
-								<td><s:property value="mobileNumber" /></td>
+								<td><s:property value="receiverMobile" /></td>
 								<td>收货人电话</td>
-								<td><s:property value="phoneNumber" /></td>
+								<td><s:property value="receiverPhone" /></td>
 							</tr>
 							<tr>
 

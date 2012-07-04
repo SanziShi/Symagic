@@ -10,6 +10,7 @@ import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBookStatistics;
 import org.symagic.common.db.func.BookStatisticsRequire;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.service.ItemService;
 import org.symagic.common.utilty.presentation.bean.StatisticBean;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
 
@@ -38,6 +39,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 	private Integer searchYearRange;
 	
 	private String totalSalesRevenue;
+	
+	private ItemService itemService;
 
 	@Override
 	public String execute() throws Exception {
@@ -52,8 +55,8 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		BookStatisticsRequire require = new BookStatisticsRequire();
 
 		// 建立require
-		if (catalogID == null || catalogID != 0)
-			require.setCatalogid(catalogID);
+		if (catalogID != null && catalogID != 0)
+			require.setCatalogidList(itemService.getCatalogList(catalogID));
 		require.setLines(lines);
 		if (limit != null)
 			require.setLowlimit(limit);
@@ -213,6 +216,14 @@ public class AdminItemStatisticsAction extends CatalogBase {
 
 	public void setTotalSalesRevenue(String totalSalesRevenue) {
 		this.totalSalesRevenue = totalSalesRevenue;
+	}
+	
+	public ItemService getItemService() {
+		return itemService;
+	}
+
+	public void setItemService(ItemService itemService) {
+		this.itemService = itemService;
 	}
 
 }

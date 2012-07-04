@@ -3,6 +3,7 @@ package org.symagic.user.action.userinfo;
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanUser;
 import org.symagic.common.db.func.DaoUser;
+import org.symagic.common.db.func.Util;
 import org.symagic.common.service.MailService;
 
 public class ForgetPasswordAction extends CatalogBase{
@@ -19,6 +20,8 @@ public class ForgetPasswordAction extends CatalogBase{
 	private String securityAnswer;
 	
 	private DaoUser daoUser;
+	
+	private boolean isValidate;
 
 	public String getUserName() {
 		return userName;
@@ -57,16 +60,22 @@ public class ForgetPasswordAction extends CatalogBase{
 		String oldPass = user.getPassword();
 		if(user == null)
 			return ERROR;
-		if(user.getQuestion() != getSecurityQuestion()){
+		if(!user.getQuestion().equals(getSecurityQuestion())){
 			return ERROR;
 		}
-		if(user.getAnswer() != getSecurityAnswer())
+		if(!user.getAnswer().equals(Util.getMD5(getSecurityAnswer().getBytes())))
 			return ERROR;
-		Long newPass = (long) Math.round(999999l);
+		Long newPass = (long) (Math.random()*10000);
 		daoUser.updatePassword(userName, newPass.toString(), oldPass);
 		
 		user.setPassword(newPass.toString());
-		MailService.sendNewPassword(user);
+		MailService.sendNewPassword(user, newPass.toString());
 		return SUCCESS;
+	}
+	
+	public void validate(){
+		if(securityAnswer == null || securityQuestion == null || userName == null){
+			isValidate = false;
+		}
 	}
 }

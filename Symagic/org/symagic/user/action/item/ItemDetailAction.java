@@ -25,7 +25,7 @@ public class ItemDetailAction extends CatalogBase {
 	private String errorHeader;
 	private String errorSpecification ;
 	private ItemService itemService;// 访问服务层
-	
+	private Integer page=1; 
 	private Integer recommendNumber;
 	//传出
 	private ItemDetailBean book;// 书籍详细信息
@@ -54,7 +54,7 @@ public class ItemDetailAction extends CatalogBase {
 		if(commentNumber==-1)return "error";
 		totalPage = (commentNumber + lines - 1) / lines;
 		//显示第一页的评论显示
-		commentList = itemService.getComments(itemID,1, lines);
+		commentList = itemService.getComments(itemID,page, lines);
         //推荐
 		recommendView = new ArrayList<ItemTinyBean>();
 		recommendBought = new ArrayList<ItemTinyBean>();
@@ -63,6 +63,17 @@ public class ItemDetailAction extends CatalogBase {
 		itemService.viewForRecommend(itemID, book.getBookDesc());
 		return super.execute();
 	}
+	
+
+	public Integer getPage() {
+		return page;
+	}
+
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
 
 	public Integer getLines() {
 		return lines;

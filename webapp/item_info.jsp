@@ -192,31 +192,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         		<span class="buyer_name"><s:property value='#iter.userName'/></span>
         		<span class="star"><span class="sa<s:property value='#iter.rating'/>"></span></span>
         		&nbsp;&nbsp;（<s:property value='#iter.rating'/>）分
-                <span class="date-comment"><s:property value='#iter.commentDate'/></span>
+                <span class="date-comment"><s:property value='#iter.date'/></span>
         		</div>
         		<div class="comment-content"><s:property value='#iter.content'/></div>
         	</div>
         </s:iterator>
         <!--用户评价迭代-->
-        
+        <!--添加品论开始-->
+        <s:if test='commentAble'>
+        <div class="comment_item">
+        <form action="item/comment" method="post" onsubmit="return comment_submit(this)">
+        		<div class="buyer">
+                <input name="itemID" style="display:none" value="<s:property value='itemID'/>"/>
+        		<span class="buyer_name"><s:property value='#iter.userName'/></span>
+                我的打分：
+                <input type="radio" checked="checked" name="rating">5分</input>&nbsp;&nbsp;
+                <input type="radio" name="rating">4分</input>&nbsp;&nbsp;
+                <input type="radio" name="rating">3分</input>&nbsp;&nbsp;
+                <input type="radio" name="rating">2分</input>&nbsp;&nbsp;
+                <input type="radio" name="rating">1分</input>&nbsp;&nbsp;
+                </div>
+        		<div class="comment-content">
+                	<textarea name="content" style="width:100%; min-height:80px;"></textarea>
+                </div>
+                <div id="comment_submit">
+                	<input type="submit"value="提交我的评论"/>
+                </div>
+                <div class="clear"></div>
+        </form>
+        </div>
+        </s:if>
+       <!--添加品论结束-->
        <div id="comment_bottom">
        <!--评价分页开始-->
-        <div id="page_container">
+        <div id="page_container_d">
         	
             <s:if test="page==1">
                 	<span class="none" >上一页</span>
                 </s:if>
                 <s:else>
-                	<a href="<s:property value='actionURL'/>?page=<s:property value='page-1'/>">上一页</a>
+                	<a href="item_detail?page=<s:property value='page-1'/>">上一页</a>
                 </s:else>
                 <!--页面数字迭代与判断逻辑-->
-                <s:if test='totalPage<=6'>
+                <s:if test='totalPage<=6&&totalPage>0'>
                 	<s:iterator begin="1" end="totalPage"  status='st'>  
                 		<s:if test="page==#st.index+1">
                         	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
                         </s:if> 
                         <s:else>
-                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>
+                        	<a href="item_detail?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>
                         </s:else> 
                 	</s:iterator>
                 </s:if>
@@ -228,7 +252,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
                     	</s:if>
                         <s:else>
-                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
+                        	<a href="item_detail?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
                         </s:else>
                     </s:iterator>
                     <span id="dot">...</span>
@@ -236,7 +260,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
                     	</s:if>
                         <s:else>
-                        	<a href="<s:property value='actionURL'/>?page=<s:property value='totalPage'/>"><s:property value='totalPage'/></a>		
+                        	<a href="item_detail?page=<s:property value='totalPage'/>"><s:property value='totalPage'/></a>		
                         </s:else>
                 </s:if>
                 <s:elseif test="page+3>=totalPage">
@@ -244,7 +268,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
                     	</s:if>
                         <s:else>
-                        	<a href="<s:property value='actionURL'/>?page=1"><s:property value='totalPage'/></a>		
+                        	<a href="item_detail?page=1"><s:property value='totalPage'/></a>		
                         </s:else>
                     <span id="dot">...</span>
                 	<s:iterator begin="totalPage-3" end="totalPage"  status='st'>
@@ -252,7 +276,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
                     	</s:if>
                         <s:else>
-                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
+                        	<a href="item_detail?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
                         </s:else>
                     </s:iterator>
                 </s:elseif>
@@ -261,7 +285,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
                     	</s:if>
                         <s:else>
-                        	<a href="<s:property value='actionURL'/>?page=1"><s:property value='totalPage'/></a>		
+                        	<a href="item_detail?page=1"><s:property value='totalPage'/></a>		
                         </s:else>
                 	<span id="dot">...</span>
                     <s:iterator begin="page-1" end="page+1"  status='st'>
@@ -269,7 +293,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
                     	</s:if>
                         <s:else>
-                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
+                        	<a href="item_detail?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
                         </s:else>
                     </s:iterator>
                     <span id="dot">...</span>
@@ -277,17 +301,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
                     </s:if>
                     <s:else>
-                        <a href="<s:property value='actionURL'/>?page=<s:property value='totalPage'/>"><s:property value='totalPage'/></a>		
+                        <a href="item_detail?page=<s:property value='totalPage'/>"><s:property value='totalPage'/></a>		
                     </s:else>
                 </s:else>
                 </s:if>	
                 <!---->
                 <!--页面数字迭代与判断逻辑结束-->
-                <s:if test="page==totalPage">
+                <s:if test="page==totalPage||totalPage==0">
                 	<span class="none">下一页</span>
                 </s:if>
                 <s:else>
-                	<a href="<s:property value='actionURL'/>?page=<s:property value='page+1'/>">下一页</a>
+                	<a href="item_detail?page=<s:property value='page+1'/>">下一页</a>
                 </s:else>
         </div>
         <!--评价分页结束-->
