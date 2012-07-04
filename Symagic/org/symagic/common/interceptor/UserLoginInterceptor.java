@@ -7,6 +7,9 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 import org.apache.struts2.StrutsStatics;
 import org.symagic.user.utilty.UserSessionUtilty;
 
@@ -70,7 +73,30 @@ public class UserLoginInterceptor extends MethodFilterInterceptor {
 					if (itr.hasNext())
 						url += '&';
 				}
-			} 
+			} else if (request.getMethod().equals("POST")) {
+				Map<String, String[]> parameter = request.getParameterMap();
+				
+				JSONObject object = new JSONObject();
+				
+				Iterator<Entry<String, String[]>> itr = parameter.entrySet()
+						.iterator();
+				while (itr.hasNext()) {
+					Entry<String, String[]> entry = itr.next();
+					if( entry.getValue().length > 1 ){
+						JSONArray array = new JSONArray();
+						for (String value : entry.getValue()) {
+							array.add(value);
+						}
+						object.put(entry.getKey(), array);
+					}
+					else{
+						object.put(entry.getKey(), entry.getValue()[0]);
+					}
+				}
+				
+				request.getSession().setAttribute("savedForm",
+						object.toString());
+			}
 
 			invocation.getInvocationContext().getValueStack().getContext()
 					.put("toURL", url.substring(contextPath.length()));

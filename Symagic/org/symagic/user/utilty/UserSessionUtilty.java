@@ -13,15 +13,15 @@ public class UserSessionUtilty extends SessionUtilty {
 	 * 记录用户登录失败次数
 	 */
 	public static void logLoginErrorTime(){
-		Integer errorTimes=(Integer)ActionContext.getContext().getSession().get("errorTimes");
+		Integer errorTimes=(Integer)ActionContext.getContext().getSession().get("loginErrorTimes");
 		if(errorTimes==null){
-			ActionContext.getContext().getSession().put("errorTimes", 1);
+			ActionContext.getContext().getSession().put("loginErrorTimes", 0);
 		}
 		else
 		{
 			errorTimes++;
 			//更新错误次数
-			ActionContext.getContext().getSession().put("errorTimes", errorTimes);
+			ActionContext.getContext().getSession().put("loginErrorTimes", errorTimes);
 		}
 	}
 	
@@ -39,7 +39,14 @@ public class UserSessionUtilty extends SessionUtilty {
    * 取得用户登录失败次数
    */
 	public static Integer getLoginErrorTime(){
-	 return (Integer)ActionContext.getContext().getSession().get("errorTimes");	
+	 Map<String,Object> session=ActionContext.getContext().getSession();
+	 Integer errorTimes=(Integer)session.get("loginErrorTimes");
+	 if(errorTimes==null){
+		 session.put("loginErrorTimes", 0);
+		 return 0;
+	 }
+	 else
+		 return errorTimes;
 	}
 	/**
 	 * 记录当前用户的登陆信息
@@ -53,6 +60,7 @@ public class UserSessionUtilty extends SessionUtilty {
 
 		session.put("userName", userName);
 		session.put("nickname", nickname);
+	    session.put("loginErrorTimes", 0);
 	}
 
 

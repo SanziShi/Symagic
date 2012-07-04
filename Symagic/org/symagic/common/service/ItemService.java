@@ -19,6 +19,7 @@ import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.db.func.DaoComment;
 import org.symagic.common.utilty.presentation.bean.CatalogBean;
+import org.symagic.common.utilty.presentation.bean.CommentBean;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
 import org.symagic.common.utilty.presentation.bean.ItemDetailBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
@@ -170,12 +171,12 @@ public class ItemService {
 	public List<Integer> getCatalogList(Integer catalogID) {
 		List<Integer> catalogList = new ArrayList<Integer>();
 		BeanCatalog requiredCatalog = daoCatalog.getCatalogByID(catalogID);
-		// 二级目录
-		if (requiredCatalog.getLevel().trim().equals("2")) {
+		
+	       //搜索的目录
 			catalogList.add(catalogID);
-		}
-		// 一级目录
-		else {
+	
+		// 对于一级目录，将其二级目录也加搜索范围
+		if(requiredCatalog.getLevel().trim().equals("1")) {
 			List<BeanCatalog> allCatalog = daoCatalog.getCatalog();
 			BeanCatalog catalog;
 			for (Iterator<BeanCatalog> index = allCatalog.iterator(); index
@@ -426,8 +427,46 @@ if (currentCatalog != null) {
 	}
 
 	// 得到商品评论
-	public List<BeanComment> getCommentWithPage(Integer itemId, Integer page, Integer lines) {
+	public List<BeanComment>getCommentWithPage(Integer itemId, Integer page, Integer lines){
 		return daoComment.getComment(itemId, page, lines);
+	}
+	public List<CommentBean> getComments(Integer itemId, Integer page, Integer lines) {
+		List<BeanComment> getResult=daoComment.getComment(itemId, page, lines);
+		List<CommentBean> result=new ArrayList<CommentBean>();
+		BeanComment comment;
+		CommentBean item;
+		String username;
+		for(Iterator<BeanComment>index=getResult.iterator();index.hasNext();){
+			comment=index.next();
+			item=new CommentBean();
+			item.setContent(comment.getContent());
+			item.setDate(comment.getCommentDate());
+			item.setRating(comment.getRating());
+			item.setUserName(replace(3,4,comment.getUsername()));
+			result.add(item);
+			
+		}
+		return result;
+	}
+	
+	private   String replace(Integer from ,Integer length,String source){
+		if(source==null||source.trim().length()==0)
+			return "";
+		if(from>source.length()){
+			from=0;
+		}
+		if(from+length>source.length()){
+			length=source.length()-from;
+		}
+		
+		
+		String reg=source.substring(from, from+length);
+		StringBuilder replace=new StringBuilder();
+		for(int index=0;index<reg.length();index++){
+			replace.append("*");
+		}
+	  return source.replaceAll(reg, replace.toString());
+		
 	}
 
 	// 得到商品平均得分

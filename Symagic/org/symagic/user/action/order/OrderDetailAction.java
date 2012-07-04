@@ -10,6 +10,7 @@ import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.AddressDetailBean;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
+import org.symagic.user.utilty.UserSessionUtilty;
 
 public class OrderDetailAction extends OrderBase {
 
@@ -102,7 +103,7 @@ public class OrderDetailAction extends OrderBase {
 		if(orderID == null || orderID.isEmpty())
 			return ERROR;
 		BeanOrder order = daoOrder.getOrderDetail(Integer.parseInt(orderID));
-		if (order == null)
+		if (order == null || order.getUsername() == null || order.getUsername().equals(UserSessionUtilty.getUsername()))
 			return ERROR;
 		if (order.getDeliveryWay() == "0")
 			setDeliverWay("送货上门");

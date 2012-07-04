@@ -61,8 +61,8 @@
 						href="user_level">会员管理</a>&gt;&gt;设置会员级别
 				</div>
 				<div id="searchright">
-					<form action="quick_search">
-						<select name="catalogID">
+					<form action="quick_search?page=1" method="post">
+						<select name="qcatalogID">
 							<option value="0">所有类别</option>
 							<s:iterator value="catalog" var='outer'>
 								<option value="<s:property value='#outer.ID'/>">

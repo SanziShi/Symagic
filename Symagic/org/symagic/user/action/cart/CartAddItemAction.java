@@ -39,6 +39,7 @@ public class CartAddItemAction extends ActionSupport {
 		// TODO Auto-generated method stub
 		if(!validateResult){
 			addResult=false;
+			resultInfo="数据有误";
 			return SUCCESS;
 		}
 		boolean login=UserSessionUtilty.isLogin();
@@ -52,49 +53,45 @@ public class CartAddItemAction extends ActionSupport {
 		  //数据不符合规则，忽略掉
 		  if(item==null||item.getItemID()==null||item.getItemNumber()==null){
 			 addResult=false;
+			 builder.append("数据不符合要求\n");
 			  continue;
 		  }
-		  //商品是否存在
-		  BeanBook book=daoBook.getDetail(item.getItemID());
-		  if(book==null||book.getOffline().trim().equals("下架")){
-			  result=false;
+		 
+		  result=addOneToCart(item.getItemID(),item.getItemNumber(),login,builder);
+		  if(!result){
+			  addResult=false;
 		  }
-		  else{
-		   result=addOneToCart(item.getItemID(),item.getItemNumber(),login);
-		   }
-		   if(!result){
-			   addResult=false;
-			   if(builder.length()==0){
-				   builder.append("编号为"+item.getItemID());
-			   }
-			   else{
-				   builder.append(","+item.getItemID());
-			   }
-		   }
-	   }
-	   if(!addResult){
-		  builder.append("未能添加到购物车");
-		  resultInfo=builder.toString();
-	   }
-	   else{
+	  }
+		  //添加到后台数据库失败
+		  
+	  if(addResult){
 		   resultInfo="成功添加到购物车";
 	   }
+	  else{
+		  resultInfo=builder.toString();
+	  }
 		 return SUCCESS;
 		
 	}
-	private boolean addOneToCart(Integer itemID,Integer itemNumber,boolean login){
+	private boolean addOneToCart(Integer itemID,Integer itemNumber,boolean login,StringBuilder info){
 		//首先判断商品是否下架
 		BeanBook book=daoBook.getDetail(itemID);
+		if(book==null){
+			info.append("商城没有编号为"+itemID+"的商品\n");
+			return false;
+		}
 		if(book.getOffline().trim().equals("下架"))
 		{
+			info.append("书名为"+book.getBookName()+"已下架\n");
 			return false;
 		}
 		//通过其数量判断是否有这商品
 		 Integer  number=UserSessionUtilty.getCart().get(itemID);
 		int compare=(number==null?0:number);
 		//itemID不存在于数据库中或者是库存不足
-		if(book==null||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>1000){
-			   return false;
+		if(book==null||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>999){
+			info.append("书名为"+book.getBookName()+"添加数量非法\n");   
+			return false;
 			 }
 		boolean addResult=true;
 		 if(login){
@@ -103,9 +100,13 @@ public class CartAddItemAction extends ActionSupport {
 		    	else
 		    		addResult=daoCart.modifyBook(UserSessionUtilty.getUsername(), itemID, itemNumber+number);
 		    }
+		 
 		
 		if(addResult){
 		addResult=UserSessionUtilty.addToCart(itemID, itemNumber);
+		}
+		else{
+			info.append("书名为"+book.getBookName()+"添加到数据库中失败\n");
 		}
 		    return addResult;
 	}

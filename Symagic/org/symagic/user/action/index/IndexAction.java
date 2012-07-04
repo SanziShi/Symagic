@@ -41,7 +41,7 @@ private List<ItemTinyBean> hotBook;//热销书
 		//增加购物车的数量
 		UserSessionUtilty.addTotalNumber(0);
 		nickname=UserSessionUtilty.getNickname();
-		
+		UserSessionUtilty.getLoginErrorTime();
 		
 		//推荐商品
 		

@@ -69,8 +69,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</div>
             <form action="quick_search" method="post">
 			<div id="searchright2">
-			  <input type="text" name="keyword" id="textInput"/>
-			  <input type="submit" value="搜索" id="searchbutton" />
+            	<input style="display:none" name="page" value="1">
+				<input type="text" name="keyword" id="textInput"/>
+			  	<input type="submit" value="搜索" id="searchbutton" />
 			</div>
 			<div id="searchright1">
 			 <select name="catalogID" >
@@ -197,9 +198,103 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	</div>
         </s:iterator>
         <!--用户评价迭代-->
-        </div>
-        </div>
         
+       <div id="comment_bottom">
+       <!--评价分页开始-->
+        <div id="page_container">
+        	
+            <s:if test="page==1">
+                	<span class="none" >上一页</span>
+                </s:if>
+                <s:else>
+                	<a href="<s:property value='actionURL'/>?page=<s:property value='page-1'/>">上一页</a>
+                </s:else>
+                <!--页面数字迭代与判断逻辑-->
+                <s:if test='totalPage<=6'>
+                	<s:iterator begin="1" end="totalPage"  status='st'>  
+                		<s:if test="page==#st.index+1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
+                        </s:if> 
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>
+                        </s:else> 
+                	</s:iterator>
+                </s:if>
+                <!---->
+                <s:if test="totalPage>6">
+                <s:if test="page<=4">
+                	<s:iterator begin="1" end="page"  status='st'>
+                    	<s:if test="page==#st.index+1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
+                        </s:else>
+                    </s:iterator>
+                    <span id="dot">...</span>
+                    <s:if test="page==totalPage">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='totalPage'/>"><s:property value='totalPage'/></a>		
+                        </s:else>
+                </s:if>
+                <s:elseif test="page+3>=totalPage">
+                 		<s:if test="page==1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=1"><s:property value='totalPage'/></a>		
+                        </s:else>
+                    <span id="dot">...</span>
+                	<s:iterator begin="totalPage-3" end="totalPage"  status='st'>
+                    	<s:if test="page==#st.index+1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
+                        </s:else>
+                    </s:iterator>
+                </s:elseif>
+                <s:else>
+                	<s:if test="page==1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=1"><s:property value='totalPage'/></a>		
+                        </s:else>
+                	<span id="dot">...</span>
+                    <s:iterator begin="page-1" end="page+1"  status='st'>
+                    	<s:if test="page==#st.index+1">
+                        	<a href="javascript:void(0)" class="selected"><s:property value="#st.index+1"/></a>
+                    	</s:if>
+                        <s:else>
+                        	<a href="<s:property value='actionURL'/>?page=<s:property value='#st.index+1'/>"><s:property value='#st.index+1'/></a>		
+                        </s:else>
+                    </s:iterator>
+                    <span id="dot">...</span>
+                    <s:if test="page==totalPage">
+                        <a href="javascript:void(0)" class="selected"><s:property value="totalPage"/></a>
+                    </s:if>
+                    <s:else>
+                        <a href="<s:property value='actionURL'/>?page=<s:property value='totalPage'/>"><s:property value='totalPage'/></a>		
+                    </s:else>
+                </s:else>
+                </s:if>	
+                <!---->
+                <!--页面数字迭代与判断逻辑结束-->
+                <s:if test="page==totalPage">
+                	<span class="none">下一页</span>
+                </s:if>
+                <s:else>
+                	<a href="<s:property value='actionURL'/>?page=<s:property value='page+1'/>">下一页</a>
+                </s:else>
+        </div>
+        <!--评价分页结束-->
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>    
   </div>       
       <div id="footer">
 				<span id="footerleft"> &nbsp;隐私权 | 版权 | 法律声明 |

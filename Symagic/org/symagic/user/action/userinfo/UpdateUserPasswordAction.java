@@ -65,12 +65,12 @@ public class UpdateUserPasswordAction extends CatalogBase{
 		if(newPassword.equals(newPasswordConfirm)){
 			if(newPassword.getBytes().length < 6){
 				updateResult = false;
-				resultInfo = "密码过短";
+				resultInfo = "密码过短，应大于6位";
 				return SUCCESS;
 			}
 			if(newPassword.getBytes().length > 20){
 				updateResult = false;
-				resultInfo = "密码过长";
+				resultInfo = "密码过长，应小于20位";
 				return SUCCESS;
 			}
 			if(newPassword.trim().equals(password.trim())){
@@ -79,8 +79,12 @@ public class UpdateUserPasswordAction extends CatalogBase{
 				return SUCCESS;
 			}
 			updateResult = daoUser.updatePassword(UserSessionUtilty.getUsername(), newPasswordConfirm, password);
+			if(!updateResult){
+				resultInfo = "密码错误";
+			}
 		}
 		else {
+			resultInfo = "两次输入的密码不同";
 			updateResult = false;
 		}
 		return SUCCESS;

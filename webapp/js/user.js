@@ -29,7 +29,19 @@ function nickname_c(e)
 	Ajax({
 		url:'user/update_nickname',
 		data:'nickname='+c,
-		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult){alert('修改成功');location.href='user'}}
+		onSuccess:function(e)
+			{
+				var a=JSON.parse(e);
+				if(a.updateResult)
+				{
+					alert('修改成功');location.href='user';
+				}
+				else
+				{
+					if(a.resultInfo!=null)alert(a.resultInfo);
+					else alert('修改失败');
+				}
+			}
 		})
 }
 function pass_submit()
@@ -37,9 +49,27 @@ function pass_submit()
 	var a=document.getElementById('pass_before').value;
 	var b=document.getElementById('pass_new').value;
 	var c=document.getElementById('pass_confirm').value;
+	if(a.length<6||a.length>20||b.length<6||b.length>20||b.length<6||b.length>20)alert('密码长度非法！');
+	return false;
+	if(b!=c)
+	{
+		alert('两次输入密码不同！');
+		return false;
+	}
 	Ajax({
 		url:'user/update_password?password='+a+'&newPassword='+b+'&newPasswordConfirm='+c,
-		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');location.reload();}
+		onSuccess:function(e){
+				var a=JSON.parse(e);
+				if(a.updateResult)
+				{
+					alert('密码修改成功！');
+					location.reload();
+				}
+				else
+				{
+					alert(a.resultInfo);
+				}
+			}
 		})
 }
 function show_favorite()
@@ -164,7 +194,15 @@ function address_edit_submit(f,id)
 				{
 					alert('保存成功！');
 					close_address_edit(id);
-					show_address();
+					Ajax({
+						url:'address',
+						onSuccess:function(e)
+							{
+								document.getElementById('address-container').innerHTML=e;
+								return false;
+							}
+					})
+					return false;
 				}
 				else alert(a.resultInfo);
 			}
@@ -173,6 +211,7 @@ function address_edit_submit(f,id)
 }
 function cancel_order(id)
 {
+	if(!confirm('确认取消该订单？'))return false;
 	var getid='#order_list'+id;
 	Ajax({
 		url:'order/cancel_order?orderID='+id,
@@ -181,7 +220,7 @@ function cancel_order(id)
 				var a=JSON.parse(e);
 				if(a.cancelResult)
 				{
-					alert('删除成功！');
+					alert('订单已取消！');
 					$(getid).fadeOut(300);
 				}
 				else alert(a.resultInfo);

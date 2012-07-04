@@ -743,6 +743,16 @@ function show_item_search(e) {
 	}
 }
 
+function show_item_search2(e) {
+	if (e.className == 'collapse') {
+		e.className = 'collapsed';
+		$('#item_search2').slideDown(70);
+	} else {
+		e.className = 'collapse';
+		$('#item_search2').slideUp(70);
+	}
+}
+
 function expanse(e) {
 
 	e.className = 'collapsed';

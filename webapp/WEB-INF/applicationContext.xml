@@ -121,21 +121,19 @@
 		<property name="searchYearRange" value="5"></property>
 	</bean>
 
-	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.AdminItemQuickSearch"
-		scope="request">
+	<bean id="AdminQuickSearchItem" class="org.symagic.admin.action.item.AdminItemQuickSearch">
 		<property name="sign" value="0"></property>
 		<property name="itemService" ref="ItemService"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
+		<property name="searchYearRange" value="5"></property>
 	</bean>
 
-	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction"
-		scope="request">
+	<bean id="AdminOrderStatistics" class="org.symagic.admin.action.item.AdminItemStatisticsAction">
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="lines" value="15"></property>
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="searchYearRange" value="5"></property>
-		<property name="daoOrder" ref="DaoOrder"></property>
 	</bean>
 
 	<bean id="AdminEnterCatalogManager"

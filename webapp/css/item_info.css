@@ -273,3 +273,9 @@
 {
 	min-height: 48px;
 }
+#comment_bottom
+{
+	float:right;
+	height:24px;
+	margin:3px 5px 3px 0;
+}
