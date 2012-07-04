@@ -121,12 +121,12 @@ public class DaoComment {
 					"(username, bookid, " +
 					" content, rating, commentdate)" +
 					"values " +
-					"(?, ?, ?, ?, ?)");
+					"(?, ?, ?, ?, now())");
 			ps.setString(1, comment.getUsername());
 			ps.setInt(2, comment.getBookID());
 			ps.setString(3, comment.getContent());
 			ps.setString(4, comment.getRating());
-			ps.setString(5, comment.getCommentDate());
+			//ps.setString(5, comment.getCommentDate());
 			
 			ps.execute();
 			
