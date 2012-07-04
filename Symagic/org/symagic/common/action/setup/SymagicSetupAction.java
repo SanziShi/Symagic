@@ -22,23 +22,46 @@ public class SymagicSetupAction extends ActionSupport {
 	private String databasePost;
 	private String databaseUser;
 	private String databasePassword;
+	
+	private String recommendHost;
+	private String recommendApiKey;
+	private String recommendTenantid;
+	private Integer recommendOnLine;
 
 	@Override
 	public String execute() throws Exception {
 
-		JSONObject object = new JSONObject();
-		object.put("dbname", databaseName);
-		object.put("username", databaseUser);
-		object.put("password", databasePassword);
-		object.put("server", databaseHost);
-		object.put("port", databasePost);
+		JSONObject jdbcObject = new JSONObject();
+		jdbcObject.put("dbname", databaseName);
+		jdbcObject.put("username", databaseUser);
+		jdbcObject.put("password", databasePassword);
+		jdbcObject.put("server", databaseHost);
+		jdbcObject.put("port", databasePost);
+		
+		JSONObject recommendObject = new JSONObject();
+		recommendObject.put("host", recommendHost);
+		recommendObject.put("apikey", recommendApiKey);
+		recommendObject.put("tenantid", recommendTenantid);
+		if( recommendOnLine != null && recommendOnLine == 1 ){
+			recommendObject.put("onLine", true);
+		}
+		else{
+			recommendObject.put("onLine", false);
+		}
+		
 
 		try {
 			File jdbcConf = new File(FileUtils.getUserDirectoryPath()
 					+ "/jdbc.json");
 			FileWriter writer = new FileWriter(jdbcConf);
-			writer.write(object.toString());
+			writer.write(jdbcObject.toString());
 			writer.close();
+			
+			File recommendConf = new File(FileUtils.getUserDirectoryPath() + "/recommend.json");
+			writer = new FileWriter(recommendConf);
+			writer.write(recommendObject.toString());
+			writer.close();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return INPUT;
