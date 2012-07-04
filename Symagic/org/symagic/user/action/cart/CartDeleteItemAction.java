@@ -83,7 +83,7 @@ private boolean deleteOneFromCart(Integer itemID,boolean login,StringBuilder inf
 			if(deleteResult)   
 			  deleteResult=UserSessionUtilty.deleteFromCart(itemID);
 			else{
-				info.append("编号为"+itemID+"从数据库中删除失败造成操作失败\n");
+				info.append("编号为"+itemID+"删除失败\n");
 			}
 			
 			
