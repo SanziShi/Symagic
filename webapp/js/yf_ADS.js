@@ -46,7 +46,7 @@ function add_to_cart(id)
 		temp=1;
 	}
 	Ajax({
-			url:'order/check_item?itemID='+id+'&itemNum='+e.value,
+			url:'order/check_item?itemID='+id+'&itemNum='+t.value,
 			onSuccess:function(checkr)
 				{
 					var che=JSON.parse(checkr);
