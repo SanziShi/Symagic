@@ -81,7 +81,7 @@ public class RegisterAction extends ActionSupport {
 			 return;
 		 }
 		 //昵称合法性
-		 if(!nickname.matches("^[a-zA-Z0-9_\u4e00-\u9fa5]+$")||byteCount(nickname)>20||byteCount(nickname)<5){
+		 if(!nickname.matches("^[a-zA-Z0-9_\u4e00-\u9fa5]+$")||byteCount(nickname)>20||byteCount(nickname)<3){
 			 validateResult=false;
 			 resultInfo="昵称不合法";
 			 return;
