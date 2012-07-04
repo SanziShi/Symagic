@@ -66,7 +66,7 @@ public class UserListAction extends CatalogBase {
 		UserRequire userRequire = new UserRequire();
 		userRequire.setLines(lines);
 		if (userName != null)
-			userRequire.setUsername(userName);
+			userRequire.setUsername(userName.trim());
 		if (userLevel != null && userLevel != 0)
 			userRequire.setUserLevel(userLevel);
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
