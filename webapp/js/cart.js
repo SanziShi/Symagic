@@ -34,7 +34,7 @@ function delete_form_cart(f)
 			}
 		})
 }
-function add_to_favorite()
+function add_to_favorites()
 {
 	var f=document.getElementById('checkout');
 	var request='';
@@ -112,6 +112,7 @@ function reduce(id)
 }
 function check_item_num(id,e)
 {
+	var num=document.getElementById('cart_num');
 	if(e.value==0)
 	{
 		if(confirm('确认将该商品从购物车中删除？'))
@@ -130,10 +131,10 @@ function check_item_num(id,e)
 				var d=JSON.parse(r);
 				if(d.updateResult)
 				{
-					a.setAttribute('default',a.value);
+					e.setAttribute('default',e.value);
 					get_session({S:function(s)
 						{
-							num.innerHTML=s.totalNumber
+							num.innerHTML=s.totalNumber;
 						}
 					});
 				}
