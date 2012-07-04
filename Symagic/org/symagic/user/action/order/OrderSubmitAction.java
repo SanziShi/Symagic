@@ -89,6 +89,26 @@ public class OrderSubmitAction extends OrderBase {
 	private Integer orderID;
 
 	private DaoCart daoCart;
+	
+	private String errorHeader;
+	
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public boolean isValidate() {
+		return isValidate;
+	}
+
+	public void setValidate(boolean isValidate) {
+		this.isValidate = isValidate;
+	}
+
+	private String errorSpecification;
 
 	public DaoLevel getDaoLevel() {
 		return daoLevel;
@@ -271,10 +291,12 @@ public class OrderSubmitAction extends OrderBase {
 				|| getDistrictLevel3ID() == null || getMobileNum() == null
 				|| getPhoneNum() == null || getReceiverName() == null
 				|| getZipcode() == null) {
+			errorHeader = "信息不全";
 			isValidate = false;
 			return;
 		}
 		if (daoUser.getScore(UserSessionUtilty.getUsername()) < score) {
+			errorSpecification = "使用分数大于总分数";
 			isValidate = false;
 			return;
 		}
@@ -286,6 +308,7 @@ public class OrderSubmitAction extends OrderBase {
 		if (getDistrictLevel1ID() == null || getDistrictLevel1ID() <= 0
 				|| getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0
 				|| getDistrictLevel3ID() == null || getDistrictLevel3ID() <= 0) {
+			errorSpecification = "地区选择错误";
 			isValidate = false;
 			return;
 		}
@@ -294,23 +317,27 @@ public class OrderSubmitAction extends OrderBase {
 				|| !getMobileNum().matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")) {
 			if (getPhoneNum() == null || getPhoneNum().isEmpty()
 					|| !getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")) {
+				errorSpecification = "电话号码不全，或错误";
 				isValidate = false;
 				return;
 			}
 		}
 
 		if (!getZipcode().matches("^[1-9]\\d{5}")) {
+			errorSpecification = "邮编错误";
 			isValidate = false;
 			return;
 		}
 
-		if (getAddressDetail() == null || getAddressDetail().isEmpty()) {
+		if (getAddressDetail() == null || getAddressDetail().trim().isEmpty()) {
 			isValidate = false;
+			errorSpecification = "地址详情为空";
 			return;
 		}
 
-		if (getReceiverName() == null || getReceiverName().isEmpty()) {
+		if (getReceiverName() == null || getReceiverName().trim().isEmpty()) {
 			isValidate = false;
+			errorSpecification = "收件人为空";
 			return;
 		}
 	}
@@ -361,6 +388,14 @@ public class OrderSubmitAction extends OrderBase {
 
 	public void setDaoCart(DaoCart daoCart) {
 		this.daoCart = daoCart;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
 	}
 
 }

@@ -24,11 +24,11 @@ public class FavorityEnterAction extends ActionSupport {
 	private static final long serialVersionUID = -517295759985703579L;
 	
 	//传入
-	private Integer page=1;//第几页
+
 	//配置项
 	private DaoFavorityFolder daoFavorityFolder;
 	private ItemService itemService;
-	private Integer lines;//一页显示 的条数
+
 	private Integer recommendNumber;
 	//传出
 	private List<ItemBean> items;//显示收藏夹中的东西
@@ -38,10 +38,9 @@ public class FavorityEnterAction extends ActionSupport {
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		
-    	if(page==null)return "error";
 		//得到显示记录 后进行装饰成Items
-		List<BeanFavorityFolder> favorities=daoFavorityFolder.get(UserSessionUtilty.getUsername(), page, lines);
-		
+		List<BeanFavorityFolder> favorities=daoFavorityFolder.get(UserSessionUtilty.getUsername(), 0, 0);
+	
 		if(favorities==null)return"error";
 		//
 		items=new ArrayList<ItemBean>();
@@ -53,7 +52,7 @@ public class FavorityEnterAction extends ActionSupport {
 			itemService.fillItemBean(favority.getBookID(), item);
 			items.add(item);
 		}
-		totalPage=(items.size()+lines-1)/lines;
+		
 		
 		//得到推荐商品 recommned;
 		
@@ -70,24 +69,14 @@ public class FavorityEnterAction extends ActionSupport {
 	public void setDaoFavorityFolder(DaoFavorityFolder daoFavorityFolder) {
 		this.daoFavorityFolder = daoFavorityFolder;
 	}
-	public Integer getPage() {
-		return page;
-	}
-	public void setPage(Integer page) {
-		this.page = page;
-	}
+	
 	public List<ItemBean> getItems() {
 		return items;
 	}
 	public void setItems(List<ItemBean> items) {
 		this.items = items;
 	}
-	public Integer getLines() {
-		return lines;
-	}
-	public void setLines(Integer lines) {
-		this.lines = lines;
-	}
+	
 	public List<ItemTinyBean> getRecommend() {
 		return recommend;
 	}

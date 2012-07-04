@@ -114,7 +114,8 @@ public class UserSessionUtilty extends SessionUtilty {
 	 */
 	public static boolean deleteFromCart(int id){
 		        HashMap<Integer,Integer> cart=getCart();
-				int number=cart.get(id);
+				Integer number=cart.get(id);
+				if(number==null)return false;
 				cart.remove(id);
 				//商品总数量减少
 				UserSessionUtilty.addTotalNumber(0-number);
@@ -128,7 +129,8 @@ public class UserSessionUtilty extends SessionUtilty {
 		
 		//得到购物车
 		HashMap<Integer,Integer> cart=getCart();
-		int value=cart.get(id);
+		Integer value=cart.get(id);
+		if(value==null)return false;
 		cart.put(id, number);
 		//改变session中的总数量
 		UserSessionUtilty.addTotalNumber(number-value);

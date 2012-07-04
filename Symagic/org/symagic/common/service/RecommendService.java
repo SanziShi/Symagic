@@ -20,22 +20,25 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
+import org.apache.commons.io.FileUtils;
+import org.symagic.common.db.func.Util;
+
 public class RecommendService {
 
-	private String host = "localhost:8080";
+	private String host = null;
 	/**
 	 * easyrec的API KEY
 	 */
-	private String apikey;
+	private String apikey = null;
 	/**
 	 * easyrec的注册的tenantID
 	 */
-	private String tenantid;
-	
+	private String tenantid = null;
+
 	/**
 	 * 标记推荐系统是否在线
 	 */
-	private Boolean onLine;
+	private Boolean onLine = null;
 
 	/**
 	 * 提交view操作,对于未登陆用户userName为null
@@ -49,8 +52,9 @@ public class RecommendService {
 	 */
 	public boolean view(String sessionID, String itemID,
 			String itemDescription, String itemURL, String userName) {
-		
-		if( !onLine ) return false;
+
+		if (!onLine)
+			return false;
 
 		String url = "http://" + host + "/easyrec-web/api/1.0/json/view";
 
@@ -117,7 +121,8 @@ public class RecommendService {
 	 */
 	public boolean buy(String sessionID, String itemID, String itemDescription,
 			String itemURL, String userName) {
-		if( !onLine ) return false;
+		if (!onLine)
+			return false;
 		String url = "http://" + host + "/easyrec-web/api/1.0/json/buy";
 		Map<String, String> parameters = new HashMap<String, String>();
 
@@ -157,7 +162,8 @@ public class RecommendService {
 	 */
 	public boolean rate(String sessionID, String rateValue, String itemID,
 			String itemDescription, String itemURL, String userName) {
-		if( !onLine ) return false;
+		if (!onLine)
+			return false;
 		String url = "http://" + host + "/easyrec-web/api/1.0/json/rate";
 
 		Map<String, String> parameters = new HashMap<String, String>();
@@ -195,7 +201,8 @@ public class RecommendService {
 	 */
 	public List<Integer> otherUsersAlsoViewed(String itemID, String userName,
 			Integer requireNumber) {
-		if( !onLine ) return null;
+		if (!onLine)
+			return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -251,7 +258,8 @@ public class RecommendService {
 	 */
 	public List<Integer> otherUsersAlsoBought(String itemID, String userName,
 			Integer requireNumber) {
-		if( !onLine ) return null;
+		if (!onLine)
+			return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -305,7 +313,8 @@ public class RecommendService {
 	 */
 	public List<Integer> recommendationsForUser(String userName,
 			Integer requireNumber) {
-		if( !onLine ) return null;
+		if (!onLine)
+			return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -353,7 +362,8 @@ public class RecommendService {
 	 * @return
 	 */
 	public List<Integer> mostBoughtItems(Integer requireNumber) {
-		if( !onLine ) return null;
+		if (!onLine)
+			return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -402,7 +412,8 @@ public class RecommendService {
 	 * @return
 	 */
 	public List<Integer> mostViewedItems(Integer requireNumber) {
-		if( !onLine ) return null;
+		if (!onLine)
+			return null;
 		List<Integer> result = new ArrayList<Integer>();
 
 		String url = "http://" + host
@@ -510,6 +521,23 @@ public class RecommendService {
 
 	public void setOnLine(Boolean onLine) {
 		this.onLine = onLine;
+	}
+
+	public void init() {
+		if (onLine == null) {
+			try {
+				String path = FileUtils.getUserDirectoryPath() + "/recommend.json";
+				String sets = Util.readFile(path);
+				JSONObject object = (JSONObject)JSONSerializer.toJSON(sets);
+				onLine = object.getBoolean("onLine");
+				host = object.getString("host");
+				apikey = object.getString("apikey");
+				tenantid = object.getString("tenantid");
+				
+			} catch (Exception e) {
+			}
+		}
+
 	}
 
 }

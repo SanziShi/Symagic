@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanUser;
+import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.DaoUser;
+import org.symagic.common.db.func.OrderRequire;
 import org.symagic.common.service.OrderService;
 import org.symagic.common.utilty.presentation.bean.OrderBean;
 import org.symagic.user.utilty.UserSessionUtilty;
@@ -26,6 +28,16 @@ public class UserInfoEnterAction extends CatalogBase{
 	
 	private DaoUser daoUser;
 	
+	private DaoOrder daoOrder;
+	
+	public DaoOrder getDaoOrder() {
+		return daoOrder;
+	}
+
+	public void setDaoOrder(DaoOrder daoOrder) {
+		this.daoOrder = daoOrder;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -84,7 +96,11 @@ public class UserInfoEnterAction extends CatalogBase{
 		if(user != null){
 			totalScore = user.getScore();
 		}
-		orderList = orderService.orderList(userName, 10, 1, null, null, 0).orders;
+		OrderRequire orderRequire = new OrderRequire();
+		orderRequire.setEndTime(null);
+		orderRequire.setStartTime(null);
+		orderRequire.setOrderState("0");
+		orderList = orderService.orderList(userName, 10000, 1, null, null, 0).orders;
 		for(int i = 0; i < orderList.size(); i ++){
 			if(orderList.get(i).getOrderStatus().equals("已下单"))
 				orderList.get(i).setEditable(true);

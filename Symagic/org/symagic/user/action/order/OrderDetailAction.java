@@ -132,8 +132,7 @@ public class OrderDetailAction extends OrderBase {
 		addressList.setZipcode(order.getZipcode());
 		addressList.setAddressSummary(receiverAddres);
 		addressList.setReceiverName(order.getReceiverName());
-		
-		setScore(order.getScore());
+
 		setOrderID(Integer.toString(order.getOrderId()));
 		int state = Integer.parseInt(order.getOrderState());
 		switch (state) {
@@ -167,10 +166,17 @@ public class OrderDetailAction extends OrderBase {
 					* orderList.get(i).getMarketPrice()
 					* orderList.get(i).getAmount()));
 			item.setItemID(orderList.get(i).getBookId());
+			item.setScore((int) (orderList.get(i).getDiscount()
+					* orderList.get(i).getMarketPrice()
+					* orderList.get(i).getAmount()));
+			item.setItemID(orderList.get(i).getBookId());
+			totalPrice += orderList.get(i).getDiscount()
+					* orderList.get(i).getMarketPrice()
+					* orderList.get(i).getAmount();
 			buyItems.add(item);
 		}
-		totalPrice = order.getTotalprice();
-		price = String.format("%.2f", totalPrice);
+		price = String.format("%.2f", order.getTotalprice());
+		setScore((int) ((totalPrice - order.getTotalprice()) * 10));
 		return super.execute();
 	}
 
