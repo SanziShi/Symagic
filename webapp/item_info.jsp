@@ -204,13 +204,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <form action="item/comment" method="post" onsubmit="return comment_submit(this)">
         		<div class="buyer">
                 <input name="itemID" style="display:none" value="<s:property value='itemID'/>"/>
-        		<span class="buyer_name"><s:property value='#iter.userName'/></span>
+        		<span class="buyer_name"></span>
                 我的打分：
-                <input type="radio" checked="checked" name="rating">5分</input>&nbsp;&nbsp;
-                <input type="radio" name="rating">4分</input>&nbsp;&nbsp;
-                <input type="radio" name="rating">3分</input>&nbsp;&nbsp;
-                <input type="radio" name="rating">2分</input>&nbsp;&nbsp;
-                <input type="radio" name="rating">1分</input>&nbsp;&nbsp;
+                <input type="radio" checked="checked" name="rating" value="5">5分</input>&nbsp;&nbsp;
+                <input type="radio" name="rating" value="4">4分</input>&nbsp;&nbsp;
+                <input type="radio" name="rating" value="3">3分</input>&nbsp;&nbsp;
+                <input type="radio" name="rating" value="2">2分</input>&nbsp;&nbsp;
+                <input type="radio" name="rating" value="1">1分</input>&nbsp;&nbsp;
                 </div>
         		<div class="comment-content">
                 	<textarea name="content" style="width:100%; min-height:80px;"></textarea>

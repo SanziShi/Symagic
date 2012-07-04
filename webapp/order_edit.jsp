@@ -151,15 +151,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             	<td valign="middle" align="right"><font color="red">*</font>邮政编码：</td>
                             	<td><input name="zipcode" type="text" class="txt short" value="<s:property value='defaultAddressList.zipcode'/>"/></td>
                             </tr>
-                            <tr>
+                            <!--<tr>
                                 	<td></td>
                                     <td><input type="button"value="保存修改"/></td>
-                            </tr>
+                            </tr>-->
                     		</tbody>
                 		</table>
                 <!--默认送货详情迭代结束-->
                 </div>
-                <span class="add-to-address"><a>添加信息至地址簿</a></span>&nbsp;&nbsp;<span><a>重置内容</a></span>
+                <!--<span class="add-to-address"><a href="javascript:void(0)" onclick="save_address('table_container')">新增该地址至地址簿</a></span>-->&nbsp;&nbsp;
+                <span><a href="javascript:void(0)" onclick="clear_address('order_address')">重置内容</a></span>
             </div>
         </div>
         <div id="payment-c">
