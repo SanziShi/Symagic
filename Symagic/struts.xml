@@ -181,6 +181,15 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 		<action name="forget_password" class="forgetPasswordEnter">
 			<result>forget.jsp</result>
 		</action>
+		
+		<action name="forget_password_submit" class="forgetPassword">
+			<result type="json" name="succes">
+				<param name="result">true</param>
+			</result>
+			<result name="error" type="json">
+				<param name="result">false</param>
+			</result>
+		</action>
 
 		<action name="address" class="addressList">
 			<interceptor-ref name="userLoginInterceptorStack"></interceptor-ref>
