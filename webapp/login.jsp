@@ -51,9 +51,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul>
 			<li><a href="index">首页</a></li>
 			<li><a href="item_list">商品列表</a></li>
+			<li><a href="cart">我的购物车</a></li>
+			<li><a href="user">我的商城</a></li>
 			<li><a href="send_notes">购物指引</a></li>
-			<li><a class="nouseful">&nbsp;</a></li>
-                        <li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
@@ -64,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="search2">
 			<div id="searchleft">
 				<img src="image/ico_site.jpg"  id="ico_site"/>
-				网站路径：<a href="index">首页</a>&gt;&gt;<a href=""> 个人信息维护</strong></a>
+				网站路径：<a href="index">首页</a>&gt;&gt;<a href="">此操作需要登录</strong></a>
 			</div>
 			<form action="quick_search" method="post">
 			<div id="searchright2">

@@ -53,9 +53,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul>
 			<li><a href="index">首页</a></li>
 			<li><a href="item_list">商品列表</a></li>
+			<li><a href="cart">我的购物车</a></li>
+			<li><a href="user">我的商城</a></li>
 			<li><a href="send_notes">购物指引</a></li>
-			<li><a class="nouseful">&nbsp;</a></li>
-                        <li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
@@ -95,8 +95,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div onclick="show_user_con('2')"><dd>修改密码</dd></div>
         		<div onclick="show_user_con('3')"><dd>修改昵称</dd></div>
         		<div onclick="show_favorite()"><dd>我的收藏</dd></div>
+                <div onclick="show_user_con('4')"><dd>我的订单</dd></div>
         		<div onclick="show_address()"><dd>收货地址</dd></div>
-        		<div onclick="show_user_con('4')"><dd>我的订单</dd></div>
+        		
         		<br/>
         		<dt></dt>
         	</dl>

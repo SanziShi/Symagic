@@ -51,9 +51,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<ul>
 			<li><a href="index">首页</a></li>
 			<li><a href="item_list">商品列表</a></li>
+			<li><a href="cart">我的购物车</a></li>
+			<li><a href="user">我的商城</a></li>
 			<li><a href="send_notes">购物指引</a></li>
-			<li><a class="nouseful">&nbsp;</a></li>
-                        <li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
 			<li><a class="nouseful">&nbsp;</a></li>
@@ -86,17 +86,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 		<div id="sendnote">
-			<div id="sendnotehead"><strong>购物指引</strong></div>
+			<div id="sendnotehead"><strong><font color="#FFFFFF">购物指引</font></strong></div>
 			<div id="sendnotecontent">
-			<ul>
-			<li>1.系统将会根据您的送货地址来收取送货费：本地5元，外地10元；</li>
-			<li>2.会员可以使用积分代替现金，系统会将您在结帐时输入的积分数来换算成现金；</li>
-			<li>3.对于本地会员，当购买金额大于29元时，将免收送货费；对于外地会员，当购买金额大于59元时，将免收送货费；</li>
-			<li>4.货到付款支付方式支持两种服务：现金支付、POS机刷卡支付
-			<li>&nbsp;&nbsp;现金支付：货物送到订单指定的收货地址后，由收货人支付货款给送货人员</li>
-            <li>&nbsp;&nbsp;POS机刷卡支付：货物送到订单指定的收货地址后，由收货人刷卡支付订单金额</li>
-			<li>5.最终订单金额将由 商品商城价格 + 送货费 - 积分代现金  计算得出。</li>
-			</ul>
+			<ul class="info-detail">
+            <li>1.登录在整个首页的右上角，用户注册账号后可以登录.</li>
+			<li>2.免费注册在整个首页的右上角，用户可以免费注册Symagic网上书城的账号。</li>
+            <li>3.用户需要登录账号后才能进入“我的商城”。在“我的商城”中会显示用户的一些基本信息。</li>
+			<li>4.用户需要登录账号后才能进入购物车。</li>
+            <li>5.目前商城仅支持货到付款，以及现金支付,我们强大的物流系统会让您在满意的时间内收到下单商品。</li>
+            <li>6.会员购物成功可以获得相应积分，积分兑换比率由会员等级决定。</li>
+            <li>7.积分可以折现进行购物，每100积分可以兑换1元人民币</li>
+			<li>8.最终订单金额将由 商品商城价格(即折扣价) - 积分代现金  计算得出。</li>
+			<img style="margin-left:70px;" width="600px" height="200px"src="image/huiyuan.jpg"/>
+            </ul>
 			</div>
 		</div>
 		
