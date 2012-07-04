@@ -772,10 +772,11 @@ public class DaoBook {
 					+ "order by bookid asc) "
 					+ " as t1, book_catalog_detail as t2 "
 					+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
-		
+		if(req.getCatalogidList()!=null){
 			for (int i=0; i<req.getCatalogidList().size(); i++) {
 				sql += " , " + req.getCatalogidList().get(i);
 			}
+		}
 			
 			sql		+= ") order by bookid asc  limit ?, ?";
 		try {
