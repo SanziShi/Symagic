@@ -845,7 +845,7 @@ public class DaoBook {
 					+ "group by bookid "
 					+ "having sum(amount) > ? "
 					+ "order by bookid asc  limit ?, ?";
-		else
+		else {
 			sql = "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid "
 				+ "from ("
 				+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
@@ -860,13 +860,19 @@ public class DaoBook {
 				+ "' "
 				+ " group by bookid "
 				+ " having sum(amount) > ? "
-				+ "order by bookid asc limit ?, ?) "
+				+ "order by bookid asc) "
 				+ " as t1, book_catalog_detail as t2 "
-				+ " where t1.bookid=t2.bookid and t2.catalogid in (0, ";
+				+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
 	
 		for (int i=0; i<req.getCatalogidList().size(); i++) {
-			sql += " , " + req.getCatalogidList().get(0);
+			sql += " , " + req.getCatalogidList().get(i);
 		}
+		
+		sql		+= ") order by bookid asc  limit ?, ?";
+			
+		}
+		
+		
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn.prepareStatement(sql);
