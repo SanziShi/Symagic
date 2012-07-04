@@ -34,6 +34,10 @@ public class SubmitCommentAction extends ActionSupport {
 			resultInfo = "请求非法";
 			return SUCCESS;
 		}
+		if(!itemService.isCommentAble(itemID)){
+			resultInfo="不能评论";
+			return SUCCESS;
+		}
 		BeanComment comment = new BeanComment();
 		comment.setBookID(itemID);
 		comment.setContent(content);
