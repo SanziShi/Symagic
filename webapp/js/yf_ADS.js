@@ -347,7 +347,6 @@ function show_item_search(e)
 }
 function check_box_all_change(c,e)
 {
-	alert('test');
 	var inputs = document.getElementsByTagName("input");
 	for(var i in inputs)
 	{
