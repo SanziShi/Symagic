@@ -344,7 +344,7 @@
 		scope="request">
 		<property name="itemService" ref="ItemService"></property>
 		<property name="catalogService" ref="CatalogService"></property>
-		<property name="lines" value="15"></property>
+		<property name="lines" value="3"></property>
 		<property name="errorHeader" value="没有相应 的商品"></property>
 		<property name="errorSpecification" value="symagic商城目前没有此类商品"></property>
 		<property name="recommendNumber" value="7"></property>
