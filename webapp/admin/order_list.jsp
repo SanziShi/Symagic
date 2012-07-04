@@ -205,7 +205,7 @@ var defaultYear = <s:property value="endTime.year" default="2012"/>;
 							<tr>
 								<th></th>
 								<th>订单号</th>
-								<th>客户号</th>
+								<th>用户名</th>
 								<th>下单时间</th>
 								<th>订单状态</th>
 
