@@ -62,6 +62,13 @@ public class DaoAdmin {
 		return true;
 	}
 	
+	/**
+	 * 更新管理员密码
+	 * @param adminName	管理员名
+	 * @param oldPwd	管理员旧密码
+	 * @param newPwd	管理员新密码
+	 * @return	true 修改成功	false 修改出错
+	 */
 	public boolean updatePasswrod(String adminName, String oldPwd, String newPwd)
 	{
 		if (!this.validateAdmin(adminName, oldPwd))

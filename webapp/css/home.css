@@ -503,7 +503,7 @@ span.close
 #category h4{
 	margin:0px 18px 0px 18px;
 	padding:3px 0px 1px 7px;
-	background:url(../image/11.png);
+	background:url(../image/11.png) no-repeat;
 	font-size:14px;
 	height:20px;
 }

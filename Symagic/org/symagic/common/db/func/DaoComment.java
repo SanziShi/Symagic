@@ -307,7 +307,7 @@ public class DaoComment {
 			ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
-			return -1;
+			return 0;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
