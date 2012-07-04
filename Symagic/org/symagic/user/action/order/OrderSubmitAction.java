@@ -224,17 +224,26 @@ public class OrderSubmitAction extends OrderBase {
 		order.setUsername(username);
 		order.setZipcode(getZipcode());
 		int inventory = 0;
-		for(int i = 0; i < order.getList().size(); i ++){
-			inventory = daoBook.getInventory(order.getList().get(i).getBookId());
-			if(inventory > items.get(i).getItemNumber()){
-				if(!daoBook.setInventory(order.getList().get(i).getBookId(), inventory - items.get(i).getItemNumber())){
-					for(int j = 0; j < i; j ++){
-						daoBook.setInventory(order.getList().get(j).getBookId(), daoBook.getInventory(order.getList().get(j).getBookId()) + order.getList().get(i).getAmount());
+		for (int i = 0; i < order.getList().size(); i++) {
+			inventory = daoBook
+					.getInventory(order.getList().get(i).getBookId());
+			if (inventory > items.get(i).getItemNumber()) {
+				if (!daoBook.setInventory(order.getList().get(i).getBookId(),
+						inventory - items.get(i).getItemNumber())) {
+					for (int j = 0; j < i; j++) {
+						daoBook.setInventory(
+								order.getList().get(j).getBookId(),
+								daoBook.getInventory(order.getList().get(j)
+										.getBookId())
+										+ order.getList().get(i).getAmount());
 					}
 					return ERROR;
 				}
 			}
-			if(!daoCart.deleteBook(UserSessionUtilty.getUsername(), order.getList().get(i).getBookId())){
+			if (!daoCart.modifyBook(UserSessionUtilty.getUsername(), order
+					.getList().get(i).getBookId(), UserSessionUtilty.getCart()
+					.get(order.getList().get(i).getBookId())
+					- order.getList().get(i).getAmount())) {
 				return ERROR;
 			}
 		}
@@ -245,7 +254,8 @@ public class OrderSubmitAction extends OrderBase {
 					daoUser.getScore(UserSessionUtilty.getUsername()) - score,
 					UserSessionUtilty.getUsername());
 			for (int i = 0; i < order.getList().size(); i++) {
-				UserSessionUtilty.deleteFromCart(order.getList().get(i)
+				for(int j = 0; j < order.getList().get(i).getAmount(); j ++)
+					UserSessionUtilty.deleteFromCart(order.getList().get(i)
 						.getBookId());
 			}
 			return SUCCESS;

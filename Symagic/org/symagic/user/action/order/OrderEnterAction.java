@@ -2,21 +2,27 @@ package org.symagic.user.action.order;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
+import org.symagic.common.db.func.DaoCart;
 import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.service.AddressService;
 import org.symagic.common.utilty.presentation.bean.AddressDetailBean;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
 import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
 import org.symagic.user.utilty.UserSessionUtilty;
+
+import com.opensymphony.xwork2.ActionContext;
 
 public class OrderEnterAction extends CatalogBase {
 
@@ -44,9 +50,9 @@ public class OrderEnterAction extends CatalogBase {
 	private DaoBook daoBook;
 
 	private List<ItemTinyBean> items;
-	
+
 	private List<DistrictBean> level1Districts;
-	
+
 	public List<AddressDetailBean> getAddressList() {
 		return addressList;
 	}
@@ -95,7 +101,7 @@ public class OrderEnterAction extends CatalogBase {
 		buyItems = new ArrayList<ItemTinyBean>();
 		for (int i = 0; i < items.size(); i++) {
 			Integer itemId = items.get(i).getItemID();
-			if(itemId == null)
+			if (itemId == null)
 				continue;
 			BeanBook beanBook = daoBook.getDetail(itemId);
 			if (beanBook != null) {
@@ -103,18 +109,18 @@ public class OrderEnterAction extends CatalogBase {
 				itemTinyBean.setItemID(beanBook.getBookId());
 				itemTinyBean.setName(beanBook.getBookName());
 				itemTinyBean.setItemNumber(items.get(i).getItemNumber());
-				itemTinyBean
-						.setPrice(String.format("%.2f", (beanBook
-								.getMarketPrice() * beanBook.getDiscount())));
+				itemTinyBean.setPrice(String.format("%.2f",
+						(beanBook.getMarketPrice() * beanBook.getDiscount())));
 				itemTinyBean
 						.setItemTotalPrice(String.format(
 								"%.2f",
 								(beanBook.getMarketPrice()
 										* beanBook.getDiscount() * itemTinyBean
 										.getItemNumber())));
-				itemTinyBean.setScore((int)(beanBook.getMarketPrice()
-						* beanBook.getDiscount() * itemTinyBean
-						.getItemNumber()));
+				itemTinyBean
+						.setScore((int) (beanBook.getMarketPrice()
+								* beanBook.getDiscount() * itemTinyBean
+								.getItemNumber()));
 				temp += beanBook.getMarketPrice() * beanBook.getDiscount()
 						* itemTinyBean.getItemNumber();
 				buyItems.add(itemTinyBean);
@@ -127,8 +133,9 @@ public class OrderEnterAction extends CatalogBase {
 		payment = "货到付款";
 		deliverWay = "快递";
 		HashMap<Integer, Integer> orderHashMap = new HashMap<Integer, Integer>();
-		for(int i = 0; i < items.size(); i ++){
-			orderHashMap.put(items.get(i).getItemID(), items.get(i).getItemNumber());
+		for (int i = 0; i < items.size(); i++) {
+			orderHashMap.put(items.get(i).getItemID(), items.get(i)
+					.getItemNumber());
 		}
 		UserSessionUtilty.setOrder(orderHashMap);
 		return super.execute();
@@ -136,9 +143,59 @@ public class OrderEnterAction extends CatalogBase {
 
 	@Override
 	public void validate() {
+		String param = (String) ActionContext.getContext().getSession()
+				.get("savedForm");
+		if (param != null && items == null) {
+			items = new ArrayList<ItemTinyBean>();
+			try {
+				JSON json = JSONSerializer.toJSON(param);
+				JSONObject object = (JSONObject) json;
+				@SuppressWarnings("unchecked")
+				Iterator<String> keys = object.keys();
+				String lastKey = null;
+				while (keys.hasNext()) {
+					String key = keys.next();
+					JSONArray array = object.getJSONArray(key);
+					
+					key = key.replaceAll("(.+)\\[(.+?)\\](.+)", "$1"+"$2"+"$3");
+					key = key.replace("items", "");
+					String[] strs = key.split("\\.");
+					
+					if(strs.length == 2){
+						int index = Integer.parseInt(strs[0]);
+						if(index < items.size() && items.get(index) != null){
+							if(strs[1].equals("itemNumber")){
+								items.get(index).setItemNumber(Integer.parseInt(array.getString(0)));
+							}
+							if(strs[1].equals("itemID")){
+								items.get(index).setItemID(Integer.parseInt(array.getString(0)));
+							}
+						}
+						else{
+							ItemTinyBean item = new ItemTinyBean();
+							if(strs[1].equals("itemNumber")){
+								item.setItemNumber(Integer.parseInt(array.getString(0)));
+							}
+							if(strs[1].equals("itemID")){
+								item.setItemID(Integer.parseInt(array.getString(0)));
+							}
+							items.add(item);
+						}
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		if (items == null) {
 			isValidate = false;
 			return;
+		}
+		for(int i = 0; i < items.size(); i ++){
+			if(items.get(i).getItemNumber() == 0){
+				isValidate = false;
+				return;
+			}
 		}
 		isValidate = true;
 		super.validate();
@@ -183,6 +240,5 @@ public class OrderEnterAction extends CatalogBase {
 	public void setLevel1Districts(List<DistrictBean> level1Districts) {
 		this.level1Districts = level1Districts;
 	}
-
 
 }

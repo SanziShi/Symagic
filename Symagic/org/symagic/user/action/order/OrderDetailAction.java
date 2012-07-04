@@ -166,6 +166,7 @@ public class OrderDetailAction extends OrderBase {
 			item.setItemTotalPrice(String.format("%.2f", orderList.get(i).getDiscount()
 					* orderList.get(i).getMarketPrice()
 					* orderList.get(i).getAmount()));
+			item.setItemID(orderList.get(i).getBookId());
 			buyItems.add(item);
 		}
 		totalPrice = order.getTotalprice();
