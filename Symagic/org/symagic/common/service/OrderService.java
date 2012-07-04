@@ -110,6 +110,8 @@ public class OrderService {
 			require.setEndTime(format.format(end));
 		if (orderState != null && orderState != 0)
 			require.setOrderState(Integer.toString(orderState - 1));
+		if(username != null)
+			username = username.trim();
 		require.setPage(page);
 		require.setLines(itemPerPage);
 		List<BeanOrder> orders = daoOrder.search(require, username);
