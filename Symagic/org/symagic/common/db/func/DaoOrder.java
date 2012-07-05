@@ -130,6 +130,9 @@ public class DaoOrder {
 				order.setUsername(rs.getString("username"));
 				order.setZipcode(rs.getString("zipcode"));
 			}
+			else{
+				return null;
+			}
 			return order;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -635,6 +638,36 @@ public class DaoOrder {
 			}
 		}
 		return -1;
+	}
+	
+	public int getOrderNum(String username, int bookID)
+	{
+		try {
+			conn	= ConnectionPool.getInstance().getConnection();
+			ps	= conn.prepareStatement("select count(*) " +
+					"from book_order as t1 , order_detail as t2 " +
+					"where t1.orderid=t2.orderid and t1.username=? and t2.bookid=? and orderstate=? ");
+			ps.setString(1, username);
+			ps.setInt(2, bookID);
+			ps.setString(3, "2");
+			rs	= ps.executeQuery();
+			if (rs.next())
+				return rs.getInt(1);
+			return 0;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return 0;
 	}
 	
 }

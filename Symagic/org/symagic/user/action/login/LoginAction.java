@@ -9,6 +9,10 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginAction extends ActionSupport{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2935337682932323036L;
 	//传入
 	private String password;//登录密码
 	private String captchaValue;//验证码

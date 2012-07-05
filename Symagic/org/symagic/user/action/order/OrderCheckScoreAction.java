@@ -39,6 +39,10 @@ public class OrderCheckScoreAction extends CatalogBase{
 	}
 
 	public String execute() throws Exception{
+		if(score == null){
+			checkResult = false;
+			return ERROR;
+		}
 		BeanUser user = daoUser.getUser(UserSessionUtilty.getUsername());
 		if(user == null)
 			checkResult = false;
@@ -64,6 +68,10 @@ public class OrderCheckScoreAction extends CatalogBase{
 			setPrice(String.format("%.2f", price));
 		}
 		return SUCCESS;
+	}
+	
+	public void validate(){
+		clearErrorsAndMessages();
 	}
 
 	public Integer getScore() {

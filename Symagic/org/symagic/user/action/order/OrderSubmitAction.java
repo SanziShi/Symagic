@@ -89,9 +89,9 @@ public class OrderSubmitAction extends OrderBase {
 	private Integer orderID;
 
 	private DaoCart daoCart;
-	
+
 	private String errorHeader;
-	
+
 	public String getErrorHeader() {
 		return errorHeader;
 	}
@@ -222,7 +222,8 @@ public class OrderSubmitAction extends OrderBase {
 			orderDetail.setIsbn(book.getIsbn());
 			orderDetail.setMarketPrice(book.getMarketPrice());
 			order.getList().add(orderDetail);
-			totalPrice += book.getMarketPrice() * book.getDiscount() * items.get(i).getItemNumber();
+			totalPrice += book.getMarketPrice() * book.getDiscount()
+					* items.get(i).getItemNumber();
 			String URL = "itemDetail?itemID=" + book.getBookId();
 			// 通知推荐系统用户购买
 			for (int j = 0; j < items.get(i).getItemNumber(); j++) {
@@ -260,11 +261,14 @@ public class OrderSubmitAction extends OrderBase {
 					return ERROR;
 				}
 			}
-			if (!daoCart.modifyBook(UserSessionUtilty.getUsername(), order
-					.getList().get(i).getBookId(), UserSessionUtilty.getCart()
-					.get(order.getList().get(i).getBookId())
-					- order.getList().get(i).getAmount())) {
-				return ERROR;
+			if (UserSessionUtilty.getCart().get(
+					order.getList().get(i).getBookId()) != null) {
+				if (!daoCart.modifyBook(UserSessionUtilty.getUsername(), order
+						.getList().get(i).getBookId(), UserSessionUtilty
+						.getCart().get(order.getList().get(i).getBookId())
+						- order.getList().get(i).getAmount())) {
+					return ERROR;
+				}
 			}
 		}
 		orderID = daoOrder.addOrder(order);
@@ -274,9 +278,16 @@ public class OrderSubmitAction extends OrderBase {
 					daoUser.getScore(UserSessionUtilty.getUsername()) - score,
 					UserSessionUtilty.getUsername());
 			for (int i = 0; i < order.getList().size(); i++) {
-				for(int j = 0; j < order.getList().get(i).getAmount(); j ++)
+				for (int j = 0; j < order.getList().get(i).getAmount(); j++) {
 					UserSessionUtilty.deleteFromCart(order.getList().get(i)
-						.getBookId());
+							.getBookId());
+					recommandService.buy(UserSessionUtilty.getSessionID(), ""
+							+ order.getList().get(i).getBookId(), daoBook
+							.getDetail(order.getList().get(i).getBookId())
+							.getBookDesc(), "item_detail?itemID="
+							+ order.getList().get(i).getBookId(),
+							UserSessionUtilty.getUsername());
+				}
 			}
 			return SUCCESS;
 		} else {

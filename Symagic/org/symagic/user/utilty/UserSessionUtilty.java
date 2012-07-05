@@ -131,7 +131,10 @@ public class UserSessionUtilty extends SessionUtilty {
 		HashMap<Integer,Integer> cart=getCart();
 		Integer value=cart.get(id);
 		if(value==null)return false;
-		cart.put(id, number);
+		if(number!=0)
+		    cart.put(id, number);
+		else
+			cart.remove(id);
 		//改变session中的总数量
 		UserSessionUtilty.addTotalNumber(number-value);
 		return true;

@@ -50,10 +50,11 @@ public class CartAddItemAction extends ActionSupport {
 		ItemTinyBean item;
 	  while(index.hasNext()){
 		  item=index.next();
-		  //数据不符合规则，忽略掉
+		  //数据不符合规则，忽略掉,有非法请求
 		  if(item==null||item.getItemID()==null||item.getItemNumber()==null){
-			
-			  continue;
+			  addResult=false;
+			  resultInfo="非法请求";
+			  break;
 		  }
 		 
 		  result=addOneToCart(item.getItemID(),item.getItemNumber(),login,builder);
@@ -84,14 +85,25 @@ public class CartAddItemAction extends ActionSupport {
 			info.append("书名为"+book.getBookName()+"已下架\n");
 			return false;
 		}
+		//itemID不存在于数据库中或者是库存不足
+				if(book==null||itemNumber<=0||itemNumber>999){
+					info.append("请输入正确 的数量");   
+					return false;
+					 }
+				
 		//通过其数量判断是否有这商品
 		 Integer  number=UserSessionUtilty.getCart().get(itemID);
+		 
 		int compare=(number==null?0:number);
-		//itemID不存在于数据库中或者是库存不足
-		if(book==null||itemNumber<=0||book.getInventory()<(itemNumber+compare)||(itemNumber+compare)>999){
-			info.append("书名为"+book.getBookName()+"添加数量非法\n");   
+		
+		if(compare==0&&book.getInventory()<(itemNumber+compare)){
+			info.append("添加商品数量不能超过库存");
 			return false;
-			 }
+		}
+		if(compare!=0&&book.getInventory()<(itemNumber+compare)){
+			info.append("购物车已有此商品，以当前数量加到购物车后，数量超过库存,无法加入购物车");
+			return false;
+		}
 		boolean addResult=true;
 		 if(login){
 		    	if(number==null)
