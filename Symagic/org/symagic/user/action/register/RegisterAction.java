@@ -81,13 +81,13 @@ public class RegisterAction extends ActionSupport {
 			 return;
 		 }
 		 //昵称合法性
-		 if(!nickname.matches("^[a-zA-Z0-9_\u4e00-\u9fa5]+$")||byteCount(nickname)>20||byteCount(nickname)<3){
+		 if(byteCount(nickname)>20||byteCount(nickname)<4){
 			 validateResult=false;
-			 resultInfo="昵称不合法";
+			 resultInfo="昵称长度不合法";
 			 return;
 		 }
 		 //验证密码合法性
-		 if(password.length()<6||password.length()>20||(!password.matches("[0-9a-zA-Z]*")))
+		 if(password.length()<6||password.length()>20)
 		 {
 			 validateResult=false;
 			 resultInfo="密码不合法";

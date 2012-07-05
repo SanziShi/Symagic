@@ -70,6 +70,38 @@ public class SymagicSetupAction extends ActionSupport {
 		return super.execute();
 	}
 
+	public String getRecommendHost() {
+		return recommendHost;
+	}
+
+	public void setRecommendHost(String recommendHost) {
+		this.recommendHost = recommendHost;
+	}
+
+	public String getRecommendApiKey() {
+		return recommendApiKey;
+	}
+
+	public void setRecommendApiKey(String recommendApiKey) {
+		this.recommendApiKey = recommendApiKey;
+	}
+
+	public String getRecommendTenantid() {
+		return recommendTenantid;
+	}
+
+	public void setRecommendTenantid(String recommendTenantid) {
+		this.recommendTenantid = recommendTenantid;
+	}
+
+	public Integer getRecommendOnLine() {
+		return recommendOnLine;
+	}
+
+	public void setRecommendOnLine(Integer recommendOnLine) {
+		this.recommendOnLine = recommendOnLine;
+	}
+
 	@Override
 	public void validate() {
 

@@ -296,6 +296,7 @@
 	<bean id="updateCart" class="org.symagic.user.action.cart.CartModifyItemAction"
 		scope="request">
 		<property name="daoCart" ref="DaoCart"></property>
+		<property name="daoBook" ref="DaoBook"></property>
 	</bean>
 
 	<bean id="cartEnter" class="org.symagic.user.action.cart.CartEnterAction">
