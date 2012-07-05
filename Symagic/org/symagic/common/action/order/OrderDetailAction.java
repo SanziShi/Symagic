@@ -44,11 +44,13 @@ public class OrderDetailAction extends CatalogBase {
 
 	@Override
 	public String execute() throws Exception {
-		
-		if( orderID == null || orderID == 0) return ERROR;
+
+		if (orderID == null || orderID == 0)
+			return ERROR;
 
 		order = orderService.orderDetail(orderID);
-		if( order == null ) return ERROR;
+		if (order == null)
+			return ERROR;
 		userName = order.getUsername();
 		orderTime = order.getOrderDate();
 		price = String.format("%.2f", order.getTotalprice());
@@ -64,7 +66,12 @@ public class OrderDetailAction extends CatalogBase {
 		}
 		receiver = order.getReceiverName();
 
-		address = OrderService.deserializerAddress(order.getAddrDetail());
+		try {
+			address = OrderService.deserializerAddress(order.getAddrDetail());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ERROR;
+		}
 		receiverAddress = new String();
 		if (address.level1District != null) {
 			receiverAddress += address.level1District.getName();
