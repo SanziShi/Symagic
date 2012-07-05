@@ -122,6 +122,9 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 	private ServletContext context;
 
 	private DaoBook daoBook;
+	
+	private String errorHeader;
+	private String errorSpecification;
 
 	/**
 	 * 用于存放上传的图片
@@ -161,7 +164,11 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 					publishTime.getDay());
 			GregorianCalendar now = new GregorianCalendar();
 			//检查出版时间是否在未来
-			if( calender.getTime().after(now.getTime()) ) return ERROR;
+			if( calender.getTime().after(now.getTime()) ){
+				errorHeader = "出版时间设置错误";
+				errorSpecification = "出版时间不可晚于当前时间";
+				return ERROR;
+			}
 			book.setPublishDate(dateFormat.format(calender.getTime()));
 		}
 
@@ -199,6 +206,8 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 		if (AdminUtility.isEmpty(ISBN) || AdminUtility.isEmpty(name) || AdminUtility.isEmpty(author) || AdminUtility.isEmpty(publisher) ||
 				AdminUtility.isEmpty(binding) || marketPrice == null || marketPrice < 0 || discount == null || discount < 0
 				|| inventory == null || inventory < 0 || AdminUtility.isEmpty(description) ) {
+			errorHeader = "信息不全";
+			errorSpecification = "您填写的信息不全，请返回检查";
 			formValidateResult = false;
 		} else {
 			formValidateResult = true;
@@ -377,6 +386,22 @@ public class ItemAddAction extends ActionSupport implements ServletContextAware 
 
 	public void setItemID(Integer itemID) {
 		this.itemID = itemID;
+	}
+
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
 	}
 
 }
