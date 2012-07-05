@@ -185,6 +185,9 @@ public class ItemModifySubmitAction extends ActionSupport implements
 			GregorianCalendar calender = new GregorianCalendar(
 					publishTime.getYear(), publishTime.getMonth() - 1,
 					publishTime.getDay());
+			GregorianCalendar now = new GregorianCalendar();
+			//检查出版时间是否在未来
+			if( calender.getTime().after(now.getTime()) ) return ERROR;
 			book.setPublishDate(dateFormat.format(calender.getTime()));
 		}
 
