@@ -29,13 +29,14 @@ public class SubmitCommentAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		if (itemID == null || content == null || rating == null
-				|| !UserSessionUtilty.isLogin() || rating < 0 || rating > 5) {
+		if (itemID == null || content == null || rating == null || rating < 0 || rating > 5) {
 			resultInfo = "请求非法";
+			submitResult=false;
 			return SUCCESS;
 		}
 		if(!itemService.isCommentAble(itemID)){
 			resultInfo="不能评论";
+			submitResult=false;
 			return SUCCESS;
 		}
 		BeanComment comment = new BeanComment();
@@ -45,9 +46,11 @@ public class SubmitCommentAction extends ActionSupport {
 		comment.setUsername(UserSessionUtilty.getUsername());
 		submitResult = itemService.addItemComment(comment);
 		if (!submitResult) {
+			submitResult=false;
 			resultInfo = "评论未能提交";
 			return SUCCESS;
 		} else {
+			submitResult=true;
 			resultInfo = "评论提交成功";
 		}
 		// 得到书箱描述信息，为推荐系统提供信息，得到后期的推荐

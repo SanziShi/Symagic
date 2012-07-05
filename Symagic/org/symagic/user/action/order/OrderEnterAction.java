@@ -13,9 +13,12 @@ import net.sf.json.JSONSerializer;
 
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
+import org.symagic.common.db.bean.BeanLevel;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.db.func.DaoCart;
 import org.symagic.common.db.func.DaoDistrict;
+import org.symagic.common.db.func.DaoLevel;
+import org.symagic.common.db.func.DaoUser;
 import org.symagic.common.service.AddressService;
 import org.symagic.common.utilty.presentation.bean.AddressDetailBean;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
@@ -51,8 +54,28 @@ public class OrderEnterAction extends CatalogBase {
 
 	private List<ItemTinyBean> items;
 
+	private DaoUser daoUser;
+
+	private DaoLevel daoLevel;
+
+	public DaoLevel getDaoLevel() {
+		return daoLevel;
+	}
+
+	public void setDaoLevel(DaoLevel daoLevel) {
+		this.daoLevel = daoLevel;
+	}
+
+	public DaoUser getDaoUser() {
+		return daoUser;
+	}
+
+	public void setDaoUser(DaoUser daoUser) {
+		this.daoUser = daoUser;
+	}
+
 	private List<DistrictBean> level1Districts;
-	
+
 	private Integer score;
 
 	public List<AddressDetailBean> getAddressList() {
@@ -100,6 +123,13 @@ public class OrderEnterAction extends CatalogBase {
 		if (!isValidate)
 			return ERROR;
 		Float temp = 0.0f;
+		score = daoUser.getScore(UserSessionUtilty.getUsername());
+		BeanLevel level = null;
+		if (score != null)
+			level = daoLevel.judgeLevel(score);
+		if (level == null) {
+			return ERROR;
+		}
 		buyItems = new ArrayList<ItemTinyBean>();
 		for (int i = 0; i < items.size(); i++) {
 			Integer itemId = items.get(i).getItemID();
@@ -120,9 +150,9 @@ public class OrderEnterAction extends CatalogBase {
 										* beanBook.getDiscount() * itemTinyBean
 										.getItemNumber())));
 				itemTinyBean
-						.setScore((int) (beanBook.getMarketPrice()
-								* beanBook.getDiscount() * itemTinyBean
-								.getItemNumber()));
+						.setScore((int) (level.getRate() * (beanBook
+								.getMarketPrice() * beanBook.getDiscount() * itemTinyBean
+								.getItemNumber())));
 				temp += beanBook.getMarketPrice() * beanBook.getDiscount()
 						* itemTinyBean.getItemNumber();
 				buyItems.add(itemTinyBean);
@@ -134,6 +164,7 @@ public class OrderEnterAction extends CatalogBase {
 		level1Districts = addressService.getDistricts(0);
 		payment = "货到付款";
 		deliverWay = "快递";
+		score = daoUser.getScore(UserSessionUtilty.getUsername());
 		HashMap<Integer, Integer> orderHashMap = new HashMap<Integer, Integer>();
 		for (int i = 0; i < items.size(); i++) {
 			orderHashMap.put(items.get(i).getItemID(), items.get(i)
@@ -148,6 +179,7 @@ public class OrderEnterAction extends CatalogBase {
 		String param = (String) ActionContext.getContext().getSession()
 				.get("savedForm");
 		if (param != null && items == null) {
+			Map<Integer, ItemTinyBean> itemMap = new HashMap<Integer, ItemTinyBean>();
 			items = new ArrayList<ItemTinyBean>();
 			try {
 				JSON json = JSONSerializer.toJSON(param);
@@ -158,43 +190,73 @@ public class OrderEnterAction extends CatalogBase {
 				while (keys.hasNext()) {
 					String key = keys.next();
 					JSONArray array = object.getJSONArray(key);
-					
-					key = key.replaceAll("(.+)\\[(.+?)\\](.+)", "$1"+"$2"+"$3");
+
+					key = key.replaceAll("(.+)\\[(.+?)\\](.+)", "$1" + "$2"
+							+ "$3");
 					key = key.replace("items", "");
 					String[] strs = key.split("\\.");
-					
-					if(strs.length == 2){
+
+					if (strs.length == 2) {
 						int index = Integer.parseInt(strs[0]);
-						if(index < items.size() && items.get(index) != null){
-							if(strs[1].equals("itemNumber")){
-								items.get(index).setItemNumber(Integer.parseInt(array.getString(0)));
+						try {
+							ItemTinyBean itemTinyBean = itemMap.get(index);
+							if (itemTinyBean == null) {
+								throw new Exception();
 							}
-							if(strs[1].equals("itemID")){
-								items.get(index).setItemID(Integer.parseInt(array.getString(0)));
+							if (strs[1].equals("itemNumber")) {
+								itemTinyBean.setItemNumber(Integer
+										.parseInt(array.getString(0)));
 							}
-						}
-						else{
-							ItemTinyBean item = new ItemTinyBean();
-							if(strs[1].equals("itemNumber")){
-								item.setItemNumber(Integer.parseInt(array.getString(0)));
+							if (strs[1].equals("itemID")) {
+								itemTinyBean.setItemID(Integer.parseInt(array
+										.getString(0)));
 							}
-							if(strs[1].equals("itemID")){
-								item.setItemID(Integer.parseInt(array.getString(0)));
+							itemMap.put(index, itemTinyBean);
+						} catch (Exception ex) {
+							ItemTinyBean itemTinyBean = new ItemTinyBean();
+							if (strs[1].equals("itemNumber")) {
+								itemTinyBean.setItemNumber(Integer
+										.parseInt(array.getString(0)));
 							}
-							items.add(item);
+							if (strs[1].equals("itemID")) {
+								itemTinyBean.setItemID(Integer.parseInt(array
+										.getString(0)));
+							}
+							itemMap.put(index, itemTinyBean);
 						}
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			if (itemMap != null) {
+				Iterator<Map.Entry<Integer, ItemTinyBean>> iterator = itemMap
+						.entrySet().iterator();
+				while (iterator.hasNext()) {
+					Map.Entry<Integer, ItemTinyBean> entry = iterator.next();
+					items.add(entry.getValue());
+				}
+			}
 		}
 		if (items == null) {
 			isValidate = false;
 			return;
 		}
-		for(int i = 0; i < items.size(); i ++){
-			if(items.get(i).getItemNumber() == 0){
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i).getItemID() == null)
+				items.remove(i);
+		}
+		for (int i = 0; i < items.size(); i++) {
+			if (items.get(i) != null) {
+				if (items.get(i).getItemID() == null) {
+					items.remove(i);
+				}
+				if (items.get(i).getItemNumber() == null
+						|| items.get(i).getItemNumber() <= 0) {
+					isValidate = false;
+					return;
+				}
+			} else {
 				isValidate = false;
 				return;
 			}
