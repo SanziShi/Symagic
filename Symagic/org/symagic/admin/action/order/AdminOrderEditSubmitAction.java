@@ -86,6 +86,8 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		List<BeanOrderDetail> itemList = new ArrayList<BeanOrderDetail>();
 		
 		List<BeanOrderDetail> oldItems = order.getList();
+		
+		float totalprice = 0;
 
 		// 解析JSON数组
 		for (int i = 0; i < items.size(); i++) {
@@ -105,11 +107,13 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 				orderDetail.setIsbn(book.getIsbn());
 				orderDetail.setMarketPrice(book.getMarketPrice());
 				orderDetail.setOrderId(orderID);
+				totalprice += book.getMarketPrice() * book.getDiscount() * items.get(i).getItemNumber();
 				itemList.add(orderDetail);
 			}
 
 		}
 		order.setList(itemList);
+		order.setTotalprice(totalprice);
 
 		if( !daoOrder.updateOrder(order) ) return ERROR;
 
