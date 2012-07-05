@@ -43,6 +43,9 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 	private DaoDistrict daoDistrict;
 	private DaoBook daoBook;
 
+	private String errorHeader;
+	private String errorSpecification;
+
 	@Override
 	public String execute() throws Exception {
 
@@ -129,22 +132,42 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 	@Override
 	public void validate() {
 
-		if (orderID == null
-				|| AdminUtility.isEmpty(receiver)
-				|| level1ID == null
-				|| AdminUtility.isEmpty(addressDetail)
-				|| AdminUtility.isEmpty(zipcode)
-				|| (AdminUtility.isEmpty(phoneNumber) && AdminUtility
-						.isEmpty(mobileNumber))
-				|| !phoneNumber.toString().matches("^[0]\\d{2,3}\\d{7,8}")
-				|| !mobileNumber.toString().matches(
-						"[1]{1}[3,5,8,6]{1}[0-9]{9}")
-				|| !zipcode.toString().matches("^[1-9]\\d{5}") || items == null)
+		if (orderID == null || AdminUtility.isEmpty(receiver)
+				|| level1ID == null || AdminUtility.isEmpty(addressDetail)
+				|| items == null) {
+			errorHeader = "信息不全";
+			errorSpecification = "您填写的信息不全";
 			validateResult = false;
-		else {
-
-			validateResult = true;
 		}
+
+		if (level1ID == null || level1ID <= 0
+				|| (level2ID != null && level2ID <= 0)
+				|| (level3ID != null && level3ID <= 0)) {
+			errorHeader = "信息错误";
+			errorSpecification = "地区选择错误";
+			validateResult = false;
+			return;
+		}
+
+		if (AdminUtility.isEmpty(mobileNumber)
+				|| !mobileNumber.matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")) {
+			if (AdminUtility.isEmpty(phoneNumber)
+					|| !phoneNumber.matches("^[0]\\d{2,3}\\d{7,8}")) {
+				errorHeader = "信息错误";
+				errorSpecification = "电话号码不全，或错误";
+				validateResult = false;
+				return;
+			}
+		}
+
+		if (AdminUtility.isEmpty(zipcode) && !zipcode.matches("^[1-9]\\d{5}")) {
+			errorHeader = "信息错误";
+			errorSpecification = "邮编错误";
+			validateResult = false;
+			return;
+		}
+
+		validateResult = true;
 
 		super.validate();
 	}
@@ -259,6 +282,22 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 
 	public void setItems(List<ItemTinyBean> items) {
 		this.items = items;
+	}
+
+	public String getErrorHeader() {
+		return errorHeader;
+	}
+
+	public void setErrorHeader(String errorHeader) {
+		this.errorHeader = errorHeader;
+	}
+
+	public String getErrorSpecification() {
+		return errorSpecification;
+	}
+
+	public void setErrorSpecification(String errorSpecification) {
+		this.errorSpecification = errorSpecification;
 	}
 
 }
