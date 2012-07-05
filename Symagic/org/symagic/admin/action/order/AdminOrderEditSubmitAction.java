@@ -138,6 +138,7 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 			errorHeader = "信息不全";
 			errorSpecification = "您填写的信息不全";
 			validateResult = false;
+			return;
 		}
 
 		if (level1ID == null || level1ID <= 0
