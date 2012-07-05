@@ -223,6 +223,7 @@ public class OrderService {
 		List<BeanOrder> orders = daoOrder.search(orderRequire, userName);
 	    if (orders != null) {
 			for (int i = 0; i < orders.size(); i++) {
+				BeanOrder order = daoOrder.getOrderDetail(orders.get(i).getOrderId());
 				if (isOrderHasItem(itemID, orders.get(i).getList()))
 					orderNum++;
 			}

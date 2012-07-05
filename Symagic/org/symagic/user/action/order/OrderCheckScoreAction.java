@@ -65,6 +65,10 @@ public class OrderCheckScoreAction extends CatalogBase{
 		}
 		return SUCCESS;
 	}
+	
+	public void validate(){
+		clearErrorsAndMessages();
+	}
 
 	public Integer getScore() {
 		return score;
