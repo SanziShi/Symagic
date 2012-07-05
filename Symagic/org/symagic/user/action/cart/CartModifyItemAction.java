@@ -106,5 +106,12 @@ public String getResultInfo() {
 public void setResultInfo(String resultInfo) {
 	this.resultInfo = resultInfo;
 }
+public DaoBook getDaoBook() {
+	return daoBook;
+}
+public void setDaoBook(DaoBook daoBook) {
+	this.daoBook = daoBook;
+}
+
 
 }
