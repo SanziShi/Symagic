@@ -180,7 +180,7 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td>该类别总销售额：</td>
+								<td>总销售额：</td>
 								<td><span class="red">￥<s:property
 											value="totalSalesRevenue" /> </span>
 								</td>
