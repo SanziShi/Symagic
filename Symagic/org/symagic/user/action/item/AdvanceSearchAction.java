@@ -453,4 +453,10 @@ public class AdvanceSearchAction extends CatalogBase {
 		this.sign = sign;
 	}
 
+	@Override
+	public void validate() {
+		this.clearErrorsAndMessages();
+		super.validate();
+	}
+
 }

@@ -228,4 +228,10 @@ public class UserListAction extends CatalogBase {
 		this.searchYearRange = searchYearRange;
 	}
 
+	@Override
+	public void validate() {
+		this.clearActionErrors();
+		super.validate();
+	}
+
 }

@@ -84,7 +84,7 @@ public class AdminItemQuickSearch extends CatalogBase {
 
 	@Override
 	public void validate() {
-		// TODO Auto-generated method stub
+		this.clearErrorsAndMessages();
 		super.validate();
 	}
 

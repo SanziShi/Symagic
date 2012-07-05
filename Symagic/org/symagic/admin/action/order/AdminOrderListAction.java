@@ -191,5 +191,12 @@ public class AdminOrderListAction extends CatalogBase {
 	public void setSearchYearRange(Integer searchYearRange) {
 		this.searchYearRange = searchYearRange;
 	}
+
+
+	@Override
+	public void validate() {
+		this.clearErrorsAndMessages();
+		super.validate();
+	}
 	
 }

@@ -838,7 +838,7 @@ public class DaoBook {
 	 * @return -1 搜索失败 >=0 搜索成功
 	 */
 	public int getStatisticsNum(BookStatisticsRequire req) {
-		int count = -1;
+		int count = 0;
 		boolean haveCatalogID = true;
 		if (req.getCatalogidList() == null
 				|| req.getCatalogidList().size() == 0)
@@ -858,7 +858,7 @@ public class DaoBook {
 					+ "' "
 					+ "group by bookid "
 					+ "having sum(amount) > ? "
-					+ "order by bookid asc  limit ?, ?";
+					+ "order by bookid asc  ";
 		else {
 			sql = "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid "
 					+ "from ("
@@ -882,7 +882,7 @@ public class DaoBook {
 				sql += " , " + req.getCatalogidList().get(i);
 			}
 
-			sql += ") order by bookid asc  limit ?, ?";
+			sql += ") order by bookid asc  ";
 
 		}
 
@@ -890,8 +890,8 @@ public class DaoBook {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, req.getLowlimit());
-			ps.setInt(2, (req.getPage() - 1) * req.getLines());
-			ps.setInt(3, req.getLines());
+//			ps.setInt(2, (req.getPage() - 1) * req.getLines());
+//			ps.setInt(3, req.getLines());
 
 			// if (haveCatalogID)
 			// ps.setInt(4, req.getCatalogid());

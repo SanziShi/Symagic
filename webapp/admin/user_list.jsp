@@ -260,15 +260,15 @@
 							<td><s:if test="%{totalPage==1||totalPage==0}"></s:if> <s:elseif
 									test="%{page==1}">
 									<a
-										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
+										href="user_list?page=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
 								</s:elseif> <s:elseif test="%{page==totalPage}">
 									<a
-										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page - 1 }">上一页</a>
+										href="user_list?page=<s:property value="itemID"/>&page=${ page - 1 }">上一页</a>
 								</s:elseif> <s:else>
 									<a
-										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page - 1 }">上一页</a>
+										href="user_list?page=<s:property value="itemID"/>&page=${ page - 1 }">上一页</a>
 									<a
-										href="item_detail?itemID=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
+										href="user_list?page=<s:property value="itemID"/>&page=${ page + 1 }">下一页</a>
 								</s:else>
 							</td>
 							<td>当前第<s:property value="page" />页，共<s:property

@@ -11,6 +11,8 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.io.FileUtils;
 import org.apache.struts2.util.ServletContextAware;
 import org.symagic.admin.utilty.AdminUtility;
+import org.symagic.admin.utilty.ISBNChecker;
+import org.symagic.admin.utilty.ISSNChecker;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.func.DaoBook;
 import org.symagic.common.utilty.presentation.bean.TimeBean;
@@ -144,9 +146,17 @@ public class ItemModifySubmitAction extends ActionSupport implements
 			errorHeader = "输入不正确";
 			errorSpecification = "您的输入不正确";
 			formValidateResult = false;
-		} else {
-			formValidateResult = true;
+			return;
+		} 
+		
+		if( !ISBNChecker.checkISBN(ISBN) && !ISSNChecker.checkISSN(ISBN) ){
+			formValidateResult = false;
+			errorHeader = "ISBN或ISSN不符合规范";
+			errorSpecification = "您的输入ISBN或ISSN不正确";
+			return;
 		}
+		
+		formValidateResult = true;
 
 	}
 
