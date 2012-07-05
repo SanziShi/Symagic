@@ -6,9 +6,35 @@ function amount_modify(e)
 /*****进入下单页面*******/
 function checkout()
 {
-	var a=document.getElementById('checkout');//.submit();
-	a.submit();
-	//var q=$(a).serialize();
+	var a=document.getElementById('checkout');
+	var inputs=document.getElementsByTagName('input');
+	var URL='';
+	for( i in inputs)
+	{
+		if(inputs[i].id&&inputs[i].id.indexOf('amount')>-1)
+		{
+			if(inputs[i].getAttribute('default')==inputs[i].value)continue;
+			var f=parseInt(inputs[i].id);
+			URL='cart/update?itemID='+f+'&itemNumber='+inputs[i].value;
+		}
+	}
+	if(URL)
+	{
+		Ajax({
+			url:URL,
+			onSuccess:function(e)
+				{
+					var c=JSON.parse(e);
+					if(c.updateResult)a.submit();
+					else
+					{
+						alert('c.resultInfo');
+						location.reload();
+					}
+				}
+			})
+	}
+	stopDefault();
 }
 function delete_form_cart(f)
 {
