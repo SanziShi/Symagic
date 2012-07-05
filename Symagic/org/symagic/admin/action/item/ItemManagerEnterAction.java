@@ -485,4 +485,10 @@ public class ItemManagerEnterAction extends CatalogBase {
 		this.searchYearRange = searchYearRange;
 	}
 
+	@Override
+	public void validate() {
+		this.clearErrorsAndMessages();
+		super.validate();
+	}
+
 }
