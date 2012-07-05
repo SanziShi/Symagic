@@ -324,7 +324,7 @@ public class ItemService {
 		if (book == null)
 			return false;
 		BeanCatalog currentCatalog = null;
-		if (book.getCatalogID() != null) {
+		if (book.getCatalogID() != null && book.getCatalogID() != 0 ) {
 			currentCatalog = daoCatalog.getCatalogByID(book.getCatalogID());
 			detail.setCatalogClassify(getCatalogName(currentCatalog));
 		}
