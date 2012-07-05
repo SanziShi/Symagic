@@ -79,13 +79,14 @@ function add(id)
 									var d=JSON.parse(r);
 									if(d.addResult)
 									{
-										a.value++;
+										location.reload();
+										/*a.value++;
 										a.setAttribute('default',a.value);
 										get_session({S:function(s)
 											{
 												num.innerHTML=s.totalNumber
 											}
-										});
+										});*/
 									}
 									else alert('商品数量修改失败！')
 								}
@@ -120,13 +121,16 @@ function reduce(id)
 									var d=JSON.parse(r);
 									if(d.updateResult)
 									{
-										a.value--;
-										a.setAttribute('default',a.value);
+										//if(--a.value==0)
+											//{
+												location.reload();	
+											//};
+										/*a.setAttribute('default',a.value);
 										get_session({S:function(s)
 											{
 												num.innerHTML=s.totalNumber
 											}
-										});
+										});*/
 									}
 									else alert('商品数量修改失败！')
 								}

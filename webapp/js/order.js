@@ -135,7 +135,7 @@ function order_submit()
 	var t=document.getElementById('score').value;
 	if(t==0)document.getElementById('order_submit').submit();
 	else Ajax({
-		url:'order/check_score?score='+t.value,
+		url:'order/check_score?score='+t,
 		onSuccess:function(y)
 			{
 				var a=JSON.parse(y);
