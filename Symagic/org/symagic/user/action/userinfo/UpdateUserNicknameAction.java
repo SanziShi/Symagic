@@ -45,17 +45,17 @@ public class UpdateUserNicknameAction extends CatalogBase{
 	
 	public String execute() throws Exception{
 		if(!nickname.matches("^[a-zA-Z0-9_\u4e00-\u9fa5]+$")){
-			resultInfo = "非法字符";
+			setResultInfo("非法字符");
 			updateResult = false;
 			return SUCCESS;
 		}
 		if(nickname.getBytes().length >20){
-			resultInfo = "昵称过长，应小于20位";
+			setResultInfo("昵称过长，应小于20位");
 			updateResult = false;
 			return SUCCESS;
 		}
 		if(nickname.getBytes().length < 4){
-			resultInfo = "昵称过短，应大于4个英文字符或2个中文字符";
+			setResultInfo("昵称过短，应大于4个英文字符或2个中文字符");
 			updateResult = false;
 			return SUCCESS;
 		}
@@ -63,5 +63,13 @@ public class UpdateUserNicknameAction extends CatalogBase{
 		//super.execute();
 		UserSessionUtilty.setNickname(nickname);
 		return SUCCESS;
+	}
+
+	public String getResultInfo() {
+		return resultInfo;
+	}
+
+	public void setResultInfo(String resultInfo) {
+		this.resultInfo = resultInfo;
 	}
 }
