@@ -332,6 +332,15 @@ public class OrderSubmitAction extends OrderBase {
 				isValidate = false;
 				return;
 			}
+			else{
+				setMobileNum("");
+			}
+		}
+		else{
+			if (getPhoneNum() == null || getPhoneNum().isEmpty()
+					|| !getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")) {
+				setPhoneNum("");
+			}
 		}
 
 		if (!getZipcode().matches("^[1-9]\\d{5}")) {
