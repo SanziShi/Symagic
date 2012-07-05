@@ -134,9 +134,13 @@ public class ItemModifySubmitAction extends ActionSupport implements
 	public void validate() {
 
 		// 处理商品类别以外其他都不能为空
-		if (AdminUtility.isEmpty(ISBN) || AdminUtility.isEmpty(name) || AdminUtility.isEmpty(author) || AdminUtility.isEmpty(publisher)
-				|| AdminUtility.isEmpty(binding) || marketPrice == null || marketPrice < 0 || discount == null || discount < 0
-				|| inventory == null || inventory < 0 || AdminUtility.isEmpty(description)) {
+		if (AdminUtility.isEmpty(ISBN) || AdminUtility.isEmpty(name)
+				|| AdminUtility.isEmpty(author)
+				|| AdminUtility.isEmpty(publisher)
+				|| AdminUtility.isEmpty(binding) || marketPrice == null
+				|| marketPrice < 0 || discount == null || discount < 0
+				|| inventory == null || inventory < 0
+				|| AdminUtility.isEmpty(description)) {
 			errorHeader = "输入不正确";
 			errorSpecification = "您的输入不正确";
 			formValidateResult = false;
@@ -161,7 +165,7 @@ public class ItemModifySubmitAction extends ActionSupport implements
 					book.getPicture().lastIndexOf('/') + 1));
 
 			if (destFile.exists()) {
-				 FileUtils.forceDelete(destFile);
+				FileUtils.forceDelete(destFile);
 			}
 			MessageDigest md5Encoder = MessageDigest.getInstance("MD5");
 			String fileName = new String(Hex.encodeHex(md5Encoder.digest(ISBN
@@ -205,8 +209,11 @@ public class ItemModifySubmitAction extends ActionSupport implements
 		book.setDiscount(discount);
 		book.setInventory(inventory);
 		book.setBookDesc(description);
-		if (bookClassify != 0)
-			book.setCatalogID(bookClassify);
+		if (bookClassify != null)
+			if (bookClassify != 0)
+				book.setCatalogID(bookClassify);
+			else
+				book.setCatalogID(null);
 
 		if (!daoBook.modifyBook(book))
 			return ERROR;

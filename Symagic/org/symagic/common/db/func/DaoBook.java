@@ -101,8 +101,6 @@ public class DaoBook {
 			if (!rs.next())
 				return -1;
 
-			
-
 			if (book.getCatalogID() != null) {
 
 				ps = conn.prepareStatement("insert into book_catalog_detail "
@@ -276,24 +274,24 @@ public class DaoBook {
 	 */
 	public List<BeanBook> search(int sign, BookRequire req) {
 		List<BeanBook> list = null;
-		List<Integer> idList	= null;
+		List<Integer> idList = null;
 		String sql = "select t1.*, t2.catalogid "
 				+ " from book as t1 left join book_catalog_detail as t2 "
 				+ " on t1.bookid=t2.bookid where ";
 		// 普通查询
 		if (sign == 0) {
 			sql += " (t1.author like " + " '%" + req.getAuthor() + "%' "
-					+ " or " + " t1.bookname like " + " '%"
-					+ req.getItemName() + "%' " + " or "
-					+ " t1.publisher like " + " '%" + req.getPublisher()
-					+ "%' )";
-			if (req.getCatalogIDList() != null&&req.getCatalogIDList().size()>0) {
-				idList	= req.getCatalogIDList();
+					+ " or " + " t1.bookname like " + " '%" + req.getItemName()
+					+ "%' " + " or " + " t1.publisher like " + " '%"
+					+ req.getPublisher() + "%' )";
+			if (req.getCatalogIDList() != null
+					&& req.getCatalogIDList().size() > 0) {
+				idList = req.getCatalogIDList();
 				sql += " and " + " t2.catalogid  in (" + idList.get(0);
-				for (int i=1; i<idList.size(); i++)
-					 sql += " ," + idList.get(i) + " ";
+				for (int i = 1; i < idList.size(); i++)
+					sql += " ," + idList.get(i) + " ";
 				sql += " )";
-			}	
+			}
 
 			sql += " order by t1.bookid asc limit " + (req.getPage() - 1)
 					* req.getLines() + " , " + req.getLines();
@@ -353,12 +351,12 @@ public class DaoBook {
 			}
 
 			if (req.getCatalogIDList() != null) {
-				idList	= req.getCatalogIDList();
+				idList = req.getCatalogIDList();
 				sql += " and " + " t2.catalogid  in (" + idList.get(0);
-				for (int i=1; i<idList.size(); i++)
-					 sql += " ," + idList.get(i) + " ";
+				for (int i = 1; i < idList.size(); i++)
+					sql += " ," + idList.get(i) + " ";
 				sql += " )";
-			}	
+			}
 
 			sql += " order by t1.bookid asc limit " + (req.getPage() - 1)
 					* req.getLines() + " , " + req.getLines();
@@ -418,25 +416,25 @@ public class DaoBook {
 	 * @return int 返回符合条件的条数
 	 */
 	public int getSearchRowNumber(int sign, BookRequire req) {
-		int count	= 0;
-		List<Integer> idList	= null;
+		int count = 0;
+		List<Integer> idList = null;
 		String sql = "select t1.*, t2.catalogid "
 				+ " from book as t1 left join book_catalog_detail as t2 "
 				+ " on t1.bookid=t2.bookid where ";
 		// 普通查询
 		if (sign == 0) {
 			sql += " (t1.author like " + " '%" + req.getAuthor() + "%' "
-					+ " or " + " t1.bookname like " + " '%"
-					+ req.getItemName() + "%' " + " or "
-					+ " t1.publisher like " + " '%" + req.getPublisher()
-					+ "%' )";
-			if (req.getCatalogIDList() != null&&req.getCatalogIDList().size()>0) {
-				idList	= req.getCatalogIDList();
+					+ " or " + " t1.bookname like " + " '%" + req.getItemName()
+					+ "%' " + " or " + " t1.publisher like " + " '%"
+					+ req.getPublisher() + "%' )";
+			if (req.getCatalogIDList() != null
+					&& req.getCatalogIDList().size() > 0) {
+				idList = req.getCatalogIDList();
 				sql += " and " + " t2.catalogid  in (" + idList.get(0);
-				for (int i=1; i<idList.size(); i++)
-					 sql += " ," + idList.get(i) + " ";
+				for (int i = 1; i < idList.size(); i++)
+					sql += " ," + idList.get(i) + " ";
 				sql += " )";
-			}	
+			}
 
 			sql += " order by t1.bookid asc  ";
 
@@ -495,12 +493,12 @@ public class DaoBook {
 			}
 
 			if (req.getCatalogIDList() != null) {
-				idList	= req.getCatalogIDList();
+				idList = req.getCatalogIDList();
 				sql += " and " + " t2.catalogid  in (" + idList.get(0);
-				for (int i=1; i<idList.size(); i++)
-					 sql += " ," + idList.get(i) + " ";
+				for (int i = 1; i < idList.size(); i++)
+					sql += " ," + idList.get(i) + " ";
 				sql += " )";
-			}	
+			}
 
 			sql += " order by t1.bookid asc ";
 
@@ -560,15 +558,31 @@ public class DaoBook {
 			ps.setInt(16, book.getBookId());
 
 			if (ps.executeUpdate() == 1) {
+
+				ps = conn.prepareStatement("delete from book_catalog_detail"
+						+ " where bookid=? ");
+				ps.setInt(1, book.getBookId());
+				ps.execute();
+
 				if (book.getCatalogID() != null) {
-					ps = conn
-							.prepareStatement("update book_catalog_detail set "
-									+ " catalogid=? " + " where bookid=? ");
-					ps.setInt(1, book.getCatalogID());
-					ps.setInt(2, book.getBookId());
-					if (ps.executeUpdate() == 1)
-						return true;
-					return false;
+
+					if (book.getCatalogID() != null) {
+
+						ps = conn
+								.prepareStatement("insert into book_catalog_detail "
+										+ "(bookid, catalogid) "
+										+ "values (?, ?)");
+						ps.setInt(1, rs.getInt("bookid"));
+						ps.setInt(2, book.getCatalogID());
+
+						ps.execute();
+
+						if (ps.getUpdateCount() == 1)
+							return true;
+						else
+							return false;
+					}
+					return true;
 				}
 				return true;
 			}
@@ -692,18 +706,17 @@ public class DaoBook {
 			ps.setInt(1, bookid);
 			ps.execute();
 
-		
-
 			// 删除收藏夹记录
-			ps	= conn.prepareStatement("delete from favority_folder where bookid=?");
+			ps = conn
+					.prepareStatement("delete from favority_folder where bookid=?");
 			ps.setInt(1, bookid);
 			ps.execute();
-			
+
 			// 删除评论记录
-			ps	= conn.prepareStatement("delete from comment where bookid=?");
+			ps = conn.prepareStatement("delete from comment where bookid=?");
 			ps.setInt(1, bookid);
 			ps.execute();
-			
+
 			// 删除书籍记录
 			ps = conn.prepareStatement("delete from book where bookid=?");
 			ps.setInt(1, bookid);
@@ -735,7 +748,7 @@ public class DaoBook {
 
 	public List<BeanBookStatistics> getBookStatistics(BookStatisticsRequire req) {
 		boolean haveCatalogID = true;
-		if (req.getCatalogidList() == null )
+		if (req.getCatalogidList() == null)
 			haveCatalogID = false;
 
 		List<BeanBookStatistics> list = null;
@@ -756,31 +769,31 @@ public class DaoBook {
 					+ "order by bookid asc  limit ?, ?";
 		else {
 			sql = "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid "
-				+ "from ("
-				+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
-				+ " from book_order, order_detail "
-				+ " where book_order.orderid=order_detail.orderid and orderdate >  "
-				+ " '"
-				+ req.getStartTime()
-				+ "' "
-				+ " and orderdate < "
-				+ " '"
-				+ req.getEndTime()
-				+ "' "
-				+ " group by bookid "
-				+ " having sum(amount) > ? "
-				+ "order by bookid asc) "
-				+ " as t1, book_catalog_detail as t2 "
-				+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
-	
-		for (int i=0; i<req.getCatalogidList().size(); i++) {
-			sql += " , " + req.getCatalogidList().get(i);
+					+ "from ("
+					+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
+					+ " from book_order, order_detail "
+					+ " where book_order.orderid=order_detail.orderid and orderdate >  "
+					+ " '"
+					+ req.getStartTime()
+					+ "' "
+					+ " and orderdate < "
+					+ " '"
+					+ req.getEndTime()
+					+ "' "
+					+ " group by bookid "
+					+ " having sum(amount) > ? "
+					+ "order by bookid asc) "
+					+ " as t1, book_catalog_detail as t2 "
+					+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
+
+			for (int i = 0; i < req.getCatalogidList().size(); i++) {
+				sql += " , " + req.getCatalogidList().get(i);
+			}
+
+			sql += ") order by bookid asc  limit ?, ?";
+
 		}
-		
-		sql		+= ") order by bookid asc  limit ?, ?";
-			
-		}
-			
+
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn.prepareStatement(sql);
@@ -788,8 +801,8 @@ public class DaoBook {
 			ps.setInt(2, (req.getPage() - 1) * req.getLines());
 			ps.setInt(3, req.getLines());
 
-//			if (haveCatalogID)
-//				ps.setInt(4, req.getCatalogid());
+			// if (haveCatalogID)
+			// ps.setInt(4, req.getCatalogid());
 
 			rs = ps.executeQuery();
 			list = new ArrayList<BeanBookStatistics>();
@@ -827,7 +840,8 @@ public class DaoBook {
 	public int getStatisticsNum(BookStatisticsRequire req) {
 		int count = -1;
 		boolean haveCatalogID = true;
-		if (req.getCatalogidList() == null  || req.getCatalogidList().size() == 0)
+		if (req.getCatalogidList() == null
+				|| req.getCatalogidList().size() == 0)
 			haveCatalogID = false;
 
 		String sql = "";
@@ -847,32 +861,31 @@ public class DaoBook {
 					+ "order by bookid asc  limit ?, ?";
 		else {
 			sql = "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid "
-				+ "from ("
-				+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
-				+ " from book_order, order_detail "
-				+ " where book_order.orderid=order_detail.orderid and orderdate >  "
-				+ " '"
-				+ req.getStartTime()
-				+ "' "
-				+ " and orderdate < "
-				+ " '"
-				+ req.getEndTime()
-				+ "' "
-				+ " group by bookid "
-				+ " having sum(amount) > ? "
-				+ "order by bookid asc) "
-				+ " as t1, book_catalog_detail as t2 "
-				+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
-	
-		for (int i=0; i<req.getCatalogidList().size(); i++) {
-			sql += " , " + req.getCatalogidList().get(i);
+					+ "from ("
+					+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
+					+ " from book_order, order_detail "
+					+ " where book_order.orderid=order_detail.orderid and orderdate >  "
+					+ " '"
+					+ req.getStartTime()
+					+ "' "
+					+ " and orderdate < "
+					+ " '"
+					+ req.getEndTime()
+					+ "' "
+					+ " group by bookid "
+					+ " having sum(amount) > ? "
+					+ "order by bookid asc) "
+					+ " as t1, book_catalog_detail as t2 "
+					+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
+
+			for (int i = 0; i < req.getCatalogidList().size(); i++) {
+				sql += " , " + req.getCatalogidList().get(i);
+			}
+
+			sql += ") order by bookid asc  limit ?, ?";
+
 		}
-		
-		sql		+= ") order by bookid asc  limit ?, ?";
-			
-		}
-		
-		
+
 		try {
 			conn = ConnectionPool.getInstance().getConnection();
 			ps = conn.prepareStatement(sql);
@@ -880,8 +893,8 @@ public class DaoBook {
 			ps.setInt(2, (req.getPage() - 1) * req.getLines());
 			ps.setInt(3, req.getLines());
 
-//			if (haveCatalogID)
-//				ps.setInt(4, req.getCatalogid());
+			// if (haveCatalogID)
+			// ps.setInt(4, req.getCatalogid());
 
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -902,28 +915,27 @@ public class DaoBook {
 		return count;
 	}
 
-	public List<Integer> getRandBooks(List<Integer> list, int num)
-	{
-		List<Integer> bookIDList	= null;
+	public List<Integer> getRandBooks(List<Integer> list, int num) {
+		List<Integer> bookIDList = null;
 		try {
-			conn	= ConnectionPool.getInstance().getConnection();
-			String sql	= "select bookid from book ";
+			conn = ConnectionPool.getInstance().getConnection();
+			String sql = "select bookid from book ";
 			if (list.size() != 0) {
-				sql +=" where bookid not in ( "+list.get(0);
-				for (int i=1; i<list.size(); i++) {
+				sql += " where bookid not in ( " + list.get(0);
+				for (int i = 1; i < list.size(); i++) {
 					sql += " , " + list.get(1);
 				}
 				sql += " )";
 			}
 			sql += " order by rand() limit " + num;
-			
-			st	= conn.createStatement();
-			rs	= st.executeQuery(sql);
-			bookIDList	= new ArrayList<Integer>();
+
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			bookIDList = new ArrayList<Integer>();
 			while (rs.next()) {
-				 bookIDList.add(rs.getInt(1));
+				bookIDList.add(rs.getInt(1));
 			}
-			
+
 			return bookIDList;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
