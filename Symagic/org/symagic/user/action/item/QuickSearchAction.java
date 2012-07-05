@@ -5,14 +5,9 @@ import java.util.List;
 
 import org.symagic.common.action.catalog.CatalogBase;
 import org.symagic.common.db.bean.BeanBook;
-import org.symagic.common.db.bean.BeanCatalog;
 import org.symagic.common.db.func.BookRequire;
-import org.symagic.common.db.func.DaoCatalog;
 import org.symagic.common.service.ItemService;
-import org.symagic.common.service.RecommendService;
 import org.symagic.common.utilty.presentation.bean.ItemBean;
-import org.symagic.common.utilty.presentation.bean.ItemTinyBean;
-import org.symagic.user.utilty.UserSessionUtilty;
 
 public class QuickSearchAction extends CatalogBase {
 
@@ -77,7 +72,7 @@ private List<ItemBean>items;//用于显示的商品列表
 	 
 	 @Override
 	public void validate() {
-		// TODO Auto-generated method stub
+		this.clearErrorsAndMessages();
 		super.validate();
 	}
 

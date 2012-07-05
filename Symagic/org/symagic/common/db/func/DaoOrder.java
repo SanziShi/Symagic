@@ -283,14 +283,15 @@ public class DaoOrder {
 			ps	= conn.prepareStatement("update book_order set orderstate=?," +
 					"receivername=?, addrdetail=?, " +
 					"zipcode=?, phonenum=?," +
-					"mobilenum=? where orderid=?");
+					"mobilenum=?, totalprice=? where orderid=?");
 			ps.setString(1, order.getOrderState());
 			ps.setString(2, order.getReceiverName());
 			ps.setString(3, order.getAddrDetail());
 			ps.setString(4, order.getZipcode());
 			ps.setString(5, order.getPhonenum());
 			ps.setString(6, order.getMobilenum());
-			ps.setInt(7, order.getOrderId());
+			ps.setFloat(7, order.getTotalprice());
+			ps.setInt(8, order.getOrderId());
 			
 			if (ps.executeUpdate() != 1)
 				return false;
