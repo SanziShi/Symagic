@@ -133,7 +133,7 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 	public void validate() {
 
 		if (orderID == null || AdminUtility.isEmpty(receiver)
-				|| level1ID == null || AdminUtility.isEmpty(addressDetail)
+				|| level1ID == null || level2ID == null || AdminUtility.isEmpty(addressDetail)
 				|| items == null) {
 			errorHeader = "信息不全";
 			errorSpecification = "您填写的信息不全";

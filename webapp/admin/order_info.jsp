@@ -127,8 +127,9 @@
 										</td>
 										<td><a
 											href="item_detail?itemID=<s:property value = '#itemArray.itemID'/>">
+											<s:property value="#itemArray.name" />
 										</a>
-										<s:property value="#itemArray.name" /></td>
+										</td>
 										<td>￥<s:property value="#itemArray.price" />
 										</td>
 										<td><s:if test="%{#itemArray.offline}">
