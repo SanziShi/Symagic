@@ -130,6 +130,9 @@ public class DaoOrder {
 				order.setUsername(rs.getString("username"));
 				order.setZipcode(rs.getString("zipcode"));
 			}
+			else{
+				return null;
+			}
 			return order;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
