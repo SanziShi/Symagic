@@ -84,9 +84,9 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		order.setMobilenum(mobileNumber);
 
 		List<BeanOrderDetail> itemList = new ArrayList<BeanOrderDetail>();
-		
+
 		List<BeanOrderDetail> oldItems = order.getList();
-		
+
 		float totalprice = 0;
 
 		// 解析JSON数组
@@ -95,10 +95,12 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 			if (book != null && items.get(i).getItemNumber() != 0) {
 				BeanOrderDetail orderDetail = new BeanOrderDetail();
 				orderDetail.setAmount(items.get(i).getItemNumber());
-				for( BeanOrderDetail detail : oldItems ){
-					if( detail.getBookId() == book.getBookId() ){
-						book.setInventory(book.getInventory() + detail.getAmount() - orderDetail.getAmount() );
-						if( !daoBook.modifyBook(book) ) return ERROR;
+				for (BeanOrderDetail detail : oldItems) {
+					if (detail.getBookId() == book.getBookId()) {
+						book.setInventory(book.getInventory()
+								+ detail.getAmount() - orderDetail.getAmount());
+						if (!daoBook.modifyBook(book))
+							return ERROR;
 					}
 				}
 				orderDetail.setBookId(book.getBookId());
@@ -107,7 +109,8 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 				orderDetail.setIsbn(book.getIsbn());
 				orderDetail.setMarketPrice(book.getMarketPrice());
 				orderDetail.setOrderId(orderID);
-				totalprice += book.getMarketPrice() * book.getDiscount() * items.get(i).getItemNumber();
+				totalprice += book.getMarketPrice() * book.getDiscount()
+						* items.get(i).getItemNumber();
 				itemList.add(orderDetail);
 			}
 
@@ -115,7 +118,8 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 		order.setList(itemList);
 		order.setTotalprice(totalprice);
 
-		if( !daoOrder.updateOrder(order) ) return ERROR;
+		if (!daoOrder.updateOrder(order))
+			return ERROR;
 
 		MailService.sendOrder(order);
 
@@ -131,7 +135,11 @@ public class AdminOrderEditSubmitAction extends ActionSupport {
 				|| AdminUtility.isEmpty(addressDetail)
 				|| AdminUtility.isEmpty(zipcode)
 				|| (AdminUtility.isEmpty(phoneNumber) && AdminUtility
-						.isEmpty(mobileNumber)) || items == null)
+						.isEmpty(mobileNumber))
+				|| !phoneNumber.toString().matches("^[0]\\d{2,3}\\d{7,8}")
+				|| !mobileNumber.toString().matches(
+						"[1]{1}[3,5,8,6]{1}[0-9]{9}")
+				|| !zipcode.toString().matches("^[1-9]\\d{5}") || items == null)
 			validateResult = false;
 		else {
 
