@@ -84,14 +84,17 @@ public class CartAddItemAction extends ActionSupport {
 			info.append("书名为"+book.getBookName()+"已下架\n");
 			return false;
 		}
+		//itemID不存在于数据库中或者是库存不足
+				if(book==null||itemNumber<=0||itemNumber>999){
+					info.append("请输入正确 的数量");   
+					return false;
+					 }
+				
 		//通过其数量判断是否有这商品
 		 Integer  number=UserSessionUtilty.getCart().get(itemID);
+		 
 		int compare=(number==null?0:number);
-		//itemID不存在于数据库中或者是库存不足
-		if(book==null||itemNumber<=0||(itemNumber+compare)>999){
-			info.append("请输入正确 的数量");   
-			return false;
-			 }
+		
 		if(compare==0&&book.getInventory()<(itemNumber+compare)){
 			info.append("添加商品数量不能超过库存");
 			return false;

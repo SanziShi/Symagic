@@ -304,7 +304,7 @@ public class DaoComment {
 					"username=? and bookid=?");
 			ps.setString(1, username);
 			ps.setInt(2, bookid);
-			ps.executeQuery();
+			rs=ps.executeQuery();
 			if (rs.next())
 				return rs.getInt(1);
 			return 0;
