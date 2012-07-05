@@ -203,7 +203,7 @@
 										</td>
 										<td><a
 											href="item_detail?itemID=<s:property value = '#itemArray.itemID'/>">
-										</a> <s:property value="#itemArray.itemName" /></td>
+										 <s:property value="#itemArray.itemName" /></a></td>
 										<td>￥<s:property value="#itemArray.price" />
 										</td>
 										<td><s:if test="orderStatus!='交易成功'||'交易失败'">
