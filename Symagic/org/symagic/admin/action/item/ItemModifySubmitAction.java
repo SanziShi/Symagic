@@ -197,7 +197,11 @@ public class ItemModifySubmitAction extends ActionSupport implements
 					publishTime.getDay());
 			GregorianCalendar now = new GregorianCalendar();
 			//检查出版时间是否在未来
-			if( calender.getTime().after(now.getTime()) ) return ERROR;
+			if( calender.getTime().after(now.getTime()) ){
+				errorHeader = "出版时间设置错误";
+				errorSpecification = "出版时间不可晚于当前时间";
+				return ERROR;
+			}
 			book.setPublishDate(dateFormat.format(calender.getTime()));
 		}
 
