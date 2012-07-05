@@ -50,10 +50,11 @@ public class CartAddItemAction extends ActionSupport {
 		ItemTinyBean item;
 	  while(index.hasNext()){
 		  item=index.next();
-		  //数据不符合规则，忽略掉
+		  //数据不符合规则，忽略掉,有非法请求
 		  if(item==null||item.getItemID()==null||item.getItemNumber()==null){
-			
-			  continue;
+			  addResult=false;
+			  resultInfo="非法请求";
+			  break;
 		  }
 		 
 		  result=addOneToCart(item.getItemID(),item.getItemNumber(),login,builder);
