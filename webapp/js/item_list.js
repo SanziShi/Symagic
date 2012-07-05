@@ -1,7 +1,7 @@
 function click_left_b(id)
 {
 	write_cookie('left_banner_list',id);
-	location.href='quick_search?page=1&catalogID='+id+'keywor=';
+	location.href='quick_search?page=1&catalogID='+id+'&keyword=';
 }
 function quick_search_a(data)
 {
