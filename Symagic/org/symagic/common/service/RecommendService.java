@@ -78,7 +78,6 @@ public class RecommendService {
 			if (object == null || object.containsKey("error"))
 				return false;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 
@@ -143,7 +142,6 @@ public class RecommendService {
 			if (object == null || object.containsKey("error"))
 				return false;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -185,7 +183,6 @@ public class RecommendService {
 			if (object == null || object.containsKey("error"))
 				return false;
 		} catch (Exception e) {
-			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -241,7 +238,6 @@ public class RecommendService {
 				result.add(temp.getInt("id"));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 
@@ -297,7 +293,6 @@ public class RecommendService {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 
@@ -348,7 +343,6 @@ public class RecommendService {
 				result.add(temp.getInt("id"));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 
@@ -398,7 +392,6 @@ public class RecommendService {
 				result.add(temp.getInt("id"));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 
@@ -445,7 +438,6 @@ public class RecommendService {
 				result.add(temp.getInt("id"));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 
