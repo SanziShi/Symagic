@@ -385,6 +385,7 @@ if (currentCatalog != null) {
 		catalog.setChildCatalog(null);
 		detail.setParseCatalog(catalog);
 }
+
 		// 是否可以评论，默认不能评论
 		detail.setCommentAble(isCommentAble(book.getBookId()));
 
@@ -393,10 +394,11 @@ if (currentCatalog != null) {
 
 	// 是否能够评论
 	public boolean isCommentAble(Integer itemID) {
-		// 是否已登录
+	
+	//是否已登录
 		if (UserSessionUtilty.isLogin()) {
 			// 购买记录
-			int purchaseRecord = orderService.orderNumber(
+			int purchaseRecord = orderService.getOrderNumber(
 					UserSessionUtilty.getUsername(), itemID);
 			// 已评论数量
 			int commentNumber = daoComment.getNumByID(

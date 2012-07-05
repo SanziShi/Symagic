@@ -333,7 +333,7 @@
 		<property name="sign" value="1"></property>
 	</bean>
 
-	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction">
+	<bean id="quickSearch" class="org.symagic.user.action.item.QuickSearchAction" scope="request">
 
 		<property name="catalogService" ref="CatalogService"></property>
 		<property name="itemService" ref="ItemService"></property>

@@ -3,6 +3,7 @@ package org.symagic.common.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import net.sf.json.JSON;
@@ -220,13 +221,16 @@ public class OrderService {
 		orderRequire.setLines(Integer.MAX_VALUE);
 		orderRequire.setPage(1);
 		List<BeanOrder> orders = daoOrder.search(orderRequire, userName);
-		if (orders != null) {
+	    if (orders != null) {
 			for (int i = 0; i < orders.size(); i++) {
 				if (isOrderHasItem(itemID, orders.get(i).getList()))
 					orderNum++;
 			}
 		}
 		return orderNum;
+	}
+	public int getOrderNumber(String userName,Integer itemID){
+		return daoOrder.getOrderNum(userName, itemID);
 	}
 
 	public DaoOrder getDaoOrder() {
