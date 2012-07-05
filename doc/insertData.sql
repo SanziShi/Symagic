@@ -242,7 +242,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
                   values ("/upload/9787507528039.png","世界地理全知道（超值白金版）","任啸科 主编",
-                          "华文出版社","2009-10-01",1,429,"平装","20",29.8,0.50,356,
+                          "华文出版社","2009-10-01",1,429,"平装","16",29.8,0.50,356,
                           "本书为读者打开一扇快速认识和了解世界的窗口，是一部帮助读者快速学习和掌握世界地理知识的工具书。全书分为宇宙与地球、非洲、亚洲、大洋洲、美洲（南美洲和北美洲）、欧洲6个部分，全面系统地介绍了世界上200多个国家和属地的地理特征、自然资源、经济、习俗、交通、教育、旅游等诸多方面的知识，多角度解读世界自然和人文地理。并设置“国家概况”、“历史年表”等相关栏目，对世界地理知识加以延伸拓展，力图使繁杂的地理知识形成一个系统、科学的有机整体，方便读者学习掌握。同时，本书配入与文字内容相契合的精美图片，通过与版式的有机结合，让地理知识变得亲切，
                           陪伴读者开始一次愉快的读书之旅，轻松获取世界地理知识。",
                           "9787507528039","在架");
@@ -496,7 +496,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
                   values ("/upload/9787117024754.png","色盲检查图","俞自萍 等 著",
-                        "人民卫生出版社","1958-05-01",5,23,"精装","32",38,0.75,324,
+                        "人民卫生出版社","1958-05-01",4,23,"精装","32",38,0.75,324,
                           "《色盲检查图》(精装)该图册为《色盲检查图》的第五版，原《色盲检查图》自1958年初版问世以来，在广大医务工作者的支持下，广泛用于各类体验，它的实用性和有效性得到广泛的认可。
                           根据当前体检和临床工作需要，本修订版增添了丰富的新图并归类分为第5组。",
                           "9787117024754","在架");
@@ -532,7 +532,7 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
                           "在你手上的，是一个至大的秘密……
 这个秘密沉默了许多年，一些最伟大科学家、思想家、企业家都因运用这个秘密而获得了生命的成功。
 你将了解你可以掌控，却隐藏、受困了很久的力量。当你开始运用它时，会惊讶给你的人生带来的喜悦转变。",
-                          "9787507419887","在架");     
+                          "9787507419887","在架");
 
     
 -- 插入user和secret
@@ -892,63 +892,63 @@ values("236497339@qq.com","缪云彬",
 -- 插入book_order
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-03-23 09:34:20","1","0","0","641567179@qq.com","时钰森",
+values ("2011-06-23 09:34:20","1","0","0","641567179@qq.com","时钰森",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15018713530",148.8, 74);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-03 15:10:00","2","0","0","641567179@qq.com","时钰森",
+values ("2011-07-01 15:10:00","2","0","0","641567179@qq.com","时钰森",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
-        "510000",null,"15018713530",14.4, 7);
+        "510000","0107334316",null,14.4, 7);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-02-24 12:10:56","3","0","0","544921965@qq.com","刘光宗",
+values ("2011-08-22 12:10:56","3","0","0","544921965@qq.com","刘光宗",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",629.3, 315);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2011-07-01 21:59:59","0","0","0","544921965@qq.com","刘光宗",
+values ("2011-09-11 21:59:59","0","0","0","544921965@qq.com","刘光宗",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",26, 13);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-01 17:12:23","1","0","0","236497339@qq.com","缪云彬",
+values ("2011-10-09 17:12:23","1","0","0","236497339@qq.com","缪云彬",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",52.8, 26);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-07 18:45:12","0","0","0","236497339@qq.com","缪云彬",
+values ("2011-11-07 18:45:12","0","0","0","236497339@qq.com","缪云彬",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",15.0, 8);
         
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-02-15 06:08:09","3","0","0","236497339@qq.com","缪云彬",
+values ("2011-12-15 06:08:09","3","0","0","236497339@qq.com","缪云彬",
          '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",12.6, 6);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-03-15 01:00:00","2","0","0","544921965@qq.com","刘光宗",
+values ("2012-01-01 01:00:00","2","0","0","544921965@qq.com","刘光宗",
 '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",45.6, 22);
 
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-06-15 23:23:16","3","0","0","236497339@qq.com","缪云彬",
+values ("2012-02-15 23:23:16","3","0","0","236497339@qq.com","缪云彬",
 '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",24.0, 12);
@@ -959,6 +959,8 @@ values ("2012-03-23 14:56:20","2","0","0","641567179@qq.com","时钰森",
 '{"level1":{"id":12,"name":"安徽省"},"level2":{"id":198,"name":"巢湖市"},
         "level3":{"id":2305,"name":"庐江县"},"detail":"庐城镇"}',
         "510000",null,"15018713530",68.0, 34);
+
+
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
 values ("2012-03-24 09:36:20","2","0","0","1292740870@qq.com","郝靖",
@@ -967,28 +969,29 @@ values ("2012-03-24 09:36:20","2","0","0","1292740870@qq.com","郝靖",
         "510000",null,"15018712345",18.6, 13);
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-24 19:36:20","2","0","0","236497339@qq.com","缪云彬",
+values ("2012-04-24 19:36:20","2","0","0","236497339@qq.com","缪云彬",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551434",18.6, 9);
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-04-22 09:36:20","2","0","0","641567179@qq.com","时钰森",
+values ("2012-04-26 09:36:20","2","0","0","641567179@qq.com","时钰森",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15018713530",18.6, 9);
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-01-10 09:36:20","2","0","0","544921965@qq.com","刘光宗",
+values ("2012-04-27 09:36:20","2","0","0","544921965@qq.com","刘光宗",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
         "510000",null,"15920551404",18.6, 9);
 insert into book_order(ORDERDATE,ORDERSTATE,PAYMENT,DELIVERYWAY,
                       USERNAME,RECEIVERNAME,ADDRDETAIL,ZIPCODE,PHONENUM,MOBILENUM,TOTALPRICE, SCORE)
-values ("2012-02-25 21:24:20","2","0","0","549047626@qq.com","张盛川",
+values ("2012-04-28 21:24:20","2","0","0","549047626@qq.com","张盛川",
         '{"level1":{"id":19,"name":"广东省"},"level2":{"id":289,"name":"广州市"},
         "level3":{"id":3042,"name":"番禺区"},"detail":"大学城"}',
-        "510000",null,"15018713567",18.6, 20);
+        "510000","00107334326","15018713567",18.6, 20);
+
 
 -- 插入order_detail
 insert into order_detail(ORDERID,BOOKID,ISBN,BOOKNAME,MARKETPRICE,DISCOUNT,AMOUNT)
