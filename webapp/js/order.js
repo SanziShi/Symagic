@@ -135,10 +135,10 @@ function order_submit()
 	var t=document.getElementById('score').value;
 	if(t==0)document.getElementById('order_submit').submit();
 	else Ajax({
-		url:'order/check_score?score='+e.value,
-		onSuccess:function(t)
+		url:'order/check_score?score='+t.value,
+		onSuccess:function(y)
 			{
-				var a=JSON.parse(t);
+				var a=JSON.parse(y);
 				if(a.checkResult)
 				{
 					document.getElementById('total_price').innerHTML=a.price;

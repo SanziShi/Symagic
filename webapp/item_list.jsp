@@ -338,9 +338,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="p-name">
             	<a target="_blank" href="item_detail?itemID=<s:property value='#iter.itemID'/>"><s:property value='#iter.name'/></a>
         	</div>
-   		<div class="p-info">作　　者：<a href="quick_search?keyword=<s:property value='#iter.author'/>"><s:property value='#iter.author'/></a>著&nbsp;&nbsp;&nbsp;&nbsp;
+   		<div class="p-info">作　　者：<a href="javascript:void(0)"><s:property value='#iter.author'/></a>著&nbsp;&nbsp;&nbsp;&nbsp;
     	</div>
-   	<div class="p-info">出&nbsp;版&nbsp;社：<a href="quick_search?keyword=<s:property value='#iter.publisher'/>"><s:property value='#iter.publisher'/></a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+   	<div class="p-info">出&nbsp;版&nbsp;社：<a href="javascript:void(0)"><s:property value='#iter.publisher'/></a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
    	<div class="p-info"><span class="date-pub">出版时间：<s:property value='#iter.publishTime'/></span>&nbsp;&nbsp;<span class="fl">评&nbsp;&nbsp;分：</span><s:property value='#iter.rating'/></div>
    	<div class="p-info"><div class="mark-price">定　　价：<del>￥<s:property value='#iter.marketPrice'/></del>
     </div>商城价：<strong>￥<s:property value='#iter.price'/></strong><span>（<s:property value='#iter.discount'/>折）</span>
