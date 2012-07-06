@@ -200,12 +200,13 @@ function check_item_num(id,e)
 								var d=JSON.parse(r);
 								if(d.updateResult)
 								{
-									e.setAttribute('default',e.value);
+									location.reload();
+									/*e.setAttribute('default',e.value);
 									get_session({S:function(s)
 										{
 										num.innerHTML=s.totalNumber;
 										}
-									});
+									});*/
 								}
 								else alert('商品数量修改失败！')
 							}
