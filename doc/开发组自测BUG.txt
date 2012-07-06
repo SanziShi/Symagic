@@ -17,7 +17,7 @@ isbn正确性检测 hj (fix)
 
 购物车详情中，调用update时，没有刷新页面，造成价格处没有刷新。对于 update 商品项的数量为0时，删除了，但没有刷新页面，导致页面上还有相应商品项存在的情况  yf
 
-增加评论时，同一个会员对同一件商品评论第二次时，出现duplicate entry \zsc
+增加评论时，同一个会员对同一件商品评论第二次时，出现duplicate entry \xx
 
 order_submit时调用的接口是check_score yf
 
@@ -33,7 +33,7 @@ order_submit时调用的接口是check_score yf
 
 管理员在修改订单时没有更新总价 hj (fix)
 
-在购物车URL非法请求，返回数据 zsc
+在购物车URL非法请求，返回数据 zsc (fix)
 
 下单时电话和手机可以为字符串 wqm(fix)
 
@@ -47,7 +47,7 @@ order_submit时调用的接口是check_score yf
 
 订单修改，后台逻辑处理不完善 hj (fix)
 
-下单确定页面，后台逻辑处理不完善 wqm
+下单确定页面，后台逻辑处理不完善 hj( fix )
 
 会员管理下一页跳转到item_detail hj(fix)
 
@@ -55,5 +55,5 @@ order_submit时调用的接口是check_score yf
 
 后台页面跳转js失效（ie更为严重） gz
 
-后台订单修改的页面无法动态更新地址
+后台订单修改的页面无法动态更新地址 （hj fix)
 
