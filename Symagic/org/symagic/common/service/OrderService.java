@@ -3,7 +3,6 @@ package org.symagic.common.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import net.sf.json.JSON;
@@ -150,19 +149,19 @@ public class OrderService {
 			return null;
 		}
 
-		if (level1 != null) {
+		if (!level1.isNullObject()) {
 			result.level1District = new DistrictBean();
 			result.level1District.setID(level1.getInt("id"));
 			result.level1District.setName(level1.getString("name"));
 		}
 
-		if (level2 != null) {
+		if (!level2.isNullObject()) {
 			result.level2District = new DistrictBean();
 			result.level2District.setID(level2.getInt("id"));
 			result.level2District.setName(level2.getString("name"));
 		}
 
-		if (level3 != null) {
+		if (!level3.isNullObject()) {
 			result.level3District = new DistrictBean();
 			result.level3District.setID(level3.getInt("id"));
 			result.level3District.setName(level3.getString("name"));
