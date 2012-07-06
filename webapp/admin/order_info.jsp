@@ -143,8 +143,10 @@
 									</tr>
 								</s:iterator>
 								<!--商品条项迭代结束-->
-									<tr>
-								<s:if test="orderStatus=='已下单'">
+							</tbody>
+						
+						</table>
+						<s:if test="orderStatus=='已下单'">
 								<input type="button" value="修改" onclick="location='order_edit?orderID=<s:property value = 'orderID'/>'" />
 								<input type="button" value="审核" onclick="ajax_pass_order(<s:property value = 'orderID'/>)"/>
 								</s:if>
@@ -153,10 +155,6 @@
 								</s:elseif>
 								<s:else>
 								</s:else>
-								</tr>
-							</tbody>
-						
-						</table>
 					</div>
 				</div>
 			</form>
