@@ -233,9 +233,9 @@
 									<td></td>
 									<td></td>
 									<td></td>
-									<td><s:if test="orderStatus=='已下单'">
-											<input onclick="" type="submit" value="审核" />
-										</s:if><input type="submit" value="提交修改" /><input type="hidden"
+									<td><s:if test="orderStatus!='交易成功'||'交易失败'">
+											<input type="submit" value="提交修改" />
+										</s:if><input type="hidden"
 										name="orderID" value="<s:property value='orderID'/>" />
 									</td>
 
