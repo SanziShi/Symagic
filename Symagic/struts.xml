@@ -591,6 +591,12 @@ Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 				<param name="includeProperties">deleteResult</param>
 			</result>
 		</action>
+		
+		<action name="get_next_level" class="getNextLevel">
+		<result type="json">
+				<param name="root">nextLevelArray</param>
+			</result>
+		</action>
 
 	</package>
 
