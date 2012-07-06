@@ -49,7 +49,7 @@ public class AdminScoreRateSubmitAction extends ActionSupport {
 		BeanLevel level = levels.get(modifyLevelIndex);
 
 		if (modifyLevelIndex == 0) {
-			if (level.getUpLimit() <= low) {
+			if (level.getUpLimit() <= low || low != 0) {
 				return ERROR;
 			}
 			level.setLowLimit(low);
