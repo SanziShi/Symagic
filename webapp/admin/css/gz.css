@@ -482,3 +482,9 @@ text-align: center;
 	width:800px;
 	margin:1px 0px 0px 0px;
 }
+
+<!--底栏table后div格式控制-->
+.divPosition{
+	position: relative;
+	left: 600px;
+}

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>BC2商城</title>
+<title>Symagic网上书城</title>
 <link href="css/frame.css" rel="stylesheet" type="text/css" />
 <link href="css/gz.css" rel="stylesheet" type="text/css" />
 <line href="css/order_operation.css" rel="stylesheet" type="text/css" />
