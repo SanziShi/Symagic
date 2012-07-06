@@ -307,11 +307,11 @@ insert into book (picture, bookname, author,publisher, publishdate, version, pag
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
-                  values ("/upload/10937944.png","2011科幻世界（精华本）","姚海军 编",
+                  values ("/upload/10937943.png","2011科幻世界（精华本）","姚海军 编",
                           "科幻世界杂志社","2012-03-01",1,820,"平装","16",88,0.49,233,
                           "人类蜗居在银河系的一个小角落——太阳系，在围绕太阳旋转的第三颗行星上，生活了十多万年之久。
 　　人类在这个小小的行星（他们称之为“地球”）上，建立了两百多个不同的行政区域（他们称之为“国家”），直到地球上诞生了第一个会思考的机器人。",
-                          "10937944","在架");
+                          "10937943","在架");
 insert into book (picture, bookname, author,publisher, publishdate, version, page, binding, 
                 folio,marketprice, discount, inventory,bookdesc, 
                   isbn, offline)
