@@ -47,7 +47,7 @@ order_submit时调用的接口是check_score yf
 
 订单修改，后台逻辑处理不完善 hj (fix)
 
-下单确定页面，后台逻辑处理不完善 wqm
+下单确定页面，后台逻辑处理不完善 hj( fix )
 
 会员管理下一页跳转到item_detail hj(fix)
 
@@ -55,5 +55,5 @@ order_submit时调用的接口是check_score yf
 
 后台页面跳转js失效（ie更为严重） gz
 
-后台订单修改的页面无法动态更新地址
+后台订单修改的页面无法动态更新地址 （hj fix)
 
