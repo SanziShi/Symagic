@@ -266,7 +266,14 @@ function login(form,op)
 					if(op=='p')location.reload();
 					else
 					{
-						get_session({S:function(b){if(b.loginErrorTimes>=3)document.getElementById('login_error_captcha').style.diaplay='table-cell'}})
+						get_session({S:function(b)
+								{
+									if(b.loginErrorTimes>=3)
+									{
+										var a=document.getElementById('login_error_captcha').className='';						
+									}
+								}
+							})
 					}
 					return ture;
 				}

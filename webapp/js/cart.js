@@ -34,6 +34,7 @@ function checkout()
 				}
 			})
 	}
+	else a.submit();
 	stopDefault();
 }
 function delete_form_cart(f)
