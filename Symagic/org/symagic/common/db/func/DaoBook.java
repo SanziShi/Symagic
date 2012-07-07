@@ -756,32 +756,32 @@ public class DaoBook {
 		if (haveCatalogID == false)
 			sql = "select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
 					+ "from book_order, order_detail "
-					+ "where book_order.orderid=order_detail.orderid and orderdate >  "
+					+ "where book_order.orderid=order_detail.orderid and orderdate >=  "
 					+ " '"
 					+ req.getStartTime()
 					+ "' "
-					+ " and orderdate < "
+					+ " and orderdate <= "
 					+ " '"
 					+ req.getEndTime()
 					+ "' "
 					+ "group by bookid "
-					+ "having sum(amount) > ? "
+					+ "having sum(amount) >= ? "
 					+ "order by bookid asc  limit ?, ?";
 		else {
 			sql = "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid "
 					+ "from ("
 					+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
 					+ " from book_order, order_detail "
-					+ " where book_order.orderid=order_detail.orderid and orderdate >  "
+					+ " where book_order.orderid=order_detail.orderid and orderdate >=  "
 					+ " '"
 					+ req.getStartTime()
 					+ "' "
-					+ " and orderdate < "
+					+ " and orderdate <= "
 					+ " '"
 					+ req.getEndTime()
 					+ "' "
 					+ " group by bookid "
-					+ " having sum(amount) > ? "
+					+ " having sum(amount) >= ? "
 					+ "order by bookid asc) "
 					+ " as t1, book_catalog_detail as t2 "
 					+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
@@ -848,32 +848,32 @@ public class DaoBook {
 		if (haveCatalogID == false)
 			sql = "select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
 					+ "from book_order, order_detail "
-					+ "where book_order.orderid=order_detail.orderid and orderdate >  "
+					+ "where book_order.orderid=order_detail.orderid and orderdate >=  "
 					+ " '"
 					+ req.getStartTime()
 					+ "' "
-					+ " and orderdate < "
+					+ " and orderdate <= "
 					+ " '"
 					+ req.getEndTime()
 					+ "' "
 					+ "group by bookid "
-					+ "having sum(amount) > ? "
+					+ "having sum(amount) >= ? "
 					+ "order by bookid asc  ";
 		else {
 			sql = "select t1.bookid, bookname, sum_amount, sum_price, t2.catalogid "
 					+ "from ("
 					+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
 					+ " from book_order, order_detail "
-					+ " where book_order.orderid=order_detail.orderid and orderdate >  "
+					+ " where book_order.orderid=order_detail.orderid and orderdate >=  "
 					+ " '"
 					+ req.getStartTime()
 					+ "' "
-					+ " and orderdate < "
+					+ " and orderdate <= "
 					+ " '"
 					+ req.getEndTime()
 					+ "' "
 					+ " group by bookid "
-					+ " having sum(amount) > ? "
+					+ " having sum(amount) >= ? "
 					+ "order by bookid asc) "
 					+ " as t1, book_catalog_detail as t2 "
 					+ " where t1.bookid=t2.bookid and t2.catalogid in (0 ";
