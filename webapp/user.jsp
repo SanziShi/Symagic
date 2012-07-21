@@ -136,6 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="3" class="user_note hide">
         	<div class="head">个人信息</div>
         	<div class="user_note_content">
+            	<input style="display:none" id="nick_name" value="<s:property value='#session.nickname'/>"/>
             	<p><span>昵&nbsp;&nbsp;&nbsp;称：</span><s:property value='#session.nickname'/></p>
             	<p><span>修改昵称：</span><input name="nickname_c" id="nickname_c" class="inputtext"/></p>
             	<p><span><input type="button" onclick="nickname_c(this)" value="确定修改"/></span></p>

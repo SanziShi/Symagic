@@ -61,7 +61,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<li><a class="nouseful">&nbsp;</a></li>
 		</ul>
 	</div>
-    <form action="order_submit" method="post" id="order_submit">
+    <form action="order_submit" method="post" id="order_submit" onsubmit="return order_submit()">
     <div id="order_container">
     	<div id="c-info">
         	<h1>收货人信息</h1>
@@ -188,7 +188,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div id="ware">
         	<h1>结算</h1>
             <div id="use_score"><input type="checkbox" onclick="use_score_change(this)"/>使用积分：&nbsp;&nbsp;
-            	<input onblur="check_score(this)" id="score" name="score" class="short" value="0"/>&nbsp;&nbsp;
+            	<input onblur="check_score(this)" id="score" name="score" disabled="disabled" class="short" value="0"/>&nbsp;&nbsp;
                 可用积分：&nbsp;&nbsp;<font color="red"><s:property value='score'/></font>
             </div>
         	<div class="total_price"><span id="pay">应付总额：<strong>￥</strong><strong id="total_price"><s:property value='price'/></strong>元</span></div>

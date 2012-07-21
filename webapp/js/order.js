@@ -103,11 +103,10 @@ function delete_address(id)
 function use_score_change(e)
 {
 	var s=document.getElementById('score');
-	if(e.checked)s.style.display='inline-block';
+	if(e.checked)s.disabled='';
 	else 
 	{
-		s.style.display='none';
-		s.value=0;
+		s.disabled='disabled';
 	}
 }
 function check_score(e)
@@ -132,10 +131,10 @@ function check_score(e)
 }
 function order_submit()
 {
-	var t=document.getElementById('score').value;
-	if(t=='0')document.getElementById('order_submit').submit();
+	var t=document.getElementById('score');
+	if(t.disabled=='disabled')document.getElementById('order_submit').submit();
 	else Ajax({
-		url:'order/check_score?score='+t,
+		url:'order/check_score?score='+t.value,
 		onSuccess:function(y)
 			{
 				var a=JSON.parse(y);
@@ -147,9 +146,11 @@ function order_submit()
 				else 
 				{
 					Stip('score').show({p: 'top',content:'您的积分不够，请重新选择',time:3000,kind:"error"});
+					return false;
 				}
 			}
 		})
+	return false;
 }
 function order_edit_confirm()
 {

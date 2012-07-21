@@ -25,7 +25,10 @@ function checkout()
 			onSuccess:function(e)
 				{
 					var c=JSON.parse(e);
-					if(c.updateResult)a.submit();
+					if(c.updateResult)
+					{
+						a.submit();
+					}
 					else
 					{
 						alert('c.resultInfo');
@@ -33,6 +36,7 @@ function checkout()
 					}
 				}
 			})
+		return false;
 	}
 	else a.submit();
 	stopDefault();

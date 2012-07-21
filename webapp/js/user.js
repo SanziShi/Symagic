@@ -26,6 +26,12 @@ function close_address_edit(id)
 function nickname_c(e)
 {
 	var c=document.getElementById('nickname_c').value;
+	var before=document.getElementById('nick_name').value;
+	if(before==c)
+	{
+		alert('与原昵称相同，请检查您的输入！');
+		return false;
+	}
 	Ajax({
 		url:'user/update_nickname',
 		data:'nickname='+c,
@@ -43,6 +49,7 @@ function nickname_c(e)
 				}
 			}
 		})
+
 }
 function pass_submit()
 {
