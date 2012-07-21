@@ -50,13 +50,15 @@ public String execute() throws Exception {
 		 resultInfo="购物车中没有此商品";
 		 return SUCCESS;
 	 }
-	 if(itemNumber<0||itemNumber>999){
+	 if(itemNumber<1||itemNumber>999){
+		 updateResult=false;
 		 resultInfo="请输入正确的数量";
 		 return SUCCESS;
 	 }
 	 //库存检测
 	 BeanBook book=daoBook.getDetail(itemID);
 	 if(itemNumber>book.getInventory()){
+		 updateResult=false;
 		 resultInfo="库存不足";
 	 }
 	//会员登录更新到数据库中
@@ -67,6 +69,7 @@ public String execute() throws Exception {
 		if(updateResult)
 	         updateResult=UserSessionUtilty.modifyFromCart(itemID, itemNumber);
 		if(!updateResult){
+			
 			resultInfo="修改失败";
 			return "success";
 		}
