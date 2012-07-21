@@ -32,6 +32,7 @@ function checkout()
 					else
 					{
 						alert('c.resultInfo');
+						return false;
 						location.reload();
 					}
 				}

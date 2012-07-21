@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  </form>
 		</div>
         <div class="clear"></div>
-        <form id="checkout" action="order" method="post" onsubmit="return checkout()">
+        <form id="checkout" action="order" method="post" onsubmit="return checkout();">
         <div id="cart-a">
         	<h2>我的购物车</h2>
         	<div id="cart_table">
