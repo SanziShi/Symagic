@@ -114,7 +114,7 @@ public class OrderDetailAction extends OrderBase {
 			receiverAddres += address.level1District.getName();
 		if(address.level2District.getName() != null)
 			receiverAddres += address.level2District.getName();
-		if(address.level3District.getName() != null)
+		if(address.level3District != null && address.level3District.getName() != null)
 			receiverAddres += address.level3District.getName();
 		if(address.districtDetail != null)
 			receiverAddres += address.districtDetail;
@@ -126,6 +126,9 @@ public class OrderDetailAction extends OrderBase {
 		addressList.setLevel3Districts(new ArrayList<DistrictBean>());
 		addressList.getLevel1Districts().add(address.level1District);
 		addressList.getLevel2Districts().add(address.level2District);
+		if(address.level3District != null){
+			addressList.getLevel3Districts().add(address.level3District);
+		}
 		addressList.setAddressDetail(orderAddress.districtDetail);
 		addressList.setMobileNum(order.getMobilenum());
 		addressList.setPhoneNum(order.getPhonenum());

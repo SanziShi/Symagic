@@ -468,6 +468,7 @@
 		<property name="daoBook" ref="DaoBook"></property>
 		<property name="daoLevel" ref="DaoLevel"></property>
 		<property name="daoCart" ref="DaoCart"></property>
+		<property name="addressService" ref="AddressService"></property>
 	</bean>
 
 	<bean id="orderDelete" class="org.symagic.user.action.order.OrderDeleteOrderAction"

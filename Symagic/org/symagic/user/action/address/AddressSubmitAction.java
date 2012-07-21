@@ -73,10 +73,13 @@ public class AddressSubmitAction extends AddressBase {
 		addressDetail.level2District.setID(getDistrictLevel2ID());
 		addressDetail.level2District.setName(daoDistrict.getDistrictById(
 				getDistrictLevel2ID()).getName());
-		addressDetail.level3District = new DistrictBean();
-		addressDetail.level3District.setID(getDistrictLevel3ID());
-		addressDetail.level3District.setName(daoDistrict.getDistrictById(
-				getDistrictLevel3ID()).getName());
+		if(getDistrictLevel3ID() != null){
+			addressDetail.level3District = new DistrictBean();
+			addressDetail.level3District.setID(getDistrictLevel3ID());
+		}
+		else{
+			addressDetail.level3District = null;
+		}
 
 		String strAddressDetail = OrderService.serializerAddress(addressDetail);
 		address.setAddrdetail(strAddressDetail);
@@ -99,8 +102,15 @@ public class AddressSubmitAction extends AddressBase {
 		isValidate = true;
 		clearErrorsAndMessages();
 		if(getDistrictLevel1ID() == null || getDistrictLevel1ID() <= 0 ||
-				getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0 ||
-				getDistrictLevel3ID() == null || getDistrictLevel3ID() <= 0){
+				getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0){
+			isValidate = false;
+			submitResult = false;
+			resultInfo = "地址为空";
+			return;
+		}
+		
+		if(!daoDistrict.getDistrict(getDistrictLevel2ID()).isEmpty() &&
+				(getDistrictLevel3ID() == null || getDistrictLevel3ID() <= 0)){
 			isValidate = false;
 			submitResult = false;
 			resultInfo = "地址为空";

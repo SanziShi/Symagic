@@ -47,7 +47,10 @@ public class AddressService {
 			OrderService.Address orderAddress = OrderService.deserializerAddress(beanAddress.getAddrdetail());
 			address.setLevel1DistrictDefaultID(orderAddress.level1District.getID());
 			address.setLevel2DistrictDefaultID(orderAddress.level2District.getID());
-			address.setLevel3DistrictDefaultID(orderAddress.level3District.getID());
+			if(orderAddress.level3District != null)
+				address.setLevel3DistrictDefaultID(orderAddress.level3District.getID());
+			else
+				address.setLevel3DistrictDefaultID(0);
 			List<BeanDistrict> districtLevel1List = daoDistrict.getDistrict(0);
 			List<BeanDistrict> districtLevel2List = daoDistrict.getDistrict(orderAddress.level1District.getID());
 			List<BeanDistrict> districtLevel3List = daoDistrict.getDistrict(orderAddress.level2District.getID());
@@ -84,8 +87,11 @@ public class AddressService {
 			
 			address.setAddressDetail(orderAddress.districtDetail);
 			address.setAddressSummary(orderAddress.level1District.getName()
-					+ orderAddress.level2District.getName()
-					+ orderAddress.level3District.getName());
+					+ orderAddress.level2District.getName());
+			if(orderAddress.level3District != null){
+				String string = address.getAddressSummary();
+				string += orderAddress.level3District.getName();
+			}
 			address.setReceiverName(beanAddress.getReceivername());
 			address.setMobileNum(beanAddress.getMobilenum());
 			address.setPhoneNum(beanAddress.getPhonenum());

@@ -170,15 +170,19 @@ public class OrderEditOrderAction extends OrderBase {
 		defaultAddressList.setLevel3Districts(addressService.getDistricts(address.level2District.getID()));
 		defaultAddressList.setLevel1DistrictDefaultID(address.level1District.getID());
 		defaultAddressList.setLevel2DistrictDefaultID(address.level2District.getID());
-		defaultAddressList.setLevel3DistrictDefaultID(address.level3District.getID());
+		if(address.level3District != null)
+			defaultAddressList.setLevel3DistrictDefaultID(address.level3District.getID());
 		
 		defaultAddressList.setAddressDetail(address.districtDetail);
 		defaultAddressList.setMobileNum(order.getMobilenum());
 		defaultAddressList.setPhoneNum(order.getPhonenum());
 		defaultAddressList.setZipcode(order.getZipcode());
 		defaultAddressList.setAddressSummary(address.level1District.getName()
-				+ address.level2District.getName()
-				+ address.level3District.getName());
+				+ address.level2District.getName());
+		if(address.level3District != null){
+			String string = defaultAddressList.getAddressSummary();
+			string += address.level3District.getName();
+		}
 		defaultAddressList.setReceiverName(order.getReceiverName());
 
 		setOrderID(order.getOrderId());

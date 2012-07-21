@@ -93,18 +93,28 @@ public class OrderEditOrderSubmitAction extends OrderBase{
 	
 	public void validate(){
 		isValidate = true;
-		if(orderID == null || districtLevel1ID == null || districtLevel2ID == null || districtLevel3ID == null)
+		if(orderID == null || orderID <= 0
+				|| districtLevel1ID == null || districtLevel1ID <= 0
+				|| districtLevel2ID == null || districtLevel2ID <= 0)
 		{
 			isValidate = false;
+			submitResult = false;
+			resultInfo = "信息错误";
 			return;
 		}
 		
 		clearErrorsAndMessages();
 		submitResult = true;
 		if(getDistrictLevel1ID() == null || getDistrictLevel1ID() <= 0 ||
-				getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0 ||
-				getDistrictLevel3ID() == null || getDistrictLevel3ID() <= 0){
+				getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0){
 			submitResult = false;
+			isValidate = false;
+			resultInfo = "地址为空";
+			return;
+		}
+		
+		if(!daoDistrict.getDistrict(districtLevel2ID).isEmpty() &&
+				(districtLevel3ID == null || districtLevel3ID <= 0)){
 			isValidate = false;
 			resultInfo = "地址为空";
 			return;
@@ -173,22 +183,27 @@ public class OrderEditOrderSubmitAction extends OrderBase{
 		address.level2District = new DistrictBean();
 		address.level2District.setID(this.districtLevel2ID);
 		BeanDistrict level2 = daoDistrict.getDistrictById(districtLevel2ID);
-		if(level2 != null)
+		if(level2 != null){
 			address.level2District.setName(level2.getName());
+			address.level2District.setID(level2.getId());
+		}
 		else{
 			submitResult = false;
 			resultInfo = "二级地址错误";
 			return SUCCESS;
 		}
-		address.level3District = new DistrictBean();
-		address.level3District.setID(this.districtLevel3ID);
-		BeanDistrict level3 = daoDistrict.getDistrictById(districtLevel3ID);
-		if(level3 != null)
-			address.level3District.setName(level3.getName());
-		else{
-			submitResult = false;
-			resultInfo = "三级地址错误";
-			return SUCCESS;
+		BeanDistrict level3 = null;
+		if(districtLevel3ID != null){
+			level3 = daoDistrict.getDistrictById(districtLevel3ID);
+			if(level3 != null){
+				address.level3District.setName(level3.getName());
+				address.level3District.setID(level3.getId());
+			}
+			else{
+				submitResult = false;
+				resultInfo = "三级地址错误";
+				return SUCCESS;
+			}
 		}
 		order.setAddrDetail(OrderService.serializerAddress(address));
 		order.setMobilenum(getMobileNum());

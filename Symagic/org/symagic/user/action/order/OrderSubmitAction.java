@@ -21,6 +21,7 @@ import org.symagic.common.db.func.DaoDistrict;
 import org.symagic.common.db.func.DaoLevel;
 import org.symagic.common.db.func.DaoOrder;
 import org.symagic.common.db.func.DaoUser;
+import org.symagic.common.service.AddressService;
 import org.symagic.common.service.OrderService;
 import org.symagic.common.service.RecommendService;
 import org.symagic.common.utilty.presentation.bean.DistrictBean;
@@ -79,6 +80,8 @@ public class OrderSubmitAction extends OrderBase {
 	private DaoDistrict daoDistrict;
 
 	private RecommendService recommandService;
+	
+	private AddressService addressService;
 
 	private DaoBook daoBook;
 
@@ -170,13 +173,17 @@ public class OrderSubmitAction extends OrderBase {
 		else {
 			return ERROR;
 		}
-		address.level3District = new DistrictBean();
-		address.level3District.setID(this.districtLevel3ID);
-		BeanDistrict level3 = daoDistrict.getDistrictById(districtLevel3ID);
-		if (level3 != null)
+		BeanDistrict level3 = null;
+		if (districtLevel3ID != null && districtLevel3ID != 0) {
+			address.level3District = new DistrictBean();
+			address.level3District.setID(this.districtLevel3ID);
+			level3 = daoDistrict.getDistrictById(districtLevel3ID);
+			address.level3District.setID(districtLevel3ID);
 			address.level3District.setName(level3.getName());
-		else
-			return ERROR;
+		}
+		else{
+			level3 = null;
+		}
 		order.setAddrDetail(OrderService.serializerAddress(address));
 		order.setMobilenum(getMobileNum());
 		order.setPhonenum(getPhoneNum());
@@ -299,9 +306,8 @@ public class OrderSubmitAction extends OrderBase {
 		if (score == null)
 			score = 0;
 		if (getDistrictLevel1ID() == null || getDistrictLevel2ID() == null
-				|| getDistrictLevel3ID() == null || getMobileNum() == null
-				|| getPhoneNum() == null || getReceiverName() == null
-				|| getZipcode() == null) {
+				|| getMobileNum() == null || getPhoneNum() == null
+				|| getReceiverName() == null || getZipcode() == null) {
 			errorHeader = "信息不全";
 			isValidate = false;
 			return;
@@ -313,30 +319,39 @@ public class OrderSubmitAction extends OrderBase {
 		}
 
 		isValidate = true;
-
-		isValidate = true;
 		clearErrorsAndMessages();
 		if (getDistrictLevel1ID() == null || getDistrictLevel1ID() <= 0
-				|| getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0
-				|| getDistrictLevel3ID() == null || getDistrictLevel3ID() <= 0) {
+				|| getDistrictLevel2ID() == null || getDistrictLevel2ID() <= 0) {
+			errorHeader = "信息错误";
 			errorSpecification = "地区选择错误";
 			isValidate = false;
 			return;
 		}
+		int dislevel2ID = getDistrictLevel2ID();
+		
+		List<DistrictBean> dBeans = addressService.getDistricts(dislevel2ID);
+		
+		if(!dBeans.isEmpty()){
+			errorHeader = "填写三级地址详情";
+			errorSpecification = "填写三级地址详情";
+			isValidate = false;
+			return;
+		}
+		
+		
 
 		if (getMobileNum() == null || getMobileNum().isEmpty()
 				|| !getMobileNum().matches("[1]{1}[3,5,8,6]{1}[0-9]{9}")) {
 			if (getPhoneNum() == null || getPhoneNum().isEmpty()
 					|| !getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")) {
+				errorHeader = "信息错误";
 				errorSpecification = "电话号码不全，或错误";
 				isValidate = false;
 				return;
-			}
-			else{
+			} else {
 				setMobileNum("");
 			}
-		}
-		else{
+		} else {
 			if (getPhoneNum() == null || getPhoneNum().isEmpty()
 					|| !getPhoneNum().matches("^[0]\\d{2,3}\\d{7,8}")) {
 				setPhoneNum("");
@@ -416,6 +431,14 @@ public class OrderSubmitAction extends OrderBase {
 
 	public void setErrorSpecification(String errorSpecification) {
 		this.errorSpecification = errorSpecification;
+	}
+
+	public AddressService getAddressService() {
+		return addressService;
+	}
+
+	public void setAddressService(AddressService addressService) {
+		this.addressService = addressService;
 	}
 
 }
