@@ -31,9 +31,9 @@ function checkout()
 					}
 					else
 					{
-						alert('c.resultInfo');
-						return false;
+						alert(c.resultInfo);
 						location.reload();
+						return false;
 					}
 				}
 			})
