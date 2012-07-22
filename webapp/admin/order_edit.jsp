@@ -124,7 +124,7 @@
 											</s:else>
 										</s:iterator>
 								</select> <select id="level3ID" name="level3ID">
-										<option value="">请选择</option>
+										<option value="s3">请选择</option>
 										<s:iterator value="level3District" var='iter'>
 											<s:if test="%{selectedLevel3DistrictID==#iter.ID}">
 												<option value="<s:property value='#iter.ID'/>"

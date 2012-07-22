@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             </s:iterator>
                                 	</select>
                                 	<select id="level3ID" name="districtLevel3ID">
-                                		<option value="">请选择</option>
+                                		<option value="s3">请选择</option>
                                         <s:iterator value="#iter.level3Districts" var='middle'>
                                             	<s:if test='#middle.ID==#iter.level3DistrictDefaultID'>
                                 				<option value="<s:property value='#middle.ID'/>" selected="selected" ><s:property value='#middle.name'/></option>
@@ -106,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 			<option value="s2">请选择</option>
                                 		</select>
                                 		<select id="level3ID" name="districtLevel3ID">
-                                			<option value="">请选择</option>
+                                			<option value="s3">请选择</option>
                                 		</select>
                                 </td>
                             </tr>

@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="recommend" >
 			<ul>
             <!--迭代开始-->
-            <s:iterator value='newBook' var='iter'>
+            <s:iterator value='hotBook' var='iter'>
 				<li><a href="item_detail?itemID=<s:property value='#iter.itemID'/>"><img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"/>
                 <br>
                 <div class="inputHeader"><s:property value='#iter.name'/></div>
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="new">
 			<ul>
 		 	<!--迭代开始-->
-            <s:iterator value='hotBook' var='iter'>
+            <s:iterator value='newBook' var='iter'>
 				<li>
                 	<a href="item_detail?itemID=<s:property value='#iter.itemID'/>">
                     <img src="<s:property value='#request.get("javax.servlet.forward.context_path")'/><s:property value='#iter.picturePath'/>"/>

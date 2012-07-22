@@ -3,23 +3,19 @@ function get_district(d)
 	var l2=document.getElementById('level2ID');
 	var l3=document.getElementById('level3ID');
 	var va=d.value;
+	alert(va);
 	if(va=='s1')
 	{
-		var tmp=document.createElement('option');
-		l2.innerHTML='';
-		tmp.value='s2';tmp.innerHTML='请选择';
-		l2.appendChild(tmp);
-		l3.innerHTML='';
-		tmp.value='';
-		l3.appendChild(tmp);
+		$(l2).empty();
+		$(l2).append('<option value="s2">请选择</option>');
+		$(l3).empty();
+		$(l3).append('<option value="s3">请选择</option>');
 		return false;
 	}
 	else if(va=='s2')
 	{
-		var tmp=document.createElement('option');
-		tmp.value='';tmp.innerHTML='请选择';
-		l3.innerHTML='';
-		l3.appendChild(tmp);
+		$(l3).empty();
+		$(l3).append('<option value="s3">请选择</option>');
 		return false;
 	}
 	else{
@@ -32,8 +28,15 @@ function get_district(d)
 				var n=d.nextSibling.nextSibling;
 				if(d.id=='level1ID')
 				{
-					n.innerHTML='<option value="-2">请选择</option>';
-				}else n.innerHTML='<option value="">请选择</option>';
+					$(l2).empty();
+					$(l2).append('<option value="s3">请选择</option>');
+					$(l3).empty();
+					$(l3).append('<option value="s3">请选择</option>');
+				}else 
+				{
+					$(l3).empty();
+					$(l3).append('<option value="s3">请选择</option>');
+				}
 				var t=document.createElement('select');
 				for(var g=0;g<l;++g)
 				{
@@ -180,6 +183,14 @@ function clear_address(id)
 	$(tid+' input').each(function(i) {
         this.value='';
     });
+	var t=document.getElementById('level1ID');
+	t.value='s1';
+	var t=document.getElementById('level2ID');
+	$(t).empty();
+	$(t).append('<option value="s2">请选择</option>');
+	var t=document.getElementById('level3ID');
+	$(t).empty();
+	$(t).append('<option value="s3">请选择</option>');
 }
 
 

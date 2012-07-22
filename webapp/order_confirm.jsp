@@ -102,7 +102,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	<option value="s2">请选择</option>
                                 </select>
                                 <select id="level3ID" name="districtLevel3ID">
-                                	<option value="">请选择</option>
+                                	<option value="s3">请选择</option>
                                 </select>
                             </td>
                         </tr>
