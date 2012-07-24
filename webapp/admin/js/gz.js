@@ -775,7 +775,6 @@ function add(id) {
       var singlePrice = parseFloat(document.getElementById('singlePrice'+id).innerHTML);
       var totalPrice = (singlePrice * amount).toFixed(2);
        document.getElementById('totalPrice'+id).innerHTML = totalPrice;
-      alert(totalPrice);
       
       
 }
