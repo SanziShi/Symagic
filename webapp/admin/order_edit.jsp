@@ -207,7 +207,7 @@
 										</a>
 										 
 										 </td>
-										<td>￥<s:property value="#itemArray.price" />
+										<td >￥<span id="singlePrice<s:property value = '#itemArray.itemID'/>"><s:property value="#itemArray.price" /></span>
 										</td>
 										<td><s:if test="orderStatus!='交易成功'||'交易失败'">
 												<span><a class="reduce"
@@ -223,7 +223,7 @@
 											</s:if> <s:else>
 												<s:property value="itemNumber" />
 											</s:else></td>
-										<td>￥<s:property value="#itemArray.itemTotalPrice" />
+										<td >￥<span id="totalPrice<s:property value = '#itemArray.itemID'/>"><s:property value="#itemArray.itemTotalPrice" /></span>
 										</td>
 									</tr>
 								</s:iterator>

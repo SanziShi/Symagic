@@ -770,12 +770,23 @@ function set_value(e, id) {
 
 // 商品数量增加、减少
 function add(id) {
-	document.getElementById(id).value = parseInt(document.getElementById(id).value) + 1;
+	
+      var amount =document.getElementById(id).value = parseInt(document.getElementById(id).value) + 1;
+      var singlePrice = parseFloat(document.getElementById('singlePrice'+id).innerHTML);
+      var totalPrice = (singlePrice * amount).toFixed(2);
+       document.getElementById('totalPrice'+id).innerHTML = totalPrice;
+      alert(totalPrice);
+      
+      
 }
 function reduce(id) {
-	if (document.getElementById(id).value > 1)
-		document.getElementById(id).value = parseInt(document
+	if (document.getElementById(id).value > 1){
+	 var amount = document.getElementById(id).value = parseInt(document
 				.getElementById(id).value) - 1;
+	 var singlePrice = parseFloat(document.getElementById('singlePrice'+id).innerHTML);
+     var totalPrice = (singlePrice * amount).toFixed(2);
+     document.getElementById('totalPrice'+id).innerHTML = totalPrice;
+	}
 }
 // 数量修改
 function amount_modify(e) {
