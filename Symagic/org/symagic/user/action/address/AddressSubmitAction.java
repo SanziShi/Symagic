@@ -76,6 +76,8 @@ public class AddressSubmitAction extends AddressBase {
 		if(getDistrictLevel3ID() != null){
 			addressDetail.level3District = new DistrictBean();
 			addressDetail.level3District.setID(getDistrictLevel3ID());
+			addressDetail.level3District.setName(daoDistrict.getDistrictById(
+				getDistrictLevel3ID()).getName());
 		}
 		else{
 			addressDetail.level3District = null;
