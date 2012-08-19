@@ -3,7 +3,6 @@ function get_district(d)
 	var l2=document.getElementById('level2ID');
 	var l3=document.getElementById('level3ID');
 	var va=d.value;
-	alert(va);
 	if(va=='s1')
 	{
 		$(l2).empty();
