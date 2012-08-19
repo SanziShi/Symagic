@@ -125,9 +125,11 @@
 									name="levelID">
 										<!--会员等级迭代开始-->
 										<s:iterator value="levelList" var="level">
+										<s:if test="%{#level.levelID!=1}">
 											<option value="<s:property value='#level.levelID'/>">
 												<s:property value='#level.levelName' />
 											</option>
+										</s:if>
 										</s:iterator>
 										<!--会员等级迭代结束-->
 								</select></td>
