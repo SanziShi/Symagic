@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.struts2.ServletActionContext;
 import org.symagic.common.db.bean.BeanBook;
 import org.symagic.common.db.bean.BeanDistrict;
 import org.symagic.common.db.bean.BeanLevel;
@@ -331,7 +330,7 @@ public class OrderSubmitAction extends OrderBase {
 		
 		List<DistrictBean> dBeans = addressService.getDistricts(dislevel2ID);
 		
-		if(!dBeans.isEmpty()){
+		if(!dBeans.isEmpty() && ( getDistrictLevel3ID() == null || getDistrictLevel3ID() == 0 ) ){
 			errorHeader = "填写三级地址详情";
 			errorSpecification = "填写三级地址详情";
 			isValidate = false;
