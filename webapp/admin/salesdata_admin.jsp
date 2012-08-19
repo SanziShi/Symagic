@@ -56,7 +56,7 @@
 
 
 								<tr>
-									<th>起始时间：&nbsp;</th>
+									<th>&nbsp;&nbsp;&nbsp;&nbsp;起始时间：&nbsp;</th>
 									<td><select name="startTime.year" id="sYear">
 
 									</select> &nbsp;年&nbsp; <select name="startTime.month" id="sMonth">
@@ -90,7 +90,7 @@
 									</script>
 								</tr>
 								<tr>
-									<th>结束时间：&nbsp;</th>
+									<th>&nbsp;&nbsp;&nbsp;&nbsp;结束时间：&nbsp;</th>
 									<td><select name="endTime.year" id="eYear">
 
 									</select> &nbsp;年&nbsp; <select name="endTime.month" id="eMonth">
@@ -124,7 +124,7 @@
 									</script>
 								</tr>
 								<tr>
-									<th>类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</th>
+									<th>&nbsp;&nbsp;&nbsp;&nbsp;类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：</th>
 									<td><select name="catalogID">
 											<option value="0">所有类别</option>
 											<s:iterator value="catalog" var='outer'>
@@ -158,7 +158,7 @@
 									</select></td>
 								</tr>
 								<tr>
-									<th>销售下限：</th>
+									<th>销售量下限：</th>
 									<td><input type="text" name="limit"
 										value="<s:property value="limit"/>" /></td>
 								</tr>

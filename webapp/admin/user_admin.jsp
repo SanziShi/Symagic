@@ -150,9 +150,9 @@
 								<td class="inputHeader">&nbsp;</td>
 								<td align="center" class="inputHeader">积分比例：</td>
 								<td align="left" class="inputContent"><input type="text"
-									size="6" name="scoreRate" onfocus="nextfield='ratio'" /> %</td>
+									size="6" name="scoreRate" onfocus="nextfield='ratio'" /></td>
 								<td colspan="2" align="left" class="inputContent"><font
-									color="#CC0000">会员购买物品时获得的积分占购买金额的比例</font></td>
+									color="#CC0000">会员购买物品时获得的积分占购买金额的比例<br/>(以1为基准)</font></td>
 								<td align="center" class="inputContent">&nbsp;</td>
 							</tr>
 							<tr>
