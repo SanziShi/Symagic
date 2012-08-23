@@ -28,7 +28,7 @@ function get_district(d)
 				if(d.id=='level1ID')
 				{
 					$(l2).empty();
-					$(l2).append('<option value="s3">请选择</option>');
+					$(l2).append('<option value="s2">请选择</option>');
 					$(l3).empty();
 					$(l3).append('<option value="s3">请选择</option>');
 				}else 

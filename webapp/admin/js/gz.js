@@ -918,7 +918,6 @@ function get_district(d)
 	var va=d.value;
 	if(va=='s1')
 	{
-		alert(va);
 		$(l2).empty();
 		$(l2).append('<option value="s2">请选择</option>');
 		$(l3).empty();
@@ -933,7 +932,7 @@ function get_district(d)
 	}
 	else{
 	Ajax({
-		url:'address/get_next_level?ID='+va,
+		url:'../address/get_next_level?ID='+va,
 		onSuccess:function(e)
 			{
 				var dis=JSON.parse(e);
@@ -942,7 +941,7 @@ function get_district(d)
 				if(d.id=='level1ID')
 				{
 					$(l2).empty();
-					$(l2).append('<option value="s3">请选择</option>');
+					$(l2).append('<option value="s2">请选择</option>');
 					$(l3).empty();
 					$(l3).append('<option value="s3">请选择</option>');
 				}else 

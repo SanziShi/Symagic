@@ -90,7 +90,7 @@
 									</s:else></td>
 								<td>收货人地址</td>
 								<td colspan="3"><select
-									onchange="get_district('<s:property value="#request.get('javax.servlet.forward.context_path')"/>',this)"
+									onchange="get_district(this)"
 									id="level1ID" name="level1ID">
 										<option value="s1">请选择</option>
 										<s:iterator value="level1District" var='iter'>
@@ -107,7 +107,7 @@
 											</s:else>
 										</s:iterator>
 								</select> <select
-									onchange="get_district('<s:property value="#request.get('javax.servlet.forward.context_path')"/>',this)"
+									onchange="get_district(this)"
 									id="level2ID" name="level2ID">
 										<option value="s2">请选择</option>
 										<s:iterator value="level2District" var='iter'>
