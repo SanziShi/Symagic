@@ -45,7 +45,7 @@
             	<input name="discount" value="0"/>
             	<input />
             	</form>
-            	<!--清空详细搜索的隐藏表单-->>
+            	<!--清空详细搜索的隐藏表单-->
 				<li><a href="order_list">订单管理</a>
 				</li>
 				<li><a href="order_statistics">销售量统计</a>
