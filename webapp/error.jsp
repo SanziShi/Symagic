@@ -51,7 +51,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div id="globallink">
 		<ul>
 			<li><a href="index">首页</a></li>
-			<li><a href="item_list">商品列表</a></li>
+			<li><a href="javascript:document.getElementById('clear_search').submit()">商品列表</a></li>
+            <!--清空详细搜索的隐藏表单-->
+            <form action="item_list" method="post" id="clear_search" style="display:none">
+            <input name="page" value="1"/>
+            <input name="name" />
+            <input name="author"/>
+            <input name="publisher"/>
+            <input name="catalogID" value="0"/>
+            <input name="publishTime" value="0"/>
+            <input name="searchPage" value="0"/>
+            <input name="edition" value="0"/>
+            <input name="binding" value="0"/>
+            <input name="booksize" value="0"/>
+            <input name="price" value="0"/>
+            <input name="discount" value="0"/>
+            <input />
+            </form>
+            <!--清空详细搜索的隐藏表单-->
 			<li><a href="cart">我的购物车</a></li>
 			<li><a href="user">我的商城</a></li>
 			<li><a href="send_notes">购物指引</a></li>
