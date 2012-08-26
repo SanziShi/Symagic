@@ -45,10 +45,62 @@
             	<input />
             	</form>
             	<!--清空详细搜索的隐藏表单-->
-				<li><a href="order_list">订单管理</a>
+				<li><a href="javascript:document.getElementById('clear_order_search').submit()">订单管理</a>
 				</li>
-				<li><a href="order_statistics">销售量统计</a>
-				</li>
+                <!--清空订单精确查询的隐藏表单-->
+            	<form action="order_list?page=1" method="post" id="clear_order_search" enctype="multipart/form-data" style="display:none">
+           	 	<input type="text" name="userName" />
+            	<select name="orderState">
+                <option value="0" selected="selected"></option>
+                </select>
+            	<select name="startTime.year" >
+                <option value="2007" selected="selected"></option>
+                </select>
+                <select name="startTime.month" >
+                <option value="1" selected="selected"></option>
+                </select>
+                <select name="startTime.day" >
+                <option value="1" selected="selected"></option>
+                </select>
+                <select name="endTime.year" >
+                <option value="2012" selected="selected"></option>
+                </select>
+                <select name="endTime.month" >
+                <option value="12" selected="selected"></option>
+                </select>
+                <select name="endTime.day" >
+                <option value="31" selected="selected"></option>
+                </select>
+            	</form>
+            	<!--清空订单精确查询的隐藏表单-->
+				<li><a href="javascript:document.getElementById('clear_static_search').submit()">销售量统计</a></li>
+                <!--清空销售量查询的隐藏表单-->
+            	<form action="order_statistics?page=1" method="post" enctype="multipart/form-data"  id="clear_static_search" style="display:none">
+           	 	<select name="startTime.year" >
+                <option value="2007" selected="selected"></option>
+                </select>
+                <select name="startTime.month" >
+                <option value="1" selected="selected"></option>
+                </select>
+                <select name="startTime.day" >
+                <option value="1" selected="selected"></option>
+                </select>
+                <select name="endTime.year" >
+                <option value="2012" selected="selected"></option>
+                </select>
+                <select name="endTime.month" >
+                <option value="12" selected="selected"></option>
+                </select>
+                <select name="endTime.day" >
+                <option value="31" selected="selected"></option>
+                </select>
+                <select name="catalogID">
+				<option value="0" selected="selected"></option>
+                </select>
+            	<input type="text" name="limit"
+										value="0" />
+            	</form>
+            	<!--清空销售量查询的隐藏表单-->
 				<li><a href="user_level">会员管理</a>
 				</li>
 				<li><a href="" class="nouseful">&nbsp;</a>
