@@ -864,11 +864,11 @@ public class DaoBook {
 					+ "from ("
 					+ " select bookid, bookname, sum(amount) as sum_amount, sum(discount * marketprice*amount) as sum_price "
 					+ " from book_order, order_detail "
-					+ " where book_order.orderid=order_detail.orderid and orderdate >=  "
+					+ " where book_order.orderid=order_detail.orderid and date(orderdate) >=  "
 					+ " '"
 					+ req.getStartTime()
 					+ "' "
-					+ " and orderdate <= "
+					+ " and date(orderdate) <= "
 					+ " '"
 					+ req.getEndTime()
 					+ "' "

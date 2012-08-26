@@ -401,9 +401,9 @@ public class DaoUser {
 			
 			sql += " username like " + "'%" + req.getUsername() + "%'";
 			if (req.getStartTime() != null)
-				sql += "and" + " registedate > " + "'" + req.getStartTime() + "'";
+				sql += "and" + " date(registedate) >= " + "'" + req.getStartTime() + "'";
 			if (req.getEndTime() != null)
-				sql += " and " + " registedate < " + "'" + req.getEndTime() + "'";
+				sql += " and " + " date(registedate) <= " + "'" + req.getEndTime() + "'";
 			if (req.getUserLevel() != null){
 				rs.next();
 				sql += " and " + " score >= " + "'" + rs.getInt("lowlimit") + "'";
