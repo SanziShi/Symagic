@@ -37,11 +37,11 @@ public class DaoOrder {
 		String sql	= "select * from book_order where ";
 		try {
 			conn	= ConnectionPool.getInstance().getConnection();
-			sql += "orderdate > " + " '" + req.getStartTime() + "' ";
+			sql += "orderdate >= " + " '" + req.getStartTime() + "' ";
 			if (username != null)
 				sql += " and username like " + " '%" + username + "%' ";
 			if (req.getEndTime() != null)
-				sql += " and orderdate < " + " '" + req.getEndTime() + "' ";
+				sql += " and orderdate <= " + " '" + req.getEndTime() + "' ";
 			if (req.getOrderState() != null)
 				sql += " and orderstate=" + " '" + req.getOrderState() + "' ";
 			
