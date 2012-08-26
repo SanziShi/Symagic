@@ -161,14 +161,15 @@ public class DaoOrderTest extends TestCase{
 //	
 //	@Test
 //	public void testSearch1(){
+//		ConnectionPool.init();
 //		OrderRequire or = new OrderRequire();
 //		or.setLines(3);
 //		or.setPage(1);
-//		or.setStartTime("2010-01-01");
-//		or.setEndTime("2012-06-28");
-//		or.setOrderState("2");
+//		or.setStartTime("2011-06-23");
+//		or.setEndTime("2011-06-23");
 //		
-//		assertEquals(2,order.search(or, "641567179@qq.com").size());
+//		
+//		assertEquals(1,order.search(or, "6641567179@qq.com").get(0).getOrderId());
 //	}
 //	@Test
 //	public void testSearch2(){
