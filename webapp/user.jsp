@@ -143,9 +143,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="head">修改密码</div>
         	<div class="user_note_content">
         		
-        			<p><span>原密码：</span><input id="pass_before" type="password" class="inputtext"/></p>
-            		<p><span>新密码：</span><input id="pass_new" type="password" class="inputtext"/></p>
-            		<p><span>密码确认：</span><input id="pass_confirm" type="password" class="inputtext"/></p>
+        			<p><span>原密码：</span><input id="pass_before" type="password" class="inputtext" maxlength="20"/></p>
+            		<p><span>新密码：</span><input id="pass_new" type="password" class="inputtext" maxlength="20"/></p>
+            		<p><span>密码确认：</span><input id="pass_confirm" type="password" class="inputtext" maxlength="20"/></p>
             		<p><span><input type="button" onclick="pass_submit()" value="确定修改"/></span></p>
     			
         	</div>
@@ -155,7 +155,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	<div class="user_note_content">
             	<input style="display:none" id="nick_name" value="<s:property value='#session.nickname'/>"/>
             	<p><span>昵&nbsp;&nbsp;&nbsp;称：</span><s:property value='#session.nickname'/></p>
-            	<p><span>修改昵称：</span><input name="nickname_c" id="nickname_c" class="inputtext"/></p>
+            	<p><span>修改昵称：</span><input name="nickname_c" id="nickname_c" class="inputtext" maxlength="20"/></p>
             	<p><span><input type="button" onclick="nickname_c(this)" value="确定修改"/></span></p>
         	</div>
         </div>

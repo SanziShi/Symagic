@@ -34,6 +34,11 @@ function add_to_cart(id)
 	var u='';
 	var num=document.getElementById('cart_num');
 	var t=document.getElementById('amount');
+	if(t.value>=999)
+	{
+		alert('您一次购买的数量太多，请分批购买');
+		return false;
+	}
 	var temp;
 	if(t)
 	{

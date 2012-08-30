@@ -97,6 +97,11 @@ function add(id)
 	var num=document.getElementById('cart_num');
 	var a=document.getElementById(id+'amount');
 	var u='cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber=1';
+	if(a.value>=998)
+	{
+		alert('您一次购买的数量太多，请分批购买');
+		return false;
+	}
 	Ajax({
 			url:'order/check_item?itemID='+id+'&itemNum='+(a.value+1),
 			onSuccess:function(checkr)
@@ -187,6 +192,11 @@ function check_item_num(id,e)
 			delete_from_cart(id,'p');
 		}
 		else e.value=e.getAttribute('default');
+	}
+	else if(e.value>=999)
+	{
+		alert('您一次购买的数量太多，请分批购买');
+		e.value=e.getAttribute('default');
 	}
 	else
 	{
