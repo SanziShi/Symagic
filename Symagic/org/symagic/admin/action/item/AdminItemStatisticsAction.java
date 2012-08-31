@@ -58,8 +58,11 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		if (catalogID != null && catalogID != 0)
 			require.setCatalogidList(itemService.getCatalogList(catalogID));
 		require.setLines(lines);
-		if (limit != null)
+		if (limit != null){
+			if( limit < 0 )
+				limit = 0;
 			require.setLowlimit(limit);
+		}
 		require.setPage(page);
 		// 编码时间
 		GregorianCalendar startCalendar = null;
