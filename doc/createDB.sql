@@ -1,19 +1,17 @@
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
-DROP SCHEMA IF EXISTS `bookshop` ;
-CREATE SCHEMA IF NOT EXISTS `bookshop` DEFAULT CHARACTER SET utf8 ;
-DROP SCHEMA IF EXISTS `test` ;
-CREATE SCHEMA IF NOT EXISTS `test` DEFAULT CHARACTER SET latin1 ;
-USE `bookshop` ;
+DROP SCHEMA IF EXISTS `Symagic` ;
+CREATE SCHEMA IF NOT EXISTS `Symagic` DEFAULT CHARACTER SET utf8 ;
+USE `Symagic` ;
 
 -- -----------------------------------------------------
--- Table `bookshop`.`BOOK`
+-- Table `Symagic`.`BOOK`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`BOOK` ;
+DROP TABLE IF EXISTS `Symagic`.`BOOK` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`BOOK` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`BOOK` (
   `BOOKID` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '书籍ID,主键，非空，自增' ,
   `PICTURE` VARCHAR(255) NULL COMMENT '图书对应图片的存储路径,默认为null' ,
   `BOOKNAME` VARCHAR(100) NOT NULL COMMENT '书名，非空' ,
@@ -30,18 +28,18 @@ CREATE  TABLE IF NOT EXISTS `bookshop`.`BOOK` (
   `BOOKDESC` VARCHAR(500) NULL COMMENT '书籍描述，可为空' ,
   `ISBN` VARCHAR(20) NOT NULL COMMENT '书籍的国际标准书号，20字节的长度，目前长度为13.' ,
   `OFFLINE` ENUM('下架','在架') NULL COMMENT '书籍状态，可能被下架，与库存为0有区别。两个选择，‘在架’、‘下架’' ,
-  PRIMARY KEY (`BOOKID`) COMMENT ' /* comment truncated */' ,
+  PRIMARY KEY (`BOOKID`) ,
   UNIQUE INDEX `ISBN_UNIQUE` (`ISBN` ASC) )
 ENGINE = InnoDB
 COMMENT = '书籍信息';
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`USER`
+-- Table `Symagic`.`USER`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`USER` ;
+DROP TABLE IF EXISTS `Symagic`.`USER` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`USER` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`USER` (
   `USERID` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID,唯一标示用户。' ,
   `USERNAME` VARCHAR(255) NOT NULL COMMENT '用户名，在此项目中时用户的邮箱地址。非空，且不能相同邮箱同时注册成功。' ,
   `NICKNAME` VARCHAR(255) NULL COMMENT '昵称' ,
@@ -55,27 +53,27 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`COMMENT`
+-- Table `Symagic`.`COMMENT`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`COMMENT` ;
+DROP TABLE IF EXISTS `Symagic`.`COMMENT` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`COMMENT` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`COMMENT` (
   `USERNAME` VARCHAR(255) NOT NULL COMMENT '用户名，关联到user表中的username字段，也是这张表的主键。' ,
   `BOOKID` INT UNSIGNED NOT NULL COMMENT '书籍id,链接到book_info表的bookid字段，同样作为此表的主键。' ,
   `CONTENT` VARCHAR(500) NULL DEFAULT '' COMMENT '用户的评论信息，默认为“”' ,
   `RATING` VARCHAR(1) NOT NULL DEFAULT '1' COMMENT '用户对书的评论，共1,2,3,4,5个级别。' ,
   `COMMENTDATE` DATETIME NOT NULL COMMENT '评论日期，默认为插入时间。（包括年月日和时间）' ,
   PRIMARY KEY (`USERNAME`, `BOOKID`) ,
-  INDEX `BOOKID_idx` (`BOOKID` ASC) ,
-  INDEX `B_USERNAME_idx` (`USERNAME` ASC) ,
+  INDEX `BOOKID` (`BOOKID` ASC) ,
+  INDEX `B_USERNAME` (`USERNAME` ASC) ,
   CONSTRAINT `BOOKID`
     FOREIGN KEY (`BOOKID` )
-    REFERENCES `bookshop`.`BOOK` (`BOOKID` )
+    REFERENCES `Symagic`.`BOOK` (`BOOKID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `B_USERNAME`
     FOREIGN KEY (`USERNAME` )
-    REFERENCES `bookshop`.`USER` (`USERNAME` )
+    REFERENCES `Symagic`.`USER` (`USERNAME` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -83,11 +81,11 @@ COMMENT = '用户对书的评论，只有购买过此书的用户才可以对书
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`BOOK_CATALOG`
+-- Table `Symagic`.`BOOK_CATALOG`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`BOOK_CATALOG` ;
+DROP TABLE IF EXISTS `Symagic`.`BOOK_CATALOG` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`BOOK_CATALOG` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`BOOK_CATALOG` (
   `CATALOGID` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键，唯一的标识累分类。' ,
   `CATALOGNAME` VARCHAR(255) NOT NULL COMMENT '分类的名字,目前不去验证是否存在重复。' ,
   `LEVEL` VARCHAR(1) NOT NULL DEFAULT '1' COMMENT '分类级别，共分为两级，1：一级	2：二级，二选一' ,
@@ -100,19 +98,19 @@ COMMENT = '用于书籍分类的分类列表。（可选分类）';
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`FAVORITY_FOLDER`
+-- Table `Symagic`.`FAVORITY_FOLDER`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`FAVORITY_FOLDER` ;
+DROP TABLE IF EXISTS `Symagic`.`FAVORITY_FOLDER` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`FAVORITY_FOLDER` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`FAVORITY_FOLDER` (
   `FAVORITYID` INT UNSIGNED NOT NULL AUTO_INCREMENT ,
   `USERNAME` VARCHAR(255) NOT NULL COMMENT '用户名，外键，连接到User表的username' ,
   `BOOKID` INT UNSIGNED NOT NULL COMMENT '收藏夹中对应书籍的ID号，链接到BOOK_INFO表的bookid' ,
   PRIMARY KEY (`FAVORITYID`) ,
-  INDEX `F_USERNAME_idx` (`USERNAME` ASC) ,
+  INDEX `F_USERNAME` (`USERNAME` ASC) ,
   CONSTRAINT `F_USERNAME`
     FOREIGN KEY (`USERNAME` )
-    REFERENCES `bookshop`.`USER` (`USERNAME` )
+    REFERENCES `Symagic`.`USER` (`USERNAME` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -120,11 +118,11 @@ COMMENT = '收藏夹表，存储用户感兴趣的书籍基本信息。';
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`BOOK_ORDER`
+-- Table `Symagic`.`BOOK_ORDER`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`BOOK_ORDER` ;
+DROP TABLE IF EXISTS `Symagic`.`BOOK_ORDER` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`BOOK_ORDER` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`BOOK_ORDER` (
   `ORDERID` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '订单号，唯一b标识一份订单.' ,
   `ORDERDATE` DATETIME NOT NULL COMMENT '订单日期' ,
   `ORDERSTATE` VARCHAR(1) NOT NULL DEFAULT 0 COMMENT '订单状态，目前有四种状态。0：已下单	1：已审核	2：交易成功	3：交易失败' ,
@@ -139,11 +137,11 @@ CREATE  TABLE IF NOT EXISTS `bookshop`.`BOOK_ORDER` (
   `TOTALPRICE` FLOAT UNSIGNED NOT NULL COMMENT '商品总价' ,
   `SCORE` INT NOT NULL ,
   PRIMARY KEY (`ORDERID`) ,
-  INDEX `O_USERNAME_idx` (`USERNAME` ASC) ,
+  INDEX `O_USERNAME` (`USERNAME` ASC) ,
   UNIQUE INDEX `ORDERDATE_UNIQUE` (`ORDERDATE` ASC) ,
   CONSTRAINT `O_USERNAME`
     FOREIGN KEY (`USERNAME` )
-    REFERENCES `bookshop`.`USER` (`USERNAME` )
+    REFERENCES `Symagic`.`USER` (`USERNAME` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -151,11 +149,11 @@ COMMENT = '订单表，存储订单相关信息';
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`ORDER_DETAIL`
+-- Table `Symagic`.`ORDER_DETAIL`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`ORDER_DETAIL` ;
+DROP TABLE IF EXISTS `Symagic`.`ORDER_DETAIL` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`ORDER_DETAIL` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`ORDER_DETAIL` (
   `ORDERID` INT UNSIGNED NOT NULL COMMENT '订单id，关联到order表的orderid.' ,
   `BOOKID` INT UNSIGNED NOT NULL COMMENT '书籍ID' ,
   `ISBN` VARCHAR(20) NOT NULL COMMENT '国际标准图书号，用来唯一标识一本书。' ,
@@ -163,10 +161,10 @@ CREATE  TABLE IF NOT EXISTS `bookshop`.`ORDER_DETAIL` (
   `MARKETPRICE` DECIMAL(10,2) NOT NULL COMMENT '市场价格，也就是原价' ,
   `DISCOUNT` FLOAT NOT NULL COMMENT '折扣率，实际价格要通过MARKETPRICE*DISCOUNT得到。' ,
   `AMOUNT` MEDIUMINT NOT NULL DEFAULT 1 COMMENT '此订单中包含此书的数目' ,
-  INDEX `ORDERID_idx` (`ORDERID` ASC) ,
+  INDEX `ORDERID` (`ORDERID` ASC) ,
   CONSTRAINT `ORDERID`
     FOREIGN KEY (`ORDERID` )
-    REFERENCES `bookshop`.`BOOK_ORDER` (`ORDERID` )
+    REFERENCES `Symagic`.`BOOK_ORDER` (`ORDERID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -174,18 +172,18 @@ COMMENT = '订单的详细信息，即包括订单中的每一件商品的信息
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`SECRET`
+-- Table `Symagic`.`SECRET`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`SECRET` ;
+DROP TABLE IF EXISTS `Symagic`.`SECRET` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`SECRET` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`SECRET` (
   `USERID` INT UNSIGNED NOT NULL COMMENT '用户ID,链接到USER表的USERID字段。同样是此表的主键。' ,
   `PASSWORD` VARCHAR(32) NOT NULL COMMENT '用户密码，是将用户输入的密码进行md5加密后得到的密文，32bit 长。' ,
   PRIMARY KEY (`USERID`) ,
-  INDEX `S_USERID_idx` (`USERID` ASC) ,
+  INDEX `S_USERID` (`USERID` ASC) ,
   CONSTRAINT `S_USERID`
     FOREIGN KEY (`USERID` )
-    REFERENCES `bookshop`.`USER` (`USERID` )
+    REFERENCES `Symagic`.`USER` (`USERID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -193,11 +191,11 @@ COMMENT = '用户密码表，存储用户密码md5加密后的32bit数';
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`USER_ADDR`
+-- Table `Symagic`.`USER_ADDR`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`USER_ADDR` ;
+DROP TABLE IF EXISTS `Symagic`.`USER_ADDR` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`USER_ADDR` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`USER_ADDR` (
   `ADDRID` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '直至ID,唯一的标识一条地址。' ,
   `USERNAME` VARCHAR(255) NOT NULL COMMENT '用户名,外键。' ,
   `RECEIVERNAME` VARCHAR(255) NOT NULL COMMENT '收件人姓名' ,
@@ -206,10 +204,10 @@ CREATE  TABLE IF NOT EXISTS `bookshop`.`USER_ADDR` (
   `PHONENUM` VARCHAR(20) NULL COMMENT '收件人座机号' ,
   `MOBILENUM` VARCHAR(20) NULL COMMENT '收件人手机号。' ,
   PRIMARY KEY (`ADDRID`) ,
-  INDEX `U_USERNAME_idx` (`USERNAME` ASC) ,
+  INDEX `U_USERNAME` (`USERNAME` ASC) ,
   CONSTRAINT `U_USERNAME`
     FOREIGN KEY (`USERNAME` )
-    REFERENCES `bookshop`.`USER` (`USERNAME` )
+    REFERENCES `Symagic`.`USER` (`USERNAME` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -217,11 +215,11 @@ COMMENT = '用户预存的地址信息';
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`ADMIN`
+-- Table `Symagic`.`ADMIN`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`ADMIN` ;
+DROP TABLE IF EXISTS `Symagic`.`ADMIN` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`ADMIN` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`ADMIN` (
   `ADMINID` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '管理员id字段，主键，唯一标示一位管理员。' ,
   `ADMINNAME` VARCHAR(255) NOT NULL COMMENT '管理员用户名。' ,
   `PASSWORD` VARCHAR(40) NOT NULL COMMENT '管理员的密码，存储的事通过md5加密后的密文。32bit长。' ,
@@ -232,35 +230,35 @@ COMMENT = '管理员信息表';
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`BOOK_CATALOG_DETAIL`
+-- Table `Symagic`.`BOOK_CATALOG_DETAIL`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`BOOK_CATALOG_DETAIL` ;
+DROP TABLE IF EXISTS `Symagic`.`BOOK_CATALOG_DETAIL` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`BOOK_CATALOG_DETAIL` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`BOOK_CATALOG_DETAIL` (
   `BOOKID` INT UNSIGNED NOT NULL COMMENT '书籍id,关联到book_info表的bookid.' ,
   `CATALOGID` INT UNSIGNED NOT NULL COMMENT '分类id,关联到book_catergory表的catergoryid' ,
   PRIMARY KEY (`BOOKID`, `CATALOGID`) ,
-  INDEX `C_BOOKID_idx` (`BOOKID` ASC) ,
-  INDEX `C_CATERGORYID_idx` (`CATALOGID` ASC) ,
+  INDEX `C_BOOKID` (`BOOKID` ASC) ,
+  INDEX `C_CATERGORYID` (`CATALOGID` ASC) ,
   CONSTRAINT `C_BOOKID`
     FOREIGN KEY (`BOOKID` )
-    REFERENCES `bookshop`.`BOOK` (`BOOKID` )
+    REFERENCES `Symagic`.`BOOK` (`BOOKID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `C_CATERGORYID`
     FOREIGN KEY (`CATALOGID` )
-    REFERENCES `bookshop`.`BOOK_CATALOG` (`CATALOGID` )
+    REFERENCES `Symagic`.`BOOK_CATALOG` (`CATALOGID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`DISTRICT`
+-- Table `Symagic`.`DISTRICT`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`DISTRICT` ;
+DROP TABLE IF EXISTS `Symagic`.`DISTRICT` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`DISTRICT` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`DISTRICT` (
   `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键，id' ,
   `name` VARCHAR(255) NOT NULL DEFAULT '' COMMENT '所标识区域名。' ,
   `level` TINYINT(4) UNSIGNED NOT NULL DEFAULT '0' COMMENT '1 2 3 4' ,
@@ -277,25 +275,25 @@ COMMENT = '地区表，国家、省、市、区';
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`CART`
+-- Table `Symagic`.`CART`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`CART` ;
+DROP TABLE IF EXISTS `Symagic`.`CART` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`CART` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`CART` (
   `USERNAME` VARCHAR(255) NOT NULL COMMENT '外键，关联USER表的USERNAME' ,
   `ADDDATE` DATE NOT NULL COMMENT '添加购物车时间' ,
   `BOOKID` INT UNSIGNED NOT NULL COMMENT '书籍ID' ,
   `AMOUNT` INT UNSIGNED NOT NULL COMMENT '书籍商品数量' ,
-  INDEX `C_USERNAME_idx` (`USERNAME` ASC) ,
-  INDEX `CART_BOOKID_idx` (`BOOKID` ASC) ,
+  INDEX `C_USERNAME` (`USERNAME` ASC) ,
+  INDEX `CART_BOOKID` (`BOOKID` ASC) ,
   CONSTRAINT `C_USERNAME`
     FOREIGN KEY (`USERNAME` )
-    REFERENCES `bookshop`.`USER` (`USERNAME` )
+    REFERENCES `Symagic`.`USER` (`USERNAME` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `CART_BOOKID`
     FOREIGN KEY (`BOOKID` )
-    REFERENCES `bookshop`.`BOOK` (`BOOKID` )
+    REFERENCES `Symagic`.`BOOK` (`BOOKID` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -303,38 +301,19 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `bookshop`.`SCORE_LEVEL`
+-- Table `Symagic`.`SCORE_LEVEL`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookshop`.`SCORE_LEVEL` ;
+DROP TABLE IF EXISTS `Symagic`.`SCORE_LEVEL` ;
 
-CREATE  TABLE IF NOT EXISTS `bookshop`.`SCORE_LEVEL` (
+CREATE  TABLE IF NOT EXISTS `Symagic`.`SCORE_LEVEL` (
   `id` INT NOT NULL AUTO_INCREMENT COMMENT '等级ID,主键，唯一标示一级' ,
   `name` VARCHAR(50) NOT NULL COMMENT '等级名,来描述一类顶级' ,
   `lowlimit` INT NOT NULL COMMENT '等级下界' ,
   `uplimit` INT NOT NULL COMMENT '等级上级' ,
   `rate` FLOAT NOT NULL COMMENT '倍率' ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
-
-USE `test` ;
-
--- -----------------------------------------------------
--- Table `test`.`district`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `test`.`district` ;
-
-CREATE  TABLE IF NOT EXISTS `test`.`district` (
-  `id` MEDIUMINT(8) UNSIGNED NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(255) NOT NULL DEFAULT '' ,
-  `level` TINYINT(4) UNSIGNED NOT NULL DEFAULT '0' ,
-  `usetype` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0' ,
-  `upid` MEDIUMINT(8) UNSIGNED NOT NULL DEFAULT '0' ,
-  `displayorder` SMALLINT(6) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
-  INDEX `upid` (`upid` ASC, `displayorder` ASC) )
-ENGINE = MyISAM
-AUTO_INCREMENT = 45052
-DEFAULT CHARACTER SET = utf8;
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) )
+ENGINE = InnoDB;
 
 
 
