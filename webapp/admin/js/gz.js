@@ -726,6 +726,7 @@ function ajax_catalog_delete_tag_level1(id,divid) {
 					var tag = document.getElementById(divid);
 					tag.parentNode.removeChild(tag);
 					alert("删除一级目录成功！");
+					location.reload(true);
 				} else
 					alert("删除一级目录出错，请返回重新尝试！");
 			}
