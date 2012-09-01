@@ -34,14 +34,14 @@ function add_to_cart(id)
 	var u='';
 	var num=document.getElementById('cart_num');
 	var t=document.getElementById('amount');
-	if(t.value>=999)
-	{
-		alert('您一次购买的数量太多，请分批购买');
-		return false;
-	}
 	var temp;
 	if(t)
 	{
+		if(t.value>=999)
+		{
+			alert('您一次购买的数量太多，请分批购买');
+			return false;
+		}
 		u='cart/add_to_cart?'+'items[0].itemID='+id+'&items[0].itemNumber='+t.value;
 		temp=t.value;
 	}
@@ -283,7 +283,7 @@ function login(form,op)
 					return ture;
 				}
 				},
-		onError:function(){}
+		onError:function(){alert('服务器忙，请稍后再试')}
 	})
 	return false;
 }
@@ -572,7 +572,27 @@ function onblur_check(elem,default_text)
 				break;
 		}
 	}
-	else return 1;
+	else 
+	{
+		switch (default_text) {
+		case '邮箱地址':
+			if(!is_email(elem.value))
+			{
+				var a=Stip(elem);a.show({content:"请输入正确的邮箱地址",kind:'error'});	
+				elem.setAttribute('msg_num',a.id);
+			}
+			break;
+		case '由中文、英文、数字及“_”组成':
+			if(elem.value.length<6)
+			{
+				var a=Stip(elem);a.show({content:"昵称长为度4-20位字符",kind:'error'});
+				elem.setAttribute('msg_num',a.id);
+			}
+			break;
+		default:
+			break;
+		}
+	}
 }
 function onfocus_check(elem,default_text)
 {
@@ -604,11 +624,16 @@ function password_onblur(elem)
 		elem.style.display='none';
 		elem.nextSibling.nextSibling.style.display='inline-block';
 	}
+	else if(elem.value.length<6)
+	{
+		var a=Stip(elem);
+		a.show({content:"请输入6-20位字符密码",kind:'error'});	
+	}
 }
 function is_account(account)
 {
 	//var exp=/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/;
-	var exp=/^[^';,"\{\}\[\]]{3,15}$/;
+	var exp=/^[^';,"\{\}\[\]]{4,20}$/;
 	if(exp.exec(account))return 1;
 	else return false;
 }

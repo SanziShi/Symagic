@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         	  	<td valign="middle" align="right"><font color="red">*</font>所在地区：</td>
                               	<td>
                                 <!--默认地址选项迭代--->
-                                	<select onchange="get_district(this)" id="level1ID" name="districtLevel1ID" >
+                                	<select onchange="get_district_edit(this,'<s:property value='#iter.ID'/>')" id="level1ID<s:property value='#iter.ID'/>" name="districtLevel1ID" >
                                 			<option value="s1" >请选择</option>
                                				<s:iterator value="#iter.level1Districts" var='middle'>
                                             	<s:if test='#middle.ID==#iter.level1DistrictDefaultID'>
@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 </s:else>
                                             </s:iterator>
                                 	</select>
-                                	<select onchange="get_district(this)" id="level2ID" name="districtLevel2ID">
+                                	<select onchange="get_district_edit(this,'<s:property value='#iter.ID'/>')" id="level2ID<s:property value='#iter.ID'/>" name="districtLevel2ID">
                                 		<option value="s2">请选择</option>
                                         <s:iterator value="#iter.level2Districts" var='middle'>
                                             	<s:if test='#middle.ID==#iter.level2DistrictDefaultID'>
@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 </s:else>
                                             </s:iterator>
                                 	</select>
-                                	<select id="level3ID" name="districtLevel3ID">
+                                	<select id="level3ID<s:property value='#iter.ID'/>" name="districtLevel3ID">
                                 		<option value="s3">请选择</option>
                                         <s:iterator value="#iter.level3Districts" var='middle'>
                                             	<s:if test='#middle.ID==#iter.level3DistrictDefaultID'>

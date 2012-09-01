@@ -56,7 +56,11 @@ function pass_submit()
 	var a=document.getElementById('pass_before').value;
 	var b=document.getElementById('pass_new').value;
 	var c=document.getElementById('pass_confirm').value;
-	if(a.length<6||a.length>20||b.length<6||b.length>20||b.length<6||b.length>20)alert('密码长度非法！');
+	if(a.length<6||a.length>20||b.length<6||b.length>20||b.length<6||b.length>20)
+	{
+		alert('密码长度非法！');
+		return false;
+	}
 	if(b!=c)
 	{
 		alert('两次输入密码不同！');
@@ -73,7 +77,8 @@ function pass_submit()
 				}
 				else
 				{
-					alert(a.resultInfo);
+					alert('原密码错误！');
+					//alert(a.resultInfo);
 				}
 			}
 		})
@@ -112,6 +117,56 @@ function get_district(d)
 {
 	var l2=document.getElementById('level2ID');
 	var l3=document.getElementById('level3ID');
+	var va=d.value;
+	if(va=='s1')
+	{
+		$(l2).empty();
+		$(l2).append('<option value="s2">请选择</option>');
+		$(l3).empty();
+		$(l3).append('<option value="s3">请选择</option>');
+		return false;
+	}
+	else if(va=='s2')
+	{
+		$(l3).empty();
+		$(l3).append('<option value="s3">请选择</option>');
+		return false;
+	}
+	else{
+	Ajax({
+		url:'address/get_next_level?ID='+va,
+		onSuccess:function(e)
+			{
+				var dis=JSON.parse(e);
+				var l=dis.length;
+				var n=d.nextSibling.nextSibling;
+				if(d.id=='level1ID')
+				{
+					$(l2).empty();
+					$(l2).append('<option value="s2">请选择</option>');
+					$(l3).empty();
+					$(l3).append('<option value="s3">请选择</option>');
+				}else 
+				{
+					$(l3).empty();
+					$(l3).append('<option value="s3">请选择</option>');
+				}
+				var t=document.createElement('select');
+				for(var g=0;g<l;++g)
+				{
+					var temp=document.createElement('option');
+					temp.value=dis[g].ID;
+					temp.innerHTML=dis[g].name;
+					n.appendChild(temp);
+				}
+			}
+		})
+	}
+}
+function get_district_edit(d,id)
+{
+	var l2=document.getElementById('level2ID'+id);
+	var l3=document.getElementById('level3ID'+id);
 	var va=d.value;
 	if(va=='s1')
 	{
