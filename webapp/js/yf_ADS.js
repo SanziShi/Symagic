@@ -583,7 +583,7 @@ function onblur_check(elem,default_text)
 			}
 			break;
 		case '由中文、英文、数字及“_”组成':
-			if(elem.value.length<6)
+			if(ch_length(elem.value)<4)
 			{
 				var a=Stip(elem);a.show({content:"昵称长为度4-20位字符",kind:'error'});
 				elem.setAttribute('msg_num',a.id);
@@ -628,6 +628,18 @@ function password_onblur(elem)
 	{
 		var a=Stip(elem);
 		a.show({content:"请输入6-20位字符密码",kind:'error'});	
+		elem.setAttribute('msg_num',a.id);
+	}
+}
+function password_onfocus(elem)
+{
+	if(elem.value.length<6)
+	{
+		try{
+			n=document.getElementById(elem.getAttribute('msg_num'));
+			n.parentNode.removeChild(n);
+			}
+		catch (e) {}
 	}
 }
 function is_account(account)
@@ -649,6 +661,16 @@ function is_password(password)
 	//if(exp.exec(password))return 1;
 	//else return false;
 	return 1;
+}
+function ch_length(str)
+{
+	var num=0;
+	for(var i=0;i<str.length;i++)
+	{
+		num++;
+		if(str.charCodeAt(i)>255)num++;
+	}
+	return num;
 }
 function pageHeight()
 {

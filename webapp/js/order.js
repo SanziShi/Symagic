@@ -126,7 +126,7 @@ function check_score(e)
 				}
 				else 
 				{
-					Stip('score').show({p: 'top',content:'您的积分不够，请重新选择',time:3000,kind:"error"});
+					Stip('score').show({p: 'top',content:'您的积分不够或折算后超出总金额，请重新选择',time:3000,kind:"error"});
 				}
 			}
 		})
@@ -134,7 +134,7 @@ function check_score(e)
 function order_submit()
 {
 	var t=document.getElementById('score');
-	if(t.disabled=='disabled')document.getElementById('order_submit').submit();
+	if(t.disabled)document.getElementById('order_submit').submit();
 	else Ajax({
 		url:'order/check_score?score='+t.value,
 		onSuccess:function(y)

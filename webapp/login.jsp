@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 <tr>
 				 <th style="text-align:right">密&nbsp;&nbsp;码：</th>
             		<td class="itemsearchtd1">
-					<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" value="" maxlength="20" >
+					<input type="password" id="psaaword" class="inputtext hide" name="password" onblur="password_onblur(this)" onfocus="password_onfocus(this)" value="" maxlength="20" >
                     <input type="test" class="inputtext_gray" onFocus="passwordtext_onfocus(this)" value="输入6至20位密码" >
 					</td>
 					<td class="itemsearchtd2"></td>
