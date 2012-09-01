@@ -73,12 +73,12 @@ public class UserListAction extends CatalogBase {
 		GregorianCalendar startCalendar = null;
 		if (startTime != null) {
 			startCalendar = new GregorianCalendar(startTime.getYear(),
-					startTime.getMonth(), startTime.getDay());
+					startTime.getMonth() - 1, startTime.getDay());
 			userRequire.setStartTime(formater.format(startCalendar.getTime()));
 		}
 		if (endTime != null) {
 			GregorianCalendar endCalendar = new GregorianCalendar(
-					endTime.getYear(), endTime.getMonth(), endTime.getDay());
+					endTime.getYear(), endTime.getMonth() - 1, endTime.getDay());
 
 			if (startCalendar != null
 					&& endCalendar.getTime().before(startCalendar.getTime())) {

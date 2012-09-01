@@ -69,12 +69,12 @@ public class AdminItemStatisticsAction extends CatalogBase {
 		SimpleDateFormat formater = new SimpleDateFormat("yyyy-MM-dd");
 		if (startTime != null) {
 			startCalendar = new GregorianCalendar(startTime.getYear(),
-					startTime.getMonth(), startTime.getDay());
+					startTime.getMonth() - 1, startTime.getDay());
 			require.setStartTime(formater.format(startCalendar.getTime()));
 		} 
 		if (endTime != null) {
 			GregorianCalendar endCalendar = new GregorianCalendar(
-					endTime.getYear(), endTime.getMonth(), endTime.getDay());
+					endTime.getYear(), endTime.getMonth() - 1, endTime.getDay());
 
 			if (startCalendar != null
 					&& endCalendar.getTime().before(startCalendar.getTime())) {
