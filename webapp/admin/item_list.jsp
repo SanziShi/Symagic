@@ -758,7 +758,7 @@ new DateSelector(selYear, selMonth ,selDay, <s:property value="searchStartYear"/
 							<tr>
 								<th>折扣：</th>
 								<td><input type="text" name="discount"
-									class="smallinputext" value="" />
+									class="smallinputext" value="" /><span class="red">&nbsp;&nbsp;请输入0-1的小数</span>
 								</td>
 								<td><span class="red">*必填项</span></td>
 							</tr>

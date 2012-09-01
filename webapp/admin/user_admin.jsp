@@ -189,15 +189,15 @@
 							<tr>
 								<td width="4%" class="inputHeader">&nbsp;</td>
 								<td width="12%" align="center" class="inputHeader">会员级别：</td>
-								<td width="25%" align="left" class="inputContent"><select
-									name="levelID">
+								<td width="25%" align="left" class="inputContent"><select onchange="change_credit_low(this)"
+									name="levelID"  >
 										<!--会员等级迭代开始-->
 										<s:iterator value="levelList" var="level">
-										<s:if test="%{#level.levelID!=1}">
+									
 											<option value="<s:property value='#level.levelID'/>">
 												<s:property value='#level.levelName' />
 											</option>
-										</s:if>
+										
 										</s:iterator>
 										<!--会员等级迭代结束-->
 								</select></td>
@@ -209,7 +209,7 @@
 								<td class="inputHeader"><label></label></td>
 								<td align="center" class="inputHeader">积分下限：</td>
 								<td align="left" class="inputContent"><input type="text"
-									class="inputtext" name="low" onfocus="nextfield='credit'"
+									class="inputtext" readonly="readonly" value="0" name="low" onfocus="nextfield='credit'" id="credits_low"
 									maxlength="25" />
 								</td>
 								<td colspan="2" align="left" class="inputContent"><font

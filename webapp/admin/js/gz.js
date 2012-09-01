@@ -958,7 +958,7 @@ function get_district(d)
 					n.appendChild(temp);
 				}
 			}
-		})
+		});
 	}
 }
 function select_address(e) {
@@ -974,5 +974,22 @@ function pass_submit()
 	Ajax({
 		url:'admin/update_password?password='+a+'&newPassword='+b+'&newPasswordConfirm='+c,
 		onSuccess:function(e){var a=JSON.parse(e);if(a.updateResult)alert('密码修改成功！');location.reload();}
-		})
+		});
+}
+
+
+//改变积分下限的输入框属性
+function change_credit_low(choose){
+	 
+	 if(choose.selectedIndex == 0){
+	// alert(choose.options[choose.selectedIndex].text); 
+	 var input = document.getElementById('credits_low');
+	 input.setAttribute("readonly", "readonly");
+	 input.setAttribute("value", "0");
+	 }
+	 else{ 
+		  document.getElementById('credits_low').removeAttribute("readonly");
+		  document.getElementById('credits_low').removeAttribute("value");
+	 }
+	     
 }
