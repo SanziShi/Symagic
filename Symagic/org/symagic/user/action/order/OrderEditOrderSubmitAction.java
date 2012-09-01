@@ -196,6 +196,7 @@ public class OrderEditOrderSubmitAction extends OrderBase{
 		if(districtLevel3ID != null){
 			level3 = daoDistrict.getDistrictById(districtLevel3ID);
 			if(level3 != null){
+				address.level3District = new DistrictBean();
 				address.level3District.setName(level3.getName());
 				address.level3District.setID(level3.getId());
 			}
